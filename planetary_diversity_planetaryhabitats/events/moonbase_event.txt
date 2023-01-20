@@ -1,0 +1,258 @@
+
+namespace = moonbase
+
+# Habitat Complete Notification
+country_event = {
+	id = "moonbase.00"
+	title = "moonbase.00.name"
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = already_built_pd_habitat }
+		}
+		text = "moonbase.00.desc.a"
+	}
+
+	desc = {
+		trigger = {
+			has_country_flag = already_built_pd_habitat
+		}
+		text = "moonbase.00.desc.b"
+	}
+	show_sound = event_mystic_reveal
+	picture = GFX_evt_colony_settlement
+	is_triggered_only = yes
+	location = FromFromFrom.Planet
+
+	option = {
+		name = EXCELLENT
+		hidden_effect = { set_country_flag = already_built_pd_habitat }
+	}
+}
+
+event = {
+	id = moonbase.01
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { set_global_flag = planetarydiversityhabitats }
+}
+
+country_event = {
+	id = moonbase.02
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Planets get underground cave
+
+	#trigger = {	owner = { has_trait = trait_pc_sulfur_preference } }
+
+	immediate = {
+		every_galaxy_planet = { 
+			limit = {  
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+				}
+				not = { has_modifier = pdhabcavesystem }	
+				planet_size > 9
+				planet_size < 26	
+				solar_system = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+			}	
+			random_list = {
+				30 = { 
+					add_modifier = { modifier = pdhabcavesystem days = -1	} 
+				}
+				70 = { }	
+			}
+		}
+		every_galaxy_planet = { 
+			limit = {  
+				OR = {
+					is_planet_class = pc_gas_giant
+					is_planet_class = pc_hothouse
+					is_planet_class = pc_toxic
+				}
+				not = { has_modifier = pdhabcalmwinds }	
+				planet_size > 9
+				planet_size < 26	
+				solar_system = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+			}	
+			random_list = {
+				30 = { 
+					add_modifier = { modifier = pdhabcalmwinds days = -1	} 
+				}
+				70 = { }	
+			}
+		}
+		every_galaxy_planet = { 
+			limit = {  
+				is_planet_class = pc_frozen
+				not = { has_modifier = pdhabsubglacialocean }	
+				not = { has_modifier = pdterra_geothermal }
+				not = { has_modifier = pdterra_aquatic }
+				is_moon = yes
+				planet_size > 9
+				planet_size < 15	
+				solar_system = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+			}	
+			random_list = {
+				15 = { 
+					add_modifier = { modifier = pdhabsubglacialocean days = -1	} 
+				}
+				85 = { }	
+			}
+		}
+		every_galaxy_planet = { 
+			limit = {  
+				is_planet_class = pc_molten
+				not = { has_modifier = pdhabvolcanicminerals }	
+				planet_size > 9
+				planet_size < 26	
+				solar_system = {
+					NOR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+					}
+				}
+			}	
+			random_list = {
+				30 = { 
+					add_modifier = { modifier = pdhabvolcanicminerals days = -1	} 
+				}
+				70 = { }	
+			}
+		}
+	}
+}
+
+country_event = {
+	id = moonbase.03
+	hide_window = yes
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	immediate = {
+		set_country_flag = pd_find_hablocations
+		IF = {
+			limit = { 
+				any_planet_within_border = {
+					NOT = { has_modifier = pd_habsite }
+				}
+			}
+			#every_planet_within_border = {
+			#	limit = {
+			#		is_asteroid = yes
+			#	}
+			#	add_modifier = { modifier = pd_habsite days = 360 }
+			#}
+			every_planet_within_border = {
+				limit = {
+               		planet_size <= 25
+              	 	planet_size >= 2	   
+					OR = {
+						is_planet_class = pc_barren
+						is_planet_class = pc_barren_cold
+						is_planet_class = pc_diamond
+						is_planet_class = pc_chthonian
+						is_planet_class = pc_iron
+					}
+				}
+				add_modifier = { modifier = pd_habsite days = -1 }
+			}
+		}
+		IF = {
+			limit = { 
+				any_planet_within_border = {
+					NOT = { has_modifier = pd_habsite }
+				}
+				from = { has_technology = tech_pdhabitat_1 }
+			}
+			every_planet_within_border = {
+				limit = {
+               		planet_size <= 25
+              	 	planet_size >= 2	   
+					   OR = {
+						   is_planet_class = pc_frozen
+						   is_planet_class = pc_subglacial
+					   }
+				}
+				add_modifier = { modifier = pd_habsite days = -1 }
+			}
+			every_planet_within_border = {
+				limit = {
+               		planet_size <= 25
+              	 	planet_size >= 2
+					   OR = {
+						   is_planet_class = pc_molten
+						   is_planet_class = pc_volcanic
+					   }
+				}
+				add_modifier = { modifier = pd_habsite days = -1 }
+			}
+		}
+		IF = {
+			limit = { 
+				any_planet_within_border = {
+					NOT = { has_modifier = pd_habsite }
+				}
+				from = { has_technology = tech_pdhabitat_2 }
+			}
+			every_planet_within_border = {
+				limit = {
+					planet_size <= 30
+					   OR = {
+						   is_planet_class = pc_gas_giant
+						   is_planet_class = pc_cold_gas_giant
+						   is_planet_class = pc_hot_gas_giant
+					   }
+				}
+				add_modifier = { modifier = pd_habsite days = -1 }
+			}
+			every_planet_within_border = {
+				limit = {
+               		planet_size <= 25
+              	 	planet_size >= 2
+					   OR = {
+						   is_planet_class = pc_hothouse
+						   is_planet_class = pc_toxic
+					   }
+				}
+				add_modifier = { modifier = pd_habsite days = -1 }
+			}
+		}
+		country_event = {
+			id = moonbase.04 days = 180
+		}
+	}
+}
+
+country_event = {
+	id = moonbase.04
+	hide_window = yes
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	immediate = {
+		remove_country_flag = pd_find_hablocations
+		every_planet_within_border = { remove_modifier = pd_habsite }
+	}
+}

@@ -1,0 +1,48 @@
+#civic_example = {
+#	playable = {}								# AND trigger, no scope; use this to prevent the civic from being selectable by the player (UI)
+#	potential = {}								# requirements list, see ../readme_requirements.txt
+#	possible = {}								# requirements list, see ../readme_requirements.txt
+#	pickable_at_start = yes / no				# default: yes
+#	modification = yes / no						# default: yes, set to no to prevent adding or removing this after creation of the empire
+#
+#	random_weight = { base = 5 }				# scriptable weight for randomizing a civic; required, else the civic will not get assigned randomly
+#
+#	modifier = {}								# modifier added to the country if the civic is selected and valid
+#	can_build_ruler_ship = yes / no				# default: no
+#	traits = { trait = ... }					# default: empty; trait set to enforce on the primary species. They cannot be removed, but more can be added if points/picks permit
+#	has_secondary_species = {					# default: none; if present, will enable secondary species customization in empire designer and will create secondary species & pops at galaxy generation time (see empire_init_create_capital_secondary_pops)
+#		traits = { trait = ... }					# default: empty; trait set to enforce on the secondary species. They cannot be removed, but more can be added if points/picks permit
+#	}
+#}
+
+origin_pd_shroud = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_pd_shroud_start.dds"
+	picture = GFX_origin_pd_shroud_start
+	description = "origin_tooltip_pd_shroud_start_effects"
+	starting_colony = pc_pdshroud
+	habitability_preference = pc_pdshroud
+	preferred_planet_class_neighbor = no
+	max_once_global = yes
+	random_weight = { base = 1 }
+	possible = {
+		species_archetype = {
+			OR = {
+				value = BIOLOGICAL
+				value = LITHOID
+			}
+		}
+		ethics = {
+			OR = {
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+	}
+	traits = {
+		trait = trait_latent_psionic
+	}
+	#traits = { trait = trait_latent_psionic }
+	#flags = { custom_start_screen }
+	#advanced_start = yes
+}

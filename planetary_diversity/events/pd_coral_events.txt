@@ -1,0 +1,222 @@
+namespace = pdcoral
+
+#Start Event
+planet_event = {
+	id = pdcoral.01
+	hide_window = yes
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		original_owner = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		NOT = { owner = { is_gestalt = yes } }
+		NOT = { any_galaxy_planet = { has_planet_flag = pdcoral_onlyonce } }
+		NOT = { has_planet_flag = pdnocoral }
+		is_planet_class = pc_coral
+		#has_building = building_major_capital
+		has_planet_flag = pd_coral_event
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		planet_event = { id = pdcoral.10 }
+	}
+
+}
+
+#Coral Mystery Start
+planet_event = {
+	id = pdcoral.10
+	title = pdcoral.10.name
+	desc = pdcoral.10.desc
+	picture = GFX_evt_coral
+	show_sound = event_ship_bridge
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_country_flag = pd_coral_event
+		}
+	}
+
+	option = {
+		name = pdcoral.10.a
+		create_archaeological_site = pdcoral_site
+	}
+}
+
+#Arc Event
+fleet_event = { 
+	id = pdcoral.11
+	title = "pdcoral.11.name"
+	desc = pdcoral.11.desc
+	picture = GFX_evt_coral
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcoral.11.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+		leader = { add_experience = 100 }
+	}
+}
+
+fleet_event = { 
+	id = pdcoral.12
+	title = "pdcoral.12.name"
+	desc = pdcoral.12.desc
+	picture = GFX_evt_coral
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcoral.12.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = physics_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+		leader = { add_experience = 100 }
+	}
+}
+
+fleet_event = { 
+	id = pdcoral.13
+	title = "pdcoral.13.name"
+	desc = pdcoral.13.desc
+	picture = GFX_evt_coral
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcoral.13.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = physics_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcoral.14
+	title = "pdcoral.14.name"
+	desc = pdcoral.14.desc
+	picture = GFX_evt_coral
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcoral.14.a
+		owner = {
+			IF = {
+				limit = {
+					OR = {
+						has_trait = trait_pc_continental_preference
+						has_trait = trait_pc_lake_preference
+						has_trait = trait_pc_forest_preference
+						has_trait = trait_pc_tepid_preference
+						has_trait = trait_pc_retinal_preference
+						has_trait = trait_pc_superhabitable_preference
+						has_trait = trait_pc_megaflora_preference
+						has_trait = trait_pc_pd_petrified_preference
+						has_trait = trait_pc_tropical_preference
+						has_trait = trait_pc_hajungle_preference
+						has_trait = trait_pc_cenote_preference
+						has_trait = trait_pc_mangrove_preference
+						has_trait = trait_pc_desertislands_preference
+						has_trait = trait_pc_biolumen_preference
+						has_trait = trait_pc_geothermal_preference
+						has_trait = trait_pc_ocean_preference
+						has_trait = trait_pc_cascadian_preference
+						has_trait = trait_pc_wetswamp_preference
+						has_trait = trait_pc_fog_preference
+						has_trait = trait_pc_subarctic_preference
+						has_trait = trait_pc_karst_preference
+						has_trait = trait_pc_reef_preference
+						has_trait = trait_pc_pd_archipelago_preference
+						has_trait = trait_pc_aquatic_preference
+						}
+					}
+				give_technology = {
+					tech = tech_coral_world_adaption_dry
+				}
+			}
+			ELSE_IF = {
+				limit = {
+					OR = {
+						NOT = { has_trait = trait_pc_continental_preference }
+						NOT = { has_trait = trait_pc_lake_preference }
+						NOT = { has_trait = trait_pc_forest_preference }
+						NOT = { has_trait = trait_pc_tepid_preference }
+						NOT = { has_trait = trait_pc_retinal_preference }
+						NOT = { has_trait = trait_pc_superhabitable_preference }
+						NOT = { has_trait = trait_pc_megaflora_preference }
+						NOT = { has_trait = trait_pc_tropical_preference }
+						NOT = { has_trait = trait_pc_hajungle_preference }
+						NOT = { has_trait = trait_pc_cenote_preference }
+						NOT = { has_trait = trait_pc_mangrove_preference }
+						NOT = { has_trait = trait_pc_desertislands_preference }
+						NOT = { has_trait = trait_pc_biolumen_preference }
+						NOT = { has_trait = trait_pc_geothermal_preference }
+						NOT = { has_trait = trait_pc_ocean_preference }
+						NOT = { has_trait = trait_pc_cascadian_preference }
+						NOT = { has_trait = trait_pc_wetswamp_preference }
+						NOT = { has_trait = trait_pc_fog_preference }
+						NOT = { has_trait = trait_pc_subarctic_preference }
+						NOT = { has_trait = trait_pc_karst_preference }
+						NOT = { has_trait = trait_pc_reef_preference }
+						NOT = { has_trait = trait_pc_pd_archipelago_preference }
+						NOT = { has_trait = trait_pc_aquatic_preference }
+						}
+					}
+				give_technology = {
+					tech = tech_coral_world_adaption_wet
+				}
+
+			}
+		}
+	}
+}

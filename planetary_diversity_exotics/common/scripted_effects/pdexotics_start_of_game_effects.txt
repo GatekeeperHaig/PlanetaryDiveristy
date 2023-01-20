@@ -1,0 +1,50 @@
+
+
+pd_hycean_habitat_setup = {
+	optimize_memory
+	owner = {
+		save_event_target_as = hycean_origin_owner
+		add_research_option = tech_habitat_1
+	}
+
+	remove_building = building_research_lab_1
+	while = { #they get the habitat + destruction
+		count = 1
+		random_owned_pop = { kill_pop = yes }
+	}
+
+	solar_system = {
+		random_system_planet = {
+			limit = { has_planet_flag = hycean_flooded_habitat }
+			set_owner = event_target:hycean_origin_owner
+			while = {
+				count = 5
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			set_planet_entity = {
+				entity = "habitat_phase_01_entity"
+				picture = "pc_hyceanhabitat"
+				graphical_culture = event_target:hycean_origin_owner
+			}
+			set_planet_size = 4
+			set_colony_type = col_habitat_research
+			add_building = building_hab_capital
+			set_planet_flag = research_habitat
+			add_modifier = {
+				modifier = hyceanfloodedhabitat
+				days = -1
+			}
+			add_district = district_hab_science
+			if = { 
+				limit = { owner = { is_gestalt = no } }
+				add_district = district_hab_cultural
+			}
+			if = { 
+				limit = { owner = { is_gestalt = yes } }
+				add_district = district_hab_housing
+			}
+		}
+	}
+}

@@ -1,0 +1,260 @@
+namespace = pdcrystal
+
+#EnterSystem
+ship_event = {
+	id = pdcrystal.10
+	title = pdcrystal.10.name
+	desc = pdcrystal.10.desc
+	picture = GFX_evt_crystal
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = pdcrystal_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = crystal_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = crystal_encounter
+		}
+	}
+
+	option = {
+		name = pdcrystal.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdcrystal.20
+	title = pdcrystal.20.name
+	desc = pdcrystal.20.desc
+	picture = GFX_evt_crystal2
+	location = from
+	show_sound = event_ship_bridge
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		FROM = {
+			has_planet_flag = crystal_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_crystal_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = { owner = {	set_country_flag = found_crystal_planet	} }
+
+	option = { 
+		name = pdcrystal.20.a 
+		FROM = { create_archaeological_site = pdcrystal_site }
+		hidden_effect = {
+			owner = { country_event = { id = story.5 days = 30 } }
+		}
+	}
+}
+
+#Crystal Arc Event
+fleet_event = { 
+	id = pdcrystal.50
+	title = "pdcrystal.50.name"
+	desc = pdcrystal.50.desc
+	picture = GFX_evt_crystal2
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrystal.50.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcrystal.51
+	title = "pdcrystal.50.name"
+	desc = pdcrystal.51.desc
+	picture = GFX_evt_crystal2
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ancrel.51.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcrystal.52
+	title = "pdcrystal.50.name"
+	desc = pdcrystal.52.desc
+	picture = GFX_evt_crystal2
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrystal.52.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcrystal.53
+	title = "pdcrystal.50.name"
+	desc = pdcrystal.53.desc
+	picture = GFX_evt_crystal2
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrystal.53.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcrystal.54
+	title = "pdcrystal.50.name"
+	desc = pdcrystal.54.desc
+	picture = GFX_evt_crystal2
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_planet_flag = crystal_planet }
+			planet_event = { id = pdcrystal.60 days = 14 }
+		}
+	}
+
+	option = {
+		name = pdcrystal.54.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = pdcrystal.60
+	title = pdcrystal.60.name
+	desc = pdcrystal.60.desc
+	picture = GFX_evt_crystal
+	location = from
+	show_sound = event_mystic_reveal
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = crystal_planet
+	}
+
+	option = {
+		name = pdcrystal.60.a
+		custom_tooltip = pdcrystal.60.a.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalhelpit
+		}
+	}
+
+	option = {
+		name = pdcrystal.60.b
+		custom_tooltip = pdcrystal.60.b.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalleaveit
+		}
+	}
+
+	option = {
+		name = pdcrystal.60.c
+		custom_tooltip = pdcrystal.60.c.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalmineit
+		}
+	}
+
+	option = {
+		name = pdcrystal.60.d
+		custom_tooltip = pdcrystal.60.d.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalkillit
+		}
+	}
+
+}

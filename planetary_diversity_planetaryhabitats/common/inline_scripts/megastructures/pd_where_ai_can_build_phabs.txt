@@ -1,0 +1,32 @@
+ai_weight = {
+	factor = 1
+
+	modifier = {
+		factor = 0
+		starbase = { NOT = { has_starbase_size >= starbase_starfortress } }
+	}
+
+	modifier = {
+		factor = 0
+		solar_system = {
+			NOR = { 
+				has_star_flag = empire_home_system
+				#has_star_flag = neighbor_t1_first_colony
+				#has_star_flag = neighbor_t2_second_colony
+			}
+		}
+	}
+
+	modifier = {
+		factor = 3
+		solar_system = {
+			exists = owner
+			is_same_value = owner.capital_scope.solar_system
+		}
+	}
+	modifier = {
+		factor = 2
+		exists = sector
+		sector = { has_sector_type = core_sector }
+	}
+}

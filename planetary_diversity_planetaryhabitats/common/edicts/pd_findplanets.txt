@@ -1,0 +1,47 @@
+##########################################################################
+# Sacrifice Edicts
+##########################################################################
+
+@Edict1Cost = 50
+@Edict2Cost = 100
+
+@sacrificeDuration = 1800
+
+@sacrificeReward1 = 0.15
+
+pd_find_hablocations = {
+	length = 0
+	icon = "GFX_edict_type_time"
+	
+	resources = {
+		category = edicts
+		cost = { energy = 500 }
+	}
+
+	modifier = {
+		custom_tooltip = "edict_pd_find_hablocations_tooltip"
+	}
+	
+	potential = {
+		any_planet_within_border = { 
+			NOT = { has_modifier = pd_habsite } 
+		}
+		NOT = { has_country_flag = pd_find_hablocations }
+	}
+
+	allow = {
+
+	}
+
+	prerequisites = { 
+
+	}
+
+	effect = {
+		hidden_effect = { country_event = { id = moonbase.03 days = 0 }	}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}

@@ -1,0 +1,98 @@
+# see README.txt for example
+
+allow_pdlavamines_0 = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	show_galactic_map_icon = no
+	build_time = 900
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 500
+			influence = 100
+		}
+	}
+	construction_blocks_and_blocked_by = none
+
+	potential = { 
+		has_technology = tech_ash_tectonic_drillers 
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+			custom_tooltip = {
+				fail_text = "is_lava_habitable_world"
+				NOR = {	
+					is_colony = yes	
+					is_planet_class = pc_ash
+					is_planet_class = pc_city
+					is_planet_class = pc_relic
+					is_pd_arcology = yes
+					is_pd_hive_world = yes
+					is_pd_hive_arcology = yes
+					is_pd_machine = yes
+					is_planet_class = pc_gas_giant
+					is_pd_robot_arcology = yes
+					is_star = yes
+					has_deposit = d_pd_tectonic_fissure
+					is_artificial = yes
+					is_pd_habitat = yes
+					is_ringworld = yes
+					#is_pd_unique = yes
+				}
+				habitable_planet = yes	
+			}
+		} 
+	}
+	
+	on_build_start = {}
+	on_build_cancel = {}
+	
+	on_build_complete = {
+		fromfrom.planet = {
+			add_deposit = d_pd_tectonic_fissure
+			hidden_effect = {
+				add_planet_devastation = 0.5
+				add_deposit = d_active_volcano
+				add_deposit = d_active_volcano
+				add_deposit = d_active_volcano
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_primal
+							is_planet_class = pc_pd_archipelago
+							is_planet_class = pc_glacio
+							is_planet_class = pc_basalt
+						}
+					}
+					add_deposit = d_active_volcano
+					add_deposit = d_active_volcano
+					add_planet_devastation = 0.2
+				}
+			}
+		remove_megastructure = fromfrom
+		}
+	}
+}

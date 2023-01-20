@@ -1,0 +1,357 @@
+#ecoCity Planet
+pd_init_ecocity = {
+	class = "sc_f"
+	usage = misc_system_init
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 250
+	}
+	max_instances = 1
+	scaled_spawn_chance = 14
+	spawn_chance = 100	
+	usage_odds = {
+		base = 100
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	flags = { ecocity_system }
+		
+	planet = {
+		count = 1
+		class = "pc_f_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 27
+		has_ring = no
+		}
+	
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_molten
+		orbit_distance = 30
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+		
+	planet = {
+		count = { min = 2 max = 2 }
+		class = pc_barren
+		orbit_distance = 25
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		class = "pc_ecocity"
+		orbit_distance = 35
+		orbit_angle = 85
+		size = 20
+		has_ring = no
+		
+		init_effect = {
+			set_planet_flag = ecocity_planet
+			prevent_anomaly = yes
+			save_event_target_as = ecocity_planet
+			clear_deposits = yes
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ecogarden
+			create_country = {
+				name = "Spaceport Control"
+				type = faction
+			}
+			last_created_country = {
+				set_country_flag = ecocity_country
+				create_fleet = {
+					name = "Low Orbit Junk Removal"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = PREV
+						set_fleet_flag = ecocity_fleet
+						while = {
+							count = 20
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Combat_Drone"
+							}
+						}
+						while = {
+							count = 20
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Destroyer"
+							}
+						}	
+						set_aggro_range = 100			
+						set_location = event_target:ecocity_planet
+						add_modifier = {
+							modifier = sanctuary_power
+							days = -1														
+						}
+					}
+				}
+			}
+		}
+		
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 10
+			class = random_non_colonizable
+			}
+		
+		moon = {			
+			count = { min = 2 max = 2 }
+			orbit_distance = 5
+			class = random_non_colonizable
+			}
+	}
+		
+	planet = {
+		count = { min = 2 max = 2 }
+		class = pc_gas_giant
+		orbit_distance = { min = 45 max = 45 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 3 max = 3 }
+			orbit_distance = 10
+		}
+	}	
+	
+	planet = {
+		count = 1
+		class = random_asteroid
+		orbit_distance = 45
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 5
+		class = random_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 2 max = 2 }
+		class = pc_frozen
+		orbit_distance = 25
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+}
+# Milarc Relic World
+pd_init_milarc_relic = {
+	class = "rl_binary_stars"
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 168
+	}
+	
+	usage = misc_system_init
+	
+	spawn_chance = 100
+	usage_odds = {
+		base = 100
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+
+	max_instances = 1
+
+	flags = { mil_relic_system }
+	
+	planet = {
+        count = 1
+        class = star
+        orbit_distance = 25
+        orbit_angle = 0
+        size = { min = 30 max = 35 }
+        has_ring = no
+    }
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = 0
+        size = { min = 15 max = 25 }
+        has_ring = no
+    }
+
+    change_orbit = 45
+
+	planet = {
+		class = pc_molten
+		size = 13
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	planet = {
+		class = pc_molten
+		size = 9
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	planet = {
+		class = pc_molten
+		size = 17
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+
+		moon = {
+			class = "pc_barren"
+			orbit_distance = 12
+			size = 10
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = { min = 2 max = 3 }
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	change_orbit = 35
+
+	planet = {
+		class = pc_toxic
+		size = 26
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	change_orbit = 30
+
+	planet = {
+		class = pc_milarc_relic
+		size = 25
+		has_ring = no
+		orbit_angle = { min = 90 max = 270 }
+		flags = { milarc_planet }
+
+		init_effect = { 
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_pd_broken_drydocks
+			add_deposit = d_massive_crevice
+			add_deposit = d_shattered_solar_array
+			add_deposit = d_flooded_reactor_pits
+			add_deposit = d_crumbling_mining_tunnels
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			add_deposit = d_ruined_arcology
+			
+			create_country = {
+				name = "NAME_Defense_Initiative"
+				type = faction
+			}
+			last_created_country = {
+				create_fleet = {
+					name = "NAME_Defense_Flotilla"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 24
+							create_ship = {
+								name = "NAME_Autonomous_Drone"
+								design = "NAME_Guardian"
+							}
+						}					
+						set_location = prevprev
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+						add_modifier = {
+							modifier = armistice_power
+							days = -1
+						}							
+					}
+				}
+			}
+		}
+
+		moon = {
+			class = "pc_barren_cold"
+			orbit_distance = 12
+			size = 10
+			has_ring = no
+			orbit_angle = { min = 90 max = 270 }
+
+			init_effect = { prevent_anomaly = yes }
+		}
+	}
+
+	planet = {
+		class = pc_gas_giant
+		size = 22
+		orbit_distance = 30
+		orbit_angle = { min = 90 max = 270 }
+
+		moon = {
+			class = "pc_barren_cold"
+			orbit_distance = 14
+			orbit_angle = { min = 90 max = 270 }
+		}
+
+		moon = {
+			class = "pc_barren_cold"
+			orbit_distance = 6
+			orbit_angle = { min = 90 max = 270 }
+		}
+
+		moon = {
+			class = "pc_frozen"
+			orbit_distance = 6
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+}

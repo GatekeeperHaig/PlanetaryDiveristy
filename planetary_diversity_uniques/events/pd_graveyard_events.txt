@@ -1,0 +1,168 @@
+namespace = pdgraveyard
+
+#EnterSystem
+ship_event = {
+	id = pdgraveyard.10
+	title = pdgraveyard.10.name
+	desc = pdgraveyard.10.desc
+	picture = GFX_evt_graveyard
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = graveyard_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = graveyard_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = graveyard_encounter
+		}
+	}
+
+	option = {
+		name = pdgraveyard.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdgraveyard.20
+	title = pdgraveyard.20.name
+	desc = pdgraveyard.20.desc
+	picture = GFX_evt_graveyard2
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = graveyard_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_graveyard_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_graveyard_planet
+		}
+	}
+
+	option = {
+		name = pdgraveyard.20.a
+	}
+}
+
+#Tinyanki Falling From the Stars
+planet_event = {
+	id = pdgraveyard.30
+	title = pdgraveyard.30.name
+	picture = GFX_evt_graveyard3
+	show_sound = event_activating_unknown_technology
+	location = root
+	
+	desc = {
+		text = "pdgraveyard.30.desc"
+		trigger = { NOT = { owner = { has_origin = origin_graveyard_world } } }
+	}
+	desc = {
+		text = "pdgraveyard.30.desc.2"
+		trigger = { owner = { has_origin = origin_graveyard_world } }
+	}
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = graveyard_planet
+			
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdgraveyard.30.a
+		custom_tooltip = pdgraveyard.30.a.tooltip
+		hidden_effect = {
+			remove_planet_flag = tiyankidefault
+			set_planet_flag = tiyankileavebe
+			owner = { set_country_flag = pdtiyankiharvest }
+			owner = { set_country_flag = pdtiyankichoice }
+		}	
+	}
+
+	option = {
+		name = pdgraveyard.30.b
+		custom_tooltip = pdgraveyard.30.b.tooltip
+		hidden_effect = {
+			remove_planet_flag = tiyankidefault
+			set_planet_flag = tiyankinobutcher
+			owner = { set_country_flag = pdtiyankistudyonly }
+			owner = { set_country_flag = pdtiyankichoice }
+		}	
+	}
+
+	option = {
+		name = pdgraveyard.30.c
+		custom_tooltip = pdgraveyard.30.c.tooltip
+		hidden_effect = {
+			remove_planet_flag = tiyankidefault
+			set_planet_flag = tiyankibutchertown
+			owner = { set_country_flag = pdtiyankiharvest }
+			owner = { set_country_flag = pdtiyankichoice }
+		}
+	}
+
+	option = {
+		name = pdgraveyard.30.d
+		custom_tooltip = pdgraveyard.30.d.tooltip
+		hidden_effect = {
+			remove_planet_flag = tiyankidefault
+			set_planet_flag = tiyankicolonyprotect
+			owner = { set_country_flag = pdtiyankiharvest }
+			owner = { set_country_flag = pdtiyankichoice }
+		}
+	}
+
+	option = {
+		name = pdgraveyard.30.e
+		custom_tooltip = pdgraveyard.30.e.tooltip
+		hidden_effect = {
+			remove_planet_flag = tiyankidefault
+			set_planet_flag = tiyankinofalling
+			owner = { set_country_flag = pdtiyankichoice }
+		}
+	}
+}

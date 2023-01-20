@@ -1,0 +1,115 @@
+# Resort Colony
+decision_resort_colony = {
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_resort_colonies"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+
+	potential = {
+		is_capital = no
+		is_pd_arcology = no
+		is_pd_unique = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		NOT = { has_modifier = penal_colony }
+		NOT = { has_modifier = slave_colony }
+		NOT = { is_planet_class = pc_city }
+		owner = {
+			is_regular_empire = yes
+		}
+		is_artificial = no
+	}
+
+	allow = {
+		planet_size >= 15
+		custom_tooltip = {
+			fail_text = decision_resort_colony_no_districts
+			num_districts = { type = any value < 1 }
+			num_buildings = { type = any value < 2 }
+		}
+		custom_tooltip = {
+			fail_text = no_upgraded_capital_tooltip
+			has_upgraded_capital = no
+		}
+		custom_tooltip = {
+			fail_text = decision_resort_colony_only_one
+			NOT = {
+				owner = {
+					any_owned_planet = { has_modifier = resort_colony }
+				}
+			}
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = resort_colony
+			days = -1
+		}
+		hidden_effect = {
+			remove_building = building_colony_shelter
+			add_building = building_resort_capital
+		}
+		hidden_effect = { validate_planet_buildings_and_districts = yes }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Penal Colony
+decision_penal_colony = {
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_penal_colonies"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+
+	potential = {
+		is_capital = no
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+		owner = {
+			is_regular_empire = yes
+		}
+		is_artificial = no
+		is_pd_habitat = no
+		NOT = {
+			owner = {
+				any_owned_planet = { has_modifier = penal_colony }
+			}
+		}
+	}
+
+	allow = {
+		planet_size >= 15
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = penal_colony
+			days = -1
+		}
+		hidden_effect = { validate_planet_buildings_and_districts = yes }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

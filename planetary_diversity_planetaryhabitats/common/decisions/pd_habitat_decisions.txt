@@ -1,0 +1,733 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Advanced Habitat
+decision_upgrade_pd_habitat = {
+	owned_planets_only = yes
+	icon = decision_satellite_in_orbit
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1000
+		}
+	}
+
+	potential = {
+		OR = {
+		is_planet_class = pc_pd_barren_cold_hab
+		is_planet_class = pc_pd_barren_hab
+		is_planet_class = pc_pd_frozen_hab
+		is_planet_class = pc_pd_gas_giant_hab
+		is_planet_class = pc_pd_hothouse_hab
+		is_planet_class = pc_pd_toxic_hab
+		is_planet_class = pc_pd_molten_hab
+		is_planet_class = pc_pd_asteroid_hab
+		}
+		NOT = { has_planet_flag = advanced_habitat }
+		NOT = { has_modifier = military_pd_habitat_reg }
+		NOT = { has_modifier = military_pd_habitat_reg_asteroid }
+		NOT = { has_modifier = military_pd_habitat_ges }
+		NOT = { has_modifier = military_pd_habitat_ges_asteroid }
+		NOT = { has_modifier = resort_colony_pd_hab }
+		exists = owner
+		owner = {
+			has_technology = tech_pdhabitat_1
+		}
+	}
+
+	allow = {
+		free_district_slots = 0
+		has_modifier = pdhablevel1
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = pdhablevel2
+			days = -1
+		}
+		hidden_effect = {
+			remove_modifier = pdhablevel1
+			set_planet_flag = advanced_habitat
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+decision_upgrade_pd_habitat_2 = {
+	owned_planets_only = yes
+	icon = decision_satellite_in_orbit
+
+	enactment_time = 1440
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1500
+		}
+	}
+
+	potential = {
+		OR = {
+		is_planet_class = pc_pd_barren_cold_hab
+		is_planet_class = pc_pd_barren_hab
+		is_planet_class = pc_pd_frozen_hab
+		is_planet_class = pc_pd_gas_giant_hab
+		is_planet_class = pc_pd_hothouse_hab
+		is_planet_class = pc_pd_toxic_hab
+		is_planet_class = pc_pd_molten_hab
+		is_planet_class = pc_pd_asteroid_hab
+		}
+		has_planet_flag = advanced_habitat
+		NOT = { has_planet_flag = advanced_habitat_2 }
+		exists = owner
+		owner = {
+			has_technology = tech_pdhabitat_2
+		}
+	}
+
+	allow = {
+		free_district_slots = 0
+		has_modifier = pdhablevel2
+		has_building = building_hab_major_capital
+		#has_major_upgraded_capital = yes
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = pdhablevel3
+			days = -1
+		}
+		hidden_effect = {
+			remove_modifier = pdhablevel2
+			set_planet_flag = advanced_habitat_2
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+decision_destroy_planetary_hab = {
+	#owned_planets_only = yes
+	icon = decision_satellite_in_orbit #TODO
+
+	#enactment_time = 1440
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		OR = {
+		is_planet_class = pc_pd_barren_cold_hab
+		is_planet_class = pc_pd_barren_hab
+		is_planet_class = pc_pd_frozen_hab
+		is_planet_class = pc_pd_gas_giant_hab
+		is_planet_class = pc_pd_hothouse_hab
+		is_planet_class = pc_pd_toxic_hab
+		is_planet_class = pc_pd_molten_hab
+		is_planet_class = pc_pd_asteroid_hab
+		}
+		num_pops < 1
+	}
+
+	allow = {
+		num_pops < 1
+	}
+	
+	effect = {
+        custom_tooltip = PD_REMOVE_HAB_TOOLTIP
+        owner = { add_resource = { alloys = 200  } }
+        hidden_effect = {
+			if = {
+				limit = { is_planet_class = pc_pd_barren_cold_hab NOR = { has_planet_flag = pdhab_diamond has_planet_flag = pdhab_iron has_planet_flag = pdhab_carbon } }
+				change_pc = pc_barren_cold
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_barren_hab NOT = { has_planet_flag = pdhab_chthonian } }
+				change_pc = pc_barren
+			}
+			if = {
+				limit = {
+					is_planet_class = pc_pd_frozen_hab
+					NOR = {
+						has_planet_flag = pdhab_subglacial
+						has_planet_flag = pdhab_hydrocarbon
+					}
+				}
+				change_pc = pc_frozen
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_gas_giant_hab NOR = { has_planet_flag = pdhab_coldgg has_planet_flag = pdhab_hotgg has_planet_flag = pdhab_cloudlessgg } }
+				change_pc = pc_gas_giant
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_hothouse_hab }
+				change_pc = pc_hothouse
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_toxic_hab }
+				change_pc = pc_toxic
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_molten_hab NOT = { has_planet_flag = pdhab_volcanic } }
+				change_pc = pc_molten
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_asteroid_hab has_planet_flag = pdasteroidhab }
+				change_pc = pc_asteroid
+				remove_planet_flag = pdasteroidhab
+			}    
+			if = {
+				limit = { is_planet_class = pc_pd_frozen_hab has_planet_flag = pdhab_subglacial }
+				change_pc = pc_subglacial
+				remove_planet_flag = pdhab_subglacial
+			}    
+			if = {
+				limit = { is_planet_class = pc_pd_molten_hab has_planet_flag = pdhab_volcanic }
+				change_pc = pc_volcanic
+				remove_planet_flag = pdhab_volcanic
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_barren_cold_hab has_planet_flag = pdhab_diamond }
+				change_pc = pc_diamond
+				remove_planet_flag = pdhab_diamond
+			}    
+			if = {
+				limit = { is_planet_class = pc_pd_barren_cold_hab has_planet_flag = pdhab_iron }
+				change_pc = pc_iron
+				remove_planet_flag = pdhab_iron
+			}    
+			if = {
+				limit = { is_planet_class = pc_pd_barren_cold_hab has_planet_flag = pdhab_carbon }
+				change_pc = pc_carbon
+				remove_planet_flag = pdhab_carbon
+			}    
+			if = {
+				limit = { is_planet_class = pc_pd_barren_hab has_planet_flag = pdhab_chthonian }
+				change_pc = pc_chthonian
+				remove_planet_flag = pdhab_chthonian
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_gas_giant_hab has_planet_flag = pdhab_coldgg }
+				change_pc = pc_cold_gas_giant
+				remove_planet_flag = pdhab_coldgg
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_gas_giant_hab has_planet_flag = pdhab_hotgg }
+				change_pc = pc_hot_gas_giant
+				remove_planet_flag = pdhab_hotgg
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_gas_giant_hab has_planet_flag = pdhab_cloudlessgg }
+				change_pc = pc_cloudless_gas_giant
+				remove_planet_flag = pdhab_cloudlessgg
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_asteroid_hab has_planet_flag = pdiceasteroidhab }
+				change_pc = pc_ice_asteroid
+				remove_planet_flag = pdiceasteroidhab
+			}
+			if = {
+				limit = { is_planet_class = pc_pd_asteroid_hab has_planet_flag = pdcrystalasteroidhab }
+				change_pc = pc_rare_crystal_asteroid
+				remove_planet_flag = pdcrystalasteroidhab
+			}    
+			if = {
+				limit = { is_planet_class = pc_pd_frozen_hab has_planet_flag = pdhab_hydrocarbon }
+				change_pc = pc_hydrocarbon
+				remove_planet_flag = pdhab_hydrocarbon
+			}    
+			if = {
+				limit = { has_modifier = hab_terraforming_candidate }
+				remove_modifier = hab_terraforming_candidate
+				add_modifier = { modifier = terraforming_candidate }
+			}    
+			if = {
+				limit = { has_modifier = hab_pdhabsubglacialocean }
+				remove_modifier = hab_pdhabsubglacialocean
+				add_modifier = { modifier = pdhabsubglacialocean }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Resort Colony
+decision_resort_habitat = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	prerequisites = {
+		"tech_resort_colonies"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+
+	potential = {
+		is_capital = no
+		is_pd_habitat = yes
+		NOT = { is_planet_class = pc_pd_asteroid_hab }
+		NOT = { has_modifier = resort_colony_pd_hab }
+		NOT = { has_modifier = penal_habitat }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_modifier = military_pd_habitat_reg }
+		NOT = { has_modifier = military_pd_habitat_ges }
+		NOT = { has_modifier = military_pd_habitat_reg_asteroid }
+		NOT = { has_modifier = military_pd_habitat_ges_asteroid }
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	allow = {
+		#planet_size >= 15
+		custom_tooltip = {
+			fail_text = decision_resort_colony_no_districts
+			num_districts = { type = any value < 1 }
+			num_buildings = { type = any value < 2 }
+		}
+		custom_tooltip = {
+			fail_text = no_upgraded_capital_tooltip
+			has_building = building_hab_capital
+		}
+		custom_tooltip = {
+			fail_text = decision_resort_colony_only_one
+			NOT = {
+				owner = {
+					any_owned_planet = { has_modifier = resort_colony_pd_hab }
+				}
+			}
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = resort_colony_pd_hab
+			days = -1
+		}
+		hidden_effect = {
+			remove_building = building_hab_capital
+			add_building = building_resort_capital
+		}
+		hidden_effect = { validate_planet_buildings_and_districts = yes }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_abolish_resort_habitat = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 2500
+		}
+	}
+
+	potential = {
+		has_modifier = resort_colony_pd_hab
+	}
+
+	effect = {
+		remove_modifier = resort_colony_pd_hab
+		hidden_effect = {
+			remove_building = building_resort_capital
+			add_building = building_hab_capital
+		}
+		hidden_effect = { validate_planet_buildings_and_districts = yes }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Penal Colony
+decision_penal_habitat = {
+	owned_planets_only = yes
+	icon = decision_penal_colony
+
+	prerequisites = {
+		"tech_penal_colonies"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+		}
+	}
+
+	potential = {
+		is_capital = no
+		NOT = { has_modifier = resort_colony_pd_hab }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_modifier = military_pd_habitat_reg }
+		owner = {
+			is_regular_empire = yes
+		}
+		is_pd_habitat = yes
+		NOT = {
+			owner = {
+				any_owned_planet = { has_modifier = penal_habitat }
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_penal_habitat_no_districts
+			num_districts = { type = district_pdhab_cultural value < 1 }
+			num_districts = { type = district_pdhab_commercial value < 1 }
+			num_districts = { type = district_pdhab_science value < 1 }
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = penal_habitat
+			days = -1
+		}
+		hidden_effect = { validate_planet_buildings_and_districts = yes }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_abolish_penal_habitat = {
+	owned_planets_only = yes
+	icon = decision_penal_colony
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 2500
+		}
+	}
+
+	potential = {
+		has_modifier = penal_habitat
+	}
+
+	effect = {
+		remove_modifier = penal_habitat
+		hidden_effect = { validate_planet_buildings_and_districts = yes }
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Military Colony
+decision_military_habitat = {
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_military_habitats"
+	}
+
+
+	#enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			unity = 500
+			alloys = 500
+		}
+	}
+
+	potential = {
+		is_capital = no
+		exists = owner
+		is_pd_habitat = yes
+		#OR = {
+		#	is_planet_class = pc_pd_molten_hab
+		#	is_planet_class = pc_pd_barren_hab
+		#	is_planet_class = pc_pd_barren_cold_hab
+		#	is_planet_class = pc_pd_frozen_hab
+		#}
+		NOT = { has_modifier = resort_colony_pd_hab }
+		NOT = { has_modifier = penal_habitat }
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_modifier = military_pd_habitat_reg }
+		NOT = { has_modifier = military_pd_habitat_reg_asteroid }
+		NOT = { has_modifier = military_pd_habitat_ges }
+		NOT = { has_modifier = military_pd_habitat_ges_asteroid }
+	}
+
+	allow = {
+		#planet_size >= 15
+		custom_tooltip = {
+			fail_text = decision_military_habitat_no_districts
+			num_districts = { type = any value < 1 }
+		}
+	}
+
+	effect = {
+		IF = {
+			limit = {
+				owner = { is_gestalt = no }
+				NOT = { is_planet_class = pc_pd_asteroid_hab }
+			}
+			add_modifier = {
+				modifier = military_pd_habitat_reg
+				days = -1
+			}
+
+		}
+		IF = {
+			limit = {
+				owner = { is_gestalt = yes }
+				NOT = { is_planet_class = pc_pd_asteroid_hab }
+			}
+			add_modifier = {
+				modifier = military_pd_habitat_ges
+				days = -1
+			}
+		}
+		IF = {
+			limit = {
+				owner = { is_gestalt = no }
+				is_planet_class = pc_pd_asteroid_hab
+			}
+			add_modifier = {
+				modifier = military_pd_habitat_reg_asteroid
+				days = -1
+			}
+
+		}
+		IF = {
+			limit = {
+				owner = { is_gestalt = yes }
+				is_planet_class = pc_pd_asteroid_hab
+			}
+			add_modifier = {
+				modifier = military_pd_habitat_ges_asteroid
+				days = -1
+			}
+		}
+		hidden_effect = { 
+			validate_planet_buildings_and_districts = yes
+			remove_modifier = pdhablevel1
+			IF = {
+				limit = { has_modifier = hab_terraforming_candidate }
+				remove_modifier = hab_terraforming_candidate
+				set_planet_flag = pdhab_terraforming_candidate_return
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_abolish_military_habitat = {
+	owned_planets_only = yes
+	icon = decision_military_habitat
+
+	resources = {
+		category = decisions
+		cost = {
+			unity = 2500
+			alloys = 500
+		}
+	}
+
+	potential = {
+		OR = {
+			has_modifier = military_pd_habitat_ges
+			has_modifier = military_pd_habitat_reg
+		}
+	}
+
+	effect = {
+		IF = {
+			limit = {
+				owner = { is_gestalt = no }
+				NOT = { is_planet_class = pc_pd_asteroid_hab }
+			}
+			remove_modifier = military_pd_habitat_reg
+		}
+		IF = {
+			limit = {
+				owner = { is_gestalt = yes }
+				NOT = { is_planet_class = pc_pd_asteroid_hab }
+			}
+			remove_modifier = military_pd_habitat_ges
+		}
+		IF = {
+			limit = {
+				owner = { is_gestalt = no }
+				is_planet_class = pc_pd_asteroid_hab
+			}
+			remove_modifier = military_pd_habitat_reg_asteroid
+		}
+		IF = {
+			limit = {
+				owner = { is_gestalt = yes }
+				is_planet_class = pc_pd_asteroid_hab
+			}
+			remove_modifier = military_pd_habitat_ges_asteroid
+		}
+		add_modifier = { 
+			modifier = pdhablevel1 
+			days = -1 
+		}
+		hidden_effect = { 
+			validate_planet_buildings_and_districts = yes 
+			if = {
+				limit = {  
+					has_planet_flag = pdhab_terraforming_candidate_return
+				}
+				remove_planet_flag = pdhab_terraforming_candidate_return
+				add_modifier = { modifier = hab_terraforming_candidate days = -1 }
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_prospect_void_phabs = {
+	owned_planets_only = yes
+	icon = decision_prospect_void
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+			energy = 500
+		}
+	}
+
+	potential = {
+		is_pd_habitat = yes
+		owner = {
+			has_active_tradition = tr_adaptability_void_finish
+		}
+		NOR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+			has_planet_flag = pd_energy_hab
+			has_planet_flag = pd_mining_hab
+			has_planet_flag = pd_science_hab
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_prospect_void_short
+		hidden_effect = {
+			random_list = {
+				33 = {
+					modifier = {
+						factor = 0
+						orbit = {
+							habitable_planet = no
+							can_have_energy_deposits = no
+						}
+					}
+					set_planet_flag = pd_energy_hab
+					create_message = {
+						type = MESSAGE_TYPE_HABITAT_PROSPECTED
+						localization = MESSAGE_HABITAT_PROSPECTED_ENERGY
+						days = 30
+						target = this
+						variable = {
+							type = name
+							localization = HABITAT
+							scope = this
+						}
+					}
+				}
+
+				33 = {
+					modifier = {
+						factor = 0
+						orbit = {
+							habitable_planet = no
+							can_have_mineral_deposits = no
+							OR = { #just in case, for careless mods or whatever
+								can_have_energy_deposits = yes
+								can_have_society_deposits = yes
+								can_have_physics_deposits = yes
+								can_have_engineering_deposits = yes
+							}
+						}
+					}
+					set_planet_flag = pd_mining_hab
+					create_message = {
+						type = MESSAGE_TYPE_HABITAT_PROSPECTED
+						localization = MESSAGE_HABITAT_PROSPECTED_MINERALS
+						days = 30
+						target = this
+						variable = {
+							type = name
+							localization = HABITAT
+							scope = this
+						}
+					}
+				}
+
+				33 = {
+					modifier = {
+						factor = 0
+						orbit = {
+							habitable_planet = no
+							can_have_society_deposits = no
+							can_have_physics_deposits = no
+							can_have_engineering_deposits = no
+						}
+					}
+					set_planet_flag = pd_science_hab
+					create_message = {
+						type = MESSAGE_TYPE_HABITAT_PROSPECTED
+						localization = MESSAGE_HABITAT_PROSPECTED_SCIENCE
+						days = 30
+						target = this
+						variable = {
+							type = name
+							localization = HABITAT
+							scope = this
+						}
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 10
+		}
+	}
+}

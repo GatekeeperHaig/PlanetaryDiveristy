@@ -1,0 +1,1295 @@
+namespace = pdshroud
+
+#Destory Temple
+planet_event = {
+	id = pdshroud.00
+	title = pdshroud.00.name
+	desc = pdshroud.00.desc
+	picture = GFX_evt_alien_planet
+	show_sound = event_alien_nature
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_planet_flag = pd_shroud_whispers	
+		remove_planet_flag = pd_shroud_composer
+		remove_modifier = pdwhispers
+		remove_modifier = pdnowhispers
+		remove_modifier = pdcomposer
+		remove_modifier = pdnocomposer
+		remove_modifier = pdeater
+		remove_modifier = pdnoeater
+		remove_modifier = pddesire
+		remove_modifier = pdnodesire
+	}
+
+	option = {
+		name = pdshroud.00.a
+		custom_tooltip = pdshroud.00.a.desc
+		hidden_effect = {
+			random_list = {
+				33 = { change_pc = pc_gaia }
+				33 = { change_pc = pc_hot_gaia }
+				33 = { change_pc = pc_cold_gaia }
+			}
+			reroll_deposits = yes 
+			add_deposit = d_pdshroudtempleruin
+		}
+	}
+}
+event = {
+	id = pdshroud.01
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { set_global_flag = planetarydiversityshroud }
+}
+
+#Whisper in the Void
+#SurveyPlanet
+ship_event = {
+	id = pdshroud.10
+	title = pdshroud.10.name
+	picture = GFX_evt_shroud1
+	location = from
+	show_sound = event_ship_bridge
+
+	desc = {
+		text = pdshroud.10.desc
+		trigger = { 
+			NOT = { 
+				OR = {
+					owner = { has_ascension_perk = ap_mind_over_matter } 
+					owner = { has_tradition = tr_psionics_finish  } 
+				}
+			}
+		}
+	}
+	desc = {
+		text = pdshroud.10.desc.mom
+		trigger = { 
+			owner = { has_ascension_perk = ap_mind_over_matter } 
+		}
+	}
+	desc = {
+		text = pdshroud.10.desc.tra
+		trigger = { 
+			owner = { has_tradition = tr_psionics_finish  } 
+		}
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_shroud_whispers
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_shroud_whispers_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_shroud_whispers_planet
+		}
+	}
+
+	option = {
+		name = pdshroud.10.a
+	}
+}
+planet_event = {
+	id = pdshroud.11
+	title = pdshroud.11.name
+	desc = pdshroud.11.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_mystic_reveal
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pd_shroud_whispers	
+		owner = {
+			NOR = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event	
+	}
+
+	option = {
+		name = pdshroud.11.a
+			add_deposit = d_pdshroud_whispers
+			hidden_effect = {
+				planet_event = { id = pdshroud.12 days = 720 }
+		}
+	}
+
+	option = {
+		name = pdshroud.11.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.13 days = 720 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.11.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_whispers
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.12
+	title = pdshroud.12.name
+	desc = pdshroud.12.desc
+	picture = GFX_evt_surreal_visions
+	show_sound = event_mystic_reveal
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pdwhispers
+			days = -1
+		}	
+	}
+
+	option = {
+		name = pdshroud.12.a
+		hidden_effect = { owner = { country_event = { id = pdshroud.15 days = 7200 random = 3600 } }	}
+	}
+
+	option = {
+		name = pdshroud.12.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_whispers
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.13
+	title = pdshroud.13.name
+	desc = pdshroud.13.desc
+	picture = GFX_evt_colony_settlement
+	show_sound = event_default
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pdnowhispers
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdshroud.13.a
+	}
+
+	option = {
+		name = pdshroud.13.b
+		add_deposit = d_pdshroud_whispers
+		hidden_effect = {
+			planet_event = { id = pdshroud.14 days = 720 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.13.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_whispers
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.14
+	title = pdshroud.14.name
+	desc = pdshroud.14.desc
+	picture = GFX_evt_surreal_visions
+	show_sound = event_mystic_reveal
+	location = root
+
+	immediate = {
+		remove_modifier = pdnowhispers
+		add_modifier = {
+			modifier = pdwhispers
+			days = -1
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdshroud.14.a
+		hidden_effect = { owner = { country_event = { id = pdshroud.15 days = 7200 random = 3600 } } } 
+	}
+
+	option = {
+		name = pdshroud.12.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_whispers
+		}
+	}
+}
+country_event = {
+	id = pdshroud.15
+	title = pdshroud.15.name
+	desc = pdshroud.15.desc
+	picture = GFX_evt_engineering_research
+	show_sound = event_laboratory_sound
+	location = root	
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdshroud.15.a
+		locked_random_list = {
+				10 = {
+					add_random_research_option = {
+						add_progress = 0.20
+						area = engineering
+						ignore_prereqs = no
+						fail_effects = {
+							add_monthly_resource_mult = {
+								resource = engineering_research
+								value = @tier3researchreward
+								min = @tier3researchmin
+								max = @tier3researchmax
+							}
+						}
+					}
+				}
+				10 = {
+					add_random_research_option = {
+						add_progress = 0.20
+						area = physics
+						ignore_prereqs = no
+						fail_effects = {
+							add_monthly_resource_mult = {
+								resource = physics_research
+								value = @tier3researchreward
+								min = @tier3researchmin
+								max = @tier3researchmax
+							}
+						}
+					}
+				}
+				10 = {
+					add_random_research_option = {
+						add_progress = 0.20
+						area = society
+						ignore_prereqs = no
+						fail_effects = {
+							add_monthly_resource_mult = {
+								resource = society_research
+								value = @tier3researchreward
+								min = @tier3researchmin
+								max = @tier3researchmax
+							}
+						}
+					}
+				}
+			}
+		hidden_effect = {
+		owner = { country_event = { id = pdshroud.15 days = 7200 random = 3600 } }
+		from = { planet_event = { id = pdshroud.16 } }
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.16
+	hide_window = yes
+	location = root	
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		add_modifier = {
+			modifier = pdmadness
+			days = 360
+		}
+	}
+	
+}
+
+#Composer of Strands
+#SurveyPlanet
+ship_event = {
+	id = pdshroud.20
+	title = pdshroud.20.name
+	picture = GFX_evt_shroud1
+	location = from
+	show_sound = event_ship_bridge
+	
+	desc = {
+		text = pdshroud.20.desc
+		trigger = { 
+			NOT = { 
+				OR = {
+					owner = { has_ascension_perk = ap_mind_over_matter } 
+					owner = { has_tradition = tr_psionics_finish  } 
+				}
+			}
+		}
+	}
+	desc = {
+		text = pdshroud.20.desc.mom
+		trigger = { 
+			owner = { has_ascension_perk = ap_mind_over_matter } 
+		}
+	}
+	desc = {
+		text = pdshroud.20.desc.tra
+		trigger = { 
+			owner = { has_tradition = tr_psionics_finish  } 
+		}
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_shroud_composer
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_shroud_composer_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_shroud_composer_planet
+		}
+	}
+
+	option = {
+		name = pdshroud.20.a
+	}
+}
+planet_event = {
+	id = pdshroud.21
+	title = pdshroud.21.name
+	desc = pdshroud.21.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_dangerous_animals
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pd_shroud_composer	
+		owner = {
+			NOR = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event	
+	}
+
+	option = {
+		name = pdshroud.21.a
+			add_deposit = d_pdshroud_composer
+			hidden_effect = {
+				planet_event = { id = pdshroud.22 days = 720 }
+		}
+	}
+
+	option = {
+		name = pdshroud.21.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.25 days = 720 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.21.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 }
+			remove_deposit = d_pdshroud_composer 
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.22
+	title = pdshroud.22.name
+	desc = pdshroud.22.desc
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_mystic_reveal
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pdcomposer
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdshroud.22.a
+			hidden_effect = {
+				planet_event = { id = pdshroud.23 days = 14 }
+		}
+	}
+
+	option = {
+		name = pdshroud.22.b
+	}
+}
+planet_event = {
+	id = pdshroud.23
+	title = pdshroud.23.name
+	desc = pdshroud.23.desc
+	picture = GFX_evt_habitable_dig_site
+	show_sound = event_dig_site
+	location = root
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdshroud.23.a
+			hidden_effect = {
+			owner = { country_event = { id = pdshroud.24 days = 7 } } 
+		}
+	}
+
+	option = {
+		name = pdshroud.23.b
+			hidden_effect = {
+			owner = { country_event = { id = pdshroud.24 days = 7 } } 
+		}
+	}
+
+	option = {
+		name = pdshroud.23.c
+			hidden_effect = {
+			owner = { country_event = { id = pdshroud.24 days = 7 } } 
+		}
+	}
+
+	option = {
+		name = pdshroud.23.d
+			hidden_effect = {
+			owner = { country_event = { id = pdshroud.24 days = 7 } } 
+		}
+	}
+
+	option = {
+		name = pdshroud.23.e
+			hidden_effect = {
+			owner = { country_event = { id = pdshroud.24 days = 7 } } 
+		}
+	}
+
+	option = {
+		name = pdshroud.23.f
+			hidden_effect = {
+			owner = { country_event = { id = pdshroud.24 days = 7 } }
+		}
+	}
+
+	option = {
+		name = pdshroud.23.g
+	}
+}
+country_event = {
+	id = pdshroud.24
+	title = pdshroud.24.name
+	desc = pdshroud.24.desc
+	picture = GFX_evt_genetic_modification
+	show_sound = event_big_door_opening
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		give_technology = { tech = tech_pdshroudcomposer }
+		every_owned_pop = {
+			limit = {
+				is_robot_pop = no
+				is_sapient = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_pdshroudcomposer
+			}
+		}
+	}
+
+	option = {
+		name = pdshroud.24.a
+	}
+}
+planet_event = {
+	id = pdshroud.25
+	title = pdshroud.25.name
+	desc = pdshroud.25.desc
+	picture = GFX_evt_habitable_dig_site
+	show_sound = event_life_support_fail
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pdnocomposer
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdshroud.25.a
+		add_deposit = d_pdshroud_composer
+			hidden_effect = {
+				planet_event = { id = pdshroud.26 days = 180 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.25.b
+	}
+
+	option = {
+		name = pdshroud.25.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_composer
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.26
+	title = pdshroud.26.name
+	desc = pdshroud.26.desc
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_mystic_reveal
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = pdnocomposer
+		add_modifier = {
+			modifier = pdcomposer
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdshroud.26.a
+		hidden_effect = {
+				planet_event = { id = pdshroud.23 days = 14 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.26.b
+	}
+
+	option = {
+		name = pdshroud.26.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_composer
+		}
+	}
+}
+
+#Eater of Worlds
+#SurveyPlanet
+ship_event = {
+	id = pdshroud.30
+	title = pdshroud.30.name
+	picture = GFX_evt_shroud1
+	location = from
+	show_sound = event_ship_bridge
+
+	desc = {
+		text = pdshroud.30.desc
+		trigger = { 
+			NOT = { 
+				OR = {
+					owner = { has_ascension_perk = ap_mind_over_matter } 
+					owner = { has_tradition = tr_psionics_finish } 
+				}
+			}
+		}
+	}
+	desc = {
+		text = pdshroud.30.desc.mom
+		trigger = { 
+			owner = { has_ascension_perk = ap_mind_over_matter } 
+		}
+	}
+	desc = {
+		text = pdshroud.30.desc.tra
+		trigger = { 
+			owner = { has_tradition = tr_psionics_finish  } 
+		}
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_shroud_eater
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_shroud_eater_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_shroud_eater_planet
+		}
+	}
+
+	option = {
+		name = pdshroud.30.a
+	}
+}
+planet_event = {
+	id = pdshroud.31
+	title = pdshroud.31.name
+	desc = pdshroud.31.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_mystic_reveal
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pd_shroud_eater	
+		owner = {
+			NOR = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event	
+	}
+
+	option = {
+		name = pdshroud.31.a
+			hidden_effect = {
+				planet_event = { id = pdshroud.32 days = 720 }
+		}
+	}
+
+	option = {
+		name = pdshroud.31.b
+		add_deposit = d_pdshroud_eater
+		hidden_effect = {
+			planet_event = { id = pdshroud.33 days = 720 }
+		}
+	}
+
+	option = {
+		name = pdshroud.31.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 }
+			remove_deposit = d_pdshroud_eater 
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.32
+	title = pdshroud.32.name
+	desc = pdshroud.32.desc
+	picture = GFX_evt_interior_battle
+	show_sound = event_conversation
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pdnoeater
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdshroud.32.a
+		hidden_effect = {
+				planet_event = { id = pdshroud.34 days = 180 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.32.b
+		add_deposit = d_pdshroud_eater
+		hidden_effect = {
+				planet_event = { id = pdshroud.33 days = 180 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.32.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_eater
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.33
+	title = pdshroud.33.name
+	desc = pdshroud.33.desc
+	picture = GFX_evt_gray_gooed_planet
+	show_sound = event_bad_omen
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = { add_modifier = { modifier = pd_eater_of_worlds days = -1 } }
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		add_modifier = {
+			modifier = pdeater_unhappiness_planet_1
+			days = 1800
+		}
+		remove_modifier = pdnoeater
+		IF = {
+			LIMIT = { NOT = { has_modifier = pdeater } }
+			add_modifier = {
+				modifier = pdeater
+				days = -1
+			}
+		}
+	}
+
+	option = {
+		name = pdshroud.33.a
+		hidden_effect = {
+			planet_event = { id = pdshroud.35 days = 9000 }
+		}
+	}
+
+	option = {
+		name = pdshroud.33.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_eater
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.34
+	title = pdshroud.34.name
+	desc = pdshroud.34.desc
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = root
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdshroud.34.a
+	}
+
+	option = {
+		name = pdshroud.34.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+			remove_deposit = d_pdshroud_eater
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.35
+	hide_window = yes
+	location = root	
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			75 = {
+				random_owned_pop = { kill_pop = yes }
+				random_owned_pop = { kill_pop = yes }
+				add_modifier = {
+					modifier = pdeater_unhappiness_planet_1
+					days = 1800
+				}
+			}
+			25 = {
+				random_owned_pop = { kill_pop = yes }
+				random_owned_pop = { kill_pop = yes }
+				random_owned_pop = { kill_pop = yes }
+				random_owned_pop = { kill_pop = yes }
+				add_modifier = {
+					modifier = pdeater_unhappiness_planet_2
+					days = 1800
+				}
+			}
+		}
+		planet_event = { id = pdshroud.35 days = 9000 }
+	}
+}
+
+#Insturment of Desire
+#SurveyPlanet
+ship_event = {
+	id = pdshroud.40
+	title = pdshroud.40.name
+	picture = GFX_evt_shroud1
+	location = from
+	show_sound = event_ship_bridge
+
+	desc = {
+		text = pdshroud.40.desc
+		trigger = { 
+			NOT = { 
+				OR = {
+					owner = { has_ascension_perk = ap_mind_over_matter } 
+					owner = { has_tradition = tr_psionics_finish } 
+				}
+			}
+		}
+	}
+	desc = {
+		text = pdshroud.40.desc.mom
+		trigger = { 
+			owner = { has_ascension_perk = ap_mind_over_matter } 
+		}
+	}
+	desc = {
+		text = pdshroud.40.desc.tra
+		trigger = { 
+			owner = { has_tradition = tr_psionics_finish  } 
+		}
+	}
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_shroud_desire
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_shroud_desire_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_shroud_desire_planet
+		}
+	}
+
+	option = {
+		name = pdshroud.40.a
+	}
+}
+planet_event = {
+	id = pdshroud.41
+	title = pdshroud.41.name
+	desc = pdshroud.41.desc
+	picture = GFX_evt_alien_ruins
+	show_sound = event_mystic_reveal
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pd_shroud_desire	
+		owner = {
+			NOR = {
+				has_authority = auth_machine_intelligence
+			}
+		}		
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event	
+	}
+
+	option = {
+		name = pdshroud.41.a
+		add_deposit = d_pdshroud_desire
+			hidden_effect = {
+				planet_event = { id = pdshroud.42 days = 720 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.41.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.43 days = 720 }
+		}
+	}
+
+	option = {
+		name = pdshroud.41.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.42
+	title = pdshroud.42.name
+	desc = pdshroud.42.desc
+	picture = GFX_evt_tradestation_interior
+	show_sound = event_celebration
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pddesire
+			days = -1
+		}	
+	}
+
+	option = {
+		name = pdshroud.42.a
+			hidden_effect = {
+				planet_event = { id = pdshroud.45 days = 9000 }
+		}
+	}
+
+	option = {
+		name = pdshroud.42.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.43
+	title = pdshroud.43.name
+	desc = pdshroud.43.desc
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_public_unrest
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = pdnodesire
+			days = -1
+		}	
+	}
+
+	option = {
+		name = pdshroud.43.a
+	}
+
+	option = {
+		name = pdshroud.43.b
+			hidden_effect = {
+				planet_event = { id = pdshroud.44 days = 720 }
+		}
+	}
+
+	option = {
+		name = pdshroud.43.c
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.44
+	title = pdshroud.44.name
+	desc = pdshroud.44.desc
+	picture = GFX_evt_tradestation_interior
+	show_sound = event_celebration
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = pdnodesire
+		add_modifier = {
+			modifier = pddesire
+			days = -1
+		}	
+	}
+
+	option = {
+		name = pdshroud.44.a
+		hidden_effect = {
+			planet_event = { id = pdshroud.45 days = 9000 } 
+		}
+	}
+
+	option = {
+		name = pdshroud.44.b
+		hidden_effect = {
+			planet_event = { id = pdshroud.00 days = 7 } 
+		}
+	}
+}
+planet_event = {
+	id = pdshroud.45
+	hide_window = yes
+	location = root	
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			80 = {
+				add_modifier = {
+					modifier = pddesireparty
+					days = 360
+				}
+			}
+			20 = {
+				random_owned_pop = { kill_pop = yes }
+				add_modifier = {
+					modifier = pddesirepurge
+					days = 360
+				}
+			}
+		}
+		planet_event = { id = pdshroud.45 days = 9000 }
+	}
+}
+planet_event = {
+	id = pdshroud.98
+	title = pdshroud.98.name
+	desc = pdshroud.98.desc
+	picture = GFX_evt_shroud1
+	show_sound = event_mystic_reveal
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		planet = {
+			IF = { limit = { is_planet_class = pc_shrouded }
+				change_pc = pc_pdshroud
+				reroll_deposits = yes
+				remove_planet_flag = pd_shroud_transformation
+				remove_modifier = pdshroudtransformation
+			}
+			IF = { limit = { NOT = { is_planet_class = pc_shrouded } }
+				change_pc = pc_pdshroud		if = {
+					limit = { has_modifier = engineered_environment_gaia }
+					remove_modifier = engineered_environment_gaia
+				}
+				if = {
+					limit = { has_modifier = engineered_environment }
+					remove_modifier = engineered_environment
+				}
+				if = {
+					limit = { has_modifier = bleak_planet }
+					remove_modifier = bleak_planet
+				}
+				if = {
+					limit = { has_modifier = high_gravity }
+					remove_modifier = high_gravity
+				}
+				if = {
+					limit = { has_modifier = irradiated_planet }
+					remove_modifier = irradiated_planet
+				}
+				if = {
+					limit = { has_modifier = mineral_poor }
+					remove_modifier = mineral_poor
+				}
+				if = {
+					limit = { has_modifier = unstable_tectonics }
+					remove_modifier = unstable_tectonics
+				}
+				if = {
+					limit = { has_modifier = weak_magnetic_field }
+					remove_modifier = weak_magnetic_field
+				}
+				if = {
+					limit = { has_modifier = exofungus }
+					remove_modifier = exofungus
+				}
+				if = {
+					limit = { has_modifier = exofungus }
+					remove_modifier = exofungus
+				} 
+				hidden_effect = {
+					remove_planet_flag = pd_shroud_transformation
+					remove_modifier = pdshroudtransformation
+					pd_remove_special_deposits_modifiers = yes
+					IF = {
+						limit = {
+							has_planet_flag = planet_earth
+						}
+						set_planet_entity = {
+							entity = "pdshroud_planet_earth_entity"
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = pdshroud.98.a
+	}
+}
+planet_event = {
+	id = pdshroud.99
+	title = pdshroud.99.name
+	desc = pdshroud.99.desc
+	picture = GFX_evt_zro_3
+	show_sound = event_mystic_reveal
+	location = root
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = pdshroud.99.a
+		#custom_tooltip = pdshroud.99.a.desc
+		trigger = {	NOT = { owner = { any_owned_planet = { has_modifier = pddesire } } } }
+		add_modifier = { modifier = pddesire }
+		add_deposit = d_pdshroud_desire
+	}
+	option = {
+		name = pdshroud.99.b
+		#custom_tooltip = pdshroud.99.b.desc
+		trigger = {	NOT = { owner = { any_owned_planet = { has_modifier = pdeater } } } }
+		add_modifier = { modifier = pdeater }
+		add_deposit = d_pdshroud_eater
+	}
+	option = {
+		name = pdshroud.99.c
+		#custom_tooltip = pdshroud.99.c.desc
+		trigger = {	NOT = { owner = { any_owned_planet = { has_modifier = pdcomposer } } } }
+		add_modifier = { modifier = pdcomposer }
+		add_deposit = d_pdshroud_composer
+	}
+	option = {
+		name = pdshroud.99.d
+		#custom_tooltip = pdshroud.99.d.desc
+		trigger = {	NOT = { owner = { any_owned_planet = { has_modifier = pdwhispers } } } }
+		add_modifier = { modifier = pdwhispers }
+		add_deposit = d_pdshroud_whispers
+	}
+}
+
+#PD Shroud Start
+country_event = {
+	id = pdshroud.100
+	hide_window = yes
+	fire_only_once = yes
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_pd_shroud }
+	}
+	
+	immediate = {
+		owner = { 
+			add_research_option = tech_psionic_theory 
+			add_research_option = tech_telepathy
+		}
+		every_galaxy_planet = {
+			IF = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+                    entity = "pdshroud_planet_earth_entity"
+				}
+			}
+		}
+		random_planet_within_border = {
+			limit = { is_capital = yes }
+			generate_pd_start_deposits_and_blockers = yes
+		}
+	}
+}

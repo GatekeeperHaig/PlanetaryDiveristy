@@ -1,0 +1,32 @@
+# Ammonia Suits 1
+special_project = {
+	key = "AMMONIA_SUITS_1"
+	cost = {
+		base = 500
+		scaled_modifier = {
+			limit = {
+			}
+			scope = this
+			add = 100
+			calc = pop_count
+		}
+	}
+	tech_department = engineering_technology
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	picture = GFX_evt_cybernetics
+
+	event_scope = planet_event
+
+	requirements = {
+	}
+
+	on_success = {
+		# use event target so a capital-conquering country is not affected
+		event_target:ammonia_suits_owner = {
+			country_event = { id = pdexotic.12 }
+		}
+	}
+
+	on_fail = {
+	}
+}

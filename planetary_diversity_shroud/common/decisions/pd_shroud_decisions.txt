@@ -1,0 +1,503 @@
+# UnShroud World
+decision_unshroud_world = {
+	icon = decision_resort_colony
+	owned_planets_only = yes
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			energy =  2000
+		}
+	}
+	
+	potential = {
+		owner = { has_technology = tech_psionic_theory NOT = { has_origin = origin_pd_shroud } }
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		OR = {
+			is_planet_class = pc_shroudcity
+			has_deposit = d_pd_shroud_arc
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_unshroud_world_effects_custom
+		hidden_effect = {
+		if = {
+			limit = { has_modifier = pdeater }
+			remove_modifier = pdeater
+		}
+		if = {
+			limit = { has_modifier = pdcomposer }
+			remove_modifier = pdcomposer
+		}
+		if = {
+			limit = { has_modifier = pddesire }
+			remove_modifier = pddesire
+		}
+		if = {
+			limit = { has_modifier = pdwhispers }
+			remove_modifier = pdwhispers
+		}
+		if = {
+			limit = { has_deposit = d_pdshroud_composer }
+			remove_deposit = d_pdshroud_composer
+		}
+		if = {
+			limit = { has_deposit = d_pdshroud_eater }
+			remove_deposit = d_pdshroud_eater
+		}
+		if = {
+			limit = { has_deposit = d_pdshroud_desire }
+			remove_deposit = d_pdshroud_desire
+		}
+		if = {
+			limit = { has_deposit = d_pdshroud_whispers }
+			remove_deposit = d_pdshroud_whispers
+		}
+		if = {
+			limit = { is_planet_class = pc_shroudecocity }
+			remove_planet_flag = shroudedarc
+			change_pc = pc_ecocity
+		}
+		if = {
+			limit = { is_planet_class = pc_shroudcorpoarc }
+			remove_planet_flag = shroudedarc
+			change_pc = pc_corpoarc
+		}
+		if = {
+			limit = { is_planet_class = pc_shroudpalacearc }
+			remove_planet_flag = shroudedarc
+			change_pc = pc_palacearc
+		}
+		if = {
+			limit = { is_planet_class = pc_shroudcapitalarc }
+			remove_planet_flag = shroudedarc
+			change_pc = pc_capitalarc
+		}
+		if = {
+			limit = { is_planet_class = pc_shroudmilarc }
+			remove_planet_flag = shroudedarc
+			change_pc = pc_milarc
+		}
+		if = {
+			limit = { is_planet_class = pc_shroudcity }
+			remove_planet_flag = shroudedarc
+			change_pc = pc_city	
+			}
+		}
+	}   
+
+	ai_weight = {
+        weight = 0
+        modifier = {
+            factor = 0
+            or = {
+                free_building_slots > 0
+                owner = { resource_stockpile_compare = { resource = energy value < 6000 } }
+            }
+        }
+    }
+}
+
+# Call Upon Shroud Patron
+#decision_shroud_planet_patron = {
+#	icon = decision_shroud_planet_patron
+#	owned_planets_only = yes
+#
+#	enactment_time = 1800
+#	resources = {
+#		category = decisions
+#		cost = {
+#			sr_zro =  1000
+#			unity = 1000
+#		}
+#	}
+#	
+#	potential = {
+#		owner = { has_tradition = tr_psionics_finish  }
+#		is_artificial = no
+#		is_pd_habitat = no
+#		is_pd_planetary_megaproject = no
+#		OR = {
+#			is_planet_class = pc_pdshroud
+#			is_planet_class = pc_tidallyshroud
+#			has_deposit = d_pd_shroud_arc
+#		}
+#		NOT = { 
+#			OR = {
+#				has_modifier = pdwhispers 
+#				has_modifier = pdcomposer 
+#				has_modifier = pdeater 
+#				has_modifier = pddesire 
+#			}
+#		}
+#		OWNER = {
+#			NOT = {
+#				AND = {
+#					any_owned_planet = { has_modifier = pdwhispers }
+#					any_owned_planet = { has_modifier = pdcomposer }
+#					any_owned_planet = { has_modifier = pdeater }
+#					any_owned_planet = { has_modifier = pddesire }
+#				}
+#			}
+#		}
+#	}
+#
+#	effect = {
+#		custom_tooltip = decision_shroud_planet_patron_effects_custom
+#		hidden_effect = { planet_event = { id = pdshroud.99 days = 1 } }
+#	}   
+#
+#	ai_weight = {
+#       weight = 0
+#       modifier = {
+#           factor = 0
+#           or = {
+#               free_building_slots > 0
+#               owner = { resource_stockpile_compare = { resource = sr_zro value < 500 } }
+#           }
+#       }
+#   }
+#
+
+# Shroud Arcs
+decision_shroud_to_shroud_arc = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_planet_class = pc_pdshroud
+			is_planet_class = pc_tidallyshroud
+		}
+		exists = owner
+		owner = { 
+			has_ascension_perk = ap_arcology_project 
+			has_tradition = tr_psionics_finish 
+		}
+	}
+	
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+		}
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_arcology_project_effects
+		hidden_effect = {		
+			clear_deposits = yes
+			set_industrial_focus_flags = yes
+			change_pc = pc_city
+			set_planet_entity = { picture = pc_shroudcity entity = pdshroudcity_planet_01_entity }
+			add_deposit = d_pd_shroud_arc
+			owner = {
+				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_housing
+				VARIABLE = num_housing_districts
+			}
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_arms_industry
+				VARIABLE = num_industrial_districts
+			}
+			set_ecu_industrial_districts_effect = yes
+			planet_event = { id = mega.200 }
+			remove_modifier = engineered_environment
+			remove_modifier = engineered_environment_gaia
+			add_deposit = d_pd_industrial_sector
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Shroud Eco-Arcology Project
+decision_shroud_to_shroudecoarcology_project = {
+	owned_planets_only = yes
+	icon = decision_ecoarcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_planet_class = pc_pdshroud
+			is_planet_class = pc_tidallyshroud
+		}
+		exists = owner
+		owner = { 
+			has_ascension_perk = ap_arcology_project 
+			has_tradition = tr_psionics_finish 
+		}
+	}
+	
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_eco_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_industrial value < 1 }
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+		}
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_arcology_project_effects
+		hidden_effect = {		
+			clear_deposits = yes
+			change_pc = pc_ecocity
+			set_planet_entity = { picture = pc_shroudecocity entity = ecoshroud_planet_01_entity }
+			owner = {
+				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			planet_event = { id = pdengine.09 }
+			remove_modifier = engineered_environment
+			remove_modifier = engineered_environment_gaia
+			add_deposit = d_ecogarden
+			add_deposit = d_pd_shroud_arc
+			planet_event = { id = pdengine.14 }
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_housing
+				VARIABLE = num_housing_districts
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Shroud to Military Arcology Project
+decision_shroud_to_shroudmilarcology_project = {
+	owned_planets_only = yes
+	icon = decision_milarcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_planet_class = pc_pdshroud
+			is_planet_class = pc_tidallyshroud
+		}
+		exists = owner
+		owner = { 
+			has_ascension_perk = ap_arcology_project 
+			has_tradition = tr_psionics_finish 
+		}
+	}
+	
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+		}
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_arcology_project_effects
+		hidden_effect = {		
+			clear_deposits = yes
+			set_industrial_focus_flags = yes
+			change_pc = pc_milarc
+			set_planet_entity = { picture = pc_shroudmilarc entity = milarcshroud_planet_01_entity }
+			owner = {
+				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			planet_event = { id = pdengine.54 }
+			remove_modifier = engineered_environment
+			remove_modifier = engineered_environment_gaia
+			add_deposit = d_milarc
+			add_deposit = d_pd_shroud_arc
+			planet_event = { id = pdengine.14 }
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_housing
+				VARIABLE = num_housing_districts
+			}
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_arms_industry
+				VARIABLE = num_industrial_districts
+			}
+			set_ecu_industrial_districts_effect = yes
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Shroud to Corpo Arc Project
+decision_shroud_to_shroudcorpoarcology_project = {
+	owned_planets_only = yes
+	icon = decision_corpoarcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_planet_class = pc_pdshroud
+			is_planet_class = pc_tidallyshroud
+		}
+		exists = owner
+		owner = { 
+			has_ascension_perk = ap_arcology_project 
+			has_tradition = tr_psionics_finish 
+		}
+		free_district_slots >= 6
+		owner = { is_megacorp = yes }
+	}
+	
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+		}
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_eco_arcology_project_effects
+		hidden_effect = {		
+			clear_deposits = yes
+			set_industrial_focus_flags = yes
+			change_pc = pc_corpoarc
+			set_planet_entity = { picture = pc_shroudcorpoarc entity = pdshroudcity_planet_01_entity }
+			owner = {
+				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			planet_event = { id = pdengine.64 }
+			remove_modifier = engineered_environment
+			remove_modifier = engineered_environment_gaia
+			planet_event = { id = pdengine.14 }
+			add_deposit = d_corpoarc
+			add_deposit = d_pd_shroud_arc
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_housing
+				VARIABLE = num_housing_districts
+			}
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_arms_industry
+				VARIABLE = num_industrial_districts
+			}
+			set_ecu_industrial_districts_effect = yes
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+
+

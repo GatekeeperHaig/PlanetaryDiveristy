@@ -1,0 +1,50 @@
+@resolution_flag_timer = 360
+
+append_scrap_pile_build = {
+	if = {
+		limit = { is_variable_set = scrap_pile_build }
+		change_variable = {
+			which = scrap_pile_build
+			value = 1
+		}
+		else = {
+			set_variable = {
+				which = scrap_pile_build
+				value = 1
+			}
+		}
+	}
+}
+
+remove_scrap_pile_build = {
+	if = {
+		limit = { is_variable_set = scrap_pile_build }
+		subtract_variable = {
+			which = scrap_pile_build
+			value = 1
+		}
+		if = {
+			limit = {
+				check_variable = {
+					which = scrap_pile_build
+					value = 0
+				}
+			}
+			clear_variable = scrap_pile_build
+		}
+	}
+}
+
+refresh_scrap_pile_build_modifier = {
+	if = {
+		limit = { has_modifier = holding_scrap_pile_build_modifier }
+		remove_modifier = holding_scrap_pile_build_modifier
+	}
+	if = {
+		limit = { is_variable_set = scrap_pile_build }
+		add_modifier = {
+			modifier = holding_scrap_pile_build_modifier
+			multiplier = scrap_pile_build
+		}
+	}
+}

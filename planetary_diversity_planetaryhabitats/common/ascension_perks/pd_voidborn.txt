@@ -1,0 +1,69 @@
+ap_voidborn = {
+	potential = {
+		host_has_dlc = "Utopia"
+		NOT = {
+			has_ascension_perk = ap_voidborn
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_habitat_1"
+			has_technology = tech_habitat_1
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "ap_voidborn_habitat_effect"
+		if = {
+			limit = {
+				NOT = { has_technology = tech_habitat_2 }
+			}
+			add_research_option = tech_habitat_2
+			custom_tooltip = "add_research_options_voidborn"
+		}
+		if = {
+			limit = {
+				has_technology = tech_habitat_2
+				NOT = { has_technology = tech_habitat_3 }
+			}
+			add_research_option = tech_habitat_3
+		}
+	}
+
+	modifier = {
+		pc_habitat_habitability = 0.2
+		pc_pd_barren_hab_habitability = 0.2
+		pc_pd_barren_cold_hab_habitability = 0.2
+		pc_pd_frozen_hab_habitability = 0.2
+		pc_pd_molten_hab_habitability = 0.2
+		pc_pd_hothouse_hab_habitability = 0.2
+		pc_pd_toxic_hab_habitability = 0.2
+		pc_pd_gas_giant_hab_habitability = 0.2
+		pc_pd_asteroid_hab_habitability = 0.2
+	}
+
+	ai_weight = {
+		base = 10
+		complex_trigger_modifier = {
+			trigger = count_owned_planet
+			parameters = {
+				limit = { is_planet_class = pc_habitat }
+			}
+			mode = add
+			mult = 2
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1000
+			has_origin = origin_void_dwellers
+		}
+	}
+}

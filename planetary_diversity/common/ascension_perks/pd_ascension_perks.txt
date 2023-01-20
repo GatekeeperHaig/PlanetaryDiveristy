@@ -1,0 +1,91 @@
+# See traditions/README.txt for format
+
+
+ap_pd_necro_worlds = {
+	on_enabled = {
+		custom_tooltip = "allow_necro_worlds"
+		custom_tooltip = "describe_necro_worlds"
+	}
+
+	potential = {
+		owner = { 
+			OR = {
+				has_civic = civic_memorialist
+				has_civic = civic_death_cult
+				has_civic = civic_death_cult_corporate
+				has_civic = civic_permanent_employment
+				has_civic = civic_reanimated_armies
+				has_origin = origin_necrophage
+			}
+		}
+		#has_origin = origin_pd_necro_world
+		NOT = {
+			has_ascension_perk = ap_pd_necro_worlds
+		}
+	}
+
+	modifier = {
+		pc_pd_necro_habitability = 1.0
+		pc_necrotidallylocked_habitability = 1.0
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+ap_pd_wasteland_worlds = {
+	on_enabled = {
+		custom_tooltip = "allow_wasteland_worlds"
+		custom_tooltip = "describe_wasteland_worlds"
+	}
+
+	potential = {
+		owner = { 
+			OR = {
+				has_civic = civic_relentless_industrialists
+				has_civic = civic_corporate_relentless_industrialists
+				has_civic = civic_toxic_baths
+				has_civic = civic_hive_toxic_baths
+				has_civic = civic_machine_toxic_baths
+				has_civic = civic_corporate_toxic_baths
+				has_origin = origin_overtuned
+			}
+		}
+		#has_origin = origin_pd_necro_world
+		NOT = {
+			has_ascension_perk = ap_pd_wasteland_worlds
+		}
+	}
+
+	modifier = {
+		pc_pd_wasteland_habitability = 0.25
+		pc_pd_tidally_wasteland_habitability = 0.25
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}

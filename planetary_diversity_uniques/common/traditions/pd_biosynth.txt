@@ -1,0 +1,64 @@
+pd_tr_biosynth_adopt = { # Gives acess to building
+	possible = { 
+		has_ascension_perk = ap_fours_children
+	}
+	custom_tooltip = pd_tr_biosynth_adopt_tooltip
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = pdtechnoorganic.202 }
+		}
+	}
+} 
+
+pd_tr_biosynth_adopt_finish = { # Better Bio-Synth trait, Leader traits
+	custom_tooltip = pd_tr_biosynth_adopt_finish_tooltip
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = pdtechnoorganic.1000 }
+		}
+	}
+	modifier = {
+		ascension_perks_add = 1
+	}
+}
+
+pd_tr_biosynth_perk_1 = { # Can Add or Remove Bio-Synth Traits from Bio-Synth Pop
+	custom_tooltip = pd_tr_biosynth_perk_1_tooltip
+	possible = {
+		has_tradition = pd_tr_biosynth_adopt
+	}
+}
+
+pd_tr_biosynth_perk_2a = { # Can remove beneficial trats
+	custom_tooltip = pd_tr_biosynth_perk_2a_tooltip
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_1
+	}
+}
+
+pd_tr_biosynth_perk_2b = { # Lower Biosynth upkeep
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_2a
+	}
+	modifier = {
+		planet_pops_biosynth_upkeep_mult = -0.10 # Needs Local
+	}
+}
+
+pd_tr_biosynth_perk_3a = { #F aster Species mod
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_1
+	}
+	modifier = {
+		modify_species_cost_mult = -0.50	
+	}
+}
+
+pd_tr_biosynth_perk_3b = { # More Trait Pics
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_3a
+	}
+	modifier = {
+		BIOLOGICAL_species_trait_points_add = 2
+	}
+}

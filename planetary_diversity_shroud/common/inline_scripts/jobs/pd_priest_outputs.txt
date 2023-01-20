@@ -1,0 +1,48 @@
+@composer = 0.01
+@instrument = 0.005
+@whisperers = 1
+@eater = 1
+
+# Composer
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_country_flag = composer_covenant_confirmed }
+		planet = { has_deposit = d_pd_shroud_arc }
+	}
+	pop_growth_speed = @composer
+}
+
+# Eater	
+triggered_country_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_country_flag = eater_covenant_confirmed }
+		planet = { has_deposit = d_pd_shroud_arc }
+	}
+	country_naval_cap_add = @eater
+}
+
+# Instrument
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { has_country_flag = instrument_covenant_confirmed }
+		planet = { has_deposit = d_pd_shroud_arc }
+	}
+	planet_psionic_jobs_produces_mult = @instrument
+	planet_pops_upkeep_mult = @instrument
+}
+
+
+# Whisperers
+#	triggered_planet_modifier = {
+#		potential = {
+#			exists = owner
+#			owner = { has_country_flag = whisperers_covenant_confirmed }
+#			planet = { has_deposit = d_pd_shroud_arc }
+#		}
+#		planet_priests_physics_research_produces_add = @whisperers
+#		planet_priests_society_research_produces_add = @whisperers
+#		planet_priests_engineering_research_produces_add = @whisperers
+#	}

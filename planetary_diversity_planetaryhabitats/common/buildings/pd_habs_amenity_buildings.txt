@@ -1,0 +1,108 @@
+#############
+# Amenities buildings
+#############
+
+building_pd_hab_barracks = {
+	base_buildtime = @b1_time
+
+	category = amenity
+
+	potential = {
+		OR = {
+			has_modifier = military_pd_habitat_reg
+			has_modifier = military_pd_habitat_reg_asteroid
+		}
+	}
+
+	destroy_trigger = {
+		NOT = { has_modifier = military_pd_habitat_reg }
+		NOT = { has_modifier = military_pd_habitat_reg_asteroid }
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+		planet_amenities_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	upgrades = {
+		"building_pd_hab_barrack_large"
+	}
+}
+
+building_pd_hab_barrack_large = {
+	base_buildtime = @b2_time
+	can_build = no
+
+	category = amenity
+
+	potential = {
+		OR = {
+			has_modifier = military_pd_habitat_reg
+			has_modifier = military_pd_habitat_reg_asteroid
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		NOT = { has_modifier = military_pd_habitat_reg }
+		NOT = { has_modifier = military_pd_habitat_reg_asteroid }
+	}
+
+	planet_modifier = {
+		planet_housing_add = 12
+		planet_amenities_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_domination_imperious_architecture
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			rare_crystals = @b2_rare_cost
+		}
+		upkeep = {
+			energy = 3
+			rare_crystals = @b2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_paradise_dome"
+	}
+}

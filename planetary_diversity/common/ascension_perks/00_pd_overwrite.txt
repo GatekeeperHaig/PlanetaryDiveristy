@@ -1,0 +1,220 @@
+# See traditions/README.txt for format
+
+
+ap_mastery_of_nature = {
+	on_enabled = {
+		custom_tooltip = "allow_decision_mastery_of_nature"
+		custom_tooltip = "describe_decision_mastery_of_nature"
+		add_research_option = tech_pd_mastery_of_nature
+	}
+	
+	modifier = {
+		deposit_blockers_cost_mult = -0.33
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_mastery_of_nature
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_void_dwellers
+				has_origin = origin_shattered_ring
+			}
+		}
+		modifier = {
+			factor = 2
+			years_passed > 40
+			num_owned_planets < 5
+		}
+		modifier = {
+			factor = 2
+			years_passed > 80
+			num_owned_planets < 10
+		}
+	}
+}
+
+#################
+# AQUATICS ASCENSION PERKS
+#################
+
+ap_hydrocentric = {
+	potential = {
+		has_aquatics = yes
+		NOT = { has_ascension_perk = ap_hydrocentric }
+		OR = {
+			owner = { has_origin = origin_pd_hycean_aquatic }
+			has_trait = trait_pc_ocean_preference
+			has_trait = trait_pc_aquatic_preference
+			has_trait = trait_pc_desertislands_preference
+			has_trait = trait_pc_subarctic_preference
+			has_trait = trait_pc_reef_preference
+			has_trait = trait_pc_pd_archipelago_preference
+			has_trait = trait_pc_storm_preference
+			has_trait = trait_pc_pd_iceberg_preference
+			AND = {
+				any_owned_pop = { has_trait = trait_aquatic }
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+	}
+	possible = {
+		OR = {
+			owner = { has_origin = origin_pd_hycean_aquatic }
+			has_trait = trait_aquatic
+			AND = {
+				any_owned_pop = { has_trait = trait_aquatic }
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		has_technology = tech_terrestrial_sculpting
+	}
+
+	on_enabled = {
+		if = {
+	
+			custom_tooltip = ap_hydrocentric_tooltip
+			limit = {
+				host_has_dlc = "Apocalypse"
+			}
+			if = {
+				limit = { has_ascension_perk = ap_colossus }
+				custom_tooltip = ap_hydrocentric_deluge_tooltip
+			}
+			else = {
+				custom_tooltip = ap_hydrocentric_deluge_pre_unlock_tooltip
+			}
+		}
+		hidden_effect = {
+			country_event = { id = aquatics.1 }
+		}
+	}
+
+	modifier = {
+		terraforming_ocean_cost_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 80 #it really is quite good for Aquatic species
+		modifier = {
+			factor = 0.5
+			is_xenophobe = no
+			is_hive_empire = no
+		}
+		modifier = {
+			factor = 5
+			has_origin = origin_ocean_paradise
+		}
+	}
+}
+
+ap_world_shaper = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+
+	modifier = {
+		terraforming_cost_mult = -0.25
+	}
+
+	on_enabled = {
+		custom_tooltip = "allow_gaia"
+	}
+
+	potential = {
+		NOT = {
+			OR = {
+				has_ascension_perk = ap_world_shaper
+				has_origin = origin_pd_tree_of_life
+			}
+		}
+		OR = {
+			NOT = { has_authority = auth_machine_intelligence }
+			has_valid_civic = civic_machine_servitor
+			has_valid_civic = civic_machine_assimilator
+		}
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_void_dwellers
+				has_origin = origin_shattered_ring
+				has_trait = trait_aquatic
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		modifier = { #only way to get more nice planets
+			factor = 100
+			has_origin = origin_life_seeded
+		}
+	}
+}
+
+ap_hive_worlds = {
+	on_enabled = {
+		custom_tooltip = "allow_hive_worlds"
+		custom_tooltip = "describe_hive_worlds"
+	}
+
+	potential = {
+		host_has_dlc = "Utopia"
+		has_authority = auth_hive_mind
+		NOT = {
+			has_ascension_perk = ap_hive_worlds
+		}
+		NOT = { # Lithoid devouring swarms consume worlds and cannot improve them (since they never get terraforming tech)
+			AND = {
+				is_lithoid_empire = yes
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+		NOT = {
+			has_origin = origin_pd_tree_of_life
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+	}
+}

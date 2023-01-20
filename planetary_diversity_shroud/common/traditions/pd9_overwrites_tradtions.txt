@@ -1,0 +1,47 @@
+tr_psionics_adopt = {
+	possible = {
+		if = {
+			limit = { 
+				OR = {
+					has_origin = origin_shroudwalker_apprentice 
+					has_origin = origin_pd_shroud
+				}
+				
+			}
+			has_technology = tech_psionic_theory
+		}
+		else = {
+			has_ascension_perk = ap_mind_over_matter
+		}
+	}
+	modifier = {
+		custom_tooltip = tr_psionics_adopt_tooltip
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2600 }
+		}
+	}
+	# Grants the Latent Psionic trait
+
+	tradition_swap = {
+		name = tr_psionics_adopt_shroudwalker
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_origin = origin_shroudwalker_apprentice
+		}
+		modifier = {
+			custom_tooltip = tr_psionics_adopt_shroudwalker_tooltip
+		}
+		on_enabled = {
+			add_research_option = tech_telepathy
+			hidden_effect = {
+				country_event = { id = utopia.2600 }
+			}
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}

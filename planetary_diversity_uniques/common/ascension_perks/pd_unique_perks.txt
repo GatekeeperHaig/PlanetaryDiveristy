@@ -1,0 +1,34 @@
+# See traditions/README.txt for format
+
+ap_fours_children = {
+	on_enabled = {
+		custom_tooltip = "fours_children_tooltip" # Moving Event to Tradition Path finisher
+	#	hidden_effect = {
+	#		country_event = { id = pdtechnoorganic.1000 }
+	#	}
+	}
+	possible = {
+		has_origin = origin_techno_world
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+		custom_tooltip = {
+			fail_text = "requires_technology_gene_tailoring"
+			has_technology = tech_gene_tailoring
+		}
+		#owner = { # Part ofthe tradtion tree now, shouldnt lock the perk by something the perk unlocks
+		#	has_technology = tech_biosynth_lm_refinery 
+		#}
+		
+	}
+
+	potential = {
+		has_origin = origin_techno_world
+		NOT = { has_ascension_perk = ap_fours_children }
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

@@ -1,0 +1,839 @@
+namespace = pdmushroom
+
+#Mushroom Start
+planet_event = {
+	id = pdmushroom.30
+	title = pdmushroom.30.name
+	desc = pdmushroom.30.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {	
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		num_pops > 2
+		is_planet_class = pc_mushroom
+		NOR = { 
+			has_global_flag = mushroom_planet
+			has_planet_flag = colony_event
+		}	
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdmushroom.30.a
+		custom_tooltip = pdmushroom.30.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.31 days = 900 random = 1800 }
+			set_global_flag = mushroom_planet
+		}
+	}
+	
+	option = {
+		name = pdmushroom.30.b
+		custom_tooltip = pdmushroom.30.b.tooltip
+		hidden_effect = {
+			random_list = {
+				40 = { planet_event = { id = pdmushroom.40 days = 360 random = 1800 } }
+				60 = { planet_event = { id = pdmushroom.50 days = 180 random = 360 } }
+			}
+			set_global_flag = mushroom_planet
+		}
+	}
+}
+
+#Mushrooms become more popular
+planet_event = {
+	id = pdmushroom.31
+	title = pdmushroom.31.name
+	desc = pdmushroom.31.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdmushroom.31.a
+		custom_tooltip = pdmushroom.31.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.32 days = 900 random = 1800 }
+		}
+		hidden_effect = {
+			add_modifier = {
+					modifier = "happymushrooms"
+					days = -1
+			}
+		}
+	}
+	
+	option = {
+		name = pdmushroom.31.b
+		custom_tooltip = pdmushroom.31.b.tooltip
+		hidden_effect = {
+			random_list = {
+				60 = {
+					planet_event = { id = pdmushroom.40 days = 360 random = 1800 }
+				}
+				40 = {
+					planet_event = { id = pdmushroom.50 days = 180 random = 360 }
+				}
+
+			}
+		}
+	}
+}
+
+#Mushrooms changing people
+planet_event = {
+	id = pdmushroom.32
+	title = pdmushroom.32.name
+	desc = pdmushroom.32.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdmushroom.32.a
+		custom_tooltip = pdmushroom.32.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.44 days = 900 random = 1800 }
+		}
+		hidden_effect = {
+			remove_modifier = "happymushrooms"
+			add_modifier = {
+					modifier = "happymushrooms2"
+					days = -1
+			}
+		}
+	}
+	
+	option = {
+		name = pdmushroom.32.b
+		custom_tooltip = pdmushroom.32.b.tooltip
+		hidden_effect = {		
+			remove_modifier = "happymushrooms"
+			random_list = {
+				80 = {
+					planet_event = { id = pdmushroom.40 days = 360 random = 1800 }
+				}
+				20 = {
+					planet_event = { id = pdmushroom.50 days = 180 random = 360 }
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = pdmushroom.32.c
+		custom_tooltip = pdmushroom.32.c.tooltip
+		set_planet_flag = mushroom_research		
+		hidden_effect = {
+			planet_event = { id = pdmushroom.33 days = 360 }
+		}
+		owner = {
+			add_resource = { energy = -1000 }
+		}
+		hidden_effect = {
+			remove_modifier = "happymushrooms"
+			add_modifier = {
+					modifier = "happymushrooms2"
+					days = -1
+			}
+		}
+
+	}
+}
+
+#Mushroom Research
+planet_event = {
+	id = pdmushroom.33
+	title = pdmushroom.33.name
+	desc = pdmushroom.33.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdmushroom.33.a
+		custom_tooltip = pdmushroom.33.a.tooltip
+		hidden_effect = {
+			owner = { country_event = { id = pdmushroom.34 } }
+		}
+		hidden_effect = {
+			remove_modifier = "happymushrooms2"		
+		}
+		owner = {
+			add_resource = { energy = -2000 }
+		}
+	}
+	
+	option = {
+		name = pdmushroom.33.b
+		custom_tooltip = pdmushroom.33.b.tooltip
+		hidden_effect = {	
+			remove_modifier = "happymushrooms2"
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 48
+				min = 500
+				max = 1500
+			}
+		}
+	}
+}
+
+# Mushrooms over Matter
+country_event = {
+	id = pdmushroom.34
+	title = "pdmushroom.34.name"
+	desc = "pdmushroom.34.desc"
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = FROMFROM
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		every_owned_pop = {
+			limit = {
+				is_robot_pop = no
+				is_sapient = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_mushroomgenes
+			}
+		}
+	}
+	
+	option = {
+		name = "pdmushroom.34.a"
+		tooltip = {
+			modify_species = {
+				species = this
+				add_trait = trait_mushroomgenes
+			}
+		}
+	}
+}
+
+#The Cult Begins
+planet_event = {
+	id = pdmushroom.40
+	title = pdmushroom.40.name
+	desc = pdmushroom.40.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	
+	immediate = {
+		add_modifier = {
+			modifier = "badmushrooms"
+			days = -1
+		}
+	}
+	
+	option = {
+		name = pdmushroom.40.a
+		custom_tooltip = pdmushroom.40.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.41 days = 360 random = 1080 }
+		}
+	}
+	
+	option = {
+		name = pdmushroom.40.b
+		custom_tooltip = pdmushroom.40.b.tooltip	
+		owner = {
+			add_resource = { energy = -500 }
+		}
+		hidden_effect = {
+			random_list = {
+				40 = {
+					planet_event = { id = pdmushroom.41 days = 360 random = 1080 }
+				}
+				60 = {
+					planet_event = { id = pdmushroom.50 days = 180 random = 360 }
+				}
+
+			}
+		}
+	}
+}
+
+#First Terrorist Attack
+planet_event = {
+	id = pdmushroom.41
+	title = pdmushroom.41.name
+	desc = pdmushroom.41.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_modifier = "badmushrooms"
+		add_modifier = {
+			modifier = "badmushrooms2"
+			days = -1
+		}
+	}
+	
+	option = {
+		name = pdmushroom.41.a
+		custom_tooltip = pdmushroom.41.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.42 days = 1 random = 1 }
+		}
+	}
+	
+	option = {
+		name = pdmushroom.41.b
+		custom_tooltip = pdmushroom.41.b.tooltip	
+		owner = {
+			add_resource = { energy = -1000 }
+		}
+		hidden_effect = {
+			random_list = {
+				50 = {
+					planet_event = { id = pdmushroom.42 days = 360 random = 1080 }
+				}
+				50 = {
+					planet_event = { id = pdmushroom.51 days = 180 random = 360 }
+				}
+
+			}
+		}
+	}
+	
+	option = {
+		name = pdmushroom.41.c
+		custom_tooltip = pdmushroom.41.c.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.43 days = 360 random = 1080 }
+		}
+		hidden_effect = {
+			remove_modifier = "badmushrooms2"
+		}
+	}
+}
+
+#Let the Terrorist Be
+planet_event = {
+	id = pdmushroom.42
+	title = pdmushroom.42.name
+	desc = pdmushroom.42.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdmushroom.42.a
+		custom_tooltip = pdmushroom.42.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.44 days = 360 random = 1080 }
+		}
+	}
+}
+
+#Godspore for everyone
+planet_event = {
+	id = pdmushroom.43
+	title = pdmushroom.43.name
+	desc = pdmushroom.43.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdmushroom.43.a
+		custom_tooltip = pdmushroom.43.a.tooltip
+		hidden_effect = {
+			planet_event = { id = pdmushroom.44 days = 180 random = 360 }
+		}
+	}
+}
+
+#The Mushrooms Are People
+planet_event = {
+	id = pdmushroom.44
+	title = pdmushroom.44.name
+	desc = pdmushroom.44.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = mushroom_rampage
+		owner = { set_country_flag = mushroom_rampage_country }
+		create_country = {
+			name = "Mushroom Creatures"
+			type = faction
+			effect = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		create_army = {
+			name = "NAME_Mushroom_Monsters"
+			owner = last_created_country
+			species = last_created_species
+			type = "mutant_army"
+		}
+		create_army = {
+			name = "NAME_Mushroom_Monsters"
+			owner = last_created_country
+			species = last_created_species
+			type = "mutant_army"
+		}
+		create_army = {
+			name = "NAME_Mushroom_Monsters"
+			owner = last_created_country
+			species = last_created_species
+			type = "mutant_army"
+		}
+	}
+	
+	option = {
+		name = pdmushroom.44.a
+		hidden_effect = {	
+			remove_modifier = "happymushrooms2"
+		}
+	}
+}
+
+# Victory over the Mushrooms
+country_event = {
+	id = pdmushroom.45
+	title = "pdmushroom.45.name"
+	desc = "pdmushroom.45.desc"
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = FROM
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = mushroom_rampage_country
+	}
+
+	option = {
+		name = pdmushroom.45.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 48
+				min = 500
+				max = 1500
+			}
+		}
+	}	
+}
+
+# Defeat fighting Mutants
+country_event = {
+	id = pdmushroom.46
+	title = "pdmushroom.46.name"
+	desc = "pdmushroom.46.desc"
+	picture = GFX_evt_burning_settlement
+	show_sound = event_ghost_town
+	location = FROMFROM
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = mushroom_rampage_country
+		FROMFROM = { has_planet_flag = mushroom_rampage }
+	}
+	
+	immediate = {
+		FROMFROM = {
+			set_planet_flag = mushroom_rampage_won
+			remove_planet_flag = mushroom_rampage
+		}
+	}
+	
+	option = {
+		name = pdmushroom.46.a
+	}
+}
+
+# Liberated from Mutants
+country_event = {
+	id = pdmushroom.47
+	title = "pdmushroom.47.name"
+	desc = "pdmushroom.47.desc"
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = FROMFROM
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = mushroom_rampage_country
+		FROMFROM = { has_planet_flag = mushroom_rampage_won }
+	}
+	
+	immediate = {
+		remove_country_flag = mushroom_rampage_country
+		FROMFROM = {
+			set_planet_flag = mushroom_rampage_defeated
+			remove_planet_flag = mushroom_rampage_won
+			set_owner = ROOT
+			every_owned_pop = {
+				remove_modifier = "pop_recently_conquered"
+				add_modifier = {
+					modifier = "pop_liberation_fever"
+					days = 3600
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = pdmushroom.47.a
+		hidden_effect = {
+			fromfrom = {
+				create_species = {
+				name = "NAME_Mushroom"
+					class = "FUN"
+					portrait = fun11
+					traits = {
+						trait = trait_intelligent
+						trait = trait_industrious
+						trait = trait_very_strong
+					}
+					homeworld = FROM
+			}	
+			while = { 
+				count = 3
+				create_pop = {
+					species = last_created
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = pdmushroom.47.b
+		hidden_effect = {
+			fromfrom = {
+			planet_event = { id = pdmushroom.48 days = 30 }
+			}
+		}
+	}
+}
+
+#No mushroom people, no problems
+planet_event = {
+	id = pdmushroom.48
+	title = pdmushroom.48.name
+	desc = pdmushroom.48.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_modifier = "happymushrooms"
+		remove_modifier = "happymushrooms2"
+		remove_modifier = "badmushrooms"
+		remove_modifier = "badmushrooms2"
+	}
+	
+	option = {
+		name = pdmushroom.48.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = 48
+				min = 500
+				max = 1500
+			}
+		}
+	}
+}
+
+#No mushrooms, no problems
+planet_event = {
+	id = pdmushroom.50
+	title = pdmushroom.50.name
+	desc = pdmushroom.50.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_modifier = "happymushrooms"
+		remove_modifier = "happymushrooms2"
+		remove_modifier = "badmushrooms"
+		remove_modifier = "badmushrooms2"
+	}
+	
+	option = {
+		name = pdmushroom.50.a
+	}
+}
+
+#No cultists, no problems
+planet_event = {
+	id = pdmushroom.51
+	title = pdmushroom.51.name
+	desc = pdmushroom.51.desc
+	picture = GFX_evt_mushroom2
+	show_sound = event_alien_nature
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = mushroom_planet
+		
+				
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		
+		
+	}
+
+	is_triggered_only = yes
+	
+	immediate = {
+		remove_modifier = "happymushrooms"
+		remove_modifier = "happymushrooms2"
+		remove_modifier = "badmushrooms"
+		remove_modifier = "badmushrooms2"
+	}
+	
+	option = {
+		name = pdmushroom.51.a
+	}
+}

@@ -1,0 +1,24 @@
+#Tooltips will be generated from these rules when they fail. Use of custom_tooltip is recommended
+#There are still multiple hard-coded rules that apply in addition to these.
+#If rules here evaluate to true, there might still be other rules that make the action unavailable.
+#If a rule here evaluates to false the action will become unavailable
+
+# Root = current planet
+# This = pop
+# Purge, Sapience, Migration Controls policy (ignored by Gestalts and Synths), and target habitability are checked in code.
+can_planet_auto_migrate = {
+	NOT = { has_modifier = planet_culture_shock }
+	OR = {
+		colony_age > 60
+		is_capital = yes # Don't break Doomsday!
+		has_planet_flag = pd_habitat_start_luna
+		has_planet_flag = pd_habitat_start_mars
+	}
+	exists = owner
+	owner = {
+		OR = {
+			is_country_type = default
+			is_country_type = awakened_fallen_empire
+		}
+	}
+}

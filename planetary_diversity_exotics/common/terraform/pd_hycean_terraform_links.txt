@@ -1,0 +1,38 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+@hiveCost = 10000
+@hiveTime = 7200
+
+#Rogue
+
+terraform_link = {
+	from = pc_dwarf_gas_giant
+	to = pc_pd_hycean
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hycean_terraforming_candidate } }
+	condition = { has_technology = "tech_hycean_climate_restoration" }
+	effect = { 
+		from = { 
+			remove_modifier = hycean_terraforming_candidate 
+			clear_deposits = yes 
+			reroll_deposits = yes 
+			remove_deposit = d_prospectorium_strip_mine 
+			add_deposit = d_teeming_reef
+			add_deposit = d_teeming_reef
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_underwater_vent
+			add_deposit = d_underwater_vent
+		} 
+	}
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_dwarf_gas_giant CLASS_TO = pc_pd_hycean } } }
+}

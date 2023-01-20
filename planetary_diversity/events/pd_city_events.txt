@@ -1,0 +1,473 @@
+namespace = pdcity
+
+#EnterSystem
+ship_event = {
+	id = pdcity.10
+	title = pdcity.10.name
+	desc = pdcity.10.desc
+	picture = GFX_evt_city
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = ecocity_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = city_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = city_encounter
+		}
+	}
+
+	option = {
+		name = pdcity.10.a
+		hidden_effect = {
+			owner = { country_event = { id = pdcity.11 } }
+		}
+	}
+}
+
+# Incoming Transmission
+country_event = {
+	id = pdcity.11
+	title = "pdcity.11.name"
+	desc = "pdcity.11.desc"
+	
+	diplomatic = yes
+	
+	is_triggered_only = yes		
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+	
+	option = {
+		name = pdcity.11.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdcity.20
+	title = pdcity.20.name
+	desc = pdcity.20.desc
+	picture = GFX_evt_city2
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = ecocity_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_city_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_city_planet
+		}
+		
+	}
+
+	option = {
+		name = pdcity.20.a
+	}
+}
+
+# Robots Make Themselves Known
+planet_event = {
+	id = pdcity.30
+	title = "pdcity.30.name"
+	desc = "pdcity.30.desc"
+	picture = GFX_evt_city2
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = ecocity_planet			
+		owner = {
+			NOT = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+	}
+	
+	is_triggered_only = yes
+	
+	immediate = {	
+		create_species = {
+			name = "The Gardeners"
+			class = ROBOT
+			portrait = default_robot
+			immortal = yes
+			traits = {
+				trait = "trait_mechanical"
+				trait = "trait_robot_harvesters"
+				trait = "trait_robot_domestic_protocols"
+				trait = "trait_robot_efficient_processors"
+			}
+		}
+		last_created_species = {
+			save_event_target_as = robogardeners
+		}
+		owner = {
+			set_country_flag = gardeners_country
+		}
+	}
+
+	option = {
+		name = "ONSCREEN"	
+		while = { 
+			count = 4
+			create_pop = {
+				species = last_created
+				}
+			}
+		owner = { country_event = { id = pdcity.31 } }
+	}
+		
+
+}
+
+# Robots Call
+country_event = {
+	id = pdcity.31
+	title = "pdcity.31.name"
+	desc = "pdcity.31.desc"
+	
+	diplomatic = yes
+	
+	is_triggered_only = yes
+		
+	picture_event_data = {
+		portrait = event_target:robogardeners
+		room = cityworld_room
+	}
+	
+	option = {
+		name = pdcity.31.a
+		response_text = pdcity.31.a.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = pdcity.31.b
+		response_text = pdcity.31.b.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = pdcity.31.c
+		response_text = pdcity.31.c.response
+		is_dialog_only = yes
+	}
+	option = {
+		name = pdcity.31.d
+		response_text = pdcity.31.d.response
+		from = {
+			add_modifier = {
+				modifier = "strangerobots"
+				days = -1
+			}	
+		}
+		hidden_effect = {		
+			FROM = { 
+				planet_event = { id = pdcity.40 days = 360 random = 360 }
+			}
+		}
+	}
+}
+
+# Robot reading personal messages
+planet_event = {
+	id = pdcity.40
+	title = "pdcity.40.name"
+	desc = "pdcity.40.desc"
+	picture = GFX_evt_metropolis
+	show_sound = event_cityscape
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = pdcity.40.a
+		hidden_effect = {		
+				planet_event = { id = pdcity.41 days = 360 random = 360  }
+		}
+	}
+}
+
+# Robots do it again
+planet_event = {
+	id = pdcity.41
+	title = "pdcity.41.name"
+	desc = "pdcity.41.desc"
+	picture = GFX_evt_metropolis
+	show_sound = event_cityscape
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = pdcity.41.a				
+		hidden_effect = {
+			planet_event = { id = pdcity.32 days = 360 random = 360  }
+			add_modifier = {
+				modifier = "uncomfortablecolonists"
+				days = -1
+			}	
+		}
+	}
+}
+
+# A Choice for the Driods
+planet_event = {
+	id = pdcity.32
+	title = "pdcity.32.name"
+	desc = "pdcity.32.desc"
+	picture = GFX_evt_metropolis
+	show_sound = event_cityscape
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = pdcity.32.a
+		custom_tooltip = pdcity.32.a.tooltip
+		hidden_effect = {		
+				planet_event = { id = pdcity.33 days = 1 }
+		}
+	}
+	
+		option = {
+		name = pdcity.32.b	
+		custom_tooltip = pdcity.32.b.tooltip
+		hidden_effect = {		
+				planet_event = { id = pdcity.34 days = 1 }
+		}	
+	}
+		option = {
+		name = pdcity.32.c
+		custom_tooltip = pdcity.32.c.tooltip
+		hidden_effect = {		
+				planet_event = { id = pdcity.35 days = 14 }
+		}
+	}
+}
+
+# Ask them to be less weird
+planet_event = {
+	id = pdcity.33
+	title = "pdcity.33.name"
+	desc = "pdcity.33.desc"
+	picture = GFX_evt_metropolis
+	show_sound = event_cityscape
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = pdcity.33.a
+	}
+	
+}
+
+
+# Reprogram the Driods
+planet_event = {
+	id = pdcity.34
+	title = "pdcity.34.name"
+	desc = "pdcity.34.desc"
+	picture = GFX_evt_robot_assembly_plant
+	show_sound = event_cityscape
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = pdcity.34.a
+		remove_modifier = "strangerobots"
+		remove_modifier = "uncomfortablecolonists"
+		}
+}
+
+
+# Scrap the Driods
+planet_event = {
+	id = pdcity.35
+	title = "pdcity.35.name"
+	desc = "pdcity.35.desc"
+	picture = GFX_evt_ground_combat
+	show_sound = event_air_raid_siren
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = robot_attacked
+		set_planet_flag = robot_attacked_planet
+		owner = { set_country_flag = robot_attacked_country }
+		create_country = {
+			name = "Sad Robots"
+			type = faction
+		}
+		create_army = {
+			name = "Sad Robots"
+			owner = last_created_country
+			species = this
+			type = "machine_assault_1"
+		}
+		every_owned_pop = {
+				limit = {
+					is_non_sapient_robot = yes
+				}
+				kill_pop = yes
+			}
+	}
+	
+	option = {
+		name = pdcity.35.a
+		remove_modifier = "strangerobots"	
+		remove_modifier = "uncomfortablecolonists"
+		hidden_effect = {		
+			#planet_event = { id = pdcity.36 days = 70 }
+			every_owned_pop = {
+				limit = {
+						is_non_sapient_robot = yes
+					}
+				kill_pop = yes
+			}
+		}	
+	}
+}
+
+# After The Attack
+country_event = {
+	id = pdcity.36
+	title = "pdcity.36.name"
+	desc = "pdcity.36.desc"
+	picture = GFX_evt_metropolis
+	show_sound = event_cityscape
+	location = FROM
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_country_flag = robot_attacked_country
+	}
+
+	option = {
+		name = pdcity.36.a
+		owner = {
+			add_resource = { minerals = 2000 }
+		}
+	}	
+}
+
+#EnterSystem
+ship_event = {
+	id = pdcity.110
+	title = pdcity.110.name
+	desc = pdcity.110.desc
+	picture = GFX_evt_milarc
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = mil_relic_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = mil_relic_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = mil_relic_encounter
+		}
+	}
+
+	option = {
+		name = pdcity.110.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdcity.120
+	title = pdcity.120.name
+	desc = pdcity.120.desc
+	picture = GFX_evt_milarc2
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = milarc_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_milarc_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_milarc_planet
+		}
+		
+	}
+
+	option = {
+		name = pdcity.120.a
+	}
+}

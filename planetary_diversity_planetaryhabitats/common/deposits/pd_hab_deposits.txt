@@ -1,0 +1,627 @@
+@high = 24
+@med = 12
+@low = 6
+
+#Test
+#@high = 20
+#@med = 12
+#@low = 8
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+#Energy + Mineral + Science
+
+d_pdhabminerals = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "unused/d_space_walk"
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_miner_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			job_mining_drone_add = 2
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pdhabscience = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "unused/d_space_walk"
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 2
+			}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			job_calculator_add = 2
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pdhabenergy = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "unused/d_space_walk"
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_technician_add = 2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 2
+			}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			job_technician_drone_add = 2
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+##PHab Terraforming Deposits
+
+###############
+#### ENERGY ###
+###############
+
+d_phab_energy_1 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_hot_springs
+		d_buzzing_plains # gaia
+		d_strong_currents
+		d_sulfur_arid_highlands
+		d_arid_highlands
+	}
+
+	category = deposit_cat_energy
+
+	planet_modifier = {
+		district_pdhab_energy_max = 1
+		district_generator_max = 1
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			OR = {
+				is_planet_class = pc_pd_toxic_hab
+				is_planet_class = pc_pd_hothouse_hab
+				is_planet_class = pc_pd_molten_hab
+			}
+		}
+	}
+}
+
+d_phab_energy_2 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_underwater_jets
+		d_searing_desert
+		d_frozen_gas_lake
+		d_powerful_geyser
+		d_rushing_waterfalls
+		d_sulfur_arid_highlands
+	}
+	
+	category = deposit_cat_energy
+	
+	planet_modifier = { 
+		district_pdhab_energy_max = 2
+		district_generator_max = 2
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @med
+		modifier = {
+			factor = @planet_type_bonus
+			OR = {
+				is_planet_class = pc_pd_toxic_hab
+				is_planet_class = pc_pd_hothouse_hab
+				is_planet_class = pc_pd_molten_hab
+			}
+		}
+	}
+}
+
+d_phab_energy_3 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_geothermal_vent
+		d_tempestous_mountain
+		d_underwater_vent
+		d_sulfur_geothermal_vent
+	}
+
+	planet_modifier = {
+		district_pdhab_energy_max = 3
+		district_generator_max = 3
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @med
+		modifier = {
+			factor = @planet_type_bonus
+			OR = {
+				is_planet_class = pc_pd_toxic_hab
+				is_planet_class = pc_pd_hothouse_hab
+				is_planet_class = pc_pd_molten_hab
+			}
+		}
+	}
+}
+
+###################
+#### MINERALS #####
+###################
+
+d_phab_mining_1 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	category = deposit_cat_minerals
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_coral_deposit
+		d_mineral_fields
+		d_mineral_striations # gaia
+		d_veiny_cliffs
+		d_sulfur_mineral_fields
+	}
+	
+	planet_modifier = { 
+		district_pdhab_mining_max = 1
+		district_mining_max = 1
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			OR = {
+				is_planet_class = pc_pd_barren_hab
+				is_planet_class = pc_pd_barren_cold_hab
+				is_planet_class = pc_pd_frozen_hab
+			}
+		}
+	}
+}
+
+d_phab_mining_2 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	category = deposit_cat_minerals
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_submerged_caves
+		d_ore_rich_caverns
+		d_prosperous_mesa
+		d_sulfur_ore_rich_caverns
+	}
+	
+	planet_modifier = { 
+		district_pdhab_mining_max = 2
+		district_mining_max = 2
+	}	
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @med
+		modifier = {
+			factor = @planet_type_bonus
+			OR = {
+				is_planet_class = pc_pd_barren_hab
+				is_planet_class = pc_pd_barren_cold_hab
+				is_planet_class = pc_pd_frozen_hab
+			}
+		}
+	}
+}
+ 
+d_phab_mining_3 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	 
+	category = deposit_cat_minerals
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins 
+		d_sulfur_rich_mountain
+	}
+	
+	planet_modifier = { 
+		district_pdhab_mining_max = 3
+		district_mining_max = 3
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @low
+		modifier = {
+			factor = @planet_type_bonus
+			OR = {
+				is_planet_class = pc_pd_barren_hab
+				is_planet_class = pc_pd_barren_cold_hab
+				is_planet_class = pc_pd_frozen_hab
+			}
+		}
+	}
+}
+
+###################
+#####  FOOD   #####
+###################
+
+d_phab_food_1 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	category = deposit_cat_food
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_sea_grass
+		d_bountiful_plains
+		d_rugged_woods
+		d_green_hills
+		d_forgiving_tundra
+		d_boggy_fens
+		d_nutritious_mudland
+		d_natural_farmland # gaia
+		d_lichen_fields
+		d_sulfur_nutritious_mudland
+	}	
+	
+	planet_modifier = { 
+		district_pdhab_food_max = 1
+		district_farming_max = 1
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_planet_class = pc_pd_frozen_hab
+		}
+	}
+}
+
+d_phab_food_2 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	category = deposit_cat_food
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_kelp_forests
+		d_lush_jungle
+		d_fertile_lands
+		d_great_river
+		d_fungal_caves
+		d_sulfur_fertile_lands
+	}	
+	
+	planet_modifier = { 
+		district_pdhab_food_max = 1
+		district_farming_max = 2
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @med
+		modifier = {
+			factor = @planet_type_bonus
+			is_planet_class = pc_pd_frozen_hab
+		}
+	}
+}
+
+d_phab_food_3 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_teeming_reef
+		d_marvelous_oasis
+		d_tropical_island
+		d_fungal_forest
+		d_hydrocarbon_lakes
+		d_ammonia_seas
+		d_sulfur_black_soil
+	}
+
+	planet_modifier = {
+		district_pdhab_food_max = 1
+		district_farming_max = 3
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = @low
+		modifier = {
+			factor = @planet_type_bonus
+			is_planet_class = pc_pd_frozen_hab
+		}
+	}
+}
+
+d_phab_food_subglacial = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_teeming_reef
+		d_marvelous_oasis
+		d_tropical_island
+		d_fungal_forest
+		d_hydrocarbon_lakes
+		d_ammonia_seas
+		d_sulfur_black_soil
+	}
+
+	planet_modifier = {
+		district_pdhab_food_max = 3
+		district_farming_max = 3
+	}
+
+	potential = {
+		OR = {
+			has_modifier = hab_terraforming_candidate
+			has_modifier = hab_pdhabsubglacialocean
+		}
+		OR = {
+			is_planet_class = pc_pd_toxic_hab
+			is_planet_class = pc_pd_hothouse_hab
+			is_planet_class = pc_pd_barren_cold_hab
+			is_planet_class = pc_pd_barren_hab
+			is_planet_class = pc_pd_frozen_hab
+			is_planet_class = pc_pd_molten_hab
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

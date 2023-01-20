@@ -1,0 +1,56 @@
+is_crossbreeding_possible = {
+	is_sapient = yes
+	NOR = {
+		has_trait = trait_machine_unit
+		has_trait = trait_mechanical
+		has_trait = trait_hive_mind
+		has_trait = trait_self_modified
+		has_trait = trait_clone_soldier_infertile
+		has_trait = trait_clone_soldier_infertile_full_potential
+		has_trait = trait_organic_fourschildren
+		has_trait = trait_organic_fourschildren_2
+		is_half_species = any
+	}
+}
+
+can_assemble_unit04_pop = {
+	planet = {
+		OR = {
+			NOT = { exists = assembling_species }
+			AND = {
+				exists = assembling_species
+				assembling_species = {
+					OR = {
+						OR = {
+							has_trait = trait_organic_fourschildren
+							has_trait = trait_organic_fourschildren_2
+						}
+						is_robotic = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+can_add_biosynth_traits = {
+	hidden_trigger = { exists = from }
+	from = {
+			has_tradition = pd_tr_biosynth_perk_1
+	}
+	OR = {
+		has_trait = trait_organic_fourschildren
+		has_trait = trait_organic_fourschildren_2
+	}
+}
+
+can_remove_biosynth_traits = {
+	hidden_trigger = { exists = from }
+	from = {
+			has_tradition = pd_tr_biosynth_perk_1
+	}
+	OR = {
+		has_trait = trait_organic_fourschildren
+		has_trait = trait_organic_fourschildren_2
+	}
+}

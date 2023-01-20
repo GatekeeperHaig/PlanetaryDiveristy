@@ -1,0 +1,533 @@
+############################
+#
+# Country Events
+#
+# Written by Henrik Eklund
+#
+############################
+
+namespace = country
+
+
+# Habitable World Surveyed (HIDDEN)
+ship_event = {
+	id = country.52
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { has_event_chain = "survey_habitable_worlds_chain" }
+		FROM = {
+			habitable_planet = yes
+		}
+	}
+	
+	immediate = {
+		owner = {
+			add_event_chain_counter = { 
+				event_chain = "survey_habitable_worlds_chain" 
+				counter = "habitable_worlds_surveyed" 
+				amount = 1 
+			}
+		}
+	}
+}
+
+# Specimen Procurement
+country_event = {
+	id = country.53
+	title = "country.53.name"
+	desc = "country.53.desc"
+	picture = GFX_evt_society_research
+	show_sound = event_laboratory_sound
+	trackable = yes
+	
+	trigger = {
+		has_country_flag = museum_of_exobiology
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+					is_planet_class = pc_ocean
+					is_planet_class = pc_fog
+					is_planet_class = pc_cascadian
+					is_planet_class = pc_wetswamp
+					is_planet_class = pc_subarctic
+					is_planet_class = pc_karst
+					is_planet_class = pc_reef
+					is_planet_class = pc_pd_archipelago
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+				is_planet_class = pc_desert
+				is_planet_class = pc_sandsea
+				is_planet_class = pc_oasis
+				is_planet_class = pc_outback
+				is_planet_class = pc_coastal
+				is_planet_class = pc_salt
+				is_planet_class = pc_aquifer
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+				is_planet_class = pc_tropical
+				is_planet_class = pc_hajungle
+				is_planet_class = pc_cenote
+				is_planet_class = pc_mangrove
+				is_planet_class = pc_desertislands
+				is_planet_class = pc_geothermal
+				is_planet_class = pc_biolumen
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+					is_planet_class = pc_arid
+					is_planet_class = pc_pd_dry_superhab
+					is_planet_class = pc_mesa
+					is_planet_class = pc_badlands
+					is_planet_class = pc_hadesert
+					is_planet_class = pc_med
+					is_planet_class = pc_coral
+					is_planet_class = pc_primal
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+				is_planet_class = pc_continental
+				is_planet_class = pc_retinal
+				is_planet_class = pc_forest
+				is_planet_class = pc_lake
+				is_planet_class = pc_tepid
+				is_planet_class = pc_superhabitable
+				is_planet_class = pc_megaflora
+				is_planet_class = pc_pd_petrified
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+				is_planet_class = pc_arctic
+				is_planet_class = pc_antarctic
+				is_planet_class = pc_aeolian
+				is_planet_class = pc_frozen_desert
+				is_planet_class = pc_glacial
+				is_planet_class = pc_storm
+				is_planet_class = pc_pd_iceberg
+				is_planet_class = pc_eyeball
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+		any_system = {
+			any_system_planet = {
+				is_surveyed = {
+					who = ROOT
+					status = yes
+				}
+				is_capital = no
+				OR = {
+				is_planet_class = pc_tundra
+				is_planet_class = pc_pd_cold_superhab
+				is_planet_class = pc_swamp
+				is_planet_class = pc_mud
+				is_planet_class = pc_basalt
+				is_planet_class = pc_mushroom
+				is_planet_class = pc_lichen
+				}
+				solar_system = {
+					OR = {
+						NOT = { exists = space_owner }
+						AND = {
+							exists = space_owner 
+							space_owner = {
+								NOT = { is_country_type = fallen_empire }
+								NOT = { is_country_type = awakened_fallen_empire }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 120
+	}
+	
+	immediate = {
+		remove_country_flag = museum_of_exobiology
+	}
+
+	option = {
+		name = "country.53.a"
+		begin_event_chain = {
+			event_chain = "specimen_procurement_chain"
+			target = ROOT
+		}
+		hidden_effect = {
+			random_galaxy_planet = { # TARBLAC
+				limit = {
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_ocean
+						is_planet_class = pc_fog
+						is_planet_class = pc_cascadian
+						is_planet_class = pc_wetswamp
+						is_planet_class = pc_subarctic
+						is_planet_class = pc_karst
+						is_planet_class = pc_reef
+						is_planet_class = pc_pd_archipelago
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "TARBLAC_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+			random_galaxy_planet = { # TASSARGOID
+				limit = { 
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_tropical
+						is_planet_class = pc_hajungle
+						is_planet_class = pc_cenote
+						is_planet_class = pc_mangrove
+						is_planet_class = pc_desertislands
+						is_planet_class = pc_geothermal
+						is_planet_class = pc_biolumen
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "TASSARGOID_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+			random_galaxy_planet = { # ORINTHI
+				limit = {
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_continental
+						is_planet_class = pc_retinal
+						is_planet_class = pc_forest
+						is_planet_class = pc_lake
+						is_planet_class = pc_tepid
+						is_planet_class = pc_superhabitable
+						is_planet_class = pc_megaflora
+						is_planet_class = pc_pd_petrified
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "ORINTHI_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+			random_galaxy_planet = { # SNIRAN
+				limit = {
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_desert
+						is_planet_class = pc_sandsea
+						is_planet_class = pc_oasis
+						is_planet_class = pc_outback
+						is_planet_class = pc_coastal
+						is_planet_class = pc_salt
+						is_planet_class = pc_aquifer
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }								
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "SNIRAN_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+			random_galaxy_planet = { # GOOLANTHA
+				limit = {
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_tundra
+						is_planet_class = pc_swamp
+						is_planet_class = pc_mud
+						is_planet_class = pc_basalt
+						is_planet_class = pc_mushroom
+						is_planet_class = pc_lichen
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }	
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "GOOLANTHA_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+			random_galaxy_planet = { # UDDLORAN
+				limit = {
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_arctic
+						is_planet_class = pc_antarctic
+						is_planet_class = pc_aeolian
+						is_planet_class = pc_frozen_desert
+						is_planet_class = pc_glacial
+						is_planet_class = pc_storm
+						is_planet_class = pc_pd_iceberg
+						is_planet_class = pc_eyeball
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }	
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "UDDLORAN_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+			random_galaxy_planet = { # ZULCOR
+				limit = {
+					is_surveyed = {
+						who = ROOT
+						status = yes
+					}
+					OR = {
+						is_planet_class = pc_arid
+						is_planet_class = pc_mesa
+						is_planet_class = pc_badlands
+						is_planet_class = pc_hadesert
+						is_planet_class = pc_med
+						is_planet_class = pc_coral
+						is_planet_class = pc_primal
+					}
+					is_capital = no
+					solar_system = {
+						OR = {
+							NOT = { exists = space_owner }
+							AND = {
+								exists = space_owner 
+								space_owner = {
+									NOT = { is_country_type = fallen_empire }
+									NOT = { is_country_type = awakened_fallen_empire }	
+								}
+							}
+						}
+					}
+				}
+				enable_special_project = {
+					name = "ZULCOR_PROCUREMENT"
+					location = this
+					owner = root
+				}
+			}
+		}
+	}
+	option = {
+		name = "country.53.b"
+	}
+}
+
+

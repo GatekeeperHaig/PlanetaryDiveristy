@@ -1,0 +1,219 @@
+
+@distance = 50
+@base_moon_distance = 10
+
+
+# Coral Event World
+pd_coral_event_init = {
+	class = "rl_standard_stars"
+	usage = misc_system_init
+	usage_odds = 1000
+	spawn_chance = 1000
+	max_instances = 1
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 45
+	
+	planet = {
+		count = { min = 2 max = 3 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	change_orbit = 20
+
+    planet = {
+		class = "pc_coral"
+		orbit_distance = 0
+		orbit_angle = 85
+		size = { min = 15 max = 25 }
+		modifiers = none
+		
+		init_effect = {
+			set_planet_flag = pd_coral_planet
+			set_planet_flag = pd_remove_coral_event
+			set_planet_flag = pd_coral_event
+			add_modifier = {
+				modifier = pdcoral
+				days = -1
+			}
+        }
+    }
+            	
+	change_orbit = 20
+	
+	planet = {
+		count = { min = 4 max = 7 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+}
+
+#Mushroom Event Planet
+pd_init_mushroom = {
+	class = "sc_g"
+	usage = misc_system_init
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 160
+	}
+	usage_odds = 1000
+	spawn_chance = 1000
+	max_instances = 1
+	flags = { mushroom_system }
+		
+	planet = {
+		count = 1
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+		
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_barren
+		orbit_distance = 35
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+		
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_molten
+		orbit_distance = 25
+		
+		change_orbit = @base_moon_distance
+	}
+		
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_hothouse
+		orbit_distance = 25
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 5
+			class = "pc_barren_cold"
+		}
+	}
+		
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_toxic
+		orbit_distance = 25
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 5
+			class = "pc_barren_cold"
+		}
+	}
+	
+	planet = {
+		class = "pc_mushroom"
+		orbit_distance = 25
+		orbit_angle = 85
+		size = { min = 20 max = 25 }
+		modifiers = none
+		has_ring = no
+		
+		init_effect = {
+			prevent_anomaly = yes		
+			set_planet_flag = mushroom_planet
+			save_event_target_as = mushroom_planet
+			set_planet_flag = colony_event
+		}
+		
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 10
+			class = "pc_barren"
+		}
+	}
+	
+	planet = {
+		count = 1
+		class = random_asteroid
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 5
+		class = random_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	
+	planet = {
+		class = pc_gas_giant
+		orbit_distance = 35
+		size = 30
+		
+		change_orbit = 10
+		
+		moon = {			
+			count = { min = 2 max = 2 }
+			orbit_distance = 5
+			class = "pc_toxic"
+		}
+	}
+		
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_barren_cold
+		orbit_distance = 25
+		size = 27
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 2 max = 2 }
+			orbit_distance = 5			
+		}	
+	}
+	
+	planet = {
+		class = pc_frozen
+		orbit_distance = 25
+		size = 12
+		
+		change_orbit = 10
+	}	
+}

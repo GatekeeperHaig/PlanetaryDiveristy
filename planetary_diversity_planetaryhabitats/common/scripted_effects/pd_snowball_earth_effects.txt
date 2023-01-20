@@ -1,0 +1,69 @@
+### Snowball Earth Origins
+pdsnowball_earth_system_setup = {
+	owner = {
+		save_event_target_as = pdsnowball_earth_system_owner
+	}
+	solar_system = {
+		random_system_planet = {
+			limit = { has_planet_flag = pd_snowball_start_earth	}
+			save_event_target_as = pdsnowball_homeworld
+			owner = { 
+				add_research_option = tech_solar_reflectrion
+				give_technology = { tech = tech_hydroponics message = no }
+			}
+			set_planet_size = 20
+			remove_district = district_city
+			remove_district = district_farming
+			remove_district = district_farming
+			remove_district = district_industrial
+			while = {
+				count = 12
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+
+			#colony ship
+			create_fleet = {
+				effect = {
+					set_owner = prev
+	
+					create_ship = {
+						name = random
+						random_existing_design = colonizer
+					}
+	
+					set_fleet_stance = evasive
+					set_location = event_target:pdsnowball_homeworld
+				}
+			}
+			
+		}
+		random_system_planet = {
+			limit = { has_planet_flag = pd_snowball_start_luna }
+			set_owner = event_target:pdsnowball_earth_system_owner
+			while = {
+				count = 18
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			set_planet_flag = pd_hab_d1
+			set_planet_flag = pd_science_hab
+			add_modifier = { modifier = pdhabsnowballmoon days = -1 }
+			add_district = district_pdhab_industrial
+			add_district = district_pdhab_industrial
+			add_district = district_pdhab_industrial
+			add_district = district_pdhab_cultural
+			add_district = district_pdhab_housing
+			add_building = building_hab_major_capital
+			add_building = building_hydroponics_farm
+			add_building = building_hydroponics_farm
+			add_building = building_hydroponics_farm
+			add_deposit = d_snowball_stockpile
+			planet_event = {
+				id = snowball_earth.14 days = 3600
+			}
+		}
+	}
+}

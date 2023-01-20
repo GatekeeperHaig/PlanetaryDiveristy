@@ -1,0 +1,33 @@
+pc_pd_wasteland = {
+	entity = "pd_wasteland_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_wasteland
+	atmosphere_color 		= hsv { 0.75 0.10 0.60 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_wasteland.dds"
+	modifier = { 
+		planet_jobs_alloys_produces_mult = 1.0
+		planet_jobs_consumer_goods_produces_mult = 1.0
+		planet_jobs_minerals_produces_mult = 0.5
+		planet_jobs_energy_produces_mult = 0.5
+		planet_refiners_produces_mult = 0.5
+		planet_translucers_produces_mult = 0.5
+		planet_chemists_produces_mult = 0.5
+		habitability_ceil_add = -0.3
+	}
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	#ideal = yes
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}

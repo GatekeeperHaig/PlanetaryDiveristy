@@ -1,0 +1,51 @@
+@activation_cost = 150
+@triumph_duration = 3600
+@triumph_duration_short = 1800
+
+r_pdarchive = {
+	activation_duration = @triumph_duration
+	portrait = "GFX_relic_pdarchive"
+	sound = "relic_activation_the_rubricator"
+
+
+	resources = {
+		category = relics
+		# Activation cost
+		cost = {
+			unity = @activation_cost
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		all_technology_research_speed = 0.05
+	}
+
+	score = 1000
+
+	active_effect = {
+		#add_modifier = {
+		#	modifier = "pdarchive_core"
+		#	days = @triumph_duration
+		#}
+		custom_tooltip = relic_pdarchive_active
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = "relic_activation_cooldown"
+				days = @triumph_duration
+			}
+			country_event = { id = ancrel.7007 }
+		}
+	}
+
+	# Possible check for activation
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_relic_no_cooldown"
+			NOT = { has_modifier = relic_activation_cooldown }
+		}
+	}
+}

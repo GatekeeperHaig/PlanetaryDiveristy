@@ -1,0 +1,155 @@
+
+@distance = 50
+@base_moon_distance = 10
+
+#Dune World
+pd_init_dune = {
+	class = "sc_k"
+	usage = misc_system_init
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 190
+	}
+	
+	max_instances = 1
+	scaled_spawn_chance = 14
+	spawn_chance = 100	
+	usage_odds = 100
+	name = "Canopus"
+	
+	flags = { pddune_system }
+		
+    planet = {
+		name = "Canopus"
+        count = 1
+        class = "pc_k_star"
+        orbit_angle = 1
+		orbit_distance = 0
+        size = { min = 30 max = 35 }
+        has_ring = no
+	}	
+	
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_barren
+		orbit_distance = 40
+		name = "Seban"
+		size = 9
+	}
+
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_hothouse
+		orbit_distance = 25
+		name = "Menaris"
+		size = 18
+	}
+	
+	planet = {
+		class = "pc_sandsea"
+		orbit_distance = 0
+		orbit_angle = 85
+		size = 18
+		has_ring = no
+		name = "Rakis"
+		deposit_blockers = none
+		
+		init_effect = {
+		set_planet_flag = colony_event
+		set_planet_flag = pddune_planet	
+		set_planet_flag = pd_ignore	
+		prevent_anomaly = yes
+		save_event_target_as = pddune_planet
+		}
+		
+		change_orbit = @base_moon_distance
+		
+	moon = {
+		class = "pc_barren_cold"
+		orbit_distance = 10
+		orbit_angle = 85
+		size = 9
+		modifiers = none
+		has_ring = no
+		name = "Krelin"
+		}
+		
+	moon = {
+		class = "pc_barren_cold"
+		orbit_distance = 5
+		orbit_angle = 85
+		size = 6
+		modifiers = none
+		has_ring = no
+		name = "Arvon"
+		}
+	}
+
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_hothouse
+		orbit_distance = 35
+		name = "Extaris"
+		size = 18
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 10
+			class = pc_frozen
+		}
+		
+		moon = {			
+			count = { min = 3 max = 3 }
+			orbit_distance = 5
+			class = pc_frozen
+		}
+				
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 5
+			class = pc_barren_cold
+			name = "Aja"
+		}
+	}
+
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_gas_giant
+		orbit_distance = 35
+		name = "Ven"
+		size = 26
+	}
+
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_gas_giant
+		orbit_distance = 25
+		name = "Revona"
+		size = 22
+				
+		moon = {			
+			count = { min = 1 max = 1 }
+			orbit_distance = 10
+			class = pc_barren_cold
+			name = "Laran"
+		}
+	}
+		
+	planet = {
+		count = 1
+		class = random_asteroid
+		orbit_distance = 30
+		orbit_angle = { min = 90 max = 270 }
+	}
+		
+	planet = {
+		count = 4
+		class = random_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+}
+
