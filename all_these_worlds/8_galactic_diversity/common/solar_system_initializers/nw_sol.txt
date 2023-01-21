@@ -1,0 +1,2760 @@
+@distance = 50
+@base_moon_distance = 1
+@sub_giant_moon_distance = 5
+@giant_moon_distance = 6
+@super_giant_moon_distance = 16
+
+### Sol System initializer for playing United Nations of Earth
+### The original Barnard's Star has been replaced, since its a red dwarf, Barnard's Star will still spawn but only after finishing the Star Chart decision
+
+sol_system_initializer = {
+	name = "NAME_Sol"
+	
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+	flags = { empire_home_system sol_system sol aldebaran_enabled }
+	
+	usage = custom_empire
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Mercury"
+		class = "orbit_iron_telluric"
+		entity = "iron_telluric_planet_01_entity"
+		orbit_distance = 20
+		orbit_angle = 15
+		size = 13
+		has_ring = no
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	planet = {
+		name = "NAME_Venus"
+		class = "orbit_hothouse_toxic"
+		#class = pc_almyros
+		#flags = { planet_converted }
+		orbit_distance = 15 #35
+		orbit_angle = 125
+		size = 18
+		has_ring = no
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		flags = { planet_venus }
+		init_effect = {
+			#change_pc = "orbit_water_panthalassic"
+			#set_planet_entity = { picture = biome_aquatic_cold entity = terraformed_aquatic_cold_01_entity }
+			#add_modifier = {
+			#	modifier = "shallow_water_world"
+			#	days = -1
+			#}
+		}
+	}
+	
+	planet = {
+		name = "NAME_Earth"
+		class = "pc_continental"
+		orbit_distance = 15 #50
+		orbit_angle = 120
+		size = 19
+		starting_planet = yes
+		has_ring = no
+		entity = "atw_earth_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { planet_earth }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+
+			prevent_anomaly = yes
+		}
+		
+		moon = {
+			name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 11
+			orbit_distance = 2
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+			flags = { moon_luna }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			
+		}
+	}
+	
+	planet = {
+		name = "NAME_Mars"
+		class = "pc_barren"
+		entity = "barren_planet_mars_entity"
+		orbit_distance = 20 #70
+		orbit_angle = 60
+		size = 15
+		has_ring = no
+		#deposit_blockers = none
+		flags = { planet_mars }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		init_effect = {
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "NAME_1_Ceres"
+		class = "pc_barren_cold"
+		entity = "silicate_telluric_planet_01_entity"
+		orbit_distance = 30 #100
+		orbit_angle = -210
+		size = 7
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40 #140
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "ammonia-clouded_giant_01_entity"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		moon = {
+			name = "NAME_Io"
+			class = "orbit_volcanic_telluric"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "volcanic_telluric_planet_03_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Europa"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 1
+			orbit_angle = 60
+			has_ring = no
+			flags = { moon_europa }
+			
+			#init_effect = {
+			#	add_modifier = {
+			#		modifier = "defrost_candidate"
+			#		days = -1
+			#	}
+			#}
+		}
+		moon = {
+			name = "NAME_Ganymede"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_02_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Callisto"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_03_entity"
+			size = 13
+			orbit_distance = 2
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 50 #190
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "ammonia-clouded_giant_02_entity"
+		flags = { pdsaturn }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "Rhea"
+			class = "orbit_icy"
+			#entity = "frozen_telluric_planet_02_entity"
+			size = 6
+			orbit_distance = 11
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+		moon = {
+			name = "NAME_Titan"
+			class = "pc_toxic"
+			#entity = "cold_reducing_planet_01_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 320
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			flags = { moon_titan }
+		}
+	}
+	
+	planet = {
+		name = "NAME_Uranus"
+		class = "orbit_frigid_giant"
+		orbit_distance = 70 #260
+		orbit_angle = 125
+		size = 26
+		has_ring = no
+		#entity = "gas_giant_uranus_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_Neptune"
+		class = "orbit_methane_giant"
+		orbit_distance = 60 #320
+		orbit_angle = -195
+		size = 26
+		has_ring = no
+		entity = "methane_giant_01_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "NAME_Triton"
+			class = "pc_frozen"
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		name = "NAME_134340_Pluto"
+		class = "pc_frozen"
+		orbit_distance = 50 #370
+		orbit_angle = -210
+		size = 9
+		has_ring = no
+		entity = "frozen_telluric_planet_04_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 10 #380
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 3
+		has_ring = no
+	}
+	
+	neighbor_system = {
+		#distance = { min = 10 max = 50 }
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_alpha_centauri"
+	}
+	neighbor_system = {
+		#distance = { min = 15 max = 55 }
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_sirius"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_epsilon_eridani_habitable"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies = 0 }
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_epsilon_eridani_random"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		trigger = { num_guaranteed_colonies >= 2 }
+		initializer = "mp_procyon_habitable"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		trigger = { num_guaranteed_colonies < 2 }
+		initializer = "mp_procyon_random"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_epsilon_indi"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_tau_ceti"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_altair"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_eta_cassiopeiae"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_delta_pavonis"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_beta_hydri"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_vega"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_formalhaut"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_pollux"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_denebola"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_arcturus"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_zeta_reticuli"
+	}
+	neighbor_system = {
+		distance = { min = 80 max = 200 }	
+		initializer = "polaris_civilization"
+	}
+	#neighbor_system = {
+	#	#distance = { min = 100 max = 150 }	
+	#	hyperlane_jumps = { min = 7 max = 11 }
+	#	initializer = "une_aldebaran_system"
+	#}
+	
+}
+
+sol_no_aldebaran_system_initializer = {
+	name = "NAME_Sol"
+	
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+	flags = { empire_home_system sol_system sol }
+	
+	usage = custom_empire
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Mercury"
+		class = "orbit_iron_telluric"
+		entity = "iron_telluric_planet_01_entity"
+		orbit_distance = 20
+		orbit_angle = 15
+		size = 13
+		has_ring = no
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	planet = {
+		name = "NAME_Venus"
+		class = "orbit_hothouse_toxic"
+		#class = pc_almyros
+		#flags = { planet_converted }
+		orbit_distance = 15 #35
+		orbit_angle = 125
+		size = 18
+		has_ring = no
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		flags = { planet_venus }
+		init_effect = {
+			#change_pc = "orbit_water_panthalassic"
+			#set_planet_entity = { picture = biome_aquatic_cold entity = terraformed_aquatic_cold_01_entity }
+			#add_modifier = {
+			#	modifier = "shallow_water_world"
+			#	days = -1
+			#}
+		}
+	}
+	
+	planet = {
+		name = "NAME_Earth"
+		class = "pc_continental"
+		orbit_distance = 15 #50
+		orbit_angle = 120
+		size = 19
+		starting_planet = yes
+		has_ring = no
+		entity = "atw_earth_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { planet_earth }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+
+			prevent_anomaly = yes
+		}
+		
+		moon = {
+			name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 11
+			orbit_distance = 2
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+			flags = { moon_luna }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			
+		}
+	}
+	
+	planet = {
+		name = "NAME_Mars"
+		class = "pc_barren"
+		entity = "barren_planet_mars_entity"
+		orbit_distance = 20 #70
+		orbit_angle = 60
+		size = 15
+		has_ring = no
+		#deposit_blockers = none
+		flags = { planet_mars }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		init_effect = {
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "NAME_1_Ceres"
+		class = "pc_barren_cold"
+		entity = "silicate_telluric_planet_01_entity"
+		orbit_distance = 30 #100
+		orbit_angle = -210
+		size = 7
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40 #140
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "ammonia-clouded_giant_01_entity"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		moon = {
+			name = "NAME_Io"
+			class = "orbit_volcanic_telluric"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "volcanic_telluric_planet_03_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Europa"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 1
+			orbit_angle = 60
+			has_ring = no
+			flags = { moon_europa }
+			
+			#init_effect = {
+			#	add_modifier = {
+			#		modifier = "defrost_candidate"
+			#		days = -1
+			#	}
+			#}
+		}
+		moon = {
+			name = "NAME_Ganymede"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_02_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Callisto"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_03_entity"
+			size = 13
+			orbit_distance = 2
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 50 #190
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "ammonia-clouded_giant_02_entity"
+		flags = { pdsaturn }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "Rhea"
+			class = "orbit_icy"
+			#entity = "frozen_telluric_planet_02_entity"
+			size = 6
+			orbit_distance = 11
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+		moon = {
+			name = "NAME_Titan"
+			class = "pc_toxic"
+			#entity = "cold_reducing_planet_01_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 320
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			flags = { moon_titan }
+		}
+	}
+	
+	planet = {
+		name = "NAME_Uranus"
+		class = "orbit_frigid_giant"
+		orbit_distance = 70 #260
+		orbit_angle = 125
+		size = 26
+		has_ring = no
+		#entity = "gas_giant_uranus_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_Neptune"
+		class = "orbit_methane_giant"
+		orbit_distance = 60 #320
+		orbit_angle = -195
+		size = 26
+		has_ring = no
+		entity = "methane_giant_01_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "NAME_Triton"
+			class = "pc_frozen"
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		name = "NAME_134340_Pluto"
+		class = "pc_frozen"
+		orbit_distance = 50 #370
+		orbit_angle = -210
+		size = 9
+		has_ring = no
+		entity = "frozen_telluric_planet_04_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 10 #380
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 3
+		has_ring = no
+	}
+	
+	neighbor_system = {
+		#distance = { min = 10 max = 50 }
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_alpha_centauri"
+	}
+	neighbor_system = {
+		#distance = { min = 15 max = 55 }
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_sirius"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_epsilon_eridani_habitable"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies = 0 }
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_epsilon_eridani_random"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		trigger = { num_guaranteed_colonies >= 2 }
+		initializer = "mp_procyon_habitable"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		trigger = { num_guaranteed_colonies < 2 }
+		initializer = "mp_procyon_random"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_epsilon_indi"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_tau_ceti"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_altair"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_eta_cassiopeiae"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_delta_pavonis"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_beta_hydri"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_vega"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_formalhaut"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_pollux"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_denebola"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_arcturus"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_zeta_reticuli"
+	}
+	neighbor_system = {
+		distance = { min = 80 max = 200 }	
+		initializer = "polaris_civilization"
+	}
+	
+}
+
+com_sol_system = {
+	name = "NAME_Sol"
+	
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+	flags = { com_sol sol_system sol empire_home_system }
+	
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 0
+		modifier = {
+			any_country = {
+				has_country_flag = human_2
+				is_human_species = yes
+			}
+			NOR = {
+				any_country = { has_country_flag = human_1 }
+				any_system = { has_star_flag = sol }
+				has_star_flag = empire_cluster
+			}
+
+			add = 99999
+		}
+	}
+
+	max_instances = 1
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Mercury"
+		class = "orbit_iron_telluric"
+		entity = "iron_telluric_planet_01_entity"
+		orbit_distance = 20
+		orbit_angle = 15
+		size = 13
+		has_ring = no
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	planet = {
+		name = "NAME_Venus"
+		class = "orbit_hothouse_toxic"
+		flags = { planet_converted }
+		orbit_distance = 15 #35
+		orbit_angle = 125
+		size = 18
+		has_ring = no
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		flags = { planet_venus }
+	}
+	
+	planet = {
+		name = "NAME_Earth"
+		class = "pc_continental"
+		orbit_distance = 15 #50
+		orbit_angle = 120
+		size = 19
+		starting_planet = yes
+		has_ring = no
+		entity = "atw_earth_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { planet_earth }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+
+			prevent_anomaly = yes
+			random_country = {
+				limit = { has_country_flag = human_2 }
+				save_event_target_as = commonwealth
+				owner_species = {
+					save_event_target_as = human_species
+					set_species_homeworld = prevprev
+				}
+			}
+			create_country = {
+				name = "NAME_United_Nations_of_Earth"
+				adjective = "PRESCRIPTED_adjective_humans1"
+				authority = auth_democratic
+				civics = {
+					civic = civic_beacon_of_liberty
+					civic = civic_idealistic_foundation
+				}
+				species = event_target:human_species
+				name_list = "HUMAN1"
+				ship_prefix = "UNS"
+				ethos = {
+					ethic = "ethic_xenophile"
+					ethic = "ethic_fanatic_egalitarian"
+				}
+				flag = {
+					icon = {
+						category = "human"
+						file = "flag_human_8.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors = {
+						"dark_blue"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = "origin_default"
+				effect = {
+					save_event_target_as = npc_UNoE
+					add_resource = {
+						minerals = 2400
+						energy = 2400
+						food = 2400
+						alloys = 800
+						consumer_goods = 1200
+						influence = 600
+					}
+					if = {
+						limit = {
+							event_target:commonwealth = {
+								has_origin = origin_necrophage
+							}
+						}
+						set_origin = origin_necrophage
+						set_country_flag = necrophage_une
+					}
+					if = {
+						limit = {
+							event_target:commonwealth = {
+								has_origin = origin_clone_army
+							}
+						}
+						set_origin = origin_clone_army
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:npc_UNoE
+			}
+			generate_earth_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			generate_lost_colony_parent_bonus = yes
+			event_target:npc_UNoE = {
+				set_country_flag = human_1
+				set_country_flag = lost_colony_parent
+				set_country_flag = special_intro_for@event_target:commonwealth
+				set_country_flag = lost_colony_parent_of@event_target:commonwealth
+				create_starting_leaders = yes
+				country_event = { id = game_start.9 }
+				country_event = { id = game_start.33 days = 1 } # needs delay for system ownership to settle
+			}
+			set_name = "NAME_Earth"
+		}
+		
+		moon = {
+			name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 11
+			orbit_distance = 2
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+			flags = { moon_luna }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+	
+	planet = {
+		name = "NAME_Mars"
+		class = "pc_barren"
+		#entity = "barren_planet_mars_entity"
+		orbit_distance = 20 #70
+		orbit_angle = 60
+		size = 15
+		has_ring = no
+		deposit_blockers = none
+		flags = { planet_mars }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		init_effect = {
+			set_planet_entity = { entity = barren_planet_mars_entity }
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "NAME_1_Ceres"
+		class = "pc_barren_cold"
+		entity = "silicate_telluric_planet_01_entity"
+		orbit_distance = 30 #100
+		orbit_angle = -210
+		size = 7
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40 #140
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "ammonia-clouded_giant_01_entity"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		moon = {
+			name = "NAME_Io"
+			class = "orbit_volcanic_telluric"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "volcanic_telluric_planet_03_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Europa"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 1
+			orbit_angle = 60
+			has_ring = no
+			flags = { moon_europa }
+			
+			#init_effect = {
+			#	add_modifier = {
+			#		modifier = "subterranean_icy_candidate"
+			#		days = -1
+			#	}
+			#}
+		}
+		moon = {
+			name = "NAME_Ganymede"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_02_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Callisto"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_03_entity"
+			size = 13
+			orbit_distance = 2
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 50 #190
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "ammonia-clouded_giant_02_entity"
+		flags = { pdsaturn }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "Rhea"
+			class = "orbit_icy"
+			#entity = "frozen_telluric_planet_02_entity"
+			size = 6
+			orbit_distance = 11
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+		moon = {
+			name = "NAME_Titan"
+			class = "pc_toxic"
+			#entity = "cold_reducing_planet_01_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 320
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			flags = { moon_titan }
+		}
+	}
+	
+	planet = {
+		name = "NAME_Uranus"
+		class = "orbit_frigid_giant"
+		orbit_distance = 70 #260
+		orbit_angle = 125
+		size = 26
+		has_ring = no
+		#entity = "gas_giant_uranus_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_Neptune"
+		class = "orbit_methane_giant"
+		orbit_distance = 60 #320
+		orbit_angle = -195
+		size = 26
+		has_ring = no
+		entity = "methane_giant_01_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "NAME_Triton"
+			class = "pc_frozen"
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		name = "NAME_134340_Pluto"
+		class = "pc_frozen"
+		orbit_distance = 50 #370
+		orbit_angle = -210
+		size = 9
+		has_ring = no
+		entity = "frozen_telluric_planet_04_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 10 #380
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 3
+		has_ring = no
+	}
+
+	init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			module = shipyard
+			building = crew_quarters
+			owner = event_target:npc_UNoE
+			effect = {
+				set_starbase_module = {
+					slot = 1
+					module = trading_hub
+				}
+			}
+		}
+	}
+	
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_alpha_centauri_une_colony"
+	}
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_sirius"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_epsilon_eridani_une_colony"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_procyon_random"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_epsilon_indi"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_tau_ceti"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_altair"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_eta_cassiopeiae"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_delta_pavonis"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_beta_hydri"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_vega"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_formalhaut"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_pollux"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_denebola"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_arcturus"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_zeta_reticuli"
+	}
+	neighbor_system = {
+		distance = { min = 80 max = 200 }	
+		initializer = "polaris_civilization"
+	}
+	
+}
+
+lost_colony_sol_system = {
+	name = "NAME_Sol"
+	
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+	flags = { lost_colony_sol sol_system sol empire_home_system }
+	
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 0
+		modifier = {
+			any_country = {
+				is_human_species = yes
+				NOT = { has_country_flag = human_2 }
+				has_origin = origin_lost_colony
+			}
+			NOT = { any_system = { has_star_flag = sol } }
+			NOT = { has_star_flag = empire_cluster }
+			add = 99999
+		}
+	}
+
+	max_instances = 1
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Mercury"
+		class = "orbit_iron_telluric"
+		entity = "iron_telluric_planet_01_entity"
+		orbit_distance = 20
+		orbit_angle = 15
+		size = 13
+		has_ring = no
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	planet = {
+		name = "NAME_Venus"
+		class = "orbit_hothouse_toxic"
+		flags = { planet_converted }
+		orbit_distance = 15 #35
+		orbit_angle = 125
+		size = 18
+		has_ring = no
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		flags = { planet_venus }
+	}
+	
+	planet = {
+		name = "NAME_Earth"
+		class = "pc_continental"
+		orbit_distance = 15 #50
+		orbit_angle = 120
+		size = 19
+		starting_planet = yes
+		has_ring = no
+		entity = "atw_earth_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { planet_earth }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		init_effect = {		
+			prevent_anomaly = yes
+		}
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+
+			random_country = {
+				limit = {
+					is_human_species = yes
+					has_origin = origin_lost_colony
+				}
+				save_event_target_as = human_lost_colony
+				owner_species = {
+					save_event_target_as = human_species
+					set_species_homeworld = prevprev
+				}
+			}
+			random_list = {
+				50 = {
+					create_country = {
+						species = event_target:human_species
+						name_list = HUMAN1
+						type = default
+						origin = "origin_default"
+						effect = {
+							save_event_target_as = lost_colony_parent
+							add_resource = {
+								minerals = 2400
+								energy = 2400
+								food = 2400
+								alloys = 800
+								consumer_goods = 1200
+								influence = 600
+							}
+						}
+					}
+				}
+				50 = {
+					create_country = {
+						species = event_target:human_species
+						name_list = HUMAN2
+						type = default
+						origin = "origin_default"
+						effect = {
+							save_event_target_as = lost_colony_parent
+							add_resource = {
+								minerals = 2400
+								energy = 2400
+								food = 2400
+								alloys = 800
+								consumer_goods = 1200
+								influence = 600
+							}
+						}
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:lost_colony_parent
+			}
+			set_planet_size = 18
+			generate_earth_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			generate_lost_colony_parent_bonus = yes
+			event_target:lost_colony_parent = {
+				set_country_flag = lost_colony_parent
+				set_country_flag = special_intro_for@event_target:human_lost_colony
+				set_country_flag = lost_colony_parent_of@event_target:human_lost_colony
+				create_starting_leaders = yes
+				country_event = { id = game_start.9 }
+				country_event = { id = game_start.33 days = 1 } # needs delay for system ownership to settle
+				owner_species = { set_species_homeworld = prevprev }
+			}
+			set_name = "NAME_Earth"
+		}
+		
+		moon = {
+			name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 11
+			orbit_distance = 2
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+			flags = { moon_luna }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+	
+	planet = {
+		name = "NAME_Mars"
+		class = "pc_barren"
+		#entity = "barren_planet_mars_entity"
+		orbit_distance = 20 #70
+		orbit_angle = 60
+		size = 15
+		has_ring = no
+		deposit_blockers = none
+		flags = { planet_mars }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		init_effect = {
+			set_planet_entity = { entity = barren_planet_mars_entity }
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "NAME_1_Ceres"
+		class = "pc_barren_cold"
+		entity = "silicate_telluric_planet_01_entity"
+		orbit_distance = 30 #100
+		orbit_angle = -210
+		size = 7
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40 #140
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "ammonia-clouded_giant_01_entity"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		moon = {
+			name = "NAME_Io"
+			class = "orbit_volcanic_telluric"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "volcanic_telluric_planet_03_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Europa"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 1
+			orbit_angle = 60
+			has_ring = no
+			flags = { moon_europa }
+			
+			#init_effect = {
+			#	add_modifier = {
+			#		modifier = "subterranean_icy_candidate"
+			#		days = -1
+			#	}
+			#}
+		}
+		moon = {
+			name = "NAME_Ganymede"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_02_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Callisto"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_03_entity"
+			size = 13
+			orbit_distance = 2
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 50 #190
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "ammonia-clouded_giant_02_entity"
+		flags = { pdsaturn }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "Rhea"
+			class = "orbit_icy"
+			#entity = "frozen_telluric_planet_02_entity"
+			size = 6
+			orbit_distance = 11
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+		moon = {
+			name = "NAME_Titan"
+			class = "pc_toxic"
+			#entity = "cold_reducing_planet_01_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 320
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			flags = { moon_titan }
+		}
+	}
+	
+	planet = {
+		name = "NAME_Uranus"
+		class = "orbit_frigid_giant"
+		orbit_distance = 70 #260
+		orbit_angle = 125
+		size = 26
+		has_ring = no
+		#entity = "gas_giant_uranus_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_Neptune"
+		class = "orbit_methane_giant"
+		orbit_distance = 60 #320
+		orbit_angle = -195
+		size = 26
+		has_ring = no
+		entity = "methane_giant_01_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			name = "NAME_Triton"
+			class = "pc_frozen"
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		name = "NAME_134340_Pluto"
+		class = "pc_frozen"
+		orbit_distance = 50 #370
+		orbit_angle = -210
+		size = 9
+		has_ring = no
+		entity = "frozen_telluric_planet_04_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 10 #380
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 3
+		has_ring = no
+	}
+
+	init_effect = {
+		create_starbase = {
+			size = starbase_starport
+			module = shipyard
+			building = crew_quarters
+			owner = event_target:lost_colony_parent
+			effect = {
+				set_starbase_module = {
+					slot = 1
+					module = trading_hub
+				}
+			}
+		}
+	}
+	
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_alpha_centauri_lost_colony"
+	}
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = 1 }
+		initializer = "mp_sirius"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_epsilon_eridani_lost_colony"
+	}
+	neighbor_system = {
+		distance = { min = 15 max = 55 }	
+		initializer = "mp_procyon_random"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_epsilon_indi"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_tau_ceti"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_altair"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_eta_cassiopeiae"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_delta_pavonis"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_beta_hydri"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_vega"
+	}
+	neighbor_system = {
+		distance = { min = 20 max = 70 }	
+		initializer = "mp_formalhaut"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_pollux"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_denebola"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_arcturus"
+	}
+	neighbor_system = {
+		distance = { min = 30 max = 85 }	
+		initializer = "mp_zeta_reticuli"
+	}
+	neighbor_system = {
+		distance = { min = 80 max = 200 }	
+		initializer = "polaris_civilization"
+	}
+	
+}
+
+# Sol System (Primitive Humans)
+special_init_03 = {
+	name = "NAME_Sol"
+	
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+	
+	flags = { primitive_sol sol }
+	
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_Mercury"
+		class = "orbit_iron_telluric"
+		entity = "iron_telluric_planet_01_entity"
+		orbit_distance = 20
+		orbit_angle = 15
+		size = 13
+		has_ring = no
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	planet = {
+		#name = "NAME_Venus"
+		class = "orbit_hothouse_toxic"
+		flags = { planet_converted }
+		orbit_distance = 15 #35
+		orbit_angle = 125
+		size = 18
+		has_ring = no
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		flags = { planet_venus }
+	}
+	
+	planet = {
+		#name = "NAME_Earth"
+		class = "pc_continental"
+		orbit_distance = 15 #50
+		orbit_angle = 120
+		size = 19
+		has_ring = no
+		entity = "atw_earth_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { planet_earth }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+			random_list = {
+				# Early Space Age
+				25 = {
+					create_species = {
+						name = NAME_Human
+						plural = NAME_Humans
+						class = "HUM"
+						portrait = "human"
+						homeworld = THIS
+						traits = {
+							trait = "trait_adaptive"
+							trait = "trait_nomadic"
+							trait = "trait_wasteful"
+						}
+					}
+					create_country = {
+						name = random
+						authority = random
+						day_zero_contact = no
+						civics = {
+							civic = civic_increasing_urbanization
+							civic = civic_atmospheric_pollution
+						}
+						species = last_created_species
+						ethos = {
+							ethic = "ethic_xenophile"
+							ethic = "ethic_fanatic_egalitarian"
+						}
+						origin = "origin_enlightened" # Should only be visible if they become spacefaring
+						flag = {
+							icon = {
+								category = "human"
+								file = "flag_human_9.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "circle.dds"
+							}
+							colors={
+								"dark_blue"
+								"green"
+								"null"
+								"null"
+							}
+						}
+						type = primitive
+					}
+					last_created_country = {
+						set_graphical_culture = industrial_01
+						set_country_flag = early_space_age
+						set_country_flag = humans_early_space_age
+						set_primitive_age = early_space_age
+					}
+					set_owner = last_created_country
+
+					create_primitive_blockers = yes
+
+					create_army = {
+						name = "NAME_US_Armed_Forces_West"
+						owner = last_created_country
+						species = last_created_species
+						type = "postatomic_army"
+					}
+					create_army = {
+						name = "NAME_US_Armed_Forces_East"
+						owner = last_created_country
+						species = last_created_species
+						type = "postatomic_army"
+					}
+					create_army = {
+						name = "NAME_Chinese_PLA"
+						owner = last_created_country
+						species = last_created_species
+						type = "postatomic_army"
+					}
+					create_army = {
+						name = "NAME_Russian_Armed_Forces"
+						owner = last_created_country
+						species = last_created_species
+						type = "postatomic_army"
+					}
+					create_army = {
+						name = "NAME_EU_Combined_Forces"
+						owner = last_created_country
+						species = last_created_species
+						type = "postatomic_army"
+					}
+					create_fleet = {
+						name = "NAME_ISS_II"
+						effect = {
+							set_owner = last_created_country
+							create_ship = {
+								name = "NAME_ISS_II"
+								design = "NAME_Space_Station"
+							}
+							set_location = PREV
+						}
+					}
+					while = {
+						count = 28
+						create_pop = {
+							species = last_created_species
+						}
+					}
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+
+					last_created_country = {
+						capital_scope = { set_name = "NAME_Sol_III" }
+					}
+				}
+				# Industrial Age
+				25 = {
+					create_species = {
+						name = NAME_Human
+						plural = NAME_Humans
+						class = "HUM"
+						portrait = "human"
+						traits = {
+							trait = "trait_adaptive"
+							trait = "trait_nomadic"
+							trait = "trait_wasteful"
+						}
+						homeworld = this
+					}
+					create_country = {
+						name = random
+						authority = random
+						civics = {
+							civic = civic_increasing_urbanization
+							civic = civic_atmospheric_pollution
+						}
+						species = last_created_species
+						ethos = {
+							ethic = "ethic_materialist"
+							ethic = "ethic_fanatic_militarist"
+						}
+						origin = "origin_enlightened" # Should only be visible if they become spacefaring
+						flag = {
+							icon = {
+								category = "human"
+								file = "flag_human_7.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "circle.dds"
+							}
+							colors={
+								"dark_blue"
+								"red"
+								"null"
+								"null"
+							}
+						}
+						day_zero_contact = no
+						type = primitive
+					}
+					last_created_country = {
+						set_graphical_culture = industrial_01
+						set_country_flag = machine_age
+						set_country_flag = humans_machine_age
+						set_primitive_age = machine_age
+					}
+					set_owner = last_created_country
+
+					create_primitive_blockers = yes
+
+					while = {
+						count = 24
+						create_pop = {
+							species = last_created_species
+						}
+					}
+					add_building = building_primitive_farm
+					add_building = building_primitive_factory
+					add_building = building_primitive_mine
+					add_building = building_primitive_power_plant
+					add_building = building_primitive_capital
+					add_building = building_urban_dwellings
+
+					create_army = {
+						name = "NAME_German_Wehrmacht"
+						owner = last_created_country
+						species = last_created_species
+						type = "industrial_army"
+					}
+					create_army = {
+						name = "NAME_Soviet_Red_Army"
+						owner = last_created_country
+						species = last_created_species
+						type = "industrial_army"
+					}
+					create_army = {
+						name = "NAME_US_Armed_Forces"
+						owner = last_created_country
+						species = last_created_species
+						type = "industrial_army"
+					}
+					create_army = {
+						name = "NAME_British_Armed_Forces"
+						owner = last_created_country
+						species = last_created_species
+						type = "industrial_army"
+					}
+					create_army = {
+						name = "NAME_Imperial_Japanese_Forces"
+						owner = last_created_country
+						species = last_created_species
+						type = "industrial_army"
+					}
+
+					last_created_country = {
+						capital_scope = { set_name = "NAME_Sol_III" }
+					}
+				}
+				# Medieval
+				25 = {
+					create_species = {
+						name = NAME_Human
+						plural = NAME_Humans
+						class = "HUM"
+						portrait = "human"
+						homeworld = THIS
+						traits = {
+							trait = "trait_adaptive"
+							trait = "trait_nomadic"
+							trait = "trait_wasteful"
+						}
+					}
+					create_country = {
+						name = random
+						authority = random
+						civics = {
+							civic = civic_landed_nobility
+							civic = civic_flat_world_theory
+						}
+						species = last_created_species
+						ethos = {
+							ethic = "ethic_xenophobe"
+							ethic = "ethic_spiritualist"
+							ethic = "ethic_authoritarian"
+						}
+						origin = "origin_enlightened" # Should only be visible if they become spacefaring
+						flag = {
+							icon = {
+								category = "ornate"
+								file = "flag_ornate_11.dds"
+							}
+							background = {
+								category = "backgrounds"
+								file = "00_solid.dds"
+							}
+							colors = {
+								"dark_blue"
+								"dark_blue"
+								"null"
+								"null"
+							}
+						}
+						day_zero_contact = no
+						type = primitive
+					}
+					last_created_country = {
+						set_graphical_culture = preindustrial_01
+						set_country_flag = late_medieval_age
+						set_country_flag = humans_late_medieval_age
+						set_primitive_age = late_medieval_age
+					}
+
+					set_owner = last_created_country
+
+					while = {
+						count = 10
+						create_pop = {
+							species = last_created_species
+						}
+					}
+					add_building = building_primitive_dwellings
+					add_building = building_primitive_dwellings
+					add_building = building_stone_palace
+
+					while = {
+						count = 3
+						create_army = {
+							name = "NAME_Feudal_Levies"
+							owner = last_created_country
+							species = last_created_species
+							type = "primitive_army"
+						}
+					}
+
+					last_created_country = {
+						capital_scope = { set_name = "NAME_Sol_III" }
+					}
+				}
+			}
+		}
+		
+		moon = {
+			#name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 11
+			orbit_distance = 2
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+			flags = { moon_luna }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+	
+	planet = {
+		#name = "NAME_Mars"
+		class = "pc_barren"
+		#entity = "barren_planet_mars_entity"
+		orbit_distance = 20 #70
+		orbit_angle = 60
+		size = 15
+		has_ring = no
+		flags = { planet_mars }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		init_effect = {
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		#name = "NAME_1_Ceres"
+		class = "pc_barren_cold"
+		entity = "silicate_telluric_planet_01_entity"
+		orbit_distance = 30 #100
+		orbit_angle = -210
+		size = 7
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40 #140
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "ammonia-clouded_giant_01_entity"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		moon = {
+			#name = "NAME_Io"
+			class = "orbit_volcanic_telluric"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "volcanic_telluric_planet_03_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			#name = "NAME_Europa"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 1
+			orbit_angle = 60
+			has_ring = no
+			flags = { moon_europa }
+			
+			#init_effect = {
+			#	add_modifier = {
+			#		modifier = "subterranean_icy_candidate"
+			#		days = -1
+			#	}
+			#}
+		}
+		moon = {
+			#name = "NAME_Ganymede"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_02_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			#name = "NAME_Callisto"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_03_entity"
+			size = 13
+			orbit_distance = 2
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		#name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 50 #190
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "ammonia-clouded_giant_02_entity"
+		flags = { pdsaturn }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			#name = "Rhea"
+			class = "orbit_icy"
+			#entity = "frozen_telluric_planet_02_entity"
+			size = 6
+			orbit_distance = 11
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+		moon = {
+			#name = "NAME_Titan"
+			class = "pc_toxic"
+			#entity = "cold_reducing_planet_01_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 320
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			flags = { moon_titan }
+		}
+	}
+	
+	planet = {
+		#name = "NAME_Uranus"
+		class = "orbit_frigid_giant"
+		orbit_distance = 70 #260
+		orbit_angle = 125
+		size = 26
+		has_ring = no
+		#entity = "gas_giant_uranus_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		#name = "NAME_Neptune"
+		class = "orbit_methane_giant"
+		orbit_distance = 60 #320
+		orbit_angle = -195
+		size = 26
+		has_ring = no
+		entity = "methane_giant_01_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			#name = "NAME_Triton"
+			class = "pc_frozen"
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		#name = "NAME_134340_Pluto"
+		class = "pc_frozen"
+		orbit_distance = 50 #370
+		orbit_angle = -210
+		size = 9
+		has_ring = no
+		entity = "frozen_telluric_planet_04_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		#name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 10 #380
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 3
+		has_ring = no
+	}
+	
+	
+}
+
+# Sol System (Nuclear Wasteland)
+special_init_04 = {
+	name = "NAME_Sol"
+	
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+	
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 0
+		modifier = {
+			any_country = {
+				has_country_flag = human_1
+				is_human_species = yes
+			}
+			NOT = { any_system = { has_star_flag = aldebaran_system } }
+			NOT = { any_system = { has_star_flag = deneb_system } }
+			NOT = { has_star_flag = empire_cluster }
+			num_ai_empires_setting >= 1
+
+			add = 99999
+		}
+	}
+
+	max_instances = 1
+	
+	flags = { nuked_sol sol }
+	
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_Mercury"
+		class = "orbit_iron_telluric"
+		entity = "iron_telluric_planet_01_entity"
+		orbit_distance = 20
+		orbit_angle = 15
+		size = 13
+		has_ring = no
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	planet = {
+		#name = "NAME_Venus"
+		class = "orbit_hothouse_toxic"
+		flags = { planet_converted }
+		orbit_distance = 15 #35
+		orbit_angle = 125
+		size = 18
+		has_ring = no
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		flags = { planet_venus }
+	}
+	
+	planet = {
+		#name = "NAME_Earth"
+		class = "pc_nuked"
+		orbit_distance = 15 #50
+		orbit_angle = 120
+		size = 19
+		has_ring = no
+		anomaly = "sol_wasteland_category"
+		#entity = "atw_earth_entity"
+		flags = { nuked_earth }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+
+			if = {
+				limit = {
+					any_country = {
+						is_human_species = yes
+					}
+				}
+				set_name = "NAME_Earth"
+			}
+		}
+		
+		moon = {
+			#name = "NAME_Luna"
+			class = "pc_barren_cold"
+			size = 11
+			orbit_distance = 2
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+			flags = { moon_luna }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+	
+	planet = {
+		#name = "NAME_Mars"
+		class = "pc_barren"
+		#entity = "barren_planet_mars_entity"
+		orbit_distance = 20 #70
+		orbit_angle = 60
+		size = 15
+		has_ring = no
+		flags = { planet_mars }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		init_effect = {
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		#name = "NAME_1_Ceres"
+		class = "pc_barren_cold"
+		entity = "silicate_telluric_planet_01_entity"
+		orbit_distance = 30 #100
+		orbit_angle = -210
+		size = 7
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_2_Pallas"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_3_Juno"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_4_Vesta"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_Jupiter"
+		class = "pc_gas_giant"
+		orbit_distance = 40 #140
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "ammonia-clouded_giant_01_entity"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		moon = {
+			#name = "NAME_Io"
+			class = "orbit_volcanic_telluric"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "volcanic_telluric_planet_03_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			#name = "NAME_Europa"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 1
+			orbit_angle = 60
+			has_ring = no
+			flags = { moon_europa }
+			
+			#init_effect = {
+			#	add_modifier = {
+			#		modifier = "subterranean_icy_candidate"
+			#		days = -1
+			#	}
+			#}
+		}
+		moon = {
+			#name = "NAME_Ganymede"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_02_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			#name = "NAME_Callisto"
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			entity = "frozen_telluric_planet_03_entity"
+			size = 13
+			orbit_distance = 2
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		#name = "NAME_Saturn"
+		class = "pc_gas_giant"
+		orbit_distance = 50 #190
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		entity = "ammonia-clouded_giant_02_entity"
+		flags = { pdsaturn }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			#name = "Rhea"
+			class = "orbit_icy"
+			#entity = "frozen_telluric_planet_02_entity"
+			size = 6
+			orbit_distance = 11
+			orbit_angle = { min = 90 max = 270 }
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+		moon = {
+			#name = "NAME_Titan"
+			class = "pc_toxic"
+			#entity = "cold_reducing_planet_01_entity"
+			size = 14
+			orbit_distance = 2
+			orbit_angle = 320
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			flags = { moon_titan }
+		}
+	}
+	
+	planet = {
+		#name = "NAME_Uranus"
+		class = "orbit_frigid_giant"
+		orbit_distance = 70 #260
+		orbit_angle = 125
+		size = 26
+		has_ring = no
+		#entity = "gas_giant_uranus_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		#name = "NAME_Neptune"
+		class = "orbit_methane_giant"
+		orbit_distance = 60 #320
+		orbit_angle = -195
+		size = 26
+		has_ring = no
+		entity = "methane_giant_01_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		moon = {
+			#name = "NAME_Triton"
+			class = "pc_frozen"
+			entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		#name = "NAME_134340_Pluto"
+		class = "pc_frozen"
+		orbit_distance = 50 #370
+		orbit_angle = -210
+		size = 9
+		has_ring = no
+		entity = "frozen_telluric_planet_04_entity"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+	
+	planet = {
+		#name = "NAME_136472_Makemake"
+		class = "pc_ice_asteroid"
+		orbit_distance = 10 #380
+		orbit_angle = -95
+		size = 4
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_136108_Haumea"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		#name = "NAME_20000_Varuna"
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 3
+		has_ring = no
+	}
+	
+	
+}

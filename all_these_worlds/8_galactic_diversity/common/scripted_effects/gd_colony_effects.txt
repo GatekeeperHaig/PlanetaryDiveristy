@@ -1,0 +1,507 @@
+colony_update = {
+	# Chlorogaian
+	if = {
+		limit = { is_planet_class = orbit_chlorogaian }
+		# Change pc
+		change_pc = "pc_gaia"
+		# Change picture
+		set_planet_entity = { picture = "pc_gaia" entity = "super_terrestrial_chlorogaian_01_entity" }
+		# eventually add unique textures for Earth and Mars maybe
+	}
+	# Ammoniagenian
+	if = {
+		limit = { is_planet_class = orbit_ammoniagenian }
+		# Change pc
+		change_pc = "pc_ammoniagenian"
+		# Change picture
+		set_planet_entity = { picture = "pc_ammoniagenian" entity = "terrestrial_ammoniagenian_01_entity" }
+	}
+	# Chlorogenian
+	if = {
+		limit = { is_planet_class = orbit_chlorogenian }
+		# Change pc
+		change_pc = "pc_continental"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_semiarid" entity = "terrestrial_chlorogenian_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_continental" entity = "terrestrial_chlorogenian_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "biome_boreal" entity = "terrestrial_chlorogenian_03_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-dense" }
+			}
+		}				
+	}
+	# Cryogenian
+	if = {
+		limit = { is_planet_class = orbit_cryogenian }
+		# Change pc
+		change_pc = "pc_alpine"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_frigid" entity = "terrestrial_cryogenian_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "biome_subarctic" entity = "terrestrial_cryogenian_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_alpine" entity = "terrestrial_cryogenian_03_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+		}				
+	}
+	# Myciliogenian
+	if = {
+		limit = { is_planet_class = orbit_myciliogenian }
+		# Change pc
+		change_pc = "pc_myciliogenian"
+		# Change picture
+		set_planet_entity = { picture = "pc_myciliogenian" entity = "terrestrial_myciliogenian_01_entity" }
+	}
+	# Photogenian
+	if = {
+		limit = { is_planet_class = orbit_photogenian }
+		# Change pc
+		change_pc = "pc_photogenian"
+		# Change picture
+		set_planet_entity = { picture = "pc_photogenian" entity = "terrestrial_photogenian_01_entity" }
+	}
+	# Retinalgenian
+	if = {
+		limit = { is_planet_class = orbit_retinalgenian }
+		# Change pc
+		change_pc = "pc_retinalgenian"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_retinalsavannah" entity = "terrestrial_retinalgenian_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_retinalgenian" entity = "terrestrial_retinalgenian_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+		}				
+	}
+	# Thermogenian
+	if = {
+		limit = { is_planet_class = orbit_thermogenian }
+		# Change pc
+		change_pc = "pc_arid"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_drycoast" entity = "terrestrial_thermogenian_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_arid" entity = "terrestrial_thermogenian_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "biome_mesa" entity = "terrestrial_thermogenian_03_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+		}				
+	}
+	# Archipelagic
+	if = {
+		limit = { is_planet_class = orbit_archipelagic }
+		# Change pc
+		change_pc = "pc_ocean"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_reef" entity = "oceanic_archipelagic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "biome_coastal" entity = "oceanic_archipelagic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_ocean" entity = "oceanic_archipelagic_03_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-dense" }
+			}
+		}				
+	}
+	# Panthalassic / Pangaian
+	if = {
+		limit = { is_planet_class = orbit_panthalassic }
+		# Change pc
+		change_pc = "pc_panthalassic"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_steppeland" entity = "oceanic_panthalassic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_panthalassic" entity = "oceanic_panthalassic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "biome_tepui" entity = "oceanic_panthalassic_03_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-dense" }
+			}
+		}				
+	}
+	# Cryopelagic
+	if = {
+		limit = { is_planet_class = orbit_cryopelagic }
+		# Change pc
+		change_pc = "pc_arctic"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_glacial" entity = "oceanic_cryopelagic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_arctic" entity = "oceanic_cryopelagic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+		}				
+	}
+	# Thermopelagic
+	if = {
+		limit = { is_planet_class = orbit_thermopelagic }
+		# Change pc
+		change_pc = "pc_desert"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "pc_desert" entity = "oceanic_thermopelagic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_arctic" entity = "oceanic_thermopelagic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+		}				
+	}
+	# Panpelagic
+	if = {
+		limit = { is_planet_class = orbit_panpelagic }
+		# Change pc
+		change_pc = "pc_panpelagic"
+		# Change picture
+		set_planet_entity = { picture = "pc_panpelagic" entity = "oceanic_panpelagic_01_entity" }
+	}
+	# Tropicothalassic
+	if = {
+		limit = { is_planet_class = orbit_tropicothalassic }
+		# Change pc
+		change_pc = "pc_tropical"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_prairie" entity = "sub_terrestrial_tropicothalassic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_tropical" entity = "sub_terrestrial_tropicothalassic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-dense" }
+			}
+		}				
+	}
+	# Thermothalassic
+	if = {
+		limit = { is_planet_class = orbit_thermothalassic }
+		# Change pc
+		change_pc = "pc_savannah"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_aquifer" entity = "sub_terrestrial_thermothalassic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_savannah" entity = "sub_terrestrial_thermothalassic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+		}				
+	}
+	# Cryothalassic
+	if = {
+		limit = { is_planet_class = orbit_cryothalassic }
+		# Change pc
+		change_pc = "pc_tundra"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_volcanic" entity = "sub_terrestrial_cryothalassic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_tundra" entity = "sub_terrestrial_cryothalassic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+		}				
+	}
+	# Megachloridal
+	if = {
+		limit = { is_planet_class = orbit_megachloridal }
+		# Change pc
+		change_pc = "pc_megachloridal"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "pc_megachloridal" entity = "sub_terrestrial_megachloridal_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+			0 = {
+				set_planet_entity = { picture = "biome_mangrove" entity = "sub_terrestrial_megachloridal_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-dense" }
+			}
+		}				
+	}
+	# Alpicothalassic
+	if = {
+		limit = { is_planet_class = orbit_alpicothalassic }
+		# Change pc
+		change_pc = "pc_alpicothalassic"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_highland" entity = "sub_terrestrial_alpicothalassic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_alpicothalassic" entity = "sub_terrestrial_alpicothalassic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-diverse" }
+			}
+		}				
+	}
+	# Erimosthalassic
+	if = {
+		limit = { is_planet_class = orbit_erimosthalassic }
+		# Change pc
+		change_pc = "pc_erimosthalassic"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = "biome_dunesea" entity = "sub_terrestrial_erimosthalassic_01_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-barren" }
+			}
+			0 = {
+				set_planet_entity = { picture = "pc_erimosthalassic" entity = "sub_terrestrial_erimosthalassic_02_entity" }
+				modifier = { add = 1 has_modifier = "biosphere-sparse" }
+			}
+		}				
+	}
+	# Biolumenal
+	if = {
+		limit = { is_planet_class = orbit_geotidal_biolumen }
+		# Change pc
+		change_pc = "pc_geotidal_biolumen"
+		# Change picture
+		set_planet_entity = { picture = "pc_geotidal_biolumen" entity = "geotidal_biolumen_01_entity" }
+	}
+	# Twilight
+	if = {
+		limit = { is_planet_class = orbit_geotidal_twilight }
+		# Change pc
+		change_pc = "pc_geotidal_twilight"
+		# Change picture
+		set_planet_entity = { picture = "pc_geotidal_twilight" entity = "geotidal_twilight_01_entity" }
+	}
+	# Eyeball
+	if = {
+		limit = { is_planet_class = orbit_geotidal_eyeball }
+		# Change pc
+		change_pc = "pc_geotidal_eyeball"
+		# Change picture
+		set_planet_entity = { picture = "pc_geotidal_eyeball" entity = "geotidal_eyeball_01_entity" }
+	}
+	# Hadean
+	if = {
+		limit = { is_planet_class = orbit_hadean }
+		# Change pc
+		change_pc = "pc_hadean"
+		# Change picture
+		random_list = {
+			10 = {
+				set_planet_entity = { picture = "pc_hadean" entity = "primordial_hadean_01_entity" }
+			}
+			10 = {
+				set_planet_entity = { picture = "pc_hadean" entity = "primordial_hadean_02_entity" }
+			}
+		}
+	}
+	# Anthracean
+	if = {
+		limit = { is_planet_class = orbit_anthracean }
+		# Change pc
+		change_pc = "pc_anthracean"
+		# Change picture
+		set_planet_entity = { picture = "pc_anthracean" entity = "primordial_anthracean_01_entity" }
+	}
+	# Archean
+	if = {
+		limit = { is_planet_class = orbit_archean }
+		# Change pc
+		change_pc = "pc_archean"
+		# Change picture
+		set_planet_entity = { picture = "pc_archean" entity = "primordial_archean_01_entity" }
+	}
+	# Protogenian
+	if = {
+		limit = { is_planet_class = orbit_protogenian }
+		# Change pc
+		change_pc = "pc_protogenian"
+		# Change picture
+		set_planet_entity = { picture = "pc_protogenian" entity = "primordial_protogenian_01_entity" }
+	}
+	# Karsticos
+	if = {
+		limit = { is_planet_class = orbit_karsticos }
+		# Change pc
+		change_pc = "pc_karsticos"
+		# Change picture
+		set_planet_entity = { picture = "pc_karsticos" entity = "marginal_karsticos_01_entity" }
+	}
+	# Stepicos
+	if = {
+		limit = { is_planet_class = orbit_stepicos }
+		# Change pc
+		change_pc = "pc_stepicos"
+		# Change picture
+		set_planet_entity = { picture = "pc_stepicos" entity = "marginal_stepicos_01_entity" }
+	}
+	# Agonos
+	if = {
+		limit = { is_planet_class = orbit_agonos }
+		# Change pc
+		change_pc = "pc_agonos"
+		# Change picture
+		set_planet_entity = { picture = "pc_agonos" entity = "marginal_agonos_01_entity" }
+	}
+	# Almyros
+	if = {
+		limit = { is_planet_class = orbit_almyros }
+		# Change pc
+		change_pc = "pc_almyros"
+		# Change picture
+		set_planet_entity = { picture = "pc_almyros" entity = "marginal_almyros_01_entity" }
+	}
+	# Elos
+	if = {
+		limit = { is_planet_class = orbit_elos }
+		# Change pc
+		change_pc = "pc_elos"
+		# Change picture
+		set_planet_entity = { picture = "pc_elos" entity = "marginal_elos_01_entity" }
+	}
+	# Hydrocarbonal
+	if = {
+		limit = { is_planet_class = orbit_hydrocarbonal }
+		# Change pc
+		change_pc = "pc_hydrocarbonal"
+		# Change picture
+		set_planet_entity = { picture = "pc_hydrocarbonal" entity = "sub_marginal_hydrocarbonal_01_entity" }
+	}
+	# Sulfur
+	if = {
+		limit = { is_planet_class = orbit_sulfur }
+		# Change pc
+		change_pc = "pc_sulfur"
+		# Change picture
+		set_planet_entity = { picture = "pc_sulfur" entity = "sub_marginal_sulfur_01_entity" }
+	}
+	# Redux
+	if = {
+		limit = { is_planet_class = orbit_redux }
+		# Change pc
+		change_pc = "pc_redux"
+		# Change picture
+		set_planet_entity = { picture = "pc_redux" entity = "sub_marginal_redux_01_entity" }
+	}
+	# Alkali
+	if = {
+		limit = { is_planet_class = orbit_alkali }
+		# Change pc
+		change_pc = "pc_alkali"
+		# Change picture
+		set_planet_entity = { picture = "pc_alkali" entity = "sub_marginal_alkali_01_entity" }
+	}
+	# Desolate
+	if = {
+		limit = { is_planet_class = orbit_desolate }
+		# Change pc
+		change_pc = "pc_desolate"
+		# Change picture
+		set_planet_entity = { picture = "pc_desolate" entity = "sub_marginal_desolate_01_entity" }
+	}
+	# Barren
+	if = {
+		limit = { is_planet_class = orbit_terraformed_barren }
+		# Change pc
+		change_pc = "pc_terraformed_barren"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = pc_terraformed_barren entity = terraformed_barren_01_entity }
+				modifier = { add = 10 NOT = { has_planet_flag = "planet_mars" } }
+			}
+			0 = {
+				set_planet_entity = { picture = pc_terraformed_barren entity = terraformed_barren_mars_01_entity }
+				modifier = { add = 10 has_planet_flag = "planet_mars" }
+			}
+		}				
+	}
+	# Adapted
+	if = {
+		limit = { is_planet_class = orbit_adapted }
+		# Change pc
+		change_pc = "pc_adapted"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = pc_adapted entity = terraformed_adapted_hot_01_entity }
+				modifier = { add = 10 has_planet_flag = "adapted_hot" }
+			}
+			0 = {
+				set_planet_entity = { picture = biome_adapted_cold entity = terraformed_adapted_cold_01_entity }
+				modifier = { add = 10 has_planet_flag = "adapted_cold" }
+			}
+			0 = {
+				set_planet_entity = { picture = pc_adapted entity = terraformed_adapted_mars_hot_01_entity }
+				modifier = { add = 10 has_planet_flag = "adapted_mars" }
+			}
+		}				
+	}
+	# Adapted - Ammonia
+	if = {
+		limit = { is_planet_class = orbit_adapted_ammonia }
+		# Change pc
+		change_pc = "pc_adapted_ammonia"
+		# Change picture
+		set_planet_entity = { picture = "pc_adapted_ammonia" entity = "terraformed_adapted_ammonia_01_entity" }
+	}
+	# Aquatic
+	if = {
+		limit = { is_planet_class = orbit_aquatic }
+		# Change pc
+		change_pc = "pc_aquatic"
+		# Change picture depending on biosphere
+		random_list = {
+			0 = {
+				set_planet_entity = { picture = pc_aquatic entity = terraformed_aquatic_hot_01_entity }
+				modifier = { add = 10 has_planet_flag = "aquatic_hot" }
+			}
+			0 = {
+				set_planet_entity = { picture = biome_aquatic_cold entity = terraformed_aquatic_cold_01_entity }
+				modifier = { add = 10 has_planet_flag = "aquatic_cold" }
+			}
+		}				
+	}
+}

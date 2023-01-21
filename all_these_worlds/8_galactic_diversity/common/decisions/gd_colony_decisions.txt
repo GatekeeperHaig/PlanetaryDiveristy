@@ -1,0 +1,627 @@
+decision_toxic_atmosphere_upgrade = {
+	owned_planets_only = yes
+	icon = decision_atmosphere_upgrade
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	
+	enactment_time = 720
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 100
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 700
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 900
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 1000
+		}
+	}
+
+	potential = {
+		has_modifier = "atmosphere-toxic"
+	}
+
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+
+	effect = {
+		hidden_effect = {
+			custom_tooltip = decision_toxic_atmosphere_upgrade_tooltip
+			remove_modifier = "atmosphere-toxic"
+			add_modifier = {
+				modifier = "atmosphere-marginal"
+				days = -1
+			}
+		}
+	}
+
+	ai_weight = { # AI should prefer to use this if habitability is low
+		weight = 10
+		modifier = {
+			factor = 0.5
+			habitability = { who = root.owner value >= 0.65 }
+		}
+		modifier = {
+			factor = 0.1
+			habitability = { who = root.owner value >= 0.85 }
+		}
+		modifier = {
+			factor = 1.5
+			habitability = { who = root.owner value <= 0.55 }
+		}
+		modifier = {
+			factor = 2.5
+			habitability = { who = root.owner value <= 0.35 }
+		}
+	}
+
+}
+
+decision_marginal_atmosphere_upgrade = {
+	owned_planets_only = yes
+	icon = decision_atmosphere_upgrade
+	
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	enactment_time = 720
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 100
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 700
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 900
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 1000
+		}
+	}
+
+	potential = {
+		has_modifier = "atmosphere-marginal"
+	}
+
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+
+	effect = {
+		hidden_effect = {
+			custom_tooltip = decision_marginal_atmosphere_upgrade_tooltip
+			remove_modifier = "atmosphere-marginal"
+			add_modifier = {
+				modifier = "atmosphere-optimal"
+				days = -1
+			}
+		}
+	}
+
+	ai_weight = { # AI should prefer to use this if habitability is low
+		weight = 10
+		modifier = {
+			factor = 0.5
+			habitability = { who = root.owner value >= 0.65 }
+		}
+		modifier = {
+			factor = 0.1
+			habitability = { who = root.owner value >= 0.85 }
+		}
+		modifier = {
+			factor = 1.5
+			habitability = { who = root.owner value <= 0.55 }
+		}
+		modifier = {
+			factor = 2.5
+			habitability = { who = root.owner value <= 0.35 }
+		}
+	}
+
+}
+
+decision_biosphere_upgrade = {
+	owned_planets_only = yes
+	icon = decision_biosphere_upgrade
+	
+	prerequisites = {
+		"tech_terrestrial_sculpting"
+	}
+
+	enactment_time = 720
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet size
+		cost = {
+			trigger = {
+				planet_size < 9
+			}
+			energy = 250
+			seeds = 250
+		}
+		cost = {
+			trigger = {
+				planet_size = 9
+			}
+			energy = 320
+			seeds = 320
+		}
+		cost = {
+			trigger = {
+				planet_size = 10
+			}
+			energy = 400
+			seeds = 400
+		}
+		cost = {
+			trigger = {
+				planet_size = 11
+			}
+			energy = 480
+			seeds = 480
+		}
+		cost = {
+			trigger = {
+				planet_size = 12
+			}
+			energy = 580
+			seeds = 580
+		}
+		cost = {
+			trigger = {
+				planet_size = 13
+			}
+			energy = 680
+			seeds = 680
+		}
+		cost = {
+			trigger = {
+				planet_size = 14
+			}
+			energy = 780
+			seeds = 780
+		}
+		cost = {
+			trigger = {
+				planet_size = 15
+			}
+			energy = 900
+			seeds = 900
+		}
+		cost = {
+			trigger = {
+				planet_size = 16
+			}
+			energy = 1020
+			seeds = 1020
+		}
+		cost = {
+			trigger = {
+				planet_size = 17
+			}
+			energy = 1160
+			seeds = 1160
+		}
+		cost = {
+			trigger = {
+				planet_size = 18
+			}
+			energy = 1300
+			seeds = 1300
+		}
+		cost = {
+			trigger = {
+				planet_size = 19
+			}
+			energy = 1440
+			seeds = 1440
+		}
+		cost = {
+			trigger = {
+				planet_size = 20
+			}
+			energy = 1600
+			seeds = 1600
+		}
+		cost = {
+			trigger = {
+				planet_size = 21
+			}
+			energy = 1760
+			seeds = 1760
+		}
+		cost = {
+			trigger = {
+				planet_size = 22
+			}
+			energy = 1940
+			seeds = 1940
+		}
+		cost = {
+			trigger = {
+				planet_size = 23
+			}
+			energy = 2120
+			seeds = 2120
+		}
+		cost = {
+			trigger = {
+				planet_size = 24
+			}
+			energy = 2300
+			seeds = 2300
+		}
+		cost = {
+			trigger = {
+				planet_size > 24
+			}
+			energy = 2500
+			seeds = 2500
+		}
+	}
+
+	potential = {
+		#NOT = { is_submerged_type = yes }
+		OR = {
+			# Chlorogenian
+			AND = { is_chlorogenian = yes has_modifier = "biosphere-diverse" }
+			AND = { is_chlorogenian = yes has_modifier = "biosphere-sparse" }			
+			# Cryogenian
+			AND = { is_cryogenian = yes has_modifier = "biosphere-barren" }
+			AND = { is_cryogenian = yes has_modifier = "biosphere-sparse" }
+			# Thermogenian
+			AND = { is_thermogenian = yes has_modifier = "biosphere-barren" }
+			AND = { is_thermogenian = yes has_modifier = "biosphere-sparse" }
+			# Retinalgenian
+			AND = { is_retinalgenian = yes has_modifier = "biosphere-sparse" }
+			# Archipelagic
+			AND = { is_archipelagic = yes has_modifier = "biosphere-barren" }
+			AND = { is_archipelagic = yes has_modifier = "biosphere-sparse" }
+			AND = { is_archipelagic = yes has_modifier = "biosphere-diverse" }
+			# Thermopelagic
+			AND = { is_thermopelagic = yes has_modifier = "biosphere-sparse" }
+			# Cryopelagic
+			AND = { is_cryopelagic = yes has_modifier = "biosphere-barren" }
+			# Panthalassic
+			AND = { is_panthalassic = yes has_modifier = "biosphere-sparse" }
+			AND = { is_panthalassic = yes has_modifier = "biosphere-diverse" }
+			# Tropicothalassic
+			AND = { is_tropicothalassic = yes has_modifier = "biosphere-diverse" }
+			# Thermothalassic
+			AND = { is_thermothalassic = yes has_modifier = "biosphere-barren" }
+			# Cryothalassic
+			AND = { is_cryothalassic = yes has_modifier = "biosphere-sparse" }
+			# Megachloridal
+			AND = { is_megachloridal = yes has_modifier = "biosphere-diverse" }
+			# Alpicothalassic
+			AND = { is_alpicothalassic = yes has_modifier = "biosphere-barren" }
+			AND = { is_alpicothalassic = yes has_modifier = "biosphere-sparse" }
+			# Erimosthalassic
+			AND = { is_erimosthalassic = yes has_modifier = "biosphere-barren" }
+			# Adapted
+			AND = { is_adapted = yes has_modifier = "biosphere-sparse" }
+			# Aquatic
+			AND = { is_aquatic = yes has_modifier = "biosphere-sparse" }
+		}
+	}
+
+	allow = {
+		
+		if = {
+			limit = { has_modifier = "biosphere-barren" }
+			custom_tooltip = {
+				fail_text = decision_biosphere_upgrade_fail_toxic_tooltip
+				success_text = decision_biosphere_upgrade_success_toxic_tooltip
+				OR = {
+					has_modifier = "atmosphere-optimal"
+					has_modifier = "atmosphere-marginal"
+					has_modifier = "atmosphere-toxic"
+				}
+			}
+		}
+		if = {
+			limit = { has_modifier = "biosphere-sparse" }
+			custom_tooltip = {
+				fail_text = decision_biosphere_upgrade_fail_marginal_tooltip
+				success_text = decision_biosphere_upgrade_success_marginal_tooltip
+				OR = {
+					has_modifier = "atmosphere-optimal"
+					has_modifier = "atmosphere-marginal"
+				}
+			}
+		}
+		if = {
+			limit = { has_modifier = "biosphere-diverse" }
+			custom_tooltip = {
+				fail_text = decision_biosphere_upgrade_fail_optimal_tooltip
+				success_text = decision_biosphere_upgrade_success_optimal_tooltip
+				has_modifier = "atmosphere-optimal"				
+			}
+		}
+		
+	}
+
+	effect = {
+		hidden_effect = {
+			# Barren to Sparse
+			if = {
+				limit = { has_modifier = "biosphere-barren" }
+				custom_tooltip = decision_barren_biosphere_upgrade_tooltip
+				remove_modifier = "biosphere-barren"
+				add_modifier = {
+					modifier = "biosphere-sparse"
+					days = -1
+				}
+				update_portrait = yes
+			}
+			# Sparse to Diverse
+			else_if = {
+				limit = {
+					has_modifier = "biosphere-sparse"
+					NOT = { is_aquatic = yes }
+				}
+				custom_tooltip = decision_sparse_biosphere_upgrade_tooltip
+				remove_modifier = "biosphere-sparse"
+				add_modifier = {
+					modifier = "biosphere-diverse"
+					days = -1
+				}
+				update_portrait = yes
+			}
+			else_if = {
+				limit = {
+					has_modifier = "biosphere-sparse"
+					is_aquatic = yes
+				}
+				custom_tooltip = decision_sparse_biosphere_upgrade_tooltip
+				remove_modifier = "biosphere-sparse"
+				add_modifier = {
+					modifier = "biosphere-dense"
+					days = -1
+				}
+				update_portrait = yes
+			}
+			# Diverse to Dense
+			else_if = {
+				limit = { has_modifier = "biosphere-diverse" }
+				custom_tooltip = decision_diverse_biosphere_upgrade_tooltip
+				remove_modifier = "biosphere-diverse"
+				add_modifier = {
+					modifier = "biosphere-dense"
+					days = -1
+				}
+				update_portrait = yes
+			}
+		}
+	}
+
+	ai_weight = { # AI should prefer to use this if habitability is low
+		weight = 10
+		modifier = {
+			factor = 0.5
+			habitability = { who = root.owner value >= 0.65 }
+		}
+		modifier = {
+			factor = 0.1
+			habitability = { who = root.owner value >= 0.85 }
+		}
+		modifier = {
+			factor = 1.5
+			habitability = { who = root.owner value <= 0.55 }
+		}
+		modifier = {
+			factor = 2.5
+			habitability = { who = root.owner value <= 0.35 }
+		}
+	}
+
+}

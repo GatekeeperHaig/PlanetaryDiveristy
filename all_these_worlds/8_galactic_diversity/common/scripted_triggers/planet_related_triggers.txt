@@ -1,0 +1,1033 @@
+is_vanilla_habitable_planet = {
+	OR = {
+		is_planet_class = pc_desert
+		is_planet_class = pc_tropical
+		is_planet_class = pc_arid
+		is_planet_class = pc_continental
+		is_planet_class = pc_ocean
+		is_planet_class = pc_tundra
+		is_planet_class = pc_arctic
+		is_planet_class = pc_alpine
+		is_planet_class = pc_savannah		
+	}
+}
+
+is_vanilla_special_planet = {
+	OR = {
+		is_planet_class = pc_gaia
+		is_planet_class = orbit_chlorogaian
+		is_planet_class = pc_nuked
+		is_planet_class = orbit_nuked
+		is_planet_class = pc_machine
+		is_planet_class = pc_hive
+		is_planet_class = pc_city
+		is_planet_class = pc_relic
+	}
+}	
+
+is_vanilla_uninhabitable_planet = {
+	OR = {
+		is_planet_class = pc_molten
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic
+		is_planet_class = pc_frozen
+		is_planet_class = pc_asteroid
+		is_planet_class = pc_ice_asteroid
+		is_planet_class = pc_rare_crystal_asteroid
+		is_planet_class = pc_gas_giant		
+	}
+}
+
+habitable_planet = {
+	OR = {
+		is_vanilla_habitable_planet = yes
+		galactic_diversity_habitable_planet = yes
+		is_planet_class = pc_gaia
+		is_planet_class = pc_relic
+		is_planet_class = pc_city
+	}
+}
+
+habitable_structure = {
+    is_artificial = yes
+	OR = {
+		is_colony = yes
+		is_colonizable = yes
+	}
+}
+
+uninhabitable_regular_planet = {
+	OR = {
+		is_planet_class = pc_molten
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic
+		is_planet_class = pc_frozen
+		#Exotic
+		is_planet_class = orbit_icy
+		is_planet_class = orbit_chthonian
+		#Telluric
+		is_planet_class = orbit_iron_telluric
+		is_planet_class = orbit_volcanic_telluric
+		#Toxic
+		is_planet_class = orbit_hothouse_toxic
+		is_planet_class = orbit_carbonyl_toxic
+		#Panthalassic
+		is_planet_class = orbit_water_panthalassic
+		is_planet_class = orbit_ammonia_panthalassic
+		is_planet_class = orbit_methane_panthalassic
+	}
+}
+
+uninhabitable_planet = {
+	OR = {
+		is_planet_class = pc_molten
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic
+		is_planet_class = pc_frozen	
+		is_planet_class = pc_asteroid
+		is_planet_class = pc_ice_asteroid
+		is_planet_class = pc_rare_crystal_asteroid
+		is_planet_class = pc_crystal_asteroid
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_broken
+		is_planet_class = pc_shattered
+		is_planet_class = pc_gray_goo
+		is_planet_class = pc_egg_cracked
+		is_planet_class = pc_shattered_2
+		is_planet_class = ph_dwarf
+		is_planet_class = ph_terran
+		is_planet_class = ph_super_terran
+		is_planet_class = ph_neptunian
+		is_planet_class = ph_jovian
+		is_planet_class = ph_super_jovian
+		galactic_diversity_uninhabitable_planet = yes
+	}
+}
+
+is_gas_giant = {
+	OR = {
+		is_planet_class = pc_gas_giant
+		is_planet_class = ph_jovian
+		is_planet_class = ph_super_jovian
+		is_planet_class = ph_neptunian
+		is_planet_class = orbit_super_giant
+		is_planet_class = orbit_water-clouded_giant
+		is_planet_class = orbit_cloudless_giant
+		is_planet_class = orbit_alkaline_giant
+		is_planet_class = orbit_silicate_giant
+		is_planet_class = orbit_frigid_giant
+		is_planet_class = orbit_methane_giant
+		is_planet_class = orbit_turbulent_giant
+		is_planet_class = orbit_temperate_giant
+		is_planet_class = orbit_helium_giant
+	}
+}	
+
+galactic_diversity_habitable_planet = {
+	OR = {
+		#Super-terrestrial
+		is_planet_class = orbit_chlorogaian		
+		is_planet_class = orbit_thermogaian
+		is_planet_class = pc_thermogaian
+		is_planet_class = orbit_cryogaian
+		is_planet_class = pc_cryogaian
+		#Terrestrial
+		is_planet_class = orbit_ammoniagenian
+		is_planet_class = pc_ammoniagenian
+		is_planet_class = orbit_chlorogenian
+		is_planet_class = orbit_cryogenian
+		is_planet_class = orbit_myciliogenian
+		is_planet_class = pc_myciliogenian
+		is_planet_class = orbit_photogenian
+		is_planet_class = pc_photogenian
+		is_planet_class = orbit_retinalgenian
+		is_planet_class = pc_retinalgenian
+		is_planet_class = orbit_thermogenian
+		#Oceanic
+		is_planet_class = orbit_archipelagic
+		is_planet_class = orbit_panthalassic
+		is_planet_class = pc_panthalassic
+		is_planet_class = orbit_cryopelagic
+		is_planet_class = orbit_thermopelagic
+		is_planet_class = orbit_panpelagic
+		is_planet_class = pc_panpelagic
+		#Sub-terrestrial
+		is_planet_class = orbit_tropicothalassic
+		is_planet_class = orbit_thermothalassic
+		is_planet_class = orbit_cryothalassic
+		is_planet_class = orbit_megachloridal
+		is_planet_class = pc_megachloridal
+		is_planet_class = orbit_alpicothalassic
+		is_planet_class = pc_alpicothalassic
+		is_planet_class = orbit_erimosthalassic
+		is_planet_class = pc_erimosthalassic
+		#Tidally-locked
+		is_planet_class = orbit_geotidal_biolumen
+		is_planet_class = pc_geotidal_biolumen
+		is_planet_class = orbit_geotidal_twilight
+		is_planet_class = pc_geotidal_twilight
+		is_planet_class = orbit_geotidal_eyeball
+		is_planet_class = pc_geotidal_eyeball
+		#Primordial
+		is_planet_class = orbit_hadean
+		is_planet_class = pc_hadean
+		is_planet_class = orbit_anthracean
+		is_planet_class = pc_anthracean
+		is_planet_class = orbit_archean
+		is_planet_class = pc_archean
+		is_planet_class = orbit_protogenian
+		is_planet_class = pc_protogenian
+		#Marginal
+		is_planet_class = orbit_karsticos
+		is_planet_class = pc_karsticos
+		is_planet_class = orbit_stepicos
+		is_planet_class = pc_stepicos
+		is_planet_class = orbit_agonos
+		is_planet_class = pc_agonos
+		is_planet_class = orbit_almyros
+		is_planet_class = pc_almyros
+		is_planet_class = orbit_elos
+		is_planet_class = pc_elos
+		#Sub-marginal
+		is_planet_class = orbit_hydrocarbonal
+		is_planet_class = pc_hydrocarbonal
+		is_planet_class = orbit_sulfur
+		is_planet_class = pc_sulfur
+		is_planet_class = orbit_redux
+		is_planet_class = pc_redux
+		is_planet_class = orbit_alkali
+		is_planet_class = pc_alkali
+		is_planet_class = orbit_desolate
+		is_planet_class = pc_desolate
+		#Nuked
+		is_planet_class = orbit_nuked
+	}
+}
+
+galactic_diversity_uninhabitable_planet = {
+	OR = {
+		#Exotic
+		#is_planet_class = orbit_molten # VANILLA PC_MOLTEN
+		is_planet_class = orbit_icy
+		is_planet_class = orbit_chthonian
+		is_planet_class = orbit_helium_giant
+		#Telluric
+		#is_planet_class = orbit_dusty_telluric # VANILLA PC_BARREN
+		is_planet_class = orbit_iron_telluric
+		#is_planet_class = orbit_silicate_telluric # VANILLA PC_BARREN_COLD
+		is_planet_class = orbit_volcanic_telluric
+		#is_planet_class = orbit_frozen_telluric # VANILLA PC_FROZEN
+		#Toxic
+		#is_planet_class = orbit_methane_toxic # VANILLA PC_TOXIC
+		is_planet_class = orbit_hothouse_toxic
+		is_planet_class = orbit_carbonyl_toxic
+		#Panthalassic
+		is_planet_class = orbit_water_panthalassic
+		is_planet_class = orbit_ammonia_panthalassic
+		is_planet_class = orbit_methane_panthalassic
+		#Gas Giant
+		is_planet_class = orbit_super_giant
+		#is_planet_class = orbit_ammonia-clouded_giant # VANILLA PC_GAS_GIANT
+		is_planet_class = orbit_water-clouded_giant
+		is_planet_class = orbit_cloudless_giant
+		is_planet_class = orbit_alkaline_giant
+		is_planet_class = orbit_silicate_giant
+		#Ice Giant
+		is_planet_class = orbit_frigid_giant
+		is_planet_class = orbit_methane_giant
+		is_planet_class = orbit_turbulent_giant
+		is_planet_class = orbit_temperate_giant		
+	}
+}
+is_colony_class = {
+	OR = {
+		#Super-terrestrial
+		is_planet_class = orbit_chlorogaian
+		is_planet_class = orbit_thermogaian
+		is_planet_class = orbit_cryogaian
+		#Terrestrial
+		is_planet_class = orbit_ammoniagenian
+		is_planet_class = orbit_chlorogenian
+		is_planet_class = orbit_cryogenian
+		is_planet_class = orbit_myciliogenian
+		is_planet_class = orbit_photogenian
+		is_planet_class = orbit_retinalgenian
+		is_planet_class = orbit_thermogenian
+		#Oceanic
+		is_planet_class = orbit_archipelagic
+		is_planet_class = orbit_panthalassic		
+		is_planet_class = orbit_cryopelagic
+		is_planet_class = orbit_thermopelagic
+		is_planet_class = orbit_panpelagic
+		#Sub-terrestrial				
+		is_planet_class = orbit_tropicothalassic
+		is_planet_class = orbit_thermothalassic
+		is_planet_class = orbit_cryothalassic		
+		is_planet_class = orbit_megachloridal
+		is_planet_class = orbit_alpicothalassic
+		is_planet_class = orbit_erimosthalassic
+		#Tidally-locked		
+		is_planet_class = orbit_geotidal_biolumen
+		is_planet_class = orbit_geotidal_twilight
+		is_planet_class = orbit_geotidal_eyeball
+		#Primordial
+		is_planet_class = orbit_hadean
+		is_planet_class = orbit_anthracean
+		is_planet_class = orbit_archean
+		is_planet_class = orbit_protogenian
+		#Marginal				
+		is_planet_class = orbit_karsticos
+		is_planet_class = orbit_stepicos
+		is_planet_class = orbit_agonos
+		is_planet_class = orbit_almyros
+		is_planet_class = orbit_elos
+		#Sub-marginal
+		is_planet_class = orbit_hydrocarbonal		
+		is_planet_class = orbit_sulfur				
+		is_planet_class = orbit_redux
+		is_planet_class = orbit_alkali
+		is_planet_class = orbit_desolate
+	}
+}
+
+is_orbit_rocky_uninhabitable = {
+	OR = {
+		is_planet_class = orbit_chthonian
+		is_planet_class = pc_molten
+		is_planet_class = orbit_icy
+		is_planet_class = pc_barren
+		is_planet_class = orbit_iron_telluric
+		is_planet_class = pc_barren_cold
+		is_planet_class = orbit_volcanic_telluric
+		is_planet_class = pc_frozen
+		is_planet_class = pc_toxic
+		is_planet_class = orbit_hothouse_toxic
+		is_planet_class = orbit_carbonyl_toxic
+		is_planet_class = orbit_water_panthalassic
+		is_planet_class = orbit_ammonia_panthalassic
+		is_planet_class = orbit_methane_panthalassic
+	}
+}
+
+is_orbit_giant_uninhabitable = {
+	OR = {		
+		is_planet_class = orbit_helium_giant
+		is_planet_class = orbit_super_giant
+		is_planet_class = pc_gas_giant
+		is_planet_class = orbit_water-clouded_giant
+		is_planet_class = orbit_cloudless_giant
+		is_planet_class = orbit_alkaline_giant
+		is_planet_class = orbit_silicate_giant
+		is_planet_class = orbit_frigid_giant
+		is_planet_class = orbit_methane_giant
+		is_planet_class = orbit_turbulent_giant
+		is_planet_class = orbit_temperate_giant
+	}
+}
+
+is_rocky_airless_planet = {
+	OR = {
+		is_planet_class = orbit_chthonian
+		is_planet_class = orbit_iron_telluric
+		is_planet_class = pc_barren_cold
+		is_planet_class = pc_frozen
+	}
+}
+
+is_rocky_greenhouse_planet = {
+	OR = {
+		is_planet_class = pc_toxic
+		is_planet_class = orbit_hothouse_toxic
+		is_planet_class = orbit_carbonyl_toxic
+	}
+}
+
+filtered_habitable_planet = {
+	OR = {
+		# This list is used in atw_engine.??(old), if one of these planet classes already exists in the system, lower the odds of converting an uninhabitable to habitable
+		is_vanilla_habitable_planet = yes
+		# needs updating
+	}
+}
+
+can_have_habitable_deposits = {
+	OR = {
+		is_planet_class = pc_nuked
+		is_planet_class = pc_desert
+		is_planet_class = pc_tropical
+		is_planet_class = pc_arid
+		is_planet_class = pc_continental
+		is_planet_class = pc_ocean
+		is_planet_class = pc_tundra
+		is_planet_class = pc_arctic
+		is_planet_class = pc_alpine
+		is_planet_class = pc_savannah
+		is_planet_class = pc_gaia
+		is_planet_class = pc_relic
+		galactic_diversity_habitable_planet = yes
+	}
+}
+
+is_wet = {
+	# This is used to spawn deposits, may or may not be worth updating with new planet classes
+	OR = {
+		is_planet_class = orbit_chlorogenian
+		is_planet_class = pc_continental
+		is_planet_class = orbit_myciliogenian
+		is_planet_class = pc_myciliogenian
+		is_planet_class = orbit_photogenian
+		is_planet_class = pc_photogenian
+		is_planet_class = orbit_retinalgenian
+		is_planet_class = pc_retinalgenian
+		is_planet_class = orbit_archipelagic
+		is_planet_class = pc_ocean
+		is_planet_class = orbit_panthalassic
+		is_planet_class = pc_panthalassic
+		is_planet_class = orbit_panpelagic
+		is_planet_class = pc_panpelagic
+		is_planet_class = orbit_tropicothalassic
+		is_planet_class = pc_tropical
+		is_planet_class = orbit_megachloridal
+		is_planet_class = pc_megachloridal
+		is_planet_class = orbit_geotidal_twilight
+		is_planet_class = pc_geotidal_twilight
+		is_planet_class = orbit_protogenian
+		is_planet_class = pc_protogenian
+		is_planet_class = orbit_redux
+		is_planet_class = pc_redux
+		is_planet_class = orbit_adapted
+		is_planet_class = pc_adapted
+		is_planet_class = orbit_aquatic
+		is_planet_class = pc_aquatic
+		is_planet_class = orbit_elos
+		is_planet_class = pc_elos
+	}
+}
+
+is_dry = {
+	# This is used to spawn deposits, may or may not be worth updating with new planet classes
+	OR = {
+		is_planet_class = orbit_thermogenian
+		is_planet_class = pc_arid
+		is_planet_class = orbit_thermopelagic
+		is_planet_class = pc_desert
+		is_planet_class = orbit_thermothalassic
+		is_planet_class = pc_savannah
+		is_planet_class = orbit_erimosthalassic
+		is_planet_class = pc_erimosthalassic
+		is_planet_class = orbit_geotidal_biolumen
+		is_planet_class = pc_geotidal_biolumen
+		is_planet_class = orbit_hadean
+		is_planet_class = pc_hadean
+		is_planet_class = orbit_anthracean
+		is_planet_class = pc_anthracean
+		is_planet_class = orbit_archean
+		is_planet_class = pc_archean
+		is_planet_class = orbit_agonos
+		is_planet_class = pc_agonos
+		is_planet_class = orbit_sulfur
+		is_planet_class = pc_sulfur
+		is_planet_class = orbit_alkali
+		is_planet_class = pc_alkali
+		is_planet_class = orbit_desolate
+		is_planet_class = pc_desolate
+		is_planet_class = orbit_terraformed_barren
+		is_planet_class = pc_terraformed_barren
+		is_planet_class = orbit_almyros
+		is_planet_class = pc_almyros
+	}
+}
+
+is_cold = {
+	# This is used to spawn deposits, may or may not be worth updating with new planet classes
+	OR = {
+		is_planet_class = orbit_ammoniagenian
+		is_planet_class = pc_ammoniagenian
+		is_planet_class = orbit_cryogenian
+		is_planet_class = pc_alpine
+		is_planet_class = orbit_cryopelagic
+		is_planet_class = pc_arctic
+		is_planet_class = orbit_cryothalassic
+		is_planet_class = pc_tundra
+		is_planet_class = orbit_alpicothalassic
+		is_planet_class = pc_alpicothalassic
+		is_planet_class = orbit_geotidal_eyeball
+		is_planet_class = pc_geotidal_eyeball
+		is_planet_class = orbit_karsticos
+		is_planet_class = pc_karsticos
+		is_planet_class = orbit_stepicos
+		is_planet_class = pc_stepicos
+		is_planet_class = orbit_hydrocarbonal
+		is_planet_class = pc_hydrocarbonal
+		is_planet_class = orbit_adapted_ammonia
+		is_planet_class = pc_adapted_ammonia
+	}
+}
+
+is_chlorogaian = {
+	OR = {
+		is_planet_class = orbit_chlorogaian
+		is_planet_class = pc_gaia
+	}
+}
+is_thermogaian = {
+	OR = {
+		is_planet_class = orbit_thermogaian
+		is_planet_class = pc_thermogaian
+	}
+}
+is_cryogaian = {
+	OR = {
+		is_planet_class = orbit_cryogaian
+		is_planet_class = pc_cryogaian
+	}
+}
+is_ammoniagenian = {
+	OR = {
+		is_planet_class = orbit_ammoniagenian
+		is_planet_class = pc_ammoniagenian
+	}
+}
+is_chlorogenian = {
+	OR = {
+		is_planet_class = orbit_chlorogenian
+		is_planet_class = pc_continental
+	}
+}
+is_cryogenian = {
+	OR = {
+		is_planet_class = orbit_cryogenian
+		is_planet_class = pc_alpine
+	}
+}
+is_myciliogenian = {
+	OR = {
+		is_planet_class = orbit_myciliogenian
+		is_planet_class = pc_myciliogenian
+	}
+}
+is_photogenian = {
+	OR = {
+		is_planet_class = orbit_photogenian
+		is_planet_class = pc_photogenian
+	}
+}
+is_retinalgenian = {
+	OR = {
+		is_planet_class = orbit_retinalgenian
+		is_planet_class = pc_retinalgenian
+	}
+}
+is_thermogenian = {
+	OR = {
+		is_planet_class = orbit_thermogenian
+		is_planet_class = pc_arid
+	}
+}
+is_archipelagic = {
+	OR = {
+		is_planet_class = orbit_archipelagic
+		is_planet_class = pc_ocean
+	}
+}
+is_panthalassic = {
+	OR = {
+		is_planet_class = orbit_panthalassic
+		is_planet_class = pc_panthalassic
+	}
+}
+is_cryopelagic = {
+	OR = {
+		is_planet_class = orbit_cryopelagic
+		is_planet_class = pc_arctic
+	}
+}
+is_thermopelagic = {
+	OR = {
+		is_planet_class = orbit_thermopelagic
+		is_planet_class = pc_desert
+	}
+}
+is_panpelagic = {
+	OR = {
+		is_planet_class = orbit_panpelagic
+		is_planet_class = pc_panpelagic
+	}
+}
+is_tropicothalassic = {
+	OR = {
+		is_planet_class = orbit_tropicothalassic
+		is_planet_class = pc_tropical
+	}
+}
+is_thermothalassic = {
+	OR = {
+		is_planet_class = orbit_thermothalassic
+		is_planet_class = pc_savannah
+	}
+}
+is_cryothalassic = {
+	OR = {
+		is_planet_class = orbit_cryothalassic
+		is_planet_class = pc_alpine
+	}
+}
+is_megachloridal = {
+	OR = {
+		is_planet_class = orbit_megachloridal
+		is_planet_class = pc_megachloridal
+	}
+}
+is_alpicothalassic = {
+	OR = {
+		is_planet_class = orbit_alpicothalassic
+		is_planet_class = pc_alpicothalassic
+	}
+}
+is_erimosthalassic = {
+	OR = {
+		is_planet_class = orbit_erimosthalassic
+		is_planet_class = pc_erimosthalassic
+	}
+}
+is_geotidal_biolumen = {
+	OR = {
+		is_planet_class = orbit_geotidal_biolumen
+		is_planet_class = pc_geotidal_biolumen
+	}
+}
+is_geotidal_twilight = {
+	OR = {
+		is_planet_class = orbit_geotidal_twilight
+		is_planet_class = pc_geotidal_twilight
+	}
+}
+is_geotidal_eyeball = {
+	OR = {
+		is_planet_class = orbit_geotidal_eyeball
+		is_planet_class = pc_geotidal_eyeball
+	}
+}
+is_hadean = {
+	OR = {
+		is_planet_class = orbit_hadean
+		is_planet_class = pc_hadean
+	}
+}
+is_anthracean = {
+	OR = {
+		is_planet_class = orbit_anthracean
+		is_planet_class = pc_anthracean
+	}
+}
+is_archean = {
+	OR = {
+		is_planet_class = orbit_archean
+		is_planet_class = pc_archean
+	}
+}
+is_protogenian = {
+	OR = {
+		is_planet_class = orbit_protogenian
+		is_planet_class = pc_protogenian
+	}
+}
+is_karsticos = {
+	OR = {
+		is_planet_class = orbit_karsticos
+		is_planet_class = pc_karsticos
+	}
+}
+is_stepicos = {
+	OR = {
+		is_planet_class = orbit_stepicos
+		is_planet_class = pc_stepicos
+	}
+}
+is_agonos = {
+	OR = {
+		is_planet_class = orbit_agonos
+		is_planet_class = pc_agonos
+	}
+}
+is_almyros = {
+	OR = {
+		is_planet_class = orbit_almyros
+		is_planet_class = pc_almyros
+	}
+}
+is_elos = {
+	OR = {
+		is_planet_class = orbit_elos
+		is_planet_class = pc_elos
+	}
+}
+is_hydrocarbonal = {
+	OR = {
+		is_planet_class = orbit_hydrocarbonal
+		is_planet_class = pc_hydrocarbonal
+	}
+}
+is_sulfur = {
+	OR = {
+		is_planet_class = orbit_sulfur
+		is_planet_class = pc_sulfur
+	}
+}
+is_redux = {
+	OR = {
+		is_planet_class = orbit_redux
+		is_planet_class = pc_redux
+	}
+}
+is_alkali = {
+	OR = {
+		is_planet_class = orbit_alkali
+		is_planet_class = pc_alkali
+	}
+}
+is_desolate = {
+	OR = {
+		is_planet_class = orbit_desolate
+		is_planet_class = pc_desolate
+	}
+}
+is_nuked = {
+	OR = {
+		is_planet_class = orbit_nuked
+		is_planet_class = pc_nuked
+	}
+}
+is_adapted = {
+	OR = {
+		is_planet_class = orbit_adapted
+		is_planet_class = pc_adapted
+	}
+}
+is_aquatic = {
+	OR = {
+		is_planet_class = orbit_aquatic
+		is_planet_class = pc_aquatic
+	}
+}
+
+
+
+is_ammonia_type = {
+	OR = {
+		is_planet_class = orbit_ammoniagenian
+		is_planet_class = pc_ammoniagenian
+		is_planet_class = orbit_redux
+		is_planet_class = pc_redux
+		is_planet_class = orbit_adapted_ammonia
+		is_planet_class = pc_adapted_ammonia
+	}
+}
+is_hydrocarbon_type = {
+	OR = {
+		is_planet_class = orbit_anthracean
+		is_planet_class = pc_anthracean
+		is_planet_class = orbit_hydrocarbonal
+		is_planet_class = pc_hydrocarbonal
+	}
+}
+is_subterranean_type = {
+	OR = {		
+		is_planet_class = orbit_karsticos
+		is_planet_class = pc_karsticos
+		is_planet_class = orbit_agonos
+		is_planet_class = pc_agonos
+	}
+}
+is_submerged_type = {
+	OR = {		
+		is_planet_class = orbit_panpelagic
+		is_planet_class = pc_panpelagic
+	}
+}
+is_aquatic_type = {
+	OR = {		
+		is_planet_class = orbit_panpelagic
+		is_planet_class = pc_panpelagic
+		is_planet_class = orbit_archipelagic
+		is_planet_class = pc_ocean
+		is_planet_class = orbit_thermopelagic
+		is_planet_class = pc_desert
+		is_planet_class = orbit_cryopelagic
+		is_planet_class = pc_arctic
+		is_planet_class = orbit_aquatic
+		is_planet_class = pc_aquatic
+	}
+}
+is_bioluminescent_type = {
+	OR = {
+		is_planet_class = orbit_photogenian
+		is_planet_class = pc_photogenian
+		is_planet_class = orbit_geotidal_biolumen
+		is_planet_class = pc_geotidal_biolumen
+	}
+}
+is_primordial_type = {
+	OR = {
+		is_planet_class = orbit_hadean
+		is_planet_class = pc_hadean
+		is_planet_class = orbit_anthracean
+		is_planet_class = pc_anthracean
+		is_planet_class = orbit_archean
+		is_planet_class = pc_archean
+		is_planet_class = orbit_protogenian
+		is_planet_class = pc_protogenian
+		is_planet_class = orbit_adapted
+		is_planet_class = pc_adapted
+		is_planet_class = orbit_aquatic
+		is_planet_class = pc_aquatic
+	}
+}
+is_barren_type = {
+	OR = {
+		is_planet_class = orbit_desolate
+		is_planet_class = pc_desolate
+		is_planet_class = orbit_agonos
+		is_planet_class = pc_agonos
+		is_planet_class = orbit_terraformed_barren
+		is_planet_class = pc_terraformed_barren
+		is_planet_class = orbit_almyros
+		is_planet_class = pc_almyros
+	}
+}
+
+
+is_untouchable_planet = {
+	OR = {
+		is_vanilla_habitable_planet = yes
+		is_vanilla_special_planet = yes
+	}
+}
+
+has_standard_orbital_deposit = {
+	# Only deposits with drop_weight > 0 go here, which means they are spawned during galaxy generation
+	# the goal is to use this trigger to clear only standard deposits and not mess with special ones spawned by events
+	OR = {
+		## BASIC RESOURCES
+		has_deposit = d_minerals_2 #base weight 5 (bonus to asteroids)
+		has_deposit = d_minerals_3 #base weight 2.5 (bonus to asteroids)
+		has_deposit = d_minerals_4 #base weight 1 (bonus to asteroids)
+		has_deposit = d_minerals_5 #base weight 0.1 (bonus to asteroids)
+		has_deposit = d_energy_2 #base weight 5 (bonus to stars and giants)
+		has_deposit = d_energy_3 #base weight 2.5 (bonus to stars and giants)
+		has_deposit = d_energy_4 #base weight 1 (bonus to stars and giants)
+		has_deposit = d_energy_5 #base weight 0.1 (bonus to stars and giants)
+		has_deposit = d_society_2 #base weight 5 (toxics)
+		has_deposit = d_society_3 #base weight 2.5 (toxics)
+		has_deposit = d_society_4 #base weight 0.5 (toxics)
+		has_deposit = d_society_5 #base weight 0.1 (toxics)
+		has_deposit = d_physics_2 #base weight 1 (stars)
+		has_deposit = d_physics_3 #base weight 0.5 (stars)
+		has_deposit = d_physics_4 #base weight 0.05 (stars)
+		has_deposit = d_physics_5 #base weight 0.01 (stars)
+		has_deposit = d_engineering_2 #base weight 2 (frozens, giants)
+		has_deposit = d_engineering_3 #base weight 1 (frozens, giants, degenerates *5 degenerates)
+		has_deposit = d_engineering_4 #base weight 0.2 (frozens, giants, degenerates *5 degenerates)
+		has_deposit = d_engineering_5 #base weight 0.05 (frozens, giants, degenerates *5 degenerates)
+		has_deposit = d_trade_value_2 #base weight 5 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_trade_value_3 #base weight 2.5 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_trade_value_4 #base weight 1 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_trade_value_5 #base weight 0.1 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_alloys_1 #base weight 2 (moltens, asteroids *1.5 inside nebula)
+		has_deposit = d_alloys_2 #base weight 0.5 (asteroids *1.5 inside nebula)
+		## STRATEGIC RESOURCES
+		has_deposit = d_exotic_gases_1 #base weight 1.5 (giants or toxics *1.5 inside nebula)
+		has_deposit = d_exotic_gases_2 #base weight 0.5 (giants or toxics *1.5 inside nebula)
+		has_deposit = d_rare_crystals_1 #base weight 1.5 (frozens or ice ast. *1.5 inside nebula) 
+		has_deposit = d_rare_crystals_2 #base weight 0.25 (frozens or ice ast. *1.5 inside nebula) 
+		has_deposit = d_volatile_motes_1 #base weight 1.5 (moltens or ast. *1.5 inside nebula) 
+		has_deposit = d_volatile_motes_2 #base weight 0.5 (moltens or ast. *1.5 inside nebula) 
+		has_deposit = d_zro_deposit_1 #base weight 5 (toxics *0.5 outside nebula)
+		has_deposit = d_zro_deposit_2 #base weight 1 (toxics *0.5 outside nebula)
+		has_deposit = d_dark_matter_deposit_1 #base weight 10 (black holes *0.5 outside nebula)
+		has_deposit = d_dark_matter_deposit_2 #base weight 1 (black holes)
+		#has_deposit = d_nanites_deposit # THIS ONE ONLY SPAWNS IN L-CLUSTER, BEST NOT TO TOUCH IT
+	}
+}
+
+## TRIGGERS TO IDENTIFY PLANET CLASSES USED IN THIS MOD THAT MOST RESEMBLE THE VANILLA ORIGINAL CLASSES
+
+is_continental_replacement = {
+	OR = {
+		is_planet_class = orbit_chlorogenian
+		is_planet_class = pc_continental
+		is_planet_class = orbit_panthalassic
+		is_planet_class = pc_panthalassic
+		is_planet_class = orbit_retinalgenian
+		is_planet_class = pc_retinalgenian
+		is_planet_class = orbit_photogenian
+		is_planet_class = pc_photogenian
+		is_planet_class = orbit_geotidal_twilight
+		is_planet_class = pc_geotidal_twilight
+	}
+}
+is_tropical_replacement = {
+	OR = {
+		is_planet_class = orbit_tropicothalassic
+		is_planet_class = pc_tropical
+		is_planet_class = orbit_megachloridal
+		is_planet_class = pc_megachloridal
+		is_planet_class = orbit_geotidal_biolumen
+		is_planet_class = pc_geotidal_biolumen
+	}
+}
+is_ocean_replacement = {
+	OR = {
+		is_planet_class = orbit_archipelagic
+		is_planet_class = pc_ocean
+		is_planet_class = orbit_cryopelagic
+		is_planet_class = pc_arctic
+		is_planet_class = orbit_thermopelagic
+		is_planet_class = pc_desert
+		#is_planet_class = orbit_panpelagic
+		#is_planet_class = pc_panpelagic
+	}
+}
+is_savannah_replacement = {
+	OR = {
+		is_planet_class = orbit_myciliogenian
+		is_planet_class = pc_myciliogenian
+		is_planet_class = orbit_thermothalassic
+		is_planet_class = pc_savannah
+		is_planet_class = orbit_protogenian
+		is_planet_class = pc_protogenian
+		is_planet_class = orbit_alkali
+		is_planet_class = pc_alkali
+	}
+}
+is_arid_replacement = {
+	OR = {
+		is_planet_class = orbit_thermogenian
+		is_planet_class = pc_arid
+		is_planet_class = orbit_archean
+		is_planet_class = pc_archean
+		is_planet_class = orbit_agonos
+		is_planet_class = pc_agonos
+		is_planet_class = orbit_sulfur
+		is_planet_class = pc_sulfur
+	}
+}
+is_desert_replacement = {
+	OR = {
+		is_planet_class = orbit_erimosthalassic
+		is_planet_class = pc_erimosthalassic
+		is_planet_class = orbit_hadean
+		is_planet_class = pc_hadean
+		is_planet_class = orbit_anthracean
+		is_planet_class = pc_anthracean
+		is_planet_class = orbit_desolate
+		is_planet_class = pc_desolate
+		is_planet_class = orbit_almyros
+		is_planet_class = pc_almyros
+	}
+}
+is_alpine_replacement = {
+	OR = {
+		is_planet_class = orbit_alpicothalassic
+		is_planet_class = pc_alpicothalassic
+		is_planet_class = orbit_karsticos
+		is_planet_class = pc_karsticos
+		is_planet_class = orbit_redux
+		is_planet_class = pc_redux
+	}
+}
+is_tundra_replacement = {
+	OR = {
+		is_planet_class = orbit_cryothalassic
+		is_planet_class = pc_tundra
+		is_planet_class = orbit_stepicos
+		is_planet_class = pc_stepicos
+		is_planet_class = orbit_elos
+		is_planet_class = pc_elos
+	}
+}
+is_arctic_replacement = {
+	OR = {
+		is_planet_class = orbit_cryogenian
+		is_planet_class = pc_alpine		
+		is_planet_class = orbit_geotidal_eyeball
+		is_planet_class = pc_geotidal_eyeball
+		is_planet_class = orbit_hydrocarbonal
+		is_planet_class = pc_hydrocarbonal
+	}
+}
+is_gaia_replacement = {
+	OR = {
+		is_planet_class = orbit_chlorogaian
+		is_planet_class = pc_gaia
+		is_planet_class = orbit_thermogaian
+		is_planet_class = pc_thermogaian
+		is_planet_class = orbit_cryogaian
+		is_planet_class = pc_cryogaian
+	}
+}
+is_nuked_replacement = {
+	OR = {
+		is_planet_class = orbit_nuked
+		is_planet_class = pc_nuked
+	}
+}
+is_barren_replacement = {
+	OR = {
+		is_planet_class = pc_barren
+		############################################
+		is_planet_class = orbit_chthonian
+	}
+}
+is_barren_cold_replacement = {
+	OR = {
+		is_planet_class = pc_barren_cold
+		############################################
+		is_planet_class = orbit_iron_telluric
+	}
+}
+is_toxic_replacement = {
+	OR = {
+		is_planet_class = pc_toxic
+		############################################
+		is_planet_class = orbit_hothouse_toxic
+		is_planet_class = orbit_carbonyl_toxic
+		#is_planet_class = orbit_water_panthalassic
+		#is_planet_class = orbit_ammonia_panthalassic
+		#is_planet_class = orbit_methane_panthalassic
+	}
+}
+is_molten_replacement = {
+	OR = {
+		is_planet_class = pc_molten
+		############################################
+		is_planet_class = orbit_volcanic_telluric
+	}
+}
+is_frozen_replacement = {
+	OR = {
+		is_planet_class = pc_frozen
+		############################################
+		is_planet_class = orbit_icy
+	}
+}
+
+is_gas_giant_replacement = {
+	OR = {
+		is_planet_class = pc_gas_giant
+		############################################
+		is_planet_class = orbit_helium_giant
+		is_planet_class = orbit_super_giant
+		is_planet_class = orbit_water-clouded_giant
+		is_planet_class = orbit_cloudless_giant
+		is_planet_class = orbit_alkaline_giant
+		is_planet_class = orbit_silicate_giant
+		is_planet_class = orbit_frigid_giant
+		is_planet_class = orbit_methane_giant
+		is_planet_class = orbit_turbulent_giant
+		is_planet_class = orbit_temperate_giant
+	}
+}

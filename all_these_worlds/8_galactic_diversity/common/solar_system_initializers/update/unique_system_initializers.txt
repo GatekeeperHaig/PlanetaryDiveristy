@@ -1,0 +1,1733 @@
+@distance = 50
+@base_moon_distance = 10
+@unique_system_spawn_chance = 25
+
+# Federation's End - Black Hole with habitats inhabited by primitives
+unique_system_initializer_01 = {
+	name = "NAME_Unique_System_1"
+
+	class = sc_black_hole
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system primitive_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_dark_matter_deposit_1
+
+			create_ambient_object = {
+				type = "large_debris_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 15
+					angle = random
+				}
+			}
+
+			create_ambient_object = {
+				type = "large_debris_object"
+				entity_offset_height = { min = -0 max = -25 }
+				location = this
+			}
+
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 15
+					angle = random
+				}
+			}
+		}
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 1
+		class = "pc_broken"
+		size = { min = 10 max = 15 }
+
+		init_effect = { 
+			prevent_anomaly = yes 
+			clear_deposits = yes
+		}
+
+		planet = {
+			class = pc_habitat
+			size = 4
+
+			flags = { megastructure habitat research_habitat }
+
+			init_effect = {
+				prevent_anomaly = yes 
+				clear_deposits = yes
+				if = {
+					limit = {
+						check_galaxy_setup_value = {
+							setting = primitive_worlds_scale
+							value >= 0.5
+						}
+					}
+					generate_late_primitives_on_planet = yes
+					add_district = district_hab_housing
+					add_district = district_hab_housing
+				}
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = "pc_broken"
+		size = { min = 10 max = 15 }
+
+		init_effect = { 
+			prevent_anomaly = yes 
+			clear_deposits = yes
+		}
+
+		planet = {
+			class = pc_habitat
+			size = 4
+
+			flags = { megastructure habitat research_habitat }
+
+			init_effect = {
+				prevent_anomaly = yes 
+				clear_deposits = yes
+				if = {
+					limit = {
+						check_galaxy_setup_value = {
+							setting = primitive_worlds_scale
+							value >= 0.5
+						}
+					}
+					generate_late_primitives_on_planet = yes
+					add_district = district_hab_housing
+					add_district = district_hab_housing
+				}
+			}
+		}
+	}
+}
+
+# Larionessi Refuge - Neutron Star with a Relic planet and arc site
+unique_system_initializer_02 = {
+	name = "NAME_Unique_System_2"
+
+	class = sc_neutron_star
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_5
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 35
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 45
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 55
+	}
+
+	change_orbit = 65
+
+	planet = {
+		class = pc_barren
+		size = 18
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_5
+		}
+	}
+
+	change_orbit = 15
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	change_orbit = 15
+
+	planet = {
+		name = "NAME_Unique_System_2_Planet"
+		class = pc_relic
+		size = 20
+
+		flags = { hive_planet_larion }
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_archaeological_site = larion_digsite
+			if = {
+				limit = {
+					has_ancrel = no
+				}
+				change_pc = pc_tropical
+				add_deposit = d_green_hills
+				add_deposit = d_lush_jungle
+			}
+			else = {
+				add_deposit = d_ore_rich_caverns
+				add_deposit = d_rich_mountain
+			}
+			add_deposit = d_tempestous_mountain
+			add_deposit = d_prosperous_mesa
+			add_deposit = d_submerged_ore_veins
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = pc_barren
+			size = 10
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_3
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = pc_barren
+			size = 10
+			
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_3
+			}
+		}
+	}
+}
+
+# Zevox - Shrouded planet and arc site nearby
+unique_system_initializer_03 = {
+	name = "NAME_Unique_System_3"
+
+	class = sc_m
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_energy_5
+		}
+	}
+
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 65
+	}
+
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 70
+	}
+
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 95
+	}
+
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 100
+	}
+
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 125
+	}
+
+	asteroid_belt = {
+		type = crystal_asteroid_belt
+		radius = 130
+	}
+
+	change_orbit = 60
+
+	planet = {
+		count = 2
+		class = pc_rare_crystal_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_rare_crystals_1
+		}
+	}
+
+	change_orbit = 5
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	change_orbit = 25
+
+	planet = {
+		name = "NAME_Unique_System_3_Planet"
+		count = 1
+		class = pc_shrouded
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		has_ring = no
+
+		init_effect = {
+			clear_deposits = yes
+			prevent_anomaly = yes
+
+			create_ambient_object = {
+				type = "nebula_L8_entity"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+
+			create_ambient_object = {
+				type = shroud_rift_object
+				scale = 0.15
+				entity_offset_height = -22
+				location = this
+			}
+			last_created_ambient_object = {
+				save_global_event_target_as = animator_rift_object
+				set_location = {
+					target = prev
+				}
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			name = "NAME_Unique_System_3_Moon"
+			class = pc_barren
+			size = 8
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_1
+
+				create_archaeological_site = zevox_digsite
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		orbit_distance = 60
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		has_ring = yes
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_energy_5
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = { min = 8 max = 20 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = { min = 8 max = 20 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				clear_deposits = yes
+				add_deposit = d_minerals_2
+			}
+		}
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 1
+		orbit_distance = 60
+		class = pc_barren_cold
+		orbit_angle = { min = 90 max = 270 }
+		size = 16
+
+		init_effect = {
+			if = {
+				limit = {
+					has_overlord_dlc = yes
+				}
+				create_ambient_object = {
+					type = enclave_shroudwalker_starbase_ruined
+					entity_offset_height = -15
+					location = this
+				}
+			}
+		}
+	}
+}
+
+# Fehnrax's Stand - Ancient Battlefield 1
+unique_system_initializer_04 = {
+	name = "NAME_Unique_System_4"
+
+	class = sc_a
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_energy_5
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 55
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 60
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 135
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 140
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+			add_anomaly = {
+				category = UNIQUE_SYSTEM_BATTLE_CAT
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 35
+					angle = 15
+				}
+			}
+		}
+	}
+
+	change_orbit = 10
+
+	planet = {
+		count = 4
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	init_effect = {
+		while = {
+			count = 10
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 45
+				angle = 35
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 60
+				angle = 55
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 45
+				angle = 75
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 75
+				angle = 90
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 60
+				angle = 105
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 75
+				angle = 120
+			}
+		}
+	}
+}
+
+# Zhanrox's Rest - Ancient Battlefield 2
+unique_system_initializer_05 = {
+	name = "NAME_Unique_System_5"
+
+	class = sc_f
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_4
+		}
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 1
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+			add_anomaly = {
+				category = UNIQUE_SYSTEM_BATTLE_CAT
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 35
+					angle = 15
+				}
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_broken
+		size = 16
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 35
+					angle = 15
+				}
+			}
+		}
+
+		change_orbit = 15
+
+		planet = {
+			count = 1
+			class = pc_broken
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 1
+		class = pc_broken
+		size = 18
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 35
+					angle = 15
+				}
+			}
+		}
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 1
+		class = pc_broken
+		size = 12
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+		}
+	}
+
+	init_effect = {
+		while = {
+			count = 10
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 45
+				angle = 135
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 60
+				angle = 155
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 45
+				angle = 175
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 75
+				angle = 190
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 60
+				angle = 205
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 75
+				angle = 220
+			}
+		}
+	}
+}
+
+# Afari - Ancient Battlefield 3
+unique_system_initializer_06 = {
+	name = "NAME_Unique_System_6"
+
+	class = sc_f
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+	
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_energy_5
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 85
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 95
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 1
+		class = pc_broken
+		size = 18
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 35
+					angle = 15
+				}
+			}
+		}
+	}
+
+	change_orbit = 10
+
+	planet = {
+		count = 1
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+			add_anomaly = {
+				category = UNIQUE_SYSTEM_BATTLE_CAT
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 35
+					angle = 15
+				}
+			}
+		}
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 1
+		class = pc_broken
+		size = 14
+		orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 15
+				}
+			}
+		}
+	}
+
+	change_orbit = 15
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	init_effect = {
+		while = {
+			count = 10
+			create_ambient_object = {
+				type = "ancient_battlefield_02_object"
+				location = solar_system
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 45
+				angle = 35
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 60
+				angle = 55
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 45
+				angle = 75
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 75
+				angle = 90
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 60
+				angle = 105
+			}
+		}
+		create_ambient_object = {
+			type = "ancient_battlefield_02_object"
+			location = solar_system
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 75
+				angle = 120
+			}
+		}
+	}
+}
+
+# Tragula's Cross - Triple Planet 1
+unique_system_initializer_07 = {
+	name = "NAME_Unique_System_7"
+
+	class = sc_k
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_4
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+
+	change_orbit = @distance
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_1
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_molten
+		orbit_angle = { min = 90 max = 270 }
+		size = 22
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_volatile_motes_1
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = { min = 8 max = 20 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = { min = 8 max = 20 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				clear_deposits = yes
+				prevent_anomaly = yes
+				add_deposit = d_minerals_2
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_arid
+		orbit_angle = { min = 90 max = 270 }
+		size = 16
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_nuked
+		orbit_angle = { min = 90 max = 270 }
+		size = 19
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = 6
+			orbit_angle = { min = 90 max = 270 }
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_1
+			}
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = 7
+			orbit_angle = { min = 90 max = 270 }
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_2
+			}
+		}
+	}
+
+	change_orbit = 65
+
+	planet = {
+		count = 1
+		class = pc_savannah
+		orbit_angle = { min = 90 max = 270 }
+		size = 12
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_frozen
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+		}
+	}
+}
+
+# Trin's Promise - Triple Planet 2
+unique_system_initializer_08 = {
+	name = "NAME_Unique_System_8"
+
+	class = sc_m_giant
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_3
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 135
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 3
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 18
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_5
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren_cold"
+			count = 1
+			size = 10
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 30
+
+	planet = {
+		count = 1
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 14
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = 10
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_rare_crystals_1
+			}
+		}
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 1
+		class = pc_continental
+		orbit_angle = { min = 90 max = 270 }
+		size = 22
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = 1
+		class = pc_nuked
+		orbit_angle = { min = 90 max = 270 }
+		size = 14
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_tropical
+		orbit_angle = { min = 90 max = 270 }
+		size = 18
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+		}
+	}
+}
+
+# Loh - Triple Planet 3
+unique_system_initializer_09 = {
+	name = "NAME_Unique_System_9"
+
+	class = sc_a
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+	}
+
+	spawn_chance = @unique_system_spawn_chance
+
+	max_instances = 1
+
+	flags = { unique_system }
+
+	planet = {
+		class = star
+		orbit_distance = 0
+
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_physics_3
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 35
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 55
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 3
+		class = pc_asteroid
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = 10
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_alloys_2
+		}
+	}
+
+	change_orbit = 55
+
+	planet = {
+		count = 1
+		class = pc_arctic
+		orbit_angle = { min = 90 max = 270 }
+		size = 16
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_toxic
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_exotic_gases_1
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_nuked
+		orbit_angle = { min = 90 max = 270 }
+		size = 17
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_barren"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+
+	change_orbit = 35
+
+	planet = {
+		count = 1
+		class = pc_alpine
+		orbit_angle = { min = 90 max = 270 }
+		size = 21
+		has_ring = yes
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			class = "pc_frozen"
+			count = 1
+			size = 8
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 6
+
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}
+	}
+}

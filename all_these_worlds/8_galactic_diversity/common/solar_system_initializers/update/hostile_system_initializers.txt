@@ -1,0 +1,4479 @@
+@base_moon_distance = 1
+@sub_giant_moon_distance = 5
+@giant_moon_distance = 6
+@super_giant_moon_distance = 16
+
+# Crystal Entities - Blue
+hostile_init_01 = {
+	class = "sc_b"
+	
+	usage = misc_system_init
+	#usage_odds = 2
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0.1
+			NOT = { is_in_cluster = resource_cluster_1 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+	
+	max_instances = 1
+	flags = { hostile_system blue_system shield_system blue_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 80
+
+	# Inner Zone
+	
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	
+	change_orbit = 30 #110
+	planet = {
+		count = 1
+		orbit_distance = 0
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 12 max = 16 }
+		has_ring = no
+		class = "pc_broken"
+
+		init_effect = { 
+			prevent_anomaly = yes
+			set_deposit = d_physics_8
+		}
+	}
+
+	change_orbit = 20 #130
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 50 #180
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 35 #215
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 85 #300
+	planet = {
+		count = 0
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	init_effect = {
+		create_crystal_country = yes
+		random_system_planet = {
+			limit = { is_star = no }
+			event_target:crystal_country = {
+				create_fleet = {
+					name = "NAME_Sapphire_Lurkers"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 7
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Crystal_Entity_Blue"
+							}
+						}
+						while = {
+							count = 9
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Blue"
+							}
+						}
+						while = {
+							count = 20
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Blue"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 150
+					}
+				}
+			}
+		}
+	}
+}
+
+# Crystal Entities - Blue VARIATION
+hostile_init_02 = {
+	class = "sc_b"
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_1 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+	
+	flags = { hostile_system blue2_system blue_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 80
+
+	# Inner Zone
+	
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	planet = {
+		count = 1
+		class = pc_rare_crystal_asteroid
+		orbit_distance = 0
+		orbit_angle = 189
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+	}
+	
+	change_orbit = 30 #110
+	planet = {
+		count = 0
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 20 #130
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 50 #180
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 35 #215
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = random_non_colonizable
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		orbit_angle = { min = 90 max = 270 }
+		
+	}
+
+	change_orbit = 85 #300
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_crystal_country = yes
+		random_system_planet = {
+			limit = {
+				is_star = no
+			}
+			save_event_target_as = blue2_trigger_1
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				NOT = {
+					is_same_value = event_target:blue2_trigger_1
+				}
+			}
+			save_event_target_as = blue2_trigger_2
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				NOT = {
+					is_same_value = event_target:blue2_trigger_1
+					is_same_value = event_target:blue2_trigger_2
+				}
+			}
+			save_event_target_as = blue2_trigger_3
+		}
+		event_target:crystal_country = {
+			if = {
+				limit = { exists = event_target:blue2_trigger_3 }
+				create_fleet = {
+					name = "NAME_Sapphire_Lurkers"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 14
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Blue"
+							}						
+						}
+						set_location = event_target:blue2_trigger_3
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 150
+					}
+				}
+			}
+			if = {
+				limit = { exists = event_target:blue2_trigger_2 }
+				create_fleet = {
+					name = "NAME_Sapphire_Lurkers"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 3
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Blue"
+							}
+						}
+						while = {
+							count = 6
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Blue"
+							}						
+						}
+						set_location = event_target:blue2_trigger_2
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 150
+					}
+				}
+			}
+			if = {
+				limit = { exists = event_target:blue2_trigger_1 }
+				create_fleet = {
+					name = "NAME_Sapphire_Lurkers"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 3
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Blue"
+							}
+						}
+						while = {
+							count = 6
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Blue"
+							}
+						}
+						set_location = event_target:blue2_trigger_1
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 150
+					}
+				}
+			}
+		}
+	}
+}
+
+# Crystal Entities - Green (Patrol)
+hostile_init_03 = {
+	class = "sc_k"
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 0
+		#modifier = {
+		#	factor = 0
+		#	NOT = { is_in_cluster = resource_cluster_1 }
+		#}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+
+	max_instances = 1
+
+	flags = { hostile_system green_system red_supergiant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 180
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 2 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 60 #240
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 50 #290
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+	
+	change_orbit = 40 #330
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+	
+	init_effect = {
+		create_crystal_country = yes
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+			}
+			save_event_target_as = green_trigger_1
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:green_trigger_1
+				}
+			}
+			save_event_target_as = green_trigger_2
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:green_trigger_1
+					is_same_value = event_target:green_trigger_2
+				}
+			}
+			save_event_target_as = green_trigger_3
+		}
+		event_target:crystal_country = {
+			create_fleet = {
+				name = "NAME_Emerald_Roamers"
+				effect = {
+					set_owner = event_target:crystal_country
+					create_ship = {
+						name = ""
+						design = "NAME_Large_Crystal_Entity_Green"
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Green"
+						}
+					}
+					while = {
+						count = 8
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Green"
+						}
+					}
+					set_location = event_target:green_trigger_3
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 100
+					queue_actions = {
+						repeat = {
+							find_closest_planet = {
+								trigger = {
+									id = "greenC.1.trigger.1"
+									is_planet = event_target:green_trigger_1
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = THIS
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC.1.trigger.2"
+									is_planet = event_target:green_trigger_2
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = THIS
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC.1.trigger.3"
+									is_planet = event_target:green_trigger_3
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = THIS
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Crystal Entities - Green (Patrol) VARIATION
+hostile_init_04 = {
+	class = "sc_b"
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 2
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_1 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	flags = { hostile_system green2_system blue_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 220
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 4 max = 6 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 60 #280
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 80 #360
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_crystal_country = yes
+		random_system_planet = {
+			limit = {
+				is_star = no
+			}
+			save_event_target_as = green2_trigger_1
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				NOT = {
+					is_same_value = event_target:green2_trigger_1
+				}
+			}
+			save_event_target_as = green2_trigger_2
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				NOT = {
+					is_same_value = event_target:green2_trigger_1
+					is_same_value = event_target:green2_trigger_2
+				}
+			}
+			save_event_target_as = green2_trigger_3
+		}
+		event_target:crystal_country = {
+			save_event_target_as = green2_owner
+			create_fleet = {
+				name = "NAME_Emerald_Roamers"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 5
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Green"
+						}
+					}
+					set_location = event_target:green2_trigger_3
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 40
+					queue_actions = {
+						repeat = {
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.1.trigger.1"
+									is_planet = event_target:green2_trigger_1
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.1.trigger.2"
+									is_planet = event_target:green2_trigger_2
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.1.trigger.3"
+									is_planet = event_target:green2_trigger_3
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Emerald_Roamers"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 3
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Green"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Green"
+						}
+					}
+					while = {
+						count = 3
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Green"
+						}
+					}
+					set_location = event_target:green2_trigger_1
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 40
+					queue_actions = {
+						repeat = {
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.2.trigger.2"
+									is_planet = event_target:green2_trigger_2
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.2.trigger.3"
+									is_planet = event_target:green2_trigger_3
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.2.trigger.1"
+									is_planet = event_target:green2_trigger_1
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Emerald_Roamers"
+				effect = {
+					set_owner = event_target:crystal_country
+					create_ship = {
+						name = ""
+						design = "NAME_Medium_Crystal_Entity_Green"
+					}
+					while = {
+						count = 6
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Green"
+						}
+					}
+					set_location = event_target:green2_trigger_2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 40
+					queue_actions = {
+						repeat = {
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.3.trigger.3"
+									is_planet = event_target:green2_trigger_3
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.3.trigger.1"
+									is_planet = event_target:green2_trigger_1
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+							find_closest_planet = {
+								trigger = {
+									id = "greenC2.3.trigger.2"
+									is_planet = event_target:green2_trigger_2
+								}
+								found_planet = {
+									move_to = this
+									orbit_planet = this
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Crystal Entities - Red
+hostile_init_05 = {
+	class = "sc_k"
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 2
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_1 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	flags = { hostile_system red_system red_supergiant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 180
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 2 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 60 #240
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 50 #290
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+	
+	change_orbit = 40 #330
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+	
+	init_effect = {
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+			}
+			save_event_target_as = red_trigger_1
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:red_trigger_1
+				}
+			}
+			save_event_target_as = red_trigger_2
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:red_trigger_1
+					is_same_value = event_target:red_trigger_2
+				}
+			}
+			save_event_target_as = red_trigger_3
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:red_trigger_1
+					is_same_value = event_target:red_trigger_2
+					is_same_value = event_target:red_trigger_3
+				}
+			}
+			save_event_target_as = red_trigger_4
+		}
+		create_crystal_country = yes
+		event_target:crystal_country = {
+			save_event_target_as = red_crystals
+			create_fleet = {
+				name = "NAME_Ruby_Stack"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 3
+						create_ship = {
+							name = ""
+							design = "NAME_Large_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red_trigger_1
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 40
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Ruby_Stack"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 4
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red_trigger_2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 30
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Ruby_Stack"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 11
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red_trigger_3
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 40
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Ruby_Stack"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 3
+						create_ship = {
+							name = ""
+							design = "NAME_Large_Crystal_Entity_Red"
+						}
+					}
+					while = {
+						count = 6
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red_trigger_4
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 30
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Crystal Entities - Red VARIATION
+hostile_init_06 = {
+	class = "rl_standard_stars"
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 2
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_1 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	max_instances = 1
+	flags = { hostile_system red2_system red_supergiant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 180
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+		moon = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			class = "pc_gaia"
+		}
+	}
+	
+	change_orbit = 60 #240
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 50 #290
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+	
+	change_orbit = 40 #330
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+	
+	init_effect = {
+		create_crystal_country = yes
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+			}
+			save_event_target_as = red2_trigger_1
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:red2_trigger_1
+				}
+			}
+			save_event_target_as = red2_trigger_2
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:red2_trigger_1
+					is_same_value = event_target:red2_trigger_2
+				}
+			}
+			save_event_target_as = red2_trigger_3
+		}
+		random_system_planet = {
+			limit = {
+				is_star = no
+				is_moon = no
+				NOT = {
+					is_same_value = event_target:red2_trigger_1
+					is_same_value = event_target:red2_trigger_2
+					is_same_value = event_target:red2_trigger_3
+				}
+			}
+			save_event_target_as = red2_trigger_4
+		}
+		event_target:crystal_country = {
+			save_event_target_as = red2_crystals
+			create_fleet = {
+				name = "NAME_Ruby_Swarm"
+				effect = {
+					set_owner = event_target:crystal_country
+					create_ship = {
+						name = "NAME_Kappa"
+						design = "NAME_Large_Crystal_Entity_Red"
+					}
+					create_ship = {
+						name = ""
+						design = "NAME_Large_Crystal_Entity_Red"
+					}
+					while = {
+						count = 6
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Red"
+						}
+					}
+					while = {
+						count = 19
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red2_trigger_1
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 100
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Ruby_Swarm"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 9
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Red"
+						}
+					}
+					while = {
+						count = 6
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red2_trigger_2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 100
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Ruby_Swarm"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 24
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red2_trigger_3
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 100
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+			create_fleet = {
+				name = "NAME_Ruby_Swarm"
+				effect = {
+					set_owner = event_target:crystal_country
+					while = {
+						count = 11
+						create_ship = {
+							name = ""
+							design = "NAME_Large_Crystal_Entity_Red"
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = ""
+							design = "NAME_Medium_Crystal_Entity_Red"
+						}
+					}
+					while = {
+						count = 7
+						create_ship = {
+							name = ""
+							design = "NAME_Small_Crystal_Entity_Red"
+						}
+					}
+					set_location = event_target:red2_trigger_4
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 100
+					queue_actions = {
+						repeat = {
+							wait = {
+								duration = 9999
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Crystal Entities - Elites & Base
+hostile_init_07 = {
+
+	class = sc_pulsar
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 10
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_1 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+
+	max_instances = 1
+	spawn_chance = 100
+	
+	flags = { hostile_system elite_system crystal_home_system pulsar atw_edited }
+	
+	planet = {
+		class = star
+		orbit_distance = 0
+	}
+	
+	change_orbit = 45
+	
+	planet = {
+		count = { min = 2 max = 10 }
+		orbit_distance = { min = 10 max = 20 }
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = random_non_colonizable
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_crystal_country = yes
+		random_system_planet = {
+			limit = { is_star = yes }
+			event_target:crystal_country = {
+				save_event_target_as = elite1_owner
+				create_fleet = {
+					name = "NAME_Crystal_Nidus"
+					effect = {
+						set_owner = event_target:crystal_country
+						create_ship = {
+							name = "NAME_Crystal_Nidus"
+							design = "NAME_Crystal_Nidus"
+						}
+						set_location = {
+							target = prevprev
+							distance = 40
+							angle = 0
+						}
+						#set_fleet_stance = aggressive
+						#set_aggro_range_measure_from = return_point
+						#set_aggro_range = 500
+					}
+				}
+				create_fleet = {
+					name = "NAME_Ruby_Guardians"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 5
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Crystal_Entity_Red_Elite"
+							}
+						}
+						while = {
+							count = 9
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Red_Elite"
+							}
+						}
+						while = {
+							count = 19
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Red_Elite"
+							}
+						}
+						set_location = {
+							target = prevprev
+							distance = 40
+							angle = 72
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+				create_fleet = {
+					name = "NAME_Topaz_Guardians"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 2
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Crystal_Entity_Yellow_Elite"
+							}
+						}
+						while = {
+							count = 14
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Yellow_Elite"
+							}
+						}
+						while = {
+							count = 16
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Yellow_Elite"
+							}
+						}
+						set_location = {
+							target = prevprev
+							distance = 40
+							angle = 144
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+				create_fleet = {
+					name = "NAME_Sapphire_Guardians"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 4
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Crystal_Entity_Blue_Elite"
+							}
+						}
+						while = {
+							count = 8
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Blue_Elite"
+							}
+						}
+						while = {
+							count = 20
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Blue_Elite"
+							}
+						}
+						set_location = {
+							target = prevprev
+							distance = 40
+							angle = 216
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+				create_fleet = {
+					name = "NAME_Emerald_Guardians"
+					effect = {
+						set_owner = event_target:crystal_country
+						while = {
+							count = 6
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Crystal_Entity_Green_Elite"
+							}
+						}
+						while = {
+							count = 10
+							create_ship = {
+								name = ""
+								design = "NAME_Medium_Crystal_Entity_Green_Elite"
+							}
+						}
+						while = {
+							count = 16
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Crystal_Entity_Green_Elite"
+							}
+						}
+						set_location = {
+							target = prevprev
+							distance = 40
+							angle = 288
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}
+	}
+
+	neighbor_system = {
+		distance = { min = 0 max = 50 }
+		initializer = "hostile_init_04" # Green Patrol variation
+	}
+
+	neighbor_system = {
+		distance = { min = 0 max = 50 }
+		initializer = "hostile_init_06" # Red variation
+	}
+}
+
+# Cloud Entity
+hostile_init_08 = {
+	class = "sc_a"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0.1
+			NOT = { is_in_cluster = resource_cluster_2 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	flags = { hostile_system void_system white_giant atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 70
+	
+	# Inner Zone
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_super_terran"
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+
+	change_orbit = 25 #95
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_super_terran"
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 35 #130
+
+	# Eco Zone
+
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+
+	change_orbit = 70 #200
+
+	# Outer Zone
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 90 #290
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 50 #340
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_cloud_country = yes
+		random_system_planet = {
+			limit = { is_star = yes }
+			set_deposit = d_energy_2
+			event_target:cloud_country = {
+				set_aggro_range = 500
+				create_fleet = {
+					name = "NAME_Void_Cloud"
+					effect = {
+						set_owner = event_target:cloud_country
+						create_ship = {
+							name = ""
+							design = "NAME_Cloud_Entity"
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500
+					}
+				}
+			}
+		}		
+	}
+}
+
+# Space Amoeba, Large pack
+hostile_init_10 = {
+	class = "sc_a"
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_3 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	flags = { hostile_system amoeba_1_system white_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 70
+	
+	# Inner Zone
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_super_terran"
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+
+	change_orbit = 25 #95
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_super_terran"
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 35 #130
+
+	# Eco Zone
+
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+
+	change_orbit = 70 #200
+
+	# Outer Zone
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 90 #290
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 50 #340
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_amoeba_country = yes
+		random_system_planet = {
+			limit = { is_star = no }
+			event_target:amoeba_country = {
+				create_fleet = {
+					name = "NAME_Space_Amoeba"
+					settings = {
+						garrison = yes
+					}					
+					effect = {
+						set_owner = event_target:amoeba_country
+						while = {
+							count = 6
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Space_Organism_Zebra"
+							}
+						}
+						while = {
+							count = 2
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Space_Organism_Zebra"
+							}
+						}
+						set_formation_scale = 3.0
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 100
+					}
+				}
+			}
+		}
+	}
+}
+
+# Space Amoeba, Small pack
+hostile_init_10_small_amoeba_pack = {
+	class = "sc_a"
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 40
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 90
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0.1
+			NOT = { is_in_cluster = resource_cluster_3 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+	}
+	
+	flags = { hostile_system amoeba_2_system white_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 40
+	planet = {
+		count = { min = 1 max = 3 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 50
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 250
+	planet = {
+		count = { min = 4 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+	
+	change_orbit = -350
+	
+	# Inner Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+	
+	change_orbit = 120 #170
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		class = random_non_colonizable
+
+		change_orbit = @base_moon_distance		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 80 #250
+
+	# Outer Zone
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 80 #330
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_amoeba_country = yes
+		random_system_planet = {
+			limit = { is_star = no }
+			event_target:amoeba_country = {
+				create_fleet = {
+					name = "NAME_Space_Amoeba"
+					settings = {
+						garrison = yes
+					}
+					effect = {
+						set_owner = event_target:amoeba_country
+						while = {
+							count = 4
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Space_Organism_Teal"
+							}
+						}
+						while = {
+							count = 1
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Space_Organism_Teal"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 100
+					}
+				}
+			}
+		}
+	}
+}
+
+# Space Amoeba ROAMING VARIATION
+hostile_init_11 = {
+	class = "sc_a"
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 40
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 90
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_3 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+	}
+	
+	flags = { hostile_system amoeba_3_system white_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 40
+	planet = {
+		count = { min = 1 max = 3 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 50
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 250
+	planet = {
+		count = { min = 4 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+	
+	change_orbit = -350
+	
+	# Inner Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+	
+	change_orbit = 120 #170
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		class = random_non_colonizable
+
+		change_orbit = @base_moon_distance		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 80 #250
+
+	# Outer Zone
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = 2
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 80 #330
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+	
+	init_effect = {
+		create_amoeba_country = yes
+		random_system_planet = {
+			limit = { is_star = no }
+			save_event_target_as = grazing_grounds
+			event_target:amoeba_country = {
+				create_fleet = {
+					name = "NAME_Space_Amoeba_Hunters"
+					effect = {
+						set_owner = event_target:amoeba_country
+						random_list = {
+							20 = {
+								set_fleet_flag = tiyanki_hunter
+							}
+							70 = {
+								set_fleet_flag = empty_system
+							}
+						}
+						while = {
+							count = 4
+							create_ship = {
+								name = ""
+								design = "NAME_Small_Space_Organism_Orange"
+							}
+						}
+						while = {
+							count = 1
+							create_ship = {
+								name = ""
+								design = "NAME_Large_Space_Organism_Orange"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 20
+
+						if = {
+							limit = { has_fleet_flag = tiyanki_hunter }
+							save_event_target_as = hunting_amoeba
+							queue_actions = {
+								wait = { # Cooldown until they start moving
+									duration = 5000
+									random = 1000
+								}
+							}
+						}
+						else = {
+							queue_actions = {
+								wait = { # Cooldown until they start moving
+									duration = 5000
+									random = 1000
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Mining Drones
+hostile_init_12 = {
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 350
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0.1
+			NOT = { is_in_cluster = resource_cluster_4 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+	}
+	
+	flags = { hostile_system drone_system_1 yellow_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 15
+	
+	# Inner Zone
+
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = "ph_dwarf"
+	}
+
+	change_orbit = 22 #37
+
+	# Eco Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+		}
+	}
+
+	change_orbit = 28 #65
+
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	
+	change_orbit = 45 #110
+
+	# Outer Zone
+
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 60 #170
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 50 #220
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 60 #280
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = random_non_colonizable
+		
+		change_orbit = @base_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 25 #305
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = random_non_colonizable
+		
+		change_orbit = @base_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 40 #345
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = ph_dwarf
+	}
+
+	change_orbit = 5 #350
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+	
+	init_effect = {
+		create_drone_country = yes
+		random_system_planet = {
+			limit = { 
+				has_deposit_for = shipclass_mining_station
+				is_star = no
+				NOT = { is_planet_class = pc_gas_giant }
+			}
+			set_deposit = d_minerals_4
+			event_target:drone_country = {
+				save_event_target_as = mining_drones
+				create_fleet = {
+					name = "NAME_Ancient_Mining_Drones"
+					effect = {
+						set_owner = event_target:drone_country
+						while = {
+							count = 10
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Mining_Drone"
+							}
+						}
+						while = {
+							count = 4
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Combat_Drone"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = return_point
+						set_aggro_range = 150
+						queue_actions = {
+							repeat = {
+								wait = {
+									duration = 999
+									random = 10
+								}
+							}
+						}
+					}
+				}
+			}
+			create_mining_station = {
+				owner = event_target:mining_drones
+			}
+		}	
+	}
+}
+
+# Mining Drones
+hostile_init_12_mining_drones = {
+	class = "sc_g"
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 350
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_4 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+	}
+	
+	flags = { hostile_system drone_system_2 yellow_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	# Inner Zone
+
+	change_orbit = 18
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "ph_dwarf"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	change_orbit = 8 #26
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		class = random_non_colonizable
+
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 10 #36
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 8 #44
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 12 #56
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 34 #90
+
+	# Outer Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		class = "rl_sub_giant"
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 50 #140
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "rl_sub_giant"
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 60 #200
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "rl_sub_giant"
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 90 #290
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "ph_terran"
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = "ph_dwarf"
+		}
+	}
+
+	change_orbit = 15 #305
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "ph_dwarf"
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = "ph_dwarf"
+		}
+	}
+
+	change_orbit = 45 #350
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+	
+	init_effect = {
+		create_drone_country = yes
+		random_system_planet = {
+			limit = { 
+				has_deposit_for = shipclass_mining_station
+				is_star = no
+				NOT = { is_planet_class = pc_gas_giant }
+			}
+			set_deposit = d_minerals_8
+			event_target:drone_country = {
+				save_event_target_as = mining_drones
+				create_fleet = {
+					name = "NAME_Ancient_Mining_Drones"
+					effect = {
+						set_owner = event_target:drone_country
+						while = {
+							count = 8
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Mining_Drone"
+							}
+						}
+						while = {
+							count = 4
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Combat_Drone"
+							}
+						}
+						while = {
+							count = 2
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Destroyer"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = return_point
+						set_aggro_range = 150
+						queue_actions = {
+							repeat = {
+								wait = {
+									duration = 999
+									random = 10
+								}
+							}
+						}
+					}
+				}
+			}
+			create_mining_station = {
+				owner = event_target:mining_drones
+			}
+		}	
+	}
+}
+
+# Mining Drone Destroyers
+hostile_init_12_drone_destroyer = {
+	class = "sc_brown_companion_2"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 1
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_4 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	
+	flags = { hostile_system drone_destroyer_system white_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	# Inner Zone
+
+	change_orbit = 30
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+
+	change_orbit = 15 #45
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+
+	change_orbit = 12 #57
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		class = random_non_colonizable
+	}
+
+	change_orbit = 38 #95
+	
+	# Eco Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = star
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @giant_moon_distance
+
+		planet = {
+			count = { min = 1 max = 2 }
+			orbit_distance = { min = 1 max = 3 }
+			class = "ph_dwarf"
+			orbit_angle = { min = 90 max = 270 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		}
+		planet = {
+			count = 1
+			orbit_distance = 3
+			class = "ph_terran"
+			orbit_angle = { min = 90 max = 270 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = 1
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 1
+				class = "ph_dwarf"
+				flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			}
+		}
+	}
+
+	change_orbit = 55 #150
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	
+	change_orbit = 70 #220
+
+	# Outer Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "ph_jovian"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 90 #310
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 60 #370
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "ph_dwarf"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+
+	change_orbit = 30 #400
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+	
+	init_effect = {
+		create_drone_country = yes
+		random_system_planet = {
+			limit = { has_deposit_for = shipclass_mining_station }
+			set_deposit = d_minerals_8
+			event_target:drone_country = {
+				save_event_target_as = mining_drones
+				create_fleet = {
+					name = "NAME_Asset_Protection_Unit"
+					effect = {
+						set_owner = event_target:drone_country
+						while = {
+							count = 7
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Combat_Drone"
+							}
+						}
+						while = {
+							count = 3
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Destroyer"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = return_point
+						set_aggro_range = 150
+						queue_actions = {
+							repeat = {
+								wait = {
+									duration = 999
+									random = 10
+								}
+							}
+						}
+					}
+				}
+			}
+			create_mining_station = {
+				owner = event_target:mining_drones
+			}
+		}	
+	}
+}
+
+# Mining Drones ALTERNATE
+hostile_init_13 = {
+	class = "sc_brown_companion_2"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+
+	usage = misc_system_init
+	usage_odds = {
+		base = 2
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_4 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+	}
+	
+	flags = { hostile_system drone_system_3 white_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	# Inner Zone
+
+	change_orbit = 30
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+
+	change_orbit = 15 #45
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+
+	change_orbit = 12 #57
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		class = random_non_colonizable
+	}
+
+	change_orbit = 38 #95
+	
+	# Eco Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = star
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @giant_moon_distance
+
+		planet = {
+			count = { min = 1 max = 2 }
+			orbit_distance = { min = 1 max = 3 }
+			class = "ph_dwarf"
+			orbit_angle = { min = 90 max = 270 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		}
+		planet = {
+			count = 1
+			orbit_distance = 3
+			class = "ph_terran"
+			orbit_angle = { min = 90 max = 270 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = 1
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 1
+				class = "ph_dwarf"
+				flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			}
+		}
+	}
+
+	change_orbit = 55 #150
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	
+	change_orbit = 70 #220
+
+	# Outer Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "ph_jovian"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 90 #310
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 60 #370
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "ph_dwarf"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+
+	change_orbit = 30 #400
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+
+	init_effect = {
+		create_drone_country = yes
+		random_system_planet = {
+			limit = { has_deposit_for = shipclass_mining_station }
+			set_deposit = d_minerals_8
+			event_target:drone_country = {
+				create_fleet = {
+					name = "NAME_Ancient_Mining_Drones"
+					effect = {
+						set_owner = event_target:drone_country
+						while = {
+							count = 10
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Mining_Drone"
+							}
+						}
+						while = {
+							count = 3
+							create_ship = {
+								name = ""
+								design = "NAME_Ancient_Combat_Drone"
+							}
+						}
+						set_location = PREVPREV
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = return_point
+						set_aggro_range = 200
+					}
+				}
+			}
+			create_mining_station = {
+				owner = event_target:drone_country
+			}
+		}
+	}	
+}
+
+# Mining Drone Home
+hostile_init_14 = {
+	class = "sc_f"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 10
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_4 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+
+	max_instances = 1
+	spawn_chance = 100
+	
+	flags = { hostile_system drone_home_system white_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+		init_effect = {
+			create_drone_country = yes
+		}
+	}
+	
+	# Inner Zone
+
+	change_orbit = 45 #45
+	planet = {
+		count = 0
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	change_orbit = 18 #63
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_giant"
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+			class = random_non_colonizable
+		}
+	}
+
+	# Eco Zone
+
+	change_orbit = 37 #100
+	planet = {
+		count = 3
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = 70
+
+		init_effect = {
+			create_fleet = {
+				name = "NAME_Mining_Corps"
+				effect = {
+					set_owner = event_target:drone_country
+					while = {
+						count = 12
+						create_ship = {
+							name = ""
+							design = "NAME_Ancient_Mining_Drone"
+						}
+					}
+					while = {
+						count = 3
+						create_ship = {
+							name = ""
+							design = "NAME_Ancient_Combat_Drone"
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 0
+					}
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 200
+				}
+			}
+			create_fleet = {
+				name = "NAME_Asset_Protection_Unit"
+				effect = {
+					set_owner = event_target:drone_country
+					while = {
+						count = 10
+						create_ship = {
+							name = ""
+							design = "NAME_Ancient_Destroyer"
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 180
+					}
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 200
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = event_target:ore_grinder }
+				}
+				set_planet_flag = ore_grinder_planet
+				set_deposit = d_minerals_10
+				create_fleet = {
+					name = "NAME_Central_Processing"
+					effect = {
+						set_owner = event_target:drone_country
+						create_ship = {
+							name = "NAME_Ore_Grinder"
+							design = "NAME_Drone_Home_Base"
+							graphical_culture = "drone"
+						}
+						set_location = prev
+						save_event_target_as = ore_grinder
+						set_fleet_flag = ore_grinder
+					}
+				}
+			}
+			else = {
+				create_mining_station = {
+					owner = event_target:drone_country
+				}
+			}
+		}
+	}
+
+	change_orbit = 50 #150
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	
+	# Outer Zone
+
+	change_orbit = 80 #230
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 70 #300
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 60 #360
+	planet = {
+		count = 0
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 40 #400
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+
+	neighbor_system = {
+		distance = { min = 0 max = 50 }
+		initializer = "hostile_init_12"
+	}
+
+	neighbor_system = {
+		distance = { min = 0 max = 50 }
+		initializer = "hostile_init_12_drone_destroyer"
+	}
+}
+
+# Tiyanki
+hostile_init_15 = {
+	class = "sc_f"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 40
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 375
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 4
+		modifier = {
+			factor = 0.1
+			NOT = { is_in_cluster = resource_cluster_5 }
+		}
+		modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+	}
+
+	flags = { tiyanki_home_system white_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 40
+	
+	# Inner Zone
+
+	planet = {
+		count = { min = 1 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+		
+	change_orbit = 25 #65
+
+	# Eco Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+
+	change_orbit = 20 #85
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_jovian"
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 4 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		}
+	}
+
+	change_orbit = 65 #150
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_jovian"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 5 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+
+	change_orbit = 90 #240
+	
+	# Outer Zone
+
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	change_orbit = 50 #290
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 55 #345
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "ph_terran"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 15 #360
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "ph_dwarf"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+	}
+
+	change_orbit = 15 #375
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+
+	init_effect = {
+		create_tiyanki_country = yes
+		random_system_planet = {
+			limit = { is_planet_class = pc_gas_giant }
+			save_event_target_as = giant
+			event_target:tiyanki_country = {
+				save_event_target_as = tiyanki_country2
+				random_list = {
+					10 = { create_tiyanki_fleet_1 = yes }
+					10 = { create_tiyanki_fleet_2 = yes }
+					10 = { create_tiyanki_fleet_3 = yes }
+					10 = { create_tiyanki_fleet_4 = yes }
+					10 = { create_tiyanki_fleet_5 = yes }
+				}
+			}
+		}
+	}
+}
+
+# Tiyanki Spawn System
+hostile_init_16 = {
+	class = "sc_f"
+	name = "NAME_Tiyana_Vek"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	usage = misc_system_init
+	usage_odds = 90000
+	max_instances = 1
+
+	flags = { tiyanki_spawn_system white_star atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_physics_6
+			create_country = {
+				name = "NAME_Placid_Leviathans"
+				type = tiyanki_garrison
+				flag = {
+					icon = {
+						category = "zoological"
+						file = "flag_zoological_1.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_global_event_target_as = tiyanki_garrison_country
+				}
+			}
+			create_ambient_object = {
+				type = "space_storm_2"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+	}
+	
+	change_orbit = 45 #45
+	planet = {
+		class = "pc_gas_giant"
+		name = "NAME_Zathika_Mev"
+		orbit_distance = 0
+		orbit_angle = 35
+		size = 30
+		has_ring = no
+		flags = { tiyanki_giant1 torrid_zone }
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			save_event_target_as = giant1
+			add_deposit = d_society_6
+		}
+	}
+
+	change_orbit = 18 #63
+	planet = {
+		class = "pc_gas_giant"
+		name = "NAME_Surribzha"
+		orbit_distance = 0
+		orbit_angle = 85
+		size = 25
+		has_ring = yes
+		flags = { tiyanki_giant2 hot_zone }
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			save_event_target_as = giant2
+			add_deposit = d_society_6
+		}
+	}
+
+	change_orbit = 37 #100
+	planet = {
+		count = { min = 1 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 50 #150
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 80 #230
+	planet = {
+		class = "pc_gas_giant"
+		name = "NAME_Yllarv"
+		orbit_distance = 0
+		orbit_angle = 95
+		size = 35
+		has_ring = no
+		flags = { tiyanki_giant3 frigid_zone }
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			save_event_target_as = giant3
+			add_deposit = d_society_6
+		}
+	}
+
+	change_orbit = 70 #300
+	planet = {
+		class = "pc_gas_giant"
+		name = "NAME_Khetzhavu"
+		orbit_distance = 0
+		orbit_angle = 90
+		size = 31
+		has_ring = no
+		flags = { tiyanki_giant4 frigid_zone }
+
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			save_event_target_as = giant4
+			add_deposit = d_society_6
+		}
+	}
+
+	change_orbit = 40 #340
+	planet = {
+		class = "pc_barren_cold"
+		name = "NAME_Dulna"
+		orbit_distance = 0
+		orbit_angle = 145
+		size = 22
+		has_ring = no
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 20 #360
+	planet = {
+		class = "pc_frozen"
+		name = "NAME_Valzhuva"
+		orbit_distance = 0
+		orbit_angle = 145
+		size = 14
+		has_ring = no
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 40 #400
+	planet = {
+		count = { min = 3 max = 6 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+
+	init_effect = {
+		save_global_event_target_as = tiyanki_spawn_system
+		create_tiyanki_home_fleet_1 = yes
+		create_tiyanki_home_fleet_2 = yes
+		create_tiyanki_home_fleet_3 = yes
+		create_tiyanki_home_fleet_4 = yes
+		create_tiyanki_home_roaming_fleets = yes
+	}
+}
+
+### Privateer Conglomerate
+hostile_init_18 = {
+	class = "sc_a"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 95
+	}
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 100
+		modifier = {
+			factor = 0
+			NOT = { is_in_cluster = resource_cluster_0 }
+		}
+		modifier = {
+            factor = 0
+            OR = {
+				has_star_flag = empire_cluster
+				host_has_dlc = "Apocalypse"
+			}
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+
+	max_instances = 1
+	spawn_chance = 100
+
+	flags = { hostile_system pirate_home_system pirate_system white_giant atw_edited }
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+
+		init_effect = {
+			prevent_anomaly = yes
+			set_deposit = d_energy_4
+			create_pirate_country = yes
+			event_target:pirate_country = {
+				if = {
+					limit = {
+						NOT = {
+							has_modifier = pirate_power
+						}
+					}
+					add_modifier = {
+						modifier = pirate_power
+						days = -1
+					}
+				}
+			}
+			every_country = {
+				establish_communications_no_message = event_target:pirate_country
+			}
+
+			create_fleet = {
+				name = "NAME_Old_Guard"
+				effect = {
+					set_owner = event_target:pirate_country
+					set_fleet_flag = pirate_home_system_fleet
+					while = {
+						count = 1
+						create_ship = {
+							name = random
+							design = "NAME_Pirate_Galleon"
+							graphical_culture = "pirate_01"
+						}
+					}
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 250
+					set_location = {
+						target = prev
+						distance = 90
+						angle = 330
+					}
+					set_fleet_flag = pirate_home_system_fleet
+				}
+			}
+
+			create_fleet = {
+				name = "NAME_Scarred_Veterans"
+				effect = {
+					set_owner = event_target:pirate_country
+					set_fleet_flag = pirate_home_system_fleet
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							design = "NAME_Corsair"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 10
+						create_ship = {
+							name = random
+							design = "NAME_Marauder"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 20
+						create_ship = {
+							name = random
+							design = "NAME_Black_Earl"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							design = "NAME_Skull"
+							graphical_culture = "pirate_01"
+						}
+					}
+					set_fleet_flag = pirate_home_system_fleet
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 250
+					set_location = {
+						target = prev
+						distance = 90
+						angle = 120
+					}
+				}
+			}
+
+			create_fleet = {
+				name = "NAME_Young_Blood"
+				effect = {
+					set_owner = event_target:pirate_country
+					create_ship_design = {
+						design = "NAME_Reaver"
+					}
+					while = {
+						count = 12
+						create_ship = {
+							name = random
+							design = last_created_design
+							graphical_culture = "pirate_01"
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 90
+						angle = 200
+					}
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 150
+					set_fleet_flag = pirate_home_system_fleet
+					save_global_event_target_as = young_blood
+				}
+			}
+		}
+	}
+
+	change_orbit = 95
+	
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 0 max = 150 }
+
+		init_effect = {
+			prevent_anomaly = yes
+			set_deposit = d_minerals_10
+		}
+	}
+	planet = {
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 160 max = 330 }
+
+		init_effect = {
+			prevent_anomaly = yes
+			set_deposit = d_minerals_8
+		}
+	}
+}
+
+
+# Amoeba Home System
+hostile_init_20 = {
+	class = "rl_trinary_young_twins_being_watched"
+	name = "NAME_Amor_Alveo"
+	
+	usage = misc_system_init
+	usage_odds = {
+		base = 5000
+		modifier = {
+            factor = 0
+            OR = {
+				has_star_flag = empire_cluster
+				is_fe_cluster = yes
+			}
+        }
+        modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}
+	max_instances = 1
+
+	inner_radius_offset = 100
+	outer_radius_offset = 100
+
+	flags = { hostile_system amoeba_home_system yellow_star white_giant atw_edited }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 65
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 190
+	}
+
+    planet = {
+        count = 1
+        class = star
+		name = "NAME_Amor_Alveo"
+        orbit_distance = 15
+        orbit_angle = 0
+        size = 30
+		has_ring = no
+		
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_8
+			save_event_target_as = amoeba_star
+			set_planet_flag = amoeba_star
+
+			create_country = {
+				name = "NAME_Space_Amoebas_United"
+				type = amoeba_garrison
+				flag = {
+					icon = {
+						category = "zoological"
+						file = "flag_zoological_1.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"black"
+						"black"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					save_global_event_target_as = amoeba_garrison_country
+					if = {
+						limit = {
+							exists = event_target:amoeba_country
+						}
+						set_faction_hostility = {
+							set_hostile = no
+							set_neutral = yes
+							target = event_target:amoeba_country
+						}
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "space_storm_1"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 5
+					angle = 180
+				}
+			}
+		}
+    }
+
+    planet = {
+        count = 1
+        class = star
+		name = "NAME_Amor_Toreo"
+        orbit_distance = 30 #45
+        orbit_angle = 180
+        size = 25
+        has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+    }
+
+    change_orbit = 20 #65(20)	
+	#Inner Zone
+	planet = {
+		name = "NAME_Tior"
+		class = pc_asteroid
+		orbit_angle = 95
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	
+	planet = {
+		name = "NAME_Lemior"
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = 58
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	
+	planet = {
+		name = "NAME_Isior"
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = 137
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+	change_orbit = 25 #90(45)
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+		class = pc_molten
+		name = "NAME_Eberax"
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_volatile_motes_2
+		}
+	}
+	change_orbit = 15 #105(60)
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		class = pc_molten
+		name = "NAME_Tharonax"
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_volatile_motes_1
+			add_deposit = d_minerals_3
+		}
+	}
+	change_orbit = 5 #110(65)
+	planet = {
+		count = 0
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		class = pc_molten
+		name = "NAME_Narnax"
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 40 #150(105)
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone amoeba_giant1 } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		class = "rl_super_giant"
+		name = "NAME_Veronax"
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			save_event_target_as = amoeba_giant
+			add_deposit = d_exotic_gases_3
+		}
+
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			class = pc_barren_cold
+			name = "NAME_Evor_Tomos"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 1
+			size = 12
+	
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_4
+			}
+		}
+		moon = {
+			class = pc_barren_cold
+			name = "NAME_Evor_Aras"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 2
+			size = 9
+	
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_society_6
+			}
+		}
+	}
+	change_orbit = 40 #190
+	planet = {
+		name = "NAME_Selor"
+		class = pc_ice_asteroid
+		orbit_angle = 45
+		has_ring = no
+		init_effect = {
+			save_event_target_as = amoeba_ice_asteroid_1
+			set_planet_flag = amoeba_ice_asteroid_1
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_5
+		}
+	}
+	
+	planet = {
+		name = "NAME_Theresior"
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		orbit_angle = 133
+		has_ring = no
+		init_effect = {
+			save_event_target_as = amoeba_ice_asteroid_2
+			set_planet_flag = amoeba_ice_asteroid_2
+			prevent_anomaly = yes
+		}
+	}
+	
+	planet = {
+		name = "NAME_Pesior"
+		class = pc_ice_asteroid
+		orbit_distance = 0
+		orbit_angle = 107
+		has_ring = no
+		init_effect = {
+			save_event_target_as = amoeba_ice_asteroid_3
+			set_planet_flag = amoeba_ice_asteroid_3
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_rare_crystals_2
+		}
+	}
+	
+	change_orbit = 100 #290
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 150
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 25 max = 30 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+		
+		#Inner Zone
+		change_orbit = 40
+		planet = {
+			count = 1
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+			class = pc_molten
+			name = "NAME_Narnax"
+			init_effect = {
+				prevent_anomaly = yes
+			}
+		}
+    }
+
+	init_effect = {
+		save_global_event_target_as = amoeba_home_system
+		create_amoeba_home_fleet_1 = yes
+		create_amoeba_home_fleet_2 = yes
+		create_amoeba_home_roaming_fleets = yes
+	}
+}

@@ -1,0 +1,1611 @@
+adjust_asteroid_size = {
+	random_list = {
+		8 = { set_planet_size = 6 }
+		25 = { set_planet_size = 5 }
+		50 = { set_planet_size = 4 }
+		20 = { set_planet_size = 3 }
+	}
+}
+
+spawn_asteroid_features = {
+	#Remove any existing modifiers
+	remove_uninhabitable_planet_modifiers = yes
+	#Chance to spawn an asteroid modifier and corresponding deposit
+	if = {
+		limit = { is_planet_class = "pc_asteroid" NOT = { has_planet_flag = "deposit_spawned" } }
+		random_list = {
+			0 = {
+				add_modifier = {
+					modifier = "asteroid-carbon_rich"
+					days = -1
+				}
+				modifier = { add = 5 planet_size = 3 }
+				modifier = { add = 10 planet_size = 4 }
+				modifier = { add = 15 planet_size = 5 }
+				modifier = { add = 25 planet_size = 6 }
+				modifier = { factor = 0.50 orbits_cold_star = yes }
+				modifier = { factor = 1.00 orbits_ideal_star = yes }
+				modifier = { factor = 1.50 orbits_hot_star = yes }
+				random_list = {
+					0 = {
+						add_deposit = d_minerals_2
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 3 }
+					}
+					0 = {
+						add_deposit = d_minerals_2
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 4 }
+					}
+					0 = {
+						add_deposit = d_minerals_3
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 5 }
+					}
+					0 = {
+						add_deposit = d_minerals_3
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 6 }
+					}
+				}
+			}
+			0 = {
+				add_modifier = {
+					modifier = "asteroid-precious_metals"
+					days = -1
+				}
+				modifier = { add = 1 planet_size = 3 }
+				modifier = { add = 4 planet_size = 4 }
+				modifier = { add = 7 planet_size = 5 }
+				modifier = { add = 12 planet_size = 6 }
+				modifier = { factor = 0.50 orbits_cold_star = yes }
+				modifier = { factor = 1.00 orbits_ideal_star = yes }
+				modifier = { factor = 1.50 orbits_hot_star = yes }
+				random_list = {
+					0 = {
+						add_deposit = d_trade_value_1
+						add_deposit = d_minerals_2
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 3 }
+					}
+					0 = {
+						add_deposit = d_trade_value_2
+						add_deposit = d_minerals_3
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 4 }
+					}
+					0 = {
+						add_deposit = d_trade_value_3
+						add_deposit = d_minerals_4
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 5 }
+					}
+					0 = {
+						add_deposit = d_trade_value_4
+						add_deposit = d_minerals_5
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 6 }
+					}
+				}
+			}
+			50 = {
+				# Do nothing
+			}
+		}
+	}
+	if = {
+		limit = { is_planet_class = "pc_ice_asteroid" NOT = { has_planet_flag = "deposit_spawned" } }
+		random_list = {
+			#0 = {
+			#	add_modifier = {
+			#		modifier = "asteroid-frozen_gases"
+			#		days = -1
+			#	}
+			#	add_deposit = d_energy_2
+			#	set_planet_flag = "deposit_spawned"
+			#	modifier = { add = 1 planet_size = 3 }
+			#}
+			0 = {
+				add_modifier = {
+					modifier = "asteroid-frozen_gases"
+					days = -1
+				}
+				add_deposit = d_energy_1
+				add_deposit = d_water_ices_1
+				set_planet_flag = "deposit_spawned"
+				modifier = { add = 5 planet_size = 4 }
+				modifier = { factor = 1.50 orbits_cold_star = yes }
+				modifier = { factor = 1.00 orbits_ideal_star = yes }
+				modifier = { factor = 0.50 orbits_hot_star = yes }
+			}
+			0 = {
+				add_modifier = {
+					modifier = "asteroid-frozen_gases"
+					days = -1
+				}
+				add_deposit = d_energy_1
+				add_deposit = d_water_ices_2
+				set_planet_flag = "deposit_spawned"
+				modifier = { add = 10 planet_size = 5 }
+				modifier = { factor = 1.50 orbits_cold_star = yes }
+				modifier = { factor = 1.00 orbits_ideal_star = yes }
+				modifier = { factor = 0.50 orbits_hot_star = yes }
+			}
+			0 = {
+				add_modifier = {
+					modifier = "asteroid-frozen_gases"
+					days = -1
+				}
+				add_deposit = d_energy_2
+				add_deposit = d_water_ices_2
+				set_planet_flag = "deposit_spawned"
+				modifier = { add = 20 planet_size = 6 }
+				modifier = { factor = 1.50 orbits_cold_star = yes }
+				modifier = { factor = 1.00 orbits_ideal_star = yes }
+				modifier = { factor = 0.50 orbits_hot_star = yes }
+			}
+			80 = {
+				# Do nothing
+			}
+		}
+	}
+	if = {
+		limit = { is_planet_class = "pc_rare_crystal_asteroid" NOT = { has_planet_flag = "deposit_spawned" } }
+		random_list = {
+			95 = {
+				add_modifier = {
+					modifier = "asteroid-rare_crystals"
+					days = -1
+				}
+				random_list = {
+					0 = {
+						#add_deposit = d_rare_crystals_1
+						#set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 3 }
+					}
+					0 = {
+						add_deposit = d_rare_crystals_1
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 4 }
+					}
+					0 = {
+						add_deposit = d_rare_crystals_1
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 5 }
+					}
+					0 = {
+						add_deposit = d_rare_crystals_2
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 6 }
+					}
+				}
+			}
+			5 = {
+				# Do nothing
+			}
+		}
+	}
+	
+}
+
+convert_ph_giant = {
+	random_list = {
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_neptunian }
+			modifier = { add = 100 is_planet_class = ph_jovian }
+			modifier = { factor = 1.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_chthonian"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 40 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_helium_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_alkaline_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_jovian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_silicate_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_temperate_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_jovian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_water-clouded_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 50 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_water-clouded_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.5 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_turbulent_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_jovian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.5 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_cloudless_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_frigid_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_neptunian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.5 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_methane_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 100 is_planet_class = ph_jovian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.0 has_modifier = "temperature-freezing" }
+			change_pc = "pc_gas_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 50 is_planet_class = ph_jovian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.5 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_frigid_giant"
+			set_planet_flag = "planet_converted"
+		}
+		0 = {
+			modifier = { add = 50 is_planet_class = ph_jovian }
+			modifier = { factor = 0.0 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.0 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.0 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.0 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.0 has_modifier = "temperature-freezing" }
+			change_pc = "orbit_methane_giant"
+			set_planet_flag = "planet_converted"
+		}
+	}
+}
+
+spawn_giant_features = {
+	#Remove any existing modifiers
+	remove_uninhabitable_planet_modifiers = yes
+	#Chance to spawn a gas/ice giant modifier and corresponding deposit
+	random_list = {
+		1 = {
+			add_modifier = {
+				modifier = "atmosphere-dense"
+				days = -1
+			}
+			modifier = { factor = 0.00 is_planet_class = "orbit_chthonian" }
+		}
+		0 = {
+			add_modifier = {
+				modifier = "atmosphere-airless"
+				days = -1
+			}
+			modifier = { add = 1 is_planet_class = "orbit_chthonian" }
+		}
+	}
+	if = {
+		limit = { 
+			AND = {
+				has_ring = yes
+				NOR = {
+					is_planet_class = "orbit_helium_giant"
+					is_planet_class = "orbit_chthonian"
+				}
+			}
+		}
+		add_modifier = {
+			modifier = "ringed_giant"
+			days = -1
+		}
+	}
+	if = {
+		limit = { 
+				has_ring = yes
+				OR = {
+					is_planet_class = "orbit_helium_giant"
+					is_planet_class = "orbit_chthonian"
+					planet_size < 26
+				}		
+		}
+		set_ring = no
+		if = {
+			limit = { has_modifier = "ringed_giant" }
+			remove_modifier = "ringed_giant"
+		}
+	}
+	random_list = {
+		0 = {
+			modifier = { add = 10 has_modifier = "ringed_giant" }
+			random_list = {
+				0 = {
+					add_deposit = d_energy_1
+					add_deposit = d_trade_value_1
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 1 planet_size < 26 }
+				}
+				0 = {
+					add_deposit = d_energy_2
+					add_deposit = d_trade_value_1
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 25 planet_size < 30 }
+				}
+				0 = {
+					add_deposit = d_energy_2
+					add_deposit = d_trade_value_2
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 29 planet_size < 35 }
+				}
+				0 = {
+					add_deposit = d_energy_3
+					add_deposit = d_trade_value_2
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 34 planet_size < 40 }
+				}
+				0 = {
+					add_deposit = d_energy_3
+					add_deposit = d_trade_value_3
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 39 }
+				}
+			}
+		}
+		10 = {
+			modifier = { factor = 0 has_modifier = "ringed_giant" }
+			modifier = { factor = 0 is_planet_class = "orbit_chthonian" }
+			modifier = { factor = 0 is_planet_class = "orbit_helium_giant" }
+			
+			random_list = {
+				0 = {
+					add_deposit = d_engineering_2
+					add_modifier = {
+						modifier = "gas_dwarf"
+						days = -1
+					}
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 1 planet_size < 26 }
+				}
+				0 = {
+					add_deposit = d_energy_2
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 25 planet_size < 30 }
+				}
+				0 = {
+					add_deposit = d_energy_2
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 29 planet_size < 35 }
+				}
+				0 = {
+					add_deposit = d_energy_3
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 34 planet_size < 40 }
+				}
+				0 = {
+					add_deposit = d_energy_4
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 5 planet_size > 39 }
+				}
+				0 = {
+					add_deposit = d_zro_deposit_1
+					set_planet_flag = "deposit_spawned"
+					add_modifier = {
+						modifier = "exotic_atmosphere"
+						days = -1
+					}
+					if = {
+						limit = { has_modifier = atmosphere-dense }
+						remove_modifier = atmosphere-dense
+					}
+					modifier = { add = 1 is_planet_class = orbit_turbulent_giant }
+					modifier = { add = 1 is_planet_class = orbit_temperate_giant }
+					modifier = { add = 1 is_planet_class = orbit_water-clouded_giant }
+					modifier = { add = 1 is_planet_class = orbit_cloudless_giant }
+					modifier = { factor = 2.00 planet_size > 25 planet_size < 30 }
+					modifier = { factor = 0.00 is_inside_nebula = no }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+				}
+				0 = {
+					add_deposit = d_zro_deposit_2
+					set_planet_flag = "deposit_spawned"
+					add_modifier = {
+						modifier = "exotic_atmosphere"
+						days = -1
+					}
+					if = {
+						limit = { has_modifier = atmosphere-dense }
+						remove_modifier = atmosphere-dense
+					}
+					modifier = { add = 1 is_planet_class = orbit_turbulent_giant }
+					modifier = { add = 1 is_planet_class = orbit_temperate_giant }
+					modifier = { add = 1 is_planet_class = orbit_water-clouded_giant }
+					modifier = { add = 1 is_planet_class = orbit_cloudless_giant }
+					modifier = { factor = 2.00 planet_size > 29 }
+					modifier = { factor = 0.00 is_inside_nebula = no }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+				}
+			}
+		}
+		0 = {
+			modifier = { add = 2 is_planet_class = "orbit_silicate_giant" }
+			modifier = { factor = 1.50 is_inside_nebula = yes }
+			modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+			random_list = {
+				0 = {
+					add_deposit = d_exotic_gases_1
+					set_planet_flag = "deposit_spawned"
+					set_ring = no
+					modifier = { add = 1 planet_size < 33 }
+				}
+				0 = {
+					add_deposit = d_exotic_gases_2
+					set_planet_flag = "deposit_spawned"
+					set_ring = no
+					modifier = { add = 1 planet_size > 32 }
+				}
+			}
+		}
+		0 = {
+			modifier = { add = 10 is_planet_class = "orbit_chthonian" }
+			random_list = {
+				0 = {
+					add_deposit = d_engineering_2
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 1 planet_size > 25 planet_size < 30 }
+				}
+				0 = {
+					add_deposit = d_engineering_3
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 1 planet_size > 29 planet_size < 35 }
+				}
+				0 = {
+					add_deposit = d_engineering_4
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 1 planet_size > 34 planet_size < 40 }
+				}
+					0 = {
+					add_deposit = d_engineering_5
+					set_planet_flag = "deposit_spawned"
+					modifier = { add = 1 planet_size > 39 }
+				}
+			}
+		}
+	}
+}
+
+spawn_super_terran_atmosphere = {
+	#Remove any existing modifiers
+	remove_uninhabitable_planet_modifiers = yes
+	#Spawn atmosphere type considering temperature zone
+	random_list = {
+		20 = {
+			add_modifier = {
+				modifier = "atmosphere-airless"
+				days = -1
+			}
+			modifier = { factor = 2.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.50 has_modifier = "temperature-freezing" }
+		}
+		40 = {
+			add_modifier = {
+				modifier = "atmosphere-thin"
+				days = -1
+			}
+			modifier = { factor = 0.75 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.50 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+		}
+		40 = {
+			add_modifier = {
+				modifier = "atmosphere-greenhouse"
+				days = -1
+			}
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 2.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.25 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.25 has_modifier = "temperature-freezing" }
+		}
+	}
+}
+convert_super_terran = {
+	#Convert planet class considering atmosphere and temperature zone
+	random_list = {
+		0 = {
+			change_pc = "orbit_icy"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 75 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 2.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_chthonian"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 1.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_iron_telluric"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 75 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_barren_cold"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 50 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 0.25 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.75 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.25 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_barren"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.50 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}		
+		0 = {
+			change_pc = "orbit_volcanic_telluric"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.75 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_frozen"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_molten"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 50 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 2.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_hothouse_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 25 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.50 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 25 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_carbonyl_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 50 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 1.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_water_panthalassic"
+			set_planet_flag = "planet_converted"
+			set_planet_entity = { entity = water_panthalassic_planet_02_entity }
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }			
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_ammonia_panthalassic"
+			set_planet_flag = "planet_converted"
+			set_planet_entity = { entity = ammonia_panthalassic_planet_02_entity }
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_methane_panthalassic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.00 has_modifier = "temperature-freezing" }
+		}		
+	}
+}
+
+spawn_terran_atmosphere = {
+	#Remove any existing modifiers
+	remove_uninhabitable_planet_modifiers = yes
+	#Spawn atmosphere type considering temperature zone
+	random_list = {
+		10 = {
+			add_modifier = {
+				modifier = "atmosphere-airless"
+				days = -1
+			}
+			modifier = { factor = 2.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.50 has_modifier = "temperature-freezing" }
+		}
+		40 = {
+			add_modifier = {
+				modifier = "atmosphere-thin"
+				days = -1
+			}
+			modifier = { factor = 0.75 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.50 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+		}
+		50 = {
+			add_modifier = {
+				modifier = "atmosphere-greenhouse"
+				days = -1
+			}
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 2.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.25 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.25 has_modifier = "temperature-freezing" }
+		}
+	}
+}
+convert_terran = {
+	#Convert planet class considering atmosphere and temperature zone
+	random_list = {
+		0 = {
+			change_pc = "orbit_icy"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 2.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_chthonian"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 50 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 1.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_iron_telluric"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 75 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_barren_cold"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 75 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 0.25 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.75 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.25 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_barren"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.50 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}		
+		0 = {
+			change_pc = "orbit_volcanic_telluric"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.75 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_frozen"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_molten"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 2.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_hothouse_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.50 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_carbonyl_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 1.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_water_panthalassic"
+			set_planet_flag = "planet_converted"
+			set_planet_entity = { entity = water_panthalassic_planet_02_entity }
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_ammonia_panthalassic"
+			set_planet_flag = "planet_converted"
+			set_planet_entity = { entity = ammonia_panthalassic_planet_02_entity }
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_methane_panthalassic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.00 has_modifier = "temperature-freezing" }
+		}		
+	}
+}
+
+spawn_dwarf_atmosphere = {
+	#Remove any existing modifiers
+	remove_uninhabitable_planet_modifiers = yes
+	#Spawn atmosphere type considering temperature zone
+	random_list = {
+		70 = {
+			add_modifier = {
+				modifier = "atmosphere-airless"
+				days = -1
+			}
+			modifier = { factor = 2.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.50 has_modifier = "temperature-freezing" }
+		}
+		30 = {
+			add_modifier = {
+				modifier = "atmosphere-thin"
+				days = -1
+			}
+			modifier = { factor = 0.75 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.50 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			add_modifier = {
+				modifier = "atmosphere-greenhouse"
+				days = -1
+			}
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 2.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.25 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.25 has_modifier = "temperature-freezing" }
+		}
+	}
+}
+convert_dwarf = {
+	#Convert planet class considering atmosphere and temperature zone
+	random_list = {
+		0 = {
+			change_pc = "orbit_icy"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 2.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_chthonian"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 0 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 1.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_iron_telluric"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_barren_cold"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-airless" }
+			modifier = { factor = 0.25 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.75 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.25 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_barren"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 25 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.50 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}		
+		0 = {
+			change_pc = "orbit_volcanic_telluric"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 50 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.75 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.75 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_frozen"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.25 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_molten"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 75 has_modifier = "atmosphere-thin" }
+			modifier = { factor = 2.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_hothouse_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 75 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.50 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "pc_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_carbonyl_toxic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 50 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 1.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_water_panthalassic"
+			set_planet_flag = "planet_converted"
+			set_planet_entity = { entity = water_panthalassic_planet_02_entity }
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_ammonia_panthalassic"
+			set_planet_flag = "planet_converted"
+			set_planet_entity = { entity = ammonia_panthalassic_planet_02_entity }
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 1.00 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.00 has_modifier = "temperature-freezing" }
+		}
+		0 = {
+			change_pc = "orbit_methane_panthalassic"
+			set_planet_flag = "planet_converted"
+			modifier = { add = 100 has_modifier = "atmosphere-greenhouse" }
+			modifier = { factor = 0.00 has_modifier = "temperature-scorching" }
+			modifier = { factor = 0.00 has_modifier = "temperature-hot" }
+			modifier = { factor = 0.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.50 has_modifier = "temperature-cold" }
+			modifier = { factor = 1.00 has_modifier = "temperature-freezing" }
+		}		
+	}
+}
+
+roll_water_panthalassic = {
+	#Remove any existing modifiers
+	remove_uninhabitable_planet_modifiers = yes
+	#Spawn atmosphere type
+	add_modifier = {
+		modifier = "atmosphere-greenhouse"
+		days = -1
+	}
+	#Convert planet class
+	change_pc = "orbit_water_panthalassic"
+	set_planet_flag = "planet_converted"
+	set_planet_entity = { entity = water_panthalassic_planet_02_entity }
+	if = {
+		limit = { NOT = { solar_system = { has_star_flag = "empire_home_system" } } }
+		clear_deposits = yes
+		spawn_uninhabitable_features = yes
+	}
+}
+
+spawn_uninhabitable_features = {
+	# Spawn a random modifier that results in an orbital deposit, or spawn nothing
+	random_list = {
+		# Scorched Planetoid
+		0 = {
+			modifier = { add = 10 has_modifier = "temperature-scorching" }
+			add_modifier = {
+				modifier = "scorched_planetoid"
+				days = -1
+			}
+			add_deposit = d_engineering_2
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 5 has_modifier = "temperature-scorching" }
+			add_modifier = {
+				modifier = "scorched_planetoid"
+				days = -1
+			}
+			add_deposit = d_engineering_3
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 2 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.50 is_inside_nebula = yes }
+			modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+			add_modifier = {
+				modifier = "scorched_planetoid"
+				days = -1
+			}
+			add_deposit = d_volatile_motes_1
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 1 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.50 is_inside_nebula = yes }
+			modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+			add_modifier = {
+				modifier = "scorched_planetoid"
+				days = -1
+			}
+			add_deposit = d_volatile_motes_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Exploitable Planetoid
+		0 = {
+			modifier = { add = 24 is_rocky_airless_planet = yes planet_size < 5 }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.25 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+			add_modifier = {
+				modifier = "exploitable_planetoid"
+				days = -1
+			}
+			add_deposit = d_minerals_2
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 12 is_rocky_airless_planet = yes planet_size < 7 }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.25 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+			add_modifier = {
+				modifier = "exploitable_planetoid"
+				days = -1
+			}
+			add_deposit = d_minerals_2
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 6 is_rocky_airless_planet = yes planet_size < 12 }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.25 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+			add_modifier = {
+				modifier = "exploitable_planetoid"
+				days = -1
+			}
+			add_deposit = d_minerals_3
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 3 is_rocky_airless_planet = yes planet_size < 16 }
+			modifier = { factor = 1.50 has_modifier = "temperature-scorching" }
+			modifier = { factor = 1.25 has_modifier = "temperature-hot" }
+			modifier = { factor = 1.00 has_modifier = "temperature-temperate" }
+			modifier = { factor = 0.75 has_modifier = "temperature-cold" }
+			modifier = { factor = 0.50 has_modifier = "temperature-freezing" }
+			add_modifier = {
+				modifier = "exploitable_planetoid"
+				days = -1
+			}
+			add_deposit = d_minerals_4
+			set_planet_flag = "deposit_spawned"
+		}
+		# Ice Planetoid
+		0 = {
+			modifier = { add = 24 is_planet_class = "orbit_icy" planet_size < 5 }			
+			add_modifier = {
+				modifier = "ice_planetoid"
+				days = -1
+			}
+			add_deposit = d_energy_1
+			add_deposit = d_water_ices_2
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 12 is_planet_class = "orbit_icy" planet_size < 7 }			
+			add_modifier = {
+				modifier = "ice_planetoid"
+				days = -1
+			}
+			add_deposit = d_energy_2
+			add_deposit = d_water_ices_2
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 6 is_planet_class = "orbit_icy" planet_size < 12 }			
+			add_modifier = {
+				modifier = "ice_planetoid"
+				days = -1
+			}
+			add_deposit = d_energy_2
+			add_deposit = d_water_ices_3
+			set_planet_flag = "deposit_spawned"
+		}
+		0 = {
+			modifier = { add = 3 is_planet_class = "orbit_icy" planet_size < 16 }
+			modifier = { factor = 1.50 is_inside_nebula = yes }
+			modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+			add_modifier = {
+				modifier = "ice_planetoid"
+				days = -1
+			}
+			add_deposit = d_rare_crystals_1
+			set_planet_flag = "deposit_spawned"
+		}
+		# Stable Dual Moon System
+		0 = {
+			modifier = { add = 10 num_moons = 2 }			
+			add_modifier = {
+				modifier = "stable_dual_moon_system"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			every_moon = { remove_planet_flag = "erasable" }
+			set_planet_flag = "deposit_spawned"
+			set_planet_flag = "research_spawned"
+		}
+		0 = {
+			modifier = { add = 10 num_moons = 3 }			
+			add_modifier = {
+				modifier = "stable_dual_moon_system"
+				days = -1
+			}
+			add_deposit = d_physics_3
+			every_moon = { remove_planet_flag = "erasable" }
+			set_planet_flag = "deposit_spawned"
+			set_planet_flag = "research_spawned"
+		}
+		0 = {
+			modifier = { add = 10 num_moons = 4 }			
+			add_modifier = {
+				modifier = "stable_dual_moon_system"
+				days = -1
+			}
+			add_deposit = d_physics_4
+			every_moon = { remove_planet_flag = "erasable" }
+			set_planet_flag = "deposit_spawned"
+			set_planet_flag = "research_spawned"
+		}
+		0 = {
+			modifier = { add = 10 num_moons = 5 }			
+			add_modifier = {
+				modifier = "stable_dual_moon_system"
+				days = -1
+			}
+			add_deposit = d_physics_5
+			every_moon = { remove_planet_flag = "erasable" }
+			set_planet_flag = "deposit_spawned"
+			set_planet_flag = "research_spawned"
+		}
+		# Extremophile Environment
+		0 = {
+			modifier = { add = 10 has_modifier = atmosphere-greenhouse }			
+			add_modifier = {
+				modifier = "extremophile_environment"
+				days = -1
+			}
+			random_list = {
+				0 = {
+					modifier = { add = 1 planet_size < 15 }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+					add_deposit = d_society_2
+					set_planet_flag = "deposit_spawned"
+					set_planet_flag = "research_spawned"
+				}
+				0 = {
+					modifier = { add = 1 planet_size > 14 planet_size < 20 }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+					add_deposit = d_society_3
+					set_planet_flag = "deposit_spawned"
+					set_planet_flag = "research_spawned"
+				}
+				0 = {
+					modifier = { add = 1 planet_size > 19 }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+					add_deposit = d_society_4
+					set_planet_flag = "deposit_spawned"
+					set_planet_flag = "research_spawned"
+				}
+			}
+		}
+		# Geological Activity
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_molten" }
+			modifier = { add = 10 is_planet_class = "orbit_volcanic_telluric" }
+			add_modifier = {
+				modifier = "geological_activity"
+				days = -1
+			}
+			random_list = {
+				0 = {
+					modifier = { add = 1 planet_size < 15 }
+					add_deposit = d_engineering_2
+					set_planet_flag = "deposit_spawned"
+					set_planet_flag = "research_spawned"
+				}
+				0 = {
+					modifier = { add = 1 planet_size > 14 planet_size < 20 }
+					add_deposit = d_engineering_3
+					set_planet_flag = "deposit_spawned"
+					set_planet_flag = "research_spawned"
+				}
+				0 = {
+					modifier = { add = 1 planet_size > 19 }
+					add_deposit = d_engineering_4
+					set_planet_flag = "deposit_spawned"
+					set_planet_flag = "research_spawned"
+				}
+			}
+		}
+		# Nothing at all
+		30 = {
+		
+		}
+	}
+
+	# Second pass - below possibilities may be added to the ones in the previous pass
+
+	# Ringed Planet (not gas-giant)
+	if = {
+		limit = { has_ring = yes }
+		random_list = {
+			0 = {
+				modifier = { add = 10 planet_size < 15 }
+				add_deposit = d_trade_value_1
+			}
+			0 = {
+				modifier = { add = 10 planet_size > 14 }
+				add_deposit = d_trade_value_2
+			}
+			0 = {
+				modifier = { add = 10 planet_size > 22 }
+				add_deposit = d_trade_value_3
+			}
+		}
+	}
+	random_list = {
+		# Shallow Water world
+		0 = {
+			modifier = { add = 10 is_planet_class = "orbit_water_panthalassic" }
+			modifier = { factor = 0.25 planet_size < 15 }
+			modifier = { factor = 1.50 planet_size > 14 planet_size < 20 }
+			modifier = { factor = 2.00 planet_size > 19 }
+			modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+			modifier = { factor = 1.50 has_planet_flag = warm_eco_zone }
+			modifier = { factor = 2.00 has_planet_flag = temperate_eco_zone }
+			modifier = { factor = 1.50 has_planet_flag = cool_eco_zone }
+			add_modifier = {
+				modifier = "shallow_water_world"
+				days = -1
+			}
+			set_planet_entity = { entity = water_panthalassic_planet_01_entity }
+			set_planet_flag = "deposit_spawned"
+		}
+		# Shallow Ammonia world
+		0 = {
+			modifier = { add = 10 is_planet_class = "orbit_ammonia_panthalassic" }
+			modifier = { factor = 9.00 planet_size < 15 }
+			modifier = { factor = 1.00 planet_size > 14 planet_size < 20 }
+			modifier = { factor = 0.05 planet_size > 19 }
+			modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+			modifier = { factor = 2.00 has_planet_flag = cool_eco_zone }
+			modifier = { factor = 2.00 has_planet_flag = cold_zone }
+			add_modifier = {
+				modifier = "shallow_ammonia_world"
+				days = -1
+			}
+			set_planet_entity = { entity = ammonia_panthalassic_planet_01_entity }
+			set_planet_flag = "deposit_spawned"
+		}
+		# Greenhouse gases
+		0 = {
+			modifier = { add = 50 is_planet_class = "orbit_water_panthalassic" }
+			modifier = { add = 25 is_planet_class = "pc_toxic" }
+			modifier = { add = 100 is_planet_class = "orbit_hothouse_toxic" }
+			modifier = { add = 75 is_planet_class = "orbit_carbonyl_toxic" }
+			modifier = { factor = 0.00 planet_size < 10 }
+			modifier = { factor = 0.50 planet_size < 13 }
+			modifier = { factor = 1.50 planet_size > 18 }
+			modifier = { factor = 2.00 planet_size > 22 }
+			modifier = { factor = 0.00 has_planet_flag = "deposit_spawned" }
+			random_list = {
+				0 = {
+					modifier = { add = 1 planet_size < 15 }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+					add_deposit = d_greenhouse_gases_1
+					set_planet_flag = "deposit_spawned"
+				}
+				0 = {
+					modifier = { add = 1 planet_size > 14 planet_size < 20 }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+					add_deposit = d_greenhouse_gases_2
+					set_planet_flag = "deposit_spawned"
+				}
+				0 = {
+					modifier = { add = 1 planet_size > 19 }
+					modifier = { factor = 0.00 solar_system = { has_star_flag = "empire_home_system" } }
+					add_deposit = d_greenhouse_gases_3
+					set_planet_flag = "deposit_spawned"
+				}
+			}
+		}
+		
+		# Do nothing
+		35 = {
+		
+		}
+	}
+	
+}
+
+spawn_star_features = {
+	# Spawn a random modifier that results in an orbital deposit, or spawn nothing
+	random_list = {
+		# Spawn nothing
+		50 = {
+			modifier = { factor = 0 is_planet_class = "pc_d_star" }
+			modifier = { factor = 0 is_planet_class = "pc_neutron_star" }
+			modifier = { factor = 0 is_planet_class = "pc_pulsar" }
+			modifier = { factor = 0 is_planet_class = "pc_black_hole" }
+		}
+		# Flare Star
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_m_star" }
+			modifier = { factor = 2 planet_size < 28 }
+			modifier = { factor = 5 planet_size < 24 }
+			add_modifier = {
+				modifier = "flare_star"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Dying Star
+		0 = {
+			modifier = { add = 5 is_planet_class = "pc_m_giant_star" }
+			modifier = { add = 5 is_planet_class = "pc_k_star" }
+			modifier = { factor = 2 planet_size > 30 }
+			modifier = { factor = 5 planet_size > 33 }
+			add_modifier = {
+				modifier = "dying_star"
+				days = -1
+			}
+			add_deposit = d_physics_4
+			set_planet_flag = "deposit_spawned"
+		}
+		# Fast-spinning Brown Dwarf
+		0 = {
+			modifier = { add = 5 is_planet_class = "pc_t_star" }
+			add_modifier = {
+				modifier = "fast_spinning_dwarf"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Degenerate Star
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_d_star" }
+			modifier = { add = 10 is_planet_class = "pc_neutron_star" }
+			add_modifier = {
+				modifier = "degenerate_star"
+				days = -1
+			}
+			add_deposit = d_physics_3
+			set_planet_flag = "deposit_spawned"
+		}
+		# Pulsar
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_pulsar" }
+			modifier = { factor = 0 has_planet_flag = "x-ray" }
+			add_modifier = {
+				modifier = "pulsar"
+				days = -1
+			}
+			add_deposit = d_physics_4
+			set_planet_flag = "deposit_spawned"
+		}
+		# X-ray Pulsar
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_pulsar" has_planet_flag = "x-ray" }
+			add_modifier = {
+				modifier = "x-ray_pulsar"
+				days = -1
+			}
+			add_deposit = d_physics_5
+			set_planet_flag = "deposit_spawned"
+		}
+		# Black-hole
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_black_hole" }
+			add_modifier = {
+				modifier = "black_hole"
+				days = -1
+			}
+			random_list = {
+				0 = {
+					modifier = { add = 10 planet_size < 28 }
+					add_deposit = d_physics_3
+				}
+				0 = {
+					modifier = { add = 10 planet_size > 27 planet_size < 33 }
+					add_deposit = d_physics_4
+					add_deposit = d_dark_matter_deposit_1
+				}
+				0 = {
+					modifier = { add = 10 planet_size > 32 }
+					add_deposit = d_physics_5
+					add_deposit = d_dark_matter_deposit_2
+				}
+			}			
+			set_planet_flag = "deposit_spawned"
+		}
+	}
+}
+
+remove_uninhabitable_planet_modifiers = {
+	if = {
+		limit = { has_modifier = chthonian_planet }
+		remove_modifier = chthonian_planet
+	}
+	if = {
+		limit = { has_modifier = extensive_moon_system }
+		remove_modifier = extensive_moon_system
+	}
+	if = {
+		limit = { has_modifier = carbon_world }
+		remove_modifier = carbon_world
+	}
+	if = {
+		limit = { has_modifier = mineral_rich }
+		remove_modifier = mineral_rich
+	}
+	if = {
+		limit = { has_modifier = ultra_rich }
+		remove_modifier = ultra_rich
+	}
+	if = {
+		limit = { has_modifier = mineral_poor }
+		remove_modifier = mineral_poor
+	}
+	if = {
+		limit = { has_modifier = asteroid_belt }
+		remove_modifier = asteroid_belt
+	}
+}

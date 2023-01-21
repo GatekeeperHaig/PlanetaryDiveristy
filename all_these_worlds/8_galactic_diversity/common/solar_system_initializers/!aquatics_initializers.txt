@@ -1,0 +1,188 @@
+@distance = 50
+@base_moon_distance = 1
+@sub_giant_moon_distance = 5
+@giant_moon_distance = 6
+@super_giant_moon_distance = 16
+
+@jumps = 3
+@asteroid_min_size = 2
+@asteroid_max_size = 4
+@frozen_world_min_size = 9
+@frozen_world_max_size = 20
+
+# Ocean Paradise Origin
+ocean_paradise_start = {
+	class = "sc_a"
+	
+	flags = { empire_home_system }
+	usage = origin
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 380
+	}
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+		generate_home_system_resources = yes
+		if = {
+			limit = {
+				is_inside_nebula = no
+			}
+			create_nebula = {
+				radius = 25
+			}
+			set_star_flag = ocean_paradise_nebula
+		}
+	}
+
+	flags = { white_giant atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 70
+	
+	# Inner Zone
+	
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "orbit_chthonian"
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+
+	change_orbit = 25 #95
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "orbit_hothouse_toxic"
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 35 #130
+
+	# Eco Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_panpelagic"
+		size = 30
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+		#flags = { ignore_startup_effect }
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	change_orbit = 70 #200
+
+	# Outer Zone
+	planet = {
+		count = { min = 6 max = 6 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 90 #290
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = 1
+			class = "pc_frozen"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			#entity = "frozen_telluric_planet_01_entity"
+			size = 11
+			orbit_angle = 60
+			has_ring = no
+			
+			init_effect = {
+				add_modifier = {
+					modifier = "defrost_candidate"
+					days = -1
+				}
+			}
+		}
+		moon = {
+			count = 2
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 50 #340
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 40 #380
+	planet = {
+		count = 10
+		class = pc_ice_asteroid
+		orbit_distance = { min = 0 max = 1 }
+		orbit_angle = { min = 10 max = 36 }
+		#size = { min = @asteroid_min_size max = @asteroid_max_size }
+	}
+
+	# Guaranteed habitables - turned into Frozen Worlds in aquatics.1001
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+
+}

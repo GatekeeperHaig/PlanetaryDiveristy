@@ -1,0 +1,317 @@
+# Energy cost is based on technology / perk requirement, most costs will be reduced to compensate the new resources added.
+@energy_atmospheric_manipulation = 1000
+@energy_climate_restoration = 2500
+@energy_world_shaper = 4000
+@energy_world_shaper_destructive = 2000
+@energy_hive_worlds = 10000
+@energy_machine_worlds = 10000
+
+# Greenhouse gases cost is based on original atmosphere type, upgrading an uninhabitable world's atmosphere will cost more than one which already has a better atmosphere. Frozen worlds requiring warming will use a different value.
+@gases_uninhabitable = 1000
+@gases_toxic = 800
+@gases_marginal = 400
+@gases_thaw = 1200
+
+# Water ices cost is based on original and final hydrosphere type, it depends on how much water is required. Frozen worlds already have enough water, so they will need extra greenhouse gases instead.
+@ices_1_step = 1000
+@ices_2_steps = 2000
+
+# Seeds cost is based on the difference between original and target biosphere level, ie: barren to diverse biosphere is 2 steps, so more seeds are required than just 1 step. Gaia worlds should be special and require a unique number of seeds.
+@seeds_1_step = 2000
+@seeds_2_steps = 4000
+@seeds_gaia = 6000
+
+# Duration depends on the apparent complexity of the process, ie: thickening the atmosphere with some greenhouse gases and water vapor is much less complex than restoring a nuked world and re-introducing life to it.
+@duration_simple = 1800
+@duration_average = 3600
+@duration_complex = 7200
+
+###################
+## Genesis Chain ##
+###################
+
+# The World shaper perk now allows terraforming uninhabitable Tellurics of suficient size and close to the star's habitable zone into Primordial worlds
+# This will be a lenghty process as there are several steps between a Telluric and the Protogenian, with each requiring a different ammount of time and resources
+
+terraform_link = {
+	from = "pc_barren"
+	to = "orbit_hadean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = @gases_uninhabitable
+			water_ices = @ices_1_step
+			seeds = 0
+		}
+	}
+
+	duration = @duration_complex
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_hadean = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+terraform_link = {
+	from = "orbit_hadean"
+	to = "orbit_archean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = @gases_toxic
+			water_ices = @ices_1_step
+			seeds = 0
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_archean = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+terraform_link = {
+	from = "pc_hadean"
+	to = "pc_archean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = @gases_toxic
+			water_ices = @ices_1_step
+			seeds = 0
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_archean = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+terraform_link = {
+	from = "orbit_archean"
+	to = "orbit_protogenian"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = @gases_marginal
+			water_ices = @ices_1_step
+			seeds = @seeds_2_steps
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_protogenian = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+terraform_link = {
+	from = "pc_archean"
+	to = "pc_protogenian"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = @gases_marginal
+			water_ices = @ices_1_step
+			seeds = @seeds_2_steps
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_protogenian = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+################
+## Gaia World ##
+################
+
+terraform_link = {
+	from = "orbit_protogenian"
+	to = "orbit_chlorogaian"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = 0
+			water_ices = 0
+			seeds = @seeds_gaia
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_chlorogaian = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+terraform_link = {
+	from = "pc_protogenian"
+	to = "pc_gaia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_world_shaper
+			greenhouse_gases = 0
+			water_ices = 0
+			seeds = @seeds_gaia
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		has_ascension_perk = "ap_world_shaper"
+		from = {
+			NOR = { 
+				has_modifier = "temperature-scorching"
+				has_modifier = "temperature-freezing"
+			}
+			planet_size > 14
+		}
+	}
+	
+	effect = {
+		from = {
+			update_terraformed_chlorogaian = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+

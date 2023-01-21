@@ -1,0 +1,109 @@
+############################
+#
+# Aquatics Events
+#
+# Written by Pierre du Plessis
+#
+############################
+
+namespace = aquatics
+
+## Ocean Paradise Origin
+
+# Initial setup
+country_event = {
+	id = aquatics.1000
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		country_event = { id = aquatics.1001 }
+		# WIP - prob. more things to come here
+	}
+}
+
+# Change starting colonisables into Water Panthalassic worlds
+country_event = {
+	id = aquatics.1001
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_origin = origin_ocean_paradise
+	}
+
+	immediate = {
+		capital_scope.solar_system = {
+			closest_system = {
+				limit = { has_star_flag = neighbor_t1_first_colony }
+				max_steps = 3
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_planet_flag = prescripted_ideal
+					}
+					remove_uninhabitable_planet_modifiers = yes
+					change_pc = orbit_water_panthalassic
+					add_modifier = {
+						modifier = "atmosphere-greenhouse"
+						days = -1
+					}
+					add_modifier = {
+						modifier = "shallow_water_world"
+						days = -1
+					}
+					set_planet_entity = { entity = water_panthalassic_planet_01_entity }
+					set_planet_flag = "planet_converted"
+				}
+				
+			}
+			closest_system = {
+				limit = { has_star_flag = neighbor_t2_second_colony }
+				max_steps = 6
+				random_system_planet = {
+					limit = {
+						is_colonizable = yes
+						is_colony = no
+						has_planet_flag = prescripted_ideal
+					}
+					remove_uninhabitable_planet_modifiers = yes
+					change_pc = orbit_water_panthalassic
+					add_modifier = {
+						modifier = "atmosphere-greenhouse"
+						days = -1
+					}
+					add_modifier = {
+						modifier = "shallow_water_world"
+						days = -1
+					}
+					set_planet_entity = { entity = water_panthalassic_planet_01_entity }
+					set_planet_flag = "planet_converted"
+				}
+				
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = aquatics.1005
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_modifier = ocean_paradise
+			has_modifier = ocean_paradise_hive
+		}
+		NOT = { is_planet_class = pc_panpelagic } #should never be possible, but just in case
+	}
+
+	immediate = {
+		if = {
+			limit = { has_modifier = ocean_paradise }
+			remove_modifier = ocean_paradise
+		}
+		else = { remove_modifier = ocean_paradise_hive }
+	}
+}

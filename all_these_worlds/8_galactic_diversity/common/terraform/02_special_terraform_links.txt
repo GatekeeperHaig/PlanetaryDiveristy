@@ -1,0 +1,397 @@
+# Energy cost is based on technology / perk requirement, most costs will be reduced to compensate the new resources added.
+@energy_atmospheric_manipulation = 1000
+@energy_climate_restoration = 2500
+@energy_world_shaper = 4000
+@energy_world_shaper_destructive = 2000
+@energy_hive_worlds = 10000
+@energy_machine_worlds = 10000
+
+# Greenhouse gases cost is based on original atmosphere type, upgrading an uninhabitable world's atmosphere will cost more than one which already has a better atmosphere. Frozen worlds requiring warming will use a different value.
+@gases_uninhabitable = 1000
+@gases_toxic = 800
+@gases_marginal = 400
+@gases_thaw = 1200
+
+# Water ices cost is based on original and final hydrosphere type, it depends on how much water is required. Frozen worlds already have enough water, so they will need extra greenhouse gases instead.
+@ices_1_step = 1000
+@ices_2_steps = 2000
+
+# Seeds cost is based on the difference between original and target biosphere level, ie: barren to diverse biosphere is 2 steps, so more seeds are required than just 1 step. Gaia worlds should be special and require a unique number of seeds.
+@seeds_1_step = 2000
+@seeds_2_steps = 4000
+@seeds_gaia = 6000
+
+# Duration depends on the apparent complexity of the process, ie: thickening the atmosphere with some greenhouse gases and water vapor is much less complex than restoring a nuked world and re-introducing life to it.
+@duration_simple = 1800
+@duration_average = 3600
+@duration_complex = 7200
+
+terraform_link = {
+	from = "orbit_terraformed_barren"
+	to = "orbit_adapted"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_toxic
+			water_ices = @ices_1_step
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-hot"
+				has_modifier = "temperature-temperate"
+				has_modifier = "temperature-cold"
+				has_modifier = "temperature-freezing"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_adapted = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+terraform_link = {
+	from = "pc_terraformed_barren"
+	to = "pc_adapted"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_toxic
+			water_ices = @ices_1_step
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-hot"
+				has_modifier = "temperature-temperate"
+				has_modifier = "temperature-cold"
+				has_modifier = "temperature-freezing"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_adapted = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+terraform_link = {
+	from = "orbit_terraformed_barren"
+	to = "orbit_adapted_ammonia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_toxic
+			water_ices = @ices_1_step
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-cold"
+				has_modifier = "temperature-freezing"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_adapted = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+terraform_link = {
+	from = "pc_terraformed_barren"
+	to = "pc_adapted_ammonia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_toxic
+			water_ices = @ices_1_step
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-cold"
+				has_modifier = "temperature-freezing"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_adapted = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+terraform_link = {
+	from = "orbit_cryopelagic"
+	to = "orbit_aquatic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_thaw
+			water_ices = 0
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-hot"
+				has_modifier = "temperature-temperate"
+				has_modifier = "temperature-cold"
+				has_modifier = "temperature-freezing"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_cold_aquatic = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+terraform_link = {
+	from = "pc_arctic"
+	to = "pc_aquatic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_thaw
+			water_ices = 0
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-hot"
+				has_modifier = "temperature-temperate"
+				has_modifier = "temperature-cold"
+				has_modifier = "temperature-freezing"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_cold_aquatic = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+terraform_link = {
+	from = "orbit_panpelagic"
+	to = "orbit_aquatic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_thaw
+			water_ices = 0
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-hot"
+				has_modifier = "temperature-temperate"
+				has_modifier = "temperature-cold"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_aquatic = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+terraform_link = {
+	from = "pc_panpelagic"
+	to = "pc_aquatic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_thaw
+			water_ices = 0
+			seeds = @seeds_1_step
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		from = {
+			OR = {
+				has_modifier = "temperature-hot"
+				has_modifier = "temperature-temperate"
+				has_modifier = "temperature-cold"
+			}			
+		}
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			update_terraformed_aquatic = yes
+			spawn_planet_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+#############
+# L-Cluster #
+#############
+
+terraform_link = {
+	from = pc_gray_goo
+	to = orbit_terraformed_barren
+
+	condition = { has_technology = "tech_climate_restoration" }
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_uninhabitable
+			water_ices = @ices_2_steps
+			seeds = 0
+		}
+	}
+	duration = @duration_simple
+	potential = { from = { has_modifier = terraforming_candidate } }
+	effect = {
+		from = {
+			update_terraformed_barren = yes
+			spawn_planet_deposits = yes
+			remove_modifier = terraforming_candidate
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
