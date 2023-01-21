@@ -641,13 +641,32 @@ building_lichen_farm = {
 		NOT = { has_building_construction = building_lichen_grid }
 		NOT = { has_building = building_lichen_lab }
 		NOT = { has_building_construction = building_lichen_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"
 
 	destroy_trigger = {
-		planet = { 
-			NOT = { is_planet_class = pc_lichen } 
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { NOT = { is_planet_class = pc_lichen } }
 		}
 	}	 
 }
@@ -666,11 +685,30 @@ building_lichen_grid = {
 		NOT = { has_building_construction = building_lichen_grid }
 		NOT = { has_building = building_lichen_lab }
 		NOT = { has_building_construction = building_lichen_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_lichen } 
 		}
@@ -787,18 +825,38 @@ building_wet_td_farm = {
 		NOT = { has_building_construction = building_wet_td_grid }
 		NOT = { has_building = building_wet_td_bio_lab }
 		NOT = { has_building_construction = building_wet_td_bio_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"
 
-
 	destroy_trigger = {
-		planet = { 
-			NOT = {
-				OR = {
-					is_planet_class = pc_wettidallylocked
-					is_planet_class = pc_tidallylocked
-					is_planet_class = pc_eyeball
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { 
+				NOT = {
+					OR = {
+						is_planet_class = pc_wettidallylocked
+						is_planet_class = pc_tidallylocked
+						is_planet_class = pc_eyeball
+					}
 				}
 			}
 		}
@@ -823,11 +881,30 @@ building_wet_td_grid = {
 		NOT = { has_building_construction = building_wet_td_grid }
 		NOT = { has_building = building_wet_td_bio_lab }
 		NOT = { has_building_construction = building_wet_td_bio_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOT = {
 				OR = {
@@ -837,7 +914,7 @@ building_wet_td_grid = {
 				}
 			}
 		}
-	}	  
+	}		  
 }
 building_wet_td_bio_lab = {
 	base_buildtime = 600
@@ -1003,11 +1080,28 @@ building_glacio_mine = {
 		NOT = { has_building_construction = building_glacio_resort }
 		NOT = { has_building = building_glacio_mine }
 		NOT = { has_building_construction = building_glacio_mine }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_glacio }
 		}
@@ -1029,15 +1123,32 @@ building_lanthanide_mine = {
 		NOT = { has_building_construction = building_lanthanide_guild }
 		NOT = { has_building = building_lanthanide_lab }
 		NOT = { has_building_construction = building_lanthanide_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_lanthanide }
 		}
-	}	
+	}
 }
 building_lanthanide_guild = {
 	base_buildtime = 600
@@ -1184,11 +1295,28 @@ building_megalfora_mine = {
 		NOT = { has_building_construction = building_megalfora_lab }
 		NOT = { has_building = building_megalfora_grid }
 		NOT = { has_building_construction = building_megalfora_grid }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_megaflora }
 		}
@@ -1301,13 +1429,32 @@ building_megalfora_grid = {
 		NOT = { has_building_construction = building_megalfora_lab }
 		NOT = { has_building = building_megalfora_grid }
 		NOT = { has_building_construction = building_megalfora_grid }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
-			NOT = { is_planet_class = pc_megaflora }
+			NOT = { is_planet_class = pc_megaflora } 
 		}
 	}	
 }
@@ -1329,15 +1476,32 @@ building_petrified_mine = {
 		NOT = { has_building_construction = building_petrified_guild }
 		NOT = { has_building = building_petrified_lab }
 		NOT = { has_building_construction = building_petrified_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_pd_petrified }
 		}
-	}	
+	}
 }
 building_petrified_guild = {
 	base_buildtime = 600
@@ -1781,13 +1945,32 @@ building_reef_mine = {
 		NOT = { has_building_construction = building_reef_guild }
 		NOT = { has_building = building_reef_mine }
 		NOT = { has_building_construction = building_reef_mine }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"		
 
 	destroy_trigger = {
-		planet = { NOT = { is_planet_class = pc_reef } }
-	} 
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
+		planet = { 
+			NOT = { is_planet_class = pc_reef }
+		}
+	}
 }
 
 #Archipelago Buildings
@@ -1832,13 +2015,34 @@ building_archipelago_farm = {
 		NOT = { has_building_construction = building_archipelago_farm }
 		NOT = { has_building = building_archipelago_resort }
 		NOT = { has_building_construction = building_archipelago_resort }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"	
 
 	destroy_trigger = {
-		planet = { NOT = { is_planet_class = pc_pd_archipelago } }
-	} 
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { NOT = { is_planet_class = pc_pd_archipelago } }
+		}
+	}	
 }
 building_archipelago_resort = {
 	base_buildtime = 600
@@ -1987,13 +2191,32 @@ building_salt_mine = {
 		NOT = { has_building_construction = building_salt_lab }
 		NOT = { has_building = building_salt_foundry }
 		NOT = { has_building_construction = building_salt_foundry }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
-		planet = { NOT = { is_planet_class = pc_salt } }
-	} 
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
+		planet = { 
+			NOT = { is_planet_class = pc_salt }
+		}
+	}
 }
 
 #Aquifer Buildings
@@ -2015,13 +2238,34 @@ building_aquifer_farm = {
 		NOT = { has_building_construction = building_aquifer_lab }
 		NOT = { has_building = building_aquifer_resort }
 		NOT = { has_building_construction = building_aquifer_resort }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
-	inline_script = "buildings/pd_rare_farm_building"	
+	inline_script = "buildings/pd_rare_farm_building"
 
 	destroy_trigger = {
-		planet = { NOT = { is_planet_class = pc_aquifer } }
-	} 
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { NOT = { is_planet_class = pc_aquifer } }
+		}
+	}	
 }
 building_aquifer_lab = {
 	base_buildtime = 600
@@ -2147,11 +2391,30 @@ building_karst_grid = {
 		NOT = { has_building_construction = building_karst_mine }
 		NOT = { has_building = building_karst_lab }
 		NOT = { has_building_construction = building_karst_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOR = {
 				is_planet_class = pc_karst
@@ -2159,7 +2422,7 @@ building_karst_grid = {
 				is_planet_class = pc_pd_dry_cave
 			}
 		}
-	} 
+	}	
 }
 building_karst_mine = {
 	base_buildtime = 600
@@ -2176,11 +2439,28 @@ building_karst_mine = {
 		NOT = { has_building_construction = building_karst_mine }
 		NOT = { has_building = building_karst_lab }
 		NOT = { has_building_construction = building_karst_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
 			NOR = {
 				is_planet_class = pc_karst
@@ -2188,7 +2468,7 @@ building_karst_mine = {
 				is_planet_class = pc_pd_dry_cave
 			}
 		}
-	} 
+	}
 }
 building_karst_lab = {
 	base_buildtime = 600
@@ -2412,15 +2692,34 @@ building_biolumen_farm = {
 		NOT = { has_building_construction = building_biolumen_resort }
 		NOT = { has_building = building_biolumen_farm }
 		NOT = { has_building_construction = building_biolumen_farm }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"	
 
 	destroy_trigger = {
-		planet = { 
-			NOT = { is_planet_class = pc_biolumen } 
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { NOT = { is_planet_class = pc_biolumen } }
 		}
-	}
+	}	
 }
 
 #Geothermal Buildings
@@ -2439,15 +2738,34 @@ building_geothermal_grid = {
 		NOT = { has_building_construction = building_geothermal_foundry }
 		NOT = { has_building = building_geothermal_lab }
 		NOT = { has_building_construction = building_geothermal_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_geothermal } 
 		}
-	}
+	}	
 }
 building_geothermal_foundry = {
 	base_buildtime = 600
@@ -2810,15 +3128,34 @@ building_storm_grid = {
 		NOT = { has_building_construction = building_storm_grid }
 		NOT = { has_building = building_storm_mine }
 		NOT = { has_building_construction = building_storm_mine }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_storm } 
 		}
-	}
+	}	
 }
 building_storm_mine = {
 	base_buildtime = 600
@@ -2835,13 +3172,30 @@ building_storm_mine = {
 		NOT = { has_building_construction = building_storm_grid }
 		NOT = { has_building = building_storm_mine }
 		NOT = { has_building_construction = building_storm_mine }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
-			NOT = { is_planet_class = pc_storm } 
+			NOT = { is_planet_class = pc_storm }
 		}
 	}
 }
@@ -2887,15 +3241,34 @@ building_primal_grid = {
 		NOT = { has_building_construction = building_primal_grid }
 		NOT = { has_building = building_primal_mine }
 		NOT = { has_building_construction = building_primal_mine }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_primal } 
 		}
-	}
+	}	
 }
 building_primal_mine = {
 	base_buildtime = 600
@@ -2912,13 +3285,30 @@ building_primal_mine = {
 		NOT = { has_building_construction = building_primal_grid }
 		NOT = { has_building = building_primal_mine }
 		NOT = { has_building_construction = building_primal_mine }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
-			NOT = { is_planet_class = pc_primal } 
+			NOT = { is_planet_class = pc_primal }
 		}
 	}
 }
@@ -3032,15 +3422,34 @@ building_iceberg_farm = {
 		NOT = { has_building_construction = building_iceberg_farm }
 		NOT = { has_building = building_iceberg_foundry }
 		NOT = { has_building_construction = building_iceberg_foundry }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"	
 
 	destroy_trigger = {
-		planet = { 
-			NOT = { is_planet_class = pc_pd_iceberg } 
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { NOT = { is_planet_class = pc_pd_iceberg } }
 		}
-	}
+	}	
 }
 building_iceberg_foundry = {
 	base_buildtime = 600
@@ -3087,13 +3496,32 @@ building_supercon_farm = {
 		NOT = { has_building_construction = building_supercon_lab }
 		NOT = { has_building = building_supercon_grid }
 		NOT = { has_building_construction = building_supercon_grid }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"
 
 	destroy_trigger = {
-		planet = { 
-			NOT = { is_planet_class = pc_supercon } 
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { NOT = { is_planet_class = pc_supercon } }
 		}
 	}	
 }
@@ -3202,11 +3630,30 @@ building_supercon_grid = {
 		NOT = { has_building_construction = building_supercon_lab }
 		NOT = { has_building = building_supercon_grid }
 		NOT = { has_building_construction = building_supercon_grid }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_energy_building"
 
 	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
 		planet = { 
 			NOT = { is_planet_class = pc_supercon } 
 		}
@@ -3319,13 +3766,30 @@ building_pd_sinkhole_mine = {
 		NOT = { has_building_construction = building_pd_sinkhole_mine }
 		NOT = { has_building = building_pd_sinkhole_guild }
 		NOT = { has_building_construction = building_pd_sinkhole_guild }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
 	}
 	
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
 		planet = { 
-			NOT = { is_planet_class = pc_pd_sinkhole } 
+			NOT = { is_planet_class = pc_pd_sinkhole }
 		}
 	}
 }
@@ -3478,19 +3942,40 @@ building_superhab_farm = {
 		NOT = { has_building_construction = building_superhab_farm }
 		NOT = { has_building = building_superhab_foundry }
 		NOT = { has_building_construction = building_superhab_foundry }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
 	}
 
 	inline_script = "buildings/pd_rare_farm_building"	
 
 	destroy_trigger = {
-		planet = { 
-			NOR = { 
-				is_planet_class = pc_superhabitable
-				is_planet_class = pc_pd_dry_superhab
-				is_planet_class = pc_pd_cold_superhab
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			is_planet_class = pc_machine
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { 
+				NOR = { 
+					is_planet_class = pc_superhabitable
+					is_planet_class = pc_pd_dry_superhab
+					is_planet_class = pc_pd_cold_superhab
+				}
 			}
 		}
-	}	
+	}		
 }
 building_superhab_foundry = {
 	base_buildtime = 600
