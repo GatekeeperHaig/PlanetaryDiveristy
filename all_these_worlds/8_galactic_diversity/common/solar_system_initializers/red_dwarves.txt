@@ -1,0 +1,283 @@
+@base_moon_distance = 1
+@sub_giant_moon_distance = 5
+@giant_moon_distance = 6
+@super_giant_moon_distance = 16
+
+## These systems can only be spawned by the Star Chart planetary Decision
+
+# Cold lifeless system - below average star
+red_dwarf_init_01 = {
+	class = "sc_m"
+	
+	usage = misc_system_init
+	usage_odds = 0
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 30
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 100
+	}
+	
+	flags = { red_dwarf spawned_system atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 25 }
+		has_ring = no
+	}
+	
+	change_orbit = 18
+
+	# Inner Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone locked } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		class = "ph_terran"
+	}
+	
+	change_orbit = 12 #30
+	
+	# Outer Zone
+	
+	planet = {
+		count = { min = 1 max = 3 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 24 #54
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 20 max = 30 }
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 3 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = "ph_dwarf"
+		}
+	}
+
+	change_orbit = 46 #100
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+
+}
+
+# Stable system - above average star
+red_dwarf_init_02 = {
+	class = "sc_m"
+	
+	usage = misc_system_init
+	usage_odds = 0
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 150
+	}
+	
+	flags = { red_dwarf spawned_system atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 9
+	
+	# Inner Zone
+
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_dwarf"
+		flags = { torrid_zone locked } #only scorched and molten rocky worlds or hot giants
+	}
+
+	change_orbit = 5 #14
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 8 max = 11 }
+		class = "ph_dwarf"
+		flags = { hot_zone locked } #possible limited water hydrosphere only on tidally-locked's dark sides
+	}
+
+	# Eco Zone
+	
+	change_orbit = 6 #20
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 14 max = 16 }
+		class = "ph_terran"
+		flags = { temperate_eco_zone locked } #ideal for temperate worlds with water hydrospheres
+	}
+
+	# Outer Zone
+
+	change_orbit = 10 #30
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		class = "ph_terran"
+
+		change_orbit = @base_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = "ph_dwarf"
+		}
+	}
+
+	change_orbit = 25 #55
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "rl_sub_giant"
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = "ph_dwarf"
+		}
+	}
+	
+	change_orbit = 50 #105
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "ph_neptunian"
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = "ph_dwarf"
+		}
+	}
+
+	change_orbit = 45 #150
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+}
+
+# Lone giant - above average star with a single gas giant and plenty of moons
+red_dwarf_init_03 = {
+	class = "sc_m"
+	
+	usage = misc_system_init
+	usage_odds = 0
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 15
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 150
+	}
+	
+	flags = { red_dwarf spawned_system atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 15
+	
+	# Inner Zone
+
+	planet = {
+		count = { min = 1 max = 3 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 20 #35
+
+	# Outer Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 1
+			class = "ph_dwarf"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+		moon = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 2
+			class = "ph_terran"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		}
+	}
+
+	change_orbit = 115 #150
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+}

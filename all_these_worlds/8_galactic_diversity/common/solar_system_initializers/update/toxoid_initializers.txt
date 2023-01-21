@@ -1,0 +1,290 @@
+
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@base_moon_distance = 5
+@moon_min_size = 6
+@moon_max_size = 10
+@asteroid_min_size = 2
+@asteroid_max_size = 4
+@homeworld_min_size = 18
+@homeworld_max_size = 21
+
+# Knights of the Toxic God Origin
+toxic_knights_start = {
+	class = "rl_starting_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+
+	usage = origin
+
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+		random_system_planet = {
+			limit = {
+				OR = {
+					has_deposit = d_minerals_2
+					has_deposit = d_minerals_3
+				}
+			}
+			clear_deposits = yes
+			add_deposit = d_minerals_6
+		}
+	}
+
+	# Star
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 50
+
+	planet = {
+		count = { min = 1 max = 3 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 40 max = 100 }
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	# Homeworld
+	planet = {
+		count = 1
+		orbit_distance = 20
+		home_planet = yes
+		class = ideal_planet_class
+		orbit_angle = { min = 90 max = 270 }
+		size = 20
+		flags = { toxic_knights_homeworld }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			generate_empire_home_planet = yes
+			prevent_anomaly = yes
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = 1
+			size = 8
+			class = pc_toxic
+			orbit_angle = { min = 90 max = 270 }
+			init_effect = {
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = habitat
+			}
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				class = pc_habitat
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 5
+				size = 6
+				flags = { toxic_knights_habitat megastructure habitat }
+				deposit_blockers = none
+			}
+		}
+	}
+
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+}
+
+# Toxic Knights Finisher
+toxic_knights_finish = {
+	class = sc_toxoid_star
+	usage = misc_system_init
+
+	flags = { guardian_toxic_god_system guardian hostile_system }
+
+	# Star
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+
+		# Create the Toxic God
+		init_effect = {
+			clear_deposits = yes
+			add_deposit = d_exotic_gases_5
+			add_deposit = d_volatile_motes_5
+
+			save_event_target_as = toxic_sun
+			create_country = {
+				name = "NAME_Toxic_God"
+				type = guardian_toxic_god
+				flag = {
+					icon = {
+						category = "spherical"
+						file = "flag_spherical_6.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"red"
+						"red"
+						"null"
+						"null"
+					}
+				}
+				effect = {
+					set_country_flag = toxic_god_country
+					save_global_event_target_as = toxic_god_country
+					set_global_flag = toxic_god_spawned
+				}
+			}
+			create_fleet = {
+				name = "NAME_Toxic_God"
+				settings = {
+					spawn_debris = no
+					is_boss = yes
+				}
+				effect = {
+					set_owner = event_target:toxic_god_country
+					set_fleet_flag = toxic_god_original_fleet
+					save_global_event_target_as = toxic_god
+					create_ship = {
+						name = "NAME_Toxic_God"
+						design = "NAME_Venomous_Deity"
+					}
+					set_location = {
+						target = event_target:toxic_sun
+						distance = 0
+						angle = random
+					}
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = return_point
+					set_aggro_range = 350
+				}
+			}
+		}
+	}
+
+	# Asteroid belt
+	asteroid_belt = {
+		type = debris_asteroid_belt
+		radius = 65
+	}
+	change_orbit = 65
+	planet = {
+		count = { min = 2 max = 3 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 50 max = 110 }
+	}
+
+	# Then a bit further out, toxic worlds. Two of them, then a gas giant with a toxic moon, then a final toxic pluto
+	change_orbit = 30
+
+	planet = {
+		orbit_distance = 20
+		class = pc_toxic
+		orbit_angle = { min = 90 max = 270 }
+		size = 30
+		init_effect = {
+			clear_deposits = yes
+			clear_planet_modifiers = yes
+			add_modifier = {
+				modifier = toxic_terraforming_candidate
+			}
+		}
+	}
+	planet = {
+		orbit_distance = 20
+		class = pc_toxic
+		orbit_angle = { min = 90 max = 270 }
+	}
+
+	change_orbit = 35
+
+	planet = {
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 30
+		change_orbit = 15
+		moon = {
+			count = 1
+			size = 20
+			class = pc_toxic
+			orbit_angle = { min = 90 max = 270 }
+			init_effect = {
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				add_modifier = {
+					modifier = toxic_terraforming_candidate
+				}
+			}
+		}
+	}
+
+	change_orbit = 40
+
+	planet = {
+		orbit_distance = 35
+		class = pc_toxic
+		size = 10
+		orbit_angle = { min = 90 max = 270 }
+	}
+}

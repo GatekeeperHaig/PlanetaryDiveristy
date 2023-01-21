@@ -1,0 +1,178 @@
+@base_moon_distance = 1
+@sub_giant_moon_distance = 5
+@giant_moon_distance = 6
+@super_giant_moon_distance = 16
+
+## These systems can only be spawned by the Star Chart planetary Decision
+
+# Degenerate old lifeless system
+white_dwarf_init_01 = {
+	class = "sc_f"
+	
+	usage = misc_system_init
+	usage_odds = 0
+	
+	flags = { white_dwarf spawned_system atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 15 max = 20 }
+		has_ring = no
+	}
+	
+	change_orbit = 80
+	
+	# Outer Zone
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = { min = 15 max = 20 }
+		orbit_angle = { min = 90 max = 270 }
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		class = "ph_terran"
+
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = "ph_dwarf"
+		}
+	}
+	planet = {
+		count = { min = 1 max = 2 }
+		orbit_distance = { min = 65 max = 85 }
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 4 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = "ph_dwarf"
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = { min = 60 max = 120 }
+		class = "rl_sub_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = "ph_dwarf"
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+}
+
+# White-Brown Dwarf Binary - A degenerated star with a companion brown dwarf
+white_dwarf_init_02 = {
+	class = "sc_binary_surviving_dwarf_1"
+	
+	usage = misc_system_init
+	usage_odds = 0
+	
+	flags = { white_dwarf spawned_system atw_edited }
+	
+  planet = {
+    count = 1
+    class = star
+    orbit_distance = 120
+    orbit_angle = 180
+    size = { min = 30 max = 35 }
+    has_ring = no
+	satellite_naming_policy = upper_case_roman_numerals
+	
+	planet = {
+        count = 1
+        size = { min = 14 max = 20 }
+        orbit_angle = { min = 90 max = 270 }
+        orbit_distance = 23
+		class = "ph_terran"
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+        
+        change_orbit = @base_moon_distance
+
+        moon = {
+            count = 1
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 1 max = 2 }
+			class = "ph_dwarf"
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+        }
+    }
+
+	change_orbit = 10 #33
+	planet = {
+        count = 1
+        size = { min = 14 max = 20 }
+        orbit_angle = { min = 90 max = 270 }
+        orbit_distance = 0
+		class = "ph_terran"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+        
+        change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 2 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 1 max = 2 }
+			class = "ph_dwarf"
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+        }
+    }
+	
+	planet = {
+        count = { min = 1 max = 2 }
+        size = { min = 14 max = 20 }
+        orbit_angle = { min = 90 max = 270 }
+        orbit_distance = { min = 40 max = 60 }
+		class = "rl_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+        
+        change_orbit = @base_moon_distance
+
+        moon = {
+            count = { min = 0 max = 1 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 1 max = 2 }
+			class = "ph_dwarf"
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+        }
+    }
+  }
+  
+  planet = {
+    count = 1
+    class = star
+    orbit_distance = 200
+	orbit_angle = 180
+    size = { min = 15 max = 25 }
+    has_ring = no
+	satellite_naming_policy = upper_case_roman_numerals
+	change_orbit = 15
+	
+	planet = {
+		count = { min = 1 max = 2 }
+		orbit_distance = { min = 15 max = 20 }
+		class = "ph_dwarf"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		orbit_angle = { min = 90 max = 270 }
+	}
+  }
+	
+}

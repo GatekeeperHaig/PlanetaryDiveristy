@@ -1,0 +1,400 @@
+@base_moon_distance = 1
+@sub_giant_moon_distance = 5
+@giant_moon_distance = 6
+@super_giant_moon_distance = 16
+
+# Infant star - Above average star with multiple asteroid belts and very few planets
+white_giant_init_01 = {
+	class = "sc_a"
+	
+	usage = misc_system_init
+	usage_odds = 5
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 40
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 90
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	flags = { white_giant atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 40
+	planet = {
+		count = { min = 3 max = 3 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 50
+	planet = {
+		count = { min = 4 max = 4 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 5 max = 5 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	change_orbit = 250
+	planet = {
+		count = { min = 6 max = 6 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+	
+	change_orbit = -350
+	
+	# Inner Zone
+
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+		class = random_non_colonizable
+	}
+	
+	change_orbit = 120 #170
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+		class = random_non_colonizable
+
+		change_orbit = @base_moon_distance		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 80 #250
+
+	# Outer Zone
+	
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "rl_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 80 #330
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = { min = 3 max = 3 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+}
+
+# Recently-formed White Giant system - Below average star
+white_giant_init_02 = {
+	class = "sc_a"
+	
+	usage = misc_system_init
+	usage_odds = 6
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	
+	flags = { white_giant atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 70
+	
+	# Inner Zone
+	
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_super_terran"
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+
+	change_orbit = 25 #95
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "ph_super_terran"
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 1 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 35 #130
+
+	# Eco Zone
+
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { temperate_eco_zone } #ideal for temperate worlds with water hydrospheres
+		}
+	}
+
+	change_orbit = 70 #200
+
+	# Outer Zone
+	planet = {
+		count = { min = 6 max = 6 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+
+	change_orbit = 90 #290
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "rl_super_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		
+		change_orbit = @super_giant_moon_distance
+		
+		moon = {
+			count = { min = 3 max = 3 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 50 #340
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "rl_sub_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+			class = random_non_colonizable
+		}
+	}
+}
+
+# Evolving main-sequence star system - Above average star
+white_giant_init_03 = {
+	class = "sc_a"
+	
+	usage = misc_system_init
+	usage_odds = 3
+	
+	flags = { white_giant atw_edited }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 50
+
+	# Inner Zone
+	
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "ph_terran"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants		
+	}
+	change_orbit = 30 #80
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "ph_super_terran"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { torrid_zone } #only scorched and molten rocky worlds or hot giants
+	}
+	
+	change_orbit = 25 #105
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_sub_giant"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone } #possible limited water hydrosphere only on tidally-locked's dark sides
+
+		change_orbit = @sub_giant_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+		}
+	}
+
+	change_orbit = 30 #135
+
+	# Eco Zone
+
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "ph_terran"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { warm_eco_zone } #ideal for hot dry worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 30 #175
+	planet = {
+		count = { min = 1 max = 1 } flags = { erasable }
+		orbit_distance = 0
+		class = "ph_terran"
+		orbit_angle = { min = 90 max = 270 }
+		flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 2 max = 2 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			flags = { cool_eco_zone } #ideal for cold worlds with water hydrospheres
+			class = random_non_colonizable
+		}
+	}
+	
+	change_orbit = 100 #275
+
+	# Outer Zone
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "rl_giant"
+		flags = { cold_zone } #possible frozen water or ammonia hydrospheres, or liquid water on tidally-locked's day sides
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 4 max = 4 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+
+	change_orbit = 85 #360
+	planet = {
+		count = 1
+		orbit_distance = { min = 0 max = 1 }
+		class = "rl_giant"
+		flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @giant_moon_distance
+		
+		moon = {
+			count = { min = 4 max = 4 } flags = { erasable }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 1 max = 2 }
+			class = random_non_colonizable
+			flags = { frigid_zone } #possible frozen water or ammonia hydrospheres only in jovian moons
+		}
+	}
+	
+}
