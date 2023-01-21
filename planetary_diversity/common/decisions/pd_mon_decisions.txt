@@ -29,6 +29,7 @@ decision_orbital_mirrors = {
 		is_pd_hive_world = no
 		is_pd_habitat = no
 		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
 		NOT = { has_modifier = resort_colony }
 		NOT = { is_planet_class = pc_city }
 		NOT = { is_planet_class = pc_crucible }
@@ -39,8 +40,6 @@ decision_orbital_mirrors = {
 		NOT = { has_deposit = d_snowball_wasteland_1 }
 		NOT = { is_planet_class = pc_relic }
 		NOT = { is_planet_class = pc_nuked_relic }
-		NOT = { is_planet_class = pc_pd_wasteland }
-		NOT = { is_planet_class = pc_pd_tidally_wasteland }
 		NOT = { has_building_construction = yes }	
 	}
 
@@ -79,6 +78,7 @@ decision_seismic_resonators = {
 		is_pd_hive_world = no
 		is_pd_habitat = no
 		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
 		NOT = { has_modifier = resort_colony }
 		NOT = { is_planet_class = pc_city }
 		NOT = { is_planet_class = pc_crucible }
@@ -90,8 +90,6 @@ decision_seismic_resonators = {
 		NOT = { has_deposit = d_snowball_wasteland_1 }
 		NOT = { is_planet_class = pc_relic }
 		NOT = { is_planet_class = pc_nuked_relic }
-		NOT = { is_planet_class = pc_pd_wasteland }
-		NOT = { is_planet_class = pc_pd_tidally_wasteland }
 	}
 
 	effect = {
@@ -129,6 +127,7 @@ decision_bionanite_soil = {
 		is_pd_hive_world = no
 		is_pd_habitat = no
 		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
 		NOT = { has_modifier = resort_colony }
 		NOT = { is_planet_class = pc_city }
 		NOT = { is_planet_class = pc_crucible }
@@ -140,8 +139,6 @@ decision_bionanite_soil = {
 		NOT = { has_deposit = d_snowball_wasteland_1 }
 		NOT = { is_planet_class = pc_relic }
 		NOT = { is_planet_class = pc_nuked_relic }
-		NOT = { is_planet_class = pc_pd_wasteland }
-		NOT = { is_planet_class = pc_pd_tidally_wasteland }
 	}
 
 	effect = {
@@ -174,13 +171,12 @@ decision_pd_megacoretap_world = {
 			is_planet_class = pc_milarc_relic
 			is_planet_class = pc_necropolis
 			is_planet_class = pc_necrohive
-			is_planet_class = pc_pd_wasteland
-			is_planet_class = pc_pd_tidally_wasteland
 			has_modifier = resort_colony
 			has_modifier = penal_colony
 			has_modifier = slave_colony
 			has_modifier = pm_wenkwort_custodian
 		}
+		is_pd_wasteland = no
 		is_pd_habitat = no
 		is_pd_shroud_world = no
 		is_pd_machine = no
@@ -224,6 +220,7 @@ decision_pd_megacoretap_world = {
 				limit = {
 					is_pd_tidally_locked = no
 					is_pd_superhab = no
+					is_pd_cave = no
 				}
 				change_pc = pc_pd_mega_power
 			}
@@ -238,6 +235,12 @@ decision_pd_megacoretap_world = {
 					is_pd_superhab = yes
 				}
 				change_pc = pc_pd_mega_power_superhab
+			}
+			IF = {
+				limit = {
+					is_pd_cave = yes
+				}
+				change_pc = pc_pd_mega_power_cave
 			}
 			create_message = {
 				type = MEGAPOWERPLANET_MESSAGE_TYPE

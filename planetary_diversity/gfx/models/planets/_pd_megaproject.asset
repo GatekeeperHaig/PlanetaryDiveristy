@@ -1,4 +1,4 @@
-  entity = {
+entity = {
 	name = "pd_mega_power_planet_01_entity"
 	pdxmesh = "planet_clouded_mesh"
 	
@@ -104,4 +104,47 @@ entity = {
 	default_state = "idle"
 	playback_rate = 1.0 
 	state = { name = "idle" animation = "idle" time_offset = { 15 0 } animation_speed = 0 }
+}
+#Cave Energy
+entity = {
+	name = "pd_mega_power_cave_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+	
+	meshsettings = {
+    name = "planet_geosphereShape"	
+    shader = "PdxMeshPlanetEmissive"
+	texture_diffuse = "pd_mega_power_cave_01_diffuse.dds"
+	texture_normal = "pd_mega_power_cave_01_normal.dds"
+	texture_specular = "pd_mega_power_cave_01_spec.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_smog_01_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_barren_1_diffuse.dds"
+	texture_normal = "poles_barren_1_normal.dds"
+	texture_specular = "poles_barren_1_specular.dds"
+	}	
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
 }

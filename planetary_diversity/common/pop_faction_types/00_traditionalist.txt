@@ -195,7 +195,13 @@ traditionalist = {
 		potential = {
 			exists = owner
 			owner = {
-				has_surveyed_class = pc_nuked
+				OR = {
+					has_surveyed_class = pc_nuked
+					has_surveyed_class = pc_nuked_relic
+					has_surveyed_class = pc_nuked_tl
+					has_surveyed_class = pc_nuked_superhab
+					has_surveyed_class = pc_nuked_cave
+				}
 				NOR = {
 					has_origin = origin_post_apocalyptic
 					has_country_flag = worm_tomb_ending
@@ -210,20 +216,14 @@ traditionalist = {
 				NOR = {
 					any_owned_planet = {
 						OR = {
-							is_planet_class = pc_nuked
 							is_planet_class = pc_irradiated
-							is_planet_class = pc_nuked_tl
-							is_planet_class = pc_nuked_superhab
-							is_planet_class = pc_nuked_relic
+							is_pd_nuked = yes
 						}
 					}
 					any_planet_within_border = {
 						OR = {
-							is_planet_class = pc_nuked
 							is_planet_class = pc_irradiated
-							is_planet_class = pc_nuked_tl
-							is_planet_class = pc_nuked_superhab
-							is_planet_class = pc_nuked_relic
+							is_pd_nuked = yes
 						}
 						is_terraforming = yes
 					}
@@ -247,6 +247,9 @@ traditionalist = {
 					has_surveyed_class = pc_gaia
 					has_surveyed_class = pc_hot_gaia
 					has_surveyed_class = pc_cold_gaia
+					has_surveyed_class = pc_gaia_cave
+					has_surveyed_class = pc_gaia_superhab
+					has_surveyed_class = pc_tidallygaia
 				}
 				has_ascension_perk = ap_consecrated_worlds
 			}
@@ -259,6 +262,9 @@ traditionalist = {
 						is_planet_class = pc_gaia
 						is_planet_class = pc_hot_gaia
 						is_planet_class = pc_cold_gaia
+						is_planet_class = pc_gaia_cave
+						is_planet_class = pc_gaia_superhab
+						is_planet_class = pc_tidallygaia
 					}
 					is_colony = no
 					OR = {

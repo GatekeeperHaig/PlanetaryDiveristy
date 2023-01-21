@@ -15,18 +15,14 @@ building_gaiaseeders_1 = {
 			}
 		}
 		NOR = {
-			is_planet_class = pc_gaia
 			is_planet_class = pc_city
-			is_pd_hive_world = yes
-			is_pd_machine = yes
 			is_planet_class = pc_relic
 			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_cold_gaia
-			is_planet_class = pc_hot_gaia
-			is_planet_class = pc_aquatic
-			is_planet_class = pc_tidallyaquatic
-			is_planet_class = pc_tidallygaia
 		}
+		is_pd_gaia = no
+		is_pd_hive_world = no
+		is_pd_machine = no
+		is_pd_aquatics = no
 		is_artificial = no
 		is_pd_habitat = no
 		is_pd_unique = no
@@ -40,7 +36,9 @@ building_gaiaseeders_1 = {
 
 	destroy_trigger = {
 		OR = {
-			is_planet_class = pc_gaia	# No double bonuses if player uses other tools to turn it into a Gaia world.
+			# No double bonuses if player uses other tools to turn it into a Gaia world.
+			#is_planet_class = pc_gaia
+			is_pd_gaia = yes
 			is_planet_class = pc_city
 			is_pd_hive_world = yes
 			is_pd_machine = yes
@@ -94,7 +92,8 @@ building_gaiaseeders_2 = {
 
 	destroy_trigger = {
 		OR = {
-			is_planet_class = pc_gaia
+			#is_planet_class = pc_gaia
+			is_pd_gaia = yes
 			is_planet_class = pc_city
 			is_pd_hive_world = yes
 			is_pd_machine = yes
@@ -140,7 +139,8 @@ building_gaiaseeders_3 = {
 
 	destroy_trigger = {
 		OR = {
-			is_planet_class = pc_gaia
+			#is_planet_class = pc_gaia
+			is_pd_gaia = yes
 			is_planet_class = pc_city
 			is_pd_hive_world = yes
 			is_pd_machine = yes

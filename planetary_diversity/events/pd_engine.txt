@@ -1344,7 +1344,7 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = { is_planet_class = pc_pd_dry_cave }
-			set_planet_flag = pdcoldcave
+			set_planet_flag = pddrycave
 		}
 		every_galaxy_planet = {
 			limit = { is_planet_class = pc_reef }
@@ -1740,18 +1740,18 @@ country_event = {
 					has_moon = yes 
 				}	
 				planet_size > 9
-				planet_size < 26	
+				planet_size < 31	
 				solar_system = { is_star_class = sc_m }
 			}	
 			random_list = {
-				40 = { 
+				30 = { 
 					change_pc = pc_tidallylocked_barren
 				}
 				5 = { 
 					change_pc = pc_tidallylocked_barren
 					add_modifier = { modifier = terraforming_candidate days = -1 } 
 				}
-				45 = { }	
+				65 = { }	
 			}
 		}
 		every_galaxy_planet = { 
@@ -1765,11 +1765,11 @@ country_event = {
 					is_moon = yes
 				}	
 				planet_size > 9
-				planet_size < 26	
+				planet_size < 31	
 				solar_system = { is_star_class = sc_k }
 			}	
 			random_list = {
-				40 = { 
+				30 = { 
 					change_pc = pc_barren_superhab
 					random_list = {
 						20 = { set_planet_size = 26 }
@@ -1790,7 +1790,31 @@ country_event = {
 						20 = { set_planet_size = 30 }
 					}
 				}
-				45 = { }	
+				65 = { }	
+			}
+		}
+		every_galaxy_planet = { 
+			limit = {  
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+				}
+				NOR = { 
+					has_modifier = terraforming_candidate
+					#is_moon = yes
+				}	
+				planet_size > 9
+				planet_size < 31	
+			}	
+			random_list = {
+				30 = { 
+					change_pc = pc_barren_cave
+				}
+				5 = { 
+					change_pc = pc_barren_cave
+					add_modifier = { modifier = terraforming_candidate days = -1 } 
+				}
+				65 = { }	
 			}
 		}
 	}
@@ -1809,7 +1833,7 @@ planet_event = {
 					is_pd_machine = yes
 					is_pd_gaia = yes
 					is_pd_hive_world = yes
-					is_planet_class = pc_aquatic
+					is_pd_aquatics = yes
 				}
 			}
 		remove_modifier = engineered_environment
@@ -1861,11 +1885,11 @@ planet_event = {
 		}
 		if = { 
 			limit = { NOT = { is_planet_class = pc_pd_cold_cave } }
-			remove_modifier = pdcoldcave
+			remove_modifier = pd_cold_cave
 		}
 		if = { 
 			limit = { NOT = { is_planet_class = pc_pd_dry_cave } }
-			remove_modifier = pddrycave
+			remove_modifier = pd_dry_cave
 		}
 		if = { 
 		limit = { NOT = { is_planet_class = pc_reef } }
@@ -1937,10 +1961,7 @@ planet_event = {
 				NOT = { 
 					OR = { 
 						is_planet_class = pc_megaflora 
-						is_planet_class = pc_megaflorahive 
-						is_planet_class = pc_megafloratol 
-						is_planet_class = pc_megaflorahivetl 
-						is_planet_class = pc_megaflorahive_superhab
+						is_pd_megaflora_hive = yes
 					} 
 				} 
 			}
@@ -2074,9 +2095,8 @@ planet_event = {
 		limit = { 
 			NOT = {
 				OR = {
-				is_planet_class = pc_machine 
-				is_planet_class = pc_machine_factory 
-				is_planet_class = pc_machinetidallylocked
+					is_pd_machine = yes
+					is_planet_class = pc_machine_factory 
 				}
 			} 
 		}
@@ -2146,12 +2166,11 @@ planet_event = {
 		if = { 
 			limit = { 
 				NOR = { 
-					is_planet_class = pc_pdshroud 
+					is_pd_shroud_world = yes
 					is_planet_class = pc_city 
 					is_planet_class = pc_ecocity 
 					is_planet_class = pc_milarc 
 					is_planet_class = pc_corpoarc 
-					is_planet_class = pc_tidallyshroud
 				} 
 			}
 			remove_modifier = pdcomposer
@@ -2298,10 +2317,7 @@ planet_event = {
 			limit = { 
 				OR = { 
 					is_planet_class = pc_megaflora 
-					is_planet_class = pc_megaflorahive 
-					is_planet_class = pc_megafloratol 
-					is_planet_class = pc_megaflorahivetl 
-					is_planet_class = pc_megaflorahive_superhab
+					is_pd_megaflora_hive = yes
 				} 
 			}
 			add_modifier = { modifier = "pdmegaflora" days = -1 }
@@ -2346,11 +2362,7 @@ planet_event = {
 		}
 		if = { 
 			limit = { 
-				OR = { 
-					is_planet_class = pc_gaia 
-					is_planet_class = pc_cold_gaia 
-					is_planet_class = pc_hot_gaia 
-				} 
+				is_pd_gaia = yes
 			}
 			remove_modifier = engineered_environment
 			remove_modifier = engineered_environment_gaia
@@ -2365,10 +2377,9 @@ planet_event = {
 		if = { 
 			limit = { 
 				OR = {
-					is_planet_class = pc_machine 
+					is_pd_machine = yes
 					is_planet_class = pc_machine_factory 
 					is_planet_class = pc_machine_capital 
-					is_planet_class = pc_machinetidallylocked
 				}
 				not = { has_deposit = d_pd_machine_world_boost } 
 			}
@@ -2435,10 +2446,8 @@ planet_event = {
 			is_planet_class = pc_ringworld_habitable
 			is_planet_class = pc_city
 			is_planet_class = pc_mesa
-			is_planet_class = pc_pdshroud
-			is_planet_class = pc_tidallyshroud
-			is_planet_class = pc_aquatic
-			is_planet_class = pc_tidallyaquatic
+			is_pd_shroud_world = yes
+			is_pd_aquatics = yes
 		}
 	}
 
@@ -2519,6 +2528,8 @@ planet_event = {
 			#Shroud
 			IF = { limit = { is_planet_class = pc_pdshroud } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
 			IF = { limit = { is_planet_class = pc_tidallyshroud } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pdshroud_superhab } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pdshroud_cave } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
 	}
 }
 #Non-Aquatic Race lands on Aquaitc Planet
@@ -2544,6 +2555,8 @@ planet_event = {
 		IF = { limit = { is_planet_class = pc_aquatic has_planet_flag = hotaquatic } set_planet_entity = { picture = pc_aquatichothab } }
 		IF = { limit = { is_planet_class = pc_aquatic has_planet_flag = coldaquatic } set_planet_entity = { picture = pc_aquaticcoldhab } }
 		IF = { limit = { is_planet_class = pc_tidallyaquatic } set_planet_entity = { picture = pc_tidallyaquatichab } }
+		IF = { limit = { is_planet_class = pc_aquatic_superhab } set_planet_entity = { picture = pc_aquatic_superhab } }
+		IF = { limit = { is_planet_class = pc_aquatic_cave } set_planet_entity = { picture = pc_tidallyaquatichab } }
 	}
 }
 
@@ -2597,6 +2610,7 @@ planet_event = {
 	immediate = {
 		if = {
 			limit = { 
+				is_pd_gaia = no
 				NOT = { has_planet_flag = special_start_planet } 
 				NOT = { is_planet_class = pc_continental }
 				NOT = { is_planet_class = pc_tropical }
@@ -2607,9 +2621,6 @@ planet_event = {
 				NOT = { is_planet_class = pc_ocean }
 				NOT = { is_planet_class = pc_alpine }
 				NOT = { is_planet_class = pc_savannah }
-				NOT = { is_planet_class = pc_gaia }
-				NOT = { is_planet_class = pc_hot_gaia }
-				NOT = { is_planet_class = pc_cold_gaia }
 				NOT = { is_planet_class = pc_relic }
 				NOT = { is_planet_class = pc_nuked_relic }
 				NOT = { is_planet_class = pc_milarc_relic }
@@ -3042,6 +3053,7 @@ planet_event = {
 		IF = { limit = { is_planet_class = pc_megaflorahive } set_planet_flag = pdhive_megaflorahive }
 		IF = { limit = { is_planet_class = pc_megaflorahivetl } set_planet_flag = pdhive_megaflorahivetl }
 		IF = { limit = { is_planet_class = pc_megaflorahive_superhab } set_planet_flag = pdhive_megaflorahivesuperhab }
+		IF = { limit = { is_planet_class = pc_megaflorahive_cave } set_planet_flag = pdhive_megaflorahivecave }
 		#Exotic
 		if = { limit = { is_planet_class = pc_ammonia } set_planet_flag = pdhive_ammonia }
 		if = { limit = { is_planet_class = pc_sulfur } set_planet_flag = pdhive_sulfur }
@@ -3540,6 +3552,10 @@ planet_event = {
 				limit = { is_planet_class = pc_megaflorahive_superhab }
 				change_pc = pc_superhabitable
 			}
+			if = {
+				limit = { is_planet_class = pc_megaflorahive_cave }
+				change_pc = pc_karst
+			}
 			add_deposit = d_pd_tree_of_life_dead
 			add_modifier = {
 				modifier = no_pd_lifetree
@@ -3603,6 +3619,11 @@ planet_event = {
 		if = {
 			limit = { is_planet_class = pc_megaflorahive_superhab }
 			change_pc = pc_superhabitable
+			add_deposit = d_pd_tree_of_life_dead
+		}
+		if = {
+			limit = { is_planet_class = pc_megaflorahive_cave }
+			change_pc = pc_karst
 			add_deposit = d_pd_tree_of_life_dead
 		}
 	}
@@ -3762,6 +3783,12 @@ planet_event = {
 				is_pd_superhab = yes
 			}
 			change_pc = pc_megaflorahive_superhab
+		}
+		IF = {
+			limit = {
+				is_pd_cave = yes
+			}
+			change_pc = pc_megaflorahive_cave
 		}
 		pd_remove_special_deposits_modifiers = yes
 		remove_planet_flag = pd_tol1
@@ -7316,7 +7343,7 @@ country_event = {
 				}
 			}	
 			IF = { limit = { is_planet_class = pc_pd_dry_cave } 
-				IF = { limit = { not = { has_modifier = pc_pd_dry_cave } }
+				IF = { limit = { not = { has_modifier = pd_dry_cave } }
 				add_modifier = { modifier = "pd_dry_cave" days = -1 }
 				}
 			}	
@@ -8489,6 +8516,7 @@ planet_event = {
 				NOT = {
 					is_pd_tidally_locked = yes
 					is_pd_superhab = yes
+					is_pd_cave = yes
 				}
 			}
 			change_pc = pc_pd_necro
@@ -8504,6 +8532,12 @@ planet_event = {
 				is_pd_superhab = yes
 			}
 			change_pc = pc_pd_necro_superhab
+		}	
+		IF = {
+			limit = {
+				is_pd_cave = yes
+			}
+			change_pc = pc_pd_necro_cave
 		}
 
 		# Remove Gaia Seed building.

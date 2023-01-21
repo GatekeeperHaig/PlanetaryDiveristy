@@ -54,14 +54,12 @@
  		is_planet_class = pc_machine_fort
  		is_planet_class = pc_mangrove
  		is_planet_class = pc_med
- 		is_planet_class = pc_megaflora
  		is_planet_class = pc_pd_petrified
+ 		is_planet_class = pc_megaflora
  		is_planet_class = pc_megafloracapital
  		is_planet_class = pc_megafloraforge
  		is_planet_class = pc_megaflorafort
- 		is_planet_class = pc_megaflorahive
- 		is_planet_class = pc_megaflorahivetl	
- 		is_planet_class = pc_megafloratol
+		is_pd_megaflora_hive = yes
  		is_planet_class = pc_mesa
  		is_planet_class = pc_methane
  		is_planet_class = pc_pd_hycean
@@ -124,11 +122,25 @@
  		is_pd_unique = yes
  	}
  }
+
+ is_pd_megaflora_hive = {
+	OR = {
+		is_planet_class = pc_megaflorahive
+		is_planet_class = pc_megafloratol
+		is_planet_class = pc_megaflorahivetl
+		is_planet_class = pc_megaflorahive_superhab
+		is_planet_class = pc_megaflorahive_cave
+
+	}
+ }
+ 
  
  is_pd_necro_world = {
  	OR = {
  		is_planet_class = pc_pd_necro
  		is_planet_class = pc_necrotidallylocked
+ 		is_planet_class = pc_pd_necro_superhab
+ 		is_planet_class = pc_pd_necro_cave
  	}
  }
  
@@ -137,6 +149,7 @@
  		is_planet_class = pc_pd_mega_power
  		is_planet_class = pc_pd_mega_power_tidal
  		is_planet_class = pc_pd_mega_power_superhab
+ 		is_planet_class = pc_pd_mega_power_cave
  	}
  }
  
@@ -267,6 +280,7 @@
  		is_planet_class = pc_hot_gaia
  		is_planet_class = pc_tidallygaia
  		is_planet_class = pc_gaia_superhab
+		is_planet_class = pc_gaia_cave
  	}
  }
  
@@ -275,6 +289,7 @@
  		is_planet_class = pc_aquatic
  		is_planet_class = pc_tidallyaquatic
  		is_planet_class = pc_aquatic_superhab
+ 		is_planet_class = pc_aquatic_cave
  	}
  }
  
@@ -298,6 +313,8 @@
  		is_planet_class = pc_machine
  		is_planet_class = pc_machinetidallylocked
  		is_planet_class = pc_machine_necropolis
+ 		is_planet_class = pc_machine_superhab
+ 		is_planet_class = pc_machine_cave
  	}
  
  }
@@ -334,12 +351,14 @@
  	}
  }
  
- is_pd_shroud_world = {
+is_pd_shroud_world = {
  	is_planet_class = pc_pdshroud
  	is_planet_class = pc_tidallyshroud
+ 	is_planet_class = pc_pdshroud_superhab
+ 	is_planet_class = pc_pdshroud_cave
  }
  
- is_pd_tidally_locked = {
+is_pd_tidally_locked = {
  	OR = {
  		is_planet_class = pc_tidallylocked
  		is_planet_class = pc_tidallyaquatic
@@ -351,7 +370,7 @@
  	}
  }
 
- is_pd_superhab = {
+is_pd_superhab = {
 	OR = {
 		is_planet_class = pc_superhabitable
 		is_planet_class = pc_pd_dry_superhab
@@ -365,6 +384,34 @@
 		is_planet_class = pc_nuked_superhab
 		is_planet_class = pc_barren_superhab
 		is_planet_class = pc_hive_superhab
+		is_planet_class = pc_pdshroud_superhab
+	}
+}
+
+is_pd_cave = {
+	OR = {
+		is_planet_class = pc_karst
+		is_planet_class = pc_pd_dry_cave
+		is_planet_class = pc_pd_cold_cave
+		is_planet_class = pc_gaia_cave
+		is_planet_class = pc_pd_necro_cave
+		is_planet_class = pc_aquatic_cave
+		is_planet_class = pc_machine_cave
+		is_planet_class = pc_pd_wasteland_cave
+		is_planet_class = pc_megaflorahive_cave
+		is_planet_class = pc_nuked_cave
+		is_planet_class = pc_barren_cave
+		is_planet_class = pc_hive_cave
+		is_planet_class = pc_pdshroud_cave
+	}
+}
+
+is_pd_wasteland = {
+	OR = {
+		is_planet_class = pc_pd_wasteland
+		is_planet_class = pc_pd_tidally_wasteland
+		is_planet_class = pc_pd_wasteland_superhab
+		is_planet_class = pc_pd_wasteland_cave
 	}
 }
 
@@ -372,6 +419,7 @@ is_pd_nuked = {
 	OR = {
 		is_planet_class = pc_nuked
 		is_planet_class = pc_nuked_superhab
+		is_planet_class = pc_nuked_cave
 		is_planet_class = pc_nuked_tl
 		is_planet_class = pc_nuked_relic
 	}
@@ -512,6 +560,8 @@ is_planetary_diversity_ringworld = {
  			is_planet_class = pc_pdhive1
  			is_planet_class = pc_pdhive2
  			is_planet_class = pc_hivetidallylocked
+ 			is_planet_class = pc_hive_superhab
+ 			is_planet_class = pc_hive_cave
  		}
  	}
  }
@@ -553,8 +603,7 @@ is_planetary_diversity_ringworld = {
  		is_planet_class = pc_relic
 		is_planet_class = pc_nuked_relic
  		is_planet_class = pc_hive
- 		is_planet_class = pc_machine
- 		is_planet_class = pc_machinetidallylocked
+		is_pd_machine = yes
 		is_pd_nuked = yes
  		is_artificial = yes
  		is_pd_habitat = yes
@@ -671,8 +720,7 @@ is_planetary_diversity_ringworld = {
  		is_planet_class = pc_glacio
  		is_planet_class = pc_pd_petrified
  		is_planet_class = pc_megaflora
- 		is_planet_class = pc_megaflorahive
- 		is_planet_class = pc_megaflorahivetl	
+		is_pd_megaflora_hive = yes
  		is_planet_class = pc_megafloratol
  		is_planet_class = pc_pdhive1
  		is_planet_class = pc_pdhive2
@@ -780,8 +828,7 @@ is_planetary_diversity_ringworld = {
  		is_planet_class = pc_lanthanide
  		is_planet_class = pc_pd_petrified
  		is_planet_class = pc_megaflora
- 		is_planet_class = pc_megaflorahive
- 		is_planet_class = pc_megaflorahivetl	
+		is_pd_megaflora_hive = yes	
  		is_planet_class = pc_megafloratol
  		is_planet_class = pc_aquatic
  		is_planet_class = pc_shrouded
@@ -988,11 +1035,8 @@ empire_has_good_habitability_on_tomb_worlds = {
 				has_trait = trait_lithoid_radiotrophic
 				has_trait = trait_radiotrophic_mutants
 			}
-			NOT = { planet = { is_planet_class = pc_nuked } }
-			NOT = { planet = { is_planet_class = pc_nuked_superhab } }
-			NOT = { planet = { is_planet_class = pc_nuked_tl } }
+			NOT = { planet = { is_pd_nuked = yes } }
 			NOT = { planet = { is_planet_class = pc_irradiated } }
-			NOT = { planet = { is_planet_class = pc_nuked_relic } }
 		}
 	}
  }

@@ -16,13 +16,8 @@ decision_engineered_environment_gaia = {
 	}
 
 	allow = {
-		NOT = { is_planet_class = pc_gaia }
-		NOT = { is_planet_class = pc_tidallygaia }
-		NOT = { is_planet_class = pc_gaia_superhab }
-		NOT = { is_planet_class = pc_cold_gaia }
-		NOT = { is_planet_class = pc_hot_gaia }
-		NOT = { is_planet_class = pc_pd_wasteland }
-		NOT = { is_planet_class = pc_pd_tidally_wasteland }
+		is_pd_gaia = no
+		is_pd_wasteland = no
 		NOT = { has_modifier = engineered_environment_gaia }
 		NOT = { has_modifier = engineered_environment_rare }
 	}
@@ -38,18 +33,13 @@ decision_engineered_environment_gaia = {
 		is_pd_shroud_world = no
 		is_pd_habitat = no
 		is_pd_planetary_megaproject = no
+		is_pd_gaia = no
+		is_pd_hive_world = no
+		is_pd_wasteland = no
 		NOR = {
-			is_planet_class = pc_gaia
-			is_planet_class = pc_tidallygaia
-			is_planet_class = pc_gaia_superhab
 			is_planet_class = pc_relic
 			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_pd_wasteland
-			is_planet_class = pc_pd_tidally_wasteland
 			is_planet_class = pc_milarc_relic
-			is_planet_class = pc_hive
-			is_planet_class = pc_pdhive1
-			is_planet_class = pc_pdhive2
 			has_modifier = engineered_environment_gaia
 			has_modifier = engineered_environment_rare
 		}
@@ -59,11 +49,7 @@ decision_engineered_environment_gaia = {
 	effect = {
 		if = { 
 			limit = { 
-				NOT = { is_planet_class = pc_gaia } 
-				NOT = { is_planet_class = pc_tidallygaia }
-				NOT = { is_planet_class = pc_gaia_superhab }
-				NOT = { is_planet_class = pc_cold_gaia }
-				NOT = { is_planet_class = pc_hot_gaia }
+				is_pd_gaia = no
 				is_pd_rare = no
 			}
 			add_modifier = {
@@ -335,6 +321,8 @@ decision_oceancapital = {
 			#Shroud
 			IF = { limit = { is_planet_class = pc_pdshroud } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
 			IF = { limit = { is_planet_class = pc_tidallyshroud } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pdshroud_superhab } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pdshroud_cave } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
 		}
 	}
 	
@@ -376,8 +364,15 @@ decision_armbombownplanet = {
 			limit = {
 				is_pd_superhab = no
 				is_pd_tidally_locked = no
+				is_pd_cave = no
 			}
 			change_pc = pc_nuked
+		}
+		IF = {
+			limit = {
+				is_pd_cave = yes
+			}
+			change_pc = pc_nuked_cave
 		}
 		IF = {
 			limit = {
@@ -661,14 +656,12 @@ decision_wasteland_world = {
 			is_planet_class = pc_milarc_relic
 			is_planet_class = pc_necropolis
 			is_planet_class = pc_necrohive
-			is_planet_class = pc_pd_wasteland
-			is_planet_class = pc_pd_tidally_wasteland
-			is_planet_class = pc_pd_wasteland_superhab
 			has_modifier = resort_colony
 			has_modifier = penal_colony
 			has_modifier = slave_colony
 			has_modifier = pm_wenkwort_custodian
 		}
+		is_pd_wasteland = no
 		is_pd_habitat = no
 		is_pd_shroud_world = no
 		is_pd_machine = no
@@ -698,9 +691,16 @@ decision_wasteland_world = {
 					OR = {
 						is_pd_tidally_locked = no
 						is_pd_superhab = no
+						is_pd_cave = no
 					}
 				}
 				change_pc = pc_pd_wasteland
+			}
+			IF = {
+				limit = {
+					is_pd_cave = yes
+				}
+				change_pc = pc_pd_wasteland_cave
 			}
 			IF = {
 				limit = {

@@ -19,31 +19,27 @@ planet_event = {
 		# Turn planet into Gaia world.
 		if = {
 			limit = { 
-				OR = {
-					is_planet_class = pc_tidallylocked
-					is_planet_class = pc_wettidallylocked
-					is_planet_class = pc_eyeball
-				}
+				is_pd_tidally_locked = yes
 			}
 			change_pc = pc_tidallygaia
 		}
 		if = {
 			limit = { 
-				OR = {
-					is_planet_class = pc_superhabitable
-					is_planet_class = pc_pd_dry_superhab
-					is_planet_class = pc_pd_cold_superhab
-				}
+				is_pd_superhab = yes
 			}
-			change_pc = pc_tidallygaia
+			change_pc = pc_gaia_superhab
 		}
 		if = {
 			limit = { 
-				OR = {
-					NOT = { is_planet_class = pc_tidallylocked }
-					NOT = { is_planet_class = pc_wettidallylocked }
-					NOT = { is_planet_class = pc_eyeball }
-				}
+				is_pd_cave = yes
+			}
+			change_pc = pc_gaia_cave
+		}
+		if = {
+			limit = { 
+				is_pd_tidally_locked = no
+				is_pd_superhab = no
+				is_pd_cave = no
 			}
 			change_pc = pc_gaia
 		}
@@ -130,21 +126,27 @@ country_event = {
 		from.planet = {
 			if = {
 				limit = { 
-					OR = {
-						is_planet_class = pc_tidallylocked
-						is_planet_class = pc_wettidallylocked
-						is_planet_class = pc_eyeball
-					}
+					is_pd_tidally_locked = yes
 				}
 				change_pc = pc_tidallygaia
 			}
 			if = {
 				limit = { 
-					OR = {
-						NOT = { is_planet_class = pc_tidallylocked }
-						NOT = { is_planet_class = pc_wettidallylocked }
-						NOT = { is_planet_class = pc_eyeball }
-					}
+					is_pd_superhab = yes
+				}
+				change_pc = pc_gaia_superhab
+			}
+			if = {
+				limit = { 
+					is_pd_cave = yes
+				}
+				change_pc = pc_gaia_cave
+			}
+			if = {
+				limit = { 
+					is_pd_tidally_locked = no
+					is_pd_superhab = no
+					is_pd_cave = no
 				}
 				change_pc = pc_gaia
 			}
