@@ -232,6 +232,14 @@ d_pd_capital_arc = {
 		potential = {
 			is_planet_class = pc_ringworld_habitable
 		}
+		job_politician_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
 		planet_max_districts_add = 1
 	}
 
@@ -277,12 +285,38 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_politician_add = 4
 			job_bureaucrat_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_civic = civic_aristocratic_elite } }
+			NOT = { owner = { has_civic = civic_exalted_priesthood } }
+			NOT = { owner = { has_civic = civic_technocracy } }
+			NOT = { owner = { has_civic = civic_merchant_guilds } }
+			NOT = { owner = { is_spiritualist = yes } }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_politician_add = 2
+			job_bureaucrat_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -299,12 +333,38 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_politician_add = 4
 			job_priest_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_civic = civic_aristocratic_elite } }
+			NOT = { owner = { has_civic = civic_exalted_priesthood } }
+			NOT = { owner = { has_civic = civic_technocracy } }
+			NOT = { owner = { has_civic = civic_merchant_guilds } }
+			owner = { is_spiritualist = yes }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_politician_add = 2
+			job_priest_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -318,13 +378,37 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_noble_add = 2
 			job_politician_add = 2
 			job_bureaucrat_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_aristocratic_elite }
+			NOT = { owner = { is_spiritualist = yes } }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_noble_add = 1
+			job_politician_add = 1
+			job_bureaucrat_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -338,13 +422,37 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_noble_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_aristocratic_elite }
+			owner = { is_spiritualist = yes }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_noble_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -357,13 +465,36 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_head_researcher_add = 2
 			job_politician_add = 2
 			job_bureaucrat_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_technocracy }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_head_researcher_add = 1
+			job_politician_add = 1
+			job_bureaucrat_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -377,13 +508,37 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_merchant_add = 2
 			job_politician_add = 2
 			job_bureaucrat_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_merchant_guilds }
+			NOT = { owner = { is_spiritualist = yes } }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_merchant_add = 1
+			job_politician_add = 1
+			job_bureaucrat_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -397,13 +552,37 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_merchant_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_merchant_guilds }
+			owner = { is_spiritualist = yes }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_merchant_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -416,13 +595,36 @@ d_pd_capital_arc = {
 				owner = { has_authority = auth_democratic }
 				owner = { has_authority = auth_oligarchic }
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_high_priest_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_exalted_priesthood }
+			OR = {
+				owner = { has_authority = auth_democratic }
+				owner = { has_authority = auth_oligarchic }
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_high_priest_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -450,6 +652,14 @@ d_pd_palace_arc = {
 		potential = {
 			is_planet_class = pc_ringworld_habitable
 		}
+		job_politician_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
 		planet_max_districts_add = 1
 	}
 
@@ -496,12 +706,39 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_politician_add = 4
 			job_bureaucrat_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_civic = civic_aristocratic_elite } }
+			NOT = { owner = { has_civic = civic_exalted_priesthood } }
+			NOT = { owner = { has_civic = civic_technocracy } }
+			NOT = { owner = { has_civic = civic_merchant_guilds } }
+			NOT = { owner = { has_civic = civic_pdinquisition } }
+			NOT = { owner = { is_spiritualist = yes } }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_politician_add = 2
+			job_bureaucrat_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -519,12 +756,39 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_politician_add = 4
 			job_priest_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_civic = civic_aristocratic_elite } }
+			NOT = { owner = { has_civic = civic_exalted_priesthood } }
+			NOT = { owner = { has_civic = civic_technocracy } }
+			NOT = { owner = { has_civic = civic_merchant_guilds } }
+			NOT = { owner = { has_civic = civic_pdinquisition } }
+			owner = { is_spiritualist = yes }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_politician_add = 2
+			job_priest_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -538,13 +802,37 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_noble_add = 2
 			job_politician_add = 2
 			job_bureaucrat_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_aristocratic_elite }
+			NOT = { owner = { is_spiritualist = yes } }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_noble_add = 1
+			job_politician_add = 1
+			job_bureaucrat_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -558,13 +846,37 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_noble_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_aristocratic_elite }
+			owner = { is_spiritualist = yes }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_noble_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -577,13 +889,36 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_head_researcher_add = 2
 			job_politician_add = 2
 			job_bureaucrat_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_technocracy }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_head_researcher_add = 1
+			job_politician_add = 1
+			job_bureaucrat_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -597,13 +932,37 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_merchant_add = 2
 			job_politician_add = 2
 			job_bureaucrat_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_merchant_guilds }
+			NOT = { owner = { is_spiritualist = yes } }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_merchant_add = 1
+			job_politician_add = 1
+			job_bureaucrat_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -617,13 +976,37 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_merchant_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_merchant_guilds }
+			owner = { is_spiritualist = yes }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_merchant_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -636,13 +1019,36 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_high_priest_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_palace_guard_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_exalted_priesthood }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_high_priest_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_palace_guard_add = 2
 		}
 	}
 
@@ -655,13 +1061,36 @@ d_pd_palace_arc = {
 				owner = { has_authority = auth_dictatorial }
 				owner = { has_authority = auth_imperial	}
 			}
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_high_inquisitor_add = 2
 			job_politician_add = 2
 			job_priest_add = 6
 			job_inquisitor_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pdinquisition }
+			OR = {
+				owner = { has_authority = auth_dictatorial }
+				owner = { has_authority = auth_imperial	}
+			}
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_high_inquisitor_add = 1
+			job_politician_add = 1
+			job_priest_add = 2
+			job_inquisitor_add = 2
 		}
 	}
 
@@ -688,6 +1117,14 @@ d_pd_boardroom_arc = {
 	triggered_planet_modifier = {
 		potential = {
 			is_planet_class = pc_ringworld_habitable
+		}
+		job_executive_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
 		}
 		planet_max_districts_add = 1
 	}
@@ -719,12 +1156,31 @@ d_pd_boardroom_arc = {
 			exists = owner
 			owner = { is_megacorp = yes }
 			owner = { is_spiritualist = no }
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_executive_add = 4
 			job_manager_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_megacorp = yes }
+			owner = { is_spiritualist = no }
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_executive_add = 2
+			job_manager_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -734,12 +1190,31 @@ d_pd_boardroom_arc = {
 			exists = owner
 			owner = { is_megacorp = yes }
 			owner = { is_spiritualist = yes }
-			planet = { is_capital = yes }
+			planet = { 
+				is_capital = yes 
+				NOT = { is_planet_class = pc_habitat }
+			}
 		} 
 		modifier = {	
 			job_executive_add = 4
 			job_priest_add = 6
 			job_capital_security_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_megacorp = yes }
+			owner = { is_spiritualist = yes }
+			planet = { 
+				is_capital = yes 
+				is_planet_class = pc_habitat
+			}
+		} 
+		modifier = {	
+			job_executive_add = 2
+			job_priest_add = 2
+			job_capital_security_add = 2
 		}
 	}
 
@@ -767,6 +1242,14 @@ d_pd_biohivecap_arc = {
 	triggered_planet_modifier = {
 		potential = {
 			is_planet_class = pc_ringworld_habitable
+		}
+		job_synapse_drone_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
 		}
 		planet_max_districts_add = 1
 	}
@@ -808,11 +1291,33 @@ d_pd_biohivecap_arc = {
 				is_hive_empire = yes 
 				NOT = { has_origin = origin_pd_tree_of_life }
 			}
+			planet = {
+				is_capital = yes
+				NOT = { is_planet_class = pc_habitat }
+			}
 		}
 		modifier = {	
 			job_spawning_drone_add = 4
 			job_synapse_drone_add = 6
 			job_patrol_drone_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_hive_empire = yes 
+				NOT = { has_origin = origin_pd_tree_of_life }
+			}
+			planet = {
+				is_capital = yes
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_spawning_drone_add = 2
+			job_synapse_drone_add = 2
+			job_patrol_drone_add = 2
 		}
 	}
 
@@ -822,6 +1327,317 @@ d_pd_biohivecap_arc = {
 			is_planet_class = pc_bioforge
 			is_planet_class = pc_biofort
 			is_planet_class = pc_hivetidallylocked
+		}
+		planet = { is_capital = yes }
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pd_florahivecap_arc = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_synapse_drone_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_origin = origin_pd_tree_of_life } 
+		}
+		planet_max_districts_add = -3
+		planet_stability_add = 10
+		planet_amenities_mult = 0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_origin = origin_pd_tree_of_life }	}
+		}
+		planet_max_districts_add = -3
+		planet_stability_add = -5
+	}
+
+	country_modifier = {
+		planet_stability_add = 10
+	}
+
+	#Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_pd_tree_of_life }
+			planet = {
+				is_capital = yes
+				NOT = { is_planet_class = pc_habitat }
+			}
+		}
+		modifier = {	
+			job_spawning_drone_add = 4
+			job_synapse_drone_add = 6
+			job_patrol_drone_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_pd_tree_of_life }
+			planet = {
+				is_capital = yes
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_spawning_drone_add = 2
+			job_synapse_drone_add = 2
+			job_patrol_drone_add = 2
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_megafloratol
+			is_planet_class = pc_megafloraforge
+			is_planet_class = pc_megaflorafort
+		}
+		planet = { is_capital = yes }
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pd_machinecap_arc = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_coordinator_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+		}
+		planet_max_districts_add = -3
+		planet_stability_add = 10
+		planet_amenities_mult = 0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = {
+				owner = {
+					is_machine_empire = yes
+					NOT = { has_valid_civic = civic_machine_servitor }
+				}
+			}
+		}
+		planet_max_districts_add = -3
+		planet_stability_add = -5
+	}
+
+	country_modifier = {
+		planet_stability_add = 10
+	}
+
+	#Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+			planet = {
+				is_capital = yes
+				NOT = { is_planet_class = pc_habitat }
+			}
+		}
+		modifier = {	
+			job_replicator_add = 4
+			job_coordinator_add = 6
+			job_patrol_drone_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+			planet = {
+				is_capital = yes
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_replicator_add = 2
+			job_coordinator_add = 2
+			job_patrol_drone_add = 2
+		}
+	}
+
+	potential = {
+		OR = {
+			is_pd_machine = yes
+			is_planet_class = pc_machine_factory
+			is_planet_class = pc_machine_fort
+		}
+		planet = { is_capital = yes }
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pd_roguecap_arc = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_capital_arc
+	
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_pd_capital_bio_politician_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		planet_max_districts_add = -3
+		planet_stability_add = 10
+		planet_amenities_mult = 0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = {
+				owner = {
+					is_machine_empire = yes
+					has_valid_civic = civic_machine_servitor
+				}
+			}
+		}
+		planet_max_districts_add = -3
+		planet_stability_add = -5
+	}
+
+	country_modifier = {
+		planet_stability_add = 10
+	}
+
+	#Regular
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			planet = {
+				is_capital = yes
+				NOT = { is_planet_class = pc_habitat }
+			}
+		}
+		modifier = {	
+			job_replicator_add = 4
+			job_pd_capital_bio_politician_add = 6
+			job_patrol_drone_add = 8
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			planet = {
+				is_capital = yes
+				is_planet_class = pc_habitat
+			}
+		}
+		modifier = {	
+			job_replicator_add = 2
+			job_pd_capital_bio_politician_add = 2
+			job_patrol_drone_add = 2
+		}
+	}
+
+	potential = {
+		OR = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			is_pd_arcology = yes
 		}
 		planet = { is_capital = yes }
 	}
@@ -926,134 +1742,6 @@ d_pd_industrial_sector = {
 			is_planet_class = pc_megafloraforge
 			is_planet_class = pc_machine_factory
 		}
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
-
-d_pd_florahivecap_arc = {
-	is_for_colonizable = yes
-	category = deposit_cat_rare
-	
-	use_weights_for_terraforming_swap_types = no
-
-	triggered_planet_modifier = {
-		potential = {
-			is_planet_class = pc_ringworld_habitable
-		}
-		planet_max_districts_add = 1
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			owner = { has_origin = origin_pd_tree_of_life } 
-		}
-		planet_max_districts_add = -3
-		planet_stability_add = 10
-		planet_amenities_mult = 0.2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			owner = { NOT = { has_origin = origin_pd_tree_of_life }	}
-		}
-		planet_max_districts_add = -3
-		planet_stability_add = -5
-	}
-
-	country_modifier = {
-		planet_stability_add = 10
-	}
-
-	#Regular
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_origin = origin_pd_tree_of_life } 
-		}
-		modifier = {	
-			job_spawning_drone_add = 4
-			job_synapse_drone_add = 6
-			job_patrol_drone_add = 8
-		}
-	}
-
-	potential = {
-		OR = {
-			is_planet_class = pc_megafloratol
-			is_planet_class = pc_megafloraforge
-			is_planet_class = pc_megaflorafort
-		}
-		planet = { is_capital = yes }
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
-
-d_pd_machinecap_arc = {
-	is_for_colonizable = yes
-	category = deposit_cat_rare
-	
-	use_weights_for_terraforming_swap_types = no
-
-	triggered_planet_modifier = {
-		potential = {
-			is_planet_class = pc_ringworld_habitable
-		}
-		planet_max_districts_add = 1
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			owner = { 
-				is_machine_empire = yes
-			}
-		}
-		planet_max_districts_add = -3
-		planet_stability_add = 10
-		planet_amenities_mult = 0.2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			owner = { 
-				is_machine_empire = no
-			}
-		}
-		planet_max_districts_add = -3
-		planet_stability_add = -5
-	}
-
-	country_modifier = {
-		planet_stability_add = 10
-	}
-
-	#Regular
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { 
-				is_machine_empire = yes
-			}
-		}
-		modifier = {	
-			job_replicator_add = 4
-			job_coordinator_add = 6
-			job_patrol_drone_add = 8
-		}
-	}
-
-	potential = {
-		OR = {
-			is_pd_machine = yes
-			is_planet_class = pc_machine_factory
-			is_planet_class = pc_machine_fort
-		}
-		planet = { is_capital = yes }
 	}
 	
 	drop_weight = {
@@ -1256,8 +1944,32 @@ d_pd_capital_spot = {
 	
 	use_weights_for_terraforming_swap_types = no
 	
-	planet_modifier = {
-		planet_max_districts_add = -3	
+	triggered_planet_modifier = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		planet_max_districts_add = -2
+	}
+	triggered_planet_modifier = {
+		limit = {
+			OR = {
+				is_planet_class = pc_city
+				is_planet_class = pc_ecocity
+				is_planet_class = pc_milarc
+				is_planet_class = pc_corpoarc
+				is_planet_class = pc_hive
+				is_planet_class = pc_hivetidallylocked
+				is_planet_class = pc_bioforge
+				is_planet_class = pc_biofort
+				is_planet_class = pc_megafloratol
+				is_planet_class = pc_megafloraforge
+				is_planet_class = pc_megaflorafort
+				is_pd_machine = yes
+				is_planet_class = pc_machine_factory
+				is_planet_class = pc_machine_fort
+			}
+		}
+		planet_max_districts_add = -3
 	}
 
 	potential = {

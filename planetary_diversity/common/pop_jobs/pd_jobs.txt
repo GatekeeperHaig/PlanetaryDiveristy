@@ -1419,5 +1419,62 @@ capital_security = {
 		}
 	}
 }
+pd_capital_bio_politician = {
+	category = bio_trophy
+	#is_capped_by_modifier = yes
+	clothes_texture_index = 4
+	building_icon = building_senate_building
+
+	possible_pre_triggers = {
+		is_sapient = yes
+	}
+
+	possible = {
+		has_citizenship_type = { type = citizenship_organic_trophy }
+	}
+
+	resources = {
+		category = planet_bio_trophies
+		produces = {
+			trigger = {
+				happiness >= 0.5
+			}
+			unity = 3
+		}
+		upkeep = {
+			energy = 1
+			consumer_goods = 0.5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			happiness >= 0.5
+		}
+		modifier = {
+			planet_jobs_complex_and_simple_drone_produces_mult = 0.025
+		}
+	}
+	triggered_pop_modifier = {
+		pop_housing_usage_add = -1.5
+	}
+
+	weight = {
+		weight = @special_job_weight
+		modifier = {
+			factor = 200 # brings @special_job_weight up to 2
+			exists = planet
+			exists = planet.controller
+			OR = {
+				planet.controller = {
+					any_situation = {
+						is_situation_type = situation_geomagnetic_storm
+						# more weight than normal bio-trophy job when the situation is active
+					}
+				}
+			}
+		}
+	}
+}
 
 

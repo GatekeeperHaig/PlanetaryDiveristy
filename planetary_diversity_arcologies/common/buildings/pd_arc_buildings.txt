@@ -1,0 +1,186 @@
+#############
+# Buildings for Arc Mod
+#############
+building_pd_rogue_council = {
+	base_buildtime = @b2_time
+	icon = building_senate_building
+	base_cap_amount = 1
+
+	category = government
+
+	potential = {
+		exists = owner
+		planet = {
+			or = {
+				has_building = building_pd_rogue_council
+				owner = { is_ai = no }
+			}
+		}
+		owner = {
+			is_machine_empire = yes
+			has_valid_civic = civic_machine_servitor
+		}
+		NOT = { has_modifier = slave_colony }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	planet_modifier = {
+		job_pd_capital_bio_politician_add = 4
+		planet_housing_add = 4
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	triggered_desc = {
+		text = job_pd_capital_bio_effect_desc
+	}
+}
+
+building_navel_base = {
+	base_buildtime = 240
+	position_priority = 100
+	icon = holding_recruitment_office
+
+	category = army
+	exempt_from_ai_planet_specialization = no
+
+	potential = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_naval_admin_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_naval_admin_hive_add = 2
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	prerequisites = {
+		"tech_planetary_defenses"
+	}
+
+	upgrades = {
+		"building_navel_command"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_naval_admin_hive_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_naval_admin_effect_desc
+	}
+}
+
+building_navel_command = {
+	base_buildtime = @b1_time
+	can_build = no
+	planetary_ftl_inhibitor = yes
+	position_priority = 100
+	icon = holding_overlord_garrison
+
+	category = army
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_naval_admin_add = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_naval_admin_hive_add = 4
+		}
+	}
+
+	resources = {
+		category = planet_buildings_strongholds
+		cost = {
+			minerals = @b2_minerals
+			volatile_motes = @b2_rare_cost
+		}
+		upkeep = {
+			energy = 1
+			volatile_motes = @b2_rare_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_global_defense_grid"
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_naval_admin_hive_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_naval_admin_effect_desc
+	}
+}

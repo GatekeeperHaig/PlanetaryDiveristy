@@ -118,9 +118,17 @@ decision_ecoarcology_project = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
-		weight = 10
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			OR = {
+				num_pops >= 70
+				is_capital = yes
+			}
+		}
 		modifier = { 
 			factor = 0	
 			owner = { any_owned_planet = { is_planet_class = pc_ecocity } }
@@ -204,11 +212,16 @@ decision_ecoarcology_project_relic = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+			planet_event = { id = pdengine.09 }
 		}
 	}
 
 	ai_weight = {
-		weight = 0
+		weight = 100
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_ecocity } }
+		}
 	}
 }
 
@@ -331,9 +344,18 @@ decision_milarcology_project = {
 			}
 		}
 	}
-	
 	ai_weight = {
-		weight = 0
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			num_pops >= 70
+			solar_system = { is_bottleneck_system = yes }
+		}
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_milarc } }
+		}
 	}
 }
 
@@ -416,11 +438,12 @@ decision_milarc_project_relic = {
 				DISTRICT = district_arcology_arms_industry
 				VARIABLE = num_industrial_districts
 			}
+			planet_event = { id = pdengine.54 }
 		}
 	}
 
 	ai_weight = {
-		weight = 0
+		weight = 100
 	}
 }
 
@@ -470,6 +493,7 @@ decision_milarc_project_regrelic = {
 			pd_create_mil_arc_effect = yes
 			add_deposit = d_milarc
 			planet_event = { id =  mega.201 }
+			planet_event = { id = pdengine.54 }
 			while = {
 				count = 4
 				solar_system = {
@@ -502,7 +526,17 @@ decision_milarc_project_regrelic = {
 	}
 
 	ai_weight = {
-		weight = 0
+		weight = 100
+		modifier = {
+			factor = 100
+			exists = owner
+			num_pops >= 70
+			solar_system = { is_bottleneck_system = yes }
+		}
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_milarc } }
+		}
 	}
 }
 
@@ -612,9 +646,17 @@ decision_corpoarcology_project = {
 			}
 		}
 	}
-	
 	ai_weight = {
-		weight = 0
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			num_pops >= 70
+		}
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_corpoarc } }
+		}
 	}
 }
 
@@ -683,11 +725,16 @@ decision_corpoarcology_project_relic = {
 				DISTRICT = district_corp_industrial
 				VARIABLE = num_industrial_districts
 			}
+			planet_event = { id = pdengine.64 }
 		}
 	}
 
 	ai_weight = {
-		weight = 0
+		weight = 100
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_corpoarc } }
+		}
 	}
 }
 
@@ -1376,6 +1423,7 @@ decision_capital_spot = {
 				has_deposit = d_pd_biohivecap_arc
 				has_deposit = d_pd_florahivecap_arc
 				has_deposit = d_pd_machinecap_arc
+				has_deposit = d_pd_roguecap_arc
 			}
 		}
 		is_capital = yes
@@ -3051,6 +3099,573 @@ decision_machinecap_arc = {
 	}
 }
 
+#RS Arc Capital Decision
+decision_rogue_cap_arc = {
+	owned_planets_only = yes
+	icon = decision_capital_arc
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			minerals = 5000
+		}
+	}
+	
+	potential = {
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_ecocity
+			is_planet_class = pc_milarc
+		}
+		exists = owner
+		owner = { 
+			is_machine_empire = yes
+			has_valid_civic = civic_machine_servitor
+			has_technology = tech_housing_2
+		}
+		NOT = { has_deposit = d_pd_roguecap_arc }
+		is_capital = yes
+		has_deposit = d_pd_capital_spot
+	}
+	
+	allow = {
+		has_deposit = d_pd_capital_spot
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_roguecap_arc_effects
+		hidden_effect = {	
+			remove_deposit = d_pd_capital_spot
+			add_deposit = d_pd_roguecap_arc
+			#Techno Arc
+			IF = {
+				limit = { 
+					is_planet_class = pc_pd_techno_arc
+				}
+				set_planet_entity = {
+					picture = pc_pd_techno_arc_capital
+				}
+			}
+			#Regular City World
+			IF = {
+				limit = { 
+					is_planet_class = pc_city
+					owner = {
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_aquatic_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ammonia_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_sulfur_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ash_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_methane_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_pd_hycean_preference 	
+							}  
+						}
+					}
+					planet = {
+						NOT = { has_deposit = d_pd_necro_arc }
+						NOT = { has_deposit = d_pd_shroud_arc }
+					}
+				}
+				set_planet_entity = {
+					picture = pc_capitalarc
+					entity = capitalarc_planet_01_entity
+				}
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_city
+					has_planet_flag = planet_earth 
+				}
+				set_planet_entity = { entity = earthcapitalarc_planet_02_entity }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					owner_main_species = { has_trait = trait_pc_aquatic_preference }
+				}
+				set_planet_entity = { picture = pc_aquaticcapitalarc entity = aquaticpalace_planet_01_entity }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					owner_main_species = { has_trait = trait_pc_pd_hycean_preference }
+				}
+				set_planet_entity = { picture = pc_hyceancapitalarc entity = hyceanpalace_planet_01_entity }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					owner_main_species = { has_trait = trait_pc_ammonia_preference }
+				}
+				set_planet_entity = { picture = pc_ammoniacapitalarc entity = palacearcammonia_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					owner_main_species = { has_trait = trait_pc_methane_preference }
+				}
+				set_planet_entity = { picture = pc_methanecapitalarc entity = palacearcmethane_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					owner_main_species = { has_trait = trait_pc_sulfur_preference }
+				}
+				set_planet_entity = { picture = pc_sulfurcapitalarc entity = palacearcsulfur_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					owner_main_species = { has_trait = trait_pc_ash_preference }
+				}
+				set_planet_entity = { picture = pc_ashcapitalarc entity = palacearcash_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					has_deposit = d_pd_necro_arc
+				}
+				set_planet_entity = { picture = pc_necrocapital entity = necro_palacearc_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_city	
+					has_deposit = d_pd_shroud_arc
+				}
+				set_planet_entity = { picture = pc_shroudcapitalarc entity = shroudpalacearc_planet_01_entity }
+			}
+			#Fortress Arc
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc
+					owner = {
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_aquatic_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ammonia_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_sulfur_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ash_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_methane_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_pd_hycean_preference 	
+							}  
+						}
+					}
+					planet = {
+						NOT = { has_deposit = d_pd_necro_arc }
+						NOT = { has_deposit = d_pd_shroud_arc }
+					}
+				}
+				set_planet_entity = { picture = pc_milarccapital entity = milarc_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc
+					has_planet_flag = planet_earth 
+				}
+				set_planet_entity = { picture = pc_milarccapital entity = milarc_planet_02_earth_entity }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_aquatic_preference }
+				}
+				set_planet_entity = { picture = pc_aquaticcapitalarc entity = aquaticmilarc_planet_01_entity  }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_ammonia_preference }
+				}
+				set_planet_entity = { picture = pc_ammoniamilcapital entity = milarc_ammonia_planet_01_entity  }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_pd_hycean_preference }
+				}
+				set_planet_entity = { picture = pc_hyceancapitalarc entity = hyceanmilarc_planet_01_entity }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_methane_preference }
+				}
+				set_planet_entity = { picture = pc_methanemilcapital entity = milarc_methane_planet_01_entity   }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_sulfur_preference }
+				}
+				set_planet_entity = { picture = pc_sulfurmilcapital entity = milarc_sulfur_planet_01_entity  }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_ash_preference }
+				}
+				set_planet_entity = { picture = pc_ashmilcapital entity = milarc_ash_planet_01_entity  }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					has_deposit = d_pd_necro_arc
+				}
+				set_planet_entity = { picture = pc_necromilarccapital entity = necro_milarc_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					has_deposit = d_pd_shroud_arc
+				}
+				set_planet_entity = { picture = pc_shroudmilcapital entity = milarcshroud_planet_01_entity }
+			}
+			#Eco-Arc
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity
+					owner = {
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_aquatic_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ammonia_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_sulfur_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ash_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_methane_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_pd_hycean_preference 	
+							}  
+						}
+					}
+					planet = {
+						NOT = { has_deposit = d_pd_necro_arc }
+						NOT = { has_deposit = d_pd_shroud_arc }
+					}
+				}
+				set_planet_entity = { picture = pc_ecocapital entity = ecocity_planet_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					owner_main_species = { has_trait = trait_pc_aquatic_preference }
+				}
+				set_planet_entity = { picture = pc_aquaticecocapital entity = aquaticecocity_planet_01_entity  }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					owner_main_species = { has_trait = trait_pc_ammonia_preference }
+				}
+				set_planet_entity = { picture = pc_ammoniaecocapital entity = ecocity_ammonia_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_milarc	
+					owner_main_species = { has_trait = trait_pc_pd_hycean_preference }
+				}
+				set_planet_entity = { picture = pc_hyceanecocapital entity = hyceanecocity_planet_01_entity }
+			}	
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					owner_main_species = { has_trait = trait_pc_methane_preference }
+				}
+				set_planet_entity = { picture = pc_methaneecocapital entity = ecocity_methane_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					owner_main_species = { has_trait = trait_pc_sulfur_preference }
+				}
+				set_planet_entity = { picture = pc_sulfurecocapital entity = ecocity_sulfur_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					owner_main_species = { has_trait = trait_pc_ash_preference }
+				}
+				set_planet_entity = { picture = pc_ashecocapital entity = ecocity_ash_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					has_deposit = d_pd_necro_arc
+				}
+				set_planet_entity = { picture = pc_necroecocapital entity = necro_ecocity_planet_01_entity }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_ecocity	
+					has_deposit = d_pd_shroud_arc
+				}
+				set_planet_entity = { picture = pc_shroudecocapital entity = ecoshroud_planet_01_entity }
+			}
+			IF = { 
+				limit = { 
+					is_planet_class = pc_ecocity	
+					has_planet_flag = planet_earth 
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_aquatic_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_ammonia_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_sulfur_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_ash_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_methane_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_pd_hycean_preference 	
+						}  
+					}
+			}
+			set_planet_entity = { entity = "ecocity_planet_02_earth_entity" }
+			}
+			IF = { 
+				limit = { 
+					is_planet_class = pc_ecocity	
+					has_planet_flag = pdmars 
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_aquatic_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_ammonia_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_sulfur_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_ash_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_methane_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_pd_hycean_preference 	
+						}  
+					}
+			}
+			set_planet_entity = { entity = "ecocity_planet_03_mars_entity" }
+			}
+			IF = { 
+				limit = { 
+					is_planet_class = pc_ecocity	
+					has_planet_flag = pdvenus 
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_aquatic_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_ammonia_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_sulfur_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_ash_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_methane_preference 	
+						}  
+					}
+					NOT = { 
+						any_owned_pop = {
+							has_citizenship_type = { type = citizenship_organic_trophy }
+							has_trait = trait_pc_pd_hycean_preference 	
+						}  
+					}
+				}
+			set_planet_entity = { entity = "ecocity_planet_04_venus_entity" }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_habitable
+					owner = {
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_aquatic_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ammonia_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_sulfur_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_ash_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_methane_preference 	
+							}  
+						}
+						NOT = { 
+							any_owned_pop = {
+								has_citizenship_type = { type = citizenship_organic_trophy }
+								has_trait = trait_pc_pd_hycean_preference 	
+							}  
+						}
+					}
+					planet = {
+						NOT = { has_deposit = d_pd_necro_arc }
+						NOT = { has_deposit = d_pd_shroud_arc }
+					}
+				}
+				set_planet_entity = { picture = pc_ringworldcapital }
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 1000
+	}
+}
+
 # Bio-Forge Project
 decision_bioforge_project = {
 	owned_planets_only = yes
@@ -3119,9 +3734,18 @@ decision_bioforge_project = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
-		weight = 0
+		weight = 1
+        modifier = {
+            factor = 100
+            exists = owner
+            num_pops >= 70
+        }
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_bioforge } }
+		}
 	}
 }
 
@@ -3196,9 +3820,19 @@ decision_biofort_project = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
-		weight = 0
+		weight = 100
+		modifier = {
+			factor = 100
+			exists = owner
+			num_pops >= 70
+			solar_system = { is_bottleneck_system = yes }
+		}
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_biofort } }
+		}
 	}
 }
 
@@ -3266,9 +3900,18 @@ decision_floraforge_project = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
-		weight = 0
+		weight = 1
+        modifier = {
+            factor = 100
+            exists = owner
+            num_pops >= 70
+        }
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_megafloraforge } }
+		}
 	}
 }
 
@@ -3330,9 +3973,19 @@ decision_florafort_project = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
-		weight = 0
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			num_pops >= 70
+			solar_system = { is_bottleneck_system = yes }
+		}
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_megaflorafort } }
+		}
 	}
 }
 
@@ -3409,9 +4062,18 @@ decision_machinefactory_project = {
 			}
 		}
 	}
-	
+
 	ai_weight = {
-		weight = 0
+		weight = 1
+        modifier = {
+            factor = 100
+            exists = owner
+            num_pops >= 70
+        }
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_machine_factory } }
+		}
 	}
 }
 
@@ -3484,9 +4146,20 @@ decision_machine_fort_project = {
 			}
 		}
 	}
-	
+
+	ai_build_at_chokepoint = yes
 	ai_weight = {
-		weight = 0
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			num_pops >= 70
+			solar_system = { is_bottleneck_system = yes }
+		}
+		modifier = { 
+			factor = 0	
+			owner = { any_owned_planet = { is_planet_class = pc_machine_fort } }
+		}
 	}
 }
 
@@ -3586,10 +4259,15 @@ decision_technoarcology_project = {
 	}
 	
 	ai_weight = {
-		weight = 10
+		weight = 1
+        modifier = {
+            factor = 100
+            exists = owner
+            num_pops >= 70
+        }
 		modifier = { 
 			factor = 0	
-			owner = { any_owned_planet = { is_planet_class = pc_technoorganic } }
+			owner = { NOT = { has_origin = origin_techno_world } }
 		}
 	}
 }

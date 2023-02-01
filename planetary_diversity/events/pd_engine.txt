@@ -19,7 +19,16 @@ country_event = {
 		#Wet Planets
 		every_galaxy_planet = {                 
             limit = { is_planet_class = pc_continental system_star = { OR = { is_star_class = sc_k is_star_class = sc_trinary_3 is_star_class = sc_binary_7 } } is_homeworld = no is_moon = no NOR = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore has_planet_flag = planet_earth solar_system = { has_star_flag = empire_cluster } solar_system = { has_star_flag = empire_home_system } solar_system = { has_star_flag = sol_system } solar_system = { has_star_flag = sol } } } #TODO 80/20, no 0/100
-            change_pc = pc_superhabitable reroll_planet = yes clear_planet_modifiers = yes
+            change_pc = pc_superhabitable 
+			reroll_planet = yes 
+			clear_planet_modifiers = yes
+			random_list = {
+				20 = { set_planet_size = 31 }
+				20 = { set_planet_size = 32 }
+				20 = { set_planet_size = 33 }
+				20 = { set_planet_size = 34 }
+				20 = { set_planet_size = 35 }
+			}
         }
         every_galaxy_planet = {                 
             limit = { is_planet_class = pc_continental is_homeworld = no NOR = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore has_planet_flag = planet_earth solar_system = { has_star_flag = empire_cluster } solar_system = { has_star_flag = empire_home_system } solar_system = { has_star_flag = sol_system } solar_system = { has_star_flag = sol } } }
@@ -88,7 +97,16 @@ country_event = {
 		}
 		every_galaxy_planet = {                 
             limit = { is_planet_class = pc_arid system_star = { OR = { is_star_class = sc_k is_star_class = sc_trinary_3 is_star_class = sc_binary_7 } } is_homeworld = no is_moon = no NOR = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore has_planet_flag = planet_earth solar_system = { has_star_flag = empire_cluster } solar_system = { has_star_flag = empire_home_system } solar_system = { has_star_flag = sol_system } solar_system = { has_star_flag = sol } } } #TODO 80/20, no 0/100
-            change_pc = pc_pd_dry_superhab reroll_planet = yes clear_planet_modifiers = yes
+            change_pc = pc_pd_dry_superhab 
+			reroll_planet = yes 
+			clear_planet_modifiers = yes
+			random_list = {
+				20 = { set_planet_size = 31 }
+				20 = { set_planet_size = 32 }
+				20 = { set_planet_size = 33 }
+				20 = { set_planet_size = 34 }
+				20 = { set_planet_size = 35 }
+			}
         }
 		every_galaxy_planet = { 				
 			limit = { is_planet_class = pc_arid is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
@@ -153,7 +171,16 @@ country_event = {
 		}
 		every_galaxy_planet = {                 
             limit = { is_planet_class = pc_tundra system_star = { OR = { is_star_class = sc_k is_star_class = sc_trinary_3 is_star_class = sc_binary_7 } } is_homeworld = no is_moon = no NOR = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore has_planet_flag = planet_earth solar_system = { has_star_flag = empire_cluster } solar_system = { has_star_flag = empire_home_system } solar_system = { has_star_flag = sol_system } solar_system = { has_star_flag = sol } } } #TODO 80/20, no 0/100
-            change_pc = pc_pd_cold_superhab reroll_planet = yes clear_planet_modifiers = yes
+            change_pc = pc_pd_cold_superhab 
+			reroll_planet = yes 
+			clear_planet_modifiers = yes
+			random_list = {
+				20 = { set_planet_size = 31 }
+				20 = { set_planet_size = 32 }
+				20 = { set_planet_size = 33 }
+				20 = { set_planet_size = 34 }
+				20 = { set_planet_size = 35 }
+			}
         }
 		every_galaxy_planet = { 				
 			limit = { is_planet_class = pc_tundra is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
@@ -290,11 +317,32 @@ country_event = {
 		#Biolumen
 		every_galaxy_planet = { limit = { is_planet_class = pc_biolumen is_homeworld = yes } generate_pd_start_deposits_and_blockers = yes }
 		#Superhabitable
-		every_galaxy_planet = { limit = { is_planet_class = pc_superhabitable is_homeworld = yes } change_planet_size = +9 generate_pd_start_deposits_and_blockers = yes }
+		every_galaxy_planet = { 
+			limit = { 
+				is_planet_class = pc_superhabitable 
+				is_homeworld = yes 
+			} 
+			change_planet_size = +14 
+			generate_pd_start_deposits_and_blockers = yes 
+		}
 		#Dry Superhabitable
-		every_galaxy_planet = { limit = { is_planet_class = pc_pd_dry_superhab is_homeworld = yes } change_planet_size = +9 generate_pd_start_deposits_and_blockers = yes }
+		every_galaxy_planet = { 
+			limit = { 
+				is_planet_class = pc_pd_dry_superhab 
+				is_homeworld = yes 
+			} 
+			change_planet_size = +14 
+			generate_pd_start_deposits_and_blockers = yes 
+		}
 		#Cold Superhabitable
-		every_galaxy_planet = { limit = { is_planet_class = pc_pd_cold_superhab is_homeworld = yes } change_planet_size = +9 generate_pd_start_deposits_and_blockers = yes }
+		every_galaxy_planet = { 
+			limit = { 
+				is_planet_class = pc_pd_cold_superhab 
+				is_homeworld = yes 
+			} 
+			change_planet_size = +14 
+			generate_pd_start_deposits_and_blockers = yes 
+		}
 		#Geothermal
 		every_galaxy_planet = { limit = { is_planet_class = pc_geothermal is_homeworld = yes } generate_pd_start_deposits_and_blockers = yes }
 		#Wet Tidally Locked
@@ -1772,22 +1820,22 @@ country_event = {
 				30 = { 
 					change_pc = pc_barren_superhab
 					random_list = {
-						20 = { set_planet_size = 26 }
-						20 = { set_planet_size = 27 }
-						20 = { set_planet_size = 28 }
-						20 = { set_planet_size = 29 }
-						20 = { set_planet_size = 30 }
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
 					}
 				}
 				5 = { 
 					change_pc = pc_barren_superhab
 					add_modifier = { modifier = terraforming_candidate days = -1 } 
 					random_list = {
-						20 = { set_planet_size = 26 }
-						20 = { set_planet_size = 27 }
-						20 = { set_planet_size = 28 }
-						20 = { set_planet_size = 29 }
-						20 = { set_planet_size = 30 }
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
 					}
 				}
 				65 = { }	
@@ -3062,6 +3110,9 @@ planet_event = {
 		if = { limit = { is_planet_class = pc_pd_hycean } set_planet_flag = pdhive_hycean }
 		if = { limit = { is_planet_class = pc_ash } set_planet_flag = pdhive_ash }
 		if = { limit = { is_planet_class = pc_irradiated } set_planet_flag = pdhive_irradiated }
+		if = { limit = { is_planet_class = pc_irradiated_cave } set_planet_flag = pdhive_irradiated_cave }
+		if = { limit = { is_planet_class = pc_irradiated_superhab } set_planet_flag = pdhive_irradiated_superhab }
+		if = { limit = { is_planet_class = pc_irradiated_tidal } set_planet_flag = pdhive_irradiated_tidal }
 		#Unique
 		if = { limit = { is_planet_class = pc_floating } set_planet_flag = pdhive_floating }
 		if = { limit = { is_planet_class = pc_crystal } set_planet_flag = pdhive_crystal }
@@ -3368,6 +3419,9 @@ planet_event = {
 		if = { limit = { has_planet_flag = pdhive_hycean } change_pc = pc_pd_hycean remove_planet_flag = pdhive_hycean }
 		if = { limit = { has_planet_flag = pdhive_ash } change_pc = pc_ash remove_planet_flag = pdhive_ash }
 		if = { limit = { has_planet_flag = pdhive_irradiated } change_pc = pc_irradiated remove_planet_flag = pdhive_irradiated }
+		if = { limit = { has_planet_flag = pdhive_irradiated_cave } change_pc = pc_irradiated_cave remove_planet_flag = pdhive_irradiated_cave }
+		if = { limit = { has_planet_flag = pdhive_irradiated_superhab } change_pc = pc_irradiated_superhab remove_planet_flag = pdhive_irradiated_superhab }
+		if = { limit = { has_planet_flag = pdhive_irradiated_tidal } change_pc = pc_irradiated_tidal remove_planet_flag = pdhive_irradiated_tidal }
 		#Unique
 		if = { limit = { has_planet_flag = pdhive_floating } change_pc = pc_floating remove_planet_flag = pdhive_floating }
 		if = { limit = { has_planet_flag = pdhive_crystal } change_pc = pc_crystal remove_planet_flag = pdhive_crystal }
@@ -3769,6 +3823,7 @@ planet_event = {
 			limit = {
 				is_pd_superhab = no
 				is_pd_tidally_locked = no
+				is_pd_cave = no
 			}
 			change_pc = pc_megaflorahive
 		}
@@ -7637,6 +7692,7 @@ planet_event = {
 			remove_deposit = d_pd_boardroom_arc
 			remove_deposit = d_pd_biohivecap_arc
 			remove_deposit = d_pd_machinecap_arc
+			remove_deposit = d_pd_roguecap_arc
 			pd_remove_special_arc_deposits = yes
 		}
 		if = { 
@@ -8545,6 +8601,7 @@ planet_event = {
 
 		#Add special deposit
 		add_deposit = d_pd_necro_planet
+		
 	}
 
 	option = {

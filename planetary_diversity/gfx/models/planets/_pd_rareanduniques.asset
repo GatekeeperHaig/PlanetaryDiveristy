@@ -313,6 +313,77 @@ entity = {
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
 	}
 }
+
+#Radiotropic TL
+entity = {
+	name = "pd_tidally_irradiated_planet_cloud_mesh"
+	pdxmesh = "planet_cloud_mesh"
+	scale = 1.004
+	##cloud texture override
+	
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "irradiated_clouds_medium_diffuse.dds"
+	texture_normal = "irradiated_clouds_medium_normal.dds"
+	texture_specular = "irradiated_clouds_medium_specular.dds"
+	}
+	
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+		
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+		animation_speed = 0.6 
+	}
+}
+entity = {
+    name = "pd_tidally_irradiated_planet_01_entity"
+    locator = { name = "tiltLoc" position = { 0 0 0 } rotation = { 0 95 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 } }
+    attach = { "tiltLoc" = "pd_tidally_irradiated_planet_mesh" }
+    attach = { "tiltLoc" = "pd_tidally_irradiated_planet_cloud_mesh" }
+    scale = 1.0
+}
+entity = {
+    name = "pd_tidally_irradiated_planet_mesh"
+    pdxmesh = "planet_clouded_mesh"
+     
+    meshsettings = {
+	name = "planet_geosphereShape"	
+	texture_diffuse = "irradiated_tidal_01_diffuse.dds"
+	texture_normal = "irradiated_tidal_01_normal.dds"
+	texture_specular = "irradiated_tidal_01_spec"
+	}
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "planet_transparent_diffuse.dds"
+	texture_normal = "nuked_clouds_medium_normal.dds"
+	texture_specular = "nuked_clouds_medium_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "planet_transparent_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+	default_state = "idle"
+	playback_rate = 1.0 
+	state = { name = "idle" animation = "idle" time_offset = { 15 0 } animation_speed = 0 }
+}
+
 #Wasteland TL
 entity = {
 	name = "pd_tidally_wasteland_planet_cloud_mesh"
