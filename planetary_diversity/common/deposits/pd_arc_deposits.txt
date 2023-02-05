@@ -1632,14 +1632,8 @@ d_pd_roguecap_arc = {
 	}
 
 	potential = {
-		OR = {
-			owner = {
-				is_machine_empire = yes
-				has_valid_civic = civic_machine_servitor
-			}
-			is_pd_arcology = yes
-		}
-		planet = { is_capital = yes }
+		is_pd_arcology = yes
+		is_capital = yes
 	}
 	
 	drop_weight = {
@@ -1945,13 +1939,14 @@ d_pd_capital_spot = {
 	use_weights_for_terraforming_swap_types = no
 	
 	triggered_planet_modifier = {
-		limit = {
+		potential = {
+			exists = owner
 			is_planet_class = pc_ringworld_habitable
 		}
 		planet_max_districts_add = -2
 	}
 	triggered_planet_modifier = {
-		limit = {
+		potential = {
 			OR = {
 				is_planet_class = pc_city
 				is_planet_class = pc_ecocity
