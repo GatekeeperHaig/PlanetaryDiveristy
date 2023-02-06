@@ -64,6 +64,15 @@ terraform_link = {
 	potential = { has_technology = tech_climate_restoration }
 	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
 }
+terraform_link = {
+	from = pc_pdshroud_cave
+	to = pc_gaia_cave
+    resources = { category = terraforming cost = {  energy = @terraforming_cost_gaia } }
+	duration = @terraforming_durantion_shroud
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
+}
 
 #Special
 terraform_link = {
@@ -730,6 +739,16 @@ terraform_link = {
 	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
 }
 terraform_link = {
+	from = pc_cryoflora
+	to = pc_pdshroud
+    resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
+	duration = @terraforming_durantion_shroud
+	potential = { has_tradition = tr_psionics_finish  }
+	condition = { has_tradition = tr_psionics_finish  }
+	effect = { from = { remove_modifier = pdaquifer } }
+	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
+}
+terraform_link = {
 	from = pc_coral
 	to = pc_pdshroud
     resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
@@ -747,6 +766,47 @@ terraform_link = {
 	potential = { has_tradition = tr_psionics_finish  }
 	condition = { has_tradition = tr_psionics_finish  }
 	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
+}
+terraform_link = {
+	from = pc_gaia
+	to = pc_pdshroud
+    resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
+	duration = @terraforming_durantion_shroud
+	potential = { has_tradition = tr_psionics_finish  }
+	condition = { has_tradition = tr_psionics_finish  }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
+}
+terraform_link = {
+	from = pc_hot_gaia
+	to = pc_pdshroud
+    resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
+	duration = @terraforming_durantion_shroud
+	potential = { has_tradition = tr_psionics_finish  }
+	condition = { has_tradition = tr_psionics_finish  }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
+}
+terraform_link = {
+	from = pc_cold_gaia
+	to = pc_pdshroud
+    resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
+	duration = @terraforming_durantion_shroud
+	potential = { has_tradition = tr_psionics_finish  }
+	condition = { has_tradition = tr_psionics_finish  }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
+}
+#Tidal
+terraform_link = {
+	from = pc_tidallylocked_barren
+	to = pc_tidallyshroud
+    resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
+	duration = @terraforming_durantion_shroud
+	potential = { from = { has_modifier = terraforming_candidate } has_tradition = tr_psionics_finish   }
+	condition = { has_technology = "tech_climate_restoration" has_tradition = tr_psionics_finish   }
+	effect = { from = { remove_modifier = tidal_locked2 } }
 	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
 }
 terraform_link = {
@@ -875,8 +935,8 @@ terraform_link = {
 	to = pc_pdshroud_superhab
     resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
 	duration = @terraforming_durantion_shroud
-	potential = { has_tradition = tr_psionics_finish  }
-	condition = { has_tradition = tr_psionics_finish  }
+	potential = { from = { has_modifier = terraforming_candidate } has_tradition = tr_psionics_finish   }
+	condition = { has_technology = "tech_climate_restoration" has_tradition = tr_psionics_finish   }
 	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
 }
 terraform_link = {
@@ -930,8 +990,8 @@ terraform_link = {
 	to = pc_pdshroud_cave
     resources = { category = terraforming cost = { sr_zro = @terraforming_cost_shroud } }
 	duration = @terraforming_durantion_shroud
-	potential = { has_tradition = tr_psionics_finish  }
-	condition = { has_tradition = tr_psionics_finish  }
+	potential = { from = { has_modifier = terraforming_candidate } has_tradition = tr_psionics_finish   }
+	condition = { has_technology = "tech_climate_restoration" has_tradition = tr_psionics_finish   }
 	ai_weight = { weight = 1 modifier = { factor = 0 NOT = { has_origin = origin_pd_shroud } } modifier = { factor = 0 resource_stockpile_compare = { resource = sr_zro value < 500 } } }
 }
 terraform_link = {
