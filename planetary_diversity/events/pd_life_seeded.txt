@@ -1,0 +1,40 @@
+###############################################
+# Life Seeded Origin for PD by Kartoffelchips #
+###############################################
+
+namespace = lifeseeded_pd
+
+country_event = {
+	is_triggered_only = yes
+	id = lifeseeded_pd.1
+	title = lifeseeded_pd.1.name
+	desc = lifeseeded_pd.1.desc
+	picture = GFX_evt_gaia
+	fire_only_once = yes
+
+	trigger = {
+		has_planetary_diversity = yes
+		has_origin = origin_life_seeded
+	}
+
+	option = {
+		name = lifeseeded_pd.1.gaia_frozen
+		hidden_effect = {
+			capital_scope = {
+				change_pc = pc_cold_gaia
+			}
+		}
+	}
+	option = {
+		name = lifeseeded_pd.1.gaia_dry
+		hidden_effect = {
+			capital_scope = {
+				change_pc = pc_hot_gaia
+			}
+		}
+	}
+	option = {
+		name = lifeseeded_pd.1.gaia_normal
+		#custom_tooltip = "Why did you bother having this mod if you just wanted a normal Gaia World?"
+	}
+}
