@@ -1181,9 +1181,7 @@ decision_pd_shroud_arc_spot = {
 		}
 		exists = owner
 		owner = {
-			OR = {
-				has_tradition = tr_psionics_finish 
-			}
+			pd_has_psionic_ascension_finished = yes
 		}
 		NOT = { has_deposit = d_pd_necro_arc }
 		NOT = { has_deposit = d_pd_shroud_arc }
@@ -1241,9 +1239,7 @@ decision_pd_shroud_arc = {
 		}
 		exists = owner
 		owner = {
-			OR = {
-				has_tradition = tr_psionics_finish 
-			}
+			pd_has_psionic_ascension_finished = yes
 		}
 		NOT = { has_deposit = d_pd_necro_arc }
 		NOT = { has_deposit = d_pd_shroud_arc }
@@ -1354,7 +1350,7 @@ decision_remove_shroud_arc = {
 			is_planet_class = pc_corpoarc
 		}
 		exists = owner
-		NOT = { owner = { has_tradition = tr_psionics_finish  } }
+		owner = { pd_has_psionic_ascension_finished = no }
 		has_deposit = d_pd_shroud_arc
 	}
 	
