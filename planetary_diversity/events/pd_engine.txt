@@ -2833,6 +2833,19 @@ country_event = {
 			remove_star_flag = pd_stripmine_system
 			} 
 		}
+		if = { limit = { any_country = { has_origin = origin_pd_scrapyard_world } }
+        every_galaxy_planet = {
+            if = {
+                limit = { solar_system = { has_star_flag = pd_scrapyard_systemnotorigin } is_planet_class = pc_pd_scrapyard }
+					change_pc = pc_broken
+					remove_planet_flag = pd_scrapyard_planet
+					set_deposit = d_alloys_10
+				}
+			}
+		every_system = {
+			remove_star_flag = pd_scrapyard_system
+			} 
+		}
 	}
 }
 
@@ -8649,4 +8662,38 @@ planet_event = {
 	option = {
 		name = pdengine.78.a
 	}
+}
+#Aquatic Ringworlds Megastructures
+country_event = {
+    id = pdengine.79 
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = { has_origin = origin_aquatic_paradise }
+    }
+    immediate = {
+        every_planet_within_border = {
+			IF = {
+				limit = { 
+					is_planet_class = "pc_ringworld_habitable" 
+					NOT = { has_modifier = flooded_habitat }
+					is_colony = no
+				}	
+				add_modifier = { modifier = flooded_habitat days = -1 }
+				set_planet_entity = { picture = pc_aquatic entity = pdaquatic_01_ringworld_habitable_entity_01_entity  }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_seam
+				}	
+				set_planet_entity = { entity = aquatic_01_ringworld_seam_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_tech
+				}	
+				set_planet_entity = { entity = aquatic_01_ringworld_tech_entity_01_entity }
+            }
+        }
+    }
 }

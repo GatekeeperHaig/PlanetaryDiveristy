@@ -700,7 +700,15 @@ trait_noxious = {
 
 	triggered_planet_growth_habitability_modifier = {
 		potential = { 
-			owner = { is_pd_bad_exotic_traits = no }
+			owner = { 
+				OR = {
+				   has_trait = trait_pc_ammonia_preference
+				   has_trait = trait_pc_pd_hycean_preference
+				   has_trait = trait_pc_methane_preference
+				   has_trait = trait_pc_sulfur_preference
+				   has_trait = trait_pc_rogue_preference
+				}
+			}
 			is_pd_bad_exotic = no
 		}
 		habitability_floor_add = 0.3

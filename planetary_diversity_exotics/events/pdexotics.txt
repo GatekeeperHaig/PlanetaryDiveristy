@@ -1494,20 +1494,30 @@ country_event = {
 					is_colony = no
 				}	
 				add_modifier = { modifier = hyceanfloodedworld days = -1 }
-				set_planet_entity = { picture = pc_pd_hycean entity = hycean_01_ringworld_habitable_entity_01_entity  }
+				set_planet_entity = { 
+					picture = pc_pd_hycean 
+					entity = hycean_ringworld_habitable_entity_01_entity 
+					graphical_culture = root.owner
+				}
             }
-			IF = {
-				limit = { 
-					is_planet_class = pc_ringworld_seam
-				}	
-				set_planet_entity = { entity = aquatic_01_ringworld_seam_entity_01_entity }
-            }
-			IF = {
-				limit = { 
-					is_planet_class = pc_ringworld_tech
-				}	
-				set_planet_entity = { entity = aquatic_01_ringworld_tech_entity_01_entity }
-            }
+#			IF = {
+#				limit = { 
+#					is_planet_class = pc_ringworld_seam
+#				}	
+#				set_planet_entity = { 
+#					entity = aquatic_01_ringworld_seam_entity_01_entity 
+#					graphical_culture = root.owner
+#				}
+#            }
+#			IF = {
+#				limit = { 
+#					is_planet_class = pc_ringworld_tech
+#				}	
+#				set_planet_entity = { 
+#					entity = aquatic_01_ringworld_tech_entity_01_entity 
+#					graphical_culture = root.owner
+#				}
+#            }
         }
     }
 }

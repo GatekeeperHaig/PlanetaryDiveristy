@@ -72,97 +72,6 @@ pd_reset_ai_start = {
 		
 		solar_system = {
 
-#			spawn_planet = {
-#				class = rl_no_atmosphere_planets
-#				size = 12
-#				location = star
-#				orbit_angle_offset = 124
-#				orbit_distance_offset = 45
-#				orbit_location = yes
-#				init_effect = {
-#					set_name = pd_rename_planet_01
-#					set_planet_flag = gpm_has_planet_rings
-#				}
-#			}#
-
-#			spawn_planet = {
-#				class = pc_gas_giant
-#				size = 30
-#				location = star
-#				orbit_angle_offset = 234
-#				orbit_distance_offset = 57
-#				orbit_location = yes
-#				has_ring = yes
-#				init_effect = {
-#					set_name = pd_rename_planet_02
-#				}
-#			}#
-
-#			spawn_planet = {
-#				class = pc_toxic
-#				size = 16
-#				location = star
-#				orbit_angle_offset = 32
-#				orbit_distance_offset = 78
-#				orbit_location = yes
-#				init_effect = {
-#					set_name = pd_rename_planet_03
-#					set_planet_flag = gpm_has_planet_rings
-#				}
-#			}#
-
-#			spawn_planet = {
-#				class = pc_gas_giant
-#				size = 20
-#				location = star
-#				orbit_angle_offset = 281
-#				orbit_distance_offset = 92
-#				orbit_location = yes
-#				has_ring = no
-#				init_effect = {
-#					set_name = pd_rename_planet_04
-#				}
-#			}#
-
-#			spawn_planet = {
-#				class = rl_unhabitable_planets
-#				size = 21
-#				location = star
-#				orbit_angle_offset = 93
-#				orbit_distance_offset = 105
-#				orbit_location = yes
-#				init_effect = {
-#					set_name = pd_rename_planet_05
-#					set_planet_flag = gpm_has_planet_rings
-#				}
-#			}#
-
-#			spawn_planet = {
-#				class = pc_gas_giant
-#				size = 18
-#				location = star
-#				orbit_angle_offset = 325
-#				orbit_distance_offset = 123
-#				orbit_location = yes
-#				has_ring = no
-#				init_effect = {
-#					set_name = pd_rename_planet_06
-#				}
-#			}#
-
-#			spawn_planet = {
-#				class = rl_unhabitable_planets
-#				size = 24
-#				location = star
-#				orbit_angle_offset = 164
-#				orbit_distance_offset = 146
-#				orbit_location = yes
-#				init_effect = {
-#					set_name = pd_rename_planet_07
-#					set_planet_flag = gpm_has_planet_rings
-#				}
-#			}
-
 			generate_home_system_resources = yes
 
 			every_system_planet = {
@@ -179,6 +88,22 @@ pd_reset_ai_start = {
 						has_research_station = no
 					}
 					create_research_station = { owner = root }
+				}
+			}
+
+			IF = {
+				limit = {
+					has_star_flag = pd_tiyanki_graveyard_system
+				}
+				event_target:pdtiyanki_country = {
+					every_controlled_fleet = { delete_fleet = this }
+					destroy_country = yes
+				}
+				every_system_ambient_object = {
+					limit = {
+						is_ambient_object_type = space_storm_2
+					}
+					destroy_ambient_object = this
 				}
 			}
 		}

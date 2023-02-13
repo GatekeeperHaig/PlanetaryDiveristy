@@ -1,3 +1,5 @@
+@ringworld_segment_size = 50
+
 entity = {
     name = "tidallyaquatic_planet_01_entity"
  
@@ -296,4 +298,90 @@ entity = {
 	}	
 	attach = { planet = "city_planet_surface_ships_entity" }
 	
+}
+
+entity = {
+	name = "pdaquatic_01_ringworld_habitable_entity_01_entity"
+	cull_radius = 500.0
+	pdxmesh = "ringworld_habitable_01_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 100 time_offset = { 0 100 }
+	}
+	state = { name = "construction"
+	}
+
+
+	meshsettings = {
+		name = "pCube20Shape"
+		index = 0
+		texture_diffuse = "ringworld_habitable_aquatic_01_diffuse.dds"
+		texture_normal = "ringworld_habitable_aquatic_01_normal.dds"
+		texture_specular = "ringworld_habitable_aquatic_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polySurface9Shape"
+		index = 0
+		texture_diffuse = "aquatic_01_diffuse.dds"
+		texture_normal = "aquatic_01_normal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	meshsettings = {
+		name = "polySurface34Shape"
+		index = 0
+		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshClouds"
+	}
+
+	meshsettings = {
+		name = "polySurface35Shape"
+		index = 0
+		texture_diffuse = "clouds_medium_diffuse.dds"
+		texture_normal = "clouds_medium_normal.dds"
+		texture_specular = "clouds_medium_specular.dds"
+		shader = "PdxMeshClouds"
+	}
+
+	game_data = {
+		size = @ringworld_segment_size
+		emissive_recolor_crunch = 2.0
+	}
+	attach = { root = "ringworld_habitable_entity_01_pdaquatic_clouds_entity" }
+}
+
+entity = {
+	name = "ringworld_habitable_entity_01_pdaquatic_clouds_entity"
+	cull_radius = 500.0
+	pdxmesh = "ringworld_habitable_01_clouds_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 100 time_offset = { 0 100 } }
+	state = { name = "construction" }
+
+	meshsettings = {
+		name = "polySurface34Shape"
+		index = 0
+		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshClouds"
+	}
+
+	meshsettings = {
+		name = "polySurface35Shape"
+		index = 0
+		texture_diffuse = "clouds_medium_diffuse.dds"
+		texture_normal = "clouds_medium_normal.dds"
+		texture_specular = "clouds_medium_specular.dds"
+		shader = "PdxMeshClouds"
+	}
+
+	game_data = {
+		size = @ringworld_segment_size
+		uv_animation_speed 		= 0.004
+		uv_animation_direction 	= { 1.0 0.0 }
+	}
 }
