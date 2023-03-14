@@ -873,6 +873,7 @@ empire_has_good_habitability_on_tomb_worlds = {
 		has_trait = trait_pc_nuked_preference
 		has_trait = trait_pc_irradiated_preference
 		has_trait = trait_plantoid_radiotrophic
+		has_trait = trait_advanced_radiotrophic
 		has_trait = trait_harvested_radiotrophic
 		has_trait = trait_lithoid_radiotrophic
 		has_trait = trait_cybernetic
@@ -886,6 +887,8 @@ is_phototrophic = {
 	OR = {
 		has_trait = trait_plantoid_phototrophic
 		has_trait = trait_plantoid_radiotrophic
+		has_trait = trait_advanced_phototrophic
+		has_trait = trait_advanced_radiotrophic
 		has_trait = trait_harvested_radiotrophic
 		has_trait = trait_lithoid_radiotrophic
 		has_trait = trait_radiotrophic_mutants
@@ -935,81 +938,102 @@ can_destroy_planet_with_PLANET_KILLER_CRACKER = {
 		}
 	}
 	custom_tooltip = {
-		fail_text = is_not_hostile
-		OR = {
-			custom_tooltip = {
-				text = is_not_hostile_cracker
-				OR = {
-					AND = {
-						exists = space_owner
-						space_owner = {
-							OR = {
-								is_at_war_with = from.owner
-								is_country_type = swarm
-								is_country_type = extradimensional
-								is_country_type = extradimensional_2
-								is_country_type = extradimensional_3
-								is_country_type = ai_empire
-							}
+		fail_text = fotd_cant_collossus
+		NOT = { has_planet_flag = fotd_seperatist_planet@from.owner }
+		exists = from.owner
+		from.owner = { 
+			NOT = { has_country_flag = fotd_seperatist_country@from.owner }
+		}
+	}
+	OR = {
+		custom_tooltip = {
+			text = is_not_hostile_cracker
+			OR = {
+				AND = {
+					exists = space_owner
+					space_owner = {
+						OR = {
+							is_at_war_with = from.owner
+							is_country_type = swarm
+							is_country_type = extradimensional
+							is_country_type = extradimensional_2
+							is_country_type = extradimensional_3
+							is_country_type = ai_empire
 						}
 					}
-					AND = { # colony
-						exists = owner
-						owner = {
-							OR = {
-								is_at_war_with = from.owner
-								is_country_type = swarm
-								is_country_type = extradimensional
-								is_country_type = extradimensional_2
-								is_country_type = extradimensional_3
-								is_country_type = ai_empire
-							}
-						}
-					}
-					AND = { # primitive
-						exists = space_owner
-						exists = owner
-						owner = {
-							is_primitive = yes
-						}
-						space_owner = {
-							OR = {
-								is_at_war_with = from.owner
-								is_country_type = swarm
-								is_country_type = extradimensional
-								is_country_type = extradimensional_2
-								is_country_type = extradimensional_3
-								is_country_type = ai_empire
-							}
+				}
+				AND = { # colony
+					exists = owner
+					owner = {
+						OR = {
+							is_at_war_with = from.owner
+							is_country_type = swarm
+							is_country_type = extradimensional
+							is_country_type = extradimensional_2
+							is_country_type = extradimensional_3
+							is_country_type = ai_empire
 						}
 					}
 				}
 			}
+		}
+		AND = {
+			# primitive target
 			custom_tooltip = {
-				text = not_barren_molten_frozen_toxic_test_fire
-				NOT = { exists = owner }
-				OR = {
-					NOT = { exists = space_owner }
-					AND = {
-						exists = space_owner
-						space_owner = { is_same_value = from.owner }
+				text = cannot_crack_pre_ftl_planet_ownership
+				exists = space_owner
+				exists = owner
+				owner = {
+					is_primitive = yes
+				}
+				space_owner = {
+					OR = {
+						is_same_value = from.owner
+						is_at_war_with = from.owner
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
 					}
 				}
-				OR = {
-					habitable_planet = yes
-					uninhabitable_regular_planet = yes
-					is_artificial = yes
-					is_pd_habitat = yes
-					is_pd_exotic = yes
-					is_pd_unique = yes
-					is_planet_class = pc_diamond
-					is_planet_class = pc_volcanic
-					is_planet_class = pc_chthonian
-					is_planet_class = pc_ethane_ocean
-					is_planet_class = pc_hydrocarbon
-					is_planet_class = pc_subglacial
-					is_planet_class = pc_iron
+			}
+			custom_tooltip = {
+				text = cannot_crack_pre_ftl_planet_interference
+				# primitive
+				exists = owner
+				owner = {
+					is_primitive = yes
 				}
+				from.owner = {
+					has_policy_flag = interference_aggressive
+				}
+			}
+		}
+		custom_tooltip = {
+			text = not_barren_molten_frozen_toxic_test_fire
+			NOT = { exists = owner }
+			OR = {
+				NOT = { exists = space_owner }
+				AND = {
+					exists = space_owner
+					space_owner = { is_same_value = from.owner }
+				}
+			}
+			OR = {
+				habitable_planet = yes
+				uninhabitable_regular_planet = yes
+				is_artificial = yes
+				is_pd_habitat = yes
+				is_pd_exotic = yes
+				is_pd_unique = yes
+				is_planet_class = pc_diamond
+				is_planet_class = pc_volcanic
+				is_planet_class = pc_chthonian
+				is_planet_class = pc_ethane_ocean
+				is_planet_class = pc_hydrocarbon
+				is_planet_class = pc_subglacial
+				is_planet_class = pc_iron
 			}
 		}
 	}
@@ -1018,9 +1042,11 @@ can_destroy_planet_with_PLANET_KILLER_CRACKER = {
 has_phototrophic_energy_upkeep = {
 	OR = {
 		has_trait = trait_plantoid_phototrophic
+		has_trait = trait_advanced_phototrophic
 		AND = {
 			OR = {
 				has_trait = trait_plantoid_radiotrophic
+				has_trait = trait_advanced_radiotrophic
 				has_trait = trait_harvested_radiotrophic
 				has_trait = trait_lithoid_radiotrophic
 				has_trait = trait_radiotrophic_mutants
@@ -1155,5 +1181,20 @@ is_pd_radiotrophic_world = {
 		is_planet_class = pc_irradiated_cave
 		is_planet_class = pc_irradiated_superhab
 		is_planet_class = pc_irradiated_tidal
+	}
+}
+
+is_starting_planet_type = {
+	OR = {
+		is_planet_class = pc_desert
+		is_planet_class = pc_tropical
+		is_planet_class = pc_arid
+		is_planet_class = pc_continental
+		is_planet_class = pc_ocean
+		is_planet_class = pc_tundra
+		is_planet_class = pc_arctic
+		is_planet_class = pc_alpine
+		is_planet_class = pc_savannah
+		is_pd_regular = yes
 	}
 }

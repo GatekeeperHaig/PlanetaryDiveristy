@@ -992,9 +992,7 @@ planet_event = {
 		is_capital = no
 		is_occupied_flag = no
 	}
-		# TODO: Fix
 	trigger = {
-		#sector_controlled = no
 		owner = {
 			has_technology = tech_destroyers
 			NOT = { has_country_flag = colony_submerged_cruiser }
@@ -1320,8 +1318,8 @@ planet_event = { #Dimensional portal
 		is_homeworld = no
 		owner = {
 			is_ai = no
-			NOR = {
-				has_country_flag = dportal_country }
+			NOR = {	
+				has_country_flag = dportal_country
 				has_origin = origin_floating_world
 				has_origin = origin_crystal_world
 				has_origin = origin_crucible_world
@@ -1340,6 +1338,7 @@ planet_event = { #Dimensional portal
 				has_origin = origin_pd_ash_tectonic_drillers
 				has_origin = origin_pd_acid_seeders
 				has_origin = origin_pd_radiotrophic_mutants
+			}
 		}
 		is_capital = no
 		has_ground_combat = no
@@ -1348,6 +1347,7 @@ planet_event = { #Dimensional portal
 		NOR = {
 			is_planet_class = pc_habitat
 			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_shattered_ring_habitable
 			has_planet_flag = colony_event
 		}
 	}
@@ -1358,7 +1358,6 @@ planet_event = { #Dimensional portal
 		set_planet_flag = dportal_event
 		set_planet_flag = colony_event
 		owner = { set_country_flag = dportal_country }
-
 	}
 
 	option = {
@@ -1403,6 +1402,7 @@ country_event = {
 	show_sound = event_activating_unknown_technology
 
 	immediate = {
+		set_country_flag = b_world_spawned 
 		if = {
 			limit = {
 				has_origin = origin_ocean_paradise
@@ -1528,6 +1528,7 @@ country_event = {
 							generate_start_deposits_and_blockers = yes
 							remove_all_buildings = yes
 							set_planet_flag = colony_event
+							generate_start_buildings_and_districts = yes
 						}
 					}
 					every_ambient_object = {
@@ -1562,6 +1563,7 @@ country_event = {
 							generate_start_deposits_and_blockers = yes
 							remove_all_buildings = yes
 							set_planet_flag = colony_event
+							generate_start_buildings_and_districts = yes
 						}
 					}
 					every_ambient_object = {

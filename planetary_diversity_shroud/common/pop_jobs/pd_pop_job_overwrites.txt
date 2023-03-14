@@ -76,16 +76,19 @@ priest = {
 	condition_string = SPECIALIST_JOB_TRIGGER
 	building_icon = building_temple
 	clothes_texture_index = 3
+
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
 		is_being_assimilated = no
 		is_sapient = yes
 	}
+
 	possible_precalc = can_fill_specialist_job
 	possible = {
 		complex_specialist_job_check_trigger = yes
 	}
+
 	resources = {
 		category = planet_priests
 		produces = {
@@ -105,6 +108,7 @@ priest = {
 			consumer_goods = 2
 		}
 	}
+
 	triggered_planet_modifier = {
 		potential = {
 			always = yes
@@ -112,6 +116,17 @@ priest = {
 		planet_amenities_add = 2
 		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_active_building = building_league_offices
+			}
+		}
+		planet_amenities_add = 1
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
 	triggered_country_modifier = {
 		potential = {
 			exists = owner
@@ -203,6 +218,16 @@ death_priest = {
 			always = yes
 		}
 		planet_amenities_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_active_building = building_league_offices
+			}
+		}
+		planet_amenities_add = 1
 		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 

@@ -700,21 +700,46 @@ trait_noxious = {
 
 	triggered_planet_growth_habitability_modifier = {
 		potential = { 
-			owner = { 
-				OR = {
-				   has_trait = trait_pc_ammonia_preference
-				   has_trait = trait_pc_pd_hycean_preference
-				   has_trait = trait_pc_methane_preference
-				   has_trait = trait_pc_sulfur_preference
-				   has_trait = trait_pc_rogue_preference
-				}
-			}
-			is_pd_bad_exotic = no
+			exists = planet
+			planet = { 
+				is_pd_bad_exotic = yes
+				exists = owner
+				from = { 
+					OR = {
+					   has_trait = trait_pc_ammonia_preference
+					   has_trait = trait_pc_pd_hycean_preference
+					   has_trait = trait_pc_methane_preference
+					   has_trait = trait_pc_sulfur_preference
+					   has_trait = trait_pc_rogue_preference
+					}
+				} 
+			} 
+		}
+		habitability_floor_add = 0.3
+	}
+
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			exists = planet
+			planet = { 
+				is_pd_bad_exotic = no
+				exists = owner
+				from = { 
+					NOR = {
+					   has_trait = trait_pc_ammonia_preference
+					   has_trait = trait_pc_pd_hycean_preference
+					   has_trait = trait_pc_methane_preference
+					   has_trait = trait_pc_sulfur_preference
+					   has_trait = trait_pc_rogue_preference
+					}
+				} 
+			} 
 		}
 		habitability_floor_add = 0.3
 	}
 
 	modifier = {
+		#habitability_floor_add = 0.3
 		habitability_ceil_add = -0.3
 		army_damage_mult = 0.50
 		pop_housing_usage_mult = 0.1

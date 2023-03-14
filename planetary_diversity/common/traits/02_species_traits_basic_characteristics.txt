@@ -105,7 +105,6 @@ trait_syncretic_proles = {
 	species_possible_merge_add = {
 		always = no
 	}
-	species_potential_add = { always = no }
 	icon = "gfx/interface/icons/traits/trait_primitive.dds"
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 
@@ -555,6 +554,7 @@ trait_cave_dweller = {
 	icon = "gfx/interface/icons/traits/trait_cave_dweller.dds"
 	custom_tooltip_with_modifiers = trait_cave_dweller_tooltip
 	modifier = {
+		#habitability_floor_add = 0.5
 		planet_jobs_minerals_produces_mult = 0.15
 		species_empire_size_mult = 0.10
 	}
@@ -568,8 +568,14 @@ trait_cave_dweller = {
 		}
 		pop_growth_speed = -0.20
 	}
+
 	triggered_planet_growth_habitability_modifier = {
-		potential = { planet = { is_pd_bad_exotic = no } }
+		potential = { 
+			exists = planet
+			planet = { 
+				is_pd_bad_exotic = no 
+			} 
+		}
 		habitability_floor_add = 0.5
 	}
 	
