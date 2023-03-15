@@ -119,6 +119,7 @@ generate_pd_start_deposits_and_blockers = {
 				NOR = {
 					has_valid_civic = civic_hive_devouring_swarm
 					has_origin = origin_lithoid
+					has_origin = origin_broken_shackles
 				}
 			}
 		}
@@ -3723,6 +3724,7 @@ pdhabitat_sol_system_setup = {
 			set_planet_flag = pd_commercial_hab
 			set_planet_flag = pd_hab_d1
 			add_district = district_pdhab_commercial
+			remove_deposit = d_prospectorium_strip_mine
 			add_modifier = { modifier = pdhablevel1 days = -1 }
 			add_modifier = { modifier = pd_moon_start_moon days = 7200 }
 			IF = {
@@ -3764,7 +3766,6 @@ pdhabitat_sol_system_setup = {
 					picture = pc_pd_mars_hab
 				}
 			}
-			add_district = district_pdhab_mining
 			IF = {
 				limit = { owner = { has_trait = trait_pc_ammonia_preference } }
 				add_modifier = { modifier = pdammoniaatmosphere days = -1	}
@@ -3782,6 +3783,7 @@ pdhabitat_sol_system_setup = {
 				add_modifier = { modifier = pdsulfuratmosphere days = -1	}
 			}
 			set_colony_type = col_dome_mining
+			set_district = district_pdhab_mining
 		}
 	}
 }
