@@ -1,0 +1,557 @@
+has_upgraded_capital = {
+	if = {
+		limit = { has_modifier = resort_colony }
+		custom_tooltip = {
+			fail_text = "requires_building_resort_capital"
+			OR = {
+				has_building = building_resort_capital
+				has_building = building_resort_major_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { has_modifier = slave_colony }
+		custom_tooltip = {
+			fail_text = "requires_building_slave_capital"
+			OR = {
+				has_building = building_slave_capital
+				has_building = building_slave_major_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { 
+			OR = {
+				is_pd_habitat = yes
+				is_planet_class = pc_habitat 
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_building_hab_capital"
+			OR = {
+				has_building = building_hab_capital
+				has_building = building_hab_major_capital
+				has_building = building_imperial_capital
+				has_building = building_imperial_machine_capital
+				has_building = building_imperial_hive_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { owner = { is_hive_empire = yes } }
+		custom_tooltip = {
+			fail_text = "requires_building_hive_capital"
+			OR = {
+				has_building = building_hive_capital
+				has_building = building_hive_major_capital
+				has_building = building_imperial_hive_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		custom_tooltip = {
+			fail_text = "requires_building_machine_capital"
+			OR = {
+				has_building = building_machine_capital
+				has_building = building_machine_major_capital
+				has_building = building_machine_system_capital
+				has_building = building_imperial_machine_capital
+			}
+		}
+	}
+	else = {
+		custom_tooltip = {
+			fail_text = "requires_building_capital"
+			OR = {
+				has_building = building_capital
+				has_building = building_major_capital
+				has_building = building_system_capital
+				has_building = building_imperial_capital
+			}
+		}
+	}
+}
+
+has_major_upgraded_capital = {
+	if = {
+		limit = { has_modifier = resort_colony }
+		custom_tooltip = {
+			fail_text = "requires_building_resort_major_capital"
+			has_building = building_resort_major_capital
+		}
+	}
+	else_if = {
+		limit = { has_modifier = slave_colony }
+		custom_tooltip = {
+			fail_text = "requires_building_slave_major_capital"
+			has_building = building_slave_major_capital
+		}
+	}
+	else_if = {
+		limit = { 
+			OR = {
+				is_pd_habitat = yes
+				is_planet_class = pc_habitat 
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_building_hab_major_capital"
+			OR = {
+				has_building = building_hab_major_capital
+				has_building = building_imperial_capital
+				has_building = building_imperial_machine_capital
+				has_building = building_imperial_hive_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { owner = { is_hive_empire = yes } }
+		custom_tooltip = {
+			fail_text = "requires_building_major_hive_capital"
+			OR = {
+				has_building = building_hive_major_capital
+				has_building = building_imperial_hive_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		custom_tooltip = {
+			fail_text = "requires_building_machine_major_capital"
+			OR = {
+				has_building = building_machine_major_capital
+				has_building = building_machine_system_capital
+				has_building = building_imperial_machine_capital
+			}
+		}
+	}
+	else = {
+		custom_tooltip = {
+			fail_text = "requires_building_major_capital"
+			OR = {
+				has_building = building_major_capital
+				has_building = building_system_capital
+				has_building = building_imperial_capital
+			}
+		}
+	}
+}
+
+has_fully_upgraded_capital = {
+	if = {
+		limit = { has_modifier = resort_colony }
+		custom_tooltip = {
+			fail_text = "requires_building_resort_major_capital"
+			has_building = building_resort_major_capital
+		}
+	}
+	else_if = {
+		limit = { has_modifier = slave_colony }
+		custom_tooltip = {
+			fail_text = "requires_building_slave_major_capital"
+			has_building = building_slave_major_capital
+		}
+	}
+	else_if = {
+		limit = { is_planet_class = pc_habitat }
+		custom_tooltip = {
+			fail_text = "requires_building_hab_major_capital"
+			OR = {
+				has_building = building_hab_major_capital
+				has_building = building_imperial_capital
+				has_building = building_imperial_machine_capital
+				has_building = building_imperial_hive_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { owner = { is_hive_empire = yes } }
+		custom_tooltip = {
+			fail_text = "requires_building_major_hive_capital"
+			OR = {
+				has_building = building_hive_major_capital
+				has_building = building_imperial_hive_capital
+			}
+		}
+	}
+	else_if = {
+		limit = { owner = { is_machine_empire = yes } }
+		custom_tooltip = {
+			fail_text = "requires_building_machine_major_capital"
+			OR = {
+				has_building = building_machine_major_capital
+				has_building = building_machine_system_capital
+				has_building = building_imperial_machine_capital
+			}
+		}
+	}
+	else = {
+		custom_tooltip = {
+			fail_text = "requires_building_system_capital"
+			OR = {
+				has_building = building_system_capital
+				has_building = building_imperial_capital
+			}
+		}
+	}
+}
+
+uses_district_industrial = {
+	OR = {
+		uses_district_set = standard
+		uses_district_set = hive_world
+		uses_district_set = machine_world
+		uses_district_set = shattered_ring_world
+	}
+}
+
+ideal_planet_is_wet = {
+	OR = {
+		ideal_planet_class = pc_continental
+		ideal_planet_class = pc_ocean
+		ideal_planet_class = pc_tropical
+	}
+}
+
+ideal_planet_is_dry = {
+	OR = {
+		ideal_planet_class = pc_desert
+		ideal_planet_class = pc_arid
+		ideal_planet_class = pc_savannah
+	}
+}
+
+ideal_planet_is_cold = {
+	OR = {
+		ideal_planet_class = pc_tundra
+		ideal_planet_class = pc_arctic
+		ideal_planet_class = pc_alpine
+	}
+}
+
+ideal_planet_is_special = {
+	NOR = {
+		ideal_planet_class = pc_continental
+		ideal_planet_class = pc_ocean
+		ideal_planet_class = pc_tropical
+		ideal_planet_class = pc_desert
+		ideal_planet_class = pc_arid
+		ideal_planet_class = pc_savannah
+		ideal_planet_class = pc_tundra
+		ideal_planet_class = pc_arctic
+		ideal_planet_class = pc_alpine
+	}
+}
+
+can_build_gaiaseeder = {
+	# Can always build on ideal worlds
+	if = {
+		limit = {
+			is_ideal_planet_class = {
+				who = owner
+				status = yes
+			}
+		}
+		always = yes
+	}
+	
+	# Requires Climate Restoration for Tomb Worlds
+	else_if = {
+		limit = {
+			planet = { is_planet_class = pc_nuked }
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_tomb_world
+			owner = { has_technology = tech_climate_restoration }
+		}
+	}
+
+	# Requires Terrestrial Sculpting for same climate as homeworld
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				is_wet = yes
+				is_ideal_planet_class = {
+					who = owner
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_wet
+			owner = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				is_dry = yes
+				is_ideal_planet_class = {
+					who = owner
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_dry
+			owner = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				is_cold = yes
+				is_ideal_planet_class = {
+					who = owner
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_cold
+			owner = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	# Requires Ecological Adaptation for other climates
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				OR = {
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_wet
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_dry
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_cold
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_special = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_special_habitability_preference
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+}
+
+can_build_overlord_gaiaseeder = {
+	# Can always build on ideal worlds
+	if = {
+		limit = {
+			is_ideal_planet_class = {
+				who = owner.overlord
+				status = yes
+			}
+		}
+		always = yes
+	}
+	
+	# Requires Climate Restoration for Tomb Worlds
+	else_if = {
+		limit = {
+			planet = { is_planet_class = pc_nuked }
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_tomb_world
+			owner.overlord = { has_technology = tech_climate_restoration }
+		}
+	}
+
+	# Requires Terrestrial Sculpting for same climate as homeworld
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				is_wet = yes
+				is_ideal_planet_class = {
+					who = owner.overlord
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_wet
+			owner.overlord = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				is_dry = yes
+				is_ideal_planet_class = {
+					who = owner.overlord
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_dry
+			owner.overlord = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				is_cold = yes
+				is_ideal_planet_class = {
+					who = owner.overlord
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_cold
+			owner.overlord = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	# Requires Ecological Adaptation for other climates
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				OR = {
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_wet
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_dry
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_cold
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_special = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_special_habitability_preference
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+}
