@@ -1915,3 +1915,441 @@ pd_init_scrapyard = {
 		}
 	}
 }
+
+#The Scrapyard
+pd_init_pdwarform = {
+	class = "sc_k"
+	usage = misc_system_init
+	max_instances = 1
+	scaled_spawn_chance = 12
+	spawn_chance = 100	
+	usage_odds = {
+		base = 100
+		modifier = {
+			factor = 0
+			is_fe_cluster = yes
+		}
+		modifier = {
+			factor = 0
+			has_star_flag = empire_cluster
+		}
+		modifier = {
+			factor = 0
+			is_bottleneck_system = yes
+		}
+	}	
+	
+	flags = { pd_warform_system pd_warform_systemnotorigin }
+	init_effect = {
+		if = {
+			limit = {
+				is_inside_nebula = no
+			}
+			create_nebula = {
+				radius = 20
+			}
+			set_star_flag = pd_unique_nebula
+		}
+	}
+
+    planet = {
+        count = 1
+        class = "pc_k_star"
+        orbit_distance = 0
+        orbit_angle = 1
+        size = { min = 25 max = 30 }
+        has_ring = no
+		init_effect = {
+			create_ambient_object = {
+				type = "nebula_2"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 37
+					angle = 30
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 40
+					angle = 30
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 43
+					angle = 30
+				}
+			}
+			while = {
+				count = 2
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 65
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 80
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "small_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 90
+						angle = random
+					}
+				}
+			}
+			while = {
+				count = 3
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 100
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 97
+					angle = 270
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 100
+					angle = 265
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 100
+					angle = 270
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 100
+					angle = 275
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 103
+					angle = 270
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 110
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 175
+				}
+			}
+			while = {
+				count = 4
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 120
+						angle = random
+					}
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 185
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 123
+					angle = 180
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 115
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 350
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 0
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 117
+					angle = 10
+				}
+			}
+			create_ambient_object = {
+				type = "large_debris_object"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 120
+					angle = 0
+				}
+			}
+		}
+    }
+	
+	planet = {
+		count = { min = 2 max = 2 }
+		class = random_non_colonizable
+		orbit_distance = 30
+		
+		change_orbit = 5
+		
+		moon = {			
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		class = pc_nuked
+		orbit_distance = 30
+		orbit_angle = 85
+		size = 20
+		modifiers = none
+		deposit_blockers = none
+		
+		init_effect = {
+			set_planet_flag = pd_scrapyard_planet
+			set_planet_flag = colony_event
+			prevent_anomaly = yes
+			save_event_target_as = pd_warform_planet
+			create_country = {
+				name = "Defenders"
+				type = faction
+			}
+			last_created_country = {
+				set_country_flag = pd_warform_country
+				create_fleet = {
+					name = "Extermination Support Drones"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = PREV
+						while = {
+							count = 1
+							create_ship = {
+								name = random
+								design = "NAME_Euthanizer"
+								graphical_culture = "ai_01"
+							}
+						}
+						assign_leader = event_target:contingency_fleet_leader
+						while = {
+							count = 10
+							create_ship = {
+								name = random
+								design = "NAME_Sterilizer"
+								graphical_culture = "ai_01"
+							}
+						}
+						set_fleet_stance = aggressive
+						set_aggro_range_measure_from = self
+						set_aggro_range = 500			
+						set_location = event_target:pd_warform_planet
+						add_modifier = {
+							modifier = sanctuary_power
+							days = -1														
+						}
+					}
+				}
+			}
+		}
+		moon = {
+			class = "pc_pd_orange_warform"
+			orbit_distance = 0
+			orbit_angle = 85
+			size = 20
+			modifiers = none
+			deposit_blockers = none
+			
+			init_effect = {
+				set_planet_flag = pd_warform_planet
+				set_planet_flag = colony_event
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}	
+	}
+		
+	planet = {
+		count = { min = 5 max = 5 }
+		class = random_non_colonizable
+		orbit_distance = { min = 30 max = 40 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {			
+			count = { min = 0 max = 2 }
+			orbit_distance = 5
+			class = random_non_colonizable
+		}
+	}
+}
