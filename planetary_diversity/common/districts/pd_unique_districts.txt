@@ -1421,7 +1421,7 @@ district_techno_industrial = {
 }
 
 #MWF-14
-district_warform_housing = {
+district_pd_warform_housing = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
@@ -1446,27 +1446,7 @@ district_warform_housing = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 8
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_designation = col_habitat_farming
-		}
-		modifier = {
-			planet_housing_add = -2
-			job_farmer_add = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_designation = col_habitat_gestalt_farming
-		}
-		modifier = {
-			planet_housing_add = -2
-			job_agri_drone_add = 1
-		}
+		planet_housing_add = 3
 	}
 
 	triggered_planet_modifier = {
@@ -1481,29 +1461,15 @@ district_warform_housing = {
 
 	triggered_desc = {
 		trigger = {
-			has_designation = col_habitat_farming
-		}
-		text = job_farmer_effect_desc
-	}
-
-	triggered_desc = {
-		trigger = {
-			has_designation = col_habitat_gestalt_farming
-		}
-		text = job_agri_drone_effect_desc
-	}
-
-	triggered_desc = {
-		trigger = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
 		text = job_maintenance_drone_effect_desc
 	}
 }
-district_warform_industrial = {
+district_pd_warform_industrial = {
 	base_buildtime = 240
-	is_capped_by_modifier = no
+	is_capped_by_modifier = yes
 	icon = district_hab_industrial
 
 	show_on_uncolonized = {
@@ -1897,9 +1863,9 @@ district_warform_industrial = {
 		text = job_maintenance_drone_effect_desc
 	}
 }
-district_warform_energy = {
+district_pd_warform_energy = {
 	base_buildtime = 240
-	is_capped_by_modifier = no
+	is_capped_by_modifier = yes
 	icon = district_hab_energy
 
 	show_on_uncolonized = {
@@ -1993,9 +1959,9 @@ district_warform_energy = {
 		text = job_fe_acolyte_generator_effect_desc
 	}
 }
-district_warform_science = {
+district_pd_warform_science = {
 	base_buildtime = 240
-	is_capped_by_modifier = no
+	is_capped_by_modifier = yes
 	icon = district_hab_science
 
 	show_on_uncolonized = {
@@ -2083,18 +2049,20 @@ district_warform_science = {
 		text = job_calculator_effect_desc
 	}
 }
-district_warform_cultural = {
+district_pd_warform_blue = {
 	base_buildtime = 240
-	is_capped_by_modifier = no
+	is_capped_by_modifier = yes
 	exempt_from_ai_planet_specialization = yes
 	icon = district_hab_cultural
 
 	show_on_uncolonized = {
 		uses_district_set = pdwarform
+		has_planet_flag = pd_warform_blue
 	}
 
 	potential = {
 		uses_district_set = pdwarform
+		has_planet_flag = pd_warform_blue
 	}
 
 	conversion_ratio = 0.5

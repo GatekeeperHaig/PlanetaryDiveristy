@@ -3710,6 +3710,7 @@ planet_event = {
 	is_triggered_only = yes
 	
 	trigger = {
+		NOT = { days_passed < 1 }
 		OR = {
 			AND = {
 				FROM = { has_origin = origin_pd_tree_of_life }
@@ -3731,6 +3732,11 @@ planet_event = {
 		if = {
 			limit = {
 				FROM = { has_origin = origin_pd_tree_of_life }
+				NOR = {
+					has_deposit = d_pd_tree_of_life_1
+					has_deposit = d_pd_tree_of_life_2
+					has_deposit = d_pd_tree_of_life_3
+				}
 			}
 			add_modifier = { modifier = no_pd_lifetree }
 		}
