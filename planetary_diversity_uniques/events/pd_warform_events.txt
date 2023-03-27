@@ -1,0 +1,139 @@
+namespace = pdwarform
+
+#EnterSystem
+ship_event = {
+	id = pdwarform.10
+	title = pdwarform.10.name
+	desc = pdwarform.10.desc
+	picture = GFX_evt_pdwarform
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = pd_warform_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = pd_warform_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = pd_warform_encounter
+		}
+	}
+
+	option = {
+		name = pdwarform.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdwarform.20
+	title = pdwarform.20.name
+	desc = pdwarform.20.desc
+	picture = GFX_evt_pdwarform2
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_warform_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_warform_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_warform_planet
+		}
+	}
+
+	option = {
+		name = pdwarform.20.a
+	}
+}
+
+#Start Event Chain
+planet_event = {
+	id = pdwarform.300
+	title = pdwarform.300.name
+	desc = pdwarform.300.desc
+	picture = GFX_evt_pdwarform2
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		has_planet_flag = pd_warform_planet
+		#is_planet_class = pc_pd_orange_warform
+		NOT = {
+			has_planet_flag = pd_warform_planet_situation_over
+		}
+	}
+
+	option = {
+		name = pdwarform.300.a
+		owner = {
+			start_situation = {
+				type = pd_warform_situation
+				target = root
+			}
+		}
+	}
+}
+
+#Situation Events
+situation_event = {
+	id = pdwarform.305
+	title = pdwarform.305.name
+	desc = pdwarform.305.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+	
+	option = {
+		name = pdwarform.305.a
+		custom_tooltip = pdwarform.305.a.tooltip
+		target = {
+			set_planet_flag = pd_warform_repaired_housing
+		}
+	}
+}
