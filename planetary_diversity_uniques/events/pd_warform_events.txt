@@ -6,7 +6,7 @@ ship_event = {
 	title = pdwarform.10.name
 	desc = pdwarform.10.desc
 	picture = GFX_evt_pdwarform
-	location = from
+	location = ROOT
 	show_sound = event_ship_bridge
 
 	is_triggered_only = yes
@@ -44,7 +44,7 @@ ship_event = {
 	title = pdwarform.20.name
 	desc = pdwarform.20.desc
 	picture = GFX_evt_pdwarform2
-	location = from
+	location = ROOT
 	show_sound = event_ship_bridge
 
 	is_triggered_only = yes
@@ -134,6 +134,120 @@ situation_event = {
 		custom_tooltip = pdwarform.305.a.tooltip
 		target = {
 			set_planet_flag = pd_warform_repaired_housing
+			remove_deposit = d_pd_warform_drone_storage
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.310
+	title = pdwarform.310.name
+	desc = pdwarform.310.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+	
+	option = {
+		name = pdwarform.310.a
+		custom_tooltip = pdwarform.310.a.tooltip
+		target = {
+			set_planet_flag = pd_warform_repaired_power
+			remove_deposit = d_pd_warform_power_core
+			add_deposit = d_pd_warform_power_core_fixed
+		}
+	}
+	
+	option = {
+		name = pdwarform.310.b
+		custom_tooltip = pdwarform.310.b.tooltip
+		target = {
+			remove_deposit = d_pd_warform_power_core
+			owner = {
+				IF = {
+					limit = {
+						NOT = { has_technology = tech_zero_point_power }
+					}
+					add_research_option = tech_zero_point_power
+				}
+				ELSE_IF = {
+					limit = {
+						has_technology = tech_zero_point_power
+					}
+					add_research_option = tech_dark_matter_power_core
+				}
+				ELSE_IF = {
+					limit = {
+						has_technology = tech_dark_matter_power_core
+					}
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier4researchreward
+						min = @tier4researchmin
+						max = @tier4researchmax
+					}
+				}
+			}
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.315
+	title = pdwarform.315.name
+	desc = pdwarform.315.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdwarform.315.a
+		custom_tooltip = pdwarform.315.a.tooltip
+		target = {
+			set_planet_flag = pd_warform_warforms
+			remove_deposit = d_pd_warform_factory
+		}
+	}
+	
+	option = {
+		name = pdwarform.315.b
+		custom_tooltip = pdwarform.315.b.tooltip
+		target = {
+			remove_deposit = d_pd_warform_factory
+			add_deposit = d_pd_warform_factory_fixed
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.320
+	title = pdwarform.320.name
+	desc = pdwarform.320.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdwarform.320.a
+		custom_tooltip = pdwarform.320.a.tooltip
+		target = {
+			remove_deposit = d_pd_warform_research
+			add_deposit = d_pd_warform_research_fixed
+		}
+	}
+	
+	option = {
+		name = pdwarform.320.b
+		custom_tooltip = pdwarform.320.b.tooltip
+		target = {
+			set_planet_flag = pd_warform_organic_research
+			remove_deposit = d_pd_warform_research
+			add_deposit = d_pd_warform_research_fixed
 		}
 	}
 }

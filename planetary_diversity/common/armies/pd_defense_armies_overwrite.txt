@@ -61,3 +61,48 @@ undead_defense_army = {
 		factor = 100
 	}
 }
+
+# Improved Mega-Warform, unlocked by Warform Factory
+pd_cybrex_warform = {
+	damage = 5.0
+	health = 7.0
+	has_morale = no
+	morale_damage = 2
+	collateral_damage = 5.0
+	war_exhaustion = 4.0
+	time = 500
+	has_species = no
+
+	icon = GFX_army_type_machine_assault
+
+	resources = {
+		category = armies
+		cost = {
+			alloys = 250
+		}
+
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	potential_country = {
+		any_owned_planet = {
+			has_planet_flag = pd_warform_warforms
+		}
+	}
+	potential = {
+		custom_tooltip = {
+			planet = { 
+				OR = {
+					is_planet_class = pc_pd_red_warform
+					is_planet_class = pc_pd_blue_warform
+					is_planet_class = pc_pd_orange_warform
+				}
+			}
+		}
+	}
+	ai_weight = {
+		base = 50
+	}
+}

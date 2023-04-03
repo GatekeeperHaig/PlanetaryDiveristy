@@ -695,9 +695,28 @@ d_pd_dimensional_prison = {
 }
 
 #Cybrex Warform Planets
+d_pd_warform_drone_storage = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+	can_be_cleared = { always = no }
+	
+	icon = d_station_junk
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { has_planet_flag = pd_warform_repaired_housing }
+		}
+		planet_max_districts_add = -4
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
 d_pd_warform_power_core = {
 	is_for_colonizable = yes
-	category = deposit_cat_rare
+	category = deposit_cat_rare_blocker
+	can_be_cleared = { always = no }
 	
 	icon = d_station_reactor
 
@@ -719,24 +738,43 @@ d_pd_warform_power_core = {
 		weight = 0
 	}
 }
+d_pd_warform_power_core_fixed = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	
+	icon = d_station_reactor
+
+	planet_modifier = {
+		district_pd_warform_energy_max = 20
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
 d_pd_warform_factory = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+	can_be_cleared = { always = no }
+	
+	icon = d_station_cargo
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_pd_warform_factory_fixed = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare
 	
 	icon = d_station_cargo
 
-	triggered_planet_modifier = {
-		potential = {
-			NOT = { has_planet_flag = pd_warform_fixed_factory }
-		}
-		planet_max_districts_add = -4
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_planet_flag = pd_warform_fixed_factory
-		}
-		district_pd_warform_industrial_max = 9
+	planet_modifier = {
+		district_pd_warform_industrial_max = 20
 	}
 	
 	drop_weight = {
@@ -745,9 +783,39 @@ d_pd_warform_factory = {
 }
 d_pd_warform_research = {
 	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+	can_be_cleared = { always = no }
+	
+	icon = d_glitchy_matrix
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_pd_warform_research_fixed = {
+	is_for_colonizable = yes
 	category = deposit_cat_rare
 	
 	icon = d_glitchy_matrix
+
+	planet_modifier = {
+		district_pd_warform_science_max = 20
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_pd_warform_war_room = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+	can_be_cleared = { always = no }
+	
+	icon = d_station_junk
 
 	triggered_planet_modifier = {
 		potential = {
@@ -758,7 +826,7 @@ d_pd_warform_research = {
 
 	triggered_planet_modifier = {
 		potential = {
-			has_planet_flag = pd_warform_fixed_lab
+			has_planet_flag = pd_warform_fixed_war_room
 		}
 		district_pd_warform_science_max = 9
 	}
