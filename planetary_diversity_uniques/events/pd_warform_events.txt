@@ -236,6 +236,7 @@ situation_event = {
 		name = pdwarform.320.a
 		custom_tooltip = pdwarform.320.a.tooltip
 		target = {
+			set_planet_flag = pd_warform_regular_research
 			remove_deposit = d_pd_warform_research
 			add_deposit = d_pd_warform_research_fixed
 		}
@@ -248,6 +249,86 @@ situation_event = {
 			set_planet_flag = pd_warform_organic_research
 			remove_deposit = d_pd_warform_research
 			add_deposit = d_pd_warform_research_fixed
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.325
+	title = pdwarform.325.name
+	desc = pdwarform.325.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdwarform.325.a
+		custom_tooltip = pdwarform.325.a.tooltip
+		trigger = {
+			owner = {
+				is_pacifist = no
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_war_room
+			set_planet_entity = {
+				picture = pc_pd_red_warform
+				entity = pd_red_warform_planet_01_entity
+			}
+		}
+	}
+	
+	option = {
+		name = pdwarform.325.b
+		custom_tooltip = pdwarform.325.b.tooltip
+		trigger = {
+			owner = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_peace_room
+			set_planet_entity = {
+				picture = pc_pd_blue_warform
+				entity = pd_blue_warform_planet_01_entity
+			}
+		}
+	}
+	
+	option = {
+		name = pdwarform.325.c
+		trigger = {
+			owner = {
+				has_civic = civic_machine_servitor
+			}
+		}
+		custom_tooltip = pdwarform.325.c.tooltip
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_biotrophy_room
+			set_planet_entity = {
+				picture = pc_pd_blue_warform
+				entity = pd_blue_warform_planet_01_entity
+			}
+		}
+	}
+	
+	option = {
+		name = pdwarform.325.d
+		custom_tooltip = pdwarform.325.d.tooltip
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_machine_room
 		}
 	}
 }
