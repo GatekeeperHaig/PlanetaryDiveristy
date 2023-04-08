@@ -501,16 +501,25 @@ d_sizable_ruins = {
 	}
 
 	on_cleared = {
-		custom_tooltip = minor_artifacts_found
-		random_list = {
-			50 = {
-				owner = { add_resource = { minor_artifacts = 1 } }
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					has_ancrel = yes
+				}
 			}
-			30 = {
-				owner = { add_resource = { minor_artifacts = 3 } }
-			}
-			20 = {
-				owner = { add_resource = { minor_artifacts = 5 } }
+
+			custom_tooltip = minor_artifacts_found
+			random_list = {
+				33 = {
+					owner = { add_resource = { minor_artifacts = 10 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 30 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 50 } }
+				}
 			}
 		}
 	}
@@ -1088,6 +1097,29 @@ d_remaining_stores_cat = {
 	}
 }
 
+#Warform
+d_remaining_stores_warform = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "d_station_cargo"
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+	
+	resources = {
+		category = planet_deposits
+		produces = {
+			food = 30
+			minerals = 30
+			energy = -60
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
 #Zro Stripmine World
 d_zro_stripmine_untouched_farmland = {
 	is_for_colonizable = yes
@@ -1237,6 +1269,54 @@ d_scrapheap = {
 			33 = {
 				owner = { add_resource = { engineering_research = 500 } }
 			}	
+		}
+	}
+}
+
+#Warform World
+d_pd_destoryed_cities = {
+	time = 365
+	icon = d_city_ruins
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_building_build_speed_mult = -0.1
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 750
+			minerals = 250
+		}
+	}
+
+	on_cleared = {
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					has_ancrel = yes
+				}
+			}
+
+			custom_tooltip = minor_artifacts_found
+			random_list = {
+				33 = {
+					owner = { add_resource = { minor_artifacts = 10 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 30 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 50 } }
+				}
+			}
 		}
 	}
 }

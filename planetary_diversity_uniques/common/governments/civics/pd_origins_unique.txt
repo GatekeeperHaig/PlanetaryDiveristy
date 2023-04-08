@@ -180,3 +180,28 @@ origin_pd_scrapyard_world = {
 		country_naval_cap_mult = 0.2
 	}
 }
+origin_pd_warform_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pd_warform.dds"
+	picture = GFX_origin_pd_warform
+	starting_colony = pc_pd_orange_warform
+	#preferred_planet_class_neighbor = no
+	description = "origin_tooltip_pd_warform_world_effects"
+	#random_weight = { base = 0 }
+	possible = { 
+		authority = { NOT = { value = auth_hive_mind } } 
+		civics = { 
+			NOT = { value = civic_fanatic_purifiers } 
+			NOT = { value = civic_barbaric_despoilers }
+			NOT = { value = civic_machine_terminator }
+			NOT = { value = civic_machine_servitor }
+			NOT = { value = civic_machine_assimilator }
+		}
+	}
+	traits = {
+		trait = trait_cybernetic
+	}
+	initializers = { pd_origin_init_warform }
+	flags = { custom_start_screen }
+	#max_once_global = yes
+}

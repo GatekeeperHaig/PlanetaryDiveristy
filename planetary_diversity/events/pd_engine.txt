@@ -377,6 +377,8 @@ country_event = {
 		every_galaxy_planet = { limit = { is_planet_class = pc_reef is_homeworld = yes } generate_pd_start_deposits_and_blockers = yes }
 		#Archipelago
 		every_galaxy_planet = { limit = { is_planet_class = pc_pd_archipelago is_homeworld = yes } generate_pd_start_deposits_and_blockers = yes }
+		#Warform
+		every_galaxy_planet = { limit = { is_planet_class = pc_pd_orange_warform is_homeworld = yes } generate_pd_start_deposits_and_blockers = yes }
 		#Archive
 		every_galaxy_planet = { limit = { is_planet_class = pc_archive is_homeworld = yes } generate_pd_start_deposits_and_blockers = yes }
 		#Machine
@@ -978,58 +980,15 @@ country_event = {
 		}
 		#Archive Start
 		every_galaxy_planet = { 				
-			limit = { is_planet_class = pc_archive is_homeworld = no has_planet_flag = prescripted_ideal }
-			random_list = {
-				3 = { change_pc = pc_continental reroll_planet = yes }
-				3 = { change_pc = pc_cascadian reroll_planet = yes }	
-				3 = { change_pc = pc_ocean reroll_planet = yes }	
-				3 = { change_pc = pc_desertislands	reroll_planet = yes	}	
-				3 = { change_pc = pc_subarctic reroll_planet = yes }	
-				3 = { change_pc = pc_tropical reroll_planet = yes }		
-				3 = { change_pc = pc_mangrove reroll_planet = yes }	
-				3 = { change_pc = pc_wetswamp reroll_planet = yes }	
-				3 = { change_pc = pc_fog reroll_planet = yes }		
-				3 = { change_pc = pc_hajungle reroll_planet = yes }		
-				3 = { change_pc = pc_cenote reroll_planet = yes }	
-				3 = { change_pc = pc_retinal reroll_planet = yes }		
-				3 = { change_pc = pc_forest reroll_planet = yes }	
-				3 = { change_pc = pc_lake reroll_planet = yes }
-				3 = { change_pc = pc_tepid reroll_planet = yes }
-
-				3 = { change_pc = pc_desert reroll_planet = yes }
-				3 = { change_pc = pc_sandsea reroll_planet = yes }	
-				3 = { change_pc = pc_oasis reroll_planet = yes }	
-				3 = { change_pc = pc_arid reroll_planet = yes }	
-				3 = { change_pc = pc_mesa reroll_planet = yes }
-				3 = { change_pc = pc_badlands reroll_planet = yes }
-				3 = { change_pc = pc_outback reroll_planet = yes }
-				3 = { change_pc = pc_coastal reroll_planet = yes }
-				3 = { change_pc = pc_savannah reroll_planet = yes }		
-				3 = { change_pc = pc_steppe reroll_planet = yes }		
-				3 = { change_pc = pc_med reroll_planet = yes }			
-				3 = { change_pc = pc_prairie reroll_planet = yes }	
-				3 = { change_pc = pc_veld reroll_planet = yes }	
-				3 = { change_pc = pc_semiarid reroll_planet = yes }				
-				3 = { change_pc = pc_hadesert reroll_planet = yes }	
-
-				3 = { change_pc = pc_arctic reroll_planet = yes }
-				3 = { change_pc = pc_frozen_desert reroll_planet = yes }	
-				3 = { change_pc = pc_glacial reroll_planet = yes }	
-				3 = { change_pc = pc_alpine reroll_planet = yes }	
-				3 = { change_pc = pc_hadesert reroll_planet = yes }	
-				3 = { change_pc = pc_boreal reroll_planet = yes }	
-				3 = { change_pc = pc_tundra reroll_planet = yes }		
-				3 = { change_pc = pc_swamp reroll_planet = yes }	
-				3 = { change_pc = pc_mud reroll_planet = yes }		
-				3 = { change_pc = pc_basalt reroll_planet = yes }					
-				3 = { change_pc = pc_antarctic reroll_planet = yes }			
-				3 = { change_pc = pc_aeolian reroll_planet = yes }		
-				3 = { change_pc = pc_snow reroll_planet = yes }			
-				3 = { change_pc = pc_highland reroll_planet = yes }	
-				3 = { change_pc = pc_duneforest reroll_planet = yes }	
-
-				1 = { change_pc = pc_gaia reroll_planet = yes }			
+			limit = { 
+				OR = {
+					is_planet_class = pc_archive 
+					is_planet_class = pc_pd_orange_warform 
+				}
+				is_homeworld = no 
+				has_planet_flag = prescripted_ideal 
 			}
+			pd_any_random_planet = yes
 		}
 		#Machine Start
 		every_galaxy_planet = { 				
@@ -1037,112 +996,12 @@ country_event = {
 				is_planet_class = pc_machine 
 				is_homeworld = no 
 				has_planet_flag = prescripted_ideal }
-			random_list = {
-				3 = { change_pc = pc_continental reroll_planet = yes }
-				3 = { change_pc = pc_cascadian reroll_planet = yes }	
-				3 = { change_pc = pc_ocean reroll_planet = yes }	
-				3 = { change_pc = pc_desertislands	reroll_planet = yes	}	
-				3 = { change_pc = pc_subarctic reroll_planet = yes }	
-				3 = { change_pc = pc_tropical reroll_planet = yes }		
-				3 = { change_pc = pc_mangrove reroll_planet = yes }	
-				3 = { change_pc = pc_wetswamp reroll_planet = yes }	
-				3 = { change_pc = pc_fog reroll_planet = yes }		
-				3 = { change_pc = pc_hajungle reroll_planet = yes }	
-				3 = { change_pc = pc_cenote reroll_planet = yes }		
-				3 = { change_pc = pc_retinal reroll_planet = yes }		
-				3 = { change_pc = pc_forest reroll_planet = yes }		
-				3 = { change_pc = pc_lake reroll_planet = yes }
-				3 = { change_pc = pc_tepid reroll_planet = yes }
-
-				3 = { change_pc = pc_desert reroll_planet = yes }
-				3 = { change_pc = pc_sandsea reroll_planet = yes }	
-				3 = { change_pc = pc_oasis reroll_planet = yes }	
-				3 = { change_pc = pc_arid reroll_planet = yes }	
-				3 = { change_pc = pc_mesa reroll_planet = yes }
-				3 = { change_pc = pc_badlands reroll_planet = yes }
-				3 = { change_pc = pc_outback reroll_planet = yes }
-				3 = { change_pc = pc_coastal reroll_planet = yes }
-				3 = { change_pc = pc_savannah reroll_planet = yes }		
-				3 = { change_pc = pc_steppe reroll_planet = yes }		
-				3 = { change_pc = pc_med reroll_planet = yes }			
-				3 = { change_pc = pc_prairie reroll_planet = yes }		
-				3 = { change_pc = pc_veld reroll_planet = yes }		
-				3 = { change_pc = pc_semiarid reroll_planet = yes }		
-				3 = { change_pc = pc_hadesert reroll_planet = yes }	
-
-				3 = { change_pc = pc_arctic reroll_planet = yes }
-				3 = { change_pc = pc_frozen_desert reroll_planet = yes }	
-				3 = { change_pc = pc_glacial reroll_planet = yes }	
-				3 = { change_pc = pc_alpine reroll_planet = yes }	
-				3 = { change_pc = pc_hadesert reroll_planet = yes }	
-				3 = { change_pc = pc_boreal reroll_planet = yes }	
-				3 = { change_pc = pc_tundra reroll_planet = yes }		
-				3 = { change_pc = pc_swamp reroll_planet = yes }
-				3 = { change_pc = pc_mud reroll_planet = yes }	
-				3 = { change_pc = pc_basalt reroll_planet = yes }							
-				3 = { change_pc = pc_antarctic reroll_planet = yes }			
-				3 = { change_pc = pc_aeolian reroll_planet = yes }			
-				3 = { change_pc = pc_snow reroll_planet = yes }			
-				3 = { change_pc = pc_highland reroll_planet = yes }	
-				3 = { change_pc = pc_duneforest reroll_planet = yes }	
-
-				1 = { change_pc = pc_gaia reroll_planet = yes }		
-			}
+				pd_any_random_planet = yes
 		}
 		#Hive Start
 		every_galaxy_planet = { 				
 			limit = { is_planet_class = pc_hive is_homeworld = no has_planet_flag = prescripted_ideal }
-			random_list = {
-				3 = { change_pc = pc_continental reroll_planet = yes }
-				3 = { change_pc = pc_cascadian reroll_planet = yes }	
-				3 = { change_pc = pc_ocean reroll_planet = yes }	
-				3 = { change_pc = pc_desertislands	reroll_planet = yes	}	
-				3 = { change_pc = pc_subarctic reroll_planet = yes }	
-				3 = { change_pc = pc_tropical reroll_planet = yes }		
-				3 = { change_pc = pc_mangrove reroll_planet = yes }	
-				3 = { change_pc = pc_wetswamp reroll_planet = yes }	
-				3 = { change_pc = pc_fog reroll_planet = yes }		
-				3 = { change_pc = pc_hajungle reroll_planet = yes }		
-				3 = { change_pc = pc_cenote reroll_planet = yes }	
-				3 = { change_pc = pc_retinal reroll_planet = yes }		
-				3 = { change_pc = pc_forest reroll_planet = yes }
-				3 = { change_pc = pc_lake reroll_planet = yes }
-				3 = { change_pc = pc_tepid reroll_planet = yes }
-
-				3 = { change_pc = pc_desert reroll_planet = yes }
-				3 = { change_pc = pc_sandsea reroll_planet = yes }	
-				3 = { change_pc = pc_oasis reroll_planet = yes }	
-				3 = { change_pc = pc_arid reroll_planet = yes }	
-				3 = { change_pc = pc_mesa reroll_planet = yes }
-				3 = { change_pc = pc_badlands reroll_planet = yes }
-				3 = { change_pc = pc_outback reroll_planet = yes }
-				3 = { change_pc = pc_coastal reroll_planet = yes }
-				3 = { change_pc = pc_savannah reroll_planet = yes }		
-				3 = { change_pc = pc_steppe reroll_planet = yes }		
-				3 = { change_pc = pc_med reroll_planet = yes }			
-				3 = { change_pc = pc_prairie reroll_planet = yes }	
-				3 = { change_pc = pc_veld reroll_planet = yes }	
-				3 = { change_pc = pc_semiarid reroll_planet = yes }				
-				3 = { change_pc = pc_hadesert reroll_planet = yes }	
-
-				3 = { change_pc = pc_arctic reroll_planet = yes }
-				3 = { change_pc = pc_frozen_desert reroll_planet = yes }	
-				3 = { change_pc = pc_glacial reroll_planet = yes }	
-				3 = { change_pc = pc_alpine reroll_planet = yes }	
-				3 = { change_pc = pc_hadesert reroll_planet = yes }	
-				3 = { change_pc = pc_boreal reroll_planet = yes }	
-				3 = { change_pc = pc_tundra reroll_planet = yes }		
-				3 = { change_pc = pc_swamp reroll_planet = yes }
-				3 = { change_pc = pc_mud reroll_planet = yes }		
-				3 = { change_pc = pc_basalt reroll_planet = yes }						
-				3 = { change_pc = pc_antarctic reroll_planet = yes }				
-				3 = { change_pc = pc_aeolian reroll_planet = yes }		
-				3 = { change_pc = pc_snow reroll_planet = yes }			
-				3 = { change_pc = pc_highland reroll_planet = yes }	
-				3 = { change_pc = pc_duneforest reroll_planet = yes }	
-
-				1 = { change_pc = pc_gaia reroll_planet = yes }		
-			}
+			pd_any_random_planet = yes
 		}
 	}	
 }
@@ -1469,6 +1328,10 @@ country_event = {
 		every_galaxy_planet = {
 			limit = { is_planet_class = pc_archive }
 			set_planet_flag = pdarchive
+		}
+		every_galaxy_planet = {
+			limit = { is_planet_class = pc_pd_orange_warform }
+			set_planet_flag = pdwarform
 		}
 		every_galaxy_planet = {
 			limit = { is_planet_class = pc_antarctic }
@@ -2657,7 +2520,7 @@ planet_event = {
 				NOT = { is_planet_class = pc_relic }
 				NOT = { is_planet_class = pc_nuked_relic }
 				NOT = { is_planet_class = pc_milarc_relic }
-				NOT = { is_planet_class = pc_archive }
+				is_pd_unique_hab = no
 			}
 			if = {
 				limit = {
@@ -2758,13 +2621,23 @@ country_event = {
         every_galaxy_planet = {
             if = {
                 limit = { solar_system = { has_star_flag = archive_system_notorigin } is_planet_class = pc_archive }
-					change_pc = pc_broken
-					remove_planet_flag = archive_planet_notorigin
-					remove_planet_flag = pdarchive
-					remove_modifier = archive
-					set_deposit = d_physics_10
-				}
+				change_pc = pc_broken
+				remove_planet_flag = archive_planet_notorigin
+				remove_planet_flag = pdarchive
+				remove_modifier = archive
+				set_deposit = d_physics_10
 			}
+		}
+		if = { limit = { any_country = { has_origin = origin_pdwaform_world } }
+        every_galaxy_planet = {
+            if = {
+                limit = { solar_system = { has_star_flag = warform_system_notorigin } is_planet_class = pc_pd_orange_warform }
+				change_pc = pc_broken
+				remove_planet_flag = warform_planet_notorigin
+				remove_planet_flag = pdwarform
+				set_deposit = d_engineering_10
+			}
+		}
 		every_system = {
 			remove_star_flag = archive_system_notorigin
 			} 
