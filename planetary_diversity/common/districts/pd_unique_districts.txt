@@ -1478,12 +1478,12 @@ district_pd_warform_energy = {
 
 	show_on_uncolonized = {
 		uses_district_set = pdwarform
-		has_planet_flag = pd_warform_repaired_energy
+		has_planet_flag = pd_warform_repaired_power
 	}
 
 	potential = {
 		uses_district_set = pdwarform
-		has_planet_flag = pd_warform_repaired_energy
+		has_planet_flag = pd_warform_repaired_power
 	}
 
 	conversion_ratio = 0.5
@@ -1491,14 +1491,10 @@ district_pd_warform_energy = {
 		district_hab_commercial
 	}
 
-	planet_modifier = {
-		planet_technician_energy_produces_add = 2
-	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 		}
 		planet_housing_add = 3
 	}
@@ -1516,7 +1512,7 @@ district_pd_warform_energy = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
@@ -1530,7 +1526,7 @@ district_pd_warform_energy = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = {
@@ -1541,7 +1537,7 @@ district_pd_warform_energy = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = { is_machine_empire = yes }
 		}
 		job_technician_drone_add = 3
@@ -1550,7 +1546,7 @@ district_pd_warform_energy = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = { is_hive_empire = yes }
 		}
 		job_technician_drone_add = 4
@@ -1559,7 +1555,7 @@ district_pd_warform_energy = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = { is_gestalt = yes }
 		}
 		text = job_technician_drone_effect_desc
@@ -1567,7 +1563,7 @@ district_pd_warform_energy = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = {
 				is_gestalt = no
 				is_fallen_empire_spiritualist = no
@@ -1578,7 +1574,7 @@ district_pd_warform_energy = {
 	triggered_desc = {
 		trigger = {
 			exists = owner
-			has_planet_flag = pd_warform_repaired_energy
+			has_planet_flag = pd_warform_repaired_power
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		text = job_fe_acolyte_generator_effect_desc
@@ -1591,10 +1587,12 @@ district_pd_warform_industrial = {
 
 	show_on_uncolonized = {
 		uses_district_set = pdwarform
+		has_deposit = d_pd_warform_factory_fixed
 	}
 
 	potential = {
 		uses_district_set = pdwarform
+		has_deposit = d_pd_warform_factory_fixed
 	}
 
 	resources = {
@@ -1614,13 +1612,6 @@ district_pd_warform_industrial = {
 			}
 			energy = 2
 		}
-	}
-
-	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 1
-		planet_metallurgists_minerals_upkeep_add = 2
-		planet_artisans_consumer_goods_produces_add = 1
-		planet_artisans_minerals_upkeep_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -2024,10 +2015,18 @@ district_pd_warform_science = {
 
 	show_on_uncolonized = {
 		uses_district_set = pdwarform
+		OR = {
+			has_planet_flag = pd_warform_regular_research
+			has_planet_flag = pd_warform_organic_research
+		}
 	}
 
 	potential = {
 		uses_district_set = pdwarform
+		OR = {
+			has_planet_flag = pd_warform_regular_research
+			has_planet_flag = pd_warform_organic_research
+		}
 	}
 
 	allow = {
