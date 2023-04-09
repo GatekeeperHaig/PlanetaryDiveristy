@@ -2528,3 +2528,147 @@ building_pd_magma_forge = {
 		"tech_pd_magma_forge"
 	}
 }
+
+#Waform Buildings
+building_pd_warform_cyber_lab = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	empire_limit = 3
+	
+	icon = building_machine_major_capital
+
+	category = research
+
+	potential = {
+		exists = owner
+		is_pd_warform_world = no
+		NOT = { has_modifier = resort_colony }
+	}
+	
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	#Regs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		job_warform_researcher_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+		job_warform_researcher_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+		job_warform_researcher_add = 2
+	}
+
+	#Hives
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_warform_brain_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+		job_warform_brain_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+		job_warform_brain_drone_add = 2
+	}
+
+	#Robots
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_warform_calculator_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+		job_warform_calculator_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+		job_warform_calculator_add = 2
+	}
+
+	#Reg
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				AND = {
+					exists = owner
+					owner = {
+						NOT = { has_policy_flag = roboticist_output_build_cyborgs }
+					}
+				}
+				NOT = { exists = owner }
+			}
+		}
+		planet_pop_assembly_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_policy_flag = roboticist_output_build_cyborgs
+			}
+			can_assemble_cyborg_pop = yes
+		}
+		planet_pop_assembly_organic_add = 2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	prerequisites = {
+		"tech_pd_warform_cyber_lab"
+	}
+
+}
