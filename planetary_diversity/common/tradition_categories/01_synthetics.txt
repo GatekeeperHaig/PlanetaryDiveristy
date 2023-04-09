@@ -1,0 +1,46 @@
+tradition_synthetics = {
+	tree_template = "tree_11_12"
+	adoption_bonus = "tr_synthetics_adopt"
+	finish_bonus = "tr_synthetics_finish"
+	potential = {
+		OR = {
+			AND = {
+				is_regular_empire = yes
+				has_utopia = yes
+			}
+			AND = {
+				is_machine_empire = yes
+				has_synthethic_dawn = yes
+			}
+		}
+		NOR = {
+			# Has Cybernetic Ascension 
+			has_ascension_perk = ap_the_flesh_is_weak
+			has_ascension_perk = ap_organo_machine_interfacing
+			has_ascension_perk = ap_organo_machine_interfacing_assimilator
+			# Has Genetic Ascension
+			has_ascension_perk = ap_engineered_evolution
+			# Has Psionic Ascension
+			has_origin = origin_shroudwalker_apprentice
+			has_ascension_perk = ap_mind_over_matter
+			# Has PD Origins
+			has_origin = origin_techno_world
+			AND = {
+				has_origin = origin_pd_warform_world
+				has_tradition = tr_cybernetics_adopt
+			}
+		}
+	}
+
+	traditions = {
+		"tr_synthetics_maintenance_protocols"
+		"tr_synthetics_optimization_algorithms"
+		"tr_synthetics_synthetic_age"
+		"tr_synthetics_prefabricated_components"
+		"tr_synthetics_solid_state_actuators"
+	}
+
+	ai_weight = {
+		factor = 1000
+	}
+}

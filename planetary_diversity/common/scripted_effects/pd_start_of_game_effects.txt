@@ -3438,7 +3438,7 @@ generate_pd_start_deposits_and_blockers = {
 		limit = {
 			is_planet_class = pc_pd_orange_warform
 		}
-
+		clear_blockers = yes
 		remove_district = district_city
 		remove_district = district_city
 		remove_district = district_city
@@ -3476,6 +3476,17 @@ generate_pd_start_deposits_and_blockers = {
 		set_planet_flag = pd_warform_origin_start
 		add_district = district_pd_warform_cultural
 		add_building = building_hydroponics_farm
+		owner = {
+			give_technology = {	tech = tech_hydroponics message = no }
+			add_research_option = tech_neuro_quantum_links
+		}
+		while = {
+			count = 1
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+
 	}
 
 	if = {
