@@ -1835,15 +1835,7 @@ tech_pd_warform_cyber_lab = {
 	}
 
 	weight_modifier = {
-		factor = 20
-		modifier = {
-			factor = 0
-			NOT = {
-				any_owned_planet = {
-					is_planet_class = pc_archive
-				}
-			}
-		}
+		factor = 0
 	}
 
 	ai_weight = {
@@ -1851,8 +1843,46 @@ tech_pd_warform_cyber_lab = {
 		modifier = {
 			factor = 1.25
 			research_leader = {
-				area = physics
-				has_trait = "leader_trait_expertise_computing"
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+tech_pd_warform_transforming = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry }
+	weight = @tier3cost3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet = { 
+			is_pd_warform_world = yes
+		} 
+	}
+
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_PD_WARFORM_TRANSFORM_TITLE"
+			desc = "TECH_PD_WARFORM_TRANSFORM_DESC"
+		}
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
 			}
 		}
 	}

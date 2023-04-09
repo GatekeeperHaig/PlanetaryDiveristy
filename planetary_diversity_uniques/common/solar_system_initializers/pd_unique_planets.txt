@@ -2278,10 +2278,10 @@ pd_init_pdwarform = {
 		deposit_blockers = none
 		
 		init_effect = {
-			set_planet_flag = pd_warform_planet
+			set_planet_flag = pd_warform_planet_homeworld
 			set_planet_flag = colony_event
 			prevent_anomaly = yes
-			save_event_target_as = pd_warform_planet
+			save_event_target_as = pd_warform_planet_homeworld
 			while = {
 				count = 15
 				add_deposit = d_pd_destoryed_cities
@@ -2300,16 +2300,15 @@ pd_init_pdwarform = {
 						while = {
 							count = 2
 							create_ship = {
-								name = random
+								name = ""
 								design = "NAME_Euthanizer"
 								graphical_culture = "ai_01"
 							}
 						}
-						assign_leader = event_target:contingency_fleet_leader
 						while = {
 							count = 10
 							create_ship = {
-								name = random
+								name = ""
 								design = "NAME_Sterilizer"
 								graphical_culture = "ai_01"
 							}
@@ -2317,7 +2316,7 @@ pd_init_pdwarform = {
 						set_fleet_stance = aggressive
 						set_aggro_range_measure_from = self
 						set_aggro_range = 500			
-						set_location = event_target:pd_warform_planet
+						set_location = event_target:pd_warform_planet_homeworld
 						add_modifier = {
 							modifier = sanctuary_power
 							days = -1														

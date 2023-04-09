@@ -249,6 +249,7 @@ situation_event = {
 			set_planet_flag = pd_warform_organic_research
 			remove_deposit = d_pd_warform_research
 			add_deposit = d_pd_warform_research_fixed
+			add_research_option = tech_pd_warform_cyber_lab
 		}
 	}
 }
@@ -328,6 +329,102 @@ situation_event = {
 		target = {
 			remove_deposit = d_pd_warform_war_room
 			set_planet_flag = pd_warform_machine_room
+		}
+	}
+}
+
+#Fixing Up The House
+country_event = {
+	id = pdwarform.400
+	title = pdwarform.400.name
+	desc = pdwarform.400.desc
+	picture = GFX_evt_tomb_world
+	location = ROOT
+	show_sound = event_ship_bridge
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_warform_world
+	}
+
+	option = {
+		name = pdwarform.400.a
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = pd_warform_planet_homeworld_origin
+			}
+			enable_special_project = {
+				name = "PD_RESTORE_THE_WARFORM_HOMEWORLD"
+				location = THIS
+				owner = root.owner
+			}
+		}
+	}
+}
+
+#Fixed Up The House
+country_event = {
+	id = pdwarform.405
+	title = pdwarform.405.name
+	desc = pdwarform.405.desc
+	picture = GFX_evt_animal_wildlife
+	location = ROOT
+	show_sound = event_celebration
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = pdwarform.405.a
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = pd_warform_planet_homeworld_origin
+			}
+			change_pc = root.owner_species
+			space_owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier3unityreward
+					min = @tier3unitymin
+					max = @tier3unitymax
+				}
+				country_event = {
+					id = pdwarform.410
+					days = 1 #1800
+					random = 1 #1800
+				}
+			}
+			hidden_effect = {
+				add_deposit = d_black_soil
+			}
+		}
+	}
+}
+
+#Planet, Transform and Roll Out
+country_event = {
+	id = pdwarform.410
+	title = pdwarform.410.name
+	desc = pdwarform.410.desc
+	picture = GFX_evt_pdwarform2
+	location = ROOT
+	show_sound = event_energy_field
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = pdwarform.410.a
+		hidden_effect = {
+			add_research_option = tech_pd_warform_cyber_lab
+			add_tech_progress = {
+				tech = tech_pd_warform_cyber_lab
+				progress = 0.1
+			}
+			add_research_option = tech_pd_warform_transforming
+			add_tech_progress = {
+				tech = tech_pd_warform_transforming
+				progress = 0.1
+			}
 		}
 	}
 }

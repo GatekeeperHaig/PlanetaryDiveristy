@@ -2553,10 +2553,20 @@ country_event = {
 	is_triggered_only = yes
 
    	immediate = {
-		if = { limit = { any_country = { has_origin = origin_floating_world } }
-        every_galaxy_planet = {
-            if = {
-                limit = { solar_system = { has_star_flag = floating_system } is_planet_class = pc_floating }
+		if = { 
+			limit = { 
+				any_country = { 
+					has_origin = origin_floating_world 
+				} 
+			}
+			every_galaxy_planet = {
+				if = {
+					limit = { 
+						solar_system = { 
+							has_star_flag = floating_system 
+						} 
+						is_planet_class = pc_floating 
+					}
 					change_pc = pc_broken
 					remove_planet_flag = floating_planet
 					remove_planet_flag = pdfloating
@@ -2565,8 +2575,8 @@ country_event = {
 					set_deposit = d_volatile_motes_5
 				}
 			}
-		every_system = {
-			remove_star_flag = floating_system
+			every_system = {
+				remove_star_flag = floating_system
 			} 
 		}
 		if = { limit = { any_country = { has_origin = origin_crystal_world } }
@@ -2613,8 +2623,8 @@ country_event = {
 					set_deposit = d_living_metal_deposit
 				}
 			}
-		every_system = {
-			remove_star_flag = technoorganic_system
+			every_system = {
+				remove_star_flag = technoorganic_system
 			} 
 		}
 		if = { limit = { any_country = { has_origin = origin_archive_world } }
@@ -2626,20 +2636,24 @@ country_event = {
 				remove_planet_flag = pdarchive
 				remove_modifier = archive
 				set_deposit = d_physics_10
+				}
 			}
+			every_system = {
+				remove_star_flag = archive_planet_notorigin
+			} 
 		}
-		if = { limit = { any_country = { has_origin = origin_pdwaform_world } }
-        every_galaxy_planet = {
-            if = {
-                limit = { solar_system = { has_star_flag = warform_system_notorigin } is_planet_class = pc_pd_orange_warform }
-				change_pc = pc_broken
-				remove_planet_flag = warform_planet_notorigin
-				remove_planet_flag = pdwarform
-				set_deposit = d_engineering_10
+		if = { limit = { any_country = { has_origin = origin_pd_warform_world } }
+			every_galaxy_planet = {
+				if = {
+					limit = { solar_system = { has_star_flag = warform_system_notorigin } is_planet_class = pc_pd_orange_warform }
+					change_pc = pc_broken
+					remove_planet_flag = warform_planet_notorigin
+					remove_planet_flag = pdwarform
+					set_deposit = d_engineering_10
+				}
 			}
-		}
-		every_system = {
-			remove_star_flag = archive_system_notorigin
+			every_system = {
+				remove_star_flag = warform_planet_notorigin
 			} 
 		}
 		if = { limit = { any_country = { has_origin = origin_crucible_world } }

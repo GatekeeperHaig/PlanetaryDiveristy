@@ -797,6 +797,15 @@ d_pd_warform_research_fixed = {
 	category = deposit_cat_rare
 	
 	icon = d_glitchy_matrix
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { has_planet_flag = pd_warform_regular_research }
+		}
+		planet_researchers_society_research_produces_add = 0.5
+		planet_researchers_physics_research_produces_add = 0.5
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
 	
 	drop_weight = {
 		weight = 0
@@ -809,18 +818,9 @@ d_pd_warform_war_room = {
 	
 	icon = d_station_junk
 
-	triggered_planet_modifier = {
-		potential = {
-			NOT = { has_planet_flag = pd_warform_fixed_lab }
-		}
+	planet_modifier = {
 		planet_max_districts_add = -4
-	}
 
-	triggered_planet_modifier = {
-		potential = {
-			has_planet_flag = pd_warform_fixed_war_room
-		}
-		district_pd_warform_science_max = 9
 	}
 	
 	drop_weight = {
