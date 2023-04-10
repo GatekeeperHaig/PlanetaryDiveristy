@@ -1871,9 +1871,20 @@ tech_pd_warform_transforming = {
 			desc = "TECH_PD_WARFORM_TRANSFORM_DESC"
 		}
 	}
-
+	
 	weight_modifier = {
-		factor = 0
+		factor = 20
+		modifier = {
+			factor = 0
+			OR = {
+				NOT = {
+					any_owned_planet = {
+						is_pd_warform_world = yes
+					}
+				}
+				has_origin = origin_pd_warform_world
+			}
+		}
 	}
 
 	ai_weight = {
