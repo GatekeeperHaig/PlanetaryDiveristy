@@ -1429,7 +1429,10 @@ country_event = {
 				is_moon = yes  
 					}
 			set_planet_flag = pdio
-			change_pc = pc_volcanic
+			set_planet_entity = {
+				picture = pc_volcanic
+				entity = "volcanic_planet_01_entity"
+			}
 		}
 		every_galaxy_planet = {
 			limit = {					
@@ -1439,7 +1442,10 @@ country_event = {
 				is_moon = yes 
 					}
 			set_planet_flag = pdeuropa
-			change_pc = pc_subglacial
+			set_planet_entity = {
+				picture = pc_subglacial
+				entity = "subglacial_planet_01_entity"
+			}
 		}
 		every_galaxy_planet = {
 			limit = {					
@@ -1447,7 +1453,7 @@ country_event = {
 	            is_planet_class = pc_frozen       
 				planet_size = 9   
 				is_moon = yes 
-					}
+			}
 			set_planet_flag = pdganymede
 			clear_deposits = yes
 			add_modifier = { modifier = pdhabsubglacialocean days = -1	} 
@@ -1471,7 +1477,10 @@ country_event = {
 				is_moon = yes  
 					}
 			set_planet_flag = pdtitan
-			change_pc = pc_hydrocarbon
+			set_planet_entity = {
+				picture = pc_hydrocarbon
+				entity = "hydrocarbon_planet_01_entity"
+			}
 		}
 		every_galaxy_planet = {
 			limit = {					
@@ -1528,7 +1537,10 @@ country_event = {
 	            planet_size = 10
 			}
 			set_planet_flag = pdmercury
-			change_pc = pc_iron
+			set_planet_entity = {
+				picture = pc_iron
+				entity = "iron_planet_01_entity"
+			}
 		}
 	}
 }
@@ -3927,8 +3939,11 @@ country_event = {
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
 			}	
 			random_list = {
-				3 = { 
-					change_pc = pc_diamond
+				3 = {  
+					set_planet_entity = {
+						picture = pc_diamond
+						entity = "diamond_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_rare_crystals_5 }
@@ -3949,7 +3964,10 @@ country_event = {
 			}	
 			random_list = {
 				2 = { 
-					change_pc = pc_carbon
+					set_planet_entity = {
+						picture = pc_carbon
+						entity = "carbon_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_minerals_5 }
@@ -3993,7 +4011,10 @@ country_event = {
 			}	
 			random_list = {
 				15 = {
-					change_pc = pc_chthonian
+					set_planet_entity = {
+						picture = pc_chthonian
+						entity = "chthonian_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						5 = { add_deposit = d_alloys_5 }
@@ -4037,7 +4058,10 @@ country_event = {
 			}	
 			random_list = {
 				15 = {
-					change_pc = pc_iron
+					set_planet_entity = {
+						picture = pc_iron
+						entity = "iron_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						5 = { add_deposit = d_alloys_5 }
@@ -4079,7 +4103,10 @@ country_event = {
 			}	
 			random_list = {
 				15 = {
-					change_pc = pc_volcanic
+					set_planet_entity = {
+						picture = pc_volcanic
+						entity = "volcanic_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						5 = { add_deposit = d_alloys_5 }
@@ -4118,7 +4145,10 @@ country_event = {
 			}	
 			random_list = {
 				15 = {
-					change_pc = pc_hydrocarbon
+					set_planet_entity = {
+						picture = pc_hydrocarbon
+						entity = "hydrocarbon_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_energy_5 }
@@ -4157,7 +4187,10 @@ country_event = {
 			}	
 			random_list = {
 				15 = {
-					change_pc = pc_subglacial
+					set_planet_entity = {
+						picture = pc_subglacial
+						entity = "subglacial_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_physics_5 }
@@ -4196,7 +4229,10 @@ country_event = {
 			}	
 			random_list = {
 				50 = { 
-					change_pc = pc_hot_gas_giant
+					set_planet_entity = {
+						picture = pc_hot_gas_giant
+						entity = "hot_gas_giant_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_exotic_gases_5 }
@@ -4228,7 +4264,10 @@ country_event = {
 			}	
 			random_list = {
 				40 = { 
-					change_pc = pc_cloudless_gas_giant
+					set_planet_entity = {
+						picture = pc_cloudless_gas_giant
+						entity = "cloudless_gas_giant_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_society_5 }
@@ -4265,7 +4304,10 @@ country_event = {
 			}	
 			random_list = {
 				10 = { 
-					change_pc = pc_cold_gas_giant
+					set_planet_entity = {
+						picture = pc_cold_gas_giant
+						entity = "cold_gas_giant_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_physics_5 }
@@ -4290,19 +4332,14 @@ country_event = {
 				is_planet_class = pc_toxic
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
-					#star = {
-					#	OR = {
-					#		is_star_class = sc_m
-					#		is_star_class = sc_m_giant
-					#		is_star_class = sc_k
-					#		is_star_class = sc_g
-					#	}
-					#}
 				}
 			}	
 			random_list = {
 				10 = {
-					change_pc = pc_ethane_ocean
+					set_planet_entity = {
+						picture = pc_ethane_ocean
+						entity = "ethane_ocean_planet_01_entity"
+					}
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_volatile_motes_5 }
