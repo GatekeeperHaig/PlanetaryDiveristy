@@ -3935,7 +3935,10 @@ country_event = {
 		every_galaxy_planet = { 
 			limit = { 
 				is_planet_class = pc_barren_cold
-				not = { has_modifier = terraforming_candidate }	
+				NOR = { 
+					has_modifier = terraforming_candidate 
+					has_planet_flag = pd_special_uninhabitable
+				}	
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
 			}	
 			random_list = {
@@ -3944,7 +3947,11 @@ country_event = {
 						picture = pc_diamond
 						entity = "diamond_planet_01_entity"
 					}
-					add_modifier = pd_diamond
+					add_modifier = {
+						modifier = pd_diamond
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_rare_crystals_5 }
@@ -3960,7 +3967,10 @@ country_event = {
 		every_galaxy_planet = { 
 			limit = { 
 				is_planet_class = pc_barren
-				not = { has_modifier = terraforming_candidate }	
+				NOR = { 
+					has_modifier = terraforming_candidate 
+					has_planet_flag = pd_special_uninhabitable
+				}	
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
 			}	
 			random_list = {
@@ -3969,7 +3979,11 @@ country_event = {
 						picture = pc_carbon
 						entity = "carbon_planet_01_entity"
 					}
-					add_modifier = pd_carbon
+					add_modifier = {
+						modifier = pd_carbon
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_minerals_5 }
@@ -3997,6 +4011,7 @@ country_event = {
 						has_planet_flag = hoard_planet
 						has_modifier = terraforming_candidate 
 						is_moon = yes
+						has_planet_flag = pd_special_uninhabitable
 					}
 				}	
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -4017,7 +4032,11 @@ country_event = {
 						picture = pc_chthonian
 						entity = "chthonian_planet_01_entity"
 					}
-					add_modifier = pd_chthonian
+					add_modifier = {
+						modifier = pd_chthonian
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						5 = { add_deposit = d_alloys_5 }
@@ -4040,12 +4059,11 @@ country_event = {
 		every_galaxy_planet = { 
 			limit = { 
 				is_planet_class = pc_molten
-				not = { 
-					OR = {
-						has_planet_flag = hoard_planet
-						has_modifier = terraforming_candidate 
-						is_moon = yes
-					}
+				NOR = { 
+					has_planet_flag = hoard_planet
+					has_modifier = terraforming_candidate 
+					is_moon = yes
+					has_planet_flag = pd_special_uninhabitable
 				}	
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -4065,7 +4083,11 @@ country_event = {
 						picture = pc_iron
 						entity = "iron_planet_01_entity"
 					}
-					add_modifier = pd_iron
+					add_modifier = {
+						modifier = pd_iron
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						5 = { add_deposit = d_alloys_5 }
@@ -4089,9 +4111,10 @@ country_event = {
 			limit = { 
 				is_planet_class = pc_molten
 				is_moon = yes
-				not = { 
+				NOR = { 
 					has_planet_flag = hoard_planet
-					has_modifier = terraforming_candidate 
+					has_modifier = terraforming_candidate
+					has_planet_flag = pd_special_uninhabitable  
 				}
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -4111,7 +4134,11 @@ country_event = {
 						picture = pc_volcanic
 						entity = "volcanic_planet_01_entity"
 					}
-					add_modifier = pd_volcanic
+					add_modifier = {
+						modifier = pd_volcanic
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						5 = { add_deposit = d_alloys_5 }
@@ -4135,7 +4162,10 @@ country_event = {
 			limit = { 
 				is_planet_class = pc_frozen
 				is_moon = yes
-				not = { has_modifier = terraforming_candidate }
+				NOR = {
+					has_modifier = terraforming_candidate
+					has_planet_flag = pd_special_uninhabitable	
+				}
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 					star = {
@@ -4154,7 +4184,11 @@ country_event = {
 						picture = pc_hydrocarbon
 						entity = "hydrocarbon_planet_01_entity"
 					}
-					add_modifier = pd_hydrocarbon
+					add_modifier = {
+						modifier = pd_hydrocarbon
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_energy_5 }
@@ -4177,6 +4211,7 @@ country_event = {
 		every_galaxy_planet = { 
 			limit = { 
 				is_planet_class = pc_frozen
+				NOT = { has_planet_flag = pd_special_uninhabitable }
 				is_moon = yes
 				not = { has_modifier = terraforming_candidate }
 				solar_system = { 
@@ -4197,7 +4232,11 @@ country_event = {
 						picture = pc_subglacial
 						entity = "subglacial_planet_01_entity"
 					}
-					add_modifier = pdhabsubglacialocean
+					add_modifier = {
+						modifier = pdhabsubglacialocean
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_physics_5 }
@@ -4223,6 +4262,7 @@ country_event = {
 				NOT = { has_moon = yes }
 				NOT = { is_moon = yes }
 				NOT = { has_planet_flag = hoard_planet }
+				NOT = { has_planet_flag = pd_special_uninhabitable }
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 					star = {
@@ -4240,7 +4280,11 @@ country_event = {
 						picture = pc_hot_gas_giant
 						entity = "hot_gas_giant_01_entity"
 					}
-					add_modifier = pd_hot_gas_giant
+					add_modifier = {
+						modifier = pd_hot_gas_giant
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_exotic_gases_5 }
@@ -4259,6 +4303,7 @@ country_event = {
 				NOT = { has_moon = yes }
 				NOT = { is_moon = yes }
 				NOT = {	has_planet_flag = hoard_planet }
+				NOT = { has_planet_flag = pd_special_uninhabitable }
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 					star = {
@@ -4276,7 +4321,11 @@ country_event = {
 						picture = pc_cloudless_gas_giant
 						entity = "cloudless_gas_giant_01_entity"
 					}
-					add_modifier = pd_cloudless_gas_giant
+					add_modifier = {
+						modifier = pd_cloudless_gas_giant
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_society_5 }
@@ -4299,6 +4348,7 @@ country_event = {
 		every_galaxy_planet = { 
 			limit = { 
 				is_planet_class = pc_gas_giant
+				NOT = { has_planet_flag = pd_special_uninhabitable }
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } 
 					star = {
@@ -4317,7 +4367,11 @@ country_event = {
 						picture = pc_cold_gas_giant
 						entity = "cold_gas_giant_01_entity"
 					}
-					add_modifier = pd_cold_gas_giant
+					add_modifier = {
+						modifier = pd_cold_gas_giant
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_physics_5 }
@@ -4340,6 +4394,7 @@ country_event = {
 		every_galaxy_planet = { 
 			limit = { 
 				is_planet_class = pc_toxic
+				NOT = { has_planet_flag = pd_special_uninhabitable }
 				solar_system = { 
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 				}
@@ -4350,7 +4405,11 @@ country_event = {
 						picture = pc_ethane_ocean
 						entity = "ethane_ocean_planet_01_entity"
 					}
-					add_modifier = pd_ethane_ocean
+					add_modifier = {
+						modifier = pd_ethane_ocean
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
 					this = { clear_deposits = yes }
 					random_list = {
 						10 = { add_deposit = d_volatile_motes_5 }
