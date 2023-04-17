@@ -124,6 +124,10 @@ ap_the_flesh_is_weak = {
 			NOT = { has_ascension_perk = ap_synthetic_evolution }
 		}
 		custom_tooltip = {
+			fail_text = "requires_not_origin_pd_warform_world"
+			NOT = { has_origin = origin_pd_warform_world }
+		}
+		custom_tooltip = {
 			fail_text = "requires_free_tradition_tree"
 			num_tradition_categories < 7
 		}
@@ -138,7 +142,6 @@ ap_the_flesh_is_weak = {
 			has_origin = origin_shroudwalker_apprentice
 			has_origin = origin_pd_shroud
 			has_origin = origin_techno_world
-			has_origin = origin_pd_warform_world
 		}
 		is_gestalt = no
 	}
@@ -474,5 +477,34 @@ ap_synthetic_age = {
 			factor = 0
 			num_owned_planets < 10
 		}
+	}
+}
+
+#################
+# TOXIC ASCENSION PERKS
+#################
+
+ap_detox = {
+	potential = {
+		host_has_dlc = "Toxoids Species Pack"
+		NOR = {
+			has_ascension_perk = ap_detox
+			has_origin = origin_pd_tree_of_life
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+	}
+
+	on_enabled = {
+		custom_tooltip = "detox_tox_worlds"
+	}
+
+	ai_weight = {
+		factor = 20
 	}
 }

@@ -5107,7 +5107,37 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		change_pc = pc_forest
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_hothouse
+				}
+			}
+			change_pc = pc_forest
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_barren_superhab
+				}
+			}
+			change_pc = pc_superhabitable
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_barren_cave
+				}
+			}
+			change_pc = pc_karst
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_tidallylocked_barren
+				}
+			}
+			change_pc = pc_wettidallylocked
+		}
 		remove_modifier = terraforming_candidate
 		remove_modifier = pdintoaforest
 		reroll_planet = yes
