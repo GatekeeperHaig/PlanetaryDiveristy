@@ -3764,6 +3764,34 @@ generate_pd_start_deposits_and_blockers = {
 			}
 		}
 	}
+
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_payback
+			}
+		}
+		# We want a clean slate building-wise, but to keep the districts.
+		remove_all_buildings = yes
+		add_planet_devastation = 33
+		add_modifier = {
+			modifier = payback_debris_field
+		}
+		add_modifier = {
+			modifier = payback_unified_purpose
+			days = 7200
+		}
+		while = {
+			count = 6
+			add_deposit = d_ship_debris_payback_blocker
+		}
+		# 3 jobs
+		add_building = building_capital
+		add_building = building_clinic
+		add_building = building_research_lab_1
+		add_building = building_mineral_purification_plant
+		add_building = building_energy_grid
+	}
 }
 
 ### Habitat Origins

@@ -2648,8 +2648,14 @@ building_pd_warform_cyber_lab = {
 	destroy_trigger = {
 		exists = owner
 		owner = {
-			any_owned_planet = {
-				is_pd_warform_world = no
+			NOT = {
+				any_owned_planet = {
+					OR = {
+						is_planet_class = pc_pd_red_warform
+						is_planet_class = pc_pd_orange_warform
+						is_planet_class = pc_pd_blue_warform
+					}
+				}
 			}
 		}
 	}
