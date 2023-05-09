@@ -645,39 +645,11 @@ country_event = {
 				every_owned_leader = {
 					limit = {
 						is_same_species = root
-						NOR = {
-							has_trait =	leader_trait_admiral_fourschildren
-							has_trait =	leader_trait_general_fourschildren
-							has_trait =	leader_trait_governor_fourschildren
-							has_trait =	leader_trait_scientist_fourschildren
-							has_trait =	leader_trait_ruler_fourschildren
+						NOT = {
+							has_trait =	leader_trait_fourschildren
 						}
 					}
-					if = {
-						limit = { leader_class = admiral }
-						add_trait = leader_trait_admiral_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					if = {
-						limit = { leader_class = general }
-						add_trait = leader_trait_general_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					if = {
-						limit = { leader_class = governor }
-						add_trait = leader_trait_governor_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					if = {
-						limit = { leader_class = scientist }
-						add_trait = leader_trait_scientist_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					#if = {
-					#	limit = { leader_class = ruler }
-					#	add_trait = leader_trait_ruler_fourschildren
-					#	add_trait_no_notify = leader_trait_ruler_fourschildren
-					#}
+					add_trait_no_notify = leader_trait_fourschildren
 				}
 				every_pool_leader = {
 					limit = {
@@ -686,39 +658,11 @@ country_event = {
 						#	has_trait = trait_psionic
 						#	is_same_value = event_target:psionic_species
 						#}
-						NOR = {
-							has_trait =	leader_trait_admiral_fourschildren
-							has_trait =	leader_trait_general_fourschildren
-							has_trait =	leader_trait_governor_fourschildren
-							has_trait =	leader_trait_scientist_fourschildren
-							has_trait =	leader_trait_ruler_fourschildren
+						NOT = {
+							has_trait =	leader_trait_fourschildren
 						}
 					}
-					if = {
-						limit = { leader_class = admiral }
-						add_trait = leader_trait_admiral_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					if = {
-						limit = { leader_class = general }
-						add_trait = leader_trait_general_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					if = {
-						limit = { leader_class = governor }
-						add_trait = leader_trait_governor_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					if = {
-						limit = { leader_class = scientist }
-						add_trait = leader_trait_scientist_fourschildren
-						add_trait_no_notify = leader_trait_ruler_fourschildren
-					}
-					#if = {
-					#	limit = { leader_class = ruler }
-					#	add_trait = leader_trait_ruler_fourschildren
-					#	add_trait_no_notify = leader_trait_ruler_fourschildren
-					#}
+					add_trait_no_notify = leader_trait_fourschildren
 				}
 			}
 			every_country = {
@@ -767,37 +711,15 @@ country_event = {
 				species = { has_trait = trait_organic_fourschildren_2 }
 				has_ruler_trait = leader_trait_ruler_fourschildren
 			}
-			NOR = {
-				has_trait = leader_trait_admiral_fourschildren
-				has_trait = leader_trait_general_fourschildren
-				has_trait = leader_trait_governor_fourschildren
-				has_trait = leader_trait_scientist_fourschildren
+			NOT = {
+				has_trait = leader_trait_fourschildren
 			}
 		}
 	}
 
 	immediate = {
 		from = {
-			if = {
-				limit = { leader_class = admiral }
-				add_trait = leader_trait_admiral_fourschildren
-				break = yes
-			}
-			if = {
-				limit = { leader_class = general }
-				add_trait = leader_trait_general_fourschildren
-				break = yes
-			}
-			if = {
-				limit = { leader_class = governor }
-				add_trait = leader_trait_governor_fourschildren
-				break = yes
-			}
-			if = {
-				limit = { leader_class = scientist }
-				add_trait = leader_trait_scientist_fourschildren
-				break = yes
-			}
+			add_trait_no_notify = leader_trait_fourschildren
 		}
 	}
 }
@@ -811,42 +733,21 @@ country_event = {
 
 	trigger = {
 		from = {
-			species = { has_trait = trait_organic_fourschildren_2 }
+			species = {
+				has_trait = trait_erudite			
+				NOR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_psionic
+					has_trait = trait_latent_psionic
+					has_trait = trait_erudite
+				}
+			}
 		}
 	}
 
 	immediate = {
 		from = {
-			if = {
-				limit = { leader_class = admiral }
-				add_trait = leader_trait_admiral_fourschildren
-				add_trait_no_notify = leader_trait_ruler_fourschildren
-				break = yes
-			}
-			if = {
-				limit = { leader_class = general }
-				add_trait = leader_trait_general_fourschildren
-				add_trait_no_notify = leader_trait_ruler_fourschildren
-				break = yes
-			}
-			if = {
-				limit = { leader_class = governor }
-				add_trait = leader_trait_governor_fourschildren
-				add_trait_no_notify = leader_trait_ruler_fourschildren
-				break = yes
-			}
-			if = {
-				limit = { leader_class = scientist }
-				add_trait = leader_trait_scientist_fourschildren
-				add_trait_no_notify = leader_trait_ruler_fourschildren
-				break = yes
-			}
-			#if = {
-			#	limit = { leader_class = ruler }
-			#	add_trait = leader_trait_ruler_fourschildren
-			#	add_trait_no_notify = leader_trait_ruler_fourschildren
-			#	break = yes
-			#}
+			add_trait_no_notify = leader_trait_fourschildren
 		}
 	}
 }

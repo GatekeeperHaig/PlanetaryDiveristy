@@ -68,80 +68,135 @@ trait_organic_fourschildren_2 = {
 		weight = 0
 	}
 }
-leader_trait_admiral_fourschildren = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
-	modifier = {
-		ship_fire_rate_mult = 0.1
+
+leader_trait_fourschildren = {
+	is_councilor_trait_for_ruler = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	triggered_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = admiral
+		}
+		ship_fire_rate_mult = 0.10
 		ship_disengage_chance_mult = 0.10
 	}
-	#leader_trait = { admiral }
-	leader_class = { admiral } 
-	opposites = { "leader_trait_admiral_cyborg" "leader_trait_admiral_synthetic" }
-	initial = no
-	randomized = no
-}
-leader_trait_general_fourschildren = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
-	modifier = {
-		army_damage_mult = 0.10
-		army_disengage_chance_mult = 0.10
-	}
-	#leader_trait = { general }
-	leader_class = { general }
-	opposites = { "leader_trait_general_cyborg" "leader_trait_general_synthetic" }
-	initial = no
-	randomized = no
-}
-leader_trait_governor_fourschildren = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
-	modifier = {
-		planet_stability_add = 10
-	}
-	#leader_trait = { governor }
-	leader_class = { governor }
-	opposites = { "leader_trait_governor_cyborg" "leader_trait_governor_synthetic" }
-	initial = no
-	randomized = no
-}
-leader_trait_scientist_fourschildren = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
-	modifier = {
+	triggered_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = scientist
+		}
 		all_technology_research_speed = 0.10
 		category_computing_research_speed_mult = 0.10
 		science_ship_survey_speed = 0.25
 	}
-	#leader_trait = { scientist }
-	leader_class = { scientist }
-	opposites = { "leader_trait_scientist_cyborg" "leader_trait_scientist_synthetic" }
-	initial = no
-	randomized = no
-
-	ai_categories = {
-		survey
-		physics
-		society
-		engineering
+	triggered_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = general
+		}
+		army_damage_mult = 0.10
+		army_disengage_chance_mult = 0.10
 	}
-
-	ai_weight = {
-		weight = 100
+	triggered_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = governor
+		}
+		planet_stability_add = 10
 	}
-}
-leader_trait_ruler_fourschildren = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
-	modifier = {
+	triggered_modifier = {
+		potential = {
+			is_ruler = yes
+		}
 		country_ruler_influence_produces_add = 0.5
 		country_unity_produces_mult = 0.1
 	}
-	leader_class = { scientist governor admiral general }
+	leader_class = { admiral scientist general governor }
 	initial = no
 	randomized = no
 }
+
+#leader_trait_admiral_fourschildren = {
+#	cost = 0
+#	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
+#	modifier = {
+#		ship_fire_rate_mult = 0.1
+#		ship_disengage_chance_mult = 0.10
+#	}
+#	#leader_trait = { admiral }
+#	leader_class = { admiral } 
+#	opposites = { "leader_trait_admiral_cyborg" "leader_trait_admiral_synthetic" }
+#	initial = no
+#	randomized = no
+#}
+#leader_trait_general_fourschildren = {
+#	cost = 0
+#	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
+#	modifier = {
+#		army_damage_mult = 0.10
+#		army_disengage_chance_mult = 0.10
+#	}
+#	#leader_trait = { general }
+#	leader_class = { general }
+#	opposites = { "leader_trait_general_cyborg" "leader_trait_general_synthetic" }
+#	initial = no
+#	randomized = no
+#}
+#leader_trait_governor_fourschildren = {
+#	cost = 0
+#	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
+#	modifier = {
+#		planet_stability_add = 10
+#	}
+#	#leader_trait = { governor }
+#	leader_class = { governor }
+#	opposites = { "leader_trait_governor_cyborg" "leader_trait_governor_synthetic" }
+#	initial = no
+#	randomized = no
+#}
+#leader_trait_scientist_fourschildren = {
+#	cost = 0
+#	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
+#	modifier = {
+#		all_technology_research_speed = 0.10
+#		category_computing_research_speed_mult = 0.10
+#		science_ship_survey_speed = 0.25
+#	}
+#	#leader_trait = { scientist }
+#	leader_class = { scientist }
+#	opposites = { "leader_trait_scientist_cyborg" "leader_trait_scientist_synthetic" }
+#	initial = no
+#	randomized = no
+#
+#	ai_categories = {
+#		survey
+#		physics
+#		society
+#		engineering
+#	}
+#
+#	ai_weight = {
+#		weight = 100
+#	}
+#}
+#leader_trait_ruler_fourschildren = {
+#	cost = 0
+#	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_biosynth_leader.dds"
+#	modifier = {
+#		country_ruler_influence_produces_add = 0.5
+#		country_unity_produces_mult = 0.1
+#	}
+#	leader_class = { scientist governor admiral general }
+#	initial = no
+#	randomized = no
+#}
 
 #Zro Stripmine
 trait_pd_zro_uplifted = {
