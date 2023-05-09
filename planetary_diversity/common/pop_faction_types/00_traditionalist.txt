@@ -5,6 +5,7 @@
 traditionalist = {
 	election_header = "GFX_faction_header_yellow"
 	guiding_ethic = ethic_spiritualist
+	visual_ethic = "traditionalist_visual_ethic"
 
 	unique = yes
 	support_multiplier = 1
@@ -47,7 +48,7 @@ traditionalist = {
 			exists = from
 			from = {
 				exists = leader
-				leader = { leader_class = ruler }
+				leader = { is_ruler = yes }
 			}
 		}
 
@@ -328,7 +329,7 @@ traditionalist = {
 		unfulfilled_title = "TRADITIONALIST_FLESH_IS_WEAK"
 		desc = "TRADITIONALIST_FLESH_IS_STRONG_DESC"
 
-		unfulfilled_effect = -30
+		unfulfilled_effect = -15
 		fulfilled_effect = 0.001
 
 		potential = {
@@ -340,8 +341,9 @@ traditionalist = {
 
 		trigger = {
 			owner = {
-				NOT = {
-					has_country_flag = flesh_weakened
+				NOR = {
+					has_country_flag = cyborg_empire # i.e. has completed "FLESH_IS_WEAK_PROJECT"
+					is_cyborg_empire = yes # checks for the Cybernetic trait
 				}
 			}
 		}
@@ -447,6 +449,33 @@ traditionalist = {
 		}
 	}
 
+	demand = {
+		title = TRADITIONALIST_FEDERATION
+		unfulfilled_title = TRADITIONALIST_FEDERATION_NOT_SPIRITUALIST
+		desc = TRADITIONALIST_FEDERATION_DESC
+
+		fulfilled_effect = 5
+		unfulfilled_effect = -0.001
+
+		potential = {
+			exists = owner.federation
+			has_federations_dlc = yes
+		}
+
+		trigger = {
+			owner.federation = { has_federation_type = spiritualist_federation }
+		}
+	}
+
+
+	# Faction Demands for Ruler and Council positions.
+	inline_script = {
+		script = "paragon/global_faction_demands"
+		ETHIC = ethic_spiritualist
+		ETHIC_FANATIC = ethic_fanatic_spiritualist
+		ETHIC_OPPOSED = ethic_materialist
+	} 
+	
 	on_create = {
 		pop_faction_event = { id = factions.1 }
 	}
@@ -542,17 +571,6 @@ traditionalist = {
 				modifier = {
 					factor = 0
 					owner = { has_valid_civic = civic_fanatic_purifiers }
-				}
-				modifier = {
-					factor = 0
-					NOT = {
-						owner = {
-							exists = ruler
-							ruler = {
-								leader_of_faction = traditionalist
-							}
-						}
-					}
 				}
 				modifier = {
 					factor = 0
