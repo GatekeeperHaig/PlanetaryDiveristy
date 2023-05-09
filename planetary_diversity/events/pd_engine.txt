@@ -1482,30 +1482,30 @@ country_event = {
 				entity = "hydrocarbon_planet_01_entity"
 			}
 		}
-		every_galaxy_planet = {
-			limit = {					
-                solar_system = { has_star_flag = sol }
-	            is_planet_class = pc_gas_giant   
-				has_moon = yes       
-				planet_size = 20  
-					}
-			set_planet_flag = pdneptune
-			set_planet_entity = {
-				entity = "gas_giant_neptune_entity"
-			}
-		}
-		every_galaxy_planet = {
-			limit = {					
-                solar_system = { has_star_flag = sol }
-	            is_planet_class = pc_gas_giant     
-				planet_size = 20 
-				NOT = { has_moon = yes }
-					}
-			set_planet_flag = pduranus
-			set_planet_entity = {
-				entity = "gas_giant_uranus_entity"
-			}
-		}
+		#every_galaxy_planet = {
+		#	limit = {					
+        #        solar_system = { has_star_flag = sol }
+	    #        is_planet_class = pc_gas_giant   mer
+		#		has_moon = yes       
+		#		planet_size = 20  
+		#			}
+		#	set_planet_flag = pdneptune
+		#	set_planet_entity = {
+		#		entity = "gas_giant_neptune_entity"
+		#	}
+		#}
+		#every_galaxy_planet = {
+		#	limit = {					
+        #        solar_system = { has_star_flag = sol }
+	    #        is_planet_class = pc_gas_giant     
+		#		planet_size = 20 
+		#		NOT = { has_moon = yes }
+		#			}
+		#	set_planet_flag = pduranus
+		#	set_planet_entity = {
+		#		entity = "gas_giant_uranus_entity"
+		#	}
+		#}
 		every_galaxy_planet = {
 			limit = {					
                 solar_system = { has_star_flag = sol }
@@ -1530,18 +1530,18 @@ country_event = {
 				entity = "barren_planet_mars_entity"
 			}
 		}
-		every_galaxy_planet = {
-			limit = {					
-                solar_system = { has_star_flag = sol }
-				is_planet_class = pc_molten		       
-	            planet_size = 10
-			}
-			set_planet_flag = pdmercury
-			set_planet_entity = {
-				picture = pc_iron
-				entity = "iron_planet_01_entity"
-			}
-		}
+		#every_galaxy_planet = {
+		#	limit = {					
+        #        solar_system = { has_star_flag = sol }
+		#		is_planet_class = pc_molten		       
+	    #        planet_size = 10
+		#	}
+		#	set_planet_flag = pdmercury
+		#	set_planet_entity = {
+		#		picture = pc_iron
+		#		entity = "iron_planet_01_entity"
+		#	}
+		#}
 	}
 }
 
@@ -4937,6 +4937,11 @@ planet_event = {
 			limit = { 
 				has_planet_flag = planet_earth
 				is_dry = yes
+				NOR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+				}
 			}
 			set_planet_entity = {
 				entity = "dry_planet_earth_entity"
@@ -4946,6 +4951,11 @@ planet_event = {
 			limit = { 
 				has_planet_flag = planet_earth
 				is_cold = yes
+				NOR = {
+					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
 			}
 			set_planet_entity = {
 				entity = "cold_planet_earth_entity"
@@ -4955,7 +4965,12 @@ planet_event = {
 			limit = { 
 				has_planet_flag = planet_earth
 				is_wet = yes
-				NOT = { has_planet_flag = pd_snowball_start_earth }
+				NOR = { 
+					has_planet_flag = pd_snowball_start_earth 
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_tropical
+				}
 			}
 			set_planet_entity = {
 				entity = "continental_planet_earth_entity"
@@ -4974,16 +4989,39 @@ planet_event = {
 			limit = { 
 				has_planet_flag = pdmars
 				is_wet = yes
+				NOR = { 
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_tropical
+				}
 			}
 			set_planet_entity = {
 				picture = pc_wet_mars
 				entity = "wetmars_planet_entity"
+			}
+		}	
+		if = {
+			limit = { 
+				has_planet_flag = pdmars
+				OR = { 
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_tropical
+				}
+			}
+			set_planet_entity = {
+				picture = pc_wet_mars
 			}
 		}
 		if = {
 			limit = { 
 				has_planet_flag = pdmars
 				is_dry = yes
+				NOR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+				}
 			}
 			set_planet_entity = {
 				picture = pc_dry_mars
@@ -4993,11 +5031,42 @@ planet_event = {
 		if = {
 			limit = { 
 				has_planet_flag = pdmars
+				OR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+				}
+			}
+			set_planet_entity = {
+				picture = pc_dry_mars
+			}
+		}
+		if = {
+			limit = { 
+				has_planet_flag = pdmars
 				is_cold = yes
+				NOR = {
+					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
 			}
 			set_planet_entity = {
 				picture = pc_cold_mars
 				entity = "coldmars_planet_entity"
+			}
+		}
+		if = {
+			limit = { 
+				has_planet_flag = pdmars
+				OR = {
+					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
+			}
+			set_planet_entity = {
+				picture = pc_cold_mars
 			}
 		}
 		if = {
