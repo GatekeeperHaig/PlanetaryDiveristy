@@ -73,10 +73,15 @@ planet_event = {
 			location = this
 			owner = root
 		}
-		enable_special_project = {
-			name = "MIGRATING_FORESTS_2_PROJECT"
-			location = this
-			owner = root
+		if = {
+			limit = {
+				owner = { NOT = { has_civic = civic_environmentalist } }
+			}
+			enable_special_project = {
+				name = "MIGRATING_FORESTS_2_PROJECT"
+				location = this
+				owner = root
+			}
 		}
 	}
 }
@@ -1017,162 +1022,175 @@ planet_event = {
 		set_planet_flag = colony_event
 		owner = { set_country_flag = colony_submerged_cruiser }
 	}
+	# Salvage the Ship
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = no
+			}
+		}
+		enable_special_project = {
+			name = "ANCIENT_OCEAN_SHIP"
+			owner = root
+			location = root
+		}
+	}
+	# Scrap the Ship to get tech
+	option = {
+		name = colony.2005.b
+		trigger = {
+			owner = {
+				NOR = {
+					is_scavenger = yes
+					has_technology = tech_destroyers
+				}
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_tech_option = tech_destroyers
+				}
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_destroyers
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	option = {
+		name = colony.2005.b
+		trigger = {
+			owner = {
+				has_technology = tech_destroyers
+				NOR = {
+					is_scavenger = yes
+					has_technology = tech_cruisers
+				}
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_tech_option = tech_cruisers
+				}
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_cruisers
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	# Scavengers get both
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = yes
+				NOT = {
+					has_technology = tech_destroyers
+				}
+			}
+		}
+		owner = {
+			enable_special_project = {
+				name = "ANCIENT_OCEAN_SHIP"
+				owner = root
+				location = root
+			}
+			if = {
+				limit = {
+					has_tech_option = tech_destroyers
+				}
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_destroyers
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = yes
+				has_technology = tech_destroyers
+				NOT = {
+					has_technology = tech_cruisers
+				}
+			}
+		}
+		owner = {
+			enable_special_project = {
+				name = "ANCIENT_OCEAN_SHIP"
+				owner = root
+				location = root
+			}
+			if = {
+				limit = {
+					has_tech_option = tech_cruisers
+				}
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_cruisers
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = yes
+				has_technology = tech_cruisers
+			}
+		}
+		enable_special_project = {
+			name = "ANCIENT_OCEAN_SHIP"
+			owner = root
+			location = root
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
 
-	option = {
-		name = colony.2005.a
-		trigger = {
-			owner = {
-				OR = {
-					has_ethic = ethic_fanatic_materialist
-					has_ethic = ethic_materialist
-				}
-			}
-		}
-		enable_special_project = {
-			name = "ANCIENT_OCEAN_SHIP"
-			owner = root
-			location = root
-		}
-	}
-	option = {
-		name = colony.2005.a
-		trigger = {
-			owner = {
-				NOR = {
-					has_ethic = ethic_fanatic_materialist
-					has_ethic = ethic_materialist
-				}
-			}
-		}
-		enable_special_project = {
-			name = "ANCIENT_OCEAN_SHIP"
-			owner = root
-			location = root
-		}
-	}
-	option = {
-		name = colony.2005.b
-		trigger = {
-			owner = {
-				OR = {
-					has_ethic = ethic_fanatic_spiritualist
-					has_ethic = ethic_spiritualist
-				}
-				NOT = { has_technology = tech_destroyers }
-			}
-		}
-		owner = {
-			if = {
-				limit = {
-					has_tech_option = tech_destroyers
-				}
-				add_tech_progress = {
-					tech = tech_destroyers
-					progress = 0.60
-				}
-			}
-			else = {
-				add_research_option = tech_destroyers
-				add_tech_progress = {
-					tech = tech_destroyers
-					progress = 0.20
-				}
-			}
-		}
-	}
-	option = {
-		name = colony.2005.b
-		trigger = {
-			owner = {
-				OR = {
-					has_ethic = ethic_fanatic_spiritualist
-					has_ethic = ethic_spiritualist
-				}
-				has_technology = tech_destroyers
-				NOT = { has_technology = tech_cruisers }
-			}
-		}
-		owner = {
-			if = {
-				limit = {
-					has_tech_option = tech_cruisers
-				}
-				add_tech_progress = {
-					tech = tech_cruisers
-					progress = 0.60
-				}
-			}
-			else = {
-				add_research_option = tech_cruisers
-				add_tech_progress = {
-					tech = tech_cruisers
-					progress = 0.20
-				}
-			}
-		}
-	}
-	option = {
-		name = colony.2005.b
-		trigger = {
-			owner = {
-				NOR = {
-					has_ethic = ethic_fanatic_spiritualist
-					has_ethic = ethic_spiritualist
-				}
-				NOT = { has_technology = tech_destroyers }
-			}
-		}
-		owner = {
-			if = {
-				limit = {
-					has_tech_option = tech_destroyers
-				}
-				add_tech_progress = {
-					tech = tech_destroyers
-					progress = 0.60
-				}
-			}
-			else = {
-				add_research_option = tech_destroyers
-				add_tech_progress = {
-					tech = tech_destroyers
-					progress = 0.20
-				}
-			}
-		}
-	}
-	option = {
-		name = colony.2005.b
-		trigger = {
-			owner = {
-				NOR = {
-					has_ethic = ethic_fanatic_spiritualist
-					has_ethic = ethic_spiritualist
-				}
-				has_technology = tech_destroyers
-				NOT = { has_technology = tech_cruisers }
-			}
-		}
-		owner = {
-			if = {
-				limit = {
-					has_tech_option = tech_cruisers
-				}
-				add_tech_progress = {
-					tech = tech_cruisers
-					progress = 0.60
-				}
-			}
-			else = {
-				add_research_option = tech_cruisers
-				add_tech_progress = {
-					tech = tech_cruisers
-					progress = 0.20
-				}
-			}
-		}
-	}
-}############################
+############################
 #
 # Colony Events
 # Written by Douglas Furen

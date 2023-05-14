@@ -30,10 +30,17 @@ planet_event = {
 
 	immediate = {
 		owner = {
-			add_static_war_exhaustion = {
-				attacker = from
-				location = root
-				value_for_planet_destruction = 0.5
+			if = {
+				limit = {
+					owner = {
+						is_at_war_with = from
+					}
+				}
+				add_static_war_exhaustion = {
+					attacker = from
+					location = root
+					value_for_planet_destruction = 0.5
+				}
 			}
 			if = {
 				limit = {

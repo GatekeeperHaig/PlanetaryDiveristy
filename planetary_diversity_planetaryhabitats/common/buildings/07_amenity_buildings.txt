@@ -564,7 +564,10 @@ building_holo_theatres = {
 
 	potential = {
 		NOT = {	has_modifier = slave_colony	}
-		owner = { is_regular_empire = yes }
+		owner = {
+			is_regular_empire = yes
+			NOT = { has_valid_civic = civic_dystopian_society }
+		}
 		OR = {
 			owner = {
 				NOT = { is_ai = yes }
@@ -581,6 +584,7 @@ building_holo_theatres = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
+			owner = { has_valid_civic = civic_dystopian_society }
 			has_modifier = slave_colony
 		}
 	}
@@ -660,10 +664,23 @@ building_hyper_entertainment_forum = {
 
 	allow = {
 		has_upgraded_capital = yes
+		owner = {
+			NOT = { has_valid_civic = civic_dystopian_society }
+		}
+		OR = {
+			owner = {
+				NOT = { is_ai = yes }
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+			}
+		}
 	}
 
 	destroy_trigger = {
 		exists = owner
+		owner = { has_valid_civic = civic_dystopian_society }
 		OR = {
 			owner = { is_regular_empire = no }
 			has_modifier = slave_colony
@@ -748,6 +765,18 @@ building_clinic = {
 			}
 		}
 		NOT = { has_modifier = slave_colony }
+
+		OR = {
+			owner = {
+				NOT = { is_ai = yes }
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+				planet_stability < 50
+				free_amenities < 0
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -764,8 +793,11 @@ building_clinic = {
 			}
 			has_modifier = slave_colony
 			AND = {
-				buildings_stop_pop = yes
-				owner = { is_ai = yes }
+				owner = {
+					is_ai = yes
+				}
+				planet_stability > 70
+				free_amenities > 20
 			}
 		}
 	}
@@ -810,7 +842,7 @@ building_clinic = {
 	on_repaired = {
 		if = {
 			limit = {
-				owner = {
+				planet.owner = {
 					has_event_chain = payback_out_of_warranty_chain
 				}
 			}
@@ -818,6 +850,10 @@ building_clinic = {
 				50 = { # still broken
 					planet.owner = {
 						country_event = { id = origin.4302 }
+					}
+					modifier = {
+						factor = 0
+						planet.owner = { has_technology = tech_frontier_health }
 					}
 				}
 				20 = { # repaired
@@ -859,6 +895,17 @@ building_hospital = {
 
 	allow = {
 		has_upgraded_capital = yes
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			AND = {
+				NOT = { has_available_jobs = entertainer }
+				NOT = { has_forbidden_jobs = entertainer }
+				planet_stability < 55
+				free_amenities < 5
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -1104,7 +1151,7 @@ building_ranger_lodge = {
 		potential = { owner_has_resolution = { RES = resolution_ecology_paradise_initiative } }
 		deposit_blockers_natural_unity_produces_add = 1
 	}
-	
+
 	resources = {
 		category = planet_buildings
 		cost = {
