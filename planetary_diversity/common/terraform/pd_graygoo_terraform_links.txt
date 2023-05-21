@@ -662,7 +662,7 @@ terraform_link = {
 	to = pc_gaia
 	resources = { category = terraforming cost = { energy = 2000 } }
 	duration = 720
-	potential = { from = { has_modifier = terraforming_candidate } }
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
 	condition = { has_ascension_perk = ap_world_shaper }
 	effect = { from = { remove_modifier = terraforming_candidate } }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }

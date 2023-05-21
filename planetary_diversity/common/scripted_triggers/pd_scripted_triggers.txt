@@ -1351,3 +1351,23 @@ can_destroy_planet_with_PLANET_KILLER_DELUGE = {
 }
 
 is_pd_radiotrophic_mutant = { has_trait = trait_radiotrophic_mutants }
+
+is_azaryn_terraformable_pc = {
+	OR = {
+		habitable_planet_not_urban = yes
+		is_azaryn_preferred_terraform_pc = yes
+	}
+	planet_size >= 10
+	planet_size <= 30
+	NOT = { has_planet_flag = terraform_nucleus_transfixed }
+}
+
+is_azaryn_preferred_terraform_pc = {
+	OR = {
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+	}
+	planet_size >= 10
+	planet_size <= 30
+	NOT = { has_planet_flag = terraform_nucleus_transfixed }
+}
