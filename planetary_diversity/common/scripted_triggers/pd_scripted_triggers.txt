@@ -1,6 +1,10 @@
 #############################
 ### Planet Class Triggers ###
 #############################
+@pc_crucible = pc_crucible
+@pc_shroud_crucible = pc_shroud_crucible 
+@pc_clean_crucible = pc_clean_crucible
+
 has_planetary_diversity = { always = yes }
 
 is_pd_planet_class_all = {
@@ -1074,8 +1078,11 @@ has_phototrophic_energy_upkeep = {
 				has_trait = trait_lithoid_radiotrophic
 				has_trait = trait_radiotrophic_mutants
 			}
-			NOT = { planet = { is_pd_nuked = yes } }
-			NOT = { planet = { is_pd_radiotrophic_world = yes } }
+			planet = {
+					is_pd_nuked = no 
+					is_pd_radiotrophic_world = no
+				} 
+			}
 		}
 	}
 }
@@ -1377,4 +1384,12 @@ is_azaryn_preferred_terraform_pc = {
 	planet_size >= 10
 	planet_size <= 30
 	NOT = { has_planet_flag = terraform_nucleus_transfixed }
+}
+
+is_pd_crucible = {
+    OR = {
+        is_planet_class = @pc_crucible 
+        is_planet_class = @pc_shroud_crucible 
+        is_planet_class = @pc_clean_crucible
+    }
 }
