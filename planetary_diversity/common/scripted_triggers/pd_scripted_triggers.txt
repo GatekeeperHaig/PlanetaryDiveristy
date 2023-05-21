@@ -1354,7 +1354,14 @@ is_pd_radiotrophic_mutant = { has_trait = trait_radiotrophic_mutants }
 
 is_azaryn_terraformable_pc = {
 	OR = {
-		habitable_planet_not_urban = yes
+		AND = { 
+			habitable_planet_not_urban = yes
+			is_pd_tidally_locked = no
+			is_pd_superhab = no
+			is_pd_cave = no
+			is_pd_shroud_world = no
+			is_pd_exotic = no
+		}
 		is_azaryn_preferred_terraform_pc = yes
 	}
 	planet_size >= 10
