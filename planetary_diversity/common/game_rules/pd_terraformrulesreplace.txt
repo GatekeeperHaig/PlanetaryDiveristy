@@ -9,7 +9,10 @@ can_terraform_planet = {
 	custom_tooltip = {
 		fail_text = terraform_fail_no_presapient_protection_or_no_presapients
 		NAND = {
-			root = { has_policy_flag = pre_sapients_protect }
+			AND = {
+				exists = root
+				root = { has_policy_flag = pre_sapients_protect }
+			}
 			any_owned_species = { is_sapient = no }
 		}
 	}
@@ -21,6 +24,16 @@ can_terraform_planet = {
 		exists = root
 		root = { is_lithoid_devouring_swarm = no }
 	}
+	###Note: I think the vanilla choice of not being able to terraform this planet is god damn stupid. 
+	###It doesn't make mechcanical or narrative sense, so I have removed it from my mod. 
+	###This is a deliberate choice and one of the few times I have taken something away from vanilla Stellaris.
+	#custom_tooltip = {
+	#	fail_text = "legendary_leader_planet_no_terraform"
+	#	exists = root
+	#	this = {
+	#		NOT = { has_planet_flag = legendary_leader_planet }
+	#	}
+	#}
 	custom_tooltip = {
 		fail_text = "requires_actor_not_pdtol"
 		exists = root
