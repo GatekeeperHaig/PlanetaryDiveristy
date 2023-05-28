@@ -7,6 +7,55 @@
 
 namespace = terra
 
+# Set textures for Earth or Mars
+planet_event = {
+	id = terra.0
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_planet_flag = planet_earth
+			has_planet_flag = planet_mars
+		}
+	}
+
+	immediate = {
+		# We need a one day delay to set the right texture.
+		planet_event = {
+			id = terra.1
+			days = 1
+		}
+	}
+}
+
+planet_event = {
+	id = terra.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_planet_flag = planet_earth
+			has_planet_flag = planet_mars
+		}
+	}
+
+	immediate = {
+		switch = {
+			trigger = has_planet_flag
+			planet_earth = {
+				set_earth_entity = yes
+			}
+			planet_mars = {
+				set_mars_entity = yes
+			}
+		}
+	}
+}
+
 #Saving the original planet flag
 planet_event = {
 	id = terra.5
@@ -663,7 +712,30 @@ country_event = {
 	}
 	option = {
 		name = terra.40.b
-		From = { add_modifier = { modifier = intentionally_tidally_locked } }
+		From = { 
+			add_modifier = { modifier = intentionally_tidally_locked } 
+			IF = {
+				limit = { 
+					is_moon = no 
+					is_dry = yes
+				}
+				change_pc = pc_tidallylocked
+			}
+			IF = {
+				limit = { 
+					is_moon = no 
+					is_cold = yes
+				}
+				change_pc = pc_eyeball
+			}
+			IF = {
+				limit = { 
+					is_moon = no 
+					is_cold = yes
+				}
+				change_pc = pc_wettidallylocked
+			}
+		}
 		From = { set_planet_flag = tidally_locked_world }
 		custom_tooltip = terra.40.b.tooltip
 	}
