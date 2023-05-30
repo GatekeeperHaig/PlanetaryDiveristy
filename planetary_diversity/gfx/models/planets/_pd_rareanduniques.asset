@@ -199,9 +199,30 @@ entity = {
 	state = { name = "idle" animation = "idle" time_offset = { 15 0 } animation_speed = 0 }
 }
 #Techno Arc
+
 entity = {
-	name = "techno_arc_planet_01_entity"
-	pdxmesh = "planet_clouded_mesh"
+    name = "techno_arc_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 } 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "techno_arc_planet_mesh"}
+	attach = { "planetloc" = "pd_ecocity_planet_cloud_mesh" } #Still using the same smog
+
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+
+    scale = 1.0
+}
+
+entity = {
+	name = "techno_arc_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
 
 	#planet surface texture override	
 	meshsettings = {
@@ -209,22 +230,22 @@ entity = {
 		texture_diffuse = "technoarc_01_diffuse.dds"
 		texture_normal = "technoarc_01_normals.dds"
 		texture_specular = "technoarc_01_spec.dds"
-		shader = "PdxMeshPlanetEmissive"
+		shader = "PdxMeshTerra"
 	}	
-	##cloud texture override
-	meshsettings = {
-		name = "clouds_geosphereShape"
-		texture_diffuse = "clouds_smog_white_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
-	##cloud shadow texture override
-	meshsettings = {
-		name = "clouds_shadow_geosphereShape"
-		texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
+	# ##cloud texture override
+	# meshsettings = {  
+	# 	name = "clouds_geosphereShape"
+	# 	texture_diffuse = "clouds_smog_white_01_diffuse.dds"
+	# 	texture_normal = "nonormal.dds"
+	# 	texture_specular = "nospec.dds"
+	# }
+	# ##cloud shadow texture override
+	# meshsettings = {
+	# 	name = "clouds_shadow_geosphereShape"
+	# 	texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
+	# 	texture_normal = "nonormal.dds"
+	# 	texture_specular = "nospec.dds"
+	# }
 	##pole texture override
 	meshsettings = {
 		name = "polesShape"
@@ -233,12 +254,14 @@ entity = {
 		texture_specular = "nospec.dds"
 	}
 	default_state = "idle"
+	playback_rate = -0.5
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 } 
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
 	}
 	attach = { planet = "city_planet_surface_ships_entity" }
 }
+
 #Petrified
 entity = {
     name = "pd_petrified_planet_01_entity"
@@ -2827,14 +2850,15 @@ entity = {
     locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
     default_state = "idle"
     playback_rate = 1.0 # Animation speed 0
-    state = { name = "idle" time_offset = { 0 100 } }
-    attach = { "planetloc" = "pd_ecocity_planet_mesh"}
+    state = { name = "idle" time_offset = { 0 100 } 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "pd_ecocity_planet_mesh" }
+	attach = { "planetloc" = "pd_ecocity_planet_cloud_mesh" }
 	game_data = {
 		shader_type = ship
 		emissive_recolor_crunch = 5.0
-	}
-    attach = { 
-		"planetloc" = "pd_ecocity_planet_cloud_mesh"
 	}
     scale = 1.0
 }
@@ -2885,32 +2909,39 @@ entity = {
 }
 
 entity = {
-	name = "ecocity_planet_02_earth_entity"
-	pdxmesh = "planet_clouded_mesh"
+    name = "ecocity_planet_02_earth_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 6 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 } 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "ecocity_planet_earth_mesh"}
+	attach = { "planetloc" = "pd_ecocity_planet_cloud_mesh" }
 
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+
+    scale = 1.0
+}
+
+entity = {
+	name = "ecocity_planet_earth_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	# pdxmesh = "planet_clouded_mesh"
 	#planet surface texture override	
 	meshsettings = {
 		name = "planet_geosphereShape"
 		texture_diffuse = "ecocity_02_earth_diffuse.dds"
 		texture_normal = "ecocity_02_earth_normal.dds"
 		texture_specular = "ecocity_02_earth_specular.dds"
-		shader = "PdxMeshPlanetEmissive"
-	}	
-	##cloud texture override
-	meshsettings = {
-		name = "clouds_geosphereShape"
-		texture_diffuse = "clouds_smog_white_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
-	##cloud shadow texture override
-	meshsettings = {
-		name = "clouds_shadow_geosphereShape"
-		texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
+		shader = "PdxMeshTerra"
 	}
 	default_state = "idle"
+	playback_rate = -0.5
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 } 
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
@@ -2918,10 +2949,29 @@ entity = {
 	
 	attach = { planet = "city_planet_surface_ships_entity" }
 }
+entity = {
+    name = "ecocity_planet_03_mars_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 } 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "ecocity_planet_mars_mesh"}
+	attach = { "planetloc" = "pd_ecocity_planet_cloud_mesh" }
+
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+
+    scale = 1.0
+}
 
 entity = {
-	name = "ecocity_planet_03_mars_entity"
-	pdxmesh = "planet_clouded_mesh"
+	name = "ecocity_planet_mars_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
 
 	#planet surface texture override	
 	meshsettings = {
@@ -2929,34 +2979,39 @@ entity = {
 		texture_diffuse = "ecocitymars_01_diffuse.dds"
 		texture_normal = "ecocitymars_01_normal.dds"
 		texture_specular = "ecocitymars_01_specular.dds"
-		shader = "PdxMeshPlanetEmissive"
+		shader = "PdxMeshTerra"
 	}	
-	##cloud texture override
-	meshsettings = {
-		name = "clouds_geosphereShape"
-		texture_diffuse = "clouds_smog_white_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
-	##cloud shadow texture override
-	meshsettings = {
-		name = "clouds_shadow_geosphereShape"
-		texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
 	default_state = "idle"
+	playback_rate = -0.5
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 } 
-		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
-		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
 	}
 	
 	attach = { planet = "city_planet_surface_ships_entity" }
 }
 
 entity = {
-	name = "ecocity_planet_04_venus_entity"
-	pdxmesh = "planet_clouded_mesh"
+    name = "ecocity_planet_04_venus_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 } 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "ecocity_planet_mars_mesh"}
+	attach = { "planetloc" = "pd_ecocity_planet_cloud_mesh" }
+
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+
+    scale = 1.0
+}
+
+entity = {
+	name = "ecocity_planet_venus_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
 
 	#planet surface texture override	
 	meshsettings = {
@@ -2964,23 +3019,11 @@ entity = {
 		texture_diffuse = "ecocityvenus_01_diffuse.dds"
 		texture_normal = "ecocityvenus_01_normal.dds"
 		texture_specular = "ecocityvenus_01_spec.dds"
-		shader = "PdxMeshPlanetEmissive"
+		shader = "PdxMeshTerra"
 	}	
 	##cloud texture override
-	meshsettings = {
-		name = "clouds_geosphereShape"
-		texture_diffuse = "clouds_smog_white_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
-	##cloud shadow texture override
-	meshsettings = {
-		name = "clouds_shadow_geosphereShape"
-		texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
 	default_state = "idle"
+	playback_rate = -0.5
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 } 
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
