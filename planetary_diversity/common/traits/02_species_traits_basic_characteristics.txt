@@ -93,16 +93,19 @@ trait_syncretic_proles = {
 	potential_crossbreeding_chance = 0.33
 	opposites = { "trait_intelligent" "trait_erudite" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" }
 	initial = no
+	randomized = no
 	species_potential_add = {
 		always = no
 	}
 	species_possible_remove = {
-		always = no
+		can_remove_presapient_genetic_traits = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
 	}
 	species_possible_merge_add = {
 		always = no
 	}
-	species_potential_add = { always = no }
 	icon = "gfx/interface/icons/traits/trait_primitive.dds"
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 
@@ -136,8 +139,8 @@ trait_lithoid = {
 	forced_happiness = no
 	immortal_leaders = no
 
-	leader_age_min = 50
-	leader_age_max = 80
+	leader_age_min = 27
+	leader_age_max = 38
 
 	allowed_archetypes = { LITHOID }
 	ai_weight = {
@@ -169,8 +172,10 @@ trait_aquatic = {
 		MAM = 2
 		LITHOID = 0.5
 	}
-	
+
 	inline_script = "traits/pd_aquatic_allowed_planet_classes"
+
+
 
 	species_possible_remove = {
 		if = {
@@ -593,7 +598,7 @@ trait_cave_dweller = {
 }
 
 trait_perfected_genes = {
-	cost = 1
+	cost = 0
 	potential_crossbreeding_chance = 0
 	opposites = { trait_fleeting trait_weak }
 	sorting_priority = 20
