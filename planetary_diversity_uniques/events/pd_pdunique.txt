@@ -114,6 +114,47 @@ country_event = {
 	}
 }
 
+# 04 Cleanup on losing a planet
+
+planet_event = {
+	id = pdunqiue.02
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_variable_set = techno_pops_missing
+		OR = {
+			num_pops = 0
+			AND = {
+				exists = from
+				NOT = { is_owned_by = from }
+			}
+		}
+	}
+	immediate = {
+		clear_variable = techno_pops_missing
+		if = {
+			limit = { has_modifier = modifier_techno_pops_decline }
+			remove_modifier = modifier_techno_pops_decline
+		}
+		if = {
+			limit = { is_variable_set = num_clone_pops }
+			clear_variable = num_clone_pops
+		}
+		if = {
+			limit = { is_variable_set = num_techno_vats }
+			clear_variable = num_techno_vats
+		}
+		if = {
+			limit = { is_variable_set = techno_pops_decline_factor }
+			clear_variable = techno_pops_decline_factor
+		}
+		if = {
+			limit = { is_variable_set = techno_pops_missing_per_vat }
+			clear_variable = techno_pops_missing_per_vat
+		}
+	}
+}
+
 	#event = {
 	#	id = pdunqiue.02
 	#	hide_window = yes
