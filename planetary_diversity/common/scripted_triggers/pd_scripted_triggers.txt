@@ -81,6 +81,7 @@ is_pd_planet_class_all = {
  		is_planet_class = pc_pd_hothouse_hab
  		is_planet_class = pc_pd_molten_hab
  		is_planet_class = pc_pd_toxic_hab
+		is_planet_class = pc_necrohive
  		is_planet_class = pc_pdhive1
  		is_planet_class = pc_pdhive2
  		is_planet_class = pc_pdshroud
@@ -188,7 +189,7 @@ is_organic_fourschildren = {
 is_pd_unique_hab = {
  	OR = {
  		is_planet_class = pc_archive
-		 is_pd_warform_world = yes
+		is_pd_warform_world = yes
  	}
 }
  
@@ -587,6 +588,7 @@ is_pd_hive_world = {
  			is_planet_class = pc_hivetidallylocked
  			is_planet_class = pc_hive_superhab
  			is_planet_class = pc_hive_cave
+			is_planet_class = pc_necrohive
  		}
  	}
 }
@@ -628,13 +630,14 @@ colonizable_planet = {
  		is_planet_class = pc_relic
 		is_planet_class = pc_nuked_relic
  		is_planet_class = pc_hive
+		is_planet_class = pc_necrohive
 		is_pd_machine = yes
 		is_pd_nuked = yes
  		is_artificial = yes
  		is_pd_habitat = yes
  		is_pd_planetary_megaproject = yes
  		habitable_planet = yes
-		 is_pd_radiotrophic_world = yes
+		is_pd_radiotrophic_world = yes
  	}
 }
  
@@ -745,6 +748,7 @@ habitable_planet_not_urban = {
  		is_planet_class = pc_megafloratol
  		is_planet_class = pc_pdhive1
  		is_planet_class = pc_pdhive2
+		is_planet_class = pc_necrohive
  		is_planet_class = pc_bioforge
  		is_planet_class = pc_biocapital
  		is_planet_class = pc_biofort
@@ -1409,5 +1413,13 @@ is_pd_relic = {
 	OR = {
 		is_planet_class = pc_milarc_relic
 		is_planet_class = pc_nuked_relic
+	}
+}
+
+has_pd_gaia_preference_trait = {
+	OR = {
+	  has_trait = trait_pc_hot_gaia_preference
+	  has_trait = trait_pc_cold_gaia_preference
+	  has_trait = trait_pc_tidallygaia_preference
 	}
 }
