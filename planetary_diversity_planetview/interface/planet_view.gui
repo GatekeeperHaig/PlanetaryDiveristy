@@ -3947,25 +3947,11 @@ guiTypes = {
 
 			containerWindowType = {
 				name = "automation_settings_window"
-
-				instantTextBoxType = {
-					name = "header"
-					font = "malgun_goth_24"
-					text = "AUTOMATION_SETTINGS_TITLE"
-					position = { x = 45 y = 12 }
-					maxWidth = 195
-					maxHeight = 20
-					fixedSize = yes
-					orientation = "UPPER_LEFT"
-					text_color_code = "E"
-					format = CENTER
-				}
-
 				smoothListboxType = {
 					name = "automation_settings_list"
-					position = { x = 5 y = 60 }
+					position = { x = 10 y = 40 }
 					background = ""
-					size = { x = 280 y = 560 }
+					size = { x = 280 y = 590 }
 					scrollbarType = "standardlistbox_slider"
 					borderSize = { x = 0 y = 0 }
 					orientation = "UPPER_LEFT"
@@ -4550,6 +4536,7 @@ guiTypes = {
 			maxHeight = 20
 			fixedSize = yes
 			format = left
+			orientation = "UPPER_LEFT"
 		}
 
 		checkboxType = {
@@ -4559,6 +4546,63 @@ guiTypes = {
 		}
 	}
 
+	containerWindowType = {
+		name = "planet_automation_settings_title"
+		position = { x=0 y=0 }
+		moveable = no
+		size = { width = 280 height = 35 }
+		instantTextBoxType = {
+			name = "automation_settings_name"
+			font = "malgun_goth_24"
+			text = "AUTOMATION_SETTINGS_TITLE"
+			position = { x = 45 y = 5 }
+			maxWidth = 195
+			maxHeight = 20
+			fixedSize = yes
+			orientation = "UPPER_LEFT"
+			text_color_code = "E"
+			format = CENTER
+		}
+	}
+
+	containerWindowType = {
+		name = "planet_automation_usage_entry"
+		position = { x=0 y=0 }
+		moveable = no
+		size = { width = 280 height = 35 }
+
+		gridboxType = {
+			name = "automated_resource_usage"
+			position = { x = 5 y = 0 }
+			orientation = "UPPER_LEFT"
+			format = "UPPER_LEFT"
+			slotsize = { width = 68 height = 36 }
+			max_slots_horizontal = 4
+			add_horizontal = yes
+		}
+	}
+
+	containerWindowType = {
+		name = "planet_automation_usage_entry_item"
+		size = { width = 64 height = 32 }
+		position = { x = 0 y = 0 }
+		background = {
+			name = "background"
+			spriteType = "GFX_tiles_frame"
+			clicksound = "confirm_click"
+			oversound = "mouse_over"
+		}
+		iconType = {
+			name = "icon"
+			spriteType = "GFX_resource_energy_large"
+			position = { x = 0 y = 0 }
+		}
+		checkboxType = {
+			name = "button"
+			quadTextureSprite = "GFX_checkbox_20_20_01"
+			position = { x= 32 y = 0 }
+		}
+	}
 
 	containerWindowType = {
 		name = "planet_designation_entry"
