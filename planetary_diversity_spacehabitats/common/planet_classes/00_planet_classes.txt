@@ -1,5 +1,5 @@
 # Star glow from sun is set under atmosphere in	00_planet_classes
-# Star surface is set in worldgfx for each star
+# Star surface is set in worldgfx file for each star
 # Effects are set in particle effect for each star
 # New planets also need planet tiles (game\gfx\interface\icons\tile_backgrounds)
 # New planets need surface background (game\gfx\portraits\environments)
@@ -34,15 +34,18 @@
 #	district_set = <string>		# Use any string here, for use in the uses_district_set trigger for easy compatibility
 #	initial = yes # Default is no, only specified for planets available as starting classes for custom species
 #
+#	uses_alternative_skies_for_moons = yes				# Will set planet background for moon
+#	uses_alternative_skies_if_has_orbital_ring = yes	# Will set planet background if has orbital ring, Default is no.
+#
 #	space_monster_target = yes	# Country types with space monster AI will wander to this planet type if set to yes
 #
 #	is_artificial_planet = yes	# Will make sure that modifiers for non artificial planets are not added, e.g. max districts
 #}
 ###
 
-# ###########
+####################
 # Habitable Planets
-# ###########
+####################
 
 # Dry
 pc_desert = {
@@ -54,7 +57,7 @@ pc_desert = {
 
 	entity_scale = @planet_standard_scale
 
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -90,7 +93,7 @@ pc_arid = {
 	climate = "dry"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.50 0.3 0.7 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -124,7 +127,7 @@ pc_savannah = {
 	climate = "dry"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.50 0.3 0.7 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -188,11 +191,11 @@ pc_continental = {
 	entity = "continental_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_continental
-	
+
 	climate = "wet"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.59 0.45 0.95 }		#DONE
+	atmosphere_color		= hsv { 0.59 0.45 0.95 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -227,7 +230,7 @@ pc_ocean = {
 	climate = "wet"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.58 0.5 0.9 }		#DONE
+	atmosphere_color		= hsv { 0.58 0.5 0.9 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -262,7 +265,7 @@ pc_tundra = {
 	climate = "cold"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.58 0.3 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.58 0.3 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -296,7 +299,7 @@ pc_arctic = {
 	climate = "cold"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.48 0.15 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -330,7 +333,7 @@ pc_alpine = {
 	climate = "cold"
 	initial = yes
 
-	atmosphere_color		= hsv { 0.48 0.15 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -356,16 +359,16 @@ pc_alpine = {
 	carry_cap_per_free_district = @carry_cap_normal
 }
 
-# ###########
+########################
 # Uninhabitable Planets
-# ###########
+########################
 
 pc_gas_giant = {
 	entity = "gas_giant"
 	entity_scale = 14
 	icon = GFX_planet_type_gas_giant
 
-	atmosphere_color		= hsv { 0.1 0.15 1.1 }		#DONE
+	atmosphere_color		= hsv { 0.1 0.15 1.1 }
 	atmosphere_intensity	= 1.1
 	atmosphere_width		= 0.5
 
@@ -455,7 +458,7 @@ pc_molten = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_molten
 
-	atmosphere_color		= hsv { 0.05 0.65 1.4 }		#DONE
+	atmosphere_color		= hsv { 0.05 0.65 1.4 }
 	atmosphere_intensity	= 0.05
 	atmosphere_width		= 1.0
 
@@ -479,7 +482,7 @@ pc_barren = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren
 
-	atmosphere_color		= hsv { 0.1 0.4 0.7 }		#DONE
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -503,7 +506,7 @@ pc_barren_cold = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren_cold
 
-	atmosphere_color		= hsv { 0.55 0.3 0.75 }		#DONE
+	atmosphere_color		= hsv { 0.55 0.3 0.75 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -527,7 +530,7 @@ pc_toxic = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_toxic
 
-	atmosphere_color		= hsv { 0.19 0.45 0.9 }		#DONE
+	atmosphere_color		= hsv { 0.19 0.45 0.9 }
 	atmosphere_intensity	= 0.1
 	atmosphere_width		= 1.2
 
@@ -549,7 +552,7 @@ pc_toxic = {
 }
 
 pc_frozen = {
-	entity = "frozen_planet"		#DONE
+	entity = "frozen_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_frozen
 
@@ -572,9 +575,9 @@ pc_frozen = {
 	colonizable = no
 }
 
-# ###########
+##################
 # Special Planets
-# ###########
+##################
 
 pc_nuked = {
 	entity = "nuked_planet"
@@ -730,7 +733,7 @@ pc_shielded = {
 
 	entity_scale = @planet_standard_scale
 
-	atmosphere_color		= hsv { 0.25 0.9 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.25 0.9 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 1.2
 
@@ -879,7 +882,7 @@ pc_cybrex = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
@@ -891,15 +894,16 @@ pc_cybrex = {
 	colonizable = no
 	show_city = no
 	orbit_lines = no
+	can_have_no_pop_colony = yes
 	can_be_invaded = no
 	district_set = ring_world
 	show_health_bar_in_planet_view = yes # Determines whether to display 'surface integrity' gui component
 	is_artificial_planet = yes
 }
 
-# ###########
+########
 # Stars
-# ###########
+########
 
 pc_b_star = {
 	entity = "b_star_class_star_entity"
@@ -1183,9 +1187,9 @@ pc_pulsar = {
 	colonizable = no
 }
 
-# ###########
+#################
 # Megastructures
-# ###########
+#################
 
 pc_ringworld_habitable = {
 	ringworld = yes
@@ -1196,7 +1200,7 @@ pc_ringworld_habitable = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	show_city = yes
@@ -1233,7 +1237,7 @@ pc_ringworld_habitable_damaged = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
@@ -1255,7 +1259,7 @@ pc_ringworld_tech = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
@@ -1279,7 +1283,7 @@ pc_ringworld_tech_damaged = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
@@ -1304,7 +1308,7 @@ pc_ringworld_seam = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
@@ -1329,7 +1333,7 @@ pc_ringworld_seam_damaged = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.50 0.2 0.8 }		#DONE
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
@@ -1354,7 +1358,7 @@ pc_shattered_ring_habitable = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	show_city = yes
@@ -1372,11 +1376,11 @@ pc_shattered_ring_habitable = {
 
 	is_artificial_planet = yes
 
+	carry_cap_per_free_district = @carry_cap_normal
+
 	modifier = {
 		pop_environment_tolerance = 1.0
 	}
-
-	carry_cap_per_free_district = @carry_cap_normal
 }
 
 pc_habitat = {
@@ -1388,7 +1392,7 @@ pc_habitat = {
 	fixed_entity_scale = yes
 	place_entity_on_planet_plane = no
 	entity_face_object = no #disable rotation towards sun or planet we orbit around
-	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	#show_city = no
@@ -1410,18 +1414,22 @@ pc_habitat = {
 
 	modifier = {
 		planet_colony_development_speed_mult = 2.0 # Habitats should be fast to colonize
-		pop_environment_tolerance = 0.70
+		pop_environment_tolerance = 0.40
 	}
 
 	carry_cap_per_free_district = @carry_cap_low
 }
+
+##########################
+# Altered/Damaged Planets
+##########################
 
 pc_shrouded = {
 	entity = "shroud_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_shrouded
 
-	atmosphere_color		= hsv { 0.0 0.9 0.45	}		#DONE
+	atmosphere_color		= hsv { 0.0 0.9 0.45	}
 	atmosphere_intensity	= 0.5
 	atmosphere_width		= 1.5
 
@@ -1441,7 +1449,7 @@ pc_broken = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren
 
-	atmosphere_color		= hsv { 0.1 0.4 0.7 }		#DONE
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -1461,7 +1469,7 @@ pc_shattered = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren
 
-	atmosphere_color		= hsv { 0.1 0.4 0.7 }		#DONE
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
@@ -1504,9 +1512,9 @@ pc_toxoid_star = {
 	planet_custom_label_offset = 100
 }
 
-# ###########
+###############
 # Random Lists
-# ###########
+###############
 
 random_list = {
 	name = "rl_habitable_normal"

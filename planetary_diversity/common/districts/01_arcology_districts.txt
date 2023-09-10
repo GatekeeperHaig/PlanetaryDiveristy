@@ -114,16 +114,6 @@ district_arcology_housing = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_active_tradition = tr_mercantile_trickle_up_economics }
-		}
-		modifier = {
-			job_clerk_add = 3
-		}
-	}
-
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -737,6 +727,7 @@ district_arcology_administrative = 	{
 			owner = {
 				is_regular_empire = yes
 				is_megacorp = no
+				is_worker_coop_empire = no
 			}
 		}
 		modifier = {
@@ -750,10 +741,24 @@ district_arcology_administrative = 	{
 			owner = {
 				is_megacorp = yes
 				is_spiritualist = no
+				is_worker_coop_empire = no
 			}
 		}
 		modifier = {
 			job_manager_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_spiritualist = no
+				is_worker_coop_empire = yes
+			}
+		}
+		modifier = {
+			job_steward_add = 6
 		}
 	}
 
@@ -763,6 +768,7 @@ district_arcology_administrative = 	{
 			owner = { 
 				is_regular_empire = yes
 				is_megacorp = no
+				is_worker_coop_empire = no
 			}
 		}
 		text = job_bureaucrat_effect_desc
@@ -777,6 +783,17 @@ district_arcology_administrative = 	{
 			}
 		}
 		text = job_manager_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_spiritualist = no
+				is_worker_coop_empire = yes
+			}
+		}
+		text = job_steward_effect_desc
 	}
 }
 
@@ -860,12 +877,28 @@ district_arcology_religious = {
 			owner = {
 				is_megacorp = yes
 				is_death_cult_empire = no
+				is_worker_coop_empire = no
 			}
 		}
 		modifier = {
 			# Megacorp YES, Death Cult NO.
 			job_priest_add = 3
 			job_manager_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_death_cult_empire = no
+				is_worker_coop_empire = yes
+			}
+		}
+		modifier = {
+			job_priest_add = 3
+			job_steward_add = 3
 		}
 	}
 
@@ -890,6 +923,7 @@ district_arcology_religious = {
 			owner = {
 				is_megacorp = yes
 				is_death_cult_empire = yes
+				is_worker_coop_empire = no
 			}
 		}
 		modifier = {
@@ -897,6 +931,22 @@ district_arcology_religious = {
 			job_death_priest_add = 2
 			job_mortal_initiate_add = 2
 			job_manager_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_death_cult_empire = yes
+				is_worker_coop_empire = yes
+			}
+		}
+		modifier = {
+			job_death_priest_add = 2
+			job_mortal_initiate_add = 2
+			job_steward_add = 2
 		}
 	}
 
@@ -928,8 +978,20 @@ district_arcology_religious = {
 			exists = owner
 			owner = {
 				is_megacorp = yes
+				is_worker_coop_empire = no
 			}
 		}
 		text = job_manager_effect_desc
+	}
+	# Union Stewards desc?
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_megacorp = yes
+				is_worker_coop_empire = yes
+			}
+		}
+		text = job_steward_effect_desc
 	}
 }

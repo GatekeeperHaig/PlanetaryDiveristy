@@ -11,6 +11,8 @@ pd_hycean_habitat_setup = {
 	while = { #they get the habitat + destruction
 		count = 1
 		random_owned_pop = { kill_pop = yes }
+		add_district = district_industrial
+		check_planet_employment = yes
 	}
 
 	solar_system = {
@@ -28,7 +30,7 @@ pd_hycean_habitat_setup = {
 				picture = "pc_hyceanhabitat"
 				graphical_culture = event_target:hycean_origin_owner
 			}
-			set_planet_size = 4
+			set_planet_size = 6
 			set_colony_type = col_habitat_research
 			add_building = building_hab_capital
 			set_planet_flag = research_habitat
@@ -36,15 +38,9 @@ pd_hycean_habitat_setup = {
 				modifier = hyceanfloodedhabitat
 				days = -1
 			}
-			add_district = district_hab_science
-			if = { 
-				limit = { owner = { is_gestalt = no } }
-				add_district = district_hab_cultural
-			}
-			if = { 
-				limit = { owner = { is_gestalt = yes } }
-				add_district = district_hab_housing
-			}
+			add_deposit = d_hycean_flooded_habitat
+			add_district = district_hab_housing
+			check_planet_employment = yes
 		}
 	}
 }
