@@ -2746,30 +2746,6 @@ country_event = {
 	}
 }
 
-#Tiyanki Starting Events
-country_event = {
-	id = pdengine.21
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		owner = { has_origin = origin_graveyard_world }
-	}
-
-   	immediate = {
-			root = { 
-				set_country_flag = tiyanki_encountered 
-				#give_technology = { tech = tech_space_whale_weapon_1 } }
-				country_event = { id = tutorial.61 }	
-			}
-			every_galaxy_planet = {
-				limit = { is_planet_class = pc_graveyard }
-				set_planet_flag = graveyard_planet
-				planet_event = { id = pdgraveyard.30 days = 5 } 
-		}
-	}
-}
-
 # Mini-galaxy ativate
 country_event = {
 	id = pdengine.24
