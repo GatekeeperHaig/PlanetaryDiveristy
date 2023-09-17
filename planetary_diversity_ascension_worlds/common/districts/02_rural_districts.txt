@@ -47,7 +47,16 @@ district_generator = {
 	resources = {
 		category = planet_districts_generator
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @base_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @base_cost
 		}
 		upkeep = {
 			energy = 1
@@ -180,7 +189,16 @@ district_mining = {
 	resources = {
 		category = planet_districts_mining
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @base_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @base_cost
 		}
 		upkeep = {
 			energy = 1
@@ -322,7 +340,16 @@ district_farming = {
 	resources = {
 		category = planet_districts_farming
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @base_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @base_cost
 		}
 		# Anglers Civic cost effect
 		cost = {
@@ -541,7 +568,16 @@ district_generator_uncapped = {
 	resources = {
 		category = planet_districts_generator
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @base_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @base_cost
 		}
 		upkeep = {
 			energy = 1
@@ -570,6 +606,19 @@ district_generator_uncapped = {
 			owner = { is_hive_empire = yes }
 		}
 		modifier = {
+			job_technician_drone_add = 3
+		}
+	}
+
+	#PD Tree Of Life
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			has_deposit = d_pd_tree_of_life_bloomed
+		}
+		modifier = {
+			planet_housing_add = 2
 			job_technician_drone_add = 3
 		}
 	}
@@ -693,7 +742,16 @@ district_mining_uncapped = {
 	resources = {
 		category = planet_districts_mining
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @base_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @base_cost
 		}
 		upkeep = {
 			energy = 1
@@ -723,6 +781,20 @@ district_mining_uncapped = {
 			owner = { is_hive_empire = yes }
 		}
 		modifier = {
+			job_mining_drone_add = 3
+		}
+	}
+
+	#PD Tree Of Life
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = shattered_ring_world }
+			exists = owner
+			owner = { is_hive_empire = yes }
+			has_deposit = d_pd_tree_of_life_bloomed
+		}
+		modifier = {
+			planet_housing_add = 2
 			job_mining_drone_add = 3
 		}
 	}
@@ -914,7 +986,16 @@ district_farming_uncapped = {
 	resources = {
 		category = planet_districts_farming
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @base_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @base_cost
 		}
 		# Anglers Civic cost effect
 		cost = {
@@ -968,6 +1049,19 @@ district_farming_uncapped = {
 			owner = { is_hive_empire = yes }
 		}
 		modifier = {
+			job_agri_drone_add = 3
+		}
+	}
+
+	#PD Tree Of Life
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			has_deposit = d_pd_tree_of_life_bloomed
+		}
+		modifier = {
+			planet_housing_add = 2
 			job_agri_drone_add = 3
 		}
 	}

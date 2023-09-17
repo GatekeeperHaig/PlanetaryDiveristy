@@ -283,10 +283,6 @@ district_hive = {
 			uses_district_set = machine_world
 			uses_district_set = shattered_ring_world
 		}
-		NOR = { 
-			is_planet_class = pc_pd_megaflora_hive 
-			is_planet_class = pc_pd_megaflora_hive_bloomed
-		}
 	}
 
 	potential = {
@@ -297,10 +293,6 @@ district_hive = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 			uses_district_set = shattered_ring_world
-		}
-		NOR = { 
-			is_planet_class = pc_pd_megaflora_hive 
-			is_planet_class = pc_pd_megaflora_hive_bloomed
 		}
 	}
 
@@ -314,13 +306,21 @@ district_hive = {
 		district_rw_hive
 		district_nexus
 		district_city
-		district_megaflora_hive
 	}
 
 	resources = {
 		category = planet_districts_cities
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @city_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @city_cost
 		}
 		upkeep = {
 			energy = 2
@@ -335,7 +335,10 @@ district_hive = {
 
 	triggered_planet_modifier = {
 		potential = {
-			is_planet_class = pc_hive
+			OR = {
+				is_planet_class = pc_hive
+				is_planet_class = pc_pd_megaflora_hive
+			}
 		}
 		modifier = {
 			planet_housing_add = 6
@@ -472,19 +475,11 @@ district_industrial = {
 	show_on_uncolonized = {
 		exists = from
 		uses_district_industrial = yes
-		NOR = { 
-			is_planet_class = pc_pd_megaflora_hive 
-			is_planet_class = pc_pd_megaflora_hive_bloomed
-		}
 	}
 
 	potential = {
 		exists = owner
 		uses_district_industrial = yes
-		NOR = { 
-			is_planet_class = pc_pd_megaflora_hive 
-			is_planet_class = pc_pd_megaflora_hive_bloomed
-		}
 	}
 
 	allow = {
@@ -502,7 +497,16 @@ district_industrial = {
 	resources = {
 		category = planet_districts_industrial
 		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_megaflora_hive }
+			}
 			minerals = @city_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_megaflora_hive
+			}
+			food = @city_cost
 		}
 		upkeep = {
 			energy = 2
@@ -623,6 +627,37 @@ district_industrial = {
 			}
 		}
 		modifier = {
+			job_catalytic_drone_add = 2
+		}
+	}
+
+	#PD Tree of Life
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+			has_deposit = d_pd_tree_of_life_bloomed
+		}
+		modifier = {
+			planet_housing_add = 2
+			job_alloy_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+			has_deposit = d_pd_tree_of_life_bloomed
+		}
+		modifier = {
+			planet_housing_add = 2
 			job_catalytic_drone_add = 2
 		}
 	}
