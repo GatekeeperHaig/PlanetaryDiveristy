@@ -81,3 +81,42 @@ entity = {
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
 	}
 }
+
+# Megaflora Ring (PD) - plantoid
+entity = {
+	name = "plantoid_01_megaflora_hive_ringworld_habitable_01_entity"
+	cull_radius = 500.0
+	pdxmesh = "ringworld_habitable_01_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 100 time_offset = { 0 100 }
+	}
+	state = { name = "construction"
+	}
+
+
+	meshsettings = {
+		name = "pCube20Shape"
+		index = 0
+		texture_diffuse = "ringworld_habitable_plantoid_01_diffuse.dds"
+		texture_normal = "ringworld_habitable_normal.dds"
+		texture_specular = "ringworld_habitable_plantoid_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	
+	meshsettings = {
+		name = "polySurface9Shape"
+		index = 0
+		texture_diffuse = "megaflora_01_diffuse.dds"
+		texture_normal = "continental_02_normals.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	
+	game_data = {
+		size = @ringworld_segment_size
+		shader_type = ship
+	}
+	attach = { root = "ringworld_habitable_entity_01_medium_clouds_entity" }
+}
