@@ -12,46 +12,60 @@ country_event = {
 				is_planet_class = pc_pd_megaflora_hive_bloomed
 				is_homeworld = yes 
 			} 
-		generate_pd_aw_start_deposits_and_blockers = yes 
+			generate_pd_aw_start_deposits_and_blockers = yes 
+		}
+		set_graphical_culture = pd_tree_of_life_01
+		set_city_graphical_culture = pd_tree_of_life_01
 	} 
 }
 
-# #Add ToL to new colonies
-# planet_event = {
-# 	id = pdtreeoflife.35
-# 	hide_window = yes
+#Add ToL to new colonies
+planet_event = {
+	id = pdtreeoflife.20
+	hide_window = yes
 
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 	
-# 	trigger = {
-# 		owner = {
-# 			has_origin = origin_pd_aw_tree_of_life
-# 		}
-# 	}
+	trigger = {
+		owner = {
+			has_origin = origin_pd_aw_tree_of_life
+		}
+	}
 
-# 	immediate = {
-# 		switch = {
-# 			trigger = is_planet_class
-# 		}
-# 		pc_habitat = {
-# 			add_deposit = d_pd_tree_of_life_habitat
-# 			set_planet_flag = pd_tolx
-# 		}
-# 		pc_ringworld_habitable = {
-# 			add_deposit = d_pd_tree_of_life_ringworld
-# 			set_planet_flag = pd_tolx
-
-# 		}
-# 		pc_city = {
-# 			add_deposit = d_pd_tree_of_life_special
-# 			set_planet_flag = pd_tolx
-# 		}
-# 		default = {
-# 			add_deposit = d_pd_tree_of_life_1
-# 		}
-# 		remove_modifier = no_pd_lifetree #as the planet transfer events fire before this
-# 	}
-# }
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_deposit = d_pd_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_home
+					has_deposit = d_pd_tree_of_life_bloomed
+				}
+			}
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					add_deposit = d_pd_tree_of_life_habitat
+					set_planet_entity = {
+						picture = pc_pd_megaflora_hive_habitat
+					}
+				}
+				pc_ringworld_habitable = {
+				 	add_deposit = d_pd_tree_of_life_ringworld
+				 	set_planet_flag = pd_tolx
+				}
+				# pc_city = {but 
+				# 	add_deposit = d_pd_tree_of_life_special
+				# 	set_planet_flag = pd_tolx
+				# }
+				default = {
+					add_deposit = d_pd_tree_of_life_colony
+					start_terraform_process = pc_pd_megaflora_hive
+				}
+				#remove_modifier = no_pd_lifetree #as the planet transfer events fire before this
+			}
+		}
+	}
+}
 
 # #Tree destroyed (oh no!)
 # #silently kill tree
