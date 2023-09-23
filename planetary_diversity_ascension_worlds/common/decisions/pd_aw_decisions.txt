@@ -1,0 +1,140 @@
+#PD AW Decisions
+
+#Transplanet Tree TOL
+decision_pd_aw_replant_tree_of_life = {
+	owned_planets_only = yes
+	sound = event_mystic_reveal
+	icon = decision_pd_aw_replant_tree_of_life
+
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			food = 1000
+		}
+	}
+
+	potential = {
+		has_modifier = pd_no_plifetree
+		NOR = {
+			has_deposit = d_pd_tree_of_life_home
+			has_deposit = d_pd_tree_of_life_bloomed
+			has_deposit = d_pd_tree_of_life_colony
+			has_deposit = d_pd_tree_of_life_habitat
+			has_deposit = d_pd_tree_of_life_ringarc
+		}
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = pd_no_plifetree
+		hidden_effect = {
+			add_deposit = d_pd_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					planet_event = {
+						id = pdtreeoflife.21
+						days = 2160
+					}
+					add_modifier = { modifier = pd_tree_of_life_growing days = 2160 }
+				}
+				pc_ringworld_habitable = {
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_city = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_continental = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_tropical = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_ocean = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				default = {
+					planet_event = { id = pdtreeoflife.21 days = 18000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 18000
+					}
+				}
+			}
+			remove_modifier = pd_no_lifetree #as the planet transfer events fire before this
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+#Bloom Megaflora Hive
+decision_pd_aw_bloom_tree_of_life = {
+	owned_planets_only = yes
+	sound = event_mystic_reveal
+	icon = decision_pd_aw_bloom_tree_of_life
+
+	enactment_time = 3600
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			food = 20000
+		}
+	}
+
+	potential = {
+		has_modifier = pd_tree_of_life_home
+		has_deposit = d_pd_tree_of_life_home
+	}
+
+	allow = { }
+
+	effect = {
+		custom_tooltip = decision_pd_aw_bloom_tree_of_life
+		hidden_effect = {
+			add_modifier = {
+				modifier = pd_tree_of_life_bloomed
+				days = -1
+			}
+			add_deposit = d_pd_tree_of_life_bloomed
+			remove_modifier = pd_tree_of_life_home
+			remove_deposit = d_pd_tree_of_life_home
+			change_pc = pc_gaia
+			set_planet_entity = {
+				picture = pc_pd_megaflora_hive_bloomed
+				entity = megaflora_planet_01_entity
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}

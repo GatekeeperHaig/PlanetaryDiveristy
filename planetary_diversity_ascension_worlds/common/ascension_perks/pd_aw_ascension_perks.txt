@@ -1,0 +1,34 @@
+# See traditions/README.txt for format
+ap_pd_tree_of_life_bloomed = {
+	on_enabled = {
+		custom_tooltip = "allow_tree_of_life_bloomed"
+		custom_tooltip = "describe_tree_of_life_bloomed_worlds"
+	}
+
+	potential = {
+		has_authority = auth_hive_mind
+		has_origin = origin_pd_aw_tree_of_life
+		NOT = {
+			has_ascension_perk = ap_pd_tree_of_life_bloomed
+		}
+		NAND = { # Lithoid devouring swarms consume worlds and cannot improve them (since they never get terraforming tech)
+			is_lithoid_empire = yes
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_2"
+			num_ascension_perks > 1
+		}
+	}
+
+	ai_weight = {
+		factor = 100
+	}
+}

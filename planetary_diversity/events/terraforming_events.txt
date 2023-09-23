@@ -240,6 +240,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		exists = space_owner
 		NOR = {
 			has_planet_flag = terraformed_once
 			has_planet_flag = no_terraform_event
@@ -256,6 +257,10 @@ planet_event = {
 				modifier = {
 					factor = 0
 					free_district_slots = 0
+				}
+				modifier = {
+					factor = 0
+					is_colony = no
 				}
 				space_owner = { country_event = { id = terra.15 } } # Superfluous Terraforming Equipment
 			}
@@ -293,9 +298,9 @@ planet_event = {
 						has_planet_flag = nuked_terraform
 						has_planet_flag = barren_terraform
 						has_planet_flag = barren_cold_terraform
+						is_pd_gaia = yes
 						is_planet_class = pc_nuked
 						is_colony = yes
-						is_pd_gaia = yes
 					}
 				}
 				space_owner = { country_event = { id = terra.40 } } # Intentionally Tidally Locked
@@ -340,10 +345,23 @@ planet_event = {
 				}
 				space_owner = { country_event = { id = terra.55 } } # Perfect Organization
 			}
-			3 = {
+			2 = {
 				modifier = {
 					factor = 0
 					NAND = {
+						OR = {
+							has_planet_flag = barren_terraform
+							has_planet_flag = barren_cold_terraform
+						}
+						has_overlord_dlc = yes
+					}
+				}
+				space_owner = { country_event = { id = terra.60 } } # Pre-FTLs
+			}
+			3 = {
+				modifier = {
+					factor = 0
+					NOR = {
 						has_planet_flag = barren_terraform
 						has_planet_flag = barren_cold_terraform
 					}
@@ -400,7 +418,7 @@ planet_event = {
 						has_planet_flag = nuked_terraform
 						host_has_dlc = "Ancient Relics Story Pack"
 						space_owner = {
-							NOT  = { has_country_flag = tombworld_weapon_cache_spawned }
+							NOT = { has_country_flag = tombworld_weapon_cache_spawned }
 						}
 						is_homeworld = no
 					}
@@ -414,7 +432,7 @@ planet_event = {
 				}
 				space_owner = { country_event = { id = terra.90 } } # Weapon Cache
 			}
-			10 = {} # Do nothing
+			20 = {} # Do nothing
 		}
 	}
 }
@@ -474,7 +492,10 @@ country_event = {
 	}
 	option = {
 		name = terra.15.e
-		trigger = {	From = { free_district_slots >= 2 } }
+		trigger = {
+			is_anglers_empire = no
+			From = { free_district_slots >= 2 }
+		}
 		custom_tooltip = terra.15.e.tooltip
 		From = {
 			hidden_effect = {
@@ -689,7 +710,12 @@ country_event = {
 		From = { add_modifier = { modifier = second_home } }
 		custom_tooltip = terra.35.a.tooltip
 		hidden_effect = {
-			From = { set_name = "[Space_Owner.GetHomeWorldName] II" }
+			From = {
+				set_name = {
+					key = NAME_Homeworld_Two
+					variable_string = "[Space_Owner.GetHomeWorldName]"
+				}
+			}
 		}
 	}
 	option = {
@@ -841,6 +867,9 @@ country_event = {
 	}
 	option = {
 		name = terra.45.c # Farming
+		trigger = {
+			is_anglers_empire = no
+		}
 		if = {
 			limit = {
 				From = {
@@ -955,6 +984,60 @@ country_event = {
 }
 
 country_event = {
+	id = terra.60
+	title = terra.60.name
+	desc = terra.60.desc
+	picture = GFX_evt_underground_city
+	location = from
+
+	is_triggered_only = yes
+
+	immediate = {
+		from = { generate_subterranean_pre_ftls_on_planet = yes }
+		from = {
+			add_deposit = d_ore_rich_caverns
+			add_deposit = d_ore_rich_caverns
+		}
+	}
+
+	option = {
+		name = terra.60.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+	option = {
+		name = terra.60.b
+		exclusive_trigger = { is_homicidal = yes }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+	option = {
+		exclusive_trigger = { has_origin = origin_subterranean }
+		name = terra.60.c
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+
+country_event = {
 	id = terra.65
 	title = terra.65.name
 	desc = terra.65.desc
@@ -972,29 +1055,29 @@ country_event = {
 				trigger = has_planet_flag
 				barren_terraform = {
 					if = {
-						limit = { From = { is_dry = yes } }
+						limit = { is_dry = yes }
 						Root = { add_resource = { energy = 2500 } }
 					}
 					else_if = {
-						limit = { From = { is_wet = yes } }
+						limit = { is_wet = yes }
 						Root = { add_resource = { energy = 5000 } }
 					}
 					else_if = {
-						limit = { From = { is_cold = yes } }
+						limit = { is_cold = yes }
 						Root = { add_resource = { energy = 7500 } }
 					}
 				}
 				barren_cold_terraform = {
 					if = {
-						limit = { From = { is_cold = yes } }
+						limit = { is_cold = yes }
 						Root = { add_resource = { energy = 2500 } }
 					}
 					else_if = {
-						limit = { From = { is_wet = yes } }
+						limit = { is_wet = yes }
 						Root = { add_resource = { energy = 5000 } }
 					}
 					else_if = {
-						limit = { From = { is_dry = yes } }
+						limit = { is_dry = yes }
 						Root = { add_resource = { energy = 7500 } }
 					}
 				}
@@ -1131,7 +1214,7 @@ country_event = {
 					}
 				}
 				while = {
-					count = 4
+					count = 3
 					create_pop = {
 						species = event_target:radio_plants
 					}

@@ -42,9 +42,9 @@ planet_event = {
 		if = {
 			limit = {
 				NOR = {
-					has_deposit = d_pd_tree_of_life_colony
 					has_deposit = d_pd_tree_of_life_home
 					has_deposit = d_pd_tree_of_life_bloomed
+					has_deposit = d_pd_tree_of_life_colony
 					has_deposit = d_pd_tree_of_life_habitat
 					has_deposit = d_pd_tree_of_life_ringarc
 				}
@@ -73,20 +73,41 @@ planet_event = {
 						days = 9000
 					}
 				}
-				default = {
-					planet_event = { id = pdtreeoflife.21 days = 7200 }
+				pc_continental = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 7200
+						days = 9000
 					}
 				}
-				#remove_modifier = no_pd_lifetree #as the planet transfer events fire before this
+				pc_tropical = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_ocean = { 
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				default = {
+					planet_event = { id = pdtreeoflife.21 days = 18000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 18000
+					}
+				}
 			}
+			remove_modifier = pd_no_lifetree #as the planet transfer events fire before this
 		}
 	}
 }
 
-
+#This event fires after the tree has fully grown
 planet_event = {
 	id = pdtreeoflife.21
 	hide_window = yes
@@ -101,6 +122,7 @@ planet_event = {
 
 	immediate = {
 		remove_deposit = d_pd_tree_of_life_colony
+		remove_modifier = pd_tree_of_life_growing
 		switch = {
 			trigger = is_planet_class
 			pc_habitat = {
@@ -121,9 +143,15 @@ planet_event = {
 			}
 			default = {
 				add_deposit = d_pd_tree_of_life_home
+				if = {
+					limit = {
+						is_starting_planet_type = yes
+					}
+					change_pc = pc_continental
+				}
 				set_planet_entity = {
 					picture = pc_pd_megaflora_hive
-					entity = megaflora_planet_01_entity
+					entity = megafloratol_planet_01_entity
 				}
 				add_modifier = {
 					modifier = pd_tree_of_life_home
@@ -134,378 +162,185 @@ planet_event = {
 	}
 }
 
-# #Tree destroyed (oh no!)
-# #silently kill tree
-# planet_event = {
-# 	id = pdtreeoflife.25
-# 	hide_window = yes
+#This event fires if the planet changes hands or is damaged, killing the tree
+#silently kill tree
+planet_event = {
+	id = pdtreeoflife.25
+	hide_window = yes
 
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 	
-# 	trigger = {
-# 		AND = {
-# 			owner = { 
-# 				NOT = { 
-# 					has_origin = origin_pd_aw_tree_of_life 
-# 				} 
-# 			}
-# 			OR = {
-# 				has_deposit = d_pd_tree_of_life_colony
-# 				has_deposit = d_pd_tree_of_life_home
-# 				has_deposit = d_pd_tree_of_life_bloomed
-# 				has_deposit = d_pd_tree_of_life_habitat
-# 				has_deposit = d_pd_tree_of_life_ringarc
-# 			}
-# 		}
-# 	}
+	trigger = {
+		AND = {
+			owner = { 
+				NOT = { 
+					has_origin = origin_pd_aw_tree_of_life 
+				} 
+			}
+			is_pd_aw_megaflora_deposit = yes
+		}
+	}
 
-# 	immediate = {
-# 		remove_deposit = d_pd_tree_of_life_colony
-# 		remove_deposit = d_pd_tree_of_life_home
-# 		remove_deposit = d_pd_tree_of_life_bloomed
-# 		remove_deposit = d_pd_tree_of_life_habitat
-# 		remove_deposit = d_pd_tree_of_life_ringarc
-# 		remove_modifier = pd_tree_of_life_bloomed
-# 		if = {
-# 			limit = {
-# 				NOR = {
-# 					has_deposit = d_pd_tree_of_life_colony
-# 					has_deposit = d_pd_tree_of_life_home
-# 					has_deposit = d_pd_tree_of_life_bloomed
-# 					has_deposit = d_pd_tree_of_life_habitat
-# 					has_deposit = d_pd_tree_of_life_ringarc
-# 				}
-# 			}
-# 			switch = {
-# 				trigger = is_planet_class
-# 				pc_habitat = {
-# 					set_planet_entity = {
-# 						picture = pc_habitat
-# 					}
-# 				}
-# 				pc_ringworld_habitable = {
-# 					set_planet_entity = {
-# 						picture = pc_ringworld_habitable
-# 					}
-# 					set_graphical_culture = root.owner
-# 				}
-# 				pc_city = { 
-# 				 	add_deposit = d_pd_tree_of_life_ringarc
-# 				}
-# 				default = {
-# 					change_pc = pc_tropical
-# 				}
-# 			}
-# 		}
-# 		add_modifier = {
-# 			modifier = no_pd_lifetree
-# 			days = -1
-# 		}
-# 	}
-# }
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					has_deposit = d_pd_tree_of_life_home
+					has_deposit = d_pd_tree_of_life_bloomed
+					has_deposit = d_pd_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			remove_modifier = pd_tree_of_life_growing
+			remove_deposit = d_pd_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					remove_deposit = d_pd_tree_of_life_habitat
+					set_planet_entity = {
+						picture = pc_habitat
+					}
+				}
+				pc_ringworld_habitable = {
+					remove_deposit = d_pd_tree_of_life_ringarc
+					set_planet_entity = {
+						picture = pc_ringworld_habitable
+					}
+					set_graphical_culture = root.owner
+				}
+				pc_city = { 
+					remove_deposit = d_pd_tree_of_life_ringarc
+				 	add_deposit = d_pd_tree_of_life_ringarc
+				}
+				default = {
+					remove_deposit = d_pd_tree_of_life_home
+					remove_deposit = d_pd_tree_of_life_bloomed
+					remove_modifier = pd_tree_of_life_home
+					remove_modifier = pd_tree_of_life_bloomed
+					change_pc = pc_continental
+				}
+			}
+		}
+		add_modifier = {
+			modifier = pd_no_lifetree
+			days = -1
+		}
+	}
+}
 
-# #informatively kill tree
-# planet_event = {
-# 	id = pdtreeoflife.37
-# 	hide_window = yes
+#This event fires if the Tree dies, but this tells the player
+planet_event = {
+	id = pdtreeoflife.40
+	hide_window = yes
 
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		planet_devastation >= 50
-# 		OR = {
-# 			has_deposit = d_pd_tree_of_life_1
-# 			has_deposit = d_pd_tree_of_life_2
-# 			has_deposit = d_pd_tree_of_life_3
-# 		}
-# 	}
+	trigger = {
+		planet_devastation >= 50
+		is_pd_aw_megaflora_deposit = yes
+	}
 	
-# 	immediate = {
-# 		remove_deposit = d_pd_tree_of_life_1
-# 		remove_deposit = d_pd_tree_of_life_2
-# 		remove_deposit = d_pd_tree_of_life_3
-# 		remove_deposit = d_tol_sap
-# 		remove_modifier = pdmegaflora
-# 		if = {
-# 			limit = { is_planet_class = pc_megafloraforge }
-# 			change_pc = pc_forest
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megafloracapital }
-# 			change_pc = pc_forest
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megafloratol }
-# 			change_pc = pc_forest
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megaflora }
-# 			change_pc = pc_forest
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megaflorahive }
-# 			change_pc = pc_forest
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megaflorahivetl }
-# 			change_pc = pc_wettidallylocked
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megaflorahive_superhab }
-# 			change_pc = pc_superhabitable
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 		if = {
-# 			limit = { is_planet_class = pc_megaflorahive_cave }
-# 			change_pc = pc_karst
-# 			add_deposit = d_pd_tree_of_life_dead
-# 		}
-# 	}
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					has_deposit = d_pd_tree_of_life_home
+					has_deposit = d_pd_tree_of_life_bloomed
+					has_deposit = d_pd_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			remove_modifier = pd_tree_of_life_growing
+			remove_deposit = d_pd_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					remove_deposit = d_pd_tree_of_life_habitat
+					set_planet_entity = {
+						picture = pc_habitat
+					}
+				}
+				pc_ringworld_habitable = {
+					remove_deposit = d_pd_tree_of_life_ringarc
+					set_planet_entity = {
+						picture = pc_ringworld_habitable
+					}
+					set_graphical_culture = root.owner
+				}
+				pc_city = { 
+					remove_deposit = d_pd_tree_of_life_ringarc
+				 	add_deposit = d_pd_tree_of_life_ringarc
+				}
+				default = {
+					remove_deposit = d_pd_tree_of_life_home
+					remove_deposit = d_pd_tree_of_life_bloomed
+					remove_modifier = pd_tree_of_life_home
+					remove_modifier = pd_tree_of_life_bloomed
+					change_pc = pc_continental
+				}
+			}
+			add_modifier = { modifier = pd_no_lifetree }
+		}
+	}
+}
 
-# 	#option = {
-# 	#	name = UNFORTUNATE
-# 	#	add_modifier = { modifier = no_pd_lifetree }
-# 	#}
-# }
+#modify the modifier for lacking Tree
+planet_event = {
+	id = pdtreeoflife.45
+	hide_window = yes
 
-# #modify the modifier for lacking Tree
-# planet_event = {
-# 	id = pdtreeoflife.38
-# 	hide_window = yes
-
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 	
-# 	trigger = {
-# 		NOT = { days_passed < 1 }
-# 		OR = {
-# 			AND = {
-# 				FROM = { has_origin = origin_pd_aw_tree_of_life }
-# 				NOR = {
-# 					has_deposit = d_pd_tree_of_life_1
-# 					has_deposit = d_pd_tree_of_life_2
-# 					has_deposit = d_pd_tree_of_life_3
-# 				}
-# 			}
-# 			AND = { 
-# 				FROM = { NOT = { has_origin = origin_pd_aw_tree_of_life } }
-# 				has_modifier = no_pd_lifetree
-# 			}
-# 		}
+	trigger = {
+		NOT = { days_passed < 1 }
+		OR = {
+			AND = {
+				FROM = { has_origin = origin_pd_aw_tree_of_life }
+				NOR = {
+					has_deposit = d_pd_tree_of_life_home
+					has_deposit = d_pd_tree_of_life_bloomed
+					has_deposit = d_pd_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			AND = { 
+				FROM = { 
+					NOT = { 
+						has_origin = origin_pd_aw_tree_of_life 
+					} 
+				}
+				has_modifier = pd_no_lifetree
+			}
+		}
 	
-# 	}
+	}
 
-# 	immediate = {
-# 		if = {
-# 			limit = {
-# 				FROM = { has_origin = origin_pd_aw_tree_of_life }
-# 				NOR = {
-# 					has_deposit = d_pd_tree_of_life_1
-# 					has_deposit = d_pd_tree_of_life_2
-# 					has_deposit = d_pd_tree_of_life_3
-# 				}
-# 			}
-# 			add_modifier = { modifier = no_pd_lifetree }
-# 		}
-# 		if = {
-# 			limit = {
-# 				FROM = { NOT = { has_origin = origin_pd_aw_tree_of_life } }
-# 			}
-# 			remove_modifier = no_pd_lifetree
-# 		}
-# 	}
-# }
-
-# #PD Hidden Tree Growth
-# planet_event = {
-# 	id = pdtreeoflife.39
-# 	hide_window = yes
-# 	location = root
-
-# 	is_triggered_only = yes
-
-# 	trigger = {
-# 		owner = { has_origin = origin_pd_aw_tree_of_life }
-# 		NOT = { has_planet_flag = pd_tol1 }
-# 		NOT = { has_planet_flag = pd_tol2 }
-# 		NOT = { has_planet_flag = pd_tol3 }
-# 		NOT = { is_artificial = yes }
-# 		NOT = { is_pd_habitat = yes }
-# 		NOT = { is_planet_class = pc_ecocity }
-# 		NOT = { is_planet_class = pc_corpoarc }
-# 		NOT = { is_planet_class = pc_palacearc }
-# 		NOT = { is_planet_class = pc_capitalarc }
-# 		NOT = { is_planet_class = pc_necropolis }
-# 		NOT = { is_planet_class = pc_machine_necropolis }
-# 		NOT = { is_planet_class = pc_machinetidallylocked }
-# 		NOT = { is_planet_class = pc_necrohive }
-# 		NOT = { is_planet_class = pc_relic }
-# 		NOT = { is_planet_class = pc_nuked_relic }
-# 		NOT = { is_planet_class = pc_milarc_relic }
-# 		NOT = { is_planet_class = pc_city }
-# 		NOT = { is_planet_class = pc_floating }
-# 		NOT = { is_planet_class = pc_pd_scrapyard }
-# 		NOT = { is_planet_class = pc_crystal }
-# 		NOT = { is_planet_class = pc_technoorganic }
-# 		NOT = { is_planet_class = pc_graveyard }
-# 		NOT = { is_planet_class = pc_shroud_crucible }
-# 		NOT = { is_planet_class = pc_crucible }
-# 		NOT = { is_planet_class = pc_clean_crucible }
-# 		is_acot_unique_planet_class = no
-# 	}
-
-# 	immediate = {
-# 		set_planet_flag = pd_tol1	
-# 		IF = {
-# 			limit = { owner = { NOT = { has_technology = tech_pdtoltech } } }
-# 			planet_event = { id = pdtreeoflife.40 days = 5400 random = 5400 }
-# 		}
-# 		IF = {
-# 			limit = { owner = { has_technology = tech_pdtoltech } }
-# 			planet_event = { id = pdtreeoflife.40 days = 3600 random = 3600 }
-# 		}
-# 	}
-# }
-
-# #PD Change TOL change to megaflora
-# planet_event = {
-# 	id = pdtreeoflife.40
-# 	title = pdtreeoflife.40.name
-# 	desc = pdtreeoflife.40.desc
-# 	picture = GFX_evt_baol_devolved
-# 	show_sound = event_alien_nature
-# 	location = root
-
-# 	is_triggered_only = yes
-
-# 	trigger = {
-# 		owner = { has_origin = origin_pd_aw_tree_of_life }
-# 		has_planet_flag = pd_tol1
-# 		NOT = { is_artificial = yes }
-# 		NOT = { is_pd_habitat = yes }
-# 		NOT = { is_planet_class = pc_ecocity }
-# 		NOT = { is_planet_class = pc_corpoarc }
-# 		NOT = { is_planet_class = pc_palacearc }
-# 		NOT = { is_planet_class = pc_capitalarc }
-# 		NOT = { is_planet_class = pc_necropolis }
-# 		NOT = { is_planet_class = pc_machine_necropolis }
-# 		NOT = { is_planet_class = pc_machinetidallylocked }
-# 		NOT = { is_planet_class = pc_necrohive }
-# 		NOT = { is_planet_class = pc_relic }
-# 		NOT = { is_planet_class = pc_nuked_relic }
-# 		NOT = { is_planet_class = pc_milarc_relic }
-# 		NOT = { is_planet_class = pc_city }
-# 		NOT = { is_planet_class = pc_floating }
-# 		NOT = { is_planet_class = pc_pd_scrapyard }
-# 		NOT = { is_planet_class = pc_crystal }
-# 		NOT = { is_planet_class = pc_technoorganic }
-# 		NOT = { is_planet_class = pc_graveyard }
-# 		NOT = { is_planet_class = pc_shroud_crucible }
-# 		NOT = { is_planet_class = pc_crucible }
-# 		NOT = { is_planet_class = pc_clean_crucible }
-# 	}
-
-# 	immediate = {
-# 		IF = {
-# 			limit = {
-# 				is_pd_superhab = no
-# 				is_pd_tidally_locked = no
-# 				is_pd_cave = no
-# 			}
-# 			change_pc = pc_megaflorahive
-# 		}
-# 		IF = {
-# 			limit = {
-# 				is_pd_tidally_locked = yes
-# 			}
-# 			change_pc = pc_megaflorahivetl
-# 		}
-# 		IF = {
-# 			limit = {
-# 				is_pd_superhab = yes
-# 			}
-# 			change_pc = pc_megaflorahive_superhab
-# 		}
-# 		IF = {
-# 			limit = {
-# 				is_pd_cave = yes
-# 			}
-# 			change_pc = pc_megaflorahive_cave
-# 		}
-# 		pd_remove_special_deposits_modifiers = yes
-# 		remove_planet_flag = pd_tol1
-# 		set_planet_flag = pd_tol2
-# 		add_modifier = { modifier = pdmegaflora }
-# 		remove_deposit = d_pd_tree_of_life_1
-# 		add_deposit = d_pd_tree_of_life_2
-# 		IF = {
-# 			limit = { owner = { NOT = { has_technology = tech_pdtoltech } } }
-# 			planet_event = { id = pdtreeoflife.41 days = 18000 random = 18000 }
-# 		}
-# 		IF = {
-# 			limit = { owner = { has_technology = tech_pdtoltech } }
-# 			planet_event = { id = pdtreeoflife.41 days = 9000 random = 9000 }
-# 		}
-# 	}
-
-# 	option = {
-# 		name = pdtreeoflife.40.a
-# 	}
-# }
-
-# #PD Change TOL change to megaflora TOL
-# planet_event = {
-# 	id = pdtreeoflife.41
-# 	title = pdtreeoflife.41.name
-# 	desc = pdtreeoflife.41.desc
-# 	picture = GFX_evt_baol_devolved
-# 	show_sound = event_alien_nature
-# 	location = root
-
-# 	is_triggered_only = yes
-
-# 	trigger = {
-# 		owner = { has_origin = origin_pd_aw_tree_of_life }
-# 		has_planet_flag = pd_tol2
-# 		NOT = { is_artificial = yes }
-# 		NOT = { is_pd_habitat = yes }
-# 		NOT = { is_planet_class = pc_ecocity }
-# 		NOT = { is_planet_class = pc_corpoarc }
-# 		NOT = { is_planet_class = pc_palacearc }
-# 		NOT = { is_planet_class = pc_capitalarc }
-# 		NOT = { is_planet_class = pc_necropolis }
-# 		NOT = { is_planet_class = pc_machine_necropolis }
-# 		NOT = { is_planet_class = pc_machinetidallylocked }
-# 		NOT = { is_planet_class = pc_necrohive }
-# 		NOT = { is_planet_class = pc_relic }
-# 		NOT = { is_planet_class = pc_nuked_relic }
-# 		NOT = { is_planet_class = pc_milarc_relic }
-# 		NOT = { is_planet_class = pc_city }
-# 		NOT = { is_planet_class = pc_megaflorahivetl }
-# 		NOT = { is_planet_class = pc_megaflorahive_superhab }
-# 		is_acot_unique_planet_class = no
-# 	}
-
-# 	immediate = {
-# 		change_pc = pc_megafloratol
-# 		remove_planet_flag = pd_tol2
-# 		set_planet_flag = pd_tol3
-# 		add_deposit = d_tol_sap
-# 		remove_deposit = d_pd_tree_of_life_2
-# 		add_deposit = d_pd_tree_of_life_3
-# 		remove_modifier = bleak_planet
-# 		remove_modifier = irradiated_planet
-# 		remove_modifier = hazardous_weather
-# 		remove_modifier = dangerous_wildlife
-# 		remove_modifier = wild_storms
-# 	}
-
-# 	option = {
-# 		name = pdtreeoflife.41.a
-# 	}
-# }
+	immediate = {
+		if = {
+			limit = {
+				FROM = { has_origin = origin_pd_aw_tree_of_life }
+				NOR = {
+					has_deposit = d_pd_tree_of_life_home
+					has_deposit = d_pd_tree_of_life_bloomed
+					has_deposit = d_pd_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			add_modifier = { modifier = pd_no_lifetree }
+		}
+		if = {
+			limit = {
+				FROM = { 
+					NOT = { 
+						has_origin = origin_pd_aw_tree_of_life 
+					} 
+				}
+			}
+			remove_modifier = pd_no_lifetree
+		}
+	}
+}
