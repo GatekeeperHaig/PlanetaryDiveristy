@@ -25,7 +25,13 @@ country_event = {
 	} 
 }
 
-# This event starts the process to make the planets
+# This event starts the process to turn planets
+@megafloraspeed_gaia = 3600 #10 years
+@megafloraspeed_habitat = 1800 #5 years
+@megafloraspeed_ringarc = 9000 #25 years
+@megafloraspeed_wet = 9000 #25 years
+@megafloraspeed_drycold = 18000 #50 years
+@megafloraspeed_nuked = 27000 #75 years
 planet_event = {
 	id = pdtreeoflife.20
 	hide_window = yes
@@ -34,7 +40,7 @@ planet_event = {
 	
 	trigger = {
 		owner = {
-			has_origin = origin_pd_aw_tree_of_life
+			is_pd_aw_tree_of_life = yes
 		}
 	}
 
@@ -55,50 +61,106 @@ planet_event = {
 				pc_habitat = {
 					planet_event = {
 						id = pdtreeoflife.21
-						days = 2160
+						days = @megafloraspeed_habitat
 					}
-					add_modifier = { modifier = pd_tree_of_life_growing days = 2160 }
+					add_modifier = { modifier = pd_tree_of_life_growing days = @megafloraspeed_habitat }
 				}
 				pc_ringworld_habitable = {
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_ringarc }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 9000
+						days = @megafloraspeed_ringarc
 					}
 				}
 				pc_city = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_ringarc }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 9000
+						days = @megafloraspeed_ringarc
+					}
+				}
+				pc_gaia = { 
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_gaia }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_gaia
 					}
 				}
 				pc_continental = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 9000
+						days = @megafloraspeed_wet
 					}
 				}
 				pc_tropical = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 9000
+						days = @megafloraspeed_wet
 					}
 				}
 				pc_ocean = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 9000
+						days = @megafloraspeed_wet
 					}
 				}
-				default = {
-					planet_event = { id = pdtreeoflife.21 days = 18000 }
+				pc_ocean = { 
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
-						days = 18000
+						days = @megafloraspeed_wet
+					}
+				}
+				pc_desert = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_arid = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_savannah = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_arctic = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_tundra = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_alpine = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_nuked = {
+					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_nuked }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = @megafloraspeed_nuked
 					}
 				}
 			}
@@ -206,8 +268,9 @@ planet_event = {
 					remove_deposit = d_pd_tree_of_life_ringarc
 					set_planet_entity = {
 						picture = pc_ringworld_habitable
+						entity = "ringworld_habitable_entity_01_entity"
+						graphical_culture = owner
 					}
-					set_graphical_culture = root.owner
 				}
 				pc_city = { 
 					remove_deposit = d_pd_tree_of_life_ringarc
@@ -266,8 +329,9 @@ planet_event = {
 					remove_deposit = d_pd_tree_of_life_ringarc
 					set_planet_entity = {
 						picture = pc_ringworld_habitable
+						entity = "ringworld_habitable_entity_01_entity"
+						graphical_culture = owner
 					}
-					set_graphical_culture = root.owner
 				}
 				pc_city = { 
 					remove_deposit = d_pd_tree_of_life_ringarc
@@ -281,7 +345,10 @@ planet_event = {
 					change_pc = pc_continental
 				}
 			}
-			add_modifier = { modifier = pd_no_lifetree }
+			add_modifier = {
+				modifier = pd_no_lifetree
+				days = -1
+			}
 		}
 	}
 }
