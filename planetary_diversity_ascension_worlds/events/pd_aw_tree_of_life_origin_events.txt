@@ -54,6 +54,12 @@ planet_event = {
 					has_deposit = d_pd_tree_of_life_habitat
 					has_deposit = d_pd_tree_of_life_ringarc
 				}
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_city
+					habitable_planet_not_urban = yes
+				}
 			}
 			add_deposit = d_pd_tree_of_life_colony
 			switch = {
@@ -66,13 +72,6 @@ planet_event = {
 					add_modifier = { modifier = pd_tree_of_life_growing days = @megafloraspeed_habitat }
 				}
 				pc_ringworld_habitable = {
-					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_ringarc }
-					add_modifier = {
-						modifier = pd_tree_of_life_growing
-						days = @megafloraspeed_ringarc
-					}
-				}
-				pc_city = { 
 					planet_event = { id = pdtreeoflife.21 days = @megafloraspeed_ringarc }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
@@ -165,6 +164,18 @@ planet_event = {
 				}
 			}
 			remove_modifier = pd_no_lifetree #as the planet transfer events fire before this
+			IF = {
+				limit = {
+					is_planet_class = pc_city
+				}
+				add_modifier = {
+					modifier = pd_no_lifetree_arcology
+					days = -1
+				}
+				set_planet_entity = {
+					picture = pc_pd_megaflora_city
+				}
+			}
 		}
 	}
 }
@@ -333,10 +344,6 @@ planet_event = {
 						graphical_culture = owner
 					}
 				}
-				pc_city = { 
-					remove_deposit = d_pd_tree_of_life_ringarc
-				 	add_deposit = d_pd_tree_of_life_ringarc
-				}
 				default = {
 					remove_deposit = d_pd_tree_of_life_home
 					remove_deposit = d_pd_tree_of_life_bloomed
@@ -408,6 +415,18 @@ planet_event = {
 				}
 			}
 			remove_modifier = pd_no_lifetree
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_city
+			}
+			add_modifier = {
+				modifier = pd_no_lifetree_arcology
+				days = -1
+			}
+			set_planet_entity = {
+				picture = pc_pd_megaflora_city
+			}
 		}
 	}
 }
