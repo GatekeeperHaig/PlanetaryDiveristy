@@ -28,6 +28,11 @@ decision_pd_aw_replant_tree_of_life = {
 
 	allow = { 
 		NOT = { is_planet_class = pc_city }
+		OR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_ringworld_habitable
+			habitable_planet_not_urban = yes
+		}
 	}
 
 	effect = {
@@ -38,48 +43,41 @@ decision_pd_aw_replant_tree_of_life = {
 				trigger = is_planet_class
 				pc_habitat = {
 					planet_event = {
-						id = pdtreeoflife.21
+						id = pdtreeoflifeaw.21
 						days = 2160
 					}
 					add_modifier = { modifier = pd_tree_of_life_growing days = 2160 }
 				}
 				pc_ringworld_habitable = {
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
-					add_modifier = {
-						modifier = pd_tree_of_life_growing
-						days = 9000
-					}
-				}
-				pc_city = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
 						days = 9000
 					}
 				}
 				pc_continental = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
 						days = 9000
 					}
 				}
 				pc_tropical = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
 						days = 9000
 					}
 				}
 				pc_ocean = { 
-					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
 						days = 9000
 					}
 				}
 				default = {
-					planet_event = { id = pdtreeoflife.21 days = 18000 }
+					planet_event = { id = pdtreeoflifeaw.21 days = 18000 }
 					add_modifier = {
 						modifier = pd_tree_of_life_growing
 						days = 18000
@@ -117,9 +115,8 @@ decision_pd_aw_bloom_tree_of_life = {
 		owner = {
 			has_ascension_perk = ap_pd_tree_of_life_bloomed
 		}
+		habitable_planet_not_urban = yes
 	}
-
-	allow = { }
 
 	effect = {
 		custom_tooltip = decision_pd_aw_bloom_tree_of_life_tooltip
@@ -134,7 +131,7 @@ decision_pd_aw_bloom_tree_of_life = {
 			change_pc = pc_gaia
 			set_planet_entity = {
 				picture = pc_pd_megaflora_hive_bloomed
-				entity = megaflora_planet_01_entity
+				entity = megafloratol_bloomed_planet_01_entity
 			}
 		}
 	}
