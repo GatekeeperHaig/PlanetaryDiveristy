@@ -42,6 +42,7 @@ planet_event = {
 		owner = {
 			is_pd_aw_tree_of_life = yes
 		}
+		NOT = { has_planet_flag = pd_unique_world }
 	}
 
 	immediate = {
@@ -58,6 +59,8 @@ planet_event = {
 					is_planet_class = pc_habitat
 					is_planet_class = pc_ringworld_habitable
 					is_planet_class = pc_city
+					is_planet_class = pc_relic
+					is_planet_class = pc_nuked
 					habitable_planet_not_urban = yes
 				}
 			}
@@ -175,6 +178,17 @@ planet_event = {
 				set_planet_entity = {
 					picture = pc_pd_megaflora_city
 				}
+				remove_deposit = d_pd_aw_tree_of_life_colony
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_relic
+				}
+				add_modifier = {
+					modifier = pd_no_lifetree_arcology
+					days = -1
+				}
+				remove_deposit = d_pd_aw_tree_of_life_colony
 			}
 		}
 	}
@@ -189,7 +203,7 @@ planet_event = {
 	
 	trigger = {
 		owner = {
-			has_origin = origin_pd_aw_tree_of_life
+			is_pd_aw_tree_of_life = yes
 		}
 	}
 
@@ -221,6 +235,7 @@ planet_event = {
 						is_starting_planet_type = yes
 					}
 					change_pc = pc_continental
+					remove_pd_modifiers_and_add_continetal = yes
 				}
 				set_planet_entity = {
 					picture = pc_pd_megaflora_hive
@@ -378,6 +393,14 @@ planet_event = {
 					has_deposit = d_pd_aw_tree_of_life_colony
 					has_deposit = d_pd_tree_of_life_habitat
 					has_deposit = d_pd_tree_of_life_ringarc
+				}
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_city
+					is_planet_class = pc_relic
+					is_planet_class = pc_nuked
+					habitable_planet_not_urban = yes
 				}
 			}
 			AND = { 
