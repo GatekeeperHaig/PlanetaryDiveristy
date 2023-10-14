@@ -3,7 +3,7 @@
 #
 # Colony Events
 #
-# Written by Henrik Eklund
+# Written by Henrik Thyrwall
 #
 ############################
 
@@ -18,7 +18,7 @@ planet_event = {
 	show_sound = event_alien_nature
 	location = ROOT
 	trackable = yes
-	
+
 	pre_triggers = {
 		has_owner = yes
 		is_homeworld = no
@@ -30,7 +30,7 @@ planet_event = {
 	}
 
 	trigger = {
-		owner = { 
+		owner = {
 			NOT = { has_authority = auth_machine_intelligence }
 		}
 		num_pops > 0
@@ -41,14 +41,14 @@ planet_event = {
 			is_pd_tundra = yes
 			is_pd_savannah = yes
 		}
-		NOR = { 
+		NOR = {
 			has_global_flag = migrating_forests_global
 			has_planet_flag = colony_event
 		}
 	}
 
 	is_triggered_only = yes
-	
+
 	immediate = {
 		set_global_flag = migrating_forests_global
 		set_planet_flag = colony_event
@@ -58,10 +58,10 @@ planet_event = {
 			days = -1
 		}
 	}
-	
+
 	option = {
 		name = colony.1.a
-		tooltip = { 
+		tooltip = {
 			add_deposit = d_migrating_forests
 		}
 		begin_event_chain = {
@@ -83,6 +83,10 @@ planet_event = {
 				owner = root
 			}
 		}
+	}
+
+	after = {
+		planet_event = { id = colony.12 days = 180 random = 2400 }
 	}
 }
 
@@ -1689,5 +1693,9 @@ country_event = {
 	option = {
 		name = colony.9850.a
 		remove_modifier = "harvesting_negative_mass"
+		random_situation = {
+			limit = { is_situation_type = situation_negative_mass }
+			destroy_situation = this
+		}
 	}
 }
