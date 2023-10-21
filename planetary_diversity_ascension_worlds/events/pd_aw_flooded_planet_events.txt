@@ -1,0 +1,105 @@
+namespace = pdfloodedplanets
+
+# PD Flooded Planets - Requires Aquatics
+# This event fires on game start to allow the player to choose if they have underwaterviews on their homeworld
+country_event = {
+	id = pdfloodedplanets.100
+	hide_window = yes
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			has_origin = origin_ocean_paradise
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			set_planet_entity = {
+				picture = pc_aquatic
+				entity = ocean_paradise_planet_01_entity
+			}
+		}
+	}
+}
+
+# This event fires when certain planets get terraformed and makes sure that if they have the flooded planet modifier the planet view stays flooded 
+planet_event = {
+	id = pdfloodedplanets.200
+	hide_window = yes
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = flooded_habitat
+	}
+
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_city = {		
+				set_planet_entity = {
+					picture = pc_pd_aquatic_city
+					entity = aquaticcity_planet_01_entity
+				}
+			}
+			pc_relic = {		
+				set_planet_entity = {
+					picture = pc_pd_aquatic_relic
+					entity = pd_aquatic_relic_world_01_entity
+				}
+			}
+			pc_hive = {		
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive
+					entity = pd_aquatic_infested_planet_01_entity
+				}
+			}
+			pc_machine = {		
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+			pc_gaia = {		
+				set_planet_entity = {
+					picture = pc_aquatic_hot
+					entity = ocean_paradise_planet_01_entity
+				}
+			}
+			pc_ocean = {		
+				set_planet_entity = {
+					picture = pc_aquatic
+					entity = aquatic_planet_01_entity
+				}
+			}
+			pc_continental = {
+				remove_modifier = flooded_habitat
+			}
+			pc_tropical = {
+				remove_modifier = flooded_habitat
+			}
+			pc_arctic = {
+				remove_modifier = flooded_habitat
+			}
+			pc_alpine = {
+				remove_modifier = flooded_habitat
+			}
+			pc_tundra = {
+				remove_modifier = flooded_habitat
+			}
+			pc_desert = {
+				remove_modifier = flooded_habitat
+			}
+			pc_savannah = {
+				remove_modifier = flooded_habitat
+			}
+			pc_arid = {
+				remove_modifier = flooded_habitat
+			}
+		}
+	}
+}

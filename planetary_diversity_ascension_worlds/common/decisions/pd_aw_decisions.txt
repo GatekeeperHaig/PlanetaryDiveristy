@@ -139,11 +139,11 @@ decision_pd_aw_bloom_tree_of_life = {
 	}
 }
 
-#Flood Planet (Ocean and Vanilla Gaia World)
+#Flood Planet
 @expand_planetary_sea_length = 720
 decision_pd_aw_flood_planet = {
 	owned_planets_only = yes
-	icon = decision_pd_flooding
+	icon = decision_pd_flooding_aw
 
 	enactment_time = 1800
 
@@ -151,15 +151,20 @@ decision_pd_aw_flood_planet = {
 		OR = {
 			is_planet_class = pc_ocean
 			is_planet_class = pc_gaia
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
 		}
 		exists = owner
 		owner = {
 			has_ascension_perk = ap_hydrocentric
 		}
 		NOR = {
-			has_modifier = pd_aw_flooded_planet
+			has_modifier = flooded_habitat
 			has_modifier = ocean_paradise
 			has_modifier = ocean_paradise_hive
+			has_planet_flag = pd_unique_world
 		}
 	}
 
@@ -283,7 +288,7 @@ decision_pd_aw_flood_planet = {
 		custom_tooltip = decision_pd_aw_flood_planet_tooltip
 		hidden_effect = {
 			add_modifier = {
-				modifier = pd_aw_flooded_planet
+				modifier = flooded_habitat
 				days = -1
 			}
 			IF = {
@@ -302,6 +307,42 @@ decision_pd_aw_flood_planet = {
 				set_planet_entity = {
 					picture = pc_aquatic_hot
 					entity = ocean_paradise_planet_01_entity
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_city
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_city
+					entity = aquaticcity_planet_01_entity
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_relic
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_relic
+					entity = pd_aquatic_relic_world_01_entity
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_hive
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive
+					entity = pd_aquatic_infested_planet_01_entity
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_machine
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_planet_01_entity
 				}
 			}
 			ice_mining_depletion_effect = yes
@@ -351,7 +392,7 @@ decision_pd_aw_flood_planet = {
 	}
 }
 
-#Unflood Planet (Ocean and Vanilla Gaia World)
+#Unflood Planet
 decision_pd_aw_unflood_planet = {
 	owned_planets_only = yes
 	icon = decision_satellite_in_orbit
@@ -362,9 +403,10 @@ decision_pd_aw_unflood_planet = {
 		OR = {
 			is_planet_class = pc_ocean
 			is_planet_class = pc_gaia
+			is_planet_class = pc_city
 		}
 		exists = owner
-		has_modifier = pd_aw_flooded_planet
+		has_modifier = flooded_habitat
 		owner = { 
 			NOT = { has_ascension_perk = ap_hydrocentric } 
 		}
@@ -382,7 +424,7 @@ decision_pd_aw_unflood_planet = {
 	}
 
 	effect = {
-		remove_modifier = pd_aw_flooded_planet
+		remove_modifier = flooded_habitat
 		hidden_effect = {
 			IF = {
 				limit = {
@@ -402,6 +444,42 @@ decision_pd_aw_unflood_planet = {
 					entity = gaia_planet_01_entity
 				}
 			}
+			IF = {
+				limit = {
+					is_planet_class = pc_city
+				}
+				set_planet_entity = {
+					entity = "city_planet_entity"
+					graphical_culture = owner
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_relic
+				}
+				set_planet_entity = {
+					picture = pc_relic
+					entity = relic_world_01_entity
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_hive
+				}
+				set_planet_entity = {
+					picture = pc_hive
+					entity = infested_planet
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_machine
+				}
+				set_planet_entity = {
+					picture = pc_machine
+					entity = machine_planet
+				}
+			}
 		}
 	}
 
@@ -419,7 +497,7 @@ decision_pd_aw_unflood_planet = {
 #Flood Ringworld
 decision_pd_aw_flood_ringworld = {
 	owned_planets_only = yes
-	icon = decision_pd_flooding
+	icon = decision_pd_flooding_aw
 
 	enactment_time = @expand_planetary_sea_length
 
@@ -430,7 +508,7 @@ decision_pd_aw_flood_ringworld = {
 			has_ascension_perk = ap_hydrocentric
 		}
 		NOT = {
-			has_modifier = pd_aw_flooded_planet
+			has_modifier = flooded_habitat
 		}
 	}
 
@@ -554,7 +632,7 @@ decision_pd_aw_flood_ringworld = {
 		custom_tooltip = decision_pd_aw_flood_planet_tooltip
 		hidden_effect = {
 			add_modifier = {
-				modifier = pd_aw_flooded_planet
+				modifier = flooded_habitat
 				days = -1
 			}
 			ice_mining_depletion_effect = yes
@@ -620,7 +698,7 @@ decision_pd_aw_unflood_ringworld = {
 	potential = {
 		is_planet_class = pc_ringworld_habitable
 		exists = owner
-		has_modifier = pd_aw_flooded_planet
+		has_modifier = flooded_habitat
 		# owner = { 
 		# 	NOT = { has_ascension_perk = ap_hydrocentric } 
 		# }
@@ -638,7 +716,7 @@ decision_pd_aw_unflood_ringworld = {
 	}
 
 	effect = {
-		remove_modifier = pd_aw_flooded_planet
+		remove_modifier = flooded_habitat
 		hidden_effect = {
 			set_planet_entity = {
 				entity = ringworld_habitable_entity_01_entity
@@ -669,10 +747,11 @@ decision_pd_aw_unflood_habitat = {
 	potential = {
 		is_planet_class = pc_habitat
 		exists = owner
-		has_modifier = pd_aw_flooded_habitat
-		#owner = { 
-		#	NOT = { has_ascension_perk = ap_hydrocentric } 
-		#}
+		has_modifier = flooded_habitat
+		owner = { 
+			NOT = { has_ascension_perk = ap_hydrocentric } 
+		}
+		NOT = { has_planet_flag = pd_unique_world }
 	}
 
 	allow = {
@@ -687,7 +766,7 @@ decision_pd_aw_unflood_habitat = {
 	}
 
 	effect = {
-		remove_modifier = pd_aw_flooded_habitat
+		remove_modifier = flooded_habitat
 		hidden_effect = {
 			set_planet_entity = { 
 				picture = pc_habitat
