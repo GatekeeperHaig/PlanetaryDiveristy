@@ -29,8 +29,6 @@ country_event = {
 planet_event = {
 	id = pdfloodedplanets.200
 	hide_window = yes
-	fire_only_once = yes
-
 	is_triggered_only = yes
 
 	trigger = {
@@ -40,11 +38,8 @@ planet_event = {
 	immediate = {
 		switch = {
 			trigger = is_planet_class
-			pc_city = {		
-				set_planet_entity = {
-					picture = pc_pd_aquatic_city
-					entity = aquaticcity_planet_01_entity
-				}
+			pc_city = {	
+				planet_event = { id = pdfloodedplanets.201 days = 1 }
 			}
 			pc_relic = {		
 				set_planet_entity = {
@@ -100,6 +95,22 @@ planet_event = {
 			pc_arid = {
 				remove_modifier = flooded_habitat
 			}
+		}
+	}
+
+
+}
+
+# This event changes arcologies after the change effect has hapepens
+planet_event = {
+	id = pdfloodedplanets.201
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_entity = {
+			picture = pc_pd_aquatic_city
+			entity = aquaticcity_planet_01_entity
 		}
 	}
 }

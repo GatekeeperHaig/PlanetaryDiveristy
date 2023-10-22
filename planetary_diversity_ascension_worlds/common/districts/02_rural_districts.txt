@@ -319,7 +319,13 @@ district_farming = {
 			NOT = { owner = { is_anglers_empire = yes } }
 			AND = {
 				owner = { is_anglers_empire = yes }
-				NOT = { is_planet_class = pc_ocean }
+				NOR = { 
+					is_planet_class = pc_ocean 
+					AND = {
+						has_modifier = flooded_habitat
+						NOT = { is_planet_class = pc_relic }
+					}
+				}
 			}
 		}
 		NOT = {
@@ -973,7 +979,19 @@ district_farming_uncapped = {
 			AND = {
 				exists = owner
 				owner = { is_anglers_empire = yes }
-				planet = { is_planet_class = pc_ocean }
+				planet = { 
+					OR = {
+						is_planet_class = pc_ocean 
+						AND = {
+							has_modifier = flooded_habitat
+							NOR = {
+								is_planet_class = pc_relic 
+								is_planet_class = pc_habitat
+								is_planet_class = pc_city
+							}
+						}
+					}
+				}
 			}
 			is_pd_aw_megaflora_planet = yes
 		}
