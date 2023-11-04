@@ -12,11 +12,17 @@ district_generator = {
 	show_on_uncolonized = {
 		uses_district_set = standard
 		is_pd_aw_megaflora_planet = no
+		NOT = {
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	potential = {
 		uses_district_set = standard
 		is_pd_aw_megaflora_planet = no
+		NOT = {
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	allow = {
@@ -170,6 +176,9 @@ district_mining = {
 			from = { is_subterranean_empire = yes }
 		}
 		is_pd_aw_megaflora_planet = no
+		NOT = {
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	potential = {
@@ -179,6 +188,9 @@ district_mining = {
 			owner = { is_subterranean_empire = yes }
 		}
 		is_pd_aw_megaflora_planet = no
+		NOT = {
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	allow = {
@@ -310,6 +322,9 @@ district_farming = {
 	show_on_uncolonized = {
 		uses_district_set = standard
 		is_pd_aw_megaflora_planet = no
+		NOT = {
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	potential = {
@@ -338,10 +353,15 @@ district_farming = {
 			}
 		}
 		is_pd_aw_megaflora_planet = no
+		NOT = {
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		NOT = { 
+			has_modifier = resort_colony 
+		}
 	}
 
 	conversion_ratio = 1
@@ -547,6 +567,7 @@ district_generator_uncapped = {
 				uses_district_set = shattered_ring_world
 			}
 			is_pd_aw_megaflora_planet = yes
+			is_pd_aw_wasteland_planet = yes
 		}
 	}
 
@@ -565,6 +586,7 @@ district_generator_uncapped = {
 				uses_district_set = shattered_ring_world
 			}
 			is_pd_aw_megaflora_planet = yes
+			is_pd_aw_wasteland_planet = yes
 		}
 	}
 
@@ -728,6 +750,7 @@ district_mining_uncapped = {
 				uses_district_set = standard
 			}
 			is_pd_aw_megaflora_planet = yes
+			is_pd_aw_wasteland_planet = yes
 		}
 	}
 
@@ -743,6 +766,7 @@ district_mining_uncapped = {
 				uses_district_set = standard
 			}
 			is_pd_aw_megaflora_planet = yes
+			is_pd_aw_wasteland_planet = yes
 		}
 	}
 
@@ -969,6 +993,7 @@ district_farming_uncapped = {
 			uses_district_set = hive_world
 			uses_district_set = shattered_ring_world
 			is_pd_aw_megaflora_planet = yes
+			is_pd_aw_wasteland_planet = yes
 		}
 	}
 
@@ -994,6 +1019,7 @@ district_farming_uncapped = {
 				}
 			}
 			is_pd_aw_megaflora_planet = yes
+			is_pd_aw_wasteland_planet = yes
 		}
 		NOT = {
 			AND = {
@@ -1004,7 +1030,10 @@ district_farming_uncapped = {
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		NOR = { 
+			has_modifier = resort_colony 
+			is_pd_aw_wasteland_planet = yes
+		}
 	}
 
 	conversion_ratio = 1

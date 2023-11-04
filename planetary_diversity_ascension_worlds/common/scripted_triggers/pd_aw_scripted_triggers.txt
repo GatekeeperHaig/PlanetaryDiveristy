@@ -7,6 +7,7 @@ pd_aw_cant_terraform = {
 		has_deposit = d_pd_tree_of_life_habitat
 		has_deposit = d_pd_tree_of_life_ringarc
 		#has_modifier = flooded_habitat
+		is_pd_aw_wasteland_planet = yes
 	}
 }
 
@@ -29,4 +30,18 @@ is_pd_aw_megaflora_deposit = {
 
 is_pd_aw_tree_of_life = {
 	has_origin = origin_pd_aw_tree_of_life
+}
+
+pd_is_aw_world = {
+	OR = {
+		has_modifier = flooded_habitat
+		is_pd_aw_wasteland_planet = yes
+	}
+}
+
+is_pd_aw_wasteland_planet = {
+	OR = {
+		has_modifier = pd_aw_wasteland_planet
+		has_modifier = pd_wasteland_planet
+	}
 }
