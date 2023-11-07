@@ -913,3 +913,133 @@ decision_pd_aw_wasteland_planet = {
 		weight = 10
 	}
 }
+
+#Shroud Touched Planet
+#Clean Up Toxic Wasteland
+decision_pd_aw_shroud_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	enactment_time = 3600
+
+	potential = {
+		exists = owner
+		owner = {
+			NOT = { has_ascension_perk = ap_pd_wasteland_worlds }
+			#has_technology = tech_psionic_theory
+		}
+		has_modifier = pd_aw_shroud_planet
+		habitable_planet_not_urban = yes
+	}
+
+	allow = {
+		owner = { has_technology = tech_psionic_theory }
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+	
+	effect = {
+		remove_modifier = pd_aw_shroud_planet
+		custom_tooltip = decision_pd_aw_shroud_planet_cleanup_tooltip
+		hidden_effect = {
+			pd_aw_back_to_normal_view_effect = yes
+			create_message = {
+				type = MESSAGE_PD_AW_SHROUD_CLEANUP_TYPE
+				localization = MESSAGE_PD_AW_SHROUD_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+#Make Shroud World - Regular + Gaia
+decision_pd_aw_shroud_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_shroud
+
+	enactment_time = 3600
+
+	potential = {
+		OR = {
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+		exists = owner
+		owner = {
+			has_tradition = tr_psionics_finish
+		}
+		pd_is_aw_world = no
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			sr_zro = 1000
+		}
+	}
+	
+	effect = {
+		add_modifier = {
+			modifier = pd_aw_shroud_planet
+			days = -1
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					habitable_planet_not_urban = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud
+					entity = pdshroud_planet_01_entity
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_ringworld_habitable
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud
+					entity = pd_shroud_ringworld_habitable_entity_01_entity
+					graphical_culture = owner
+				}
+			}
+			remove_pd_modifier = yes
+			create_message = {
+				type = MESSAGE_PD_AW_SHROUD_TYPE
+				localization = MESSAGE_PD_AW_SHROUD_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
