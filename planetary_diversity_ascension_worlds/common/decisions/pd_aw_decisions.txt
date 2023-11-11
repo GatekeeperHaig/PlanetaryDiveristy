@@ -915,7 +915,7 @@ decision_pd_aw_wasteland_planet = {
 }
 
 #Shroud Touched Planet
-#Clean Up Toxic Wasteland
+#Remove Shroud Modifier
 decision_pd_aw_shroud_planet_cleanup = {
 	owned_planets_only = yes
 	icon = decision_resort_colony
@@ -929,7 +929,13 @@ decision_pd_aw_shroud_planet_cleanup = {
 			#has_technology = tech_psionic_theory
 		}
 		has_modifier = pd_aw_shroud_planet
-		habitable_planet_not_urban = yes
+		OR = {
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+		}
 	}
 
 	allow = {
@@ -979,6 +985,9 @@ decision_pd_aw_shroud_planet = {
 		OR = {
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
 		}
 		exists = owner
 		owner = {
@@ -1019,9 +1028,37 @@ decision_pd_aw_shroud_planet = {
 					is_planet_class = pc_ringworld_habitable
 				}
 				set_planet_entity = {
-					picture = pc_pd_shroud
+					picture = pc_pd_shroud_ring
 					entity = pd_shroud_ringworld_habitable_entity_01_entity
 					graphical_culture = owner
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_habitat
+					entity = "habitat_phase_03_entity" 
+					graphical_culture = owner
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_city
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_city
+					entity = pdshroudcity_planet_01_entity 
+				}
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_relic
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_relic
+					entity = pdshroudrelic_planet_01_entity 
 				}
 			}
 			remove_pd_modifier = yes

@@ -12,10 +12,11 @@ ruler = {
 			has_very_high_living_standard_type = yes
 			has_high_living_standard_type = yes
 			has_shared_burden_living_standard_type = yes
+			has_worker_ownership_living_standard_type = yes
 		}
 	}
 	unemployment_penalties = {
-		pop_happiness = -0.40
+		pop_happiness = -0.60
 	}
 	unemployment_resources = {
 		category = unemployment_resources
@@ -77,59 +78,10 @@ ruler = {
 
 	triggered_planet_modifier = {
 		potential = {
-			can_generate_trade_value = yes
-			prosperity_gospel_check_trigger = yes
-		}
-		trade_value_add = @trade_value_prosperity_gospel
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_shared_burden_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_shared_burden
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			OR = {
-				has_academic_living_standard_type = yes
-				has_very_high_living_standard_type = yes
-				has_high_living_standard_type = yes
-				has_normal_living_standard_type = yes
-				has_stratified_living_standard_type = yes
-				has_decadent_living_standard_type = yes
-			}
-		}
-		trade_value_add = @trade_value_very_high
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_low_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_high
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-
-	triggered_planet_modifier = {
-		potential = {
 			can_assemble_budding_pop = yes
 		}
 		planet_pop_assembly_organic_add = @plantoid_budding_rate
-	}
-
-
-	triggered_pop_modifier = {
-		potential = {
-			NOT = { has_trait = trait_noxious }
-		}
-		key = trait_noxious
-		pop_happiness = 1
-		mult = modifier:pop_non_noxious_happiness
+		mult = value:budding_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -139,13 +91,9 @@ ruler = {
 		planet_pop_assembly_organic_add = @tiyanki_budding_rate
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_noxious
-		}
-		key = trait_noxious
-		pop_non_noxious_happiness = @noxious_happiness_penalty
-	}
+	# Triggered Modifiers
+	inline_script = "pop_categories/social_classes_triggered_modifiers"
+	inline_script = "pop_categories/social_classes_triggered_modifiers_no_happiness"
 
 	resources = {
 		category = pop_category_rulers
@@ -207,10 +155,11 @@ specialist = {
 			has_very_high_living_standard_type = yes
 			has_high_living_standard_type = yes
 			has_shared_burden_living_standard_type = yes
+			has_worker_ownership_living_standard_type = yes
 		}
 	}
 	unemployment_penalties = {
-		pop_happiness = -0.30
+		pop_happiness = -0.50
 	}
 	unemployment_resources = {
 		category = unemployment_resources
@@ -272,51 +221,11 @@ specialist = {
 
 	triggered_planet_modifier = {
 		potential = {
-			can_generate_trade_value = yes
-			prosperity_gospel_check_trigger = yes
+			exists = owner
+			owner = { has_civic = civic_dystopian_society }
+			NOT = { has_job = enforcer }
 		}
-		trade_value_add = @trade_value_prosperity_gospel
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_shared_burden_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_shared_burden
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			OR = {
-				has_academic_living_standard_type = yes
-				has_very_high_living_standard_type = yes
-				has_decadent_living_standard_type = yes
-			}
-		}
-		trade_value_add = @trade_value_very_high
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			OR = {
-				has_high_living_standard_type = yes
-				has_normal_living_standard_type = yes
-				has_stratified_living_standard_type = yes
-			}
-		}
-		trade_value_add = @trade_value_high
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_low_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_normal
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
+		planet_crime_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -324,15 +233,7 @@ specialist = {
 			can_assemble_budding_pop = yes
 		}
 		planet_pop_assembly_organic_add = @plantoid_budding_rate
-	}
-
-	triggered_pop_modifier = {
-		potential = {
-			NOT = { has_trait = trait_noxious }
-		}
-		key = trait_noxious
-		pop_happiness = 1
-		mult = modifier:pop_non_noxious_happiness
+		mult = value:budding_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -342,13 +243,9 @@ specialist = {
 		planet_pop_assembly_organic_add = @tiyanki_budding_rate
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_noxious
-		}
-		key = trait_noxious
-		pop_non_noxious_happiness = @noxious_happiness_penalty
-	}
+	# Triggered Modifiers
+	inline_script = "pop_categories/social_classes_triggered_modifiers"
+	inline_script = "pop_categories/social_classes_triggered_modifiers_no_happiness"
 
 	resources = {
 		category = pop_category_specialists
@@ -404,72 +301,10 @@ worker = {
 
 	triggered_planet_modifier = {
 		potential = {
-			can_generate_trade_value = yes
-			prosperity_gospel_check_trigger = yes
-		}
-		trade_value_add = @trade_value_prosperity_gospel
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_shared_burden_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_shared_burden
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			OR = {
-				has_decadent_living_standard_type = yes
-				has_very_high_living_standard_type = yes
-			}
-		}
-		trade_value_add = @trade_value_very_high
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_high_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_high
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			OR = {
-				has_normal_living_standard_type = yes
-				has_academic_living_standard_type = yes
-			}
-		}
-		trade_value_add = @trade_value_normal
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_stratified_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_low
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-	triggered_planet_modifier = {
-		potential = {
-			can_generate_trade_value = yes
-			has_low_living_standard_type = yes
-		}
-		trade_value_add = @trade_value_very_low
-		mult = value:scripted_modifier_mult|MODIFIER|pop_lifestyle_trade_mult|
-	}
-
-	triggered_planet_modifier = {
-		potential = {
 			can_assemble_budding_pop = yes
 		}
 		planet_pop_assembly_organic_add = @plantoid_budding_rate
+		mult = value:budding_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -478,16 +313,24 @@ worker = {
 		}
 		planet_pop_assembly_organic_add = @tiyanki_budding_rate
 	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_dystopian_society }
+		}
+		planet_crime_add = 1
+	}
 
 	should_apply_unemployment_penalties = {
 		NOR = {
 			has_very_high_living_standard_type = yes
 			has_high_living_standard_type = yes
 			has_shared_burden_living_standard_type = yes
+			has_worker_ownership_living_standard_type = yes
 		}
 	}
 	unemployment_penalties = {
-		pop_happiness = -0.20
+		pop_happiness = -0.40
 	}
 	unemployment_resources = {
 		category = unemployment_resources
@@ -553,22 +396,9 @@ worker = {
 		unity = 10
 	}
 
-	triggered_pop_modifier = {
-		potential = {
-			NOT = { has_trait = trait_noxious }
-		}
-		key = trait_noxious
-		pop_happiness = 1
-		mult = modifier:pop_non_noxious_happiness
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_noxious
-		}
-		key = trait_noxious
-		pop_non_noxious_happiness = @noxious_happiness_penalty
-	}
+	# Triggered Modifiers
+	inline_script = "pop_categories/social_classes_triggered_modifiers"
+	inline_script = "pop_categories/social_classes_triggered_modifiers_no_happiness"
 
 	resources = {
 		category = pop_category_workers
