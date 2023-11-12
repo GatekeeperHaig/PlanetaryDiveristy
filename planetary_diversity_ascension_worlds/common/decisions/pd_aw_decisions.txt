@@ -925,10 +925,9 @@ decision_pd_aw_shroud_planet_cleanup = {
 	potential = {
 		exists = owner
 		owner = {
-			NOT = { has_ascension_perk = ap_pd_wasteland_worlds }
-			#has_technology = tech_psionic_theory
+			NOT = { has_tradition = tr_psionics_finish }
 		}
-		has_modifier = pd_aw_shroud_planet
+		is_pd_aw_shroud_planet = yes
 		OR = {
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_ringworld_habitable
@@ -993,6 +992,7 @@ decision_pd_aw_shroud_planet = {
 		owner = {
 			has_tradition = tr_psionics_finish
 		}
+		is_pd_aw_shroud_planet = no
 		pd_is_aw_world = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
@@ -1004,7 +1004,7 @@ decision_pd_aw_shroud_planet = {
 		category = decisions
 		cost = {
 			influence = 50
-			sr_zro = 1000
+			sr_zro = 750
 		}
 	}
 	
@@ -1059,6 +1059,33 @@ decision_pd_aw_shroud_planet = {
 				set_planet_entity = {
 					picture = pc_pd_shroud_relic
 					entity = pdshroudrelic_planet_01_entity 
+				}
+			}
+			IF = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud
+					entity = pdshroud_planet_earth_entity
+				}
+			}
+			IF = {
+				limit = {
+					has_planet_flag = pdmars
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud
+					entity = pdshroud_planet_mars_entity
+				}
+			}
+			IF = {
+				limit = {
+					has_planet_flag = pdvenus
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud
+					entity = pdshroud_planet_venus_entity
 				}
 			}
 			remove_pd_modifier = yes
