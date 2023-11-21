@@ -1,6 +1,6 @@
 namespace = pdshroudplanets
 
-# This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded 
+# This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded
 planet_event = {
 	id = pdshroudplanets.200
 	hide_window = yes
@@ -13,22 +13,22 @@ planet_event = {
 	immediate = {
 		switch = {
 			trigger = is_planet_class
-			pc_city = {	
+			pc_city = {
 				planet_event = { id = pdshroudplanets.201 days = 1 }
 			}
-			pc_relic = {		
+			pc_relic = {
 				set_planet_entity = {
 					picture = pc_pd_shroud_relic
-					entity = pdshroudrelic_planet_01_entity 
+					entity = pdshroudrelic_planet_01_entity
 				}
 			}
-			pc_gaia = {		
+			pc_gaia = {
 				set_planet_entity = {
 					picture = pc_pd_shroud
 					entity = pdshroud_planet_01_entity
 				}
 			}
-			pc_ocean = {	
+			pc_ocean = {
 				set_planet_entity = {
 					picture = pc_pd_shroud
 					entity = pdshroud_planet_01_entity
@@ -97,7 +97,84 @@ planet_event = {
 	immediate = {
 		set_planet_entity = {
 			picture = pc_pd_shroud_city
-			entity = pdshroudcity_planet_01_entity 
+			entity = pdshroudcity_planet_01_entity
+		}
+	}
+}
+
+#Shroud Worlds Gain Terraforming Candidate when you get the Tradition
+country_event = {
+	id = pdshroudplanets.301
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_tradition = tr_psionics_finish
+			}
+			every_planet_within_border = {
+				limit = {
+					is_planet_class = pc_shrouded
+					planet_size <= 30
+					planet_size >= 10
+					NOT = {	has_modifier = terraforming_candidate }
+				}
+				add_modifier = {
+					modifier = terraforming_candidate
+					days = -1
+				}
+			}
+		}
+	}
+}
+#Non Psionic gains Shrouded planet
+country_event = {
+	id = pdshroudplanets.302
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			NOT = {	has_tradition = tr_psionics_finish }
+		}
+	}
+	immediate = {
+		from = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_shrouded
+					has_modifier = terraforming_candidate
+				}
+				remove_modifier = terraforming_candidate
+			}
+		}
+	}
+}
+#Psionic Empire gains systems
+country_event = {
+	id = pdshroudplanets.303
+	hide_window = yes
+
+	is_triggered_only = yes
+	trigger = {
+		owner = {
+			has_tradition = tr_psionics_finish
+		}
+	}
+	immediate = {
+		from = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_shrouded
+					NOT = { has_modifier = terraforming_candidate }
+				}
+				add_modifier = {
+					modifier = terraforming_candidate
+					days = -1
+				}
+			}
 		}
 	}
 }

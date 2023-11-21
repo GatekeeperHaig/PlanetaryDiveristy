@@ -31,8 +31,8 @@ on_planet_bombarded = {
 	}
 }
 
-on_press_begin = { 
-	events = { 
+on_press_begin = {
+	events = {
 		pdfloodedplanets.100
 	}
 }
@@ -52,7 +52,31 @@ on_planet_class_changed = {
 }
 
 on_game_start = {
-	events = { 
+	events = {
 		pdawengine.00
+	}
+}
+
+# From = system
+# FromFrom = country (previous owner)
+# This = country (new owner)
+on_system_gained = {
+	events = {
+		pdshroudplanets.302
+		pdshroudplanets.303
+	}
+}
+on_system_lost = {
+	events = {
+		pdshroudplanets.302
+		pdshroudplanets.303
+	}
+}
+
+# Executed when a country picks any tradition (including starters and finishers)
+# THIS = country
+on_tradition_picked = {
+	events = {
+		pdshroudplanets.301
 	}
 }
