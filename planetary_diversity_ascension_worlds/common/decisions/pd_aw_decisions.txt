@@ -24,7 +24,7 @@ decision_pd_aw_replant_tree_of_life = {
 		}
 	}
 
-	allow = { 
+	allow = {
 		has_modifier = pd_aw_no_lifetree
 		OR = {
 			is_planet_class = pc_habitat
@@ -53,21 +53,21 @@ decision_pd_aw_replant_tree_of_life = {
 						days = 9000
 					}
 				}
-				pc_continental = { 
+				pc_continental = {
 					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
 						days = 9000
 					}
 				}
-				pc_tropical = { 
+				pc_tropical = {
 					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
 						days = 9000
 					}
 				}
-				pc_ocean = { 
+				pc_ocean = {
 					planet_event = { id = pdtreeoflifeaw.21 days = 9000 }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
@@ -409,8 +409,8 @@ decision_pd_aw_unflood_planet = {
 		}
 		exists = owner
 		has_modifier = flooded_habitat
-		owner = { 
-			NOT = { has_ascension_perk = ap_hydrocentric } 
+		owner = {
+			NOT = { has_ascension_perk = ap_hydrocentric }
 		}
 	}
 
@@ -701,8 +701,8 @@ decision_pd_aw_unflood_ringworld = {
 		is_planet_class = pc_ringworld_habitable
 		exists = owner
 		has_modifier = flooded_habitat
-		# owner = { 
-		# 	NOT = { has_ascension_perk = ap_hydrocentric } 
+		# owner = {
+		# 	NOT = { has_ascension_perk = ap_hydrocentric }
 		# }
 	}
 
@@ -750,8 +750,8 @@ decision_pd_aw_unflood_habitat = {
 		is_planet_class = pc_habitat
 		exists = owner
 		has_modifier = flooded_habitat
-		owner = { 
-			NOT = { has_ascension_perk = ap_hydrocentric } 
+		owner = {
+			NOT = { has_ascension_perk = ap_hydrocentric }
 		}
 		NOT = { has_planet_flag = pd_unique_world }
 	}
@@ -770,10 +770,10 @@ decision_pd_aw_unflood_habitat = {
 	effect = {
 		remove_modifier = flooded_habitat
 		hidden_effect = {
-			set_planet_entity = { 
+			set_planet_entity = {
 				picture = pc_habitat
-				entity = "habitat_phase_03_entity" 
-				graphical_culture = owner 
+				entity = "habitat_phase_03_entity"
+				graphical_culture = owner
 			}
 		}
 	}
@@ -818,7 +818,7 @@ decision_pd_aw_wasteland_planet_cleanup = {
 			energy = 5000
 		}
 	}
-	
+
 	effect = {
 		remove_modifier = pd_aw_wasteland_planet
 		custom_tooltip = decision_pd_aw_wasteland_planet_cleanup_tooltip
@@ -870,7 +870,7 @@ decision_pd_aw_wasteland_planet = {
 			energy = 5000
 		}
 	}
-	
+
 	effect = {
 		add_modifier = {
 			modifier = pd_aw_wasteland_planet
@@ -948,7 +948,7 @@ decision_pd_aw_shroud_planet_cleanup = {
 			energy = 5000
 		}
 	}
-	
+
 	effect = {
 		remove_modifier = pd_aw_shroud_planet
 		custom_tooltip = decision_pd_aw_shroud_planet_cleanup_tooltip
@@ -1007,7 +1007,7 @@ decision_pd_aw_shroud_planet = {
 			sr_zro = 750
 		}
 	}
-	
+
 	effect = {
 		add_modifier = {
 			modifier = pd_aw_shroud_planet
@@ -1039,7 +1039,7 @@ decision_pd_aw_shroud_planet = {
 				}
 				set_planet_entity = {
 					picture = pc_pd_shroud_habitat
-					entity = "habitat_phase_03_entity" 
+					entity = "habitat_phase_03_entity"
 					graphical_culture = owner
 				}
 			}
@@ -1049,7 +1049,7 @@ decision_pd_aw_shroud_planet = {
 				}
 				set_planet_entity = {
 					picture = pc_pd_shroud_city
-					entity = pdshroudcity_planet_01_entity 
+					entity = pdshroudcity_planet_01_entity
 				}
 			}
 			IF = {
@@ -1058,12 +1058,13 @@ decision_pd_aw_shroud_planet = {
 				}
 				set_planet_entity = {
 					picture = pc_pd_shroud_relic
-					entity = pdshroudrelic_planet_01_entity 
+					entity = pdshroudrelic_planet_01_entity
 				}
 			}
 			IF = {
 				limit = {
 					has_planet_flag = planet_earth
+					NOT = { is_planet_class = pc_city }
 				}
 				set_planet_entity = {
 					picture = pc_pd_shroud
@@ -1073,6 +1074,7 @@ decision_pd_aw_shroud_planet = {
 			IF = {
 				limit = {
 					has_planet_flag = pdmars
+					NOT = { is_planet_class = pc_city }
 				}
 				set_planet_entity = {
 					picture = pc_pd_shroud
@@ -1082,6 +1084,7 @@ decision_pd_aw_shroud_planet = {
 			IF = {
 				limit = {
 					has_planet_flag = pdvenus
+					NOT = { is_planet_class = pc_city }
 				}
 				set_planet_entity = {
 					picture = pc_pd_shroud
