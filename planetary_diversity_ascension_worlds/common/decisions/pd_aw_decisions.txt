@@ -139,13 +139,14 @@ decision_pd_aw_bloom_tree_of_life = {
 	}
 }
 
+
 #Flood Planet
 @expand_planetary_sea_length = 720
 decision_pd_aw_flood_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_flooding_aw
 
-	enactment_time = 1800
+	enactment_time = @expand_planetary_sea_length
 
 	potential = {
 		OR = {
@@ -790,12 +791,13 @@ decision_pd_aw_unflood_habitat = {
 }
 
 #Toxic Wasteland Worlds
+@pd_toxic_time = 1800
 #Clean Up Toxic Wasteland
 decision_pd_aw_wasteland_planet_cleanup = {
 	owned_planets_only = yes
 	icon = decision_resort_colony
 
-	enactment_time = 3600
+	enactment_time = @pd_toxic_time
 
 	potential = {
 		exists = owner
@@ -848,7 +850,7 @@ decision_pd_aw_wasteland_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_wasteland
 
-	enactment_time = 3600
+	enactment_time = @pd_toxic_time
 
 	potential = {
 		is_starting_planet_type = yes
@@ -915,12 +917,13 @@ decision_pd_aw_wasteland_planet = {
 }
 
 #Shroud Touched Planet
+@pd_shroud_time = 1800
 #Remove Shroud Modifier
 decision_pd_aw_shroud_planet_cleanup = {
 	owned_planets_only = yes
 	icon = decision_resort_colony
 
-	enactment_time = 3600
+	enactment_time = @pd_shroud_time
 
 	potential = {
 		exists = owner
@@ -978,7 +981,7 @@ decision_pd_aw_shroud_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_shroud
 
-	enactment_time = 3600
+	enactment_time = @pd_shroud_time
 
 	potential = {
 		OR = {
