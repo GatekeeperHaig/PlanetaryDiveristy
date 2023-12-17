@@ -8,6 +8,7 @@ planet_event = {
 
 	trigger = {
 		has_modifier = pd_aw_shroud_planet
+		NOT = {	has_modifier = flooded_habitat }
 	}
 
 	immediate = {
@@ -84,8 +85,6 @@ planet_event = {
 			}
 		}
 	}
-
-
 }
 
 # This event changes arcologies after the change effect has hapepens
@@ -98,6 +97,108 @@ planet_event = {
 		set_planet_entity = {
 			picture = pc_pd_shroud_city
 			entity = pdshroudcity_planet_01_entity
+		}
+	}
+}
+
+# This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded
+planet_event = {
+	id = pdshroudplanets.205
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = pd_aw_shroud_planet
+		has_modifier = flooded_habitat
+	}
+
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_city = {
+				planet_event = { id = pdshroudplanets.206 days = 1 }
+			}
+			pc_relic = {
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_relic
+					entity = pdaquatic_shroudrelic_planet_01_entity
+				}
+			}
+			pc_gaia = {
+				set_planet_entity = {
+					picture = pc_aquatic_shroud_hot
+					entity = ocean_paradise_shroud_planet_01_entity
+				}
+			}
+			pc_ocean = {
+				set_planet_entity = {
+					picture = pc_pd_shroud
+					entity = pdshroud_planet_01_entity
+				}
+			}
+			# This shouldn't be possible keeping just in case I'm wrong
+			# pc_continental = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_tropical = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_arctic = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_alpine = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_tundra = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_desert = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_savannah = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+			# pc_arid = {
+			# 	set_planet_entity = {
+			# 		picture = pc_pd_shroud
+			# 		entity = pdshroud_planet_01_entity
+			# 	}
+			# }
+		}
+	}
+}
+
+# This event changes arcologies after the change effect has hapepens
+planet_event = {
+	id = pdshroudplanets.206
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_entity = {
+			picture = pc_pd_aquatic_shroud_city
+			entity = aquatic_shroudcity_planet_01_entity
 		}
 	}
 }

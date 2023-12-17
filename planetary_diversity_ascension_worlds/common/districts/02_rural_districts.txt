@@ -334,8 +334,8 @@ district_farming = {
 			NOT = { owner = { is_anglers_empire = yes } }
 			AND = {
 				owner = { is_anglers_empire = yes }
-				NOR = { 
-					is_planet_class = pc_ocean 
+				NOR = {
+					is_planet_class = pc_ocean
 					AND = {
 						has_modifier = flooded_habitat
 						NOT = { is_planet_class = pc_relic }
@@ -1002,13 +1002,14 @@ district_farming_uncapped = {
 			AND = {
 				exists = owner
 				owner = { is_anglers_empire = yes }
-				planet = { 
+				planet = {
 					OR = {
-						is_planet_class = pc_ocean 
+						is_planet_class = pc_ocean
 						AND = {
 							has_modifier = flooded_habitat
 							NOR = {
-								is_planet_class = pc_relic 
+								is_planet_class = pc_ringworld_habitable
+								is_planet_class = pc_relic
 								is_planet_class = pc_habitat
 								is_planet_class = pc_city
 							}
@@ -1028,8 +1029,8 @@ district_farming_uncapped = {
 	}
 
 	allow = {
-		NOR = { 
-			has_modifier = resort_colony 
+		NOR = {
+			has_modifier = resort_colony
 			is_pd_aw_wasteland_planet = yes
 		}
 	}

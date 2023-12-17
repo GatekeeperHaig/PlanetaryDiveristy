@@ -141,11 +141,6 @@ decision_flood_habitat = {
 				days = -1
 			}
 			ice_mining_depletion_effect = yes
-			set_planet_entity = { 
-				picture = pc_aquahabitat
-				entity = "habitat_phase_03_entity" 
-				graphical_culture = owner 
-			}
 
 			if = {
 				limit = {
@@ -184,6 +179,26 @@ decision_flood_habitat = {
 			change_variable = {
 				which = ice_dumping_happened
 				value = 1
+			}
+			if = {
+				limit = {
+					NOT = { has_modifier = pd_aw_shroud_planet }
+				}
+				set_planet_entity = {
+					picture = pc_aquahabitat
+					entity = "habitat_phase_03_entity"
+					graphical_culture = owner
+				}
+			}
+			if = {
+				limit = {
+					has_modifier = pd_aw_shroud_planet
+				}
+				set_planet_entity = {
+					picture = pc_pd_aqua_shroud_habitat
+					entity = "habitat_phase_03_entity"
+					graphical_culture = owner
+				}
 			}
 		}
 	}
