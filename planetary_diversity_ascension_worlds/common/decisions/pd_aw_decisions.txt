@@ -140,8 +140,8 @@ decision_pd_aw_bloom_tree_of_life = {
 }
 
 
-#Flood Planet
-@expand_planetary_sea_length = 720
+#Expand Planetary Sea
+@expand_planetary_sea_length = 1800
 decision_pd_aw_flood_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_flooding_aw
@@ -163,8 +163,8 @@ decision_pd_aw_flood_planet = {
 		}
 		NOR = {
 			has_modifier = flooded_habitat
-			has_modifier = ocean_paradise
-			has_modifier = ocean_paradise_hive
+			has_modifier = ocean_paradise_2
+			has_modifier = ocean_paradise_hive_2
 			has_planet_flag = pd_unique_world
 			is_pd_aw_wasteland_planet = yes
 		}
@@ -289,9 +289,37 @@ decision_pd_aw_flood_planet = {
 	effect = {
 		custom_tooltip = decision_pd_aw_flood_planet_tooltip
 		hidden_effect = {
-			add_modifier = {
-				modifier = flooded_habitat
-				days = -1
+			IF = {
+				limit = {
+					NOR = {
+						has_modifier = ocean_paradise
+						has_modifier = ocean_paradise_hive
+					}
+				}
+				add_modifier = {
+					modifier = flooded_habitat
+					days = -1
+				}
+			}
+			IF = {
+				limit = {
+					has_modifier = ocean_paradise
+				}
+				remove_modifier = ocean_paradise
+				add_modifier = {
+					modifier = ocean_paradise_2
+					days = -1
+				}
+			}
+			IF = {
+				limit = {
+					has_modifier = ocean_paradise_hive
+				}
+				remove_modifier = ocean_paradise_hive
+				add_modifier = {
+					modifier = ocean_paradise_hive_2
+					days = -1
+				}
 			}
 			hidden_effect = {
 				IF = {
@@ -305,6 +333,19 @@ decision_pd_aw_flood_planet = {
 						set_planet_entity = {
 							picture = pc_aquatic
 							entity = aquatic_planet_01_entity
+						}
+						pd_remove_ocean_modifiers = yes
+					}
+					IF = {
+						limit = {
+							OR = {
+								has_modifier = ocean_paradise_2
+								has_modifier = ocean_paradise_hive_2
+							}
+						}
+						set_planet_entity = {
+							picture = pc_aquatic
+							entity = ocean_paradise_planet_01_entity
 						}
 						pd_remove_ocean_modifiers = yes
 					}
