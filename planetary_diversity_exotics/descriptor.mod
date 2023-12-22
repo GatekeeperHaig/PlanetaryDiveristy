@@ -2,10 +2,6 @@ tags={
 	"Balance"
 	"Galaxy Generation"
 }
-name="Planetary Diversity - Exotic Worlds"
+name="Planetary Diversity - City Sets"
 picture="thumbnail.png"
-dependencies={
-	"Planetary Diversity"
-}
 supported_version="3.10.*"
-remote_file_id="1732437279"
