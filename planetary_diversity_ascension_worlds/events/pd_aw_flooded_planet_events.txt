@@ -114,3 +114,30 @@ planet_event = {
 		}
 	}
 }
+
+planet_event = {
+	id = pdfloodedplanets.300
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_modifier = ocean_paradise_2
+			has_modifier = ocean_paradise_hive_2
+		}
+		NOR = {
+			is_planet_class = pc_ocean
+			is_planet_class = pc_gaia
+			is_planet_class = pc_pd_wet_gaia
+		}
+		#should never be possible, but just in case
+	}
+
+	immediate = {
+		if = {
+			limit = { has_modifier = ocean_paradise_2 }
+			remove_modifier = ocean_paradise_2
+		}
+		else = { remove_modifier = ocean_paradise_hive_2 }
+	}
+}
