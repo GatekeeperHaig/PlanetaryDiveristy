@@ -499,7 +499,7 @@ decision_pd_aw_unflood_planet = {
 			is_planet_class = pc_city
 		}
 		exists = owner
-		has_modifier = flooded_habitat
+		pd_is_flooded_planet = yes
 		owner = {
 			NOT = { has_ascension_perk = ap_hydrocentric }
 		}
@@ -518,6 +518,10 @@ decision_pd_aw_unflood_planet = {
 
 	effect = {
 		remove_modifier = flooded_habitat
+		remove_modifier = ocean_paradise
+		remove_modifier = ocean_paradise_2
+		remove_modifier = ocean_paradise_hive
+		remove_modifier = ocean_paradise_hive_2
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1187,9 +1191,8 @@ decision_pd_aw_shroud_planet = {
 		hidden_effect = {
 			IF = {
 				limit = {
-					NOR = {
-						has_modifier = flooded_habitat
-						has_modifier = ocean_paradise
+					NOT = {
+						pd_is_flooded_planet = yes
 					}
 				}
 				IF = {
@@ -1272,10 +1275,7 @@ decision_pd_aw_shroud_planet = {
 			}
 			IF = {
 				limit = {
-					OR = {
-						has_modifier = flooded_habitat
-						has_modifier = ocean_paradise
-					}
+					pd_is_flooded_planet = yes
 				}
 				IF = {
 					limit = {
@@ -1402,10 +1402,7 @@ decision_pd_aw_necro_planet = {
 		hidden_effect = {
 			IF = {
 				limit = {
-					NOR = {
-						has_modifier = flooded_habitat
-						has_modifier = ocean_paradise
-					}
+					NOT = {	has_modifier = pd_aw_shroud_planet }
 				}
 				IF = {
 					limit = {
@@ -1413,142 +1410,142 @@ decision_pd_aw_necro_planet = {
 					}
 					set_planet_entity = {
 						picture = pc_pd_necro
-						entity = pdnecro_planet_01_entity
+						entity = pd_necro_planet_01_entity
 					}
 				}
-				IF = {
-					limit = {
-						is_planet_class = pc_ringworld_habitable
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro_ring
-						entity = pd_necro_ringworld_habitable_entity_01_entity
-						graphical_culture = owner
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_habitat
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro_habitat
-						entity = "habitat_phase_03_entity"
-						graphical_culture = owner
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_city
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro_city
-						entity = pdnecrocity_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_relic
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro_relic
-						entity = pdnecrorelic_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						has_planet_flag = planet_earth
-						NOT = { is_planet_class = pc_city }
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro
-						entity = pdnecro_planet_earth_entity
-					}
-				}
-				IF = {
-					limit = {
-						has_planet_flag = pdmars
-						NOT = { is_planet_class = pc_city }
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro
-						entity = pdnecro_planet_mars_entity
-					}
-				}
-				IF = {
-					limit = {
-						has_planet_flag = pdvenus
-						NOT = { is_planet_class = pc_city }
-					}
-					set_planet_entity = {
-						picture = pc_pd_necro
-						entity = pdnecro_planet_venus_entity
-					}
-				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_ringworld_habitable
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro_ring
+#						entity = pd_necro_ringworld_habitable_entity_01_entity
+#						graphical_culture = owner
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_habitat
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro_habitat
+#						entity = "habitat_phase_03_entity"
+#						graphical_culture = owner
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_city
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro_city
+#						entity = pdnecrocity_planet_01_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_relic
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro_relic
+#						entity = pdnecrorelic_planet_01_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						has_planet_flag = planet_earth
+#						NOT = { is_planet_class = pc_city }
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro
+#						entity = pdnecro_planet_earth_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						has_planet_flag = pdmars
+#						NOT = { is_planet_class = pc_city }
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro
+#						entity = pdnecro_planet_mars_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						has_planet_flag = pdvenus
+#						NOT = { is_planet_class = pc_city }
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_necro
+#						entity = pdnecro_planet_venus_entity
+#					}
+#				}
 			}
-			IF = {
-				limit = {
-					has_modifier = pd_aw_shroud_planet
-				}
-				IF = {
-					limit = {
-						habitable_planet_not_urban = yes
-						NOT = {
-							is_planet_class = pc_gaia
-						}
-					}
-					set_planet_entity = {
-						picture = pc_aquatic_necro
-						entity = aquatic_necro_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_gaia
-					}
-					set_planet_entity = {
-						picture = pc_aquatic_necro_hot
-						entity = ocean_paradise_necro_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_ringworld_habitable
-					}
-					set_planet_entity = {
-						picture = pc_aquatic_necro
-						entity = pdaquatic_necro_ringworld_habitable_entity_01_entity
-						graphical_culture = owner
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_habitat
-					}
-					set_planet_entity = {
-						picture = pc_pd_aqua_necro_habitat
-						entity = "habitat_phase_03_entity"
-						graphical_culture = owner
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_city
-					}
-					set_planet_entity = {
-						picture = pc_pd_aquatic_necro_city
-						entity = aquatic_necrocity_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_relic
-					}
-					set_planet_entity = {
-						picture = pc_pd_aquatic_necro_relic
-						entity = pdaquatic_necrorelic_planet_01_entity
-					}
-				}
-			}
+#			IF = {
+#				limit = {
+#					has_modifier = pd_aw_shroud_planet
+#				}
+#				IF = {
+#					limit = {
+#						habitable_planet_not_urban = yes
+#						NOT = {
+#							is_planet_class = pc_gaia
+#						}
+#					}
+#					set_planet_entity = {
+#						picture = pc_aquatic_necro
+#						entity = aquatic_necro_planet_01_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_gaia
+#					}
+#					set_planet_entity = {
+#						picture = pc_aquatic_necro_hot
+#						entity = ocean_paradise_necro_planet_01_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_ringworld_habitable
+#					}
+#					set_planet_entity = {
+#						picture = pc_aquatic_necro
+#						entity = pdaquatic_necro_ringworld_habitable_entity_01_entity
+#						graphical_culture = owner
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_habitat
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_aqua_necro_habitat
+#						entity = "habitat_phase_03_entity"
+#						graphical_culture = owner
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_city
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_aquatic_necro_city
+#						entity = aquatic_necrocity_planet_01_entity
+#					}
+#				}
+#				IF = {
+#					limit = {
+#						is_planet_class = pc_relic
+#					}
+#					set_planet_entity = {
+#						picture = pc_pd_aquatic_necro_relic
+#						entity = pdaquatic_necrorelic_planet_01_entity
+#					}
+#				}
+#			}
 			remove_pd_modifier = yes
 			create_message = {
 				type = MESSAGE_PD_AW_SHROUD_TYPE

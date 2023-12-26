@@ -10,7 +10,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		owner = { 
+		owner = {
 			has_origin = origin_ocean_paradise
 		}
 	}
@@ -25,47 +25,47 @@ country_event = {
 	}
 }
 
-# This event fires when certain planets get terraformed and makes sure that if they have the flooded planet modifier the planet view stays flooded 
+# This event fires when certain planets get terraformed and makes sure that if they have the flooded planet modifier the planet view stays flooded
 planet_event = {
 	id = pdfloodedplanets.200
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		has_modifier = flooded_habitat
+		pd_is_flooded_planet = yes
 	}
 
 	immediate = {
 		switch = {
 			trigger = is_planet_class
-			pc_city = {	
+			pc_city = {
 				planet_event = { id = pdfloodedplanets.201 days = 1 }
 			}
-			pc_relic = {		
+			pc_relic = {
 				set_planet_entity = {
 					picture = pc_pd_aquatic_relic
 					entity = pd_aquatic_relic_world_01_entity
 				}
 			}
-			pc_hive = {		
+			pc_hive = {
 				set_planet_entity = {
 					picture = pc_pd_aquatic_hive
 					entity = pd_aquatic_infested_planet_01_entity
 				}
 			}
-			pc_machine = {		
+			pc_machine = {
 				set_planet_entity = {
 					picture = pc_pd_aquatic_machine
 					entity = pd_aquatic_machine_planet_01_entity
 				}
 			}
-			pc_gaia = {		
+			pc_gaia = {
 				set_planet_entity = {
 					picture = pc_aquatic_hot
 					entity = ocean_paradise_planet_01_entity
 				}
 			}
-			pc_ocean = {		
+			pc_ocean = {
 				set_planet_entity = {
 					picture = pc_aquatic
 					entity = aquatic_planet_01_entity
