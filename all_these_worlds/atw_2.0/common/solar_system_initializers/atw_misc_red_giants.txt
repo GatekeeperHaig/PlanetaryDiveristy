@@ -1,0 +1,1022 @@
+@base_moon_distance = 6
+@extended_moon_distance = 8
+@sub_giant_moon_distance = 12
+@giant_moon_distance = 14
+@super_giant_moon_distance = 18
+
+# This file has misc initializers for class A primary Stars, including binaries/trinaries
+
+# To help with the planet conversion engine, every planet should have at least one moon, which may be removed by script after the conversion engine runs.
+# Because vanilla habitable worlds have a global min and max spawn distance, every star class will have the same Eco Zone (60-100) range, but the vanilla habitable generation has been adapted to favor cold worlds in dim stars and dry worlds in bright stars. 
+# Some planets in or outside the eco range may get an extra flag which may result in the engine converting an uninhabitable into a marginal or sub=marginal world: liquid_water; frozen_water; aquifers; ammonia; primordial; chthonian; locked
+# Bright stars should have goldilock zones farther out, so we should force the water flags beyond the 60-100 range
+
+# Solari RGB system - Old Sun-like star during its red giant phase
+red_giant_init_01 = {
+	class = "sc_m_giant"
+	
+	usage = misc_system_init
+	usage_odds = 5
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 400
+	}
+	
+	flags = { atw_red_giant_medium atw_misc }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	# Inner Zone
+	change_orbit = 25
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_molten"
+		size = { min = 15 max = 22 }
+		flags = { orbit-25 }
+		change_orbit = @base_moon_distance
+	}
+	change_orbit = 15
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_toxic"
+		size = { min = 15 max = 22 }
+		flags = { orbit-40 hothouse }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 20
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_barren"
+		size = { min = 15 max = 22 }
+		flags = { orbit-60 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 20
+	planet = {
+		count = { min = 3 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+		flags = { orbit-80 }
+	}
+	change_orbit = 50
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 24 max = 27 }
+		flags = { orbit-130 }
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 2 }
+			size = { min = 6 max = 12 }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 3 max = 3 }
+			size = { min = 8 max = 16 }
+			flags = { liquid_water }
+		}
+	}
+	change_orbit = 65
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 24 max = 27 }
+		flags = { orbit-195 }
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 2 }
+			size = { min = 6 max = 12 }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 3 max = 3 }
+			size = { min = 8 max = 16 }
+			flags = { frozen_water }
+		}
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-255 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 15 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 75
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-330 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 15 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 50
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 14 }
+		flags = { orbit-380 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 6 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 20
+	planet = {
+		count = { min = 3 max = 5 }
+		flags = { orbit-400 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_ice_asteroid"
+	}
+}
+
+# Cooling giant system - a hot luminous giant which has been expanding and cooling from a blue to red giant
+red_giant_init_02 = {
+	class = "sc_m_giant"
+	
+	usage = misc_system_init
+	usage_odds = 4
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	
+	flags = { atw_red_giant_medium atw_misc }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 60
+	# Inner Zone
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-60 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 1 }
+			class = "pc_molten"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+		}
+	}
+	# Eco Zone
+	change_orbit = 30
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_molten"
+		size = { min = 15 max = 22 }
+		flags = { orbit-90 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 20
+	# Outer Zone	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 22 }
+		flags = { orbit-110 primordial }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 30
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 23 max = 25 }
+		flags = { orbit-140 }
+		change_orbit = @extended_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 10 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 13 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+		flags = { orbit-200 }
+	}
+	change_orbit = 80
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 24 max = 27 }
+		flags = { orbit-280 }
+		change_orbit = @giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 2 }
+			size = { min = 6 max = 12 }
+		}
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 3 max = 3 }
+			size = { min = 8 max = 16 }
+		}
+	}
+	change_orbit = 70
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-350 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 15 }
+			flags = { erasable }
+		}
+	}
+}
+
+# Brown-dwarf companion RGB system - Above average star in its red giant phase with outer brown-dwarf with several orbiting planets
+red_giant_init_03 = {
+	class = "sc_brown_companion_3"
+	
+	usage = misc_system_init
+	usage_odds = 4
+	
+	flags = { atw_red_giant_large atw_misc }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	change_orbit = 30
+	# Inner Zone
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 22 }
+		class = "pc_broken"
+		flags = { orbit-30 }
+	}
+	change_orbit = 50
+	# Eco Zone
+	planet = {
+        count = 1
+        class = star
+        orbit_distance = 0
+        #size = { min = 15 max = 25 }
+        has_ring = no
+        satellite_naming_policy = upper_case_roman_numerals
+		change_orbit = 8
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 3
+			orbit_angle = { min = 90 max = 270 }
+			class = random_non_colonizable
+			size = { min = 10 max = 14 }
+			flags = { orbit-80 }
+			init_effect = {
+				add_modifier = {
+					modifier = "tidal_locked"
+					days = -1
+				}
+			}
+		}
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 6
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 15 max = 22 }
+			flags = { orbit-80 liquid_water }
+			change_orbit = @base_moon_distance
+		}
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 4
+			orbit_angle = { min = 90 max = 270 }
+			class = random_non_colonizable
+			size = { min = 10 max = 14 }
+			flags = { orbit-80 }
+		}
+	}
+	change_orbit = 80
+	# Outer Zone
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-160 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 15 }
+			flags = { ammonia }
+		}
+	}
+	change_orbit = 70
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-230 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 15 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 22 }
+		flags = { orbit-290 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 45
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 22 }
+		flags = { orbit-335 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 35
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 14 }
+		flags = { orbit-370 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 6 }
+			flags = { erasable }
+		}
+	}
+}
+
+# Close Binary - Red Giant with White Dwarf companion
+red_giant_binary_init_c01 = {
+	class = "rl_binary_the_giant_and_the_dwarf"
+	  
+	usage = misc_system_init
+	usage_odds = 2
+  
+	flags = { atw_red_giant_binary atw_misc }
+	
+	  planet = {
+		  count = 1
+		  class = star
+		  orbit_distance = 0
+		  orbit_angle = { min = 90 max = 270 }
+		  size = { min = 30 max = 35 }
+		  has_ring = no
+	  }
+	  planet = {
+		  count = 1
+		  class = star
+		  orbit_distance = 40
+		  orbit_angle = 180
+		  size = { min = 20 max = 25 }
+		  has_ring = no
+	  }
+	  
+	  change_orbit = 35
+	  # Inner Zone
+	  # Eco Zone
+	  planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 10 max = 14 }
+		class = random_non_colonizable
+		flags = { orbit-75 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 6 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 45
+	# Outer Zone
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 23 max = 25 }
+		flags = { orbit-120 aquifers }
+		change_orbit = @extended_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 35
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 23 max = 25 }
+		flags = { orbit-155 liquid_water }
+		change_orbit = @extended_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 10 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 13 }
+			flags = { erasable frozen_water }
+		}
+	}
+	change_orbit = 55
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-210 }
+		change_orbit = @sub_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 11 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 15 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 110
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 28 max = 30 }
+		flags = { orbit-320 }
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 18 }
+			flags = { erasable }
+		}
+	}
+}
+
+# Wide Binary - Red Giant with White Dwarf companion
+red_giant_binary_init_w01 = {
+	class = "rl_binary_the_giant_and_the_dwarf"
+	  
+	usage = misc_system_init
+	usage_odds = 3
+  
+	flags = { atw_red_giant_binary atw_misc }
+	
+	asteroid_belt = {
+	  type = rocky_asteroid_belt
+	  radius = 175
+	}
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 0
+		size = { min = 30 max = 35 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+		
+		# Inner Zone
+		change_orbit = 30
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 10 max = 14 }
+			flags = { orbit-30 }
+			change_orbit = @base_moon_distance
+			moon = {
+				count = { min = 1 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 3 }
+				size = { min = 4 max = 6 }
+				flags = { erasable }
+			}
+		}
+		change_orbit = 20
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 10 max = 14 }
+			flags = { orbit-50 }
+			change_orbit = @base_moon_distance
+			moon = {
+				count = { min = 1 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 3 }
+				size = { min = 4 max = 6 }
+				flags = { erasable }
+			}
+		}
+		change_orbit = 40
+		# Eco Zone
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 15 max = 22 }
+			class = "pc_toxic"
+			flags = { orbit-90 hothouse }
+			change_orbit = @base_moon_distance
+			moon = {
+				count = { min = 1 max = 2 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 3 }
+				size = { min = 4 max = 10 }
+				flags = { erasable }
+			}
+		}
+		change_orbit = 30
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 23 max = 25 }
+			class = "pc_frozen"
+			flags = { orbit-120 liquid_water }
+			change_orbit = @extended_moon_distance
+			moon = {
+				count = { min = 1 max = 2 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 3 }
+				size = { min = 5 max = 10 }
+				flags = { erasable }
+			}
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 3 }
+				size = { min = 8 max = 13 }
+				flags = { liquid_water }
+			}
+		}
+		change_orbit = 55
+		planet = {
+			count = { min = 1 max = 4 }
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			class = "pc_asteroid"
+			flags = { orbit-175 }
+		}
+		change_orbit = 65
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			class = "pc_gas_giant"
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 24 max = 27 }
+			flags = { orbit-240 }
+			change_orbit = @giant_moon_distance		
+			moon = {
+				count = { min = 1 max = 2 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 2 }
+				size = { min = 6 max = 12 }
+			}
+			moon = {
+				count = { min = 0 max = 2 }
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 3 max = 3 }
+				size = { min = 8 max = 16 }
+			}
+		}
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 320
+		orbit_angle = 180
+		size = { min = 20 max = 25 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+	
+		# Inner Zone
+		change_orbit = 15		
+		planet = {
+			count = 1
+			orbit_distance = { min = 15 max = 20 }
+			flags = { orbit-15 forced }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+		}
+		change_orbit = 10		
+		planet = {
+			count = 1
+			orbit_distance = { min = 15 max = 20 }
+			flags = { orbit-25 forced }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+		}
+	}
+}
+
+# Wide Binary - Red/Blue Giant with Red Dwarf companion
+red_giant_binary_init_w02 = {
+	class = "rl_binary_father_and_son"
+	  
+	usage = misc_system_init
+	usage_odds = 2
+	flags = { atw_red_giant_binary atw_misc }
+	
+	asteroid_belt = {
+	  type = rocky_asteroid_belt
+	  radius = 45
+	}
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 180
+		size = { min = 30 max = 35 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+
+		change_orbit = 45
+		# Inner Zone
+		planet = {
+			count = { min = 1 max = 4 }
+			orbit_distance = 0
+			orbit_angle = 0
+			class = "pc_asteroid"
+			flags = { orbit-45 }
+		}
+		change_orbit = -45
+		
+		change_orbit = 90
+		# Eco Zone
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			class = "pc_gas_giant"
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 24 max = 27 }
+			flags = { orbit-90 alkaline }
+			change_orbit = @giant_moon_distance		
+			moon = {
+				count = { min = 1 max = 2 }
+				class = "pc_barren_cold"
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 2 }
+				size = { min = 6 max = 12 }
+			}
+		}
+		change_orbit = 55
+		# Outer Zone
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			class = "pc_gas_giant"
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 24 max = 27 }
+			flags = { orbit-145 }
+			change_orbit = @giant_moon_distance		
+			moon = {
+				count = { min = 1 max = 2 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 2 }
+				size = { min = 6 max = 12 }
+			}
+			moon = {
+				count = { min = 0 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 3 max = 3 }
+				size = { min = 8 max = 16 }
+			}
+		}
+		change_orbit = 65
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			class = "pc_gas_giant"
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = 24 max = 27 }
+			flags = { orbit-210 }
+			change_orbit = @giant_moon_distance		
+			moon = {
+				count = { min = 1 max = 2 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 2 }
+				size = { min = 6 max = 12 }
+			}
+			moon = {
+				count = { min = 0 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 3 max = 3 }
+				size = { min = 8 max = 16 }
+				flags = { ammonia }
+			}
+		}
+	}
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 300
+		orbit_angle = 180
+		size = { min = 25 max = 30 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+		
+		change_orbit = 20
+		planet = {
+			count = { min = 0 max = 1 }
+			size = { min = 13 max = 17 }
+			orbit_distance = 0
+			orbit_angle = 360
+			flags = { orbit-20 locked_hot }
+			init_effect = {
+				add_modifier = {
+					modifier = "tidal_locked"
+					days = -1
+				}
+			}
+		}
+		change_orbit = 20
+		planet = {
+			count = { min = 0 max = 1 }
+			size = { min = 13 max = 17 }
+			orbit_distance = 0
+			orbit_angle = 360
+			flags = { orbit-40 locked_temperate } 
+			init_effect = {
+				add_modifier = {
+					modifier = "tidal_locked"
+					days = -1
+				}
+			}
+		}
+		change_orbit = 15
+		planet = {
+			count = { min = 0 max = 1 }
+			size = { min = 13 max = 17 }
+			orbit_distance = 0
+			orbit_angle = 360
+			flags = { orbit-55 locked_cold }
+			init_effect = {
+				add_modifier = {
+					modifier = "tidal_locked"
+					days = -1
+				}
+			}
+		}
+		change_orbit = 15
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 0
+			orbit_angle = { min = 90 max = 270 }
+			class = random_non_colonizable
+			size = { min = 10 max = 14 }
+			flags = { orbit-70 }
+			change_orbit = @base_moon_distance
+			moon = {
+				count = { min = 1 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = { min = 2 max = 3 }
+				size = { min = 4 max = 6 }
+				flags = { erasable }
+			}
+		}
+	}
+}

@@ -1,0 +1,165 @@
+## Binary system with a Tidally-locked world orbiting a Red Dwarf
+origin_tidally-locked_dry = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_default.dds"
+	picture = GFX_oritin_tidally-locked_dry
+
+	starting_colony = pc_savannah
+	habitability_preference = pc_savannah
+	preferred_planet_class_neighbor = yes
+	initializers = { tidally_locked_system }
+
+	playable = {
+		always = yes
+	}
+
+	possible = {
+
+	}
+	
+	modifier = {
+		pop_housing_usage_mult = -0.25
+		planet_jobs_food_produces_mult = 0.15
+	}
+
+	random_weight = {
+		base = 4
+	}
+	
+	#description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}
+origin_tidally-locked_temperate = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_default.dds"
+	picture = GFX_oritin_tidally-locked_temperate
+
+	starting_colony = pc_tropical
+	habitability_preference = pc_tropical
+	preferred_planet_class_neighbor = yes
+	initializers = { tidally_locked_system }
+
+	playable = {
+		always = yes
+	}
+
+	possible = {
+
+	}
+	
+	modifier = {
+		pop_housing_usage_mult = -0.25
+		planet_jobs_food_produces_mult = 0.15
+	}
+
+	random_weight = {
+		base = 3
+	}
+	
+	#description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}
+origin_tidally-locked_frigid = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_default.dds"
+	picture = GFX_oritin_tidally-locked_frigid
+
+	starting_colony = pc_alpine
+	habitability_preference = pc_ocean
+	preferred_planet_class_neighbor = yes
+	initializers = { tidally_locked_system }
+
+	playable = {
+		has_aquatics = yes
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+	}
+	
+	traits = {
+		trait = trait_aquatic
+	}
+	
+	modifier = {
+		pc_alpine_habitability = 0.4
+		pc_arctic_habitability = 0.4
+		pc_tundra_habitability = 0.4
+	}
+
+	random_weight = {
+		base = 2
+	}
+	
+	#description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}
+origin_mega_terrestrial = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_default.dds"
+	picture = GFX_origin_mega_terrestrial
+
+	#starting_colony = pc_alpine
+	#habitability_preference = pc_ocean
+	preferred_planet_class_neighbor = yes
+	initializers = { mega_terrestrial_system }
+
+	playable = {
+	
+	}
+
+	possible = {
+		
+	}
+	
+	traits = {
+		trait = trait_high_gravity
+	}
+	
+	modifier = {
+		pop_housing_usage_mult = 0.25
+	}
+
+	random_weight = {
+		base = 5
+	}
+	
+	#description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}
+origin_bioluminescent = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_default.dds"
+	picture = GFX_origin_bioluminescent
+
+	starting_colony = pc_continental
+	habitability_preference = pc_continental
+	preferred_planet_class_neighbor = yes
+	initializers = { bioluminescent_system }
+
+	playable = {
+	
+	}
+
+	possible = {
+		
+	}
+	
+	modifier = {
+
+	}
+
+	random_weight = {
+		base = 5
+	}
+	
+	#description = "origin_tooltip_default_effects"
+
+	advanced_start = yes
+}

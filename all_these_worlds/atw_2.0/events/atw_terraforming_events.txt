@@ -1,0 +1,287 @@
+namespace = atw_terraforming
+
+#Saving the original planet class flag
+planet_event = {
+	id = atw_terraforming.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_planet_flag = "has_terraform_class_flag" }
+	}
+
+	immediate = {
+		set_planet_flag = "has_terraform_class_flag"
+		# Store the tarraforming species' biosphere preference
+		# Knowing each of the vanilla classes has one default preference
+		from = {
+			switch = {
+				trigger = ideal_planet_class
+				pc_gaia = {
+					prev = { set_planet_flag = "has_gaia_preference" }
+				}
+				pc_nuked = {
+					prev = { set_planet_flag = "has_nuked_preference" }
+				}
+				pc_continental = {
+					prev = { set_planet_flag = "has_diverse_preference" }
+				}
+				pc_tropical = {
+					prev = { set_planet_flag = "has_dense_preference" }
+				}
+				pc_ocean = {
+					prev = { set_planet_flag = "has_diverse_preference" }
+				}
+				pc_desert = {
+					prev = { set_planet_flag = "has_sparse_preference" }
+				}
+				pc_arid = {
+					prev = { set_planet_flag = "has_barren_preference" }
+				}
+				pc_savannah = {
+					prev = { set_planet_flag = "has_sparse_preference" }
+				}
+				pc_arctic = {
+					prev = { set_planet_flag = "has_sparse_preference" }
+				}
+				pc_tundra = {
+					prev = { set_planet_flag = "has_diverse_preference" }
+				}
+				pc_alpine = {
+					prev = { set_planet_flag = "has_barren_preference" }
+				}
+			}
+		}
+		# Store the planet's original class
+		#switch = {
+		#	trigger = has_modifier
+		#	class_chloerosgaean = {
+		#		set_planet_flag = class_chloerosgaean
+		#	}
+		#	class_thermogaean = {
+		#		set_planet_flag = class_thermogaean
+		#	}
+		#	class_cryogaean = {
+		#		set_planet_flag = class_cryogaean
+		#	}
+		#	class_algaemegagi = {
+		#		set_planet_flag = class_algaemegagi
+		#	}
+		#	class_chloerosmegagi = {
+		#		set_planet_flag = class_chloerosmegagi
+		#	}
+		#	class_thermomegagi = {
+		#		set_planet_flag = class_thermomegagi
+		#	}
+		#	class_cryomegagi = {
+		#		set_planet_flag = class_cryomegagi
+		#	}
+		#	class_chloerosorimos = {
+		#		set_planet_flag = class_chloerosorimos
+		#	}
+		#	class_xirosorimos = {
+		#		set_planet_flag = class_xirosorimos
+		#	}
+		#	class_pagosorimos = {
+		#		set_planet_flag = class_pagosorimos
+		#	}
+		#	class_chloerosgenian = {
+		#		set_planet_flag = class_chloerosgenian
+		#	}
+		#	class_retinalgenian = {
+		#		set_planet_flag = class_retinalgenian
+		#	}
+		#	class_thermogenian = {
+		#		set_planet_flag = class_thermogenian
+		#	}
+		#	class_cryogenian = {
+		#		set_planet_flag = class_cryogenian
+		#	}
+		#	class_photosgenian = {
+		#		set_planet_flag = class_photosgenian
+		#	}
+		#	class_ammoniagenian = {
+		#		set_planet_flag = class_ammoniagenian
+		#	}
+		#	class_mukesgenian = {
+		#		set_planet_flag = class_mukesgenian
+		#	}
+		#	class_tropikostopio = {
+		#		set_planet_flag = class_tropikostopio
+		#	}
+		#	class_thermotopio = {
+		#		set_planet_flag = class_thermotopio
+		#	}
+		#	class_megachlorida = {
+		#		set_planet_flag = class_megachlorida
+		#	}
+		#	class_alpikotopio = {
+		#		set_planet_flag = class_alpikotopio
+		#	}
+		#	class_oreinos = {
+		#		set_planet_flag = class_oreinos
+		#	}
+		#	class_savana = {
+		#		set_planet_flag = class_savana
+		#	}
+		#	class_megalopelagic = {
+		#		set_planet_flag = class_megalopelagic
+		#	}
+		#	class_ipeirospelagic = {
+		#		set_planet_flag = class_ipeirospelagic
+		#	}
+		#	class_cryopelagic = {
+		#		set_planet_flag = class_cryopelagic
+		#	}
+		#	class_thermopelagic = {
+		#		set_planet_flag = class_thermopelagic
+		#	}
+		#	class_archipelagic = {
+		#		set_planet_flag = class_archipelagic
+		#	}
+		#	class_pagospelagic = {
+		#		set_planet_flag = class_pagospelagic
+		#	}
+		#	class_panpelagic = {
+		#		set_planet_flag = class_panpelagic
+		#	}
+		#	class_ammoniapelagic = {
+		#		set_planet_flag = class_ammoniapelagic
+		#	}
+		#	class_xiroslykofos = {
+		#		set_planet_flag = class_xiroslykofos
+		#	}
+		#	class_chloeroslykofos = {
+		#		set_planet_flag = class_chloeroslykofos
+		#	}
+		#	class_pagoslykofos = {
+		#		set_planet_flag = class_pagoslykofos
+		#	}
+		#	class_stepikos = {
+		#		set_planet_flag = class_stepikos
+		#	}
+		#	class_erimos = {
+		#		set_planet_flag = class_erimos
+		#	}
+		#	class_karstikos = {
+		#		set_planet_flag = class_karstikos
+		#	}
+		#	class_agonos = {
+		#		set_planet_flag = class_agonos
+		#	}
+		#	class_almyros = {
+		#		set_planet_flag = class_almyros
+		#	}
+		#	class_elos = {
+		#		set_planet_flag = class_elos
+		#	}
+		#	class_hadean = {
+		#		set_planet_flag = class_hadean
+		#	}
+		#	class_anthracean = {
+		#		set_planet_flag = class_anthracean
+		#	}
+		#	class_archean = {
+		#		set_planet_flag = class_archean
+		#	}
+		#	class_protogenian = {
+		#		set_planet_flag = class_protogenian
+		#	}
+		#	class_desolate = {
+		#		set_planet_flag = class_desolate
+		#	}
+		#	class_hydrocarbonal = {
+		#		set_planet_flag = class_hydrocarbonal
+		#	}
+		#	class_alkali = {
+		#		set_planet_flag = class_alkali
+		#	}
+		#	class_sulfuric = {
+		#		set_planet_flag = class_sulfuric
+		#	}
+		#	class_redux = {
+		#		set_planet_flag = class_redux
+		#	}
+		#	class_tomb = {
+		#		set_planet_flag = class_tomb
+		#	}
+		#	class_barren_terraformed = {
+		#		set_planet_flag = class_barren_terraformed
+		#	}
+		#	class_adapted_terraformed = {
+		#		set_planet_flag = class_adapted_terraformed
+		#	}
+		#	class_aquatic_terraformed = {
+		#		set_planet_flag = class_aquatic_terraformed
+		#	}
+		#	class_ammonia_terraformed = {
+		#		set_planet_flag = class_ammonia_terraformed
+		#	}
+		#	class_molten = {
+		#		set_planet_flag = class_molten
+		#	}
+		#	class_chthonian = {
+		#		set_planet_flag = class_chthonian
+		#	}
+		#	class_iron = {
+		#		set_planet_flag = class_iron
+		#	}
+		#	class_silicate = {
+		#		set_planet_flag = class_silicate
+		#	}
+		#	class_dusty = {
+		#		set_planet_flag = class_dusty
+		#	}
+		#	class_volcanic = {
+		#		set_planet_flag = class_volcanic
+		#	}
+		#	class_frozen = {
+		#		set_planet_flag = class_frozen
+		#	}
+		#	class_methane = {
+		#		set_planet_flag = class_methane
+		#	}
+		#	class_hothouse = {
+		#		set_planet_flag = class_hothouse
+		#	}
+		#	class_carbonyl = {
+		#		set_planet_flag = class_carbonyl
+		#	}
+		#	class_ice = {
+		#		set_planet_flag = class_ice
+		#	}
+		#	class_water_panthalassic = {
+		#		set_planet_flag = class_water_panthalassic
+		#	}
+		#	class_ammonia_panthalassic = {
+		#		set_planet_flag = class_ammonia_panthalassic
+		#	}
+		#	class_methane_panthalassic = {
+		#		set_planet_flag = class_methane_panthalassic
+		#	}
+		#	default = {
+		#		set_planet_flag = class_unknown
+		#	}
+		#}
+	}
+}
+
+#Roll proper planet class along with modifiers and entities after tarraform is complete
+planet_event = {
+	id = atw_terraforming.2
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = "has_terraform_class_flag"
+	}
+
+	immediate = {
+		remove_planet_flag = "has_terraform_class_flag"
+		terraform_update = yes
+		# Clean-up
+		clear_terraforming_flags = yes
+	}
+}

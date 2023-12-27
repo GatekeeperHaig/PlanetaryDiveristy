@@ -1,0 +1,286 @@
+## Effects to pick planet class and reroll modifiers with proper entity/portrait after terraforming
+
+terraform_update = {
+	if = {
+		# Shaped Super-terrestrials
+		limit = { is_planet_class = "pc_gaia" }
+		random_list = {
+			1 = {
+				roll_chloerosgaean = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 100 was_temperate_class = yes }
+			}
+			1 = {
+				roll_thermogaean = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 100 was_dry_class = yes }
+			}
+			1 = {
+				roll_cryogaean = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 100 was_frigid_class = yes }
+			}
+		}
+	}
+	# Temperate Terrestrials
+	if = {
+		limit = { is_planet_class = "pc_continental" }
+		random_list = {
+			0 = {
+				roll_megachlorida = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_chloerosorimos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_sparse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_barren_preference" }
+			}
+			10 = {
+				roll_chloerosgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_barren_preference" }
+			}
+			0 = {
+				roll_retinalgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 50 OR = { orbits_red_star = yes orbits_orange_star = yes } }
+			}
+			0 = {
+				roll_photosgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 25 is_gas_giant_moon = yes }
+			}
+		}
+	}
+	# Temperate Sub-terrestrials
+	if = {
+		limit = { is_planet_class = "pc_tropical" }
+		random_list = {
+			0 = {
+				roll_chloerosmegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_tropikostopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_sparse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_barren_preference" }
+			}
+			10 = {
+				roll_alpikotopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.50 has_planet_flag = "has_barren_preference" }
+			}
+		}
+	}
+	# Temperate Oceanics
+	if = {
+		limit = { is_planet_class = "pc_ocean" }
+		random_list = {
+			0 = {
+				roll_panpelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_megalopelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_sparse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_barren_preference" }
+			}
+			10 = {
+				roll_archipelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+			}
+		}
+	}
+	# Dry Terrestrials
+	if = {
+		limit = { is_planet_class = "pc_arid" }
+		random_list = {
+			0 = {
+				roll_algaemegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_xirosorimos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_diverse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+			}
+			10 = {
+				roll_thermogenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+			}
+			0 = {
+				roll_mukesgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 100 orbits_hot_star = yes }
+			}
+		}
+	}
+	# Dry Sub-terrestrials
+	if = {
+		limit = { is_planet_class = "pc_savannah" }
+		random_list = {
+			0 = {
+				roll_thermomegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_thermotopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_diverse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+			}
+			10 = {
+				roll_savana = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_barren_preference" }
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+			}
+		}
+	}
+	# Dry Sub-oceanics
+	if = {
+		limit = { is_planet_class = "pc_desert" }
+		random_list = {
+			0 = {
+				roll_ipeirospelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_thermopelagic = yes
+				correct_habitable_deposits = yes
+				##
+			}
+		}
+	}
+	# Frigid Terrestrials
+	if = {
+		limit = { is_planet_class = "pc_arctic" }
+		random_list = {
+			0 = {
+				roll_cryomegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_pagosorimos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_diverse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+			}
+			10 = {
+				roll_cryogenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+			}
+		}
+	}
+	# Frigid Sub-terrestrials
+	if = {
+		limit = { is_planet_class = "pc_tundra" }
+		random_list = {
+			#0 = {
+			#	roll_krystallomegagi = yes
+			#	correct_habitable_deposits = yes
+			#	##
+			#	modifier = { add = 1000 planet_size > 23 }
+			#}
+			10 = {
+				roll_cryotopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_barren_preference" }
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+			}
+			10 = {
+				roll_oreinos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_diverse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+			}
+		}
+	}
+	# Frigid Sub-oceanics
+	if = {
+		limit = { is_planet_class = "pc_alpine" }
+		random_list = {
+			0 = {
+				roll_pagospelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+			}
+			10 = {
+				roll_cryopelagic = yes
+				correct_habitable_deposits = yes
+				##
+			}
+		}
+	}
+	
+}
+
+clear_terraforming_flags = {
+	if = {
+		limit = { has_planet_flag = "has_gaia_preference" }
+		remove_planet_flag = has_gaia_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_nuked_preference" }
+		remove_planet_flag = has_nuked_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_dense_preference" }
+		remove_planet_flag = has_dense_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_diverse_preference" }
+		remove_planet_flag = has_diverse_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_sparse_preference" }
+		remove_planet_flag = has_sparse_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_barren_preference" }
+		remove_planet_flag = has_barren_preference
+	}
+}

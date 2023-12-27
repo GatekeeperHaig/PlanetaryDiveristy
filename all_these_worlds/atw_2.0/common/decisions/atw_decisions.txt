@@ -1,0 +1,59 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Tomb world atmospheric restoration
+decision_tomb_restoration = {
+	icon = decision_tomb_restoration
+	owned_planets_only = yes
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			energy = 7500
+		}
+	}
+
+	allow = {
+		#is_planet_class = "pc_nuked"
+		has_modifier = "atmosphere-thick_orange"
+	}
+	
+	potential = {
+		is_planet_class = "pc_nuked"
+	}
+
+	effect = {
+		hidden_effect = {
+			remove_atmosphere_modifier = yes
+			remove_biosphere_modifier = yes
+			#remove_class_modifier = yes
+			add_modifier = { modifier = "atmosphere-thick_blue" days = -1 }
+			add_modifier = { modifier = "biosphere-sparse" days = -1 }
+		}
+		remove_modifier = class_tomb
+		add_modifier = { modifier = "class_tomb_restored" days = -1 }
+		set_planet_entity = {
+			picture = "biome_radiotrophic"
+			entity = "tomb_planet_01_entity"
+			atmosphere_color 		= hsv { 0.55 0.1 0.90 }
+			atmosphere_intensity 	= 1.0
+			atmosphere_width 		= 0.5
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }	# -1 blocker
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_radiotrophic_fungi }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }				# -1 blocker
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_lush_cave }
+		}
+	}
+	
+	ai_weight = {
+        weight = 1
+  	}
+}
