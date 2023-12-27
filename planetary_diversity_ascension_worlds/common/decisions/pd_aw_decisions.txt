@@ -166,7 +166,7 @@ decision_pd_aw_flood_planet = {
 			has_modifier = ocean_paradise_2
 			has_modifier = ocean_paradise_hive_2
 			has_planet_flag = pd_unique_world
-			is_pd_aw_wasteland_planet = yes
+			pd_aw_is_wasteland_planet = yes
 		}
 	}
 
@@ -1104,7 +1104,7 @@ decision_pd_aw_shroud_planet_cleanup = {
 		owner = {
 			NOT = { has_tradition = tr_psionics_finish }
 		}
-		is_pd_aw_shroud_planet = yes
+		pd_aw_is_shroud_planet = yes
 		OR = {
 			habitable_planet_not_urban = yes
 			is_planet_class = pc_ringworld_habitable
@@ -1167,8 +1167,8 @@ decision_pd_aw_shroud_planet = {
 		}
 		exists = owner
 		owner = { has_tradition = tr_psionics_finish }
-		is_pd_aw_shroud_planet = no
-		is_pd_aw_wasteland_planet = no
+		pd_aw_is_shroud_planet = no
+		pd_aw_is_wasteland_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
 
@@ -1193,6 +1193,7 @@ decision_pd_aw_shroud_planet = {
 				limit = {
 					NOT = {
 						pd_is_flooded_planet = yes
+						pd_aw_is_necro_planet = yes
 					}
 				}
 				IF = {
@@ -1337,6 +1338,21 @@ decision_pd_aw_shroud_planet = {
 					}
 				}
 			}
+			IF = {
+				limit = {
+					pd_aw_is_necro_planet = yes
+				}
+				IF = {
+					limit = {
+						habitable_planet_not_urban = yes
+					}
+					change_pc = pc_nuked
+					set_planet_entity = {
+						picture = pc_pd_necro_shroud
+						entity = pd_necro_shroud_planet_01_entity
+					}
+				}
+			}
 			remove_pd_modifier = yes
 			create_message = {
 				type = MESSAGE_PD_AW_SHROUD_TYPE
@@ -1376,10 +1392,10 @@ decision_pd_aw_necro_planet = {
 		}
 		exists = owner
 		owner = {
-			pd_is_necro_empire = yes
+			has_ascension_perk = ap_pd_necro_worlds
 		}
-		is_pd_aw_necro_planet = no
-		is_pd_aw_wasteland_planet = no
+		pd_aw_is_necro_planet = no
+		pd_aw_is_wasteland_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
 
@@ -1408,6 +1424,7 @@ decision_pd_aw_necro_planet = {
 					limit = {
 						habitable_planet_not_urban = yes
 					}
+					change_pc = pc_nuked
 					set_planet_entity = {
 						picture = pc_pd_necro
 						entity = pd_necro_planet_01_entity
@@ -1482,22 +1499,20 @@ decision_pd_aw_necro_planet = {
 #					}
 #				}
 			}
-#			IF = {
-#				limit = {
-#					has_modifier = pd_aw_shroud_planet
-#				}
-#				IF = {
-#					limit = {
-#						habitable_planet_not_urban = yes
-#						NOT = {
-#							is_planet_class = pc_gaia
-#						}
-#					}
-#					set_planet_entity = {
-#						picture = pc_aquatic_necro
-#						entity = aquatic_necro_planet_01_entity
-#					}
-#				}
+			IF = {
+				limit = {
+					has_modifier = pd_aw_shroud_planet
+				}
+				IF = {
+					limit = {
+						habitable_planet_not_urban = yes
+					}
+					change_pc = pc_nuked
+					set_planet_entity = {
+						picture = pc_pd_necro_shroud
+						entity = pd_necro_shroud_planet_01_entity
+					}
+				}
 #				IF = {
 #					limit = {
 #						is_planet_class = pc_gaia
@@ -1545,11 +1560,11 @@ decision_pd_aw_necro_planet = {
 #						entity = pdaquatic_necrorelic_planet_01_entity
 #					}
 #				}
-#			}
+			}
 			remove_pd_modifier = yes
 			create_message = {
-				type = MESSAGE_PD_AW_SHROUD_TYPE
-				localization = MESSAGE_PD_AW_SHROUD_DESC
+				type = MESSAGE_PD_AW_NECRO_TYPE
+				localization = MESSAGE_PD_AW_NECRO_DESC
 				days = 20
 				target = root
 				variable = {

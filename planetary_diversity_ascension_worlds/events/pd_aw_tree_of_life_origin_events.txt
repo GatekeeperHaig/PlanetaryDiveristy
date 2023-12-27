@@ -8,12 +8,12 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
-		every_galaxy_planet = { 
-			limit = { 
+		every_galaxy_planet = {
+			limit = {
 				is_planet_class = pc_pd_megaflora_hive
-				is_homeworld = yes 
-			} 
-			generate_pd_aw_start_deposits_and_blockers = yes 
+				is_homeworld = yes
+			}
+			generate_pd_aw_start_deposits_and_blockers = yes
 			change_pc = pc_continental
 			set_planet_entity = {
 				picture = pc_pd_megaflora_hive
@@ -27,7 +27,7 @@ country_event = {
 			set_graphical_culture = pd_tree_of_life_01
 			set_city_graphical_culture = pd_tree_of_life_01
 		}
-	} 
+	}
 }
 
 # This event starts the process to turn planets
@@ -42,10 +42,10 @@ planet_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
-	
+
 	trigger = {
 		owner = {
-			is_pd_aw_tree_of_life = yes
+			pd_aw_is_tree_of_life = yes
 		}
 		NOT = { has_planet_flag = pd_unique_world }
 	}
@@ -86,35 +86,35 @@ planet_event = {
 						days = @megafloraspeed_ringarc
 					}
 				}
-				pc_gaia = { 
+				pc_gaia = {
 					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_gaia }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
 						days = @megafloraspeed_gaia
 					}
 				}
-				pc_continental = { 
+				pc_continental = {
 					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
 						days = @megafloraspeed_wet
 					}
 				}
-				pc_tropical = { 
+				pc_tropical = {
 					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
 						days = @megafloraspeed_wet
 					}
 				}
-				pc_ocean = { 
+				pc_ocean = {
 					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
 						days = @megafloraspeed_wet
 					}
 				}
-				pc_ocean = { 
+				pc_ocean = {
 					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
 					add_modifier = {
 						modifier = pd_aw_tree_of_life_growing
@@ -205,10 +205,10 @@ planet_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
-	
+
 	trigger = {
 		owner = {
-			is_pd_aw_tree_of_life = yes
+			pd_aw_is_tree_of_life = yes
 		}
 	}
 
@@ -230,7 +230,7 @@ planet_event = {
 					entity = plantoid_01_megaflora_hive_ringworld_habitable_01_entity
 				}
 			}
-			pc_city = { 
+			pc_city = {
 				add_deposit = d_pd_tree_of_life_ringarc
 			}
 			default = {
@@ -262,15 +262,15 @@ planet_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
-	
+
 	trigger = {
 		AND = {
-			owner = { 
-				NOT = { 
-					has_origin = origin_pd_aw_tree_of_life 
-				} 
+			owner = {
+				NOT = {
+					has_origin = origin_pd_aw_tree_of_life
+				}
 			}
-			is_pd_aw_megaflora_deposit = yes
+			pd_aw_is_megaflora_deposit = yes
 		}
 	}
 
@@ -303,7 +303,7 @@ planet_event = {
 						graphical_culture = owner
 					}
 				}
-				pc_city = { 
+				pc_city = {
 					remove_deposit = d_pd_tree_of_life_ringarc
 				 	add_deposit = d_pd_tree_of_life_ringarc
 				}
@@ -332,9 +332,9 @@ planet_event = {
 
 	trigger = {
 		planet_devastation >= 50
-		is_pd_aw_megaflora_deposit = yes
+		pd_aw_is_megaflora_deposit = yes
 	}
-	
+
 	immediate = {
 		if = {
 			limit = {
@@ -386,7 +386,7 @@ planet_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
-	
+
 	trigger = {
 		NOT = { days_passed < 1 }
 		OR = {
@@ -408,14 +408,14 @@ planet_event = {
 					habitable_planet_not_urban = yes
 				}
 			}
-			AND = { 
-				FROM = { 
-					NOT = { has_origin = origin_pd_aw_tree_of_life } 
+			AND = {
+				FROM = {
+					NOT = { has_origin = origin_pd_aw_tree_of_life }
 				}
 				has_modifier = pd_aw_no_lifetree
 			}
 		}
-	
+
 	}
 
 	immediate = {
@@ -434,8 +434,8 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				FROM = { 
-					NOT = { has_origin = origin_pd_aw_tree_of_life } 
+				FROM = {
+					NOT = { has_origin = origin_pd_aw_tree_of_life }
 				}
 			}
 			remove_modifier = pd_aw_no_lifetree
