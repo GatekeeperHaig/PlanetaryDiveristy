@@ -1,0 +1,285 @@
+namespace = game_start
+
+### Nebula System Art
+event = {
+	id = game_start.50
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_system = {
+			limit = { is_inside_nebula = yes }
+			nebula_cloaking_effect = yes
+			# Class B
+			if = {
+				limit = {
+					OR = {
+						is_star_class = sc_b
+						is_star_class = sc_binary_father_and_son_2
+					}
+				}
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Class A
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_binary_young_couple_1
+						is_star_class = sc_binary_white_with_white_2
+						is_star_class = sc_trinary_young_twins_being_watched_1
+					}
+				}
+				if = {
+					limit = { has_star_flag = ocean_paradise_nebula }
+					create_rare_nebula_1 = yes
+				}
+				else = {
+					random_list = {
+						20 = { create_nebula_3 = yes }
+						20 = { create_nebula_4 = yes }
+						10 = { create_rare_nebula_1 = yes }
+						10 = { create_rare_nebula_2 = yes }
+						4 = {
+							modifier = {
+								factor = 0
+								has_star_flag = empire_home_system
+							}
+							create_turbulent_nebula_1 = yes
+						}
+						4 = {
+							modifier = {
+								factor = 0
+								has_star_flag = empire_home_system
+							}
+							create_turbulent_nebula_2 = yes
+						}
+					}
+				}
+			}
+			# Class F
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_f
+						is_star_class = sc_binary_wide_degenerate_3
+						is_star_class = sc_brown_companion_2
+						is_star_class = sc_binary_white_with_white_1
+						is_star_class = sc_trinary_evolved_twins_being_watched_1
+						is_star_class = sc_trinary_indi_2
+					}					
+				}
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Class G
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_g
+						is_star_class = sc_binary_yellow_red_1
+						is_star_class = sc_binary_yellow_siblings_1
+						is_star_class = sc_binary_yellow_with_white_1
+						is_star_class = sc_trinary_orphan_twins_1
+						is_star_class = sc_trinary_centauri_1
+						is_star_class = sc_trinary_centauri_2
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class K
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_k
+						is_star_class = sc_brown_companion_1
+						is_star_class = sc_trinary_indi_1
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class M
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_m_giant
+						is_star_class = sc_binary_giant_and_the_dwarf_1
+						is_star_class = sc_binary_father_and_son_1
+						is_star_class = sc_binary_father_and_son_3
+						is_star_class = sc_brown_companion_3
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class T
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_t
+						is_star_class = sc_binary_surviving_dwarf_1
+					}
+				}
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Black Hole
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_trinary_orphan_twins_4
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Neutron Star
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_neutron_star
+						is_star_class = sc_binary_wide_degenerate_2
+						is_star_class = sc_trinary_orphan_twins_3
+					}
+				}
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Pulsar
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_pulsar
+						is_star_class = sc_binary_wide_degenerate_1
+						is_star_class = sc_binary_xray_1
+						is_star_class = sc_binary_xray_2
+						is_star_class = sc_binary_xray_3
+						is_star_class = sc_trinary_orphan_twins_2
+					}					
+				}
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+		}
+	}
+}

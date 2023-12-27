@@ -1,0 +1,322 @@
+@base_moon_distance = 6
+@extended_moon_distance = 8
+@sub_giant_moon_distance = 12
+@giant_moon_distance = 14
+@super_giant_moon_distance = 18
+
+# This file has misc initializers for class A primary Stars, including binaries/trinaries
+
+# To help with the planet conversion engine, every planet should have at least one moon, which may be removed by script after the conversion engine runs.
+# Because vanilla habitable worlds have a global min and max spawn distance, every star class will have the same Eco Zone (60-100) range, but the vanilla habitable generation has been adapted to favor cold worlds in dim stars and dry worlds in bright stars. 
+# Some planets in or outside the eco range may get an extra flag which may result in the engine converting an uninhabitable into a marginal or sub=marginal world: liquid_water; frozen_water; aquifers; ammonia; primordial; chthonian; locked
+# Bright stars should have goldilock zones farther out, so we should force the water flags beyond the 60-100 range
+
+# Recently-formed Blue Giant system - Below average star with multiple asteroid belts and very few planets
+blue_star_init_01 = {
+	class = "sc_b"
+	
+	usage = misc_system_init
+	usage_odds = 2
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 40
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 90
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	
+	flags = { atw_blue_medium atw_misc }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 40
+	planet = {
+		count = { min = 1 max = 3 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+		flags = { orbit-40 }
+	}
+	change_orbit = 20
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_barren_cold"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 22 }
+		flags = { orbit-60 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 30
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+		flags = { orbit-90 }
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 3 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+		flags = { orbit-150 }
+	}	
+	change_orbit = 30
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_barren_cold"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 22 }
+		flags = { orbit-180 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 100
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 23 max = 25 }
+		flags = { orbit-280 }
+		change_orbit = @extended_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 10 }
+			flags = { erasable }
+		}
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 13 }
+			flags = { erasable }
+		}
+	}
+
+}
+
+# Evolving main-sequence star system - Crystal-rich
+blue_star_init_02 = {
+	class = "sc_b"
+	
+	usage = misc_system_init
+	usage_odds = 1
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+	
+	flags = { atw_blue_large atw_misc }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 30 max = 35 }
+		has_ring = no
+	}
+	
+	# Inner Zone
+	# Eco Zone
+	change_orbit = 80
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+	}
+	planet = {
+		count = 1
+		class = pc_rare_crystal_asteroid
+		orbit_distance = 0
+		orbit_angle = 189
+		init_effect = {
+			set_deposit = d_rare_crystals_2
+		}
+	}
+	change_orbit = 30
+	# Outer ZOne
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_molten"
+		size = { min = 15 max = 22 }
+		flags = { orbit-110 forced }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 25
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_barren_cold"
+		size = { min = 10 max = 14 }
+		flags = { orbit-135 iron }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 6 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 35
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_toxic"
+		size = { min = 23 max = 25 }
+		flags = { orbit-170 hothouse }
+		change_orbit = @extended_moon_distance
+		moon = {
+			count = { min = 1 max = 2 }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 5 max = 10 }
+			flags = { erasable }
+		}
+	}
+	change_orbit = 60
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 23 }
+		flags = { orbit-230 alkaline }
+		change_orbit = @sub_giant_moon_distance
+		moon = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			class = "pc_molten"
+			size = { min = 8 max = 15 }
+			flags = { forced }
+		}
+	}
+	change_orbit = 100
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 28 max = 30 }
+		flags = { orbit-330 }
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 1 max = 1 }
+			class = "pc_barren"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 8 max = 18 }
+			flags = { volcanic }
+		}
+	}
+}
+
+# Lonely blue giant with a captured super jovian - Below average star
+blue_star_init_03 = {
+	class = "sc_b"
+	
+	usage = misc_system_init
+	usage_odds = 1
+	
+	flags = { atw_blue_medium atw_misc }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 120
+	}
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 120
+	planet = {
+		count = { min = 4 max = 5 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_asteroid"
+		flags = { orbit-120 }
+	}
+	change_orbit = 100
+	planet = {
+		count = 1
+		orbit_distance = 0
+		class = "pc_gas_giant"
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 28 max = 30 }
+		flags = { orbit-220 super }
+		
+		change_orbit = @super_giant_moon_distance		
+		moon = {
+			count = { min = 2 max = 3 }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 6 max = 12 }
+		}
+		moon = {
+			count = { min = 1 max = 2 }
+			class = "pc_barren"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 4 max = 5 }
+			size = { min = 8 max = 16 }
+		}
+	}
+}

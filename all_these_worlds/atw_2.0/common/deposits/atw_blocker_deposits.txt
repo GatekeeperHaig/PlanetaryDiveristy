@@ -1,0 +1,296 @@
+@blocker_high = 10
+@blocker_low = 5
+@ranger_small_production = 0.5
+@ranger_large_production = 1
+
+d_cryo_volcano = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+	
+	inline_script = deposits/ai_weight_natural_blocker
+
+	ai_weight = {
+		weight = 1
+	}
+
+	prerequisites = { "tech_volcano" }
+}
+d_megafloral_jungle = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	all_blocker_swap_types = yes
+	
+	inline_script = deposits/ai_weight_natural_blocker
+
+	ai_weight = {
+		weight = 1
+	}
+
+	prerequisites = { "tech_dense_jungle" }
+}
+d_twilight_glacier = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	all_blocker_swap_types = yes
+	
+	inline_script = deposits/ai_weight_natural_blocker
+
+	ai_weight = {
+		weight = 1
+	}
+
+	prerequisites = { "tech_massive_glacier" }
+}
+d_retinal_dense_jungle = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	all_blocker_swap_types = yes
+	
+	inline_script = deposits/ai_weight_natural_blocker
+
+	ai_weight = {
+		weight = 1
+	}
+
+	prerequisites = { "tech_dense_jungle" }
+}
+d_ammonia_toxic_kelp = {
+	time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_environmentalist }
+		}
+		planet_rangers_food_produces_add = @ranger_small_production
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	prerequisites = { "tech_toxic_kelp" }
+}
+d_deep_ocean = {
+	#time = 180
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	
+	can_be_cleared = {
+		always = no
+	}
+
+	#resources = {
+	#	category = deposit_blockers_natural
+	#	cost = {
+	#		energy = 1000
+	#	}
+	#}
+
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	#all_blocker_swap_types = yes
+	
+	inline_script = deposits/ai_weight_natural_blocker
+
+	ai_weight = {
+		weight = 1
+	}
+
+	#prerequisites = { "tech_dense_jungle" }
+}
+#d_rock = {
+#	time = 270
+#
+#	is_for_colonizable = yes
+#	category = deposit_cat_blockers
+#
+#	resources = {
+#		category = deposit_blockers
+#		cost = {
+#			energy = 1000
+#		}
+#	}
+#
+#	potential = {
+#		# currently unused
+#	}
+#
+#	planet_modifier = {
+#		planet_max_districts_add = -1
+#	}
+#
+#	ai_weight = {
+#		weight = 1
+#	}
+#
+#	prerequisites = { "tech_terrestrial_sculpting" }
+#}
+#d_deep_ocean = {
+#	time = 270
+#
+#	is_for_colonizable = yes
+#	category = deposit_cat_blockers
+#
+#	resources = {
+#		category = deposit_blockers
+#		cost = {
+#			energy = 1000
+#		}
+#	}
+#
+#	potential = {
+#		# currently unused
+#	}
+#
+#	planet_modifier = {
+#		planet_max_districts_add = -1
+#	}
+#
+#	ai_weight = {
+#		weight = 1
+#	}
+#
+#	prerequisites = { "tech_terrestrial_sculpting" }
+#}

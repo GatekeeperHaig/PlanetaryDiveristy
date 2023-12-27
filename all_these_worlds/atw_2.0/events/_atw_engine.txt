@@ -1,0 +1,1167 @@
+namespace = atw_engine
+
+event = {
+	id = atw_engine.01
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		# Set the MOD's global flag
+		set_global_flag = all_these_worlds
+		
+		every_galaxy_planet = {
+		
+			# Set Gas Giant moon's flag
+			if = {
+				limit = { is_gas_giant = yes has_moon = yes }
+				every_moon = { set_planet_flag = "gas_giant_moon" }
+			}
+			# Set Habitable moon's flag
+			if = {
+				limit = { habitable_planet_not_urban = yes }
+				every_moon = { set_planet_flag = "habitable_planet_moon" }
+			}
+			# Remove unwanted vanilla modifiers
+			if = {
+				limit = { has_modifier = tidal_locked NOR = { has_planet_flag = "planet_converted" has_planet_flag = "habitable_converted" } }
+				remove_modifier = tidal_locked
+			}
+			if = {
+				limit = { has_modifier = chthonian_planet NOR = { has_planet_flag = "planet_converted" has_planet_flag = "habitable_converted" } }
+				remove_modifier = chthonian_planet
+			}
+			if = {
+				limit = { has_modifier = carbon_world NOR = { has_planet_flag = "planet_converted" has_planet_flag = "habitable_converted" } }
+				remove_modifier = carbon_world
+			}
+			
+			# Convert some Gaseous worlds and spawn class modifier
+			if = {
+				limit = {
+					is_planet_class = pc_gas_giant
+					NOT = { custom_system = yes }
+					NOT = { has_planet_flag = planet_converted }
+				}
+				random_list = {
+					33 = {
+						# spawn modifier but do not change planet class
+						roll_ammonia_clouded_giant = yes
+					}
+					0 = {
+						modifier = { add = 1000 planet_size > 27 num_moons < 2 }
+						modifier = { add = 1000 has_planet_flag = "super" }
+						# convert to Super class
+						roll_super_giant = yes
+					}
+					0 = {
+						modifier = { add = 66 has_habitable_moon = yes }
+						# convert to Water-clouded class
+						roll_water_clouded_giant = yes
+					}
+					0 = {
+						modifier = { add = 33 any_moon = { is_planet_class = pc_barren } }
+						modifier = { factor = 1.33 planet_size < 26 }
+						modifier = { factor = 1.33 orbits_cold_star = yes }
+						# convert to Cloudless class
+						roll_cloudless_giant = yes
+					}
+					0 = {
+						modifier = { add = 1000 any_moon = { is_planet_class = pc_molten } }
+						modifier = { add = 1000 has_planet_flag = "alkaline" }
+						# convert to Alkaline class
+						roll_alkaline_giant = yes
+					}
+					0 = {
+						modifier = { add = 1000 any_moon = { is_planet_class = pc_molten } }
+						modifier = { factor = 1.50 orbits_hot_star = yes }
+						# convert to Silicate class
+						roll_silicate_giant = yes
+					}
+					0 = {
+						modifier = { add = 1000 any_moon = { is_planet_class = pc_molten } }
+						modifier = { factor = 1.50 orbits_cold_star = yes }
+						# convert to Helium class
+						roll_helium_giant = yes
+					}
+					0 = {
+						modifier = { add = 66 planet_size < 24 }
+						modifier = { factor = 1.50 has_moon = no }
+						modifier = { factor = 1.33 orbits_cold_star = yes }
+						# convert to Frigid class
+						roll_frigid_giant = yes
+					}
+					0 = {
+						modifier = { add = 66 planet_size < 24 }
+						modifier = { factor = 1.50 has_moon = yes }
+						modifier = { factor = 1.33 orbits_ideal_star = yes }
+						# convert to Methane class
+						roll_methane_giant = yes
+					}
+					0 = {
+						modifier = { add = 66 planet_size < 24 }
+						modifier = { factor = 2.50 has_moon = yes num_moons > 1 }
+						modifier = { factor = 1.33 orbits_hot_star = yes }
+						# convert to Turbulent class
+						roll_turbulent_giant = yes
+					}
+					0 = {
+						modifier = { add = 66 planet_size < 24 }
+						modifier = { factor = 1.33 orbits_hot_star = yes }
+						modifier = { factor = 2.50 has_moon = yes has_habitable_moon = yes }
+						# convert to Temperate class
+						roll_temperate_giant = yes
+					}
+				}
+			}
+			# Convert some Magma worlds and spawn class modifier
+			if = {
+				limit = {
+					is_planet_class = pc_molten
+					NOT = { custom_system = yes }
+					NOT = { has_planet_flag = planet_converted }
+				}
+				random_list = {
+					2 = {
+						# spawn modifier but do not change planet class
+						roll_molten_magma = yes
+					}
+					0 = {
+						modifier = { add = 1 has_deposit = d_energy_2 }
+						modifier = { add = 100 has_deposit = d_energy_3 }
+						modifier = { add = 100 has_deposit = d_energy_4 }
+						modifier = { add = 100 has_deposit = d_energy_5 }
+						modifier = { add = 100 has_planet_flag = "chthonian" }
+						modifier = { factor = 0.00 has_planet_flag = "forced" }
+						#modifier = { factor = 0 has_moon = yes }
+						modifier = { factor = 0 is_moon = yes }
+						# convert to Chthonian class
+						roll_chthonian_magma = yes
+						# check if it has any moons and removed them
+						if = {
+							limit = { has_moon = yes }
+							every_moon = { remove_planet = yes }
+						}
+					}
+					0 = {
+						modifier = { add = 2 has_deposit = no }
+						modifier = { factor = 0.00 has_planet_flag = "forced" }
+						# cratered worlds only spawn beyond distance 60 so we can get hot giants by detecting a magma moon
+						# we should convert some magma worlds to cratered so we can have more variety in the inner system
+						change_pc = pc_barren_cold
+					}
+				}
+			}
+			# Convert some Cratered worlds and spawn class modifier
+			if = {
+				limit = {
+					is_planet_class = pc_barren_cold
+					NOT = { custom_system = yes }
+					NOT = { has_planet_flag = planet_converted }
+				}
+				random_list = {
+					3 = {
+						modifier = { factor = 0.00 has_planet_flag = "iron" }
+						# spawn modifier but do not change planet class
+						roll_silicate_cratered = yes
+					}
+					0 = {
+						modifier = { add = 1 has_deposit = no }
+						modifier = { add = 5 has_deposit = d_minerals_2 }
+						modifier = { add = 100 has_planet_flag = "iron" }
+						modifier = { add = 100 has_deposit = d_minerals_3 }
+						modifier = { add = 100 has_deposit = d_minerals_4 }
+						modifier = { add = 100 has_deposit = d_minerals_5 }
+						# convert to Iron class
+						roll_iron_cratered = yes
+					}
+					0 = {
+						modifier = { add = 1 is_gas_giant_moon = yes }
+						modifier = { factor = 0.00 has_planet_flag = "forced" }
+						change_pc = pc_molten
+						roll_molten_magma = yes
+						# magma worlds only spawn up to distance 60 so we can get hot giants by detecting a magma moon
+						# we should convert some cratered worlds to magma se we can get molten planets beyond distance 60 as gas giant moons
+
+					}
+				}
+			}
+			# Convert some Telluric worlds and spawn class modifier
+			if = {
+				limit = {
+					is_planet_class = pc_barren
+					NOT = { custom_system = yes }
+					NOT = { has_planet_flag = planet_converted }
+				}
+				random_list = {
+					33 = {
+						modifier = { factor = 0.00 has_planet_flag = "volcanic" }
+						# spawn modifier but do not change planet class
+						roll_dusty_telluric = yes
+					}
+					33 = {
+						modifier = { factor = 1.33 is_moon = yes }						
+						# convert to Volcanic class
+						roll_volcanic_telluric = yes
+					}
+					25 = {
+						modifier = { factor = 1.25 has_deposit = yes }		
+						modifier = { factor = 0.00 has_planet_flag = "volcanic" }							
+						# convert to Frozen class
+						roll_frozen_telluric = yes
+					}
+				}
+			}
+			# Convert some Toxic worlds and spawn class modifier
+			if = {
+				limit = {
+					is_planet_class = pc_toxic
+					NOT = { custom_system = yes }
+					NOT = { has_planet_flag = planet_converted }
+				}
+				random_list = {
+					33 = {
+						modifier = { factor = 0.00 has_planet_flag = "hothouse" }
+						# spawn modifier but do not change planet class
+						roll_methane_toxic = yes
+					}
+					0 = {
+						modifier = { add = 66 is_moon = no }
+						modifier = { add = 25 is_moon = yes is_gas_giant_moon = no }
+						modifier = { add = 99 has_planet_flag = "hothouse" }
+						# convert to Hothouse class
+						roll_hothouse_toxic = yes
+					}
+					0 = {
+						modifier = { add = 33 has_deposit = d_minerals_2 }
+						modifier = { add = 99 has_deposit = d_minerals_3 }
+						modifier = { add = 333 has_deposit = d_minerals_4 }
+						modifier = { add = 999 has_deposit = d_minerals_5 }
+						modifier = { factor = 0.00 has_planet_flag = "hothouse" }
+						# convert to Carbonyl class
+						roll_carbonyl_toxic = yes
+					}
+				}
+			}
+			# Convert some Panthalassic worlds and spawn class modifier
+			if = {
+				limit = {
+					is_planet_class = pc_frozen
+					NOT = { custom_system = yes }
+					NOT = { has_planet_flag = planet_converted }
+				}
+				random_list = {
+					33 = {
+						modifier = { add = 999 has_planet_flag = "frozen_water" }
+						modifier = { factor = 0.00 has_planet_flag = "liquid_water" }
+						modifier = { factor = 0.00 has_planet_flag = "ammonia" }
+						# spawn modifier but do not change planet class
+						roll_ice_panthalassic = yes
+					}
+					0 = {
+						modifier = { add = 66 is_habitable_planet_moon = yes }
+						modifier = { add = 99 has_habitable_moon = yes }
+						modifier = { add = 999 has_planet_flag = "liquid_water" }
+						modifier = { factor = 0.00 has_planet_flag = "ammonia" }
+						modifier = { factor = 0.00 has_planet_flag = "frozen_water" }
+						# convert to Water class
+						roll_water_panthalassic = yes
+					}
+					0 = {
+						modifier = { add = 33 is_gas_giant_moon = yes }
+						modifier = { add = 999 has_planet_flag = "ammonia" }
+						modifier = { factor = 0.00 has_planet_flag = "liquid_water" }
+						modifier = { factor = 0.00 has_planet_flag = "frozen_water" }
+						# convert to Ammonia class
+						roll_ammonia_panthalassic = yes
+					}
+					11 = {
+						modifier = { add = 22 is_gas_giant_moon = yes }
+						modifier = { factor = 3 orbits_cold_star = yes }
+						modifier = { factor = 0.00 has_planet_flag = "liquid_water" }
+						modifier = { factor = 0.00 has_planet_flag = "ammonia" }
+						modifier = { factor = 0.00 has_planet_flag = "frozen_water" }
+						# convert to Methane class
+						roll_methane_panthalassic = yes
+					}
+				}
+			}
+			
+			# Spawn modifiers and portrait on Tomb worlds
+			if = {
+				limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = habitable_converted } }
+				roll_tomb = yes
+				correct_habitable_deposits = yes
+			}
+			
+			# Adapt Sol system
+			if = {
+				limit = { solar_system = { has_star_flag = "sol" } }
+				# Mercury
+				if = {
+					limit = { is_planet_class = "pc_molten" planet_size = 10 }
+					change_pc = pc_barren_cold
+					add_modifier = { modifier = "atmosphere-tenuous_grey" days = -1 }
+					add_modifier = { modifier = "class_iron" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_iron_cratered"
+						entity = "iron_telluric_planet_01_entity"
+						atmosphere_color = hsv { 0.0 0.0 0.50 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.05
+					}
+					set_planet_flag = planet_converted
+				}
+				# Venus
+				if = {
+					limit = { is_planet_class = "pc_toxic" planet_size = 17 }
+					add_modifier = { modifier = "atmosphere-thick_yellow" days = -1 }
+					add_modifier = { modifier = "class_hothouse" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_hothouse_toxic"
+						entity = "hothouse_gd_planet_01_entity"
+						atmosphere_color = hsv { 0.14 0.24 0.98 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 1.0
+					}
+					set_planet_flag = planet_converted
+				}
+				# Earth
+				if = {
+					limit = { is_planet_class = "pc_continental" has_planet_flag = "planet_earth" }
+					add_modifier = { modifier = "atmosphere-thick_blue" days = -1 }
+					add_modifier = { modifier = "biosphere-diverse" days = -1 }
+					add_modifier = { modifier = "class_chloerosorimos" days = -1 }
+					set_planet_entity = {
+						picture = "biome_chloerosorimos_diverse"
+						entity = "atw_earth_entity"
+						atmosphere_color 		= hsv { 0.59 0.45 0.95 }
+						atmosphere_intensity 	= 1.0
+						atmosphere_width 		= 0.5
+					}
+					set_planet_flag = habitable_converted
+				}
+				# Luna
+				if = {
+					limit = { is_planet_class = "pc_barren_cold" planet_size = 5 }
+					add_modifier = { modifier = "atmosphere-tenuous_grey" days = -1 }
+					add_modifier = { modifier = "class_silicate" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_silicate_cratered"
+						atmosphere_color = hsv { 0.0 0.0 0.50 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.05
+					}
+					set_planet_flag = planet_converted
+				}
+				# Mars
+				if = {
+					limit = { is_planet_class = "pc_barren" }
+					add_modifier = { modifier = "atmosphere-thin_brown" days = -1 }
+					add_modifier = { modifier = "class_dusty" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_dusty_telluric"
+						atmosphere_color = hsv { 0.10 0.40 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.5
+					}
+					set_planet_flag = planet_converted
+				}
+				# Jupiter
+				if = {
+					limit = { is_planet_class = "pc_gas_giant" planet_size = 35 }
+					add_modifier = { modifier = "atmosphere-very_dense_yellow" days = -1 }
+					add_modifier = { modifier = "class_ammonia-clouded_giant" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_ammonia-clouded_giant"
+						entity = ammonia-clouded_giant_01_entity
+						atmosphere_color = hsv { 0.1 0.15 1.1 }
+						atmosphere_intensity = 1.0
+						atmosphere_width = 0.5
+					}
+					set_planet_flag = planet_converted
+				}
+				# Io
+				if = {
+					limit = { is_planet_class = "pc_molten" planet_size = 6 }
+					change_pc = pc_barren
+					add_modifier = { modifier = "atmosphere-thin_brown" days = -1 }
+					add_modifier = { modifier = "class_volcanic" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_volcanic_telluric"
+						entity = volcanic_telluric_planet_03_entity
+						atmosphere_color = hsv { 0.10 0.40 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.5
+					}
+					set_planet_flag = planet_converted
+				}
+				# Europa
+				if = {
+					limit = { is_planet_class = "pc_frozen" planet_size = 6 NOT = { has_planet_flag = planet_converted} }
+					change_pc = pc_barren
+					add_modifier = { modifier = "atmosphere-tenuous_blue" days = -1 }
+					add_modifier = { modifier = "class_frozen" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_frozen_telluric"
+						entity = frozen_telluric_planet_01_entity
+						atmosphere_color = hsv { 0.55 0.10 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.1
+					}
+					set_planet_flag = planet_converted
+				}
+				# Ganymede
+				if = {
+					limit = { is_planet_class = "pc_frozen" planet_size = 9 }
+					change_pc = pc_barren
+					add_modifier = { modifier = "atmosphere-tenuous_blue" days = -1 }
+					add_modifier = { modifier = "class_frozen" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_frozen_telluric"
+						entity = frozen_telluric_planet_02_entity
+						atmosphere_color = hsv { 0.55 0.10 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.1
+					}
+					set_planet_flag = planet_converted
+				}
+				# Callisto
+				if = {
+					limit = { is_planet_class = "pc_frozen" planet_size = 7 }
+					change_pc = pc_barren
+					add_modifier = { modifier = "atmosphere-tenuous_blue" days = -1 }
+					add_modifier = { modifier = "class_frozen" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_frozen_telluric"
+						entity = frozen_telluric_planet_03_entity
+						atmosphere_color = hsv { 0.55 0.10 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 0.1
+					}
+					set_planet_flag = planet_converted
+				}
+				# Saturn
+				if = {
+					limit = { is_planet_class = "pc_gas_giant" planet_size = 30 }
+					add_modifier = { modifier = "atmosphere-very_dense_yellow" days = -1 }
+					add_modifier = { modifier = "class_ammonia-clouded_giant" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_ammonia-clouded_giant"
+						entity = ammonia-clouded_giant_02_entity
+						atmosphere_color = hsv { 0.1 0.15 1.1 }
+						atmosphere_intensity = 1.0
+						atmosphere_width = 0.5
+					}
+					set_planet_flag = planet_converted
+				}
+				# Titan
+				if = {
+					limit = { is_planet_class = "pc_frozen" planet_size = 8 }
+					change_pc = pc_toxic
+					add_modifier = { modifier = "atmosphere-thick_orange" days = -1 }
+					add_modifier = { modifier = "class_methane" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_methane_toxic"
+						atmosphere_color = hsv { 0.10 0.56 0.98 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 1.0
+					}
+					set_planet_flag = planet_converted
+				}
+				# Uranus
+				if = {
+					limit = { is_planet_class = "pc_gas_giant" planet_size = 20 NOT = { has_moon = yes } }
+					add_modifier = { modifier = "atmosphere-very_dense_deep_blue" days = -1 }
+					add_modifier = { modifier = "class_frigid_giant" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_frigid_giant"
+						entity = frigid_giant_01_entity
+						atmosphere_color = hsv { 0.55 0.52 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 1.0
+					}
+					set_planet_flag = planet_converted
+				}
+				# Neptune
+				if = {
+					limit = { is_planet_class = "pc_gas_giant" planet_size = 20 has_moon = yes }
+					add_modifier = { modifier = "atmosphere-very_dense_deep_blue" days = -1 }
+					add_modifier = { modifier = "class_methane_giant" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_methane_giant"
+						entity = methane_giant_01_entity
+						atmosphere_color = hsv { 0.62 0.78 0.90 }
+						atmosphere_intensity = 0.1
+						atmosphere_width = 1.0
+					}
+					set_planet_flag = planet_converted
+					every_moon = { # Triton
+						limit = { planet_size = 6 }
+						change_pc = pc_frozen
+						add_modifier = { modifier = "atmosphere-tenuous_blue" days = -1 }
+						add_modifier = { modifier = "class_ice" days = -1 }
+						set_planet_entity = {
+							picture = "orbit_ice_panthalassic"
+							entity = icy_gd_planet
+							atmosphere_color = hsv { 0.55 0.10 0.90 }
+							atmosphere_intensity = 0.1
+							atmosphere_width = 0.1
+						}
+						set_planet_flag = planet_converted
+					}
+				}				
+			}
+
+			# Check for special origin homeworlds
+			if = {
+				limit = { has_planet_flag = "tidally-locked_homeworld" NOT = { has_planet_flag = "habitable_converted" } }
+				roll_tidally_locked_origin = yes
+				correct_habitable_deposits = yes
+			}
+			if = {
+				limit = { has_planet_flag = "high_gravity_homeworld" NOT = { has_planet_flag = "habitable_converted" } }
+				roll_mega_terrestrial_origin = yes
+				correct_habitable_deposits = yes
+			}
+			if = {
+				limit = { has_planet_flag = "bioluminescent_homeworld" NOT = { has_planet_flag = "habitable_converted" } }
+				roll_bioluminescent_origin = yes
+				correct_habitable_deposits = yes
+			}
+
+			# Convert some Desert worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_desert"
+				}
+				# CONVERT INTO A DRY SUB-OCEANIC CLASS
+				random_list = {
+					1 = {
+						roll_thermopelagic = yes
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 }
+						roll_ipeirospelagic = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Arid worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_arid"
+				}
+				# CONVERT INTO A DRY TERRESTRIAL CLASS
+				random_list = {
+					2 = {
+						roll_thermogenian = yes
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+					}
+					1 = {
+						roll_xirosorimos = yes
+					}
+					0 = {
+						modifier = { add = 10 orbits_hot_star = yes }
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+						roll_mukesgenian = yes
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 }
+						roll_algaemegagi = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Savannah worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_savannah"
+				}
+				# CONVERT INTO A DRY SUB-TERRESTRIAL CLASS
+				random_list = {
+					1 = {
+						roll_thermotopio = yes
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+					}
+					1 = {
+						roll_savana = yes
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 }
+						roll_thermomegagi = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Continental worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_continental"
+				}
+				# CONVERT INTO A TEMPERATE TERRESTRIAL CLASS
+				random_list = {
+					2 = {
+						roll_chloerosgenian = yes
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+					}
+					1 = {
+						roll_chloerosorimos = yes
+					}
+					0 = {
+						modifier = { add = 10 OR = { orbits_red_star = yes orbits_orange_star = yes } }
+						roll_retinalgenian = yes
+					}
+					0 = {
+						modifier = { add = 5 is_gas_giant_moon = yes }
+						modifier = { factor = 0.00 orbits_hot_star = yes }
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+						roll_photosgenian = yes
+					}
+					0 = {
+						modifier = { add = 50 planet_size > 23 }
+						roll_megachlorida = yes
+					}
+					0 = {
+						modifier = { add = 3 orbits_white_star = yes }
+						modifier = { factor = 10.00 orbits_hot_star = yes }
+						roll_protogenian = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Tropical worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_tropical"
+				}
+				# CONVERT INTO A TEMPERATE SUB-TERRESTRIAL CLASS
+				random_list = {
+					1 = {
+						roll_tropikostopio = yes
+					}
+					1 = {
+						roll_alpikotopio = yes
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 }
+						roll_chloerosmegagi = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Ocean worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_ocean"
+				}
+				# CONVERT INTO A TEMPERATE OCEANIC CLASS
+				random_list = {
+					1 = {
+						roll_archipelagic = yes
+						modifier = { factor = 0.00 exists = owner owner = { has_origin = "origin_ocean_paradise" } }
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 is_homeworld = no }
+						roll_megalopelagic = yes
+					}
+					0 = {
+						modifier = { factor = 0.00 exists = owner owner = { has_origin = "origin_ocean_paradise" } }
+						roll_panpelagic = yes
+					}
+					0 = {
+						modifier = { add = 1000 exists = owner owner = { has_origin = "origin_ocean_paradise" } }
+						roll_okeanosgaean = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Arctic worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_arctic"
+				}
+				# CONVERT INTO A FRIGID TERRESTRIAL CLASS
+				random_list = {
+					1 = {
+						roll_cryogenian = yes
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+					}
+					1 = {
+						roll_pagosorimos = yes
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 }
+						roll_cryomegagi = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Tundra worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_tundra"
+				}
+				# CONVERT INTO A FRIGID SUB-TERRESTRIAL CLASS
+				random_list = {
+					1 = {
+						roll_cryotopio = yes
+					}
+					1 = {
+						roll_oreinos = yes
+						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
+					}
+					#0 = {
+					#	modifier = { add = 100 planet_size > 23 }
+					#	roll_krystallomegagi = yes
+					#}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Alpine worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_alpine"
+				}
+				# CONVERT INTO A FRIGID SUB-OCEANIC CLASS
+				random_list = {
+					1 = {
+						roll_cryopelagic = yes
+					}
+					0 = {
+						modifier = { add = 100 planet_size > 23 }
+						roll_pagospelagic = yes
+					}
+				}
+				correct_habitable_deposits = yes
+			}
+			# Convert some Gaia worlds and spawn class modifier
+			if = {
+				limit = {
+					#NOR = { is_colony = yes has_planet_flag = "prescripted_ideal" has_planet_flag = "planet_converted" }
+					NOT = { has_planet_flag = "habitable_converted" }
+					is_planet_class = "pc_gaia"
+				}
+				# CONVERT INTO A SUPER-TERRESTRIAL CLASS
+				random_list = {
+					1 = {
+						modifier = { add = 100 orbits_ideal_star = yes }
+						roll_chloerosgaean = yes
+					}
+					0 = {
+						modifier = { add = 100 orbits_hot_star = yes }
+						roll_thermogaean = yes
+					}
+					0 = {
+						modifier = { add = 100 orbits_red_star = yes }
+						roll_cryogaean = yes
+					}
+				}
+				#correct_habitable_deposits = yes
+			}
+			
+		}
+
+		every_galaxy_planet = {
+			# Misc system initializers have extra moons to help with the conversion engine, these are flagged as erasable so a number of them can be removed to lower their numbers once the engine no longer needs them
+			if = {
+				limit = { has_moon = yes NOT = { has_planet_flag = "planet_moons_erased" } }
+				random_list = {
+					0 = {
+						modifier = { add = 1 is_gas_giant = no planet_size < 15 }
+						# Higher chance to remove each moon
+						every_moon = {
+							limit = { has_planet_flag = "erasable" }
+							random_list = {
+								5 = {
+									remove_planet = yes
+								}
+								1 = {
+									# Do nothing
+								}
+							}
+						}
+					}
+					0 = {
+						modifier = { add = 1 is_gas_giant = no planet_size > 14 planet_size < 23 }
+						# Moderate chance to remove each moon
+						every_moon = {
+							limit = { has_planet_flag = "erasable" }
+							random_list = {
+								2 = {
+									remove_planet = yes
+								}
+								1 = {
+									# Do nothing
+								}
+							}
+						}
+					}
+					0 = {
+						modifier = { add = 1 is_gas_giant = no planet_size > 22 }
+						# Lower chance to remove each moon
+						every_moon = {
+							limit = { has_planet_flag = "erasable" }
+							random_list = {
+								1 = {
+									remove_planet = yes
+								}
+								2 = {
+									# Do nothing
+								}
+							}
+						}
+					}
+					0 = {
+						modifier = { add = 1 is_gas_giant = yes planet_size < 24 }
+						# Moderate chance to remove each gas giant moon
+						every_moon = {
+							limit = { has_planet_flag = "erasable" }
+							random_list = {
+								1 = {
+									remove_planet = yes
+								}
+								2 = {
+									# Do nothing
+								}
+							}
+						}
+					}
+					0 = {
+						modifier = { add = 1 is_gas_giant = yes planet_size > 23 }
+						# Lower chance to remove each gas giant moon
+						every_moon = {
+							limit = { has_planet_flag = "erasable" }
+							random_list = {
+								1 = {
+									remove_planet = yes
+								}
+								3 = {
+									# Do nothing
+								}
+							}
+						}
+					}
+				}
+				set_planet_flag = "planet_moons_erased"
+			}
+			# Make a 2nd pass but only on misc systems, to convert some uninhabitables into marginal worlds
+			if = {
+				limit = { has_planet_flag = "planet_converted" NOT = { has_planet_flag = "habitable_converted" } solar_system = { has_star_flag = "atw_misc" } }
+				# Convert into Tidally-locked
+				if = {
+					limit = { has_planet_flag = "locked_hot" }
+					roll_xiroslykofos = yes
+					correct_habitable_deposits = yes
+				}
+				if = {
+					limit = { has_planet_flag = "locked_temperate" }
+					roll_chloeroslykofos = yes
+					correct_habitable_deposits = yes
+				}
+				if = {
+					limit = { has_planet_flag = "locked_cold" }
+					roll_pagoslykofos = yes
+					correct_habitable_deposits = yes
+				}
+				# Convert into a primordial
+				if = {
+					limit = { has_planet_flag = "primordial" }
+					roll_primordial = yes
+					correct_habitable_deposits = yes
+				}
+				# Convert into a planet with liquid water
+				if = {
+					limit = { has_planet_flag = "liquid_water" }
+					roll_liquid_water = yes
+					correct_habitable_deposits = yes
+				}
+				# Convert into a planet with frozen water
+				if = {
+					limit = { has_planet_flag = "frozen_water" }
+					roll_frozen_water = yes
+					correct_habitable_deposits = yes
+				}
+				# Convert into a planet with underground water or very limited surface water
+				if = {
+					limit = { has_planet_flag = "aquifers" }
+					roll_limited_water = yes
+					correct_habitable_deposits = yes
+				}
+				# Convert into a planet with ammonia
+				if = {
+					limit = { has_planet_flag = "ammonia" }
+					roll_ammonia = yes
+					correct_habitable_deposits = yes
+				}
+			}
+		}
+
+	}
+	
+}
+
+planet_event = {
+	id = atw_engine.02 # UPDATE PLANET PORTRAIT AFTER COLONIZING - AQUATIC
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = {
+			has_trait = trait_aquatic
+		}
+		#is_planet_class = pc_ocean
+	}
+
+	immediate = {
+		#if = {
+		#	limit = { is_planet_class = pc_ocean }
+		#	set_planet_entity = { picture = biome_panpelagic_temperate }
+		#}
+		submerged_colony_update = yes
+	}
+}
+
+planet_event = {
+	id = atw_engine.03 # UPDATE PLANET PORTRAIT AFTER COLONIZING - NON AQUATIC
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			NOT = { has_trait = trait_aquatic }
+		}
+	}
+	
+	immediate = {
+		surface_colony_update = yes
+	}
+}
+
+event = {
+	id = atw_engine.04 # SPAWN COM NOT FAR FROM UNE and vice-versa
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				any_country = { #First check that UNE has spawned
+					has_country_flag = human_1
+					is_human_species = yes
+					NOT = { has_origin = origin_lost_colony }
+					NOT = { has_origin = origin_broken_shackles }
+				}
+				NOT = { has_global_flag = "CoM_active" }
+			}
+			set_global_flag = "UNE_active"
+			random_system = {
+				limit = { has_star_flag = "sol_system" }
+				random_list = {
+					100 = {
+						spawn_system = {
+							#min_jumps = 6
+							#max_jumps = 8
+							min_distance >= 70
+							max_distance <= 90
+							initializer = "une_deneb_system"
+							hyperlane = yes
+							is_discovered = no
+						}
+						modifier = { factor = 0.00 has_star_flag = "no_CoM_please" }
+						#add_extra_hyperlane_to_spawned_system_effect = yes
+					}
+					# Half chance of spawning primitive Humans on Deneb(ola)
+					50 = {
+						spawn_system = {
+							#min_jumps = 6
+							#max_jumps = 8
+							min_distance >= 70
+							max_distance <= 90
+							initializer = "pre_ftl_deneb_system"
+							hyperlane = yes
+							is_discovered = no
+						}
+						#add_extra_hyperlane_to_spawned_system_effect = yes
+						modifier = {
+							factor = 0
+							has_first_contact_dlc = no
+						}
+					}
+					1 = {
+						# do nothing
+					}
+				}
+				random_system = {
+					limit = { has_star_flag = "deneb_system" }
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "deneb_neighbor_t1"
+						hyperlane = yes
+						is_discovered = no
+					}
+					last_created_system = {
+						if = {
+							limit = { NOT = { has_hyperlane_to = prev } }
+							add_hyperlane = {
+								from = this
+								to = prev
+							}
+						}
+					}
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "deneb_neighbor_t1_first_colony"
+						hyperlane = yes
+						is_discovered = no
+					}
+					last_created_system = {
+						if = {
+							limit = { NOT = { has_hyperlane_to = prev } }
+							add_hyperlane = {
+								from = this
+								to = prev
+							}
+						}
+					}
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "deneb_neighbor_t2_second_colony"
+						hyperlane = yes
+						is_discovered = no
+					}
+					last_created_system = {
+						if = {
+							limit = { NOT = { has_hyperlane_to = prev } }
+							add_hyperlane = {
+								from = this
+								to = prev
+							}
+						}
+					}
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "deneb_neighbor_t2"
+						hyperlane = yes
+						is_discovered = no
+					}
+				}
+			}
+		}		
+		if = {
+			limit = {
+				any_country = { #First check that CoM has spawned
+					has_country_flag = human_2
+					is_human_species = yes
+					NOT = { has_origin = origin_broken_shackles }
+				}
+				NOT = { has_global_flag = "UNE_active" }
+			}
+			set_global_flag = "CoM_active"
+			random_system = {
+				limit = { has_star_flag = "deneb_system" }
+				random_list = {
+					10 = {
+						spawn_system = {
+							min_distance >= 70
+							max_distance <= 90
+							initializer = "com_sol_system"
+							hyperlane = yes
+							is_discovered = no
+						}
+					}
+					# Half chance of spawning nuked Earth on Sol
+					5 = {
+						spawn_system = {
+							min_distance >= 70
+							max_distance <= 90
+							initializer = "special_init_04"
+							hyperlane = yes
+							is_discovered = no
+						}
+					}
+				}
+				random_system = {
+					limit = { has_star_flag = "sol" }
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "com_sol_neighbor_t1_first_colony"
+						hyperlane = yes
+						is_discovered = no
+					}
+					last_created_system = {
+						if = {
+							limit = { NOT = { has_hyperlane_to = prev } }
+							add_hyperlane = {
+								from = this
+								to = prev
+							}
+						}
+					}
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "com_sol_neighbor_t1"
+						hyperlane = yes
+						is_discovered = no
+					}
+					last_created_system = {
+						if = {
+							limit = { NOT = { has_hyperlane_to = prev } }
+							add_hyperlane = {
+								from = this
+								to = prev
+							}
+						}
+					}
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "com_sol_neighbor_t2_second_colony"
+						hyperlane = yes
+						is_discovered = no
+					}
+					last_created_system = {
+						if = {
+							limit = { NOT = { has_hyperlane_to = prev } }
+							add_hyperlane = {
+								from = this
+								to = prev
+							}
+						}
+					}
+					spawn_system = {
+						min_distance >= 15
+						max_distance <= 40
+						initializer = "deneb_neighbor_t2" # there's a reason for this
+						hyperlane = yes
+						is_discovered = no
+					}
+				}
+			}
+		}
+	}
+}
