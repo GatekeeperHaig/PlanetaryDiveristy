@@ -1,6 +1,7 @@
 namespace = pdshroudplanets
 
 # This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded
+# Normal Shrouded
 planet_event = {
 	id = pdshroudplanets.200
 	hide_window = yes
@@ -9,6 +10,7 @@ planet_event = {
 	trigger = {
 		has_modifier = pd_aw_shroud_planet
 		NOT = {	has_modifier = flooded_habitat }
+		pd_aw_is_necro_planet = no
 	}
 
 	immediate = {
@@ -102,6 +104,7 @@ planet_event = {
 }
 
 # This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded
+# Flooded Shroud Worlds
 planet_event = {
 	id = pdshroudplanets.205
 	hide_window = yes
@@ -229,6 +232,7 @@ country_event = {
 		}
 	}
 }
+
 #Non Psionic gains Shrouded planet
 country_event = {
 	id = pdshroudplanets.302
@@ -253,6 +257,7 @@ country_event = {
 		}
 	}
 }
+
 #Psionic Empire gains systems
 country_event = {
 	id = pdshroudplanets.303
@@ -276,6 +281,43 @@ country_event = {
 					days = -1
 				}
 			}
+		}
+	}
+}
+
+# This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded
+# Normal Shrouded
+planet_event = {
+	id = pdshroudplanets.400
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = pd_aw_shroud_planet
+		NOT = {	has_modifier = flooded_habitat }
+		pd_aw_is_necro_planet = yes
+	}
+
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_city = {
+				planet_event = { id = pdshroudplanets.401 days = 1 }
+			}
+		}
+	}
+}
+
+# This event changes arcologies after the change effect has hapepens
+planet_event = {
+	id = pdshroudplanets.401
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_entity = {
+			picture = pc_pd_necro_shroud_city
+			entity = pd_necro_shroud_city_planet_01_entity
 		}
 	}
 }

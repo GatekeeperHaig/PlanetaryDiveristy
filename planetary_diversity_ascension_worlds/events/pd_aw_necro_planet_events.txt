@@ -1,0 +1,37 @@
+namespace = pdnecroplanet
+
+# This event fires when certain planets get terraformed and makes sure that if they have the shroud planet modifier the planet view stays shrouded
+# Normal Shrouded
+planet_event = {
+	id = pdnecroplanet.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		pd_aw_is_necro_planet = yes
+		NOT = { has_modifier = pd_aw_shroud_planet }
+	}
+
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_city = {
+				planet_event = { id = pdnecroplanet.101 days = 1 }
+			}
+		}
+	}
+}
+
+# This event changes arcologies after the change effect has hapepens
+planet_event = {
+	id = pdnecroplanet.101
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_entity = {
+			picture = pc_pd_necro_city
+			entity = pd_necro_city_planet_01_entity
+		}
+	}
+}
