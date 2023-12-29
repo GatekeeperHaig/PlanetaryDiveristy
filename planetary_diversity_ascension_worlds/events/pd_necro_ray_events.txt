@@ -9,7 +9,7 @@ planet_event = {
 
 	immediate = {
 		from.owner = { country_event = { id = pd_necro_ray.02 } }
-		
+
 		#Dismantle observation post
 		if = {
 			limit = {
@@ -216,28 +216,7 @@ planet_event = {
 			}
 			set_owner = from.owner
 		}
-		IF = {
-			limit = {	
-				is_pd_tidally_locked = no
-				is_pd_superhab = no
-				is_pd_cave = no
-			}
-			change_pc = pc_pd_necro
-		}		
-		IF = {
-			limit = { is_pd_tidally_locked = yes }
-			change_pc = pc_necrotidallylocked
-		}	
-		IF = {
-			limit = { is_pd_superhab = yes }
-			change_pc = pc_pd_necro_superhab
-		}	
-		IF = {
-			limit = { is_pd_cave = yes }
-			change_pc = pc_pd_necro_cave
-		}
 		clear_planet_modifiers = yes
-		add_deposit = d_pd_necro_planet
 	}
 }
 

@@ -17,8 +17,8 @@ pd_frozen_hab_0 = {
 	}
 	construction_blocks_and_blocked_by = none
 
-	potential = { 
-		has_technology = tech_pdhabitat_1 
+	potential = {
+		has_technology = tech_pdhabitat_1
 	}
 
 	possible = {
@@ -75,10 +75,10 @@ pd_frozen_hab_0 = {
 				fail_text = "is_frozen"
 				OR = {
 					is_planet_class = pc_frozen
-					is_planet_class = pc_subglacial
+					has_modifier = pdhabsubglacialocean
 				}
 			}
-		} 
+		}
 	}
 
 	# root = system
@@ -87,10 +87,10 @@ pd_frozen_hab_0 = {
 		factor = 0
 	}
 	#inline_script = "megastructures/pd_where_ai_can_build_phabs"
-	
+
 	on_build_start = {}
 	on_build_cancel = {}
-	
+
 	on_build_complete = {
 		fromfrom.planet = {
 			set_planet_flag = pdhab
@@ -116,7 +116,7 @@ pd_frozen_hab_0 = {
 			}
 			IF = {
 				limit = {
-					is_planet_class = pc_subglacial
+					has_modifier = pdhabsubglacialocean
 				}
 				change_pc = pc_pd_frozen_hab
 				set_planet_flag = pdhab_subglacial
@@ -315,7 +315,7 @@ pd_frozen_hab_0 = {
 			}
 			if = {
 				limit = {
-					is_planet_class = pc_subglacial
+					has_modifier = pdhabsubglacialocean
 				}
 				set_planet_flag = pd_farming_hab
 			}
