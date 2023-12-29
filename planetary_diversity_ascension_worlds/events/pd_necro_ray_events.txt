@@ -217,6 +217,38 @@ planet_event = {
 			set_owner = from.owner
 		}
 		clear_planet_modifiers = yes
+		if = {
+			limit = {
+				habitable_planet_not_urban = yes
+			}
+			change_pc = pc_nuked
+		}
+		if = {
+			limit = {
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_hive
+					is_planet_class = pc_machine
+					is_planet_class = pc_relic
+					is_planet_class = pc_nuked
+				}
+			}
+			add_modifier = {
+				modifier = pd_aw_necro_planet
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+			}
+			add_modifier = {
+				modifier = pd_aw_necro_city_planet
+				days = -1
+			}
+		}
+		pd_aw_create_necro_world_effect = yes
 	}
 }
 
