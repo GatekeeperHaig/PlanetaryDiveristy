@@ -142,7 +142,6 @@ decision_pd_aw_bloom_tree_of_life = {
 
 ###Flooded/Aquatic Worlds
 @expand_planetary_sea_length = 1800
-
 #Unflood Planet
 decision_pd_aw_unflood_planet = {
 	owned_planets_only = yes
@@ -1087,6 +1086,83 @@ decision_pd_aw_shroud_planet = {
 
 ###Necro Worlds
 @pd_necro_time = 1800
+
+#Remove Necro Modifier
+decision_pd_aw_necro_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_necro
+
+	enactment_time = @pd_necro_time
+
+	potential = {
+		OR = {
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_nuked
+		}
+		exists = owner
+		owner = { NOT = { has_ascension_perk = ap_pd_necro_worlds } }
+		pd_aw_is_necro_planet = yes
+		pd_aw_is_wasteland_planet = no
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		hidden_effect = {
+			IF = {
+				limit = {
+					pd_aw_is_necro_planet = yes
+				}
+				remove_modifier = pd_aw_necro_planet
+				remove_modifier = pd_aw_necro_city_planet
+				remove_modifier = pd_necro_planet
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+					}
+					pd_aw_create_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						NOT = { pd_aw_is_shroud_planet = yes }
+					}
+					pd_aw_back_to_normal_view_effect = yes
+				}
+			}
+			create_message = {
+				type = MESSAGE_PD_AW_NECRO_CLEANUP_TYPE
+				localization = MESSAGE_PD_AW_NECRO_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
 #Make Shroud World
 decision_pd_aw_necro_planet = {
 	owned_planets_only = yes
@@ -1170,82 +1246,6 @@ decision_pd_aw_necro_planet = {
 			create_message = {
 				type = MESSAGE_PD_AW_NECRO_TYPE
 				localization = MESSAGE_PD_AW_NECRO_DESC
-				days = 20
-				target = root
-				variable = {
-					type = name
-					localization = PLANET
-					scope = this
-				}
-			}
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-	}
-}
-
-#Remove Necro Modifier
-decision_pd_aw_necro_planet_cleanup = {
-	owned_planets_only = yes
-	icon = decision_pd_aw_necro
-
-	enactment_time = @pd_necro_time
-
-	potential = {
-		OR = {
-			habitable_planet_not_urban = yes
-			is_planet_class = pc_ringworld_habitable
-			is_planet_class = pc_city
-			is_planet_class = pc_relic
-			is_planet_class = pc_hive
-			is_planet_class = pc_machine
-			is_planet_class = pc_nuked
-		}
-		exists = owner
-		owner = { NOT = { has_ascension_perk = ap_pd_necro_worlds } }
-		pd_aw_is_necro_planet = yes
-		pd_aw_is_wasteland_planet = no
-		NOT = { has_planet_flag = pd_unique_world }
-	}
-
-	allow = {
-	}
-
-	resources = {
-		category = decisions
-		cost = {
-			influence = 50
-			energy = 5000
-		}
-	}
-
-	effect = {
-		hidden_effect = {
-			IF = {
-				limit = {
-					pd_aw_is_necro_planet = yes
-				}
-				remove_modifier = pd_aw_necro_planet
-				remove_modifier = pd_aw_necro_city_planet
-				remove_modifier = pd_necro_planet
-				IF = {
-					limit = {
-						pd_aw_is_shroud_planet = yes
-					}
-					pd_aw_create_shroud_world_effect = yes
-				}
-				IF = {
-					limit = {
-						NOT = { pd_aw_is_shroud_planet = yes }
-					}
-					pd_aw_back_to_normal_view_effect = yes
-				}
-			}
-			create_message = {
-				type = MESSAGE_PD_AW_NECRO_CLEANUP_TYPE
-				localization = MESSAGE_PD_AW_NECRO_CLEANUP_DESC
 				days = 20
 				target = root
 				variable = {
