@@ -142,6 +142,71 @@ decision_pd_aw_bloom_tree_of_life = {
 
 ###Flooded/Aquatic Worlds
 @expand_planetary_sea_length = 1800
+
+#Unflood Planet
+decision_pd_aw_unflood_planet = {
+	owned_planets_only = yes
+	icon = decision_satellite_in_orbit
+
+	enactment_time = @expand_planetary_sea_length
+
+	potential = {
+		OR = {
+			is_planet_class = pc_ocean
+			is_planet_class = pc_gaia
+			is_planet_class = pc_city
+		}
+		exists = owner
+		pd_is_flooded_planet = yes
+		owner = {
+			NOT = { has_ascension_perk = ap_hydrocentric }
+		}
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		remove_modifier = flooded_habitat
+		remove_modifier = ocean_paradise
+		remove_modifier = ocean_paradise_2
+		remove_modifier = ocean_paradise_hive
+		remove_modifier = ocean_paradise_hive_2
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {	has_modifier = pd_aw_shroud_planet }
+				}
+				pd_aw_back_to_normal_view_effect = yes
+			}
+			if = {
+				limit = {
+					has_modifier = pd_aw_shroud_planet
+				}
+				pd_aw_create_shroud_world_effect = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			owner = {
+				has_trait = trait_aquatic
+			}
+		}
+	}
+}
+
 decision_pd_aw_flood_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_flooding_aw
@@ -326,115 +391,11 @@ decision_pd_aw_flood_planet = {
 					limit = {
 						NOT = {	has_modifier = pd_aw_shroud_planet }
 					}
-					IF = {
-						limit = {
-							is_planet_class = pc_ocean
-						}
-						set_planet_entity = {
-							picture = pc_aquatic
-							entity = aquatic_planet_01_entity
-						}
-						pd_remove_ocean_modifiers = yes
-					}
-					IF = {
-						limit = {
-							OR = {
-								has_modifier = ocean_paradise_2
-								has_modifier = ocean_paradise_hive_2
-							}
-						}
-						set_planet_entity = {
-							picture = pc_aquatic
-							entity = ocean_paradise_planet_01_entity
-						}
-						pd_remove_ocean_modifiers = yes
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_gaia
-						}
-						set_planet_entity = {
-							picture = pc_aquatic_hot
-							entity = ocean_paradise_planet_01_entity
-						}
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_city
-						}
-						set_planet_entity = {
-							picture = pc_pd_aquatic_city
-							entity = aquaticcity_planet_01_entity
-						}
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_relic
-						}
-						set_planet_entity = {
-							picture = pc_pd_aquatic_relic
-							entity = pd_aquatic_relic_world_01_entity
-						}
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_hive
-						}
-						set_planet_entity = {
-							picture = pc_pd_aquatic_hive
-							entity = pd_aquatic_infested_planet_01_entity
-						}
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_machine
-						}
-						set_planet_entity = {
-							picture = pc_pd_aquatic_machine
-							entity = pd_aquatic_machine_planet_01_entity
-						}
-					}
+					pd_aw_create_aquatic_world_effect = yes
 				}
 				IF = {
 					limit = {
 						has_modifier = pd_aw_shroud_planet
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_ocean
-						}
-						set_planet_entity = {
-							picture = pc_aquatic_shroud
-							entity = aquatic_shroud_planet_01_entity
-						}
-						pd_remove_ocean_modifiers = yes
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_gaia
-						}
-						set_planet_entity = {
-							picture = pc_aquatic_shroud_hot
-							entity = ocean_paradise_shroud_planet_01_entity
-						}
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_city
-						}
-						set_planet_entity = {
-							picture = pc_pd_aquatic_shroud_city
-							entity = aquatic_shroudcity_planet_01_entity
-						}
-					}
-					IF = {
-						limit = {
-							is_planet_class = pc_relic
-						}
-						set_planet_entity = {
-							picture = pc_pd_aquatic_shroud_relic
-							entity = pdaquatic_shroudrelic_planet_01_entity
-						}
 					}
 				}
 			}
@@ -482,125 +443,6 @@ decision_pd_aw_flood_planet = {
 	}
 	ai_weight = {
 		weight = 1
-	}
-}
-
-#Unflood Planet
-decision_pd_aw_unflood_planet = {
-	owned_planets_only = yes
-	icon = decision_satellite_in_orbit
-
-	enactment_time = @expand_planetary_sea_length
-
-	potential = {
-		OR = {
-			is_planet_class = pc_ocean
-			is_planet_class = pc_gaia
-			is_planet_class = pc_city
-		}
-		exists = owner
-		pd_is_flooded_planet = yes
-		owner = {
-			NOT = { has_ascension_perk = ap_hydrocentric }
-		}
-	}
-
-	allow = {
-	}
-
-	resources = {
-		category = decisions
-		cost = {
-			influence = 50
-			energy = 5000
-		}
-	}
-
-	effect = {
-		remove_modifier = flooded_habitat
-		remove_modifier = ocean_paradise
-		remove_modifier = ocean_paradise_2
-		remove_modifier = ocean_paradise_hive
-		remove_modifier = ocean_paradise_hive_2
-		hidden_effect = {
-			if = {
-				limit = {
-					NOT = {
-						has_modifier = pd_aw_shroud_planet
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_ocean
-					}
-					set_planet_entity = {
-						picture = pc_ocean
-						entity = ocean_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_gaia
-					}
-					set_planet_entity = {
-						picture = pc_gaia
-						entity = gaia_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_city
-					}
-					set_planet_entity = {
-						entity = "city_planet_entity"
-						graphical_culture = owner
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_relic
-					}
-					set_planet_entity = {
-						picture = pc_relic
-						entity = relic_world_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_hive
-					}
-					set_planet_entity = {
-						picture = pc_hive
-						entity = infested_planet
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_machine
-					}
-					set_planet_entity = {
-						picture = pc_machine
-						entity = machine_planet
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_modifier = pd_aw_shroud_planet
-				}
-				pd_aw_create_shroud_world_effect = yes
-			}
-		}
-	}
-
-	ai_weight = {
-		weight = 100
-		modifier = {
-			factor = 0
-			owner = {
-				has_trait = trait_aquatic
-			}
-		}
 	}
 }
 
@@ -789,11 +631,7 @@ decision_pd_aw_flood_ringworld = {
 				limit = {
 					NOT = { has_modifier = pd_aw_shroud_planet }
 				}
-				set_planet_entity = {
-					picture = pc_aquatic
-					entity = pdaquatic_ringworld_habitable_entity_01_entity
-					graphical_culture = owner
-				}
+				pd_aw_create_aquatic_world_effect = yes
 			}
 			if = {
 				limit = {
@@ -1018,35 +856,7 @@ decision_pd_aw_wasteland_planet = {
 			days = -1
 		}
 		hidden_effect = {
-			IF = {
-				limit = {
-					is_starting_planet_type = yes
-				}
-				set_planet_entity = {
-					picture = pc_pd_wasteland
-					entity = pd_wasteland_planet_01_entity
-				}
-			}
-			while = {
-				limit = { num_districts = { type = district_farming value > 0 } }
-				remove_district = district_farming
-			}
-			while = {
-				limit = { num_districts = { type = district_farming_uncapped value > 0 } }
-				remove_district = district_farming_uncapped
-			}
-			remove_pd_modifier = yes
-			create_message = {
-				type = MESSAGE_PD_AW_WASTELAND_TYPE
-				localization = MESSAGE_PD_AW_WASTELAND_DESC
-				days = 20
-				target = root
-				variable = {
-					type = name
-					localization = PLANET
-					scope = this
-				}
-			}
+			pd_aw_create_shroud_world_effect = yes
 		}
 	}
 
@@ -1109,74 +919,7 @@ decision_pd_aw_shroud_planet_cleanup = {
 				limit = {
 					pd_is_flooded_planet = yes
 				}
-				IF = {
-					limit = {
-						is_planet_class = pc_ocean
-					}
-					set_planet_entity = {
-						picture = pc_aquatic
-						entity = aquatic_planet_01_entity
-					}
-					pd_remove_ocean_modifiers = yes
-				}
-				IF = {
-					limit = {
-						OR = {
-							has_modifier = ocean_paradise_2
-							has_modifier = ocean_paradise_hive_2
-						}
-					}
-					set_planet_entity = {
-						picture = pc_aquatic
-						entity = ocean_paradise_planet_01_entity
-					}
-					pd_remove_ocean_modifiers = yes
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_gaia
-					}
-					set_planet_entity = {
-						picture = pc_aquatic_hot
-						entity = ocean_paradise_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_city
-					}
-					set_planet_entity = {
-						picture = pc_pd_aquatic_city
-						entity = aquaticcity_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_relic
-					}
-					set_planet_entity = {
-						picture = pc_pd_aquatic_relic
-						entity = pd_aquatic_relic_world_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_hive
-					}
-					set_planet_entity = {
-						picture = pc_pd_aquatic_hive
-						entity = pd_aquatic_infested_planet_01_entity
-					}
-				}
-				IF = {
-					limit = {
-						is_planet_class = pc_machine
-					}
-					set_planet_entity = {
-						picture = pc_pd_aquatic_machine
-						entity = pd_aquatic_machine_planet_01_entity
-					}
-				}
+				pd_aw_create_aquatic_world_effect = yes
 			}
 			if = {
 				limit = {
