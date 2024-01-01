@@ -1,0 +1,44 @@
+#Necropolis
+entity = {
+	name = "pc_pd_lithoid_cyan_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "pd_lithoid_cyan_01_diffuse.dds"
+		texture_normal = "pd_lithoid_01_normal.dds"
+		texture_specular = "pd_lithoid_01_spec.dds"
+		shader = "PdxMeshPlanetEmissive"
+	}
+
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_thin_diffuse.dds"
+		texture_normal = "clouds_thin_normal.dds"
+		texture_specular = "clouds_thin_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_thin_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+		texture_diffuse = "poles_barren_1_diffuse.dds"
+		texture_normal = "poles_barren_1_normal.dds"
+		texture_specular = "poles_barren_1_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+}
