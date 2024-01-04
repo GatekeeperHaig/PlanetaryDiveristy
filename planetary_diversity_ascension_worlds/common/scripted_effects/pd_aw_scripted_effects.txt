@@ -505,3 +505,29 @@ pd_aw_create_aquatic_shroud_world_effect = {
 		}
 	}
 }
+
+#This changes the planet to the Necro World view
+pd_aw_create_lithoid_world_effect = {
+	IF = {
+		limit = {
+			NOR = {
+				pd_is_flooded_planet = yes
+				pd_is_shroud_planet = yes
+			}
+		}
+		IF = {
+			limit = {
+				has_modifier = pd_aw_lithoid_planet_cyan
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_hive
+					is_planet_class = pc_nuked
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_lithoid_cyan
+				entity = pc_pd_lithoid_cyan_planet_01_entity
+			}
+		}
+	}
+}
