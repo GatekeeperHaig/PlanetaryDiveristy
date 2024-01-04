@@ -510,10 +510,9 @@ pd_aw_create_aquatic_shroud_world_effect = {
 pd_aw_create_lithoid_world_effect = {
 	IF = {
 		limit = {
-			NOR = {
-				pd_is_flooded_planet = yes
-				pd_is_shroud_planet = yes
-			}
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = no
+			pd_aw_is_necro_planet = no
 		}
 		IF = {
 			limit = {
@@ -528,6 +527,89 @@ pd_aw_create_lithoid_world_effect = {
 				picture = pc_pd_lithoid_cyan
 				entity = pc_pd_lithoid_cyan_planet_01_entity
 			}
+		}
+		IF = {
+			limit = {
+				has_modifier = pd_aw_lithoid_planet_red
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_hive
+					is_planet_class = pc_nuked
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_lithoid_red
+				entity = pc_pd_lithoid_red_planet_01_entity
+			}
+		}
+		IF = {
+			limit = {
+				has_modifier = pd_aw_lithoid_planet_yellow
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_hive
+					is_planet_class = pc_nuked
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_lithoid_yellow
+				entity = pc_pd_lithoid_yellow_planet_01_entity
+			}
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = no
+			pd_aw_is_necro_planet = no
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_aquatic
+			entity = pc_pd_lithoid_aquatic_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_necro_planet = no
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_aquatic_shroud
+			entity = pc_pd_lithoid_aquatic_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_necro_planet = no
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_shroud
+			entity = pc_pd_lithoid_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_necro_planet = yes
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_necro_shroud
+			entity = pc_pd_lithoid_necro_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = no
+			pd_aw_is_necro_planet = yes
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_necro
+			entity = pc_pd_lithoid_necro_planet_01_entity
 		}
 	}
 }

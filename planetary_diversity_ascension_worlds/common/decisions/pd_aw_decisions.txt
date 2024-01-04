@@ -324,15 +324,35 @@ decision_pd_aw_flood_planet = {
 			hidden_effect = {
 				IF = {
 					limit = {
-						NOT = {	has_modifier = pd_aw_shroud_planet }
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = no
+						pd_aw_is_lithoid_planet = no
 					}
 					pd_aw_create_aquatic_world_effect = yes
 				}
 				IF = {
 					limit = {
-						has_modifier = pd_aw_shroud_planet
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = no
+						pd_aw_is_lithoid_planet = no
 					}
 					pd_aw_create_aquatic_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = no
+						pd_aw_is_lithoid_planet = yes
+					}
+					pd_aw_create_lithoid_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = no
+						pd_aw_is_lithoid_planet = yes
+					}
+					pd_aw_create_lithoid_world_effect = yes
 				}
 			}
 
@@ -421,7 +441,9 @@ decision_pd_aw_unflood_planet = {
 		hidden_effect = {
 			if = {
 				limit = {
-					NOT = {	has_modifier = pd_aw_shroud_planet }
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_back_to_normal_view_effect = yes
 			}
@@ -430,6 +452,30 @@ decision_pd_aw_unflood_planet = {
 					has_modifier = pd_aw_shroud_planet
 				}
 				pd_aw_create_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_aw_create_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
 			}
 		}
 	}
@@ -904,16 +950,17 @@ decision_pd_aw_shroud_planet = {
 		hidden_effect = {
 			IF = {
 				limit = {
-					NOT = {
-						pd_is_flooded_planet = yes
-						pd_aw_is_necro_planet = yes
-					}
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_create_shroud_world_effect = yes
 			}
 			IF = {
 				limit = {
 					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
 				}
 				IF = {
 					limit = {
@@ -977,9 +1024,35 @@ decision_pd_aw_shroud_planet = {
 			}
 			IF = {
 				limit = {
+					pd_is_flooded_planet = no
 					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_create_necro_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
 			}
 			remove_pd_modifier = yes
 			create_message = {
@@ -1041,24 +1114,51 @@ decision_pd_aw_shroud_planet_cleanup = {
 		hidden_effect = {
 			if = {
 				limit = {
-					NOT = {
-						pd_is_flooded_planet = yes
-						pd_aw_is_necro_planet = yes
-					}
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_back_to_normal_view_effect = yes
 			}
 			if = {
 				limit = {
 					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_create_aquatic_world_effect = yes
 			}
 			if = {
 				limit = {
+					pd_is_flooded_planet = no
 					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_create_necro_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
 			}
 			create_message = {
 				type = MESSAGE_PD_AW_SHROUD_CLEANUP_TYPE
@@ -1151,15 +1251,31 @@ decision_pd_aw_necro_planet = {
 		hidden_effect = {
 			IF = {
 				limit = {
-					NOT = {	has_modifier = pd_aw_shroud_planet }
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_create_necro_world_effect = yes
 			}
 			IF = {
 				limit = {
-					has_modifier = pd_aw_shroud_planet
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_create_necro_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
 			}
 			remove_pd_modifier = yes
 			create_message = {
@@ -1226,15 +1342,31 @@ decision_pd_aw_necro_planet_cleanup = {
 				remove_modifier = pd_necro_planet
 				IF = {
 					limit = {
+						pd_aw_is_lithoid_planet = no
+						pd_aw_is_shroud_planet = no
+					}
+					pd_aw_back_to_normal_view_effect = yes
+				}
+				IF = {
+					limit = {
 						pd_aw_is_shroud_planet = yes
+						pd_aw_is_lithoid_planet = no
 					}
 					pd_aw_create_shroud_world_effect = yes
 				}
 				IF = {
 					limit = {
-						NOT = { pd_aw_is_shroud_planet = yes }
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_lithoid_planet = yes
 					}
-					pd_aw_back_to_normal_view_effect = yes
+					pd_aw_create_lithoid_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_lithoid_planet = yes
+					}
+					pd_aw_create_lithoid_world_effect = yes
 				}
 			}
 			create_message = {
@@ -1264,7 +1396,7 @@ decision_pd_aw_lithoid_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_lithoid
 
-	enactment_time = @pd_necro_time
+	enactment_time = @pd_lithoid_time
 
 	potential = {
 		OR = {
@@ -1274,8 +1406,8 @@ decision_pd_aw_lithoid_planet = {
 		}
 		exists = owner
 		owner = { has_ascension_perk = ap_pd_lithoid_worlds }
-		pd_aw_is_necro_planet = no
 		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
 
@@ -1291,11 +1423,12 @@ decision_pd_aw_lithoid_planet = {
 	}
 
 	effect = {
-		planet_event = {
-			id = pdlithoidplanets.100
-			days = 0
-		}
+		custom_tooltip = decision_pd_aw_lithoid_planet_tooltip
 		hidden_effect = {
+			planet_event = {
+				id = pdlithoidplanets.100
+				days = 0
+			}
 			remove_pd_modifier = yes
 			create_message = {
 				type = MESSAGE_PD_AW_LITHOID_TYPE
@@ -1316,78 +1449,151 @@ decision_pd_aw_lithoid_planet = {
 	}
 }
 #Remove Lithoid Modifier
-# decision_pd_aw_necro_planet_cleanup = {
-# 	owned_planets_only = yes
-# 	icon = decision_pd_aw_necro
+decision_pd_aw_lithoid_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_lithoid
 
-# 	enactment_time = @pd_necro_time
+	enactment_time = @pd_lithoid_time
 
-# 	potential = {
-# 		OR = {
-# 			habitable_planet_not_urban = yes
-# 			is_planet_class = pc_ringworld_habitable
-# 			is_planet_class = pc_city
-# 			is_planet_class = pc_relic
-# 			is_planet_class = pc_hive
-# 			is_planet_class = pc_machine
-# 			is_planet_class = pc_nuked
-# 		}
-# 		exists = owner
-# 		owner = { NOT = { has_ascension_perk = ap_pd_necro_worlds } }
-# 		pd_aw_is_necro_planet = yes
-# 		pd_aw_is_wasteland_planet = no
-# 		NOT = { has_planet_flag = pd_unique_world }
-# 	}
+	potential = {
+		OR = {
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_nuked
+		}
+		exists = owner
+		owner = { NOT = { has_ascension_perk = ap_pd_lithoid_worlds } }
+		pd_aw_is_lithoid_planet = yes
+		NOT = { has_planet_flag = pd_unique_world }
+	}
 
-# 	allow = {
-# 	}
+	allow = {
+	}
 
-# 	resources = {
-# 		category = decisions
-# 		cost = {
-# 			influence = 50
-# 			energy = 5000
-# 		}
-# 	}
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
 
-# 	effect = {
-# 		hidden_effect = {
-# 			IF = {
-# 				limit = {
-# 					pd_aw_is_necro_planet = yes
-# 				}
-# 				remove_modifier = pd_aw_necro_planet
-# 				remove_modifier = pd_aw_necro_city_planet
-# 				remove_modifier = pd_necro_planet
-# 				IF = {
-# 					limit = {
-# 						pd_aw_is_shroud_planet = yes
-# 					}
-# 					pd_aw_create_shroud_world_effect = yes
-# 				}
-# 				IF = {
-# 					limit = {
-# 						NOT = { pd_aw_is_shroud_planet = yes }
-# 					}
-# 					pd_aw_back_to_normal_view_effect = yes
-# 				}
-# 			}
-# 			create_message = {
-# 				type = MESSAGE_PD_AW_NECRO_CLEANUP_TYPE
-# 				localization = MESSAGE_PD_AW_NECRO_CLEANUP_DESC
-# 				days = 20
-# 				target = root
-# 				variable = {
-# 					type = name
-# 					localization = PLANET
-# 					scope = this
-# 				}
-# 			}
-# 		}
-# 	}
+	effect = {
+		custom_tooltip = decision_pd_aw_lithoid_planet_cleanup_tooltip
+		hidden_effect = {
+			IF = {
+				limit = {
+					pd_aw_is_lithoid_planet = yes
+				}
+				remove_modifier = pd_aw_lithoid_planet_cyan
+				remove_modifier = pd_aw_lithoid_planet_red
+				remove_modifier = pd_aw_lithoid_planet_yellow
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = no
+					}
+					pd_aw_back_to_normal_view_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = no
+					}
+					pd_aw_create_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = yes
+						pd_is_flooded_planet = no
+					}
+					pd_aw_create_necro_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = yes
+					}
+					pd_aw_create_aquatic_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = yes
+						pd_is_flooded_planet = no
+					}
+					pd_aw_create_necro_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = yes
+					}
+					pd_aw_create_aquatic_shroud_world_effect = yes
+				}
+			}
+			create_message = {
+				type = MESSAGE_PD_AW_LITHOID_CLEANUP_TYPE
+				localization = MESSAGE_PD_AW_LITHOID_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
 
-# 	ai_weight = {
-# 		weight = 10
-# 	}
-# }
+	ai_weight = {
+		weight = 10
+	}
+}
 #Change Lithoid Modifier
+decision_pd_aw_lithoid_change_frequency = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_lithoid
+
+	enactment_time = 360
+
+	potential = {
+		OR = {
+			has_modifier = pd_aw_lithoid_planet_cyan
+			has_modifier = pd_aw_lithoid_planet_red
+			has_modifier = pd_aw_lithoid_planet_yellow
+		}
+		exists = owner
+		owner = { has_ascension_perk = ap_pd_lithoid_worlds }
+		pd_aw_is_lithoid_planet = yes
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+			energy = 1000
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_aw_lithoid_change_frequency_tooltip
+		hidden_effect = {
+			remove_modifier = pd_aw_lithoid_planet_cyan
+			remove_modifier = pd_aw_lithoid_planet_red
+			remove_modifier = pd_aw_lithoid_planet_yellow
+			planet_event = {
+				id = pdlithoidplanets.100
+				days = 0
+			}
+		}
+	}
+}
