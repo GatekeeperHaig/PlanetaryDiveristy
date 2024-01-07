@@ -439,19 +439,13 @@ decision_pd_aw_unflood_planet = {
 		remove_modifier = ocean_paradise_hive
 		remove_modifier = ocean_paradise_hive_2
 		hidden_effect = {
-			if = {
+			IF = {
 				limit = {
 					pd_aw_is_shroud_planet = no
 					pd_aw_is_necro_planet = no
 					pd_aw_is_lithoid_planet = no
 				}
 				pd_aw_back_to_normal_view_effect = yes
-			}
-			if = {
-				limit = {
-					has_modifier = pd_aw_shroud_planet
-				}
-				pd_aw_create_shroud_world_effect = yes
 			}
 			IF = {
 				limit = {
@@ -1426,7 +1420,7 @@ decision_pd_aw_lithoid_planet = {
 		custom_tooltip = decision_pd_aw_lithoid_planet_tooltip
 		hidden_effect = {
 			planet_event = {
-				id = pdlithoidplanets.100
+				id = pdawlithoidplanets.100
 				days = 0
 			}
 			remove_pd_modifier = yes
@@ -1451,7 +1445,7 @@ decision_pd_aw_lithoid_planet = {
 #Remove Lithoid Modifier
 decision_pd_aw_lithoid_planet_cleanup = {
 	owned_planets_only = yes
-	icon = decision_pd_aw_lithoid
+	icon = decision_resort_colony
 
 	enactment_time = @pd_lithoid_time
 
@@ -1564,6 +1558,11 @@ decision_pd_aw_lithoid_change_frequency = {
 
 	potential = {
 		OR = {
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_nuked
+		}
+		OR = {
 			has_modifier = pd_aw_lithoid_planet_cyan
 			has_modifier = pd_aw_lithoid_planet_red
 			has_modifier = pd_aw_lithoid_planet_yellow
@@ -1591,7 +1590,7 @@ decision_pd_aw_lithoid_change_frequency = {
 			remove_modifier = pd_aw_lithoid_planet_red
 			remove_modifier = pd_aw_lithoid_planet_yellow
 			planet_event = {
-				id = pdlithoidplanets.100
+				id = pdawlithoidplanets.100
 				days = 0
 			}
 		}
