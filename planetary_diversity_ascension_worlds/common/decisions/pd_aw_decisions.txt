@@ -166,8 +166,10 @@ decision_pd_aw_flood_planet = {
 			has_modifier = ocean_paradise_2
 			has_modifier = ocean_paradise_hive_2
 			has_planet_flag = pd_unique_world
-			pd_aw_is_wasteland_planet = yes
 		}
+		pd_aw_is_wasteland_planet = yes
+		pd_aw_is_lithoid_planet = yes
+		pd_aw_is_necro_planet = yes
 	}
 
 	allow = {
@@ -497,9 +499,10 @@ decision_pd_aw_flood_ringworld = {
 		owner = {
 			has_ascension_perk = ap_hydrocentric
 		}
-		NOT = {
-			has_modifier = flooded_habitat
-		}
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
 	}
 
 	allow = {
@@ -768,6 +771,10 @@ decision_pd_aw_unflood_habitat = {
 			NOT = { has_ascension_perk = ap_hydrocentric }
 		}
 		NOT = { has_planet_flag = pd_unique_world }
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
 	}
 
 	allow = {
@@ -818,7 +825,10 @@ decision_pd_aw_wasteland_planet = {
 		owner = {
 			has_ascension_perk = ap_pd_wasteland_worlds
 		}
-		pd_is_aw_world = no
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
 
@@ -1194,8 +1204,10 @@ decision_pd_aw_necro_planet = {
 		}
 		exists = owner
 		owner = { has_ascension_perk = ap_pd_necro_worlds }
-		pd_aw_is_necro_planet = no
+		pd_is_flooded_planet = no
 		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
 
@@ -1400,8 +1412,10 @@ decision_pd_aw_lithoid_planet = {
 		}
 		exists = owner
 		owner = { has_ascension_perk = ap_pd_lithoid_worlds }
+		pd_is_flooded_planet = no
 		pd_aw_is_wasteland_planet = no
 		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
 	}
 
