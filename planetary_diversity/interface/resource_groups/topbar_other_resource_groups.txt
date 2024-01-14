@@ -1,12 +1,16 @@
 tb_others_group = {
-	resources = {
-		volatile_motes
-		exotic_gases
-		rare_crystals
-		sr_living_metal
-		sr_zro
-		sr_dark_matter
-		nanites
+	category = {
+		name = "RARE_RESOURCES"
+		resources = {
+			volatile_motes
+			exotic_gases
+			rare_crystals
+			sr_living_metal
+			sr_zro
+			sr_dark_matter
+			nanites
+		}
+		onclick = market
 	}
 
 	category = {
@@ -24,21 +28,16 @@ tb_others_group = {
 		additional_element_height = 25
 	}
 
-	category = {
-		resources = {
-			minor_artifacts
-		}
-		onclick = relics
-	}
-
 	localization = {
 		"RESOURCE_GROUP_DEFAULT" = default
 		"RESOURCE_GROUP_DEFAULT_NEG_DEC_TOTAL_POS" = { total_balance >= 0 balance < 0 stored >= 1000 stored < 10000 }
 		"RESOURCE_GROUP_DEFAULT_NEG_DEC" = { balance < 0 stored >= 1000 stored < 10000 }
 		"RESOURCE_GROUP_DEFAULT_NEG_TOTAL_POS" = { total_balance >= 0 balance < 0 }
 		"RESOURCE_GROUP_DEFAULT_NEG" = { balance < 0 }
+		"RESOURCE_GROUP_DEFAULT_MAX_DEC" = { max > 0 stored >= max total_stored >= 1000 total_stored < 10000 }
 		"RESOURCE_GROUP_DEFAULT_MAX" = { max > 0 stored >= max }
 		"RESOURCE_GROUP_DEFAULT_DEC" = { stored >= 1000 stored < 10000 }
 	}
-	onclick = market
+
+	minimum_height = 175
 }
