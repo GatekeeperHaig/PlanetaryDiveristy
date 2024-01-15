@@ -435,11 +435,36 @@ decision_pd_aw_unflood_planet = {
 	}
 
 	effect = {
-		remove_modifier = flooded_habitat
-		remove_modifier = ocean_paradise
-		remove_modifier = ocean_paradise_2
-		remove_modifier = ocean_paradise_hive
-		remove_modifier = ocean_paradise_hive_2
+		if = {
+			limit = {
+				has_modifier = flooded_habitat
+			}
+			remove_modifier = flooded_habitat
+		}
+		if = {
+			limit = {
+				has_modifier = ocean_paradise
+			}
+			remove_modifier = ocean_paradise
+		}
+		if = {
+			limit = {
+				has_modifier = ocean_paradise_2
+			}
+			remove_modifier = ocean_paradise_2
+		}
+		if = {
+			limit = {
+				has_modifier = ocean_paradise_hive
+			}
+			remove_modifier = ocean_paradise_hive
+		}
+		if = {
+			limit = {
+				has_modifier = ocean_paradise_hive_2
+			}
+			remove_modifier = ocean_paradise_hive_2
+		}
 		hidden_effect = {
 			IF = {
 				limit = {
