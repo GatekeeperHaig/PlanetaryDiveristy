@@ -45,12 +45,10 @@ building_pd_planet_infester_1 = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 1000
-			food = 1000
+			energy = 2000
 		}
 		upkeep = {
-			energy = 10
-			food = 10
+			energy = 20
 		}
 	}
 
@@ -63,6 +61,10 @@ building_pd_planet_infester_1 = {
 	}
 
 	is_essential = yes
+
+	ai_weight = {
+		factor = 1000
+	}
 }
 
 building_pd_planet_infester_2 = {
@@ -76,11 +78,11 @@ building_pd_planet_infester_2 = {
 		category = planet_buildings
 		cost = {
 			energy = 2000
-			food = 2000
+			exotic_gases = 10
 		}
 		upkeep = {
 			energy = 20
-			food = 20
+			exotic_gases = 2
 		}
 	}
 
@@ -103,7 +105,6 @@ building_pd_planet_infester_2 = {
 
 	planet_modifier = {
 		pop_environment_tolerance = 0.4
-		pop_growth_speed = 0.05
 	}
 
 	on_destroy = {
@@ -139,19 +140,18 @@ building_pd_planet_infester_3 = {
 	}
 
 	planet_modifier = {
-		pop_growth_speed = 0.1
 		planet_jobs_produces_mult = 0.1
+		pop_amenities_usage_mult = -0.2
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 2500
-			food = 2500
+			energy = 2000
+			exotic_gases = 20
 		}
 		upkeep = {
-			energy = 10
-			food = 10
+			energy = 20
 		}
 	}
 
@@ -173,63 +173,3 @@ building_pd_planet_infester_3 = {
 
 	is_essential = yes
 }
-
-# building_pd_planet_infester_hive = {
-# 	base_buildtime = @b2_time
-# 	base_cap_amount = 1
-# 	category = government
-# 	can_demolish = no
-# 	can_be_ruined = no
-# 	can_be_disabled = no
-# 	position_priority = 0
-# 	icon = building_pd_planet_infester_3
-
-# 	destroy_trigger = {
-# 		OR = {
-# 			NOT = {
-# 				is_planet_class = pc_hive
-# 			}
-# 			NOT = { exists = owner }
-# 			owner = {
-# 				NOT = {
-# 					has_civic = civic_hive_pd_planetary_infesters
-# 				}
-# 			}
-# 		}
-# 	}
-
-# 	resources = {
-# 		category = planet_buildings
-# 		cost = {
-# 			food = 1500
-# 		}
-# 		upkeep = {
-# 			food = @b4_upkeep
-# 			multiplier = value:gaiaseeder_cost_mult
-# 		}
-# 	}
-
-# 	potential = {
-# 		hidden_trigger = {
-# 			exists = owner
-# 			owner = {
-# 				is_country_type = default
-# 				has_civic = civic_hive_pd_planetary_infesters
-# 			}
-# 			is_planet_class = pc_hive
-# 			NOR = {
-# 				has_building = building_pd_planet_infester_3
-# 				has_building_construction = building_pd_planet_infester_3
-# 				has_building = building_pd_planet_infester_hive
-# 				has_building_construction = building_pd_planet_infester_hive
-# 			}
-# 		}
-# 	}
-
-# 	allow = {
-# 		has_upgraded_capital = yes
-# 		owner = {
-# 			has_civic = civic_hive_pd_planetary_infesters
-# 		}
-# 	}
-# }
