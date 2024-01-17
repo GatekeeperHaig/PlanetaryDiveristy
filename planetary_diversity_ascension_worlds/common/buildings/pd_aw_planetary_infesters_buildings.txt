@@ -1,10 +1,10 @@
 ### Planetary Infesters
-building_pd_planet_infester_1 = {
+building_pd_aw_planet_infester_1 = {
 	base_buildtime = 900
 	base_cap_amount = 1
 	category = government
 	can_be_disabled = no
-	upgrades = { "building_pd_planet_infester_2" }
+	upgrades = { "building_pd_aw_planet_infester_2" }
 
 	potential = {
 		exists = owner
@@ -12,6 +12,7 @@ building_pd_planet_infester_1 = {
 			is_country_type = default
 			has_civic = civic_hive_pd_planetary_infesters
 		}
+		habitable_planet_not_urban = yes
 		NOR = {
 			is_planet_class = pc_city
 			is_planet_class = pc_hive
@@ -31,6 +32,7 @@ building_pd_planet_infester_1 = {
 
 	destroy_trigger = {
 		OR = {
+			habitable_planet_not_urban = no
 			is_planet_class = pc_hive	# No double bonuses if player uses other tools to turn it into a Hive world.
 			is_planet_class = pc_city
 			is_planet_class = pc_machine
@@ -61,18 +63,14 @@ building_pd_planet_infester_1 = {
 	}
 
 	is_essential = yes
-
-	ai_weight = {
-		factor = 1000
-	}
 }
 
-building_pd_planet_infester_2 = {
+building_pd_aw_planet_infester_2 = {
 	base_buildtime = 900
 	can_build = no
 	category = government
 	can_be_disabled = no
-	upgrades = { "building_pd_planet_infester_3" }
+	upgrades = { "building_pd_aw_planet_infester_3" }
 
 	resources = {
 		category = planet_buildings
@@ -88,6 +86,7 @@ building_pd_planet_infester_2 = {
 
 	destroy_trigger = {
 		OR = {
+			habitable_planet_not_urban = no
 			is_planet_class = pc_gaia
 			is_planet_class = pc_city
 			is_planet_class = pc_hive
@@ -114,7 +113,7 @@ building_pd_planet_infester_2 = {
 	is_essential = yes
 }
 
-building_pd_planet_infester_3 = {
+building_pd_aw_planet_infester_3 = {
 	base_buildtime = 1800
 	category = government
 	can_build = no
@@ -136,7 +135,7 @@ building_pd_planet_infester_3 = {
 	}
 
 	allow = {
-		has_major_upgraded_capital = yes
+		has_upgraded_capital = yes
 	}
 
 	planet_modifier = {
@@ -156,7 +155,7 @@ building_pd_planet_infester_3 = {
 	}
 
 	triggered_desc = {
-		text = building_pd_planet_infester_3_effect_desc
+		text = building_pd_aw_planet_infester_3_effect_desc
 		trigger = {
 			exists = planet
 			planet = {
