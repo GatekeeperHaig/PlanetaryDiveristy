@@ -71,24 +71,32 @@ trait_organic_fourschildren_2 = {
 	}
 }
 
-leader_trait_fourschildren = {
+leader_trait_fourschildren = { #Frai7ty was here. Hi Gate o7.
 	inline_script = {
 		script = trait/icon
 		CLASS = leader
-		ICON = "GFX_leader_trait_biosynth_leadwer"
+		ICON = "GFX_leader_trait_biosynth_leader"
 		RARITY = common
-		COUNCIL = no
+		COUNCIL = triggered
 		TIER = none
 	}
-	triggered_modifier = {
+	triggered_fleet_modifier = {
 		potential = {
 			is_ruler = no
-			leader_class = admiral
+			leader_class = commander
 		}
 		ship_fire_rate_mult = 0.10
 		ship_disengage_chance_mult = 0.10
 	}
-	triggered_modifier = {
+	triggered_army_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		army_damage_mult = 0.10
+		army_disengage_chance_mult = 0.10
+	}
+	triggered_self_modifier = {
 		potential = {
 			is_ruler = no
 			leader_class = scientist
@@ -97,29 +105,28 @@ leader_trait_fourschildren = {
 		science_ship_survey_speed = 0.25
 		ship_anomaly_generation_chance_mult = 0.05
 	}
-	triggered_modifier = {
+	triggered_planet_modifier = {
 		potential = {
 			is_ruler = no
-			leader_class = general
-		}
-		army_damage_mult = 0.10
-		army_disengage_chance_mult = 0.10
-	}
-	triggered_modifier = {
-		potential = {
-			is_ruler = no
-			leader_class = governor
+			leader_class = official
 		}
 		planet_stability_add = 10
 	}
-	triggered_modifier = {
+	triggered_sector_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_stability_add = 5
+	}		
+	triggered_councilor_modifier = {
 		potential = {
 			is_ruler = yes
 		}
 		country_ruler_influence_produces_add = 0.5
 		country_unity_produces_mult = 0.1
 	}
-	leader_class = { admiral scientist general governor }
+	leader_class = { commander scientist official }
 	initial = no
 	randomized = no
 }
