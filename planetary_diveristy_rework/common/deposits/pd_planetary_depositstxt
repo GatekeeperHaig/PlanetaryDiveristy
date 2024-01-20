@@ -1,0 +1,45 @@
+## Possible Deposit Variables ##
+# resources, resource and amount
+# potential trigger (planet scope)
+# blocked_modifier - applied to planet
+# constant_modifier - applied to planet always
+# station = station class in orbit to gather
+# blocker_swap_types = {}
+# all_blocker_swap_types = yes/no
+# use_weights_for_blocker_swap_types = yes/no
+# terraforming_swap_types = { }
+# should_swap_deposit_on_terraforming = yes/no
+# all_terraforming_swap_types = yes/no
+# use_weights_for_terraforming_swap_types = yes/no
+
+d_pd_tree_of_life_uncommon = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_huge_tree
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_pd_aw_tree_of_life
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.15
+		planet_jobs_society_research_produces_mult = 0.10
+		planet_housing_add = 10
+		planet_max_districts_add = -1
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			food = 4
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

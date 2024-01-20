@@ -1,0 +1,178 @@
+
+building_gaiaseeders_1 = {
+	base_buildtime = @b2_time
+	base_cap_amount = 1
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_gaiaseeders_2" }
+
+	potential = {
+		exists = owner
+		owner = {
+			is_country_type = default
+			is_idyllic_bloom_empire = yes
+		}
+		pd_is_planet_class_gaia = no
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_relic
+		}
+		is_artificial = no
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	destroy_trigger = {
+		OR = {
+			pd_is_planet_class_gaia = yes # No double bonuses if player uses other tools to turn it into a Gaia world.
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_relic
+			NOT = { exists = owner }
+			owner = {
+				is_idyllic_bloom_empire = no
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 1500
+			multiplier = value:gaiaseeder_cost_mult
+		}
+		upkeep = {
+			energy = 20
+			multiplier = value:gaiaseeder_upkeep
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.1
+	}
+}
+
+building_gaiaseeders_2 = {
+	base_buildtime = @b2_time
+	can_build = no
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_gaiaseeders_3" }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 1500
+			exotic_gases = @b2_rare_cost
+		}
+		upkeep = {
+			energy = 20
+			exotic_gases = @b2_rare_upkeep
+			multiplier = value:gaiaseeder_upkeep
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			NOT = { exists = owner }
+			owner = {
+				is_idyllic_bloom_empire = no
+			}
+		}
+	}
+
+	allow = {
+		can_build_gaiaseeder = yes
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.05
+		pop_environment_tolerance = 0.1
+	}
+}
+
+building_gaiaseeders_3 = {
+	base_buildtime = @b2_time
+	can_build = no
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_gaiaseeders_4" }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 1500
+			exotic_gases = @b3_rare_cost
+		}
+		upkeep = {
+			energy = 20
+			exotic_gases = @b3_rare_upkeep
+			multiplier = value:gaiaseeder_upkeep
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			NOT = { exists = owner }
+			owner = {
+				is_idyllic_bloom_empire = no
+			}
+		}
+	}
+
+	allow = {
+		can_build_gaiaseeder = yes
+	}
+
+	planet_modifier = {
+		pop_environment_tolerance = 0.2
+	}
+}
+
+building_gaiaseeders_4 = {
+	base_buildtime = @b2_time
+	can_build = no
+	category = government
+	can_be_disabled = no
+
+	destroy_trigger = {
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			NOT = { exists = owner }
+			owner = {
+				is_idyllic_bloom_empire = no
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 1500
+			exotic_gases = @b4_rare_cost
+		}
+	}
+
+	allow = {
+		can_build_gaiaseeder = yes
+	}
+
+	triggered_desc = {
+		text = building_gaiaseeders_4_effect_desc
+	}
+}

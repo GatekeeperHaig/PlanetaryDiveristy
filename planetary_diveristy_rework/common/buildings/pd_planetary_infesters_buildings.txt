@@ -1,0 +1,162 @@
+### Planetary Infesters
+building_pd_planet_infester_1 = {
+	base_buildtime = 900
+	base_cap_amount = 1
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_pd_planet_infester_2" }
+
+	potential = {
+		exists = owner
+		owner = {
+			is_country_type = default
+			has_civic = civic_hive_pd_planetary_infesters
+		}
+		pd_is_planet_class_all = yes
+	}
+
+	allow = {
+		exists = owner
+		owner = {
+			is_country_type = default
+			has_civic = civic_hive_pd_planetary_infesters
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			pd_is_planet_class_all = no
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_civic = civic_hive_pd_planetary_infesters }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 2000
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	planet_modifier = {
+		pop_environment_tolerance = 0.2
+	}
+
+	on_destroy = {
+		pd_aw_back_to_normal_view_effect = yes
+	}
+
+	is_essential = yes
+}
+
+building_pd_planet_infester_2 = {
+	base_buildtime = 900
+	can_build = no
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_pd_planet_infester_3" }
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 2000
+			exotic_gases = 10
+		}
+		upkeep = {
+			energy = 20
+			exotic_gases = 2
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			pd_is_planet_class_all = no
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_civic = civic_hive_pd_planetary_infesters }
+			}
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	planet_modifier = {
+		pop_environment_tolerance = 0.4
+	}
+
+	on_destroy = {
+		pd_aw_back_to_normal_view_effect = yes
+	}
+
+	is_essential = yes
+}
+
+building_pd_planet_infester_3 = {
+	base_buildtime = 1800
+	category = government
+	can_build = no
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	destroy_trigger = {
+		OR = {
+			NOR = {
+				is_planet_class = pc_hive
+				is_planet_class = pc_pd_hive_tidally_locked
+				is_planet_class = pc_pd_hive_cave
+				is_planet_class = pc_pd_hive_superhabitable
+			}
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_civic = civic_hive_pd_planetary_infesters }
+			}
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	planet_modifier = {
+		planet_jobs_produces_mult = 0.1
+		pop_amenities_usage_mult = -0.2
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 2000
+			exotic_gases = 20
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	triggered_desc = {
+		text = building_pd_planet_infester_3_effect_desc
+		trigger = {
+			exists = planet
+			planet = {
+				NOT = {
+					is_planet_class = pc_hive
+				}
+			}
+		}
+	}
+
+	on_destroy = {
+		change_pc = pc_arid
+	}
+
+	is_essential = yes
+}

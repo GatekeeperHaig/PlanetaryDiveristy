@@ -1,0 +1,144 @@
+namespace = pdplanetaryinfesters
+
+# PD Planetary Infesters
+
+# First Stage
+planet_event = {
+	id = pdplanetaryinfesters.100
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		last_building_changed = building_pd_planet_infester_1
+		pd_is_planet_class_all = yes
+	}
+
+	immediate = {
+		# Changes Entity
+		planet = {
+			if = {
+				limit = {
+					pd_is_planet_class_tidally_locked = no
+					pd_is_planet_class_cave = no
+				}
+				set_planet_entity = {
+					entity = "pd_infested_stage_1_planet_01_entity"
+				}
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_tidally_locked = yes
+				}
+				set_planet_entity = {
+					entity = "pd_infested_tidallylocked_stage_1_planet_01_entity"
+				}
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_cave = yes
+				}
+				set_planet_entity = {
+					entity = "pd_infesting_cave_1_planet_01_entity"
+				}
+			}
+		}
+	}
+}
+
+# Second Stage
+planet_event = {
+	id = pdplanetaryinfesters.110
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		last_building_changed = building_pd_planet_infester_2
+		pd_is_planet_class_all = yes
+	}
+
+	immediate = {
+		# Changes Entity
+		planet = {
+			if = {
+				limit = {
+					pd_is_planet_class_tidally_locked = no
+					pd_is_planet_class_cave = no
+				}
+				set_planet_entity = {
+					entity = "pd_infested_stage_2_planet_01_entity"
+				}
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_tidally_locked = yes
+				}
+				set_planet_entity = {
+					entity = "pd_infested_tidallylocked_stage_2_planet_01_entity"
+				}
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_cave = yes
+				}
+				set_planet_entity = {
+					entity = "pd_infesting_cave_2_planet_01_entity"
+				}
+			}
+		}
+	}
+}
+
+# Final Stage
+planet_event = {
+	id = pdplanetaryinfesters.120
+	is_triggered_only = yes
+	title = "pdplanetaryinfesters.120.name"
+	desc = "pdplanetaryinfesters.120.desc"
+	picture = GFX_evt_hive_mind
+	show_sound = event_alien_nature
+	location = root
+
+	trigger = {
+		last_building_changed = building_pd_planet_infester_3
+		pd_is_planet_class_all = yes
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				pd_is_planet_class_superhabitable = no
+				pd_is_planet_class_cave = no
+				pd_is_planet_class_tidally_locked = no
+			}
+			change_pc = pc_hive
+		}
+		if = {
+			limit = {
+				pd_is_planet_class_tidally_locked = yes
+			}
+			change_pc = pc_pd_hive_tidally_locked
+		}
+		if = {
+			limit = {
+				pd_is_planet_class_cave = yes
+			}
+			change_pc = pc_pd_hive_cave
+		}
+		if = {
+			limit = {
+				pd_is_planet_class_superhabitable = yes
+			}
+			change_pc = pc_pd_hive_superhabitable
+		}
+	}
+
+	option = {
+		name = pdplanetaryinfesters.120.a
+	}
+
+	after = {
+		tooltip = {
+			change_pc = pc_hive
+		}
+	}
+}

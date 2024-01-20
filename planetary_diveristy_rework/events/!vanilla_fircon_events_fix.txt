@@ -1,0 +1,44 @@
+namespace = fircon
+
+country_event = {
+	id = fircon.5051
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		capital_scope.solar_system = {
+			if = {
+				limit = {
+					root.capital_scope = {
+						is_ringworld = no
+					}
+				}
+				spawn_planet = {
+					class = pc_pd_wet_gaia
+					location = root.capital_scope
+					orbit_angle_offset = 90
+					size = 25
+					init_effect = {
+						set_planet_flag = colony_event
+						prevent_anomaly = yes
+						set_name = "NAME_Sol_X"
+					}
+				}
+			}
+			else = {
+				spawn_planet = {
+					class = pc_pd_wet_gaia
+					location = root.capital_scope
+					orbit_angle_offset = 180
+					orbit_distance_offset = 12
+					size = 25
+					init_effect = {
+						set_planet_flag = colony_event
+						prevent_anomaly = yes
+						set_name = "NAME_Sol_X"
+					}
+				}
+			}
+		}
+	}
+}

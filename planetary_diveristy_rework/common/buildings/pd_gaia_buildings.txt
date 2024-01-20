@@ -1,0 +1,599 @@
+###Gaia Buildings
+
+#Research
+building_gaia_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	inline_script = "buildings/pd_rare_physics_building"
+	inline_script = "buildings/pd_rare_society_building"
+	inline_script = "buildings/pd_rare_engineering_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+
+	destroy_trigger = {
+		planet = { 
+			NOT = {	is_planet_class = pc_gaia }
+		}
+	}	 
+}
+
+#Unity
+building_gaia_unity_admin = {
+	base_buildtime = 600
+
+	category = unity
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = slave_colony }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+		owner = {
+			is_regular_empire = yes
+			is_spiritualist = no
+			has_make_spiritualist_perk = no
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		job_politician_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_planetary_government }
+		}
+		planet_administrators_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_colonial_bureaucracy }
+		}
+		planet_administrators_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_galactic_bureaucracy }
+		}
+		planet_administrators_unity_produces_add = 1
+	}
+
+	convert_to = {
+		building_gaia_unity_temple
+		building_gaia_unity_robot
+		building_gaia_unity_servitor
+		building_gaia_unity_hive
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = {	is_planet_class = pc_gaia }
+			has_modifier = slave_colony
+			AND = {
+				exists = owner
+				owner = {
+					OR = {
+						is_regular_empire = no
+						is_spiritualist = yes
+						has_make_spiritualist_perk = yes
+					}
+				}
+			}
+		}
+	}		  
+}
+
+building_gaia_unity_temple = {
+	base_buildtime = 600
+
+	category = unity
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = slave_colony }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+		owner = {
+			OR = {
+				is_spiritualist = yes
+				AND = {
+					is_gestalt = no
+					has_make_spiritualist_perk = yes
+				}
+			}
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		job_high_priest_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_cultural_heritage }
+		}
+		planet_priests_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_holographic_rituals }
+		}
+		planet_priests_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_consecration_fields }
+		}
+		planet_priests_unity_produces_add = 1
+	}
+
+	convert_to = {
+		building_gaia_unity_admin
+		building_gaia_unity_robot
+		building_gaia_unity_servitor
+		building_gaia_unity_hive
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = {	is_planet_class = pc_gaia }
+			has_modifier = slave_colony
+			AND = {
+				exists = owner
+				owner = {
+					OR = {
+						AND = {
+							is_spiritualist = no
+							has_make_spiritualist_perk = no
+						}
+						is_gestalt = yes
+					}
+				}
+			}
+		}
+	}		  
+}
+
+building_gaia_unity_robot = {
+	base_buildtime = 600
+
+	category = unity
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = slave_colony }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+		owner = {
+			is_machine_empire = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		job_coordinator_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_planetary_government }
+		}
+		planet_administrators_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_colonial_bureaucracy }
+		}
+		planet_administrators_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_galactic_bureaucracy }
+		}
+		planet_administrators_unity_produces_add = 1
+	}
+
+	convert_to = {
+		building_gaia_unity_admin
+		building_gaia_unity_temple
+		building_gaia_unity_servitor
+		building_gaia_unity_hive
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = {	is_planet_class = pc_gaia }
+			has_modifier = slave_colony
+			AND = {
+				exists = owner
+				owner = {
+					OR = {
+						is_machine_empire = no
+						has_valid_civic = civic_machine_servitor
+					}
+				}
+			}
+		}
+	}		  
+}
+
+building_gaia_unity_servitor = {
+	base_buildtime = 600
+
+	category = unity
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = slave_colony }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+		owner = { has_valid_civic = civic_machine_servitor }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		job_bio_trophy_add = 25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_planetary_government }
+		}
+		planet_bio_trophies_unity_produces_add = 0.25
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_paradise_dome }
+		}
+		planet_bio_trophies_unity_produces_add = 0.25
+	}
+
+	convert_to = {
+		building_gaia_unity_admin
+		building_gaia_unity_temple
+		building_gaia_unity_robot
+		building_gaia_unity_hive
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = {	is_planet_class = pc_gaia }
+			has_modifier = slave_colony
+			AND = {
+				exists = owner
+				owner = {
+					NOT = { has_valid_civic = civic_machine_servitor }
+				}
+			}
+		}
+	}		  
+}
+
+building_gaia_unity_hive = {
+	base_buildtime = 600
+
+	category = unity
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = slave_colony }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+		owner = { is_hive_empire = yes }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		job_evaluator_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_hive_node }
+		}
+		planet_administrators_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_hive_cluster }
+		}
+		planet_administrators_unity_produces_add = 0.5
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_hive_confluence }
+		}
+		planet_administrators_unity_produces_add = 1
+	}
+
+	convert_to = {
+		building_gaia_unity_admin
+		building_gaia_unity_temple
+		building_gaia_unity_robot
+		building_gaia_unity_servitor
+	}
+
+	destroy_trigger = {
+		OR = {
+			NOT = {	is_planet_class = pc_gaia }
+			has_modifier = slave_colony
+			AND = {
+				exists = owner
+				owner = { is_hive_empire = no }
+			}
+		}
+	}		  
+}
+
+#Resort
+building_gaia_resort = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+		is_planet_class = pc_gaia
+		NOT = { has_building = building_gaia_lab }
+		NOT = { has_building_construction = building_gaia_lab }
+		NOT = { has_building = building_gaia_unity_admin }
+		NOT = { has_building_construction = building_gaia_unity_admin }
+		NOT = { has_building = building_gaia_unity_temple }
+		NOT = { has_building_construction = building_gaia_unity_temple }
+		NOT = { has_building = building_gaia_unity_robot }
+		NOT = { has_building_construction = building_gaia_unity_robot }
+		NOT = { has_building = building_gaia_unity_servitor }
+		NOT = { has_building_construction = building_gaia_unity_servitor }
+		NOT = { has_building = building_gaia_unity_hive }
+		NOT = { has_building_construction = building_gaia_unity_hive }
+		NOT = { has_building = building_gaia_resort }
+		NOT = { has_building_construction = building_gaia_resort }
+	}
+
+	inline_script = "buildings/pd_rare_resort_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_frontier_health }
+		}
+		job_healthcare_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_frontier_hospital }
+		}
+		job_healthcare_add = 1
+	}
+
+	destroy_trigger = {
+		planet = { 
+			NOT = {	is_planet_class = pc_gaia }
+		}
+	}			 
+}
