@@ -1,0 +1,92 @@
+tech_pd_planetary_core_tap = {
+	area = physics
+	cost = @tier4cost3
+	tier = 4
+	category = { field_manipulation }
+	ai_update_type = all
+	prerequisites = { "tech_power_plant_4" "tech_power_hub_2" "tech_ecological_adaptation" }
+	weight = @tier4weight3
+	is_rare = yes
+
+	modifier = {
+		custom_tooltip = tech_pd_planetary_core_tap_tooltip
+	}
+
+	weight_modifier = {
+		factor = 1
+		modifier = {
+			factor = 0
+			OR = {
+				has_civic = civic_environmentalist
+				has_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = value:tech_weight_likelihood
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+		modifier = {
+			factor = 1.5
+			is_specialist_subject_type = { TYPE = prospectorium }
+		}
+	}
+
+	ai_weight = {
+		factor = @energy_grid_ai_factor # Energy grid
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+	}
+}
+
+tech_pd_planetary_agriworld = {
+	area = society
+	cost = @tier4cost3
+	tier = 4
+	category = { biology }
+	ai_update_type = all
+	prerequisites = { "tech_nano_vitality_crops" "tech_food_processing_2" "tech_ecological_adaptation" }
+	weight = @tier4weight3
+	is_rare = yes
+
+	modifier = {
+		custom_tooltip = tech_pd_planetary_agriworld_tooltip
+	}
+
+	weight_modifier = {
+		factor = 1
+		modifier = {
+			factor = 0
+			OR = {
+				country_uses_food = no
+				has_civic = civic_environmentalist
+				has_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = value:tech_weight_likelihood
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+		modifier = {
+			factor = 1.5
+			is_specialist_subject_type = { TYPE = prospectorium }
+		}
+	}
+
+	ai_weight = {
+		factor = @farming_building_ai_weight_factor # food processing
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}

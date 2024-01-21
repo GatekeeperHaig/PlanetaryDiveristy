@@ -12,16 +12,20 @@ district_generator = {
 	show_on_uncolonized = {
 		uses_district_set = standard
 		pd_aw_is_megaflora_planet = no
-		NOT = {
+		NOR = {
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
 	potential = {
 		uses_district_set = standard
 		pd_aw_is_megaflora_planet = no
-		NOT = {
+		NOR = {
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -176,8 +180,10 @@ district_mining = {
 			from = { is_subterranean_empire = yes }
 		}
 		pd_aw_is_megaflora_planet = no
-		NOT = {
+		NOR = {
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -188,8 +194,10 @@ district_mining = {
 			owner = { is_subterranean_empire = yes }
 		}
 		pd_aw_is_megaflora_planet = no
-		NOT = {
+		NOR = {
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -325,6 +333,7 @@ district_farming = {
 		NOR = {
 			pd_aw_is_wasteland_planet = yes
 			pd_aw_is_lithoid_planet = yes
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -358,6 +367,8 @@ district_farming = {
 		NOR = {
 			pd_aw_is_wasteland_planet = yes
 			pd_aw_is_lithoid_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -569,6 +580,8 @@ district_generator_uncapped = {
 			}
 			pd_aw_is_megaflora_planet = yes
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -588,11 +601,16 @@ district_generator_uncapped = {
 			}
 			pd_aw_is_megaflora_planet = yes
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = pd_aw_agriworld
+		}
 	}
 
 	conversion_ratio = 1
@@ -752,6 +770,7 @@ district_mining_uncapped = {
 			}
 			pd_aw_is_megaflora_planet = yes
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -768,11 +787,17 @@ district_mining_uncapped = {
 			}
 			pd_aw_is_megaflora_planet = yes
 			pd_aw_is_wasteland_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
+		}
 	}
 
 	conversion_ratio = 1
@@ -994,6 +1019,7 @@ district_farming_uncapped = {
 			uses_district_set = hive_world
 			uses_district_set = shattered_ring_world
 			pd_aw_is_megaflora_planet = yes
+			has_modifier = pd_aw_agriworld
 		}
 	}
 
@@ -1020,6 +1046,8 @@ district_farming_uncapped = {
 				}
 			}
 			pd_aw_is_megaflora_planet = yes
+			has_modifier = pd_aw_core_tap
+			has_modifier = pd_aw_agriworld
 		}
 		NOT = {
 			pd_aw_is_necro_planet = yes
@@ -1033,6 +1061,7 @@ district_farming_uncapped = {
 	allow = {
 		NOR = {
 			has_modifier = resort_colony
+			has_modifier = pd_aw_core_tap
 			pd_aw_is_wasteland_planet = yes
 		}
 	}
