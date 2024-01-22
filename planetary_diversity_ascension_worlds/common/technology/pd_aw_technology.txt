@@ -90,3 +90,49 @@ tech_pd_planetary_agriworld = {
 		}
 	}
 }
+
+tech_pd_planetary_stripmine = {
+	area = engineering
+	cost = @tier4cost3
+	tier = 4
+	category = { industry }
+	ai_update_type = all
+	prerequisites = { "tech_mining_3" "tech_mineral_purification_2" "tech_ecological_adaptation" }
+	weight = @tier4weight3
+	is_rare = yes
+
+	modifier = {
+		custom_tooltip = tech_pd_planetary_stripmine_tooltip
+	}
+
+	weight_modifier = {
+		factor = 1
+		modifier = {
+			factor = 0
+			OR = {
+				has_civic = civic_environmentalist
+				has_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = value:tech_weight_likelihood
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+		modifier = {
+			factor = 1.5
+			is_specialist_subject_type = { TYPE = prospectorium }
+		}
+	}
+
+	ai_weight = {
+		factor = @farming_building_ai_weight_factor # food processing
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}

@@ -1646,8 +1646,10 @@ decision_pd_aw_core_tap = {
 	enactment_time = @pd_planetary_superproject_time
 
 	potential = {
-		habitable_planet_not_urban = yes
-		pd_is_planet_class_pd_gaia = yes
+		OR = {
+			habitable_planet_not_urban = yes
+			pd_is_planet_class_pd_gaia = yes
+		}
 		exists = owner
 		owner = { has_technology = tech_pd_planetary_core_tap }
 		pd_is_flooded_planet = no
@@ -1720,8 +1722,10 @@ decision_pd_aw_agriworld = {
 	enactment_time = @pd_planetary_superproject_time
 
 	potential = {
-		habitable_planet_not_urban = yes
-		pd_is_planet_class_pd_gaia = yes
+		OR = {
+			habitable_planet_not_urban = yes
+			pd_is_planet_class_pd_gaia = yes
+		}
 		exists = owner
 		owner = { has_technology = tech_pd_planetary_agriworld }
 		pd_is_flooded_planet = no
@@ -1743,7 +1747,7 @@ decision_pd_aw_agriworld = {
 				num_districts = { type = district_generator value < 1 }
 				num_districts = { type = district_mining value < 1 }
 				num_districts = { type = district_industrial value < 1 }
-				num_districts = { type = district_farming_uncapped value < 1 }
+				num_districts = { type = district_generator_uncapped value < 1 }
 				num_districts = { type = district_mining_uncapped value < 1 }
 			}
 		}
@@ -1763,6 +1767,82 @@ decision_pd_aw_agriworld = {
 		change_pc = pc_pd_agriworld
 		add_modifier = {
 			modifier = pd_aw_agriworld
+			days = -1
+		}
+		hidden_effect = {
+			remove_pd_modifier = yes
+			validate_planet_buildings_and_districts = yes
+			create_message = {
+				type = MESSAGE_PD_AW_SUPERPROJECT_TYPE
+				localization = MESSAGE_PD_AW_SUPERPROJECT_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+#Stripmine
+decision_pd_aw_stripmine = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_stripmine
+
+	enactment_time = @pd_planetary_superproject_time
+
+	potential = {
+		OR = {
+			habitable_planet_not_urban = yes
+			pd_is_planet_class_pd_gaia = yes
+		}
+		exists = owner
+		owner = { has_technology = tech_pd_planetary_stripmine }
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = decision_pd_stripmine_requirements
+				num_districts = { type = district_crashed_slaver_ship value < 1 }
+				num_districts = { type = district_city value < 1 }
+				num_districts = { type = district_hive value < 1 }
+				num_districts = { type = district_nexus value < 1 }
+				num_districts = { type = district_generator value < 1 }
+				num_districts = { type = district_farming value < 1 }
+				num_districts = { type = district_industrial value < 1 }
+				num_districts = { type = district_farming_uncapped value < 1 }
+				num_districts = { type = district_generator_uncapped value < 1 }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 10000
+		}
+	}
+
+	effect = {
+		#custom_tooltip = decision_pd_aw_agriworld_tooltip
+		change_pc = pc_pd_stripmine
+		add_modifier = {
+			modifier = pd_aw_stripmine
 			days = -1
 		}
 		hidden_effect = {
