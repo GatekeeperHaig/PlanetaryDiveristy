@@ -22,19 +22,39 @@ tech_pd_uncommon_necro_habitability = {
 }
 
 tech_pd_domed_colonies = {
-	cost = @tier2cost1
-	area = society
-	category = { new_worlds }
+	cost = @tier2cost3
+	area = engineering
+	category = { voidcraft }
 	tier = 2
-	weight = 0
-
-	potential = {
-	}
+	weight = @tier2weight3
 
 	weight_modifier = {
-		factor = 5
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_finish
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft }
+		}
 	}
 
-	modifier = {
+	prereqfor_desc = {
+		ship = {
+			title = "allow_domed_colonies"
+			desc = "allow_domed_colonies_DETAILS"
+		}
+	}
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft }
+		}
 	}
 }

@@ -1,0 +1,131 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+
+### Superhabitable
+terraform_link = {
+	from = pc_pd_domed_colony_superhabitable
+	to = pc_pd_gaia_superhabitable
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_superhabitable
+	to = pc_pd_cold_superhabitable
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_superhabitable CLASS_TO = pc_pd_cold_superhabitable } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_superhabitable
+	to = pc_pd_wet_superhabitable
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_superhabitable CLASS_TO = pc_pd_wet_superhabitable } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_superhabitable
+	to = pc_pd_dry_superhabitable
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_superhabitable CLASS_TO = pc_pd_dry_superhabitable } } }
+}
+### Tidally Locked
+terraform_link = {
+	from = pc_pd_domed_colony_tidally_locked
+	to = pc_pd_gaia_tidally_locked
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_tidally_locked
+	to = pc_pd_cold_tidally_locked
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_tidally_locked CLASS_TO = pc_pd_cold_tidally_locked } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_tidally_locked
+	to = pc_pd_wet_tidally_locked
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_tidally_locked CLASS_TO = pc_pd_wet_tidally_locked } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_tidally_locked
+	to = pc_pd_dry_tidally_locked
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_tidally_locked CLASS_TO = pc_pd_dry_tidally_locked } } }
+}
+### Cave
+terraform_link = {
+	from = pc_pd_domed_colony_cave
+	to = pc_pd_gaia_cave
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_cave
+	to = pc_pd_cold_cave
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_cave CLASS_TO = pc_pd_cold_cave } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_cave
+	to = pc_pd_wet_cave
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_cave CLASS_TO = pc_pd_wet_cave } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_cave
+	to = pc_pd_dry_cave
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_cave CLASS_TO = pc_pd_dry_cave } } }
+}

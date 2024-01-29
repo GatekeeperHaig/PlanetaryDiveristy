@@ -18,7 +18,7 @@ pd_domed_colony_0 = {
 	construction_blocks_and_blocked_by = none
 
 	potential = {
-		#has_technology = tech_pdhabitat_1 #TODO ADD TECH
+		has_technology = tech_pd_domed_colonies
 	}
 
 	possible = {
@@ -155,6 +155,27 @@ pd_domed_colony_0 = {
 						entity = domed_colony_toxic_planet_venus_entity
 					}
 				}
+			}
+			#Superhabitable
+			if = {
+				limit = {
+					is_planet_class = pc_pd_barren_superhabitable
+				}
+				change_pc = pc_pd_domed_colony_superhabitable
+			}
+			#Tidally Locked
+			if = {
+				limit = {
+					is_planet_class = pc_pd_barren_tidally_locked
+				}
+				change_pc = pc_pd_domed_colony_tidally_locked
+			}
+			#Cave
+			if = {
+				limit = {
+					is_planet_class = pc_pd_barren_cave
+				}
+				change_pc = pc_pd_domed_colony_cave
 			}
 
 			#Everything Else
