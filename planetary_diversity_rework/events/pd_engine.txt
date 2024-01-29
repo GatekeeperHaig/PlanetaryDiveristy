@@ -2848,9 +2848,6 @@ planet_event = {
 			is_planet_class = pc_tundra
 		}
 		NOR = {
-			has_planet_flag = pdmars
-			has_planet_flag = planet_mars
-			has_planet_flag = pdvenus
 			pd_aw_is_shroud_planet = yes
 			pd_aw_is_wasteland_planet = yes
 		}
@@ -3829,6 +3826,21 @@ country_event = {
 			from = {
 				pd_lichen_world_effect = yes
 			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = {
+				from = {
+					OR = {
+						has_planet_flag = pdmars
+						has_planet_flag = planet_mars
+						has_planet_flag = pdvenus
+					}
+				}
+			}
+			from = { planet_event = { id = pdengine.72 days = 0 } }
 		}
 	}
 }
@@ -6325,7 +6337,7 @@ country_event = {
 	            is_planet_class = pc_frozen
 				planet_size = 8
 				is_moon = yes
-					}
+			}
 			set_planet_flag = pdtitan
 			set_planet_entity = {
 				picture = pc_hydrocarbon
@@ -6338,7 +6350,7 @@ country_event = {
 				is_planet_class = pc_barren_cold
 				is_moon = yes
 	            planet_size = 5
-					}
+			}
 			set_planet_flag = pdluna
 		}
 		every_galaxy_planet = {
@@ -6346,10 +6358,10 @@ country_event = {
                 solar_system = { has_star_flag = sol }
 				is_planet_class = pc_barren
 				OR = {
-				planet_size = 13
-				planet_size = 11
-					}
+					planet_size = 13
+					planet_size = 11
 				}
+			}
 			set_planet_flag = pdmars
 			set_planet_entity = {
 				picture = pc_barren_mars
