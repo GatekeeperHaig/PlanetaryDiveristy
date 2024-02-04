@@ -7161,3 +7161,129 @@ country_event = {
 		}
 	}
 }
+
+###These events are for PD Domed Habitats
+#This event gives all homeworld moons their moonbase modifiers
+country_event = {
+	id = pdengine.100
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+		every_galaxy_planet = {
+			if = {
+				limit = {
+					has_moon = yes
+					OR = {
+						is_colonizable = yes
+						is_colony = yes
+						is_terraforming_candidate = yes
+					}
+					any_moon = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+							is_planet_class = pc_toxic
+							is_planet_class = pc_frozen
+							is_planet_class = pc_molten
+						}
+						NOT = {
+							has_modifier = pd_domed_moonbase
+						}
+					}
+				}
+				every_moon = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+							is_planet_class = pc_toxic
+							is_planet_class = pc_frozen
+							is_planet_class = pc_molten
+						}
+						NOT = {
+							has_modifier = pd_domed_moonbase
+						}
+					}
+					add_modifier = {
+						modifier = pd_domed_moonbase
+						days = -1
+					}
+					remove_modifier = carbon_world
+				}
+			}
+			if = {
+				limit = {
+					is_moon = no
+					has_moon = yes
+					any_moon = {
+						OR = {
+							is_colonizable = yes
+							is_colony = yes
+							is_terraforming_candidate = yes
+						}
+					}
+					NOT = {
+						has_modifier = pd_domed_moonbase
+					}
+				}
+				every_moon = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+							is_planet_class = pc_toxic
+							is_planet_class = pc_frozen
+							is_planet_class = pc_molten
+						}
+						NOR = {
+							is_colonizable = yes
+							is_colony = yes
+							is_terraforming_candidate = yes
+						}
+					}
+					add_modifier = {
+						modifier = pd_domed_moonbase
+						days = -1
+					}
+					remove_modifier = carbon_world
+					remove_modifier = chthonian_planet
+			}
+			# if = {
+			# 	limit = {
+			# 		is_colony = yes
+			# 		has_moon = yes
+			# 		any_moon = {
+			# 			OR = {
+			# 				is_planet_class = pc_barren
+			# 				is_planet_class = pc_barren_cold
+			# 				is_planet_class = pc_toxic
+			# 				is_planet_class = pc_frozen
+			# 				is_planet_class = pc_molten
+			# 			}
+			# 		}
+			# 	}
+			# 	every_moon = {
+			# 		limit = {
+			# 			OR = {
+			# 				is_planet_class = pc_barren
+			# 				is_planet_class = pc_barren_cold
+			# 				is_planet_class = pc_toxic
+			# 				is_planet_class = pc_frozen
+			# 				is_planet_class = pc_molten
+			# 			}
+			# 			NOT = {	has_modifier = pd_domed_moonbase }
+			# 		}
+			# 		add_modifier = {
+			# 			modifier = pd_domed_moonbase
+			# 			days = -1
+			# 		}
+			# 	}
+			# }
+		}
+	}
+}

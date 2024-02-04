@@ -1,0 +1,29 @@
+#####    Domed Bases    ######
+
+#Barren 1
+entity = {
+	name = "domed_colony_barren_planet_01_entity"
+	pdxmesh = "planet_no_pole_no_clouds_mesh"
+
+   meshsettings = {
+   name = "planet_geosphereShape"
+   texture_diffuse = "barren_01_diffuse.dds"
+   texture_normal = "barren_01_normal.dds"
+   texture_specular = "barren_domed_01_specular.dds"
+   }
+
+   ##pole texture override
+   meshsettings = {
+   name = "polesShape"
+   texture_diffuse = "poles_barren_1_diffuse.dds"
+   texture_normal = "poles_barren_1_normal.dds"
+   texture_specular = "poles_barren_1_specular.dds"
+   }
+
+   default_state = "idle"
+   playback_rate = -1.03
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+	   start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+	   start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+   }
+}
