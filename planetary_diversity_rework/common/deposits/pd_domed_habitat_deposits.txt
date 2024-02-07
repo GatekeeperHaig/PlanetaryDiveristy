@@ -6,27 +6,319 @@
 # blocker = <key/any/none> - default any
 # station = station class in orbit to gather
 
+# d_pd_habitat_research = {
+# 	is_for_colonizable = yes
+# 	icon = d_station_reactor
+# 	category = deposit_cat_rare
+# 	potential = { always = no }
+# 	custom_tooltip = d_pd_habitat_research_tooltip
+# }
 
-d_pd_habitat_research = {
+# d_pd_habitat_mining = {
+# 	is_for_colonizable = yes
+# 	icon = d_station_reactor
+# 	category = deposit_cat_rare
+# 	potential = { always = no }
+# 	custom_tooltip = d_pd_habitat_mining_tooltip
+# }
+
+# d_pd_habitat_energy = {
+# 	is_for_colonizable = yes
+# 	icon = d_station_reactor
+# 	category = deposit_cat_rare
+# 	potential = { always = no }
+# 	custom_tooltip = d_pd_habitat_energy_tooltip
+# }
+
+d_pd_moon_base_trade = {
 	is_for_colonizable = yes
-	icon = d_station_reactor
+	icon = d_pd_moon_base
 	category = deposit_cat_rare
-
 	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_merchant_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_trader_per_pop
+		AMOUNT = 0.1
+	}
 }
 
-d_pd_habitat_mining = {
+d_pd_moon_base_military = {
 	is_for_colonizable = yes
-	icon = d_station_reactor
+	icon = d_pd_moon_base
 	category = deposit_cat_rare
-
 	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_solider_per_pop
+		AMOUNT = 0.1
+	}
 }
 
-d_pd_habitat_energy = {
+d_pd_moon_base_factory = {
 	is_for_colonizable = yes
-	icon = d_station_reactor
+	icon = d_pd_moon_base
 	category = deposit_cat_rare
-
 	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_factory_per_pop
+		AMOUNT = 0.1
+	}
+}
+
+d_pd_moon_base_foundry = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_foundry_per_pop
+		AMOUNT = 0.1
+	}
+}
+
+d_pd_moon_base_admin = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_spiritualist = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_admin_per_pop
+		AMOUNT = 0.1
+	}
+}
+
+d_pd_moon_base_priest = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_spiritualist = yes
+			}
+		}
+		modifier = {
+			job_high_priest_add = 2
+		}
+	}
+
+	inline_script = jobs/pd_priests_per_pop
+	# inline_script = {
+	# 	script = jobs/pd_priest_per_pop
+	# 	AMOUNT = 0.1
+	# }
+}
+
+d_pd_moon_base_research = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_head_researcher_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_researchers_per_pop
+		AMOUNT = 0.1
+	}
+}
+
+d_pd_moon_base_energy = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_technicians_per_pop
+		AMOUNT = 0.1
+	}
+}
+
+d_pd_moon_base_mining = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_miners_per_pop
+		AMOUNT = 0.1
+	}
+}
+
+d_pd_moon_base_food = {
+	is_for_colonizable = yes
+	icon = d_pd_moon_base
+	category = deposit_cat_rare
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = 4
+		planet_max_buildings_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			job_politician_add = 2
+		}
+	}
+
+	inline_script = {
+		script = jobs/pd_farmers_per_pop
+		AMOUNT = 0.1
+	}
 }

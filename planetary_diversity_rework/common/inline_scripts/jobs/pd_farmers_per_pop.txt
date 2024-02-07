@@ -1,0 +1,54 @@
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_fallen_empire_spiritualist = no
+			OR = {
+				is_anglers_empire = no
+				AND = {
+					is_anglers_empire = yes
+					NOT = { PREV = { planet = { is_wet = yes } } }
+				}
+			}
+		}
+	}
+	modifier = {
+		job_farmer_per_pop = $AMOUNT$
+	}
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_fallen_empire_spiritualist = yes }
+	}
+	modifier = {
+		job_fe_acolyte_farm_per_pop = $AMOUNT$
+	}
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	modifier = {
+		job_agri_drone_per_pop = $AMOUNT$
+	}
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_fallen_empire_spiritualist = no
+			is_anglers_empire = yes
+			PREV = { planet = { is_wet = yes } }
+		}
+	}
+	modifier = {
+		job_angler_per_pop = $AMOUNT$
+	}
+}

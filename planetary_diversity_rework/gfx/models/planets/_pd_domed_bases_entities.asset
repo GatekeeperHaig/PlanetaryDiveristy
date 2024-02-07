@@ -27,3 +27,34 @@ entity = {
 	   start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
    }
 }
+
+
+#Domed Bases
+#Barren Cold
+# Luna
+entity = {
+	name = "pdcmoon_planet_luna_entity"
+	pdxmesh = "planet_non_clouded_mesh"
+
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "moon_base_cold_barren_04_diffuse.dds"
+	texture_normal = "moon_base_cold_barren_04_normal.dds"
+	texture_specular = "moon_base_cold_barren_04_specular.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "luna_poles_barren_2_diffuse.dds"
+	texture_normal = "luna_poles_barren_2_normal.dds"
+	texture_specular = "cold_barren_04_specular.dds"
+	}
+
+	default_state = "idle"
+	playback_rate = 1.0 # Animation speed 0 - The Moon is tidally locked to Earth
+	state = { name = "idle" animation = "idle" time_offset = { 15 0 } animation_speed = 0
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+}
