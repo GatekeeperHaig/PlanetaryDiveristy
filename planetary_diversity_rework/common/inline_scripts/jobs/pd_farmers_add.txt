@@ -1,0 +1,64 @@
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+			is_spiritualist = no
+		}
+		has_major_upgraded_capital = yes
+	}
+	job_politician_add = 1
+	planet_housing_add = 1
+	mult = solar_system.value:num_pd_solar_system_bases_food
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_fallen_empire_spiritualist = no
+			OR = {
+				is_anglers_empire = no
+				AND = {
+					is_anglers_empire = yes
+					NOT = { PREV = { planet = { is_wet = yes } } }
+				}
+			}
+		}
+	}
+	job_farmer_add = $AMOUNT$
+	mult = value:num_pd_food_jobs_from_hubs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_fallen_empire_spiritualist = yes }
+	}
+	job_fe_acolyte_farm_add = $AMOUNT$
+	mult = value:num_pd_food_jobs_from_hubs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+	job_agri_drone_add = $AMOUNT$
+	mult = value:num_pd_food_jobs_from_hubs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_fallen_empire_spiritualist = no
+			is_anglers_empire = yes
+			PREV = { planet = { is_wet = yes } }
+		}
+	}
+	job_angler_add = $AMOUNT$
+	mult = value:num_pd_food_jobs_from_hubs
+}

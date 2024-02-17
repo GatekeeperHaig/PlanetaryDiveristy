@@ -1,0 +1,99 @@
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = no }
+		has_major_upgraded_capital = yes
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_factory }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_factory
+						}
+					}
+				}
+			}
+		}
+	}
+	job_politician_add = 1
+	planet_housing_add = 1
+	mult = solar_system.value:num_pd_moon_bases_factory
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_crafter_empire = no
+		}
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_factory }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_factory
+						}
+					}
+				}
+			}
+		}
+	}
+	job_artisan_add = $AMOUNT$
+	mult = value:num_pd_factory_jobs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			is_crafter_empire = yes
+		}
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_factory }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_factory
+						}
+					}
+				}
+			}
+		}
+	}
+	job_artificer_add = $AMOUNT$
+	mult = value:num_pd_factory_jobs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_factory }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_factory
+						}
+					}
+				}
+			}
+		}
+	}
+	job_artisan_drone_add = $AMOUNT$
+	mult = value:num_pd_factory_jobs
+}

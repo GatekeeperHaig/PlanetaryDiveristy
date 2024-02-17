@@ -1,0 +1,108 @@
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+		}
+		has_major_upgraded_capital = yes
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_priest }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_priest
+						}
+					}
+				}
+			}
+		}
+	}
+	job_high_priest_add = 1
+	planet_housing_add = 1
+	mult = solar_system.value:num_pd_moon_bases_priest
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			is_megacorp = no
+			is_death_cult_empire = no
+		}
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_priest }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_priest
+						}
+					}
+				}
+			}
+		}
+	}
+	job_priest_add = $AMOUNT$
+	mult = value:num_pd_priest_jobs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			is_megacorp = yes
+			is_death_cult_empire = no
+		}
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_priest }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_priest
+						}
+					}
+				}
+			}
+		}
+	}
+	# Megacorp YES, Death Cult NO.
+	job_preacher_add = $AMOUNT$
+	mult = value:num_pd_priest_jobs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			is_death_cult_empire = yes
+		}
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_priest }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_priest
+						}
+					}
+				}
+			}
+		}
+	}
+	# Death Cult YES.
+	job_death_priest_add = $AMOUNT$
+	mult = value:num_pd_priest_jobs
+}

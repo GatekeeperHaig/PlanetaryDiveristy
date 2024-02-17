@@ -1,0 +1,157 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Build Dome-Base Hub
+decision_build_solar_system_network_hub = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 500
+		}
+	}
+
+	allow = {
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+		NOT = {
+			has_deposit = d_pd_solar_system_network_hub
+		}
+		OR = {
+			solar_system = {
+				any_system_planet = {
+					OR = {
+						has_modifier = pd_domed_base_research
+						has_modifier = pd_domed_base_mining
+						has_modifier = pd_domed_base_energy
+						has_modifier = pd_domed_base_food
+					}
+				}
+			}
+			any_moon = {
+				OR = {
+					has_modifier = pd_moon_base_trade
+					has_modifier = pd_moon_base_military
+					has_modifier = pd_moon_base_factory
+					has_modifier = pd_moon_base_foundry
+					has_modifier = pd_moon_base_admin
+					has_modifier = pd_moon_base_priest
+				}
+			}
+		}
+	}
+
+	effect = {
+		add_deposit = d_pd_solar_system_network_hub
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+#Remove Dome-Base Hub
+decision_remove_solar_system_network_hub = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	allow = {
+	}
+
+	potential = {
+		exists = owner
+		has_deposit = d_pd_solar_system_network_hub
+	}
+
+	effect = {
+		remove_deposit = d_pd_solar_system_network_hub
+	}
+
+	ai_weight = {
+        weight = 0
+  	}
+}
+#Change Dome-Base Hub
+decision_change_moon_base = {
+	icon = decision_change_moon_base
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 500
+		}
+	}
+
+	allow = {
+	}
+
+	potential = {
+		exists = from
+		exists = space_owner
+		space_owner = { is_same_value = from }
+		pd_has_domed_base_modifier = yes
+	}
+
+	effect = {
+		custom_tooltip = decision_change_moon_base_effects
+		hidden_effect = {
+			planet_event = {
+				id = pddomebases.50
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 0
+  	}
+}
+#Change Dome-Base Hub
+decision_change_moon_base = {
+	icon = decision_change_moon_base
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 500
+		}
+	}
+
+	allow = {
+	}
+
+	potential = {
+		exists = from
+		exists = space_owner
+		space_owner = { is_same_value = from }
+		pd_has_domed_base_modifier = yes
+	}
+
+	effect = {
+		custom_tooltip = decision_change_moon_base_effects
+		hidden_effect = {
+			planet_event = {
+				id = pddomebases.50
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 0
+  	}
+}
