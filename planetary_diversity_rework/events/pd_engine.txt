@@ -7499,3 +7499,360 @@ country_event = {
 		}
 	}
 }
+
+###These events are for Necrophage PD Planets
+#This makes sure that Necrophage empires that start on PD planets are randomized
+country_event = {
+	id = pdengine.110
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_origin = origin_necrophage
+	}
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = prescripted_ideal
+				OR = {
+					has_planet_flag = pre_ftl_default
+					has_planet_flag = pre_ftl_hive_mind
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_continental
+						is_planet_class = pc_pd_wet_cave
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_cave_world
+				change_pc = pc_continental
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_continental }
+					}
+					25 = {
+						pd_retinal_world_effect = yes
+					}
+					25 = {
+						pd_lake_world_effect = yes
+					}
+					25 = {
+						pd_forest_world_effect = yes
+					}
+					25 = {
+						pd_temperate_world_effect = yes
+					}
+					25 = {
+						pd_tepid_world_effect = yes
+					}
+					25 = {
+						pd_mushroom_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_ocean
+						is_planet_class = pc_pd_wet_superhabitable
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_superhabitable_world
+				change_pc = pc_ocean
+				random_list = {
+					1 = { set_planet_size = 15 }
+					1 = { set_planet_size = 16 }
+					1 = { set_planet_size = 18 }
+					1 = { set_planet_size = 19 }
+					1 = { set_planet_size = 20 }
+					1 = { set_planet_size = 21 }
+					1 = { set_planet_size = 22 }
+				}
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_ocean }
+					}
+					25 = {
+						pd_cascadian_world_effect = yes
+					}
+					25 = {
+						pd_swamp_world_effect = yes
+					}
+					25 = {
+						pd_crag_world_effect = yes
+					}
+					25 = {
+						pd_fog_world_effect = yes
+					}
+					25 = {
+						pd_kelp_world_effect = yes
+					}
+					25 = {
+						pd_algae_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_tropical
+						is_planet_class = pc_pd_wet_tidally_locked
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_tidally_locked_world
+				change_pc = pc_tropical
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_tropical }
+					}
+					25 = {
+						pd_atoll_world_effect = yes
+					}
+					25 = {
+						pd_tepui_world_effect = yes
+					}
+					25 = {
+						pd_mangrove_world_effect = yes
+					}
+					25 = {
+						pd_cenote_world_effect = yes
+					}
+					25 = {
+						pd_fungal_world_effect = yes
+					}
+					25 = {
+						pd_aerial_world_effect = yes
+					}
+					25 = {
+						pd_lilypad_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_desert
+						is_planet_class = pc_pd_dry_cave
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_cave_world
+				change_pc = pc_desert
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_desert }
+					}
+					25 = {
+						pd_dune_world_effect = yes
+					}
+					25 = {
+						pd_oasis_world_effect = yes
+					}
+					25 = {
+						pd_outback_world_effect = yes
+					}
+					25 = {
+						pd_coastal_world_effect = yes
+					}
+					25 = {
+						pd_fungi_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_arid
+						is_planet_class = pc_pd_dry_superhabitable
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_superhabitable_world
+				random_list = {
+					1 = { set_planet_size = 15 }
+					1 = { set_planet_size = 16 }
+					1 = { set_planet_size = 18 }
+					1 = { set_planet_size = 19 }
+					1 = { set_planet_size = 20 }
+					1 = { set_planet_size = 21 }
+					1 = { set_planet_size = 22 }
+				}
+				change_pc = pc_arid
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_arid }
+					}
+					25 = {
+						pd_mesa_world_effect = yes
+					}
+					25 = {
+						pd_fog_desert_world_effect = yes
+					}
+					25 = {
+						pd_mediterranean_world_effect = yes
+					}
+					25 = {
+						pd_badlands_world_effect = yes
+					}
+					25 = {
+						pd_succulent_world_effect = yes
+					}
+					25 = {
+						pd_striped_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_savannah
+						is_planet_class = pc_pd_dry_tidally_locked
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_tidally_locked_world
+				change_pc = pc_savannah
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_savannah }
+					}
+					25 = {
+						pd_steppe_world_effect = yes
+					}
+					25 = {
+						pd_prairie_world_effect = yes
+					}
+					25 = {
+						pd_veld_world_effect = yes
+					}
+					25 = {
+						pd_semi_arid_world_effect = yes
+					}
+					25 = {
+						pd_aspen_world_effect = yes
+					}
+					25 = {
+						pd_sandstone_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_arctic
+						is_planet_class = pc_pd_cold_tidally_locked
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_tidally_locked_world
+				change_pc = pc_arctic
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_arctic }
+					}
+					25 = {
+						pd_cold_desert_world_effect = yes
+					}
+					25 = {
+						pd_glacial_world_effect = yes
+					}
+					25 = {
+						pd_antarctic_world_effect = yes
+					}
+					25 = {
+						pd_aeolian_world_effect = yes
+					}
+					25 = {
+						pd_ice_spike_world_effect = yes
+					}
+					25 = {
+						pd_crevasse_world_effect = yes
+					}
+					25 = {
+						pd_ice_dunes_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_alpine
+						is_planet_class = pc_pd_cold_cave
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_cave_world
+				change_pc = pc_alpine
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_alpine }
+					}
+					25 = {
+						pd_boreal_world_effect = yes
+					}
+					25 = {
+						pd_snow_world_effect = yes
+					}
+					25 = {
+						pd_highland_world_effect = yes
+					}
+					25 = {
+						pd_dune_forest_world_effect = yes
+					}
+					25 = {
+						pd_fjord_world_effect = yes
+					}
+					25 = {
+						pd_blossom_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_tundra
+						is_planet_class = pc_pd_cold_superhabitable
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_superhabitable_world
+				random_list = {
+					1 = { set_planet_size = 15 }
+					1 = { set_planet_size = 16 }
+					1 = { set_planet_size = 18 }
+					1 = { set_planet_size = 19 }
+					1 = { set_planet_size = 20 }
+					1 = { set_planet_size = 21 }
+					1 = { set_planet_size = 22 }
+				}
+				change_pc = pc_tundra
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_tundra }
+					}
+					25 = {
+						pd_bog_world_effect = yes
+					}
+					25 = {
+						pd_mycelium_world_effect = yes
+					}
+					25 = {
+						pd_mud_world_effect = yes
+					}
+					25 = {
+						pd_basalt_world_effect = yes
+					}
+					25 = {
+						pd_tuya_world_effect = yes
+					}
+				}
+			}
+		}
+	}
+}
