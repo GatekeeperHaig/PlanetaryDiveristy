@@ -73,7 +73,6 @@ planet_event = {
 	}
 }
 
-
 country_event = {
 	id = pddomebases.100
 	title = pddomebases.100.name
@@ -198,3 +197,87 @@ country_event = {
 		}
 	}
 }
+
+#Origin Set Up for Interplanerary Settlers
+planet_event = {
+	id = pddomebases.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_pd_interplanetary_settlers }
+	}
+
+	immediate = {
+		owner = {
+			save_event_target_as = pd_interplanetary_settlers_system_owner
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = { has_planet_flag = pd_habitat_start_capital }
+				add_district = district_industrial
+				remove_district = district_mining
+				add_deposit = d_pd_solar_system_network_hub
+				while = {
+					count = 2
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+			}
+			random_system_planet = {
+				limit = { has_planet_flag = pd_habitat_start_colony }
+				set_owner = event_target:pd_interplanetary_settlers_system_owner
+				while = {
+					count = 4
+					create_pop = {
+						species = owner_main_species
+					}
+				}
+				reroll_deposits = yes
+				clear_blockers = yes
+				remove_deposit = d_prospectorium_strip_mine
+				add_modifier = { modifier = pd_domed_colony days = -1 }
+				if = {
+					limit = { has_planet_flag = pdmars }
+					set_planet_entity = {
+						picture = pc_pd_domed_colony_mars
+						entity = domed_colony_barren_planet_mars_entity
+					}
+				}
+				add_deposit = d_phab_mining_3
+				add_district = district_mining
+			}
+		}
+	}
+}
+
+#Origin Moonbase Event
+country_event = {
+	id = pddomebases.205
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_interplanetary_settlers
+		any_planet_within_border = {
+			has_planet_flag = pd_habitat_start_moon_base
+		}
+	}
+
+	immediate = {
+		give_technology = {
+			tech = tech_pd_domed_colonies
+			message = no
+		}
+		every_planet_within_border = {
+			limit = {
+				has_modifier = pd_domed_moonbase_site
+			}
+			planet_event = {
+				id = pddomebases.50
+			}
+		}
+	}
+}
+
