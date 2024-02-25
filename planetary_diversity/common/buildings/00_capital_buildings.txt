@@ -47,6 +47,7 @@ building_colony_shelter = {
 		planet_housing_add = 3
 		planet_amenities_add = 7
 		planet_max_buildings_add = @buildings_t1
+		job_colonist_add = 2
 	}
 
 	inline_script = {
@@ -56,9 +57,10 @@ building_colony_shelter = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { NOT = { has_active_tradition = tr_synthetics_finish } }
+			owner = { has_valid_civic = civic_dystopian_society }
 		}
-		job_colonist_add = 2
+		job_enforcer_add = 1
+		job_colonist_add = -1
 	}
 
 	triggered_planet_modifier = {
@@ -67,7 +69,7 @@ building_colony_shelter = {
 			owner = { has_active_tradition = tr_synthetics_finish }
 		}
 		job_roboticist_add = 1
-		job_colonist_add = 1
+		job_colonist_add = -1
 	}
 
 	triggered_planet_modifier = {
@@ -92,7 +94,24 @@ building_colony_shelter = {
 	}
 
 	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				NAND = {
+					has_valid_civic = civic_dystopian_society
+					has_active_tradition = tr_synthetics_finish
+				}
+			}
+		}
 		text = job_colonist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_dystopian_society }
+		}
+		text = job_enforcer_effect_desc
 	}
 
 	triggered_desc = {
@@ -146,7 +165,7 @@ building_capital = {
 	}
 
 	allow = {
-		num_pops >= 10
+		num_sapient_pops >= 10
 	}
 
 	upgrades = {
@@ -444,7 +463,7 @@ building_major_capital = {
 	}
 
 	allow = {
-		num_pops >= 25
+		num_sapient_pops >= 25
 	}
 
 	convert_to = {
@@ -796,7 +815,7 @@ building_system_capital = {
 	}
 
 	allow = {
-		num_pops >= 50
+		num_sapient_pops >= 50
 	}
 
 	prerequisites = {
@@ -1259,7 +1278,7 @@ building_machine_capital = {
 	}
 
 	allow = {
-		num_pops >= 10
+		num_sapient_pops >= 10
 	}
 
 	prerequisites = {
@@ -1394,7 +1413,7 @@ building_machine_major_capital = {
 	}
 
 	allow = {
-		num_pops >= 25
+		num_sapient_pops >= 25
 	}
 
 	prerequisites = {
@@ -1537,7 +1556,7 @@ building_machine_system_capital = {
 	}
 
 	allow = {
-		num_pops >= 50
+		num_sapient_pops >= 50
 	}
 
 	prerequisites = {
@@ -1564,7 +1583,7 @@ building_machine_system_capital = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops >= 10
+			num_sapient_pops >= 10
 		}
 		modifier = {
 			job_replicator_add = 1
@@ -1572,7 +1591,7 @@ building_machine_system_capital = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			num_pops >= 40
+			num_sapient_pops >= 40
 		}
 		modifier = {
 			job_replicator_add = 1
@@ -1831,7 +1850,7 @@ building_hive_major_capital = {
 	}
 
 	allow = {
-		num_pops >= 25
+		num_sapient_pops >= 25
 	}
 
 	prerequisites = {
@@ -1970,7 +1989,7 @@ building_hab_capital = {
 			alloys = 5
 		}
 		upkeep = {
-			trigger = { owner = { has_active_tradition = tr_domination_adopt_void } }
+			trigger = { owner = { has_active_tradition = tr_expansion_adopt } }
 			alloys = -1
 		}
 	}
@@ -2213,7 +2232,6 @@ building_hab_capital = {
 	}
 }
 
-
 # Habitat Central Complex
 building_hab_major_capital = {
 	base_buildtime = @b2_time
@@ -2243,7 +2261,7 @@ building_hab_major_capital = {
 	}
 
 	allow = {
-		num_pops >= 10
+		num_sapient_pops >= 10
 	}
 
 	resources = {
@@ -2256,7 +2274,7 @@ building_hab_major_capital = {
 			alloys = 5
 		}
 		upkeep = {
-			trigger = { owner = { has_active_tradition = tr_domination_adopt_void } }
+			trigger = { owner = { has_active_tradition = tr_expansion_adopt } }
 			alloys = -1
 		}
 	}
@@ -2741,7 +2759,7 @@ building_hab_system_capital = {
 	}
 
 	allow = {
-		num_pops >= 25
+		num_sapient_pops >= 25
 	}
 
 	resources = {
@@ -2754,7 +2772,7 @@ building_hab_system_capital = {
 			alloys = 5
 		}
 		upkeep = {
-			trigger = { owner = { has_active_tradition = tr_domination_adopt_void } }
+			trigger = { owner = { has_active_tradition = tr_expansion_adopt } }
 			alloys = -1
 		}
 	}
@@ -3252,26 +3270,13 @@ building_resort_capital = {
 	planet_modifier = {
 		planet_housing_add = 5
 		planet_amenities_add = 5
-		job_entertainer_add = 1
-		planet_max_buildings_add = 5
+		job_resort_worker_add = 1
+		planet_max_buildings_add = @buildings_t2
 		planet_max_branch_office_buildings_add = 1
 	}
 
 	inline_script = {
 		script = buildings/on_all_capital_buildings
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_warrior_culture
-			}
-		}
-		modifier = {
-			job_duelist_add = 1
-			job_entertainer_add = -1
-		}
 	}
 
 	triggered_planet_modifier = {
@@ -3384,6 +3389,10 @@ building_resort_capital = {
 		text = job_healthcare_effect_desc
 	}
 
+	triggered_desc = {
+		text = job_resort_worker_effect_desc
+	}
+
 	upgrades = {
 		"building_resort_major_capital"
 	}
@@ -3419,7 +3428,7 @@ building_resort_major_capital = {
 	}
 
 	allow = {
-		num_pops >= 20
+		num_sapient_pops >= 20
 	}
 
 	resources = {
@@ -3435,26 +3444,13 @@ building_resort_major_capital = {
 	planet_modifier = {
 		planet_housing_add = 10
 		planet_amenities_add = 10
-		job_entertainer_add = 2
-		planet_max_buildings_add = 11
+		job_resort_worker_add = 2
+		planet_max_buildings_add = @buildings_t3
 		planet_max_branch_office_buildings_add = 2
 	}
 
 	inline_script = {
 		script = buildings/on_all_capital_buildings
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_warrior_culture
-			}
-		}
-		modifier = {
-			job_duelist_add = 2
-			job_entertainer_add = -2
-		}
 	}
 
 	triggered_planet_modifier = {
@@ -3576,6 +3572,10 @@ building_resort_major_capital = {
 			owner = { has_valid_civic = civic_private_healthcare_corporate }
 		}
 		text = job_healthcare_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_resort_worker_effect_desc
 	}
 }
 
@@ -3730,7 +3730,7 @@ building_slave_major_capital = {
 	}
 
 	allow = {
-		num_pops >= 20
+		num_sapient_pops >= 20
 	}
 
 	convert_to = {
@@ -3891,7 +3891,7 @@ building_imperial_capital = {
 	}
 
 	allow = {
-		num_pops >= 50
+		num_sapient_pops >= 50
 	}
 
 	prerequisites = {
@@ -4211,7 +4211,7 @@ building_imperial_machine_capital = {
 	}
 
 	allow = {
-		num_pops >= 50
+		num_sapient_pops >= 50
 	}
 
 	prerequisites = {
@@ -4241,7 +4241,7 @@ building_imperial_machine_capital = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops >= 10
+			num_sapient_pops >= 10
 		}
 		modifier = {
 			job_replicator_add = 1
@@ -4249,7 +4249,7 @@ building_imperial_machine_capital = {
 	}
 	triggered_planet_modifier = {
 		potential = {
-			num_pops >= 40
+			num_sapient_pops >= 40
 		}
 		modifier = {
 			job_replicator_add = 1
@@ -4379,7 +4379,7 @@ building_imperial_hive_capital = {
 	}
 
 	allow = {
-		num_pops >= 50
+		num_sapient_pops >= 50
 	}
 
 	prerequisites = {

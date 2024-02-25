@@ -128,5 +128,20 @@ ap_detox = {
 
 	ai_weight = {
 		factor = 20
+		modifier = {
+			factor = 0
+			NOT = {
+				any_planet_within_border = {
+					has_modifier = toxic_terraforming_candidate
+				}
+			}
+		}
+		modifier = {
+			factor = 3
+			count_planet_within_border = {
+				count > 2
+				limit = { has_modifier = toxic_terraforming_candidate }
+			}
+		}
 	}
 }

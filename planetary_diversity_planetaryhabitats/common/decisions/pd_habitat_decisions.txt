@@ -142,7 +142,7 @@ decision_destroy_planetary_hab = {
 	allow = {
 		num_pops < 1
 	}
-	
+
 	effect = {
         custom_tooltip = PD_REMOVE_HAB_TOOLTIP
         owner = { add_resource = { alloys = 200  } }
@@ -186,12 +186,12 @@ decision_destroy_planetary_hab = {
 				change_pc = pc_asteroid
 				remove_planet_flag = pdasteroidhab
 				remove_planet_flag = has_megastructure
-			}    
+			}
 			if = {
 				limit = { is_planet_class = pc_pd_frozen_hab has_planet_flag = pdhab_subglacial }
 				change_pc = pc_subglacial
 				remove_planet_flag = pdhab_subglacial
-			}    
+			}
 			if = {
 				limit = { is_planet_class = pc_pd_molten_hab has_planet_flag = pdhab_volcanic }
 				change_pc = pc_volcanic
@@ -201,17 +201,17 @@ decision_destroy_planetary_hab = {
 				limit = { is_planet_class = pc_pd_barren_cold_hab has_planet_flag = pdhab_diamond }
 				change_pc = pc_diamond
 				remove_planet_flag = pdhab_diamond
-			}    
+			}
 			if = {
 				limit = { is_planet_class = pc_pd_barren_cold_hab has_planet_flag = pdhab_iron }
 				change_pc = pc_iron
 				remove_planet_flag = pdhab_iron
-			}    
+			}
 			if = {
 				limit = { is_planet_class = pc_pd_barren_cold_hab has_planet_flag = pdhab_carbon }
 				change_pc = pc_carbon
 				remove_planet_flag = pdhab_carbon
-			}    
+			}
 			if = {
 				limit = { is_planet_class = pc_pd_barren_hab has_planet_flag = pdhab_chthonian }
 				change_pc = pc_chthonian
@@ -243,17 +243,17 @@ decision_destroy_planetary_hab = {
 				change_pc = pc_rare_crystal_asteroid
 				remove_planet_flag = pdcrystalasteroidhab
 				remove_planet_flag = has_megastructure
-			}    
+			}
 			if = {
 				limit = { is_planet_class = pc_pd_frozen_hab has_planet_flag = pdhab_hydrocarbon }
 				change_pc = pc_hydrocarbon
 				remove_planet_flag = pdhab_hydrocarbon
-			}    
+			}
 			if = {
 				limit = { has_modifier = hab_terraforming_candidate }
 				remove_modifier = hab_terraforming_candidate
 				add_modifier = { modifier = terraforming_candidate }
-			}    
+			}
 			if = {
 				limit = { has_modifier = hab_pdhabsubglacialocean }
 				remove_modifier = hab_pdhabsubglacialocean
@@ -533,7 +533,7 @@ decision_military_habitat = {
 				days = -1
 			}
 		}
-		hidden_effect = { 
+		hidden_effect = {
 			validate_planet_buildings_and_districts = yes
 			remove_modifier = pdhablevel1
 			IF = {
@@ -597,14 +597,14 @@ decision_abolish_military_habitat = {
 			}
 			remove_modifier = military_pd_habitat_ges_asteroid
 		}
-		add_modifier = { 
-			modifier = pdhablevel1 
-			days = -1 
+		add_modifier = {
+			modifier = pdhablevel1
+			days = -1
 		}
-		hidden_effect = { 
-			validate_planet_buildings_and_districts = yes 
+		hidden_effect = {
+			validate_planet_buildings_and_districts = yes
 			if = {
-				limit = {  
+				limit = {
 					has_planet_flag = pdhab_terraforming_candidate_return
 				}
 				remove_planet_flag = pdhab_terraforming_candidate_return
@@ -634,7 +634,7 @@ decision_prospect_void_phabs = {
 	potential = {
 		is_pd_habitat = yes
 		owner = {
-			has_active_tradition = tr_adaptability_void_finish
+			has_active_tradition = tr_adaptability_finish
 		}
 		NOR = {
 			has_modifier = hab_terraforming_candidate
