@@ -2818,6 +2818,30 @@ country_event = {
 		}
 	}
 }
+#This double checks any weird starts from vanilla
+country_event = {
+	id = pdengine.14
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		if = {
+			limit = {
+				has_origin = origin_toxic_knights
+			}
+			capital_scope = {
+				generate_start_pops = yes
+				toxic_knights_order_habitat_setup = yes
+
+				remove_deposit = d_toxic_god_blight_upon_the_land
+				remove_deposit = d_toxic_god_deitys_swarms
+				remove_deposit = d_toxic_god_pools_most_venemous
+				remove_deposit = d_toxic_god_pestilential_wasteland
+				remove_deposit = d_toxic_god_envenomed_seas
+			}
+		}
+	}
+}
 
 ###These are the Terraforming Events
 #This Event Fires After Terraforming to let you choose PD Classes
