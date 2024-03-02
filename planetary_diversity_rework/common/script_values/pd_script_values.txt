@@ -71,6 +71,11 @@ num_pd_total_jobs_moon = {
 	add = value:num_pd_admin_jobs
 	add = value:num_pd_priest_jobs
 }
+num_pd_total_jobs = {
+	base = 0
+	add = value:num_pd_total_jobs_bases
+	add = value:num_pd_total_jobs_moon
+}
 #Moon Jobs
 num_pd_moon_jobs = {
 	base = 2
@@ -95,10 +100,8 @@ num_pd_moon_bases_trade = {
 		trigger = count_system_planet
 		parameters = {
 			limit = {
-				has_moon = yes
-				any_moon = {
-					has_modifier = pd_moon_base_trade
-				}
+				is_moon = yes
+				has_modifier = pd_moon_base_trade
 			}
 		}
 		mode = add
@@ -116,10 +119,8 @@ num_pd_moon_bases_military = {
 		trigger = count_system_planet
 		parameters = {
 			limit = {
-				has_moon = yes
-				any_moon = {
-					has_modifier = pd_moon_base_military
-				}
+				is_moon = yes
+				has_modifier = pd_moon_base_military
 			}
 		}
 		mode = add
@@ -137,8 +138,8 @@ num_pd_moon_bases_factory = {
 		trigger = count_system_planet
 		parameters = {
 			limit = {
-				has_moon = yes
-				any_moon = { has_modifier = pd_moon_base_factory }
+				is_moon = yes
+				has_modifier = pd_moon_base_factory
 			}
 		}
 		mode = add
@@ -156,8 +157,8 @@ num_pd_moon_bases_foundry = {
 		trigger = count_system_planet
 		parameters = {
 			limit = {
-				has_moon = yes
-				any_moon = { has_modifier = pd_moon_base_foundry }
+				is_moon = yes
+				has_modifier = pd_moon_base_foundry
 			}
 		}
 		mode = add
@@ -175,8 +176,8 @@ num_pd_moon_bases_admin = {
 		trigger = count_system_planet
 		parameters = {
 			limit = {
-				has_moon = yes
-				any_moon = { has_modifier = pd_moon_base_admin }
+				is_moon = yes
+				has_modifier = pd_moon_base_admin
 			}
 		}
 		mode = add
@@ -194,8 +195,8 @@ num_pd_moon_bases_priest = {
 		trigger = count_system_planet
 		parameters = {
 			limit = {
-				has_moon = yes
-				any_moon = { has_modifier = pd_moon_base_priest }
+				is_moon = yes
+				has_modifier = pd_moon_base_priest
 			}
 		}
 		mode = add

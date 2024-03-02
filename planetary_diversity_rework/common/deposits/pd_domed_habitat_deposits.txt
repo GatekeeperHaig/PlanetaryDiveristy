@@ -12,10 +12,32 @@ d_pd_solar_system_network_hub = {
 	category = deposit_cat_rare
 	potential = { always = no }
 
+	# resources = {
+	# 	category = planet_deposits
+	# 	upkeep = {
+	# 		energy = 10
+	# 	}
+	# }
 	resources = {
 		category = planet_deposits
 		upkeep = {
-			energy = 10
+			trigger = {
+				exists = owner
+			}
+			energy = 1
+			alloys = 0.5
+			mult = value:num_pd_total_jobs_bases
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				any_moon = {
+					pd_has_domed_base_modifier = yes
+				}
+			}
+			energy = 1
+			alloys = 0.5
+			mult = value:num_pd_total_jobs_moon
 		}
 	}
 
@@ -40,7 +62,7 @@ d_pd_solar_system_network_hub = {
 			}
 		}
 		planet_housing_add = 1
-		mult = value:num_pd_moon_jobs
+		mult = value:num_pd_trade_jobs
 	}
 	inline_script = {
 		script = jobs/pd_traders_add
@@ -67,7 +89,7 @@ d_pd_solar_system_network_hub = {
 			}
 		}
 		planet_housing_add = 1
-		mult = value:num_pd_moon_jobs
+		mult = value:num_pd_military_jobs
 	}
 	inline_script = {
 		script = jobs/pd_soldiers_add
@@ -94,7 +116,7 @@ d_pd_solar_system_network_hub = {
 			}
 		}
 		planet_housing_add = 1
-		mult = value:num_pd_moon_jobs
+		mult = value:num_pd_factory_jobs
 	}
 	inline_script = {
 		script = jobs/pd_factory_add
@@ -121,7 +143,7 @@ d_pd_solar_system_network_hub = {
 			}
 		}
 		planet_housing_add = 1
-		mult = value:num_pd_moon_jobs
+		mult = value:num_pd_foundry_jobs
 	}
 	inline_script = {
 		script = jobs/pd_foundry_add
@@ -148,7 +170,7 @@ d_pd_solar_system_network_hub = {
 			}
 		}
 		planet_housing_add = 1
-		mult = value:num_pd_moon_jobs
+		mult = value:num_pd_admin_jobs
 	}
 	inline_script = {
 		script = jobs/pd_admin_add
@@ -175,7 +197,7 @@ d_pd_solar_system_network_hub = {
 			}
 		}
 		planet_housing_add = 1
-		mult = value:num_pd_moon_jobs
+		mult = value:num_pd_priest_jobs
 	}
 	inline_script = {
 		script = jobs/pd_priest_add
