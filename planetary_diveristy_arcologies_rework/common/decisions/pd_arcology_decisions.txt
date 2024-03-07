@@ -27,13 +27,13 @@ decision_pd_garden_arcology_project = {
 		}
 		is_artificial = no
 		exists = owner
-		owner = {
-			has_ascension_perk = ap_arcology_project
-			OR = {
-				has_tradition = tr_adaptability_adopt
-				has_tradition = tr_discovery_adopt
-			}
-		}
+		# owner = {
+		# 	has_ascension_perk = ap_arcology_project
+		# 	OR = {
+		# 		has_tradition = tr_adaptability_adopt
+		# 		has_tradition = tr_discovery_adopt
+		# 	}
+		# }
 	}
 
 	allow = {
@@ -70,10 +70,46 @@ decision_pd_garden_arcology_project = {
 				VARIABLE = num_industrial_districts
 			}
 			set_ecu_industrial_districts_effect = yes
-			set_planet_entity = {
-				picture = pc_pd_garden_city
-				entity = "pdgarden_city_planet_01_entity"
-				graphical_culture = owner
+			if = {
+				limit = {
+					NOR = {
+						has_planet_flag = planet_earth
+						has_planet_flag = planet_mars
+						has_planet_flag = pdvenus
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = "pdgarden_city_planet_01_entity"
+					graphical_culture = owner
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = pd_garden_city_planet_earth_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_mars
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = pd_garden_city_planet_mars_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = pdvenus
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = pd_garden_city_planet_venus_01_entity
+				}
 			}
 			planet_event = { id = action.68 }
 			owner = {
