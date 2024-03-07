@@ -2,7 +2,7 @@
 # Decisions
 ##########################################################################
 
-# Eco-Arcology Project
+# Garden Arcology Project
 decision_pd_garden_arcology_project = {
 	owned_planets_only = yes
 	icon = decision_pd_garden_arcology_project
@@ -27,13 +27,13 @@ decision_pd_garden_arcology_project = {
 		}
 		is_artificial = no
 		exists = owner
-		# owner = {
-		# 	has_ascension_perk = ap_arcology_project
-		# 	OR = {
-		# 		has_tradition = tr_adaptability_adopt
-		# 		has_tradition = tr_discovery_adopt
-		# 	}
-		# }
+		owner = {
+			has_ascension_perk = ap_arcology_project
+			OR = {
+				has_tradition = tr_adaptability_adopt
+				has_tradition = tr_discovery_adopt
+			}
+		}
 	}
 
 	allow = {
@@ -144,5 +144,132 @@ decision_pd_garden_arcology_project = {
 				is_capital = yes
 			}
 		}
+	}
+}
+
+# Garden Arcology Project (Relic Worlds)
+decision_pd_garden_arcology_project_relic = {
+	owned_planets_only = yes
+	icon = decision_pd_garden_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 20000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_relic
+		is_artificial = no
+		exists = owner
+		owner = {
+			OR = {
+				is_regular_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			OR = {
+				has_tradition = tr_adaptability_adopt
+				has_tradition = tr_discovery_adopt
+			}
+		}
+	}
+
+	allow = {
+		num_uncleared_blockers < 1
+		owner = { has_technology = tech_housing_2 }
+	}
+
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_arcology_project_effects
+		hidden_effect = {
+			clear_deposits = yes
+			set_planet_flag = factory_planet
+			change_pc = pc_city
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_housing
+				VARIABLE = num_housing_districts
+			}
+			relic_world_conversion_effect = {
+				DISTRICT = district_arcology_arms_industry
+				VARIABLE = num_industrial_districts
+			}
+			set_ecu_industrial_districts_effect = yes
+			if = {
+				limit = {
+					NOR = {
+						has_planet_flag = planet_earth
+						has_planet_flag = planet_mars
+						has_planet_flag = pdvenus
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = "pdgarden_city_planet_01_entity"
+					graphical_culture = owner
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = pd_garden_city_planet_earth_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_mars
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = pd_garden_city_planet_mars_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = pdvenus
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = pd_garden_city_planet_venus_01_entity
+				}
+			}
+			planet_event = { id = action.68 }
+			add_deposit = d_former_relic_world
+			planet_event = { id = mega.201 }
+			while = {
+				count = 4
+				solar_system = {
+					random_system_ambient_object = {
+						limit = { has_ambient_object_flag = relic_world_debris }
+						destroy_ambient_object = this
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			add_modifier = {
+				modifier = pd_garden_arcology
+				days = -1
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
 	}
 }
