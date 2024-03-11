@@ -670,3 +670,83 @@ decision_pd_commerical_arcology_project_relic = {
 		weight = 100
 	}
 }
+
+# Hive Overmind World
+decision_pd_hive_overmind_project = {
+	owned_planets_only = yes
+	icon = decision_pd_hive_overmind_project
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 10000
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_hive
+		exists = owner
+		owner = { has_ascension_perk = ap_hive_worlds }
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_arcology_project_effects
+		hidden_effect = {
+			clear_deposits = yes
+			set_industrial_focus_flags = yes
+			change_pc = pc_pd_hive
+			relic_world_conversion_effect = {
+				DISTRICT = district_pd_hive
+				VARIABLE = num_housing_districts
+			}
+			relic_world_conversion_effect = {
+				DISTRICT = district_pd_hive_industrial
+				VARIABLE = district_pd_arcology_industrial
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				owner = {
+					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+				}
+			}
+			add_modifier = {
+				modifier = pd_hive_military
+				days = -1
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			OR = {
+				num_pops >= 70
+				is_capital = yes
+			}
+		}
+	}
+}

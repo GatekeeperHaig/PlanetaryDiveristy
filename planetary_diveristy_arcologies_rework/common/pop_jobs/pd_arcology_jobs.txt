@@ -13,7 +13,7 @@ pd_naval_admin = {
 	}
 
 	country_modifier = {
-		country_naval_cap_add = 4
+		country_naval_cap_add = 6
 	}
 
 	triggered_country_modifier = {
@@ -29,6 +29,23 @@ pd_naval_admin = {
 		}
 	}
 
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				any_owned_leader = {
+					is_councilor = yes
+					has_trait = leader_trait_bellicose
+				}
+			}
+		}
+
+		modifier = {
+			country_naval_cap_add = 2
+		}
+		mult = value:bellicose_naval_cap
+	}
+
 	pop_modifier = {
 		pop_defense_armies_add = 1
 	}
@@ -36,8 +53,7 @@ pd_naval_admin = {
 	resources = {
 		category = planet_soldiers
 		produces = {
-			unity = 2
-			society_research = 2
+			society_research = 3
 		}
 		upkeep = {
 			consumer_goods = 2
@@ -117,13 +133,12 @@ pd_naval_admin_gestalt = {
 	clothes_texture_index = 4
 
 	country_modifier = {
-		country_naval_cap_add = 4
+		country_naval_cap_add = 6
 	}
 	resources = {
 		category = planet_soldiers
 		produces = {
-			unity = 2
-			society_research = 2
+			society_research = 3
 		}
 		upkeep = {
 			minerals = 2
@@ -142,6 +157,10 @@ pd_naval_admin_gestalt = {
 		modifier = {
 			country_naval_cap_add = 2
 		}
+	}
+
+	pop_modifier = {
+		pop_defense_armies_add = 1
 	}
 
 	possible_pre_triggers = {

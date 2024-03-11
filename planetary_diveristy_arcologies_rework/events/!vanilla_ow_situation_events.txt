@@ -1,0 +1,64 @@
+namespace = situation
+
+# Creates the Kaleidoscope and the variables used to track its state as it gets passed around
+event = {
+	id = situation.2000
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		mid_game_years_passed > 0
+		has_nemesis = yes
+		has_global_flag = kaleidoscope_will_spawn
+		NOT = { has_global_flag = kaleidoscope_started }
+	}
+
+	immediate = {
+		#initialize global state-tracking variables
+		initialize_kaleidoscope = yes
+
+		# Picks a country
+		random_list = {
+			5 = {
+				random_playable_country = {
+					limit = {
+						is_ai = no
+						capital_scope = {
+							NOR = {
+								has_active_building = building_planetary_shield_generator
+								pd_shielded_world_modifier = yes
+							}
+						}
+					}
+					country_event = { id = situation.2002 random = 360 }
+				}
+			}
+			3 = {
+				random_playable_country = {
+					limit = {
+						is_ai = no
+					}
+					random_neighbor_country = {
+						limit = {
+							capital_scope = {
+								NOT = { has_active_building = building_planetary_shield_generator }
+							}
+						}
+						country_event = { id = situation.2002 random = 360 }
+					}
+				}
+			}
+			1 = {
+				random_playable_country = {
+					limit = {
+						is_ai = yes
+						capital_scope = {
+							NOT = { has_active_building = building_planetary_shield_generator }
+						}
+					}
+					country_event = { id = situation.2002 random = 360 }
+				}
+			}
+		}
+	}
+}
