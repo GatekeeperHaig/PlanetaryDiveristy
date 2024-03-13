@@ -56,7 +56,7 @@ district_pd_hive = {
 		modifier = {
 			planet_housing_add = 6
 			job_maintenance_drone_add = 3
-			job_patrol_drone_add = 2
+			job_patrol_drone_add = 1
 		}
 	}
 
@@ -92,6 +92,84 @@ district_pd_hive = {
 	}
 }
 
+district_pd_nexus = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+	icon = district_nexus
+
+	show_on_uncolonized = {
+		from = { is_machine_empire = yes }
+		uses_district_set = pd_machine_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		uses_district_set = pd_machine_world
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_arcology_housing
+		district_rw_nexus
+		district_city
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			minerals = @city_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_drone_add = 3
+		planet_max_buildings_add = 1
+		job_patrol_drone_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_optimized_nexus }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+}
+
 #Industrial
 district_pd_hive_industrial = {
 	base_buildtime = 600
@@ -103,14 +181,35 @@ district_pd_hive_industrial = {
 	}
 
 	show_on_uncolonized = {
-		from = { is_hive_empire = yes }
-		uses_district_set = pd_hive_world
+		OR = {
+			AND = {
+				from = {
+					is_hive_empire = yes
+				}
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				from = {
+					is_machine_empire = yes
+				}
+				uses_district_set = pd_machine_world
+			}
+		}
 	}
 
 	potential = {
-		exists = owner
-		owner = { is_hive_empire = yes }
-		uses_district_set = pd_hive_world
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_hive_empire = yes }
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				exists = owner
+				owner = { is_machine_empire = yes }
+				uses_district_set = pd_machine_world
+			}
+		}
 	}
 
 	conversion_ratio = 1
@@ -168,20 +267,6 @@ district_pd_hive_industrial = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = yes
-				is_catalytic_empire = yes
-			}
-		}
-		modifier = {
-			job_catalytic_drone_add = @pdarcjobs
-		}
-	}
-
-
 	triggered_desc = {
 		trigger = {
 			exists = owner
@@ -191,6 +276,19 @@ district_pd_hive_industrial = {
 			}
 		}
 		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_drone_add = 6
+		}
 	}
 
 	triggered_desc = {
@@ -203,6 +301,30 @@ district_pd_hive_industrial = {
 		}
 		text = job_catalytic_drone_effect_desc
 	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_fabricator_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
 }
 
 #Naval Support
@@ -212,18 +334,35 @@ district_pd_gestalt_naval = {
 	icon = district_pd_arcology_naval
 
 	show_on_uncolonized = {
-		from = {
-			is_hive_empire = yes
+		OR = {
+			AND = {
+				from = {
+					is_hive_empire = yes
+				}
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				from = {
+					is_machine_empire = yes
+				}
+				uses_district_set = pd_machine_world
+			}
 		}
-		uses_district_set = pd_hive_world
 	}
 
 	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_hive_empire = yes }
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				exists = owner
+				owner = { is_machine_empire = yes }
+				uses_district_set = pd_machine_world
+			}
 		}
-		uses_district_set = pd_hive_world
 	}
 
 	conversion_ratio = 1
@@ -266,14 +405,6 @@ district_pd_gestalt_naval = {
 		}
 		text = job_pd_naval_admin_gestalt_effect_desc
 	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_warrior_drone_effect_desc
-	}
 }
 
 #Research
@@ -283,18 +414,35 @@ district_pd_gestalt_research = {
 	icon = district_pd_arcology_research
 
 	show_on_uncolonized = {
-		from = {
-			is_hive_empire = yes
+		OR = {
+			AND = {
+				from = {
+					is_hive_empire = yes
+				}
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				from = {
+					is_machine_empire = yes
+				}
+				uses_district_set = pd_machine_world
+			}
 		}
-		uses_district_set = pd_hive_world
 	}
 
 	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_hive_empire = yes }
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				exists = owner
+				owner = { is_machine_empire = yes }
+				uses_district_set = pd_machine_world
+			}
 		}
-		uses_district_set = pd_hive_world
 	}
 
 	conversion_ratio = 1
@@ -364,18 +512,35 @@ district_pd_gestalt_administrative = {
 	icon = district_arcology_administrative
 
 	show_on_uncolonized = {
-		from = {
-			is_hive_empire = yes
+		OR = {
+			AND = {
+				from = {
+					is_hive_empire = yes
+				}
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				from = {
+					is_machine_empire = yes
+				}
+				uses_district_set = pd_machine_world
+			}
 		}
-		uses_district_set = pd_hive_world
 	}
 
 	potential = {
-		exists = owner
-		owner = {
-			is_hive_empire = yes
+		OR = {
+			AND = {
+				exists = owner
+				owner = { is_hive_empire = yes }
+				uses_district_set = pd_hive_world
+			}
+			AND = {
+				exists = owner
+				owner = { is_machine_empire = yes }
+				uses_district_set = pd_machine_world
+			}
 		}
-		uses_district_set = pd_hive_world
 	}
 
 	conversion_ratio = 1
