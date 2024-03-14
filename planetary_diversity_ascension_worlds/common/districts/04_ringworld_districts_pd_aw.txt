@@ -64,10 +64,10 @@ district_rw_pd_aw_necro = {
 		potential = {
 			exists = owner
 			owner = {
+				is_spiritualist = no
 				is_regular_empire = yes
 				is_megacorp = no
 				is_worker_coop_empire = no
-				is_spiritualist = no
 			}
 		}
 		modifier = {
@@ -92,10 +92,10 @@ district_rw_pd_aw_necro = {
 		potential = {
 			exists = owner
 			owner = {
+				is_spiritualist = no
 				is_megacorp = yes
 				is_spiritualist = no
 				is_worker_coop_empire = no
-				is_spiritualist = no
 			}
 		}
 		modifier = {
@@ -153,11 +153,12 @@ district_rw_pd_aw_necro = {
 		}
 	}
 
-	# Priests desc?
+	# Priests desc
 	triggered_desc = {
 		trigger = {
 			exists = owner
 			owner = {
+				is_megacorp = no
 				is_death_cult_empire = no
 				is_spiritualist = yes
 			}
@@ -170,101 +171,52 @@ district_rw_pd_aw_necro = {
 			exists = owner
 			owner = {
 				is_megacorp = yes
-				is_death_cult_empire = no
-				is_worker_coop_empire = no
 				is_spiritualist = yes
+				is_death_cult_empire = no
 			}
 		}
 		modifier = {
 			# Megacorp YES, Death Cult NO.
-			job_priest_add = 10
+			job_preacher_add = 10
 		}
 	}
 
-	# Death Priests and Mortal Initiates desc?
+	# Preacher desc
 	triggered_desc = {
 		trigger = {
 			exists = owner
 			owner = {
-				is_death_cult_empire = yes
-			}
-		}
-		text = job_death_priest_effect_desc
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
 				is_megacorp = yes
-				is_death_cult_empire = no
-				is_worker_coop_empire = yes
 				is_spiritualist = yes
+				is_death_cult_empire = no
 			}
 		}
-		modifier = {
-			job_priest_add = 10
-		}
+		text = job_preacher_effect_desc
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
-				is_megacorp = no
-				is_death_cult_empire = yes
 				is_spiritualist = yes
+				is_death_cult_empire = yes
 			}
 		}
 		modifier = {
-			# Megacorp NO, Death Cult YES.
 			job_death_priest_add = 10
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_megacorp = yes
-				is_death_cult_empire = yes
-				is_worker_coop_empire = no
-				is_spiritualist = yes
-			}
-		}
-		modifier = {
-			# Megacorp YES, Death Cult YES.
-			job_death_priest_add = 5
-			job_manager_add = 5
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_megacorp = yes
-				is_death_cult_empire = yes
-				is_worker_coop_empire = yes
-				is_spiritualist = yes
-			}
-		}
-		modifier = {
-			job_death_priest_add = 5
-			job_steward_add = 5
-		}
-	}
-
-	# Union Stewards desc?
+	# Death Priest desc
 	triggered_desc = {
 		trigger = {
 			exists = owner
 			owner = {
 				is_megacorp = yes
-				is_worker_coop_empire = yes
 				is_spiritualist = yes
+				is_death_cult_empire = no
 			}
 		}
-		text = job_steward_effect_desc
+		text = job_death_priest_effect_desc
 	}
 }
