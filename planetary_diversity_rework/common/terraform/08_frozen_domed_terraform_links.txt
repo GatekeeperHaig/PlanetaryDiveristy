@@ -107,8 +107,17 @@ terraform_link = {
 	to = pc_pd_wet_gaia
     resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
 	duration = @terraforming_duration_level_4
-	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" from = { has_modifier = hab_terraforming_candidate } } } }
-	condition = { has_ascension_perk = ap_world_shaper }
+	potential = {
+		OR = {
+			from = { has_planet_flag = terraform_nucleus_transfixed }
+			AND = {
+				exists = owner
+				has_ascension_perk = "ap_world_shaper"
+				from = { has_modifier = terraforming_candidate }
+			}
+		}
+	}
+	condition = { has_technology = "tech_climate_restoration" }
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
 	ai_weight = { weight = 5 }
 }
@@ -117,8 +126,17 @@ terraform_link = {
 	to = pc_pd_dry_gaia
     resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
 	duration = @terraforming_duration_level_4
-	potential = { from = { has_modifier = hab_terraforming_candidate } }
-	condition = { has_ascension_perk = ap_world_shaper }
+	potential = {
+		OR = {
+			from = { has_planet_flag = terraform_nucleus_transfixed }
+			AND = {
+				exists = owner
+				has_ascension_perk = "ap_world_shaper"
+				from = { has_modifier = terraforming_candidate }
+			}
+		}
+	}
+	condition = { has_technology = "tech_climate_restoration" }
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
 	ai_weight = { weight = 5 }
 }
@@ -127,8 +145,17 @@ terraform_link = {
 	to = pc_pd_cold_gaia
     resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
 	duration = @terraforming_duration_level_4
-	potential = { from = { has_modifier = hab_terraforming_candidate } }
-	condition = { has_ascension_perk = ap_world_shaper }
+	potential = {
+		OR = {
+			from = { has_planet_flag = terraform_nucleus_transfixed }
+			AND = {
+				exists = owner
+				has_ascension_perk = "ap_world_shaper"
+				from = { has_modifier = terraforming_candidate }
+			}
+		}
+	}
+	condition = { has_technology = "tech_climate_restoration" }
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
 	ai_weight = { weight = 5 }
 }
