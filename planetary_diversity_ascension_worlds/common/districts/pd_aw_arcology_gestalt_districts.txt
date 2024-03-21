@@ -1,0 +1,497 @@
+@base_cost = 300
+@city_cost = 500
+@pdarcjobs = 6
+
+#Housing
+district_pd_flora_hive = {
+	base_buildtime = 480
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+	icon = district_hive
+
+	show_on_uncolonized = {
+		from = { is_hive_empire = yes }
+		uses_district_set = pd_flora_hive_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = pd_flora_hive_world
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_hive
+		district_arcology_housing
+		district_rw_hive
+		district_nexus
+		district_city
+	}
+
+	resources = {
+		category = planet_districts_cities
+		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			minerals = @city_cost
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			food = @city_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+		job_maintenance_drone_add = 3
+		planet_max_buildings_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_pd_flora_hive
+		}
+		modifier = {
+			planet_housing_add = 6
+			job_maintenance_drone_add = 3
+			job_patrol_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 1
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_extended_hives }
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+}
+
+#Industrial
+district_pd_flora_hive_industrial = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+	icon = district_arcology_arms_industry
+
+	prerequisites = {
+		tech_basic_industry
+	}
+
+	show_on_uncolonized = {
+		from = {
+			is_hive_empire = yes
+		}
+		uses_district_set = pd_flora_hive_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = pd_flora_hive_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_industrial
+		district_arcology_arms_industry
+		district_rw_industrial
+	}
+
+	resources = {
+		category = planet_districts_industrial
+		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			minerals = 1000
+			volatile_motes = 50
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			food = 100
+			volatile_motes = 50
+		}
+		upkeep = {
+			energy = 5
+			volatile_motes = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_edict = industrial_maintenance
+				}
+			}
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_alloy_drone_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_drone_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_fabricator_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
+}
+
+#Naval Support
+district_pd_flora_hive_naval = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+	icon = district_pd_arcology_naval
+
+	show_on_uncolonized = {
+		from = {
+			is_hive_empire = yes
+		}
+		uses_district_set = pd_flora_hive_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = pd_flora_hive_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			minerals = 1000
+			rare_crystals = 50
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			food = 1000
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			rare_crystals = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_pd_naval_admin_gestalt_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_pd_naval_admin_gestalt_effect_desc
+	}
+}
+
+#Research
+district_pd_flora_hive_research = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+	icon = district_pd_arcology_research
+
+	show_on_uncolonized = {
+		from = {
+			is_hive_empire = yes
+		}
+		uses_district_set = pd_flora_hive_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = pd_flora_hive_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_city
+		district_nexus
+		district_hive
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			minerals = 1000
+			exotic_gases = 50
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			food = 1000
+			exotic_gases = 50
+		}
+		upkeep = {
+			energy = 5
+			exotic_gases = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = @pdarcjobs
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+#Unity
+district_pd_flora_hive_administrative = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+	icon = district_arcology_administrative
+
+	show_on_uncolonized = {
+		from = {
+			is_hive_empire = yes
+		}
+		uses_district_set = pd_flora_hive_world
+	}
+
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		uses_district_set = pd_flora_hive_world
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_nexus
+		district_hive
+		district_arcology_religious
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			trigger = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			minerals = 1000
+			rare_crystals = 50
+		}
+		cost = {
+			trigger = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			food = 1000
+			rare_crystals = 50
+		}
+		upkeep = {
+			energy = 5
+			rare_crystals = 1
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 6
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_synapse_drone_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			job_coordinator_add = 6
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		text = job_synapse_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		text = job_coordinator_effect_desc
+	}
+}
