@@ -212,7 +212,6 @@ planet_event = {
 		solar_system = {
 			random_system_planet = {
 				limit = { has_planet_flag = pd_habitat_start_capital }
-				#add_district = district_industrial
 				remove_district = district_mining
 				add_deposit = d_pd_solar_system_network_hub
 				hidden_effect = {
@@ -246,7 +245,6 @@ planet_event = {
 					}
 				}
 				add_deposit = d_phab_mining_3
-				#add_district = district_mining
 			}
 		}
 	}
@@ -277,6 +275,37 @@ country_event = {
 			planet_event = {
 				id = pddomebases.50
 			}
+		}
+	}
+}
+
+#Darkconstorium Fix Event - make sure they always get a dark matter deposits
+country_event = {
+	id = pddomebases.210
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_interplanetary_settlers
+		is_dark_consortium_empire = yes
+	}
+
+	immediate = {
+		every_planet_within_border = {
+			limit = {
+				has_deposit = d_dark_matter_deposit_1
+			}
+			remove_deposit = d_dark_matter_deposit_1
+		}
+		random_planet_within_border = {
+			limit = {
+				is_capital = no
+				is_colonizable = no
+				has_deposit = no
+				pd_has_domed_base_modifier = no
+				pd_has_domed_moon_base_modifier = no
+			}
+			add_deposit = d_dark_matter_deposit_1
 		}
 	}
 }
