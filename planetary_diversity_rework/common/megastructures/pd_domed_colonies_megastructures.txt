@@ -313,6 +313,7 @@ pd_domed_base_0 = {
 					has_planet_flag = pdluna
 				}
 				set_planet_entity = {
+					picture = pc_pd_domed_barren_cold_luna
 					entity = pd_moon_base_planet_luna_entity
 				}
 			}
@@ -322,6 +323,7 @@ pd_domed_base_0 = {
 					NOT = { has_planet_flag = pdluna }
 				}
 				set_planet_entity = {
+					picture = pc_pd_domed_barren_cold
 					entity = pd_moon_base_cold_barren_planet_01_entity
 				}
 			}
@@ -330,14 +332,16 @@ pd_domed_base_0 = {
 					is_planet_class = pc_barren
 				}
 				set_planet_entity = {
+					picture = pc_pd_domed_barren
 					entity = pd_moon_base_barren_planet_01_entity
 				}
 			}
 			if = {
 				limit = {
-					is_planet_class = pc_barren
+					is_planet_class = pc_frozen
 				}
 				set_planet_entity = {
+					picture = pc_pd_domed_frozen
 					entity = pd_moon_base_frozen_planet_01_entity
 				}
 			}
@@ -346,6 +350,7 @@ pd_domed_base_0 = {
 					is_planet_class = pc_molten
 				}
 				set_planet_entity = {
+					picture = pc_pd_domed_molten
 					entity = pd_moon_base_molten_planet_01_entity
 				}
 			}
@@ -354,7 +359,16 @@ pd_domed_base_0 = {
 					is_planet_class = pc_toxic
 				}
 				set_planet_entity = {
+					picture = pc_pd_domed_toxic
 					entity = pd_moon_base_toxic_planet_01_entity
+				}
+			}
+			if = {
+				limit = {
+					is_planet_class = pc_gas_giant
+				}
+				set_planet_entity = {
+					picture = pc_pd_domed_gas_giant
 				}
 			}
 			planet_event = {
@@ -385,6 +399,9 @@ pd_domed_base_0 = {
 						has_upgraded_capital = no
 					}
 					add_deposit = d_pd_solar_system_network_hub
+					hidden_effect = {
+						set_planet_flag = pd_solar_system_network_hub
+					}
 				}
 			}
 			else_if = {
@@ -402,6 +419,9 @@ pd_domed_base_0 = {
 						has_upgraded_capital = no
 					}
 					add_deposit = d_pd_solar_system_network_hub
+					hidden_effect = {
+						set_planet_flag = pd_solar_system_network_hub
+					}
 				}
 			}
 			else_if = {
@@ -419,11 +439,17 @@ pd_domed_base_0 = {
 						has_upgraded_capital = yes
 					}
 					add_deposit = d_pd_solar_system_network_hub
+					hidden_effect = {
+						set_planet_flag = pd_solar_system_network_hub
+					}
 				}
 			}
 			else = {
 				random_system_colony = {
 					add_deposit = d_pd_solar_system_network_hub
+					hidden_effect = {
+						set_planet_flag = pd_solar_system_network_hub
+					}
 				}
 			}
 		}

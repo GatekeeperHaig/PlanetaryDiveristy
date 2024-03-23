@@ -215,6 +215,9 @@ planet_event = {
 				#add_district = district_industrial
 				remove_district = district_mining
 				add_deposit = d_pd_solar_system_network_hub
+				hidden_effect = {
+					set_planet_flag = pd_solar_system_network_hub
+				}
 				while = {
 					count = 2
 					create_pop = {
@@ -275,6 +278,24 @@ country_event = {
 				id = pddomebases.50
 			}
 		}
+	}
+}
+
+#Check Event on planet class change to make sure domed base isn't destoryed
+planet_event = {
+	id = pddomebases.250
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = pd_solar_system_network_hub
+		NOT = {
+			has_deposit = d_pd_solar_system_network_hub
+		}
+	}
+
+	immediate = {
+		add_deposit = d_pd_solar_system_network_hub
 	}
 }
 
