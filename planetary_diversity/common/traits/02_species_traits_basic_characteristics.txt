@@ -8,8 +8,6 @@
 # Scopes are this = species, from = country performing the modification.
 # default = always=yes
 
-@pdbadhab = -5.0
-
 trait_hive_mind = {
 	cost = 0
 	sorting_priority = 20
@@ -187,8 +185,6 @@ trait_aquatic = {
 
 	inline_script = "traits/pd_aquatic_allowed_planet_classes"
 
-
-
 	species_possible_remove = {
 		if = {
 			limit = {
@@ -234,8 +230,8 @@ trait_aquatic = {
 			planet = {
 				OR = {
 					is_planet_class = pc_ocean
-					has_modifier = flooded_habitat
-					is_pd_planet_for_aqua_trait = yes
+					pd_is_flooded_planet = yes
+					pd_is_planet_for_aqua_trait = yes
 				}
 			}
 		}
@@ -250,8 +246,8 @@ trait_aquatic = {
 			planet = {
 				OR = {
 					is_planet_class = pc_ocean
-					has_modifier = flooded_habitat
-					is_pd_planet_for_aqua_trait = yes
+					pd_is_flooded_planet = yes
+					pd_is_planet_for_aqua_trait = yes
 				}
 				exists = owner
 				owner = { has_ascension_perk = ap_hydrocentric }
@@ -268,9 +264,8 @@ trait_aquatic = {
 			planet = {
 				NOR = {
 					has_climate = wet
-					has_modifier = flooded_habitat
-					is_planet_class = pc_storm
-					is_planet_class = pc_pd_iceberg
+					pd_is_flooded_planet = yes
+					pd_is_planet_for_aqua_trait = yes
 				}
 				is_ideal = no
 			}
@@ -286,9 +281,8 @@ trait_aquatic = {
 				is_ideal = no
 				NOR = {
 					has_climate = wet
-					has_modifier = flooded_habitat
-					is_planet_class = pc_storm
-					is_planet_class = pc_pd_iceberg
+					pd_is_flooded_planet = yes
+					pd_is_planet_for_aqua_trait = yes
 				}
 			}
 		}
@@ -299,9 +293,7 @@ trait_aquatic = {
 		potential = {
 			NOR = {
 				has_climate = wet
-				has_modifier = flooded_habitat
-				is_planet_class = pc_storm
-				is_planet_class = pc_pd_iceberg
+				pd_is_flooded_planet = yes
 			}
 			is_ideal = no
 		}
@@ -311,9 +303,7 @@ trait_aquatic = {
 		potential = {
 			NOR = {
 				has_climate = wet
-				has_modifier = flooded_habitat
-				is_planet_class = pc_storm
-				is_planet_class = pc_pd_iceberg
+				pd_is_flooded_planet = yes
 			}
 			is_ideal = no
 			exists = owner
@@ -323,22 +313,12 @@ trait_aquatic = {
 	}
 	triggered_planet_growth_habitability_modifier = {
 		potential = {
-			has_modifier = flooded_habitat
+			pd_is_flooded_planet = yes
 		}
 		pop_environment_tolerance = 0.2
 	}
 	modifier = {
 		pc_ocean_habitability = 0.2
-		pc_reef_habitability = 0.1
-		pc_pd_archipelago_habitability = 0.1
-		pc_desertislands_habitability = 0.1
-		pc_subarctic_habitability = 0.1
-		pc_storm_habitability = 0.1
-		pc_pd_iceberg_habitability = 0.1
-		pc_aquatic_habitability = 0.8
-		pc_tidallyaquatic_habitability = 0.8
-		pc_aquatic_superhab_habitability = 0.8
-		pc_aquatic_cave_habitability = 0.8
 	}
 
 	icon = "gfx/interface/icons/traits/trait_aquatic.dds"
@@ -349,8 +329,7 @@ trait_aquatic = {
 			from = {
 				OR = {
 					is_planet_class = pc_ocean
-					has_modifier = flooded_habitat
-					is_pd_planet_for_aqua_trait = yes
+					pd_is_flooded_planet = yes
 				}
 			}
 		}
@@ -360,7 +339,7 @@ trait_aquatic = {
 			from = {
 				NOR = {
 					has_climate = wet
-					has_modifier = flooded_habitat
+					pd_is_flooded_planet = yes
 				}
 				is_ideal = no
 			}
@@ -571,7 +550,7 @@ trait_cave_dweller = {
 	icon = "gfx/interface/icons/traits/trait_cave_dweller.dds"
 	custom_tooltip_with_modifiers = trait_cave_dweller_tooltip
 	modifier = {
-		#habitability_floor_add = 0.5
+		habitability_floor_add = 0.5
 		planet_jobs_minerals_produces_mult = 0.15
 		species_empire_size_mult = 0.10
 	}
@@ -580,24 +559,13 @@ trait_cave_dweller = {
 			exists = planet
 			planet = {
 				exists = growing_species
-				growing_species = {				
+				growing_species = {
 					is_archetype = BIOLOGICAL
 				}
 			}
 		}
 		pop_growth_speed = -0.20
 	}
-
-	triggered_planet_growth_habitability_modifier = {
-		potential = { 
-			exists = planet
-			planet = { 
-				is_pd_bad_exotic = no 
-			} 
-		}
-		habitability_floor_add = 0.5
-	}
-	
 	slave_cost = {
 		energy = 500
 	}

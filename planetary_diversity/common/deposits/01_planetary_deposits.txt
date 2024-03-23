@@ -35,8 +35,6 @@ d_arid_highlands = {
 	terraforming_swap_types = {
 		d_hot_springs
 		d_buzzing_plains # gaia
-		d_strong_currents
-		d_sulfur_arid_highlands
 	}
 
 	category = deposit_cat_energy
@@ -54,13 +52,7 @@ d_arid_highlands = {
 	}
 
 	potential = {
-		OR = {
-			is_dry = yes
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_graveyard		
-		}
+		is_dry = yes
 	}
 
 	drop_weight = {
@@ -83,8 +75,6 @@ d_hot_springs = {
 	terraforming_swap_types = {
 		d_arid_highlands
 		d_buzzing_plains # gaia
-		d_strong_currents
-		d_sulfur_arid_highlands
 	}
 
 	planet_modifier = {
@@ -103,20 +93,7 @@ d_hot_springs = {
 		OR = {
 			is_cold = yes
 			is_wet = yes
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_crystal
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_karst
-			is_planet_class = pc_primal	
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
+			is_planet_class = pc_nuked
 		}
 	}
 
@@ -125,10 +102,6 @@ d_hot_springs = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_dry = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -142,9 +115,6 @@ d_rushing_waterfalls = {
 	terraforming_swap_types = {
 		d_searing_desert
 		d_frozen_gas_lake
-		d_powerful_geyser
-		d_underwater_jets
-		d_sulfur_arid_highlands
 	}
 
 	category = deposit_cat_energy
@@ -162,16 +132,7 @@ d_rushing_waterfalls = {
 	}
 
 	potential = {
-		OR = {
 		is_wet = yes
-		is_planet_class = pc_superhabitable
-		is_planet_class = pc_crystal
-		is_planet_class = pc_technoorganic
-		is_planet_class = pc_biolumen
-		is_planet_class = pc_karst
-		is_planet_class = pc_storm
-		is_planet_class = pc_pd_iceberg
-		}
 	}
 
 	drop_weight = {
@@ -194,9 +155,6 @@ d_searing_desert = {
 	terraforming_swap_types = {
 		d_frozen_gas_lake
 		d_rushing_waterfalls
-		d_powerful_geyser
-		d_underwater_jets
-		d_sulfur_searing_desert
 	}
 
 	planet_modifier = {
@@ -213,18 +171,11 @@ d_searing_desert = {
 
 	potential = {
 		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
-			is_pd_nuked = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
+			is_planet_class = pc_nuked
 			is_planet_class = pc_relic
-			is_planet_class = pc_milarc_relic
-			is_pd_radiotrophic_world = yes
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
 			is_dry = yes
 		}
 	}
@@ -249,9 +200,6 @@ d_frozen_gas_lake = {
 	terraforming_swap_types = {
 		d_searing_desert
 		d_rushing_waterfalls
-		d_powerful_geyser
-		d_underwater_jets
-		d_sulfur_searing_desert
 	}
 
 	planet_modifier = {
@@ -268,19 +216,11 @@ d_frozen_gas_lake = {
 
 	potential = {
 		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
 			is_cold = yes
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_geothermal
 		}
 	}
 
@@ -289,10 +229,6 @@ d_frozen_gas_lake = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_dry = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -308,7 +244,6 @@ d_geothermal_vent = {
 	terraforming_swap_types = {
 		d_tempestous_mountain
 		d_underwater_vent
-		d_sulfur_geothermal_vent
 	}
 
 	planet_modifier = {
@@ -326,44 +261,15 @@ d_geothermal_vent = {
 	potential = {
 		OR = {
 			is_planet_class = pc_arctic
+			is_planet_class = pc_pd_cold_tidally_locked
 			is_planet_class = pc_tundra
-			is_planet_class = pc_pd_cold_superhab
-			is_planet_class = pc_cryoflora
-			is_planet_class = pc_rogue
-			is_planet_class = pc_lichen
-			is_planet_class = pc_eyeball
-			is_planet_class = pc_glacio
-			is_planet_class = pc_lanthanide
+			is_planet_class = pc_pd_cold_superhabitable
 			is_planet_class = pc_savannah
+			is_planet_class = pc_pd_dry_tidally_locked
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
-			is_planet_class = pc_steppe
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_med
-			is_planet_class = pc_sandsea
-			is_planet_class = pc_oasis
-			is_planet_class = pc_swamp
-			is_planet_class = pc_mud
-			is_planet_class = pc_basalt
-			is_planet_class = pc_frozen_desert
-			is_planet_class = pc_mushroom
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_karst
-			is_planet_class = pc_primal
-			is_planet_class = pc_wetswamp
-			is_planet_class = pc_fog
+			is_planet_class = pc_pd_dry_superhabitable
 		}
 	}
 
@@ -387,7 +293,6 @@ d_underwater_vent = {
 	terraforming_swap_types = {
 		d_geothermal_vent
 		d_tempestous_mountain
-		d_sulfur_geothermal_vent
 	}
 
 	planet_modifier = {
@@ -404,28 +309,13 @@ d_underwater_vent = {
 
 	potential = {
 		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_subarctic
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_glacial
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
+			is_planet_class = pc_pd_wet_cave
+			is_planet_class = pc_nuked
 		}
 	}
 
@@ -449,7 +339,6 @@ d_tempestous_mountain = {
 	terraforming_swap_types = {
 		d_geothermal_vent
 		d_underwater_vent
-		d_sulfur_geothermal_vent
 	}
 
 	planet_modifier = {
@@ -467,46 +356,15 @@ d_tempestous_mountain = {
 	potential = {
 		OR = {
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
+			is_planet_class = pc_pd_wet_tidally_locked
 			is_planet_class = pc_alpine
 			is_planet_class = pc_pd_cold_cave
-			is_planet_class = pc_highland
-			is_planet_class = pc_duneforest
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
 			is_planet_class = pc_continental
-			is_planet_class = pc_cascadian
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_hadesert
-			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_boreal
-			is_planet_class = pc_snow
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_antarctic
-			is_planet_class = pc_aeolian
-			is_planet_class = pc_retinal
-			is_planet_class = pc_forest	
-			is_planet_class = pc_lake	
-			is_planet_class = pc_tepid	
-			is_planet_class = pc_pd_petrified	
-			is_planet_class = pc_ash	
-			is_pd_megaflora_hive = yes		
+			is_planet_class = pc_pd_wet_superhabitable
 		}
 	}
 
@@ -515,10 +373,6 @@ d_tempestous_mountain = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_dry = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -538,8 +392,6 @@ d_veiny_cliffs = {
 	terraforming_swap_types = {
 		d_mineral_fields
 		d_mineral_striations # gaia
-		d_coral_deposit
-		d_sulfur_mineral_fields
 	}
 
 	planet_modifier = {
@@ -558,44 +410,13 @@ d_veiny_cliffs = {
 		OR = {
 			is_planet_class = pc_alpine
 			is_planet_class = pc_pd_cold_cave
-			is_planet_class = pc_highland
-			is_planet_class = pc_duneforest
 			is_planet_class = pc_arctic
+			is_planet_class = pc_pd_cold_tidally_locked
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_continental
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_planet_class = pc_cascadian
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_frozen_desert
-			is_planet_class = pc_glacial
-			is_planet_class = pc_hadesert
-			is_planet_class = pc_methane
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_retinal
-			is_planet_class = pc_forest
-			is_planet_class = pc_lake	
-			is_planet_class = pc_tepid
-			is_planet_class = pc_megaflora	
-			is_planet_class = pc_pd_petrified
-			is_pd_megaflora_hive = yes		
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_boreal
-			is_planet_class = pc_snow
-			is_planet_class = pc_karst
-			is_planet_class = pc_primal
+			is_planet_class = pc_pd_wet_superhabitable
+			is_planet_class = pc_nuked
 		}
 	}
 
@@ -619,8 +440,6 @@ d_mineral_fields = {
 	terraforming_swap_types = {
 		d_veiny_cliffs
 		d_mineral_striations # gaia
-		d_coral_deposit
-		d_sulfur_mineral_fields
 	}
 
 	planet_modifier = {
@@ -638,49 +457,15 @@ d_mineral_fields = {
 	potential = {
 		OR = {
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
+			is_planet_class = pc_pd_wet_tidally_locked
 			is_planet_class = pc_savannah
+			is_planet_class = pc_pd_dry_tidally_locked
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
+			is_planet_class = pc_pd_wet_cave
 			is_planet_class = pc_tundra
-			is_planet_class = pc_pd_cold_superhab
-			is_planet_class = pc_cryoflora
-			is_planet_class = pc_rogue
-			is_planet_class = pc_lichen
-			is_planet_class = pc_eyeball
-			is_planet_class = pc_glacio
-			is_planet_class = pc_lanthanide
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_subarctic
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_wetswamp
-			is_planet_class = pc_fog
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_steppe
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_sandsea
-			is_planet_class = pc_oasis
-			is_planet_class = pc_swamp
-			is_planet_class = pc_mud
-			is_planet_class = pc_basalt
-			is_planet_class = pc_mushroom
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_antarctic
-			is_planet_class = pc_aeolian
-			is_planet_class = pc_geothermal	
-			is_planet_class = pc_ash
+			is_planet_class = pc_pd_cold_superhabitable
 		}
 	}
 
@@ -689,10 +474,6 @@ d_mineral_fields = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_cold = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -707,8 +488,6 @@ d_prosperous_mesa = {
 	should_swap_deposit_on_terraforming = yes
 	terraforming_swap_types = {
 		d_ore_rich_caverns
-		d_submerged_caves
-		d_sulfur_ore_rich_caverns
 	}
 
 	planet_modifier = {
@@ -726,46 +505,17 @@ d_prosperous_mesa = {
 	potential = {
 		OR = {
 			is_planet_class = pc_continental
+			is_planet_class = pc_pd_wet_superhabitable
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
+			is_planet_class = pc_pd_wet_tidally_locked
 			is_planet_class = pc_savannah
+			is_planet_class = pc_pd_dry_tidally_locked
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
-			is_planet_class = pc_cascadian
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_steppe
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_sandsea
-			is_planet_class = pc_oasis
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_retinal
-			is_planet_class = pc_forest
-			is_planet_class = pc_lake	
-			is_planet_class = pc_tepid
-			is_planet_class = pc_megaflora
-			is_planet_class = pc_pd_petrified
-			is_pd_megaflora_hive = yes
-			is_planet_class = pc_primal
 		}
 	}
 
@@ -788,8 +538,6 @@ d_ore_rich_caverns = {
 	should_swap_deposit_on_terraforming = yes
 	terraforming_swap_types = {
 		d_prosperous_mesa
-		d_submerged_caves
-		d_sulfur_ore_rich_caverns
 	}
 
 	planet_modifier = {
@@ -819,60 +567,20 @@ d_ore_rich_caverns = {
 	potential = {
 		OR = {
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
+			is_planet_class = pc_pd_wet_cave
 			is_planet_class = pc_alpine
 			is_planet_class = pc_pd_cold_cave
-			is_planet_class = pc_highland
-			is_planet_class = pc_duneforest
 			is_planet_class = pc_arctic
+			is_planet_class = pc_pd_cold_tidally_locked
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_tundra
-			is_planet_class = pc_pd_cold_superhab
-			is_planet_class = pc_cryoflora
-			is_planet_class = pc_rogue
-			is_planet_class = pc_lichen
-			is_planet_class = pc_eyeball
-			is_planet_class = pc_glacio
-			is_planet_class = pc_lanthanide
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_pd_cold_superhabitable
+			is_planet_class = pc_nuked
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_wetswamp
-			is_planet_class = pc_fog
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_swamp
-			is_planet_class = pc_mud
-			is_planet_class = pc_basalt
-			is_planet_class = pc_frozen_desert
-			is_planet_class = pc_glacial
-			is_planet_class = pc_hadesert
-			is_planet_class = pc_boreal
-			is_planet_class = pc_snow
-			is_planet_class = pc_mushroom
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_antarctic
-			is_planet_class = pc_aeolian
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_subarctic
-			is_planet_class = pc_karst	
-			is_planet_class = pc_ash
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
 		}
 	}
 
@@ -881,10 +589,6 @@ d_ore_rich_caverns = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_cold = yes
-		}	
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -899,7 +603,6 @@ d_rich_mountain = {
 	should_swap_deposit_on_terraforming = yes
 	terraforming_swap_types = {
 		d_submerged_ore_veins
-		d_sulfur_rich_mountain
 	}
 
 	planet_modifier = {
@@ -917,70 +620,21 @@ d_rich_mountain = {
 	potential = {
 		OR = {
 			is_planet_class = pc_continental
+			is_planet_class = pc_pd_wet_superhabitable
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
 			is_planet_class = pc_alpine
 			is_planet_class = pc_pd_cold_cave
-			is_planet_class = pc_highland
-			is_planet_class = pc_duneforest
 			is_planet_class = pc_arctic
+			is_planet_class = pc_pd_cold_tidally_locked
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_tundra
-			is_planet_class = pc_pd_cold_superhab
-			is_planet_class = pc_cryoflora
-			is_planet_class = pc_rogue
-			is_planet_class = pc_lichen
-			is_planet_class = pc_eyeball
-			is_planet_class = pc_glacio
-			is_planet_class = pc_lanthanide
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_pd_cold_superhabitable
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
-			is_planet_class = pc_cascadian
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_sandsea
-			is_planet_class = pc_oasis
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_frozen_desert
-			is_planet_class = pc_hadesert
-			is_planet_class = pc_boreal
-			is_planet_class = pc_snow
-			is_planet_class = pc_swamp
-			is_planet_class = pc_mud
-			is_planet_class = pc_basalt
-			is_planet_class = pc_mushroom
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_antarctic
-			is_planet_class = pc_aeolian
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_retinal
-			is_planet_class = pc_forest
-			is_planet_class = pc_lake	
-			is_planet_class = pc_tepid	
-			is_planet_class = pc_pd_petrified
-			is_planet_class = pc_megaflora	
-			is_pd_megaflora_hive = yes
-			is_planet_class = pc_ash
-			is_planet_class = pc_primal
 		}
 	}
 
@@ -989,10 +643,6 @@ d_rich_mountain = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_cold = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -1007,7 +657,6 @@ d_submerged_ore_veins = {
 	should_swap_deposit_on_terraforming = yes
 	terraforming_swap_types = {
 		d_rich_mountain
-		d_sulfur_rich_mountain
 	}
 
 	planet_modifier = {
@@ -1025,40 +674,16 @@ d_submerged_ore_veins = {
 	potential = {
 		OR = {
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
+			is_planet_class = pc_pd_wet_cave
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
+			is_planet_class = pc_pd_wet_tidally_locked
 			is_planet_class = pc_savannah
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_pd_dry_tidally_locked
+			is_planet_class = pc_nuked
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_relic
-			is_planet_class = pc_nuked_relic
-			is_planet_class = pc_milarc_relic
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_subarctic
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_wetswamp
-			is_planet_class = pc_fog
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_steppe
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_glacial
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_karst
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
 		}
 	}
 
@@ -1090,8 +715,6 @@ d_lichen_fields = {
 		d_boggy_fens
 		d_nutritious_mudland
 		d_natural_farmland # gaia
-		d_sea_grass
-		d_sulfur_nutritious_mudland
 	}
 
 	planet_modifier = {
@@ -1108,15 +731,9 @@ d_lichen_fields = {
 
 	potential = {
 		OR = {
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
+			is_planet_class = pc_nuked
 			is_planet_class = pc_arctic
-			is_planet_class = pc_frozen_desert
-			is_planet_class = pc_glacial
-			is_planet_class = pc_antarctic
-			is_planet_class = pc_aeolian
-			is_planet_class = pc_karst	
-			is_planet_class = pc_ash
+			is_planet_class = pc_pd_cold_tidally_locked
 		}
 	}
 
@@ -1124,8 +741,7 @@ d_lichen_fields = {
 		weight = @high
 		modifier = {
 			factor = 0.33
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
+			is_planet_class = pc_nuked
 		}
 		modifier = {
 			factor = @planet_type_bonus
@@ -1150,8 +766,6 @@ d_bountiful_plains = {
 		d_boggy_fens
 		d_nutritious_mudland
 		d_natural_farmland # gaia
-		d_sea_grass
-		d_sulfur_nutritious_mudland
 	}
 
 	planet_modifier = {
@@ -1169,19 +783,9 @@ d_bountiful_plains = {
 	potential = {
 		OR = {
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_savannah
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_oasis
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_steppe
+			is_planet_class = pc_pd_dry_tidally_locked
 		}
 	}
 
@@ -1208,8 +812,6 @@ d_rugged_woods = {
 		d_forgiving_tundra
 		d_boggy_fens
 		d_nutritious_mudland
-		d_sea_grass
-		d_sulfur_nutritious_mudland
 	}
 
 	planet_modifier = {
@@ -1225,25 +827,7 @@ d_rugged_woods = {
 	}
 
 	potential = {
-		OR = {
 		is_planet_class = pc_continental
-		is_planet_class = pc_cascadian
-		is_planet_class = pc_boreal
-		is_planet_class = pc_snow
-		is_planet_class = pc_superhabitable
-		is_planet_class = pc_tidallylocked
-		is_planet_class = pc_supercon
-		is_planet_class = pc_pd_sinkhole
-		is_planet_class = pc_crystal
-		is_planet_class = pc_technoorganic
-		is_planet_class = pc_retinal
-		is_planet_class = pc_forest
-		is_planet_class = pc_lake	
-		is_planet_class = pc_tepid
-		is_planet_class = pc_megaflora
-		is_planet_class = pc_pd_petrified
-		is_pd_megaflora_hive = yes	
-		}
 	}
 
 	drop_weight = {
@@ -1271,9 +855,7 @@ d_green_hills = {
 		d_boggy_fens
 		d_nutritious_mudland
 		d_natural_farmland # gaia
-		d_sea_grass
-		d_sulfur_nutritious_mudland
-	}	
+	}
 
 	planet_modifier = {
 		district_farming_max = 1
@@ -1290,16 +872,9 @@ d_green_hills = {
 	potential = {
 		OR = {
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
+			is_planet_class = pc_pd_wet_cave
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_geothermal
+			is_planet_class = pc_pd_wet_tidally_locked
 		}
 	}
 
@@ -1328,8 +903,6 @@ d_forgiving_tundra = {
 		d_boggy_fens
 		d_nutritious_mudland
 		d_natural_farmland # gaia
-		d_sea_grass
-		d_sulfur_nutritious_mudland
 	}
 
 	planet_modifier = {
@@ -1348,18 +921,8 @@ d_forgiving_tundra = {
 		OR = {
 			is_planet_class = pc_alpine
 			is_planet_class = pc_pd_cold_cave
-			is_planet_class = pc_highland
-			is_planet_class = pc_duneforest
 			is_planet_class = pc_tundra
-			is_planet_class = pc_pd_cold_superhab
-			is_planet_class = pc_cryoflora
-			is_planet_class = pc_rogue
-			is_planet_class = pc_lichen
-			is_planet_class = pc_eyeball
-			is_planet_class = pc_glacio
-			is_planet_class = pc_lanthanide
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
+			is_planet_class = pc_pd_cold_superhabitable
 		}
 	}
 
@@ -1388,8 +951,6 @@ d_boggy_fens = {
 		d_forgiving_tundra
 		d_nutritious_mudland
 		d_natural_farmland # gaia
-		d_sea_grass
-		d_sulfur_nutritious_mudland
 	}
 
 	planet_modifier = {
@@ -1405,18 +966,7 @@ d_boggy_fens = {
 	}
 
 	potential = {
-		OR = {
 		is_planet_class = pc_ocean
-		is_planet_class = pc_reef
-		is_planet_class = pc_pd_archipelago
-		is_planet_class = pc_subarctic	
-		is_planet_class = pc_swamp
-		is_planet_class = pc_mud
-		is_planet_class = pc_basalt
-		is_planet_class = pc_mushroom
-		is_planet_class = pc_wetswamp
-		is_planet_class = pc_fog
-		}
 	}
 
 	drop_weight = {
@@ -1444,8 +994,6 @@ d_nutritious_mudland = {
 		d_forgiving_tundra
 		d_boggy_fens
 		d_natural_farmland # gaia
-		d_sea_grass
-		d_sulfur_nutritious_mudland
 	}
 
 	planet_modifier = {
@@ -1461,19 +1009,7 @@ d_nutritious_mudland = {
 	}
 
 	potential = {
-		OR = {
 		is_planet_class = pc_desert
-		is_planet_class = pc_pd_dry_cave
-		is_planet_class = pc_salt
-		is_planet_class = pc_aquifer
-		is_planet_class = pc_coral
-		is_planet_class = pc_hadesert
-		is_planet_class = pc_sandsea
-		is_planet_class = pc_ammonia
-		is_planet_class = pc_acid
-		is_planet_class = pc_methane
-		is_planet_class = pc_primal
-		}
 	}
 
 	drop_weight = {
@@ -1481,10 +1017,6 @@ d_nutritious_mudland = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_wet = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -1501,8 +1033,6 @@ d_fungal_caves = {
 		d_lush_jungle
 		d_fertile_lands
 		d_great_river
-		d_kelp_forests
-		d_sulfur_fertile_lands
 	}
 
 	planet_modifier = {
@@ -1519,24 +1049,16 @@ d_fungal_caves = {
 
 	potential = {
 		OR = {
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_planet_class = pc_karst
+			is_planet_class = pc_nuked
 			is_cold = yes
-			is_planet_class = pc_subarctic	
-			is_planet_class = pc_ash
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
-		}	
+		}
 	}
 
 	drop_weight = {
 		weight = @med
 		modifier = {
 			factor = 0.33
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_planet_class = pc_karst
+			is_planet_class = pc_nuked
 		}
 		modifier = {
 			factor = @planet_type_bonus
@@ -1557,8 +1079,6 @@ d_lush_jungle = {
 		d_fungal_caves
 		d_fertile_lands
 		d_great_river
-		d_kelp_forests
-		d_sulfur_fertile_lands
 	}
 
 	planet_modifier = {
@@ -1575,27 +1095,13 @@ d_lush_jungle = {
 
 	potential = {
 		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
+			is_planet_class = pc_pd_wet_tidally_locked
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_wetswamp
-			is_planet_class = pc_fog
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_biolumen
-			is_planet_class = pc_oasis
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_primal
+			is_planet_class = pc_pd_wet_cave
 		}
 	}
 
@@ -1620,8 +1126,6 @@ d_fertile_lands = {
 		d_fungal_caves
 		d_lush_jungle
 		d_great_river
-		d_kelp_forests
-		d_sulfur_fertile_lands
 	}
 
 	planet_modifier = {
@@ -1639,34 +1143,14 @@ d_fertile_lands = {
 	potential = {
 		OR = {
 			is_planet_class = pc_savannah
+			is_planet_class = pc_pd_dry_tidally_locked
 			is_planet_class = pc_continental
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_pd_wet_superhabitable
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
-			is_planet_class = pc_cascadian
-			is_planet_class = pc_steppe
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_ammonia
-			is_planet_class = pc_acid
-			is_planet_class = pc_methane
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_retinal
-			is_planet_class = pc_forest
-			is_planet_class = pc_lake	
-			is_planet_class = pc_tepid
-			is_planet_class = pc_pd_petrified
-			is_planet_class = pc_megaflora
-			is_pd_megaflora_hive = yes		
+			is_planet_class = pc_pd_dry_superhabitable
 		}
 	}
 
@@ -1675,10 +1159,6 @@ d_fertile_lands = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_wet = yes
-		}
-		modifier = {
-			factor = @planet_type_bonus
-			is_pd_exotic = yes
 		}
 	}
 }
@@ -1695,8 +1175,6 @@ d_great_river = {
 		d_fungal_caves
 		d_lush_jungle
 		d_fertile_lands
-		d_kelp_forests
-		d_sulfur_fertile_lands
 	}
 
 	planet_modifier = {
@@ -1714,22 +1192,9 @@ d_great_river = {
 	potential = {
 		OR = {
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
-			is_planet_class = pc_sandsea
-			is_planet_class = pc_oasis
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_hadesert
-			is_planet_class = pc_karst
 		}
 	}
 
@@ -1755,9 +1220,6 @@ d_black_soil = {
 		d_marvelous_oasis
 		d_tropical_island
 		d_fungal_forest
-		d_hydrocarbon_lakes
-		d_ammonia_seas
-		d_sulfur_black_soil
 	}
 
 	planet_modifier = {
@@ -1775,35 +1237,12 @@ d_black_soil = {
 	potential = {
 		OR = {
 			is_planet_class = pc_continental
+			is_planet_class = pc_pd_wet_superhabitable
 			is_planet_class = pc_savannah
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
-			is_planet_class = pc_wetswamp
-			is_planet_class = pc_fog
-			is_planet_class = pc_cascadian
-			is_planet_class = pc_subarctic
-			is_planet_class = pc_steppe
-			is_planet_class = pc_prairie
-			is_planet_class = pc_veld
-			is_planet_class = pc_semiarid
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_retinal
-			is_planet_class = pc_forest	
-			is_planet_class = pc_lake	
-			is_planet_class = pc_tepid
-			is_planet_class = pc_pd_petrified
-			is_planet_class = pc_megaflora	
-			is_pd_megaflora_hive = yes	
-			is_planet_class = pc_ash
-			is_planet_class = pc_primal
+			is_planet_class = pc_pd_dry_tidally_locked
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 	}
 
@@ -1829,9 +1268,6 @@ d_teeming_reef = {
 		d_marvelous_oasis
 		d_tropical_island
 		d_fungal_forest
-		d_hydrocarbon_lakes
-		d_ammonia_seas
-		d_sulfur_black_soil
 	}
 
 	planet_modifier = {
@@ -1848,18 +1284,11 @@ d_teeming_reef = {
 
 	potential = {
 		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_graveyard
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
+			is_planet_class = pc_pd_wet_cave
 		}
 	}
 
@@ -1885,9 +1314,6 @@ d_marvelous_oasis = {
 		d_teeming_reef
 		d_tropical_island
 		d_fungal_forest
-		d_hydrocarbon_lakes
-		d_ammonia_seas
-		d_sulfur_black_soil
 	}
 
 	planet_modifier = {
@@ -1905,20 +1331,9 @@ d_marvelous_oasis = {
 	potential = {
 		OR = {
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
-			is_planet_class = pc_sandsea
-			is_planet_class = pc_oasis
-			is_planet_class = pc_mesa
-			is_planet_class = pc_badlands
-			is_planet_class = pc_med
-			is_planet_class = pc_hadesert
 		}
 	}
 
@@ -1944,9 +1359,6 @@ d_tropical_island = {
 		d_teeming_reef
 		d_marvelous_oasis
 		d_fungal_forest
-		d_hydrocarbon_lakes
-		d_ammonia_seas
-		d_sulfur_black_soil
 	}
 
 	planet_modifier = {
@@ -1964,20 +1376,11 @@ d_tropical_island = {
 	potential = {
 		OR = {
 			is_planet_class = pc_arid
-			is_planet_class = pc_pd_dry_superhab
-			is_planet_class = pc_outback
-			is_planet_class = pc_coastal
+			is_planet_class = pc_pd_dry_superhabitable
 			is_planet_class = pc_desert
 			is_planet_class = pc_pd_dry_cave
-			is_planet_class = pc_salt
-			is_planet_class = pc_aquifer
-			is_planet_class = pc_coral
 			is_planet_class = pc_tropical
-			is_planet_class = pc_wettidallylocked
-			is_planet_class = pc_mangrove
-			is_planet_class = pc_hajungle
-			is_planet_class = pc_cenote
-			is_planet_class = pc_biolumen
+			is_planet_class = pc_pd_wet_tidally_locked
 		}
 	}
 
@@ -2001,9 +1404,6 @@ d_fungal_forest = {
 		d_teeming_reef
 		d_marvelous_oasis
 		d_tropical_island
-		d_hydrocarbon_lakes
-		d_ammonia_seas
-		d_sulfur_black_soil
 	}
 
 	category = deposit_cat_food
@@ -2021,11 +1421,7 @@ d_fungal_forest = {
 	}
 
 	potential = {
-		OR = {
-			is_cold = yes
-			is_planet_class = pc_storm
-			is_planet_class = pc_pd_iceberg
-		}
+		is_cold = yes
 	}
 
 	drop_weight = {
@@ -2033,7 +1429,6 @@ d_fungal_forest = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_wet = yes
-			is_planet_class = pc_karst
 		}
 	}
 }
@@ -2062,31 +1457,9 @@ d_dust_caverns = {
 		}
 		modifier = {
 			factor = 2
-			is_planet_class = pc_karst
-		}			
-		modifier = {
-			factor = 2
-			is_pd_gaia = yes
-		}			
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}			
-		modifier = {
-			factor = 2
-			is_planet_class = pc_graveyard
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_technoorganic
-		}
-		modifier = {
-			factor = 2
-			is_planet_class = pc_primal
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2121,23 +1494,9 @@ d_dust_desert = {
 		}
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}			
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}				
-		modifier = {
-			factor = 2
-			is_planet_class = pc_graveyard
-		}			
-		modifier = {
-			factor = 1
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_technoorganic
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2177,23 +1536,9 @@ d_bubbling_swamp = {
 		}
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}		
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}					
-		modifier = {
-			factor = 1
-			is_planet_class = pc_graveyard
-		}		
-		modifier = {
-			factor = 2
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 2
-			is_planet_class = pc_technoorganic
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2228,23 +1573,9 @@ d_fuming_bog = {
 		}
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}				
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}			
-		modifier = {
-			factor = 1
-			is_planet_class = pc_graveyard
-		}			
-		modifier = {
-			factor = 2
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 2
-			is_planet_class = pc_technoorganic
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2280,31 +1611,12 @@ d_crystalline_caverns = {
 		modifier = {
 			factor = @planet_type_bonus
 			is_cold = yes
-			is_planet_class = pc_karst
 		}
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}			
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}				
-		modifier = {
-			factor = 1
-			is_planet_class = pc_graveyard
-		}			
-		modifier = {
-			factor = 1
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_technoorganic
-		}
-		modifier = {
-			factor = 2
-			is_planet_class = pc_hothouse
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2323,26 +1635,19 @@ d_crystal_forest = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare_resource
 
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_crystal_reef
-	}
-
 	planet_modifier = {
 		building_crystal_mines_max = 2
 	}
 
 	potential = {
 		can_have_habitable_deposits = yes
-		NOR = { 
+		NOR = {
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
+			is_planet_class = pc_pd_wet_cave
+			is_planet_class = pc_nuked
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 	}
 
@@ -2354,23 +1659,9 @@ d_crystal_forest = {
 		}
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}		
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}					
-		modifier = {
-			factor = 1
-			is_planet_class = pc_graveyard
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_technoorganic
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2389,12 +1680,6 @@ d_crystal_reef = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare_resource
 
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_crystal_reef
-	}
-
 	planet_modifier = {
 		building_crystal_mines_max = 2
 	}
@@ -2402,24 +1687,11 @@ d_crystal_reef = {
 	potential = {
 		OR = {
 			is_planet_class = pc_ocean
-			is_planet_class = pc_reef
-			is_planet_class = pc_pd_archipelago
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-			is_pd_nuked = yes
-			is_pd_radiotrophic_world = yes
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
-			is_planet_class = pc_desertislands
-			is_planet_class = pc_subarctic
-			is_planet_class = pc_geothermal
-			is_planet_class = pc_superhabitable
-			is_planet_class = pc_tidallylocked
-			is_planet_class = pc_supercon
-			is_planet_class = pc_pd_sinkhole
-			is_planet_class = pc_crystal
-			is_planet_class = pc_technoorganic
-			is_planet_class = pc_graveyard
+			is_planet_class = pc_pd_wet_cave
+			is_planet_class = pc_nuked
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 	}
 
@@ -2431,32 +1703,9 @@ d_crystal_reef = {
 		}
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}		
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}			
-		modifier = {
-			factor = 2
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-		}			
-		modifier = {
-			factor = 2
-			is_planet_class = pc_tidallyaquatic
-		}			
-		modifier = {
-			factor = 1
-			is_planet_class = pc_graveyard
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 1
-			is_planet_class = pc_technoorganic
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2491,51 +1740,9 @@ d_betharian_deposit = {
 		weight = @mid_rare
 		modifier = {
 			factor = 2
-			is_pd_gaia = yes
-		}		
-		modifier = {
-			factor = 2
-			is_pd_shroud_world = yes
-		}					
-		modifier = {
-			factor = 2
-			is_planet_class = pc_geothermal
-		}				
-		modifier = {
-			factor = 2
-			is_planet_class = pc_superhabitable
-		}				
-		modifier = {
-			factor = 2
-			is_planet_class = pc_tidallylocked
-		}				
-		modifier = {
-			factor = 2
-			is_planet_class = pc_supercon
-		}				
-		modifier = {
-			factor = 2
-			is_planet_class = pc_pd_sinkhole
-		}			
-		modifier = {
-			factor = 2
-			is_planet_class = pc_graveyard
-		}			
-		modifier = {
-			factor = 2
-			is_planet_class = pc_crystal
-		}		
-		modifier = {
-			factor = 2
-			is_planet_class = pc_technoorganic
-		}			
-		modifier = {
-			factor = 2
-			is_planet_class = pc_karst
-		}		
-		modifier = {
-			factor = 2
-			is_pd_exotic = yes
+			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2563,6 +1770,8 @@ d_alien_pets_deposit = {
 		modifier = {
 			factor = 2
 			is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_pd_gaia_superhabitable
 		}
 		modifier = {
 			factor = 0
@@ -2598,10 +1807,8 @@ d_buzzing_plains = {
 	}
 
 	potential = {
-		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
-		}
+		is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
 	}
 
 	drop_weight = {
@@ -2628,10 +1835,8 @@ d_mineral_striations = {
 	}
 
 	potential = {
-		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
-		}
+		is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
 	}
 
 	drop_weight = {
@@ -2663,10 +1868,8 @@ d_natural_farmland = {
 	}
 
 	potential = {
-		OR = {
-			is_pd_gaia = yes
-			is_pd_shroud_world = yes
-		}
+		is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
 	}
 
 	drop_weight = {
@@ -3724,418 +2927,5 @@ d_hab_nanites_1 = {
 
 	drop_weight = {
 		weight = 0
-	}
-}
-
-#PD Added
-d_strong_currents = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_hot_springs
-		d_buzzing_plains # gaia
-		d_arid_highlands
-		d_sulfur_arid_highlands
-	}
-	
-	category = deposit_cat_energy
-	
-	planet_modifier = { 
-		district_generator_max = 1
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		OR = {
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean		
-		}
-	}
-	
-	drop_weight = {
-		weight = @high	
-		modifier = {
-			factor = @planet_type_bonus
-			OR = {
-				is_pd_aquatics = yes
-				is_planet_class = pc_pd_hycean	
-			}
-		}
-	}
-}
-
-d_underwater_jets = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_searing_desert
-		d_frozen_gas_lake
-		d_powerful_geyser
-		d_rushing_waterfalls
-		d_sulfur_arid_highlands
-	}
-	
-	category = deposit_cat_energy
-
-	planet_modifier = {
-		district_generator_max = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_generator_max = 2
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		OR = {
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-		}
-	}
-	
-	drop_weight = {
-		weight = @high	
-		modifier = {
-			factor = @planet_type_bonus
-			OR = {
-				is_pd_aquatics = yes
-				is_planet_class = pc_pd_hycean	
-			}
-		}
-	}
-}
-
-d_powerful_geyser = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_energy
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_searing_desert
-		d_rushing_waterfalls
-		d_frozen_gas_lake
-		d_underwater_jets
-		d_sulfur_searing_desert
-	}	
-
-	planet_modifier = {
-		district_generator_max = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_generator_max = 2
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		OR = {
-			is_planet_class = pc_geothermal	
-			is_planet_class = pc_ash
-			is_planet_class = pc_primal
-		}
-	}
-	
-	drop_weight = {
-		weight = @med
-		modifier = {
-			factor = @planet_type_bonus
-		}		
-	}
-}
-
-d_coral_deposit = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_minerals
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_mineral_fields
-		d_mineral_striations # gaia
-		d_veiny_cliffs
-		d_sulfur_mineral_fields
-	}
-	
-	planet_modifier = { 
-		district_mining_max = 1
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		OR = {
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-		}
-	}
-	
-	drop_weight = {
-		weight = @high
-		modifier = {
-			factor = @planet_type_bonus
-			OR = {
-				is_pd_aquatics = yes
-				is_planet_class = pc_pd_hycean	
-			}
-		}		
-	}
-}
-
-d_submerged_caves = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_minerals
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_ore_rich_caverns
-		d_prosperous_mesa
-		d_sulfur_ore_rich_caverns
-	}
-	
-	planet_modifier = { 
-		district_mining_max = 2
-	}	
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_mining_max = 2
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		OR = {
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-		}
-	}
-	
-	drop_weight = {
-		weight = @med
-		modifier = {
-			factor = @planet_type_bonus
-			OR = {
-				is_pd_aquatics = yes
-				is_planet_class = pc_pd_hycean	
-			}
-		}
-	}
-}
-
-d_sea_grass = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_food
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_bountiful_plains
-		d_rugged_woods
-		d_green_hills
-		d_forgiving_tundra
-		d_boggy_fens
-		d_nutritious_mudland
-		d_natural_farmland # gaia
-		d_lichen_fields
-		d_sulfur_nutritious_mudland
-	}	
-	
-	planet_modifier = { 
-		district_farming_max = 1
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		OR = {
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-		}
-	}
-	
-	drop_weight = {
-		weight = @high
-		modifier = {
-			factor = @planet_type_bonus
-			OR = {
-				is_pd_aquatics = yes
-				is_planet_class = pc_pd_hycean	
-			}
-		}		
-	}
-}
-
-d_kelp_forests = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_food
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_lush_jungle
-		d_fertile_lands
-		d_great_river
-		d_fungal_caves
-		d_sulfur_fertile_lands
-	}	
-	
-	planet_modifier = { 
-		district_farming_max = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_farming_max = 2
-		mult = value:district_amount_mastery_of_nature
-	}
-
-	potential = {
-		OR = {
-			is_pd_aquatics = yes
-			is_planet_class = pc_pd_hycean	
-		}
-	}
-	
-	drop_weight = {
-		weight = @med
-		modifier = {
-			factor = @planet_type_bonus
-			OR = {
-				is_pd_aquatics = yes
-				is_planet_class = pc_pd_hycean	
-			}
-		}		
-	}
-}
-
-d_hydrocarbon_lakes = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_food
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_teeming_reef
-		d_marvelous_oasis
-		d_tropical_island
-		d_fungal_forest
-		d_black_soil
-		d_ammonia_seas
-		d_sulfur_black_soil
-	}	
-	
-	planet_modifier = { 
-		district_farming_max = 3
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_farming_max = 3
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		is_planet_class = pc_methane
-	}
-	
-	drop_weight = {
-		weight = @med	
-		modifier = {
-			factor = @planet_type_bonus
-			is_planet_class = pc_methane
-		}		
-	}
-}
-
-d_ammonia_seas = {
-	is_for_colonizable = yes
-	use_for_min_max_adjustments = yes
-	
-	category = deposit_cat_food
-	
-	use_weights_for_terraforming_swap_types = yes
-	should_swap_deposit_on_terraforming = yes
-	terraforming_swap_types = {
-		d_teeming_reef
-		d_marvelous_oasis
-		d_tropical_island
-		d_fungal_forest
-		d_black_soil
-		d_hydrocarbon_lakes
-		d_sulfur_black_soil
-	}
-
-	planet_modifier = {
-		district_farming_max = 3
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			always = yes
-		}
-		district_farming_max = 3
-		mult = value:district_amount_mastery_of_nature
-	}
-	
-	potential = {
-		is_planet_class = pc_ammonia
-	}
-	
-	drop_weight = {
-		weight = @med	
-		modifier = {
-			factor = @planet_type_bonus
-			is_planet_class = pc_ammonia
-		}		
 	}
 }

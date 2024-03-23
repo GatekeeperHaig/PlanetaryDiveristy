@@ -61,39 +61,57 @@ planet_event = {
 		#}
 		if = {
 			limit = { 
-				is_pd_cave = yes
+				pd_is_planet_class_cave = yes
 			}
-			change_pc = pc_nuked_cave
+			change_pc = pc_pd_nuked_cave
 		} 
 		if = {
 			limit = { 
-				is_pd_superhab = yes
+				pd_is_planet_class_superhabitable = yes
 			}
-			change_pc = pc_nuked_superhab
+			change_pc = pc_pd_nuked_superhabitable
 		} 
 		if = {
 			limit = { 
-				is_pd_tidally_locked = yes
+				pd_is_planet_class_tidally_locked = yes
 			}
-			change_pc = pc_nuked_tl
+			change_pc = pc_pd_nuked_tidally_locked
+		} 
+		if = {
+			limit = { 
+				is_planet_class = pc_city
+			}
+			change_pc = pc_relic
+			add_modifier = {
+				modifier = pc_pd_nuked_arcology
+				days = -1
+			}
+			set_planet_entity = {
+				picture = pc_pd_nuked_relic
+				entity = nuked_relic_world_01_entity
+			}
+		} 
+		if = {
+			limit = { 
+				is_planet_class = pc_relic
+			}
+			add_modifier = {
+				modifier = pc_pd_nuked_arcology
+				days = -1
+			}
+			set_planet_entity = {
+				picture = pc_pd_nuked_relic
+				entity = nuked_relic_world_01_entity
+			}
 		} 
 		if = {
 			limit = { 
 				OR = {
 					is_planet_class = pc_city
 					is_planet_class = pc_relic
-					is_pd_arcology = yes
-				}
-			}
-			change_pc = pc_nuked_relic
-		} 
-		if = {
-			limit = { 
-				OR = {
-					NOT = { is_planet_class = pc_city }
-					is_pd_arcology = no
-					is_pd_tidally_locked = no
-					is_pd_superhab = no
+					pd_is_planet_class_cave = no
+					pd_is_planet_class_superhabitable = no
+					pd_is_planet_class_tidally_locked = no
 				}
 			}
 			change_pc = pc_nuked

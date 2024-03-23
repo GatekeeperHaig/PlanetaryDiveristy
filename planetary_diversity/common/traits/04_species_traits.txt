@@ -1078,11 +1078,9 @@ trait_survivor = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	modifier = {
 		pc_nuked_habitability = 0.7
-		pc_nuked_tl_habitability = 0.7
-		pc_nuked_superhab_habitability = 0.7
-		pc_nuked_relic_habitability = 0.7
 		leader_lifespan_add = 10
 	}
+	inline_script = "traits/pd_nuked_effects"
 	slave_cost = {
 		energy = 500
 	}
@@ -1367,7 +1365,6 @@ trait_void_dweller_1 = {
 		potential = {
 			exists = planet
 			planet = { is_artificial = no }
-			planet = { is_pd_habitat = no }
 		}
 		pop_happiness = -0.3
 	}
@@ -1422,7 +1419,10 @@ trait_plantoid_bloomed = {
 			exists = planet
 			planet = {
 				is_planet_class = pc_gaia
-				NOT = { has_active_building = building_gaiaseeders_4 }
+				NOR = {
+					has_active_building = building_gaiaseeders_4
+					has_active_building = building_gaiaseeders_pc_gaia
+				}
 			}
 		}
 		planet_jobs_produces_mult = 0.10
@@ -1435,7 +1435,10 @@ trait_plantoid_bloomed = {
 			exists = planet
 			planet = {
 				is_planet_class = pc_gaia
-				has_active_building = building_gaiaseeders_4
+				OR = {
+					has_active_building = building_gaiaseeders_4
+					has_active_building = building_gaiaseeders_pc_gaia
+				}
 			}
 		}
 		planet_jobs_produces_mult = 0.15
@@ -1448,7 +1451,10 @@ trait_plantoid_bloomed = {
 			exists = planet
 			planet = {
 				is_planet_class = pc_gaia
-				NOT = { has_active_building = building_gaiaseeders_4 }
+				NOR = {
+					has_active_building = building_gaiaseeders_4
+					has_active_building = building_gaiaseeders_pc_gaia
+				}
 			}
 		}
 		pop_growth_speed = 0.10
@@ -1459,7 +1465,10 @@ trait_plantoid_bloomed = {
 			exists = planet
 			planet = {
 				is_planet_class = pc_gaia
-				has_active_building = building_gaiaseeders_4
+				OR = {
+					has_active_building = building_gaiaseeders_4
+					has_active_building = building_gaiaseeders_pc_gaia
+				}
 			}
 		}
 		pop_growth_speed = 0.15

@@ -10,39 +10,12 @@ planet_event = {
 
 	trigger = {
 		last_building_changed = building_gaiaseeders_4
-		NOT = {
-			is_planet_class = pc_gaia
-		}
+		pd_is_planet_class_gaia = no
 	}
 
 	immediate = {
 		# Turn planet into Gaia world.
-		if = {
-			limit = { 
-				is_pd_tidally_locked = yes
-			}
-			change_pc = pc_tidallygaia
-		}
-		if = {
-			limit = { 
-				is_pd_superhab = yes
-			}
-			change_pc = pc_gaia_superhab
-		}
-		if = {
-			limit = { 
-				is_pd_cave = yes
-			}
-			change_pc = pc_gaia_cave
-		}
-		if = {
-			limit = { 
-				is_pd_tidally_locked = no
-				is_pd_superhab = no
-				is_pd_cave = no
-			}
-			change_pc = pc_gaia
-		}
+		pd_make_all_gaia_worlds_effect = yes
 		set_planet_flag = gaia_seeder_bloom
 	}
 
@@ -92,7 +65,7 @@ planet_event = {
 
 	trigger = {
 		last_building_changed = building_gaiaseeders_pc_gaia
-		is_planet_class = pc_gaia
+		pd_is_planet_class_gaia = yes
 	}
 
 	immediate = {
@@ -119,7 +92,7 @@ country_event = {
 	trigger = {
 		from.planet = {
 			NOR = {
-				is_planet_class = pc_gaia
+				pd_is_planet_class_gaia = yes
 				has_planet_flag = anti_cheese_idyllic_bloom_flag
 			}
 			has_holding = {
@@ -146,7 +119,7 @@ country_event = {
 			from.planet = {
 				set_planet_flag = terraformed_against_will
 				owner = {
-					add_modifier = {
+					add_modifier = { 
 						modifier =  terraformed_our_ocean_world
 						years = 3
 					}
@@ -159,27 +132,27 @@ country_event = {
 		from.planet = {
 			if = {
 				limit = { 
-					is_pd_tidally_locked = yes
+					pd_is_planet_class_tidally_locked = yes
 				}
-				change_pc = pc_tidallygaia
+				change_pc = pc_pd_gaia_tidally_locked
 			}
 			if = {
 				limit = { 
-					is_pd_superhab = yes
+					pd_is_planet_class_superhabitable = yes
 				}
-				change_pc = pc_gaia_superhab
+				change_pc = pc_pd_gaia_superhabitable
 			}
 			if = {
 				limit = { 
-					is_pd_cave = yes
+					pd_is_planet_class_cave = yes
 				}
-				change_pc = pc_gaia_cave
+				change_pc = pc_pd_gaia_cave
 			}
 			if = {
 				limit = { 
-					is_pd_tidally_locked = no
-					is_pd_superhab = no
-					is_pd_cave = no
+					pd_is_planet_class_tidally_locked = no
+					pd_is_planet_class_superhabitable = no
+					pd_is_planet_class_cave = no
 				}
 				change_pc = pc_gaia
 			}
