@@ -1,0 +1,295 @@
+###########################################
+#
+# Toxoids Events
+# By Pierre du Plessis and Hadrien Buytaers
+#
+###########################################
+
+namespace = toxoids
+
+planet_event = {
+	id = toxoids.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_building = building_coordinated_fulfillment_center_1
+			has_building = building_coordinated_fulfillment_center_2
+		}
+		NOR = {
+			pd_is_planet_class_nuked = yes
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			uses_district_set = habitat
+			uses_district_set = ring_world
+			uses_district_set = shattered_ring_world
+		}
+		exists = owner
+		owner = { is_relentless_industrialist_empire = yes }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				owner = { has_policy_flag = relentless_industrialists_cleanup }
+				check_variable = {
+					which = relentless_industrialists_var
+					value > 0
+				}
+			}
+			subtract_variable = {
+				which = relentless_industrialists_var
+				value = 1
+			}
+		}
+		else = {
+			if = {
+				limit = { has_active_building = building_coordinated_fulfillment_center_1 }
+				change_variable = {
+					which = relentless_industrialists_var
+					value = 1
+				}
+			}
+			else_if = { #ruined or disabled
+				limit = { has_building = building_coordinated_fulfillment_center_1 }
+				change_variable = {
+					which = relentless_industrialists_var
+					value = 0.5
+				}
+			}
+			else_if = {
+				limit = { has_active_building = building_coordinated_fulfillment_center_2 }
+				change_variable = {
+					which = relentless_industrialists_var
+					value = 2
+				}
+			}
+			else = {
+				change_variable = {
+					which = relentless_industrialists_var
+					value = 1
+				}
+			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = {
+				check_variable = {
+					which = relentless_industrialists_var
+					value >= 30
+				}
+				NOT = {
+					owner = {
+						OR = {
+							has_policy_flag = relentless_industrialists_cleanup
+							country_has_situation = { SITUATION = relentless_industrialists_situation }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						owner = { has_country_flag = relentless_industrialists_situation_happened }
+					}
+				}
+				planet_event = { id = toxoids.5 days = 15 random = 180 }
+			}
+			else = {
+				change_pc = pc_nuked
+				if = {
+					limit = {
+						owner = { has_country_flag = relentless_industrialists_climate_apocalypse_sad }
+					}
+					add_modifier = {
+						modifier = relentless_industrialists_tomb
+						years = 10
+					}
+				}
+				create_message = {
+					type = TOMB_WORLD_FROM_INDUSTRY_MESSAGE_TYPE
+					localization = TOMB_WORLD_FROM_INDUSTRY_MESSAGE_TYPE_DESC
+					days = 20
+					target = this
+				}
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Situation Outcome Event - Full Steam Ahead
+situation_event = {
+	id = toxoids.25
+	title = toxoids.25.name
+	desc = toxoids.25.desc
+	picture = GFX_evt_tomb_world
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_bad_omen
+
+	immediate = {
+		target = {
+			if = {
+				limit = {
+					pd_is_planet_class_cave = yes
+				}
+				change_pc = pc_pd_nuked_cave
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_superhabitable = yes
+				}
+				change_pc = pc_pd_nuked_superhabitable
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_tidally_locked = yes
+				}
+				change_pc = pc_pd_nuked_tidally_locked
+			}
+			if = {
+				limit = {
+					NOR = {
+						pd_is_planet_class_cave = yes
+						pd_is_planet_class_superhabitable = yes
+						pd_is_planet_class_tidally_locked = yes
+					}
+				}
+				change_pc = pc_nuked
+			}
+		}
+		owner = {
+			set_country_flag = relentless_industrialists_full_steam_ahead
+			set_country_flag = relentless_industrialists_situation_finished
+			if = {
+				limit = {
+					root = {
+						NOT = { has_situation_flag = fine_with_climate_apocalypse }
+					}
+				}
+				root.target = {
+					add_modifier = {
+						modifier = relentless_industrialists_tomb
+						years = 10
+					}
+				}
+				set_country_flag = relentless_industrialists_climate_apocalypse_sad
+			}
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+			}
+		}
+	}
+
+	option = {
+		name = toxoids.25.A
+		custom_tooltip = toxoids.25.A.tooltip
+		tooltip = {
+			target = { change_pc = pc_nuked }
+		}
+	}
+
+	after = {
+		custom_tooltip = relentless_industrialists_policies_activated
+		destroy_situation = this
+	}
+}
+
+# Situation Outcome Event - Study the Process
+situation_event = {
+	id = toxoids.30
+	title = toxoids.30.name
+	desc = {
+		trigger = { owner = { empire_has_good_habitability_on_tomb_worlds = no } }
+		text = toxoids.30.desc
+	}
+	desc = {
+		trigger = { owner = { empire_has_good_habitability_on_tomb_worlds = yes } }
+		text = toxoids.30.desc.thisisfine
+	}
+	picture = GFX_evt_tomb_world
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_activating_unknown_technology
+
+	immediate = {
+		target = {
+			if = {
+				limit = {
+					pd_is_planet_class_cave = yes
+				}
+				change_pc = pc_pd_nuked_cave
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_superhabitable = yes
+				}
+				change_pc = pc_pd_nuked_superhabitable
+			}
+			if = {
+				limit = {
+					pd_is_planet_class_tidally_locked = yes
+				}
+				change_pc = pc_pd_nuked_tidally_locked
+			}
+			if = {
+				limit = {
+					NOR = {
+						pd_is_planet_class_cave = yes
+						pd_is_planet_class_superhabitable = yes
+						pd_is_planet_class_tidally_locked = yes
+					}
+				}
+				change_pc = pc_nuked
+			}
+		}
+		owner = {
+			set_country_flag = relentless_industrialists_study_completed
+			set_country_flag = relentless_industrialists_situation_finished
+			if = {
+				limit = {
+					OR = {
+						is_active_resolution = "resolution_ecology_environmental_control_board"
+						is_active_resolution = "resolution_ecology_paradise_initiative"
+					}
+				}
+				set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+			}
+		}
+	}
+
+	option = {
+		name = toxoids.30.A
+		custom_tooltip = toxoids.30.A.tooltip
+		tooltip = {
+			target = { change_pc = pc_nuked }
+		}
+	}
+
+	after = {
+		custom_tooltip = relentless_industrialists_policies_activated
+		destroy_situation = this
+	}
+}
