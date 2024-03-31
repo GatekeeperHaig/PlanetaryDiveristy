@@ -6377,11 +6377,36 @@ country_event = {
 				is_moon = yes
 			}
 			set_planet_flag = pdganymede
-			clear_deposits = yes
 			add_modifier = {
 				modifier = pd_domed_food_site
 				days = -1
 			}
+			if = {
+				limit = {
+					has_deposit = d_dark_matter_deposit_1
+				}
+				solar_system = {
+					random_system_planet = {
+						limit = {
+							is_capital = no
+							is_colonizable = no
+							has_deposit = no
+							is_terraforming_candidate = no
+							pd_has_domed_base_modifier = no
+							pd_has_domed_moon_base_modifier = no
+						}
+						add_deposit = d_dark_matter_deposit_1
+					}
+				}
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			clear_deposits = yes
+
 
 		}
 		every_galaxy_planet = {
@@ -6394,12 +6419,30 @@ country_event = {
 			set_planet_entity = {
 				entity = "gas_giant_saturn_entity"
 			}
-			clear_deposits = yes
 			add_deposit = d_physics_2
 			add_modifier = {
 				modifier = pd_domed_research_site
 				days = -1
 			}
+			if = {
+				limit = {
+					has_deposit = d_dark_matter_deposit_1
+				}
+				solar_system = {
+					random_system_planet = {
+						limit = {
+							is_capital = no
+							is_colonizable = no
+							has_deposit = no
+							is_terraforming_candidate = no
+							pd_has_domed_base_modifier = no
+							pd_has_domed_moon_base_modifier = no
+						}
+						add_deposit = d_dark_matter_deposit_1
+					}
+				}
+			}
+			clear_deposits = yes
 		}
 		every_galaxy_planet = {
 			limit = {
@@ -6458,12 +6501,36 @@ country_event = {
                     is_planet_class = pc_toxic
 					is_moon = no
 				}
-				clear_deposits = yes
 				clear_planet_modifiers = yes
                 add_modifier = { modifier = terraforming_candidate days = -1 }
                 add_modifier = { modifier = pd_hothouse days = -1 }
                 set_planet_flag = pdvenus
 				set_planet_size = 17
+				if = {
+					limit = {
+						has_deposit = d_dark_matter_deposit_1
+					}
+					solar_system = {
+						random_system_planet = {
+							limit = {
+								is_capital = no
+								is_colonizable = no
+								has_deposit = no
+								is_terraforming_candidate = no
+								pd_has_domed_base_modifier = no
+								pd_has_domed_moon_base_modifier = no
+							}
+							add_deposit = d_dark_matter_deposit_1
+						}
+					}
+					if = {
+						limit = { has_orbital_station = yes }
+						orbital_station = {
+							dismantle = yes
+						}
+					}
+				}
+				clear_deposits = yes
             }
 		}
 	}
@@ -6709,7 +6776,6 @@ country_event = {
 					#planet_size = 20
 					is_moon = no
 				}
-				clear_deposits = yes
 				change_pc = pc_hothouse
 				set_planet_entity = {
 					entity = toxic_planet_venus_entity
@@ -6718,6 +6784,30 @@ country_event = {
                 add_modifier = { modifier = terraforming_candidate days = -1 }
                 set_planet_flag = pdvenus
 				set_planet_size = 17
+				if = {
+					limit = {
+						has_deposit = d_dark_matter_deposit_1
+					}
+					solar_system = {
+						random_system_planet = {
+							limit = {
+								is_capital = no
+								is_colonizable = no
+								has_deposit = no
+								is_terraforming_candidate = no
+								pd_has_domed_base_modifier = no
+								pd_has_domed_moon_base_modifier = no
+							}
+							add_deposit = d_dark_matter_deposit_1
+						}
+					}
+					if = {
+						limit = { has_orbital_station = yes }
+						orbital_station = {
+							dismantle = yes
+						}
+					}
+				}
             }
 		}
 	}
@@ -7226,304 +7316,6 @@ country_event = {
 				add_modifier = {
 					modifier = pd_uncommon_gaia_world
 					days = -1
-				}
-			}
-		}
-	}
-}
-
-###These events are for PD Domed Bases
-#This event gives all homeworld moons their moonbase modifiers, and random planets their dome base modifiers
-country_event = {
-	id = pdengine.100
-	hide_window = yes
-	location = root
-	is_triggered_only = yes
-
-	trigger = {
-	}
-
-	immediate = {
-		every_galaxy_planet = {
-			if = {
-				limit = {
-					has_moon = yes
-					OR = {
-						is_colonizable = yes
-						is_colony = yes
-						is_terraforming_candidate = yes
-					}
-					any_moon = {
-						OR = {
-							is_planet_class = pc_barren
-							is_planet_class = pc_barren_cold
-							is_planet_class = pc_toxic
-							is_planet_class = pc_frozen
-							is_planet_class = pc_molten
-						}
-						NOT = {
-							has_modifier = pd_domed_moonbase_site
-						}
-					}
-				}
-				every_moon = {
-					limit = {
-						OR = {
-							is_planet_class = pc_barren
-							is_planet_class = pc_barren_cold
-							is_planet_class = pc_toxic
-							is_planet_class = pc_frozen
-							is_planet_class = pc_molten
-						}
-						NOT = {
-							has_modifier = pd_domed_moonbase_site
-						}
-					}
-					add_modifier = {
-						modifier = pd_domed_moonbase_site
-						days = -1
-					}
-					clear_deposits = yes
-					remove_modifier = carbon_world
-					remove_modifier = chthonian_planet
-				}
-			}
-			if = {
-				limit = {
-					is_moon = no
-					has_moon = yes
-					any_moon = {
-						OR = {
-							is_colonizable = yes
-							is_colony = yes
-							is_terraforming_candidate = yes
-						}
-					}
-					NOT = {
-						has_modifier = pd_domed_moonbase_site
-					}
-				}
-				every_moon = {
-					limit = {
-						OR = {
-							is_planet_class = pc_barren
-							is_planet_class = pc_barren_cold
-							is_planet_class = pc_toxic
-							is_planet_class = pc_frozen
-							is_planet_class = pc_molten
-						}
-						NOR = {
-							is_colonizable = yes
-							is_colony = yes
-							is_terraforming_candidate = yes
-						}
-					}
-					add_modifier = {
-						modifier = pd_domed_moonbase_site
-						days = -1
-					}
-					clear_deposits = yes
-					remove_modifier = carbon_world
-					remove_modifier = chthonian_planet
-				}
-			}
-			if = {
-				limit = {
-					solar_system = {
-						any_system_planet = {
-							OR = {
-								is_colonizable = yes
-								is_colony = yes
-							}
-						}
-						NOR = {
-							has_star_flag = sol_system
-							has_star_flag = sol
-						}
-					}
-					is_star = no
-					habitable_planet = no
-					is_asteroid = no
-					NOR = {
-						is_planet_class = pc_shattered
-						has_modifier = pd_domed_moonbase_site
-						is_terraforming_candidate = yes
-					}
-					has_orbital_mining_deposit = yes
-				}
-				random_list = {
-					40 = {}
-					60 = {
-						add_modifier = {
-							modifier = pd_domed_mining_site
-							days = -1
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					solar_system = {
-						any_system_planet = {
-							OR = {
-								is_colonizable = yes
-								is_colony = yes
-							}
-						}
-						NOR = {
-							has_star_flag = sol_system
-							has_star_flag = sol
-						}
-					}
-					is_star = no
-					habitable_planet = no
-					is_asteroid = no
-					NOR = {
-						is_planet_class = pc_shattered
-						is_planet_class = pc_broken
-						has_modifier = pd_domed_moonbase_site
-						is_terraforming_candidate = yes
-					}
-					has_orbital_energy_deposit = yes
-				}
-				random_list = {
-					40 = {}
-					60 = {
-						add_modifier = {
-							modifier = pd_domed_energy_site
-							days = -1
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					solar_system = {
-						any_system_planet = {
-							OR = {
-								is_colonizable = yes
-								is_colony = yes
-							}
-						}
-						NOR = {
-							has_star_flag = sol_system
-							has_star_flag = sol
-						}
-					}
-					is_planet_class = pc_frozen
-					NOR = {
-						is_planet_class = pc_shattered
-						has_modifier = pd_domed_moonbase_site
-						is_terraforming_candidate = yes
-					}
-					has_orbital_energy_deposit = no
-					has_orbital_mining_deposit = no
-					NOR = {
-						has_deposit = d_engineering_1
-						has_deposit = d_engineering_2
-						has_deposit = d_engineering_3
-						has_deposit = d_engineering_4
-						has_deposit = d_engineering_5
-						has_deposit = d_engineering_6
-						has_deposit = d_engineering_7
-						has_deposit = d_engineering_8
-						has_deposit = d_engineering_9
-						has_deposit = d_society_10
-						has_deposit = d_society_1
-						has_deposit = d_society_2
-						has_deposit = d_society_3
-						has_deposit = d_society_4
-						has_deposit = d_society_5
-						has_deposit = d_society_6
-						has_deposit = d_society_7
-						has_deposit = d_society_8
-						has_deposit = d_society_9
-						has_deposit = d_society_10
-						has_deposit = d_physics_1
-						has_deposit = d_physics_2
-						has_deposit = d_physics_3
-						has_deposit = d_physics_4
-						has_deposit = d_physics_5
-						has_deposit = d_physics_6
-						has_deposit = d_physics_7
-						has_deposit = d_physics_8
-						has_deposit = d_physics_9
-						has_deposit = d_physics_10
-					}
-				}
-				random_list = {
-					40 = {}
-					60 = {
-						add_modifier = {
-							modifier = pd_domed_food_site
-							days = -1
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
-					solar_system = {
-						any_system_planet = {
-							OR = {
-								is_colonizable = yes
-								is_colony = yes
-							}
-						}
-						NOR = {
-							has_star_flag = sol_system
-							has_star_flag = sol
-						}
-					}
-					is_star = no
-					habitable_planet = no
-					is_asteroid = no
-					NOR = {
-						is_planet_class = pc_shattered
-						has_modifier = pd_domed_moonbase_site
-						is_terraforming_candidate = yes
-					}
-					OR = {
-						has_deposit = d_engineering_1
-						has_deposit = d_engineering_2
-						has_deposit = d_engineering_3
-						has_deposit = d_engineering_4
-						has_deposit = d_engineering_5
-						has_deposit = d_engineering_6
-						has_deposit = d_engineering_7
-						has_deposit = d_engineering_8
-						has_deposit = d_engineering_9
-						has_deposit = d_society_10
-						has_deposit = d_society_1
-						has_deposit = d_society_2
-						has_deposit = d_society_3
-						has_deposit = d_society_4
-						has_deposit = d_society_5
-						has_deposit = d_society_6
-						has_deposit = d_society_7
-						has_deposit = d_society_8
-						has_deposit = d_society_9
-						has_deposit = d_society_10
-						has_deposit = d_physics_1
-						has_deposit = d_physics_2
-						has_deposit = d_physics_3
-						has_deposit = d_physics_4
-						has_deposit = d_physics_5
-						has_deposit = d_physics_6
-						has_deposit = d_physics_7
-						has_deposit = d_physics_8
-						has_deposit = d_physics_9
-						has_deposit = d_physics_10
-					}
-				}
-				random_list = {
-					40 = {}
-					60 = {
-						add_modifier = {
-							modifier = pd_domed_research_site
-							days = -1
-						}
-					}
 				}
 			}
 		}

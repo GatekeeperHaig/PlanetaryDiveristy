@@ -80,7 +80,7 @@ decision_pd_garden_arcology_project = {
 				}
 				set_planet_entity = {
 					picture = pc_pd_garden_city
-					entity = "pdgarden_city_planet_01_entity"
+					entity = "pd_garden_city_planet_entity"
 					graphical_culture = owner
 				}
 			}
@@ -207,7 +207,7 @@ decision_pd_garden_arcology_project_relic = {
 				}
 				set_planet_entity = {
 					picture = pc_pd_garden_city
-					entity = "pdgarden_city_planet_01_entity"
+					entity = "pd_garden_city_planet_entity"
 					graphical_culture = owner
 				}
 			}
@@ -343,7 +343,7 @@ decision_pd_fortress_arcology_project = {
 			set_ecu_industrial_districts_effect = yes
 			set_planet_entity = {
 				picture = pc_pd_fortress_city
-				entity = "pd_fortress_city_planet_01_entity"
+				entity = "pd_fortress_city_planet_entity"
 				graphical_culture = owner
 			}
 			planet_event = { id = action.68 }
@@ -434,7 +434,7 @@ decision_pd_fortress_arcology_project_relic = {
 			set_ecu_industrial_districts_effect = yes
 			set_planet_entity = {
 				picture = pc_pd_fortress_city
-				entity = "pd_fortress_city_planet_01_entity"
+				entity = "pd_fortress_city_planet_entity"
 				graphical_culture = owner
 			}
 			planet_event = { id = action.68 }
@@ -503,6 +503,7 @@ decision_pd_commerical_arcology_project = {
 				has_tradition = tr_prosperity_adopt
 				has_tradition = tr_mercantile_adopt
 			}
+			NOT = { is_machine_empire = yes }
 		}
 	}
 
@@ -544,7 +545,7 @@ decision_pd_commerical_arcology_project = {
 			}
 			set_planet_entity = {
 				picture = pc_pd_commerical_city
-				entity = "pd_commerical_city_planet_01_entity"
+				entity = "pd_commerical_city_planet_entity"
 				graphical_culture = owner
 			}
 			planet_event = { id = action.68 }
@@ -609,6 +610,7 @@ decision_pd_commerical_arcology_project_relic = {
 				has_tradition = tr_prosperity_adopt
 				has_tradition = tr_mercantile_adopt
 			}
+			NOT = { is_machine_empire = yes }
 		}
 	}
 
@@ -628,16 +630,16 @@ decision_pd_commerical_arcology_project_relic = {
 				VARIABLE = num_housing_districts
 			}
 			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_industrial
+				DISTRICT = district_arcology_arms_industry
 				VARIABLE = num_industrial_districts
 			}
 			swap_districts_effect = {
-				DISTRICT1 = district_arcology_industrial
+				DISTRICT1 = district_arcology_arms_industry
 				DISTRICT2 = district_pd_arcology_industrial
 			}
 			set_planet_entity = {
 				picture = pc_pd_commerical_city
-				entity = "pd_commerical_city_planet_01_entity"
+				entity = "pd_commerical_city_planet_entity"
 				graphical_culture = owner
 			}
 			planet_event = { id = action.68 }
