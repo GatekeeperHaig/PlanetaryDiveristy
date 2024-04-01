@@ -8,6 +8,7 @@
 
 @planet_type_bonus = 1.5
 
+#Demo/Olig
 d_pd_senate_building = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare
@@ -149,6 +150,7 @@ d_pd_senate_building = {
 	}
 }
 
+#Dic/Imp
 d_pd_palace_building = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare
@@ -290,6 +292,7 @@ d_pd_palace_building = {
 	}
 }
 
+#Corp
 d_pd_headquarters_building = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare
@@ -419,6 +422,68 @@ d_pd_headquarters_building = {
 
 	potential = {
 		is_planet_class = pc_city
+		is_capital = yes
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Hive
+d_pd_confluence_spire_building = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_confluence_spire_building
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_synapse_drone_add = 2
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_progenitor_hive }
+			is_planet_class = pc_hive
+		}
+		job_offspring_drone_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_synapse_drone_add = 4
+		job_maintenance_drone_add = 4
+		job_patrol_drone_add = 4
+		pop_government_ethic_attraction = 1
+		planet_stability_add = 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_pd_hive
+		}
 		is_capital = yes
 	}
 

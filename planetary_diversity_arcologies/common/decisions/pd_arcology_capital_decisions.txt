@@ -36,6 +36,7 @@ decision_pd_arcology_senate = {
 				has_authority = auth_oligarchic
 			}
 		}
+		NOT = {	has_deposit = d_pd_senate_building }
 	}
 
 	allow = {
@@ -98,6 +99,7 @@ decision_pd_arcology_palace = {
 				has_authority = auth_imperial
 			}
 		}
+		NOT = {	has_deposit = d_pd_palace_building }
 	}
 
 	allow = {
@@ -157,6 +159,7 @@ decision_pd_arcology_headquarters = {
 			has_technology = tech_housing_2
 			has_authority = auth_corporate
 		}
+		NOT = {	has_deposit = d_pd_headquarters_building }
 	}
 
 	allow = {
@@ -172,6 +175,67 @@ decision_pd_arcology_headquarters = {
 		hidden_effect = {
 			add_deposit = d_pd_headquarters_building
 			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}
+
+# Hive Confluence Spire Capital
+decision_pd_hive_confluence_spire = {
+	owned_planets_only = yes
+	icon = decision_pd_hive_confluence_spire
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_pd_hive
+			is_planet_class = pc_ringworld_habitable
+			AND = {
+				is_planet_class = pc_habitat
+				owner = {
+					has_civic = civic_void_hive
+				}
+			}
+		}
+		is_capital = yes
+		exists = owner
+		owner = {
+			has_technology = tech_housing_2
+			is_gestalt = yes
+		}
+		NOT = {	has_deposit = d_pd_confluence_spire_building }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_hive_confluence_spire_effects
+		hidden_effect = {
+			add_deposit = d_pd_confluence_spire_building
+			generate_pd_hive_arc_portrait_effect = yes
 		}
 	}
 

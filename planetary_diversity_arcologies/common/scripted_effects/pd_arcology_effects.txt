@@ -1,6 +1,76 @@
 #This effect add deposits at game start to planet classes added by PD
 
 generate_pd_arcology_portrait_effect = {
+	#Garden Arc
+	if = {
+		limit = {
+			has_modifier = pd_garden_arcology
+		}
+		if = {
+			limit = {
+				NOR = {
+					has_planet_flag = planet_earth
+					has_planet_flag = planet_mars
+					has_planet_flag = pdvenus
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = pd_garden_city_planet_earth_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_mars
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = pd_garden_city_planet_mars_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdvenus
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = pd_garden_city_planet_venus_01_entity
+			}
+		}
+	}
+	#Fort Arc
+	if = {
+		limit = {
+			has_modifier = pd_fortress_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_fortress_city
+			entity = "pd_fortress_city_planet_entity"
+			graphical_culture = owner
+		}
+	}
+	#Commerical Arc
+	if = {
+		limit = {
+			has_modifier = pd_commerical_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_commerical_city
+			entity = "pd_commerical_city_planet_entity"
+			graphical_culture = owner
+		}
+	}
+	#Senate Capital + Arcs, no Ascension
 	if = {
 		limit = {
 			has_deposit = d_pd_senate_building
@@ -48,6 +118,7 @@ generate_pd_arcology_portrait_effect = {
 			}
 		}
 	}
+	#Palace Capital + Arcs, no Ascension
 	if = {
 		limit = {
 			has_deposit = d_pd_palace_building
@@ -95,6 +166,7 @@ generate_pd_arcology_portrait_effect = {
 			}
 		}
 	}
+	#Corperate Capital + Arcs, no Ascension
 	if = {
 		limit = {
 			has_deposit = d_pd_headquarters_building
@@ -142,5 +214,25 @@ generate_pd_arcology_portrait_effect = {
 			}
 		}
 	}
+}
 
+#Hive Worlds
+generate_pd_hive_arc_portrait_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_confluence_spire_building
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_hive
+					is_planet_class = pc_pd_hive
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_hive_capital
+			}
+		}
+
+	}
 }
