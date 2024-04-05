@@ -153,15 +153,15 @@ entity = {
 	}
     attach = { "planetloc" = "pd_moon_base_frozen_planet_01_mesh" }
     attach = { "planetloc" = "pd_moon_base_frozen_planet_cloud_mesh" }
+    scale = 1.0
 	game_data = {
 		shader_type = ship
 		emissive_recolor_crunch = 5.0
 	}
-    scale = 1.0
 }
 entity = {
 	name = "pd_moon_base_frozen_planet_01_mesh"
-	pdxmesh = "planet_clouded_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
 
 	meshsettings = {
 		name = "planet_geosphereShape"
@@ -177,12 +177,16 @@ entity = {
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
 	}
 	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
 }
 #Frozen Clouds
 entity = {
 	name = "pd_moon_base_frozen_planet_cloud_mesh"
 	pdxmesh = "planet_cloud_mesh"
-	scale = 1
+	scale = 0.985
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
@@ -247,7 +251,7 @@ entity = {
 }
 entity = {
 	name = "pd_moon_base_toxic_planet_01_mesh"
-	pdxmesh = "planet_clouded_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
 
 	meshsettings = {
 		name = "planet_geosphereShape"
@@ -277,7 +281,7 @@ entity = {
 entity = {
 	name = "pd_moon_base_toxic_planet_cloud_mesh"
 	pdxmesh = "planet_cloud_mesh"
-	scale = 0.9
+	scale = 0.985
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"

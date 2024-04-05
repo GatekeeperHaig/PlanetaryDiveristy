@@ -457,9 +457,16 @@ d_pd_confluence_spire_building = {
 		potential = {
 			exists = owner
 			owner = { has_origin = origin_progenitor_hive }
-			is_planet_class = pc_hive
 		}
 		job_offspring_drone_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_origin = origin_progenitor_hive } }
+		}
+		job_spawning_drone_add = 1
 	}
 
 	triggered_planet_modifier = {

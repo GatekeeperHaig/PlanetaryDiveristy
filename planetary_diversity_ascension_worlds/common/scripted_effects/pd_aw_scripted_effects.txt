@@ -613,3 +613,28 @@ pd_aw_create_lithoid_world_effect = {
 		}
 	}
 }
+
+#Megaflora Capitals Worlds
+generate_pd_florahive_arc_portrait_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_megaflora_capital_building
+		}
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			set_planet_entity = {
+				picture = pc_pd_megaflora_hive_bloomed_capital
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			set_planet_entity = {
+				picture = pc_pd_flora_hive_capital
+			}
+		}
+	}
+}
