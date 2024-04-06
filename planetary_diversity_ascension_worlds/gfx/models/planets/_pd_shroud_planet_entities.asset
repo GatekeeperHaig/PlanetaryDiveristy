@@ -1,48 +1,4 @@
-#Shroud
-entity = {
-	name = "pdshroud_planet_01_entity"
-	pdxmesh = "planet_clouded_mesh"
-	
-	#planet surface texture override	
-	meshsettings = {
-	name = "planet_geosphereShape"
-	texture_diffuse = "pdshroud_01_diffuse.dds"
-	texture_normal = "tropical_03_normal.dds"
-	texture_specular = "tropical_03_spec.dds"
-	}
-	
-	##pole texture override
-	meshsettings = {
-	name = "polesShape"
-	texture_diffuse = "poles_1_diffuse.dds"
-	texture_normal = "poles_1_normal.dds"
-	texture_specular = "poles_1_specular.dds"
-	}
-	
-	##cloud texture override
-	meshsettings = {
-	name = "clouds_geosphereShape"
-	texture_diffuse = "toxic_clouds_purple_diffuse.dds"
-	texture_normal = "toxic_clouds_normal.dds"
-	texture_specular = "toxic_clouds_specular.dds"
-	}
-	
-	##cloud shadow texture override
-	meshsettings = {
-	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
-	texture_normal = "nonormal.dds"
-	texture_specular = "nospec.dds"
-	}
-
-	default_state = "idle"
-	state = { name = "idle" animation = "idle" 
-		start_event = { trigger_once = yes sound = { soundeffect = "amb_toxic_world_a" } }
-		start_event = { trigger_once = yes sound = { soundeffect = "amb_toxic_world_b" } }
-	}
-	attach = { planet = "shroudrays_entity" }
-}
-
+#Shroud Ray Attachment
 entity = {
 	name = "shroudrays_entity"
 	pdxmesh = "shroud_rays_mesh"
@@ -50,11 +6,57 @@ entity = {
 	scale = 0.6
 }
 
+#Shroud
+entity = {
+	name = "pdshroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "pdshroud_01_diffuse.dds"
+	texture_normal = "tropical_03_normal.dds"
+	texture_specular = "tropical_03_spec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+	texture_normal = "toxic_clouds_normal.dds"
+	texture_specular = "toxic_clouds_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_toxic_world_a" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_toxic_world_b" } }
+	}
+	attach = { planet = "shroudrays_entity" }
+}
+
+#Shroud Arcology
 entity = {
 	name = "pdshroudcity_planet_01_entity"
 	pdxmesh = "planet_clouded_mesh"
 
-	#planet surface texture override	
+	#planet surface texture override
 	meshsettings = {
 		name = "planet_geosphereShape"
 		texture_diffuse = "pdshroudcity_01_diffuse.dds"
@@ -62,7 +64,7 @@ entity = {
 		texture_specular = "city_planet_necroid_01_specular.dds"
 		shader = "PdxMeshPlanetEmissive"
 	}
-	
+
 	##cloud texture override
 	meshsettings = {
 	name = "clouds_geosphereShape"
@@ -70,7 +72,7 @@ entity = {
 	texture_normal = "toxic_clouds_normal.dds"
 	texture_specular = "toxic_clouds_specular.dds"
 	}
-	
+
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
@@ -78,7 +80,7 @@ entity = {
 	texture_normal = "nonormal.dds"
 	texture_specular = "nospec.dds"
 	}
-		
+
 	##pole texture override
 	meshsettings = {
 		name = "polesShape"
@@ -86,22 +88,23 @@ entity = {
 		texture_normal = "nonormal.dds"
 		texture_specular = "nospec.dds"
 	}
-	
+
 	default_state = "idle"
-	state = { name = "idle" animation = "idle" time_offset = { 0 100 } 
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
 	}
-	
+
 	attach = { planet = "city_planet_surface_ships_entity" }
 	attach = { planet = "shroudrays_entity" }
 }
 
+#Shroud Relic
 entity = {
 	name = "pdshroudrelic_planet_01_entity"
 	pdxmesh = "planet_clouded_mesh"
 
-	#planet surface texture override	
+	#planet surface texture override
 	meshsettings = {
 		name = "planet_geosphereShape"
 		texture_diffuse = "pd_shroud_relic_world_01_diffuse.dds"
@@ -109,7 +112,7 @@ entity = {
 		texture_specular = "relic_world_01_specular.dds"
 		shader = "PdxMeshPlanetEmissive"
 	}
-	
+
 	##cloud texture override
 	meshsettings = {
 	name = "clouds_geosphereShape"
@@ -117,7 +120,7 @@ entity = {
 	texture_normal = "toxic_clouds_normal.dds"
 	texture_specular = "toxic_clouds_specular.dds"
 	}
-	
+
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
@@ -125,7 +128,7 @@ entity = {
 	texture_normal = "nonormal.dds"
 	texture_specular = "nospec.dds"
 	}
-		
+
 	##pole texture override
 	meshsettings = {
 		name = "polesShape"
@@ -133,27 +136,27 @@ entity = {
 		texture_normal = "arctic_poles_01_normals.dds"
 		texture_specular = "arctic_poles__01_spec.dds"
 	}
-	
+
 	default_state = "idle"
-	state = { name = "idle" animation = "idle" time_offset = { 0 100 } 
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_world_relic" } }
 	}
-	
+
 	attach = { planet = "shroudrays_entity" }
 }
 
-# Shroud Earth
+#Shroud Earth
 entity = {
 	name = "pdshroud_planet_earth_entity"
 	pdxmesh = "planet_clouded_mesh"
-	
+
 	meshsettings = {
 	name = "planet_geosphereShape"
 	texture_diffuse = "shroudearth_01_diffuse.dds"
 	texture_normal = "continental_05_normals.dds"
 	texture_specular = "continental_05_spec.dds"
 	}
-	
+
 	##pole texture override
 	meshsettings = {
 	name = "polesShape"
@@ -161,7 +164,7 @@ entity = {
 	texture_normal = "poles_1_normal.dds"
 	texture_specular = "poles_1_specular.dds"
 	}
-	
+
 	##pole texture override
 	meshsettings = {
 	name = "polesShape"
@@ -169,7 +172,7 @@ entity = {
 	texture_normal = "poles_1_normal.dds"
 	texture_specular = "poles_1_specular.dds"
 	}
-	
+
 	##cloud texture override
 	meshsettings = {
 	name = "clouds_geosphereShape"
@@ -177,7 +180,7 @@ entity = {
 	texture_normal = "toxic_clouds_normal.dds"
 	texture_specular = "toxic_clouds_specular.dds"
 	}
-	
+
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
@@ -186,18 +189,18 @@ entity = {
 	attach = { planet = "shroudrays_entity" }
 }
 
-# Shroud Mars
+#Shroud Mars
 entity = {
 	name = "pdshroud_planet_mars_entity"
 	pdxmesh = "planet_clouded_mesh"
-	
+
 	meshsettings = {
 	name = "planet_geosphereShape"
 	texture_diffuse = "shroudmars_01_diffuse.dds"
 	texture_normal = "continental_06_normal.dds"
 	texture_specular = "continental_06_specular.dds"
 	}
-	
+
 	##pole texture override
 	meshsettings = {
 	name = "polesShape"
@@ -205,7 +208,7 @@ entity = {
 	texture_normal = "poles_1_normal.dds"
 	texture_specular = "poles_1_specular.dds"
 	}
-	
+
 	##pole texture override
 	meshsettings = {
 	name = "polesShape"
@@ -213,7 +216,7 @@ entity = {
 	texture_normal = "poles_1_normal.dds"
 	texture_specular = "poles_1_specular.dds"
 	}
-	
+
 	##cloud texture override
 	meshsettings = {
 	name = "clouds_geosphereShape"
@@ -221,7 +224,7 @@ entity = {
 	texture_normal = "toxic_clouds_normal.dds"
 	texture_specular = "toxic_clouds_specular.dds"
 	}
-	
+
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
@@ -230,18 +233,18 @@ entity = {
 	attach = { planet = "shroudrays_entity" }
 }
 
-# Shroud Venus
+#Shroud Venus
 entity = {
 	name = "pdshroud_planet_venus_entity"
 	pdxmesh = "planet_clouded_mesh"
-	
+
 	meshsettings = {
 	name = "planet_geosphereShape"
 	texture_diffuse = "shroudvenus_01_diffuse.dds"
 	texture_normal = "wetvenus_01_normal.dds"
 	texture_specular = "wetvenus_01_spec.dds"
 	}
-	
+
 	##pole texture override
 	meshsettings = {
 	name = "polesShape"
@@ -249,7 +252,7 @@ entity = {
 	texture_normal = "poles_1_normal.dds"
 	texture_specular = "poles_1_specular.dds"
 	}
-	
+
 	##pole texture override
 	meshsettings = {
 	name = "polesShape"
@@ -257,7 +260,7 @@ entity = {
 	texture_normal = "poles_1_normal.dds"
 	texture_specular = "poles_1_specular.dds"
 	}
-	
+
 	##cloud texture override
 	meshsettings = {
 	name = "clouds_geosphereShape"
@@ -265,11 +268,352 @@ entity = {
 	texture_normal = "toxic_clouds_normal.dds"
 	texture_specular = "toxic_clouds_specular.dds"
 	}
-	
+
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
 	}
+	attach = { planet = "shroudrays_entity" }
+}
+
+#Shroud Capital
+entity = {
+	name = "pd_capital_city_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "pd_capital_city_planet_shroud_01_diffuse.dds"
+		texture_normal = "pd_capital_city_planet_shroud_01_normal.dds"
+		texture_specular = "pd_capital_city_planet_shroud_01_specular.dds"
+		shader = "PdxMeshPlanetEmissive"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+		texture_normal = "toxic_clouds_normal.dds"
+		texture_specular = "toxic_clouds_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+
+	attach = { planet = "city_planet_surface_ships_entity" }
+	attach = { planet = "shroudrays_entity" }
+}
+
+#Shroud Fort
+entity = {
+	name = "pd_fortress_city_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "pd_capital_city_planet_shroud_01_diffuse.dds"
+		texture_normal = "pd_capital_city_planet_shroud_01_normal.dds"
+		texture_specular = "pd_capital_city_planet_shroud_01_specular.dds"
+		shader = "PdxMeshPlanetEmissive"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "milarc_toxic_clouds_purple_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "mialrc_toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+
+	attach = { planet = "city_planet_surface_ships_entity" }
+	attach = { planet = "shroudrays_entity" }
+	attach = { planet = "pd_shroud_planet_shield_effect_entity" }
+}
+entity = {
+	name = "pd_shroud_planet_shield_effect_entity"
+	pdxmesh = "pd_shroud_planet_shield_effect_mesh"
+
+	#get_state_from_parent = no
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		start_event = { node = root particle = "planet_shield_effect" keep_particle = yes trigger_once = yes }
+	}
+
+	game_data = {
+		bloom_factor = 1.2
+		uv_animation_speed 		= 2
+		uv_animation_direction 	= { 0.0 -0.02 }
+	}
+
+	locator = { name = "root" position = { 0 0 0 } }
+
+	scale = 1.03
+}
+
+#Shroud Commerical
+entity = {
+	name = "pd_commerical_city_shroud_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	pdxmesh = "planet_clouded_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "pdshroudcity_01_diffuse.dds"
+		texture_normal = "city_planet_necroid_01_normal.dds"
+		texture_specular = "city_planet_necroid_01_specular.dds"
+		shader = "PdxMeshPlanetEmissive"
+	}
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+	texture_normal = "toxic_clouds_normal.dds"
+	texture_specular = "toxic_clouds_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+
+	attach = { planet = "city_planet_surface_ships_entity" }
+	attach = { planet = "shroudrays_entity" }
+	attach = { "planetloc" = "pd_aw_commerical_planet_billboard_mesh" }
+	attach = { "planetloc" = "pd_aw_commerical_planet_billboard_2_mesh" }
+	attach = { "planetloc" = "pd_aw_commerical_planet_billboard_3_mesh" }
+	attach = { "planetloc" = "pd_aw_commerical_planet_billboard_4_mesh" }
+}
+
+#Shroud Garden
+entity = {
+	name = "pd_garden_city_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	#planet surface texture override
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "ecoshroud_01_diffuse.dds"
+		texture_normal = "ecoshroud_01_normal.dds"
+		texture_specular = "ecoshroud_01_specular.dds"
+		shader = "PdxMeshPlanetEmissive"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+		texture_normal = "toxic_clouds_normal.dds"
+		texture_specular = "toxic_clouds_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+
+	attach = { planet = "city_planet_surface_ships_entity" }
+	attach = { planet = "shroudrays_entity" }
+}
+#Shroud Garden Earth
+entity = {
+	name = "pd_garden_city_earth_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+	name = "planet_geosphereShape"
+		texture_diffuse = "ecocity_02_earth_shroud_diffuse.dds"
+		texture_normal = "ecocity_02_earth_normal.dds"
+		texture_specular = "ecocity_02_earth_specular.dds"
+		shader = "PdxMeshPlanetEmissive"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+	texture_normal = "toxic_clouds_normal.dds"
+	texture_specular = "toxic_clouds_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	attach = { planet = "shroudrays_entity" }
+}
+#Shroud Garden Mars
+entity = {
+	name = "pd_garden_city_mars_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+	name = "planet_geosphereShape"
+		texture_diffuse = "ecocitymars_shroud_01_diffuse.dds"
+		texture_normal = "ecocitymars_01_normal.dds"
+		texture_specular = "ecocitymars_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+		texture_normal = "toxic_clouds_normal.dds"
+		texture_specular = "toxic_clouds_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	attach = { planet = "shroudrays_entity" }
+}
+#Shroud Garden Venus
+entity = {
+	name = "pd_garden_city_venus_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+	name = "planet_geosphereShape"
+		texture_diffuse = "ecocityvenus_shroud_01_diffuse.dds"
+		texture_normal = "ecocityvenus_01_normal.dds"
+		texture_specular = "ecocityvenus_01_spec.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+		texture_normal = "toxic_clouds_normal.dds"
+		texture_specular = "toxic_clouds_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
 	attach = { planet = "shroudrays_entity" }
 }
