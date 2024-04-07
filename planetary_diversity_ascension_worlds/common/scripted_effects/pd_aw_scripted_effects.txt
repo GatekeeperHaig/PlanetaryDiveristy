@@ -152,7 +152,7 @@ pd_aw_create_necro_world_effect = {
 			entity = pd_necro_planet_01_entity
 		}
 	}
-	generate_pd_ascneion_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
 #This changes the planet to the Necro+Shroud World view
@@ -197,7 +197,7 @@ pd_aw_create_necro_shroud_world_effect = {
 			entity = pd_necro_shroud_relic_planet_01_entity
 		}
 	}
-	generate_pd_ascneion_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
 #This changes the planet to the Shroud World view
@@ -282,7 +282,7 @@ pd_aw_create_shroud_world_effect = {
 			entity = pdshroud_planet_venus_entity
 		}
 	}
-	generate_pd_ascneion_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
 #This changes the planet to the Wasteland view
@@ -316,7 +316,7 @@ pd_aw_create_wasteland_world_effect = {
 			scope = this
 		}
 	}
-	generate_pd_ascneion_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
 #This changes the planet to the Aquaitc view
@@ -423,7 +423,7 @@ pd_aw_create_aquatic_world_effect = {
 			graphical_culture = owner
 		}
 	}
-	generate_pd_ascneion_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
 #This changes the planet to the Aquaitc view
@@ -508,7 +508,7 @@ pd_aw_create_aquatic_shroud_world_effect = {
 			graphical_culture = owner
 		}
 	}
-	generate_pd_ascneion_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
 #This changes the planet to the Lithoid World view
@@ -644,14 +644,16 @@ generate_pd_florahive_arc_portrait_effect = {
 	}
 }
 
-generate_pd_ascneion_worlds_arc_portrait_effect = {
-	#Regular Shroud Worlds
+#This adds the Ascenion World Views to the More Arcologies Classes
+generate_pd_ascension_worlds_arc_portrait_effect = {
+	#Shroud
 	if = {
 		limit = {
 			pd_aw_is_shroud_planet = yes
 			pd_is_flooded_planet = no
 			pd_aw_is_necro_planet = no
 		}
+		#Garden Shroud Arc
 		if = {
 			limit = {
 				has_modifier = pd_garden_arcology
@@ -799,6 +801,127 @@ generate_pd_ascneion_worlds_arc_portrait_effect = {
 			}
 			set_planet_entity = {
 				picture = pc_pd_city_headquarters_shroud
+			}
+		}
+	}
+	#Aquatic
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = no
+		}
+		#Garden Arc
+		if = {
+			limit = {
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city_aquatic
+				entity = pd_garden_city_aquatic_planet_01_entity
+			}
+		}
+		#Fort Arc
+		if = {
+			limit = {
+				has_modifier = pd_fortress_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_aquatic_city
+				entity = pd_fortress_city_aquatic_planet_01_entity
+			}
+		}
+		#Commerical Arc
+		if = {
+			limit = {
+				has_modifier = pd_commerical_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_commerical_city_aquatic
+				entity = pd_commerical_city_aquatic_planet_01_entity
+			}
+		}
+		#Senate
+		if = {
+			limit = {
+				has_deposit = d_pd_senate_building
+				NOR = {
+					has_modifier = pd_commerical_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_garden_arcology
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_aquatic
+				entity = pd_capital_city_aquatic_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_deposit = d_pd_senate_building
+				OR = {
+					has_modifier = pd_commerical_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_garden_arcology
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_aquatic
+			}
+		}
+		#Palace
+		if = {
+			limit = {
+				has_deposit = d_pd_palace_building
+				NOR = {
+					has_modifier = pd_commerical_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_garden_arcology
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_aquatic
+				entity = pd_capital_city_aquatic_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_deposit = d_pd_palace_building
+				OR = {
+					has_modifier = pd_commerical_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_garden_arcology
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_aquatic
+			}
+		}
+		#Headquarters
+		if = {
+			limit = {
+				has_deposit = d_pd_headquarters_building
+				NOR = {
+					has_modifier = pd_commerical_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_garden_arcology
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_aquatic
+				entity = pd_capital_city_aquatic_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_deposit = d_pd_headquarters_building
+				OR = {
+					has_modifier = pd_commerical_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_garden_arcology
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_aquatic
 			}
 		}
 	}
