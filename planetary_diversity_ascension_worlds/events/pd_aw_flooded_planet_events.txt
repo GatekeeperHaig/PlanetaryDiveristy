@@ -33,6 +33,7 @@ planet_event = {
 
 	trigger = {
 		pd_is_flooded_planet = yes
+		pd_aw_is_shroud_planet = no
 	}
 
 	immediate = {
@@ -118,7 +119,10 @@ planet_event = {
 				entity = aquaticcity_planet_01_entity
 			}
 		}
-		else = {
+		else_if = {
+			limit = {
+				NOT = { has_global_flag = planetarydiversitymorearcologies }
+			}
 			set_planet_entity = {
 				picture = pc_pd_aquatic_city
 				entity = aquaticcity_planet_01_entity
