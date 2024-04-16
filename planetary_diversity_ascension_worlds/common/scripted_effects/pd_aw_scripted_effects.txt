@@ -1168,3 +1168,21 @@ generate_pd_ascension_worlds_arc_portrait_effect = {
 		}
 	}
 }
+
+pd_gaia_flooded_check = {
+	switch = {
+		trigger = is_planet_class
+		pc_pd_wet_gaia = {
+			set_planet_entity = {
+				picture = pc_aquatic_hot
+				entity = ocean_paradise_planet_01_entity
+			}
+		}
+		pc_pd_dry_gaia = {
+			remove_modifier = flooded_habitat
+		}
+		pc_pd_cold_gaia = {
+			remove_modifier = flooded_habitat
+		}
+	}
+}
