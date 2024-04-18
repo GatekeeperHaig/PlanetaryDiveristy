@@ -330,9 +330,24 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_planet_entity = {
-			picture = pc_pd_necro_shroud_city
-			entity = pd_necro_shroud_city_planet_01_entity
+		if = {
+			limit = {
+				has_global_flag = planetarydiversitymorearcologies
+				pd_is_pd_arcology = no
+			}
+			set_planet_entity = {
+				picture = pc_pd_necro_shroud_city
+				entity = pd_necro_shroud_city_planet_01_entity
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_global_flag = planetarydiversitymorearcologies }
+			}
+			set_planet_entity = {
+				picture = pc_pd_necro_shroud_city
+				entity = pd_necro_shroud_city_planet_01_entity
+			}
 		}
 	}
 }
