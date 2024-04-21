@@ -248,3 +248,71 @@ decision_pd_hive_confluence_spire = {
 		}
 	}
 }
+
+# Machine Centralized Processing Capital
+decision_pd_machine_centralized_processing = {
+	owned_planets_only = yes
+	icon = decision_machine_centralized_processing
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		is_capital = yes
+		exists = owner
+		OR = {
+			is_planet_class = pc_machine
+			is_planet_class = pc_pd_machine
+			is_planet_class = pc_ringworld_habitable
+			# TODO MACHINE AGE
+			# AND = {
+			# 	is_planet_class = pc_habitat
+			# 	owner = {
+			# 		has_origin = origin_machine_void_dwellers
+			# 	}
+			# }
+			AND = {
+				is_planet_class = pc_city
+				owner = {
+					has_civic = civic_machine_servitor
+				}
+			}
+		}
+		owner = {
+			has_technology = tech_housing_2
+			is_gestalt = yes
+		}
+		NOT = {	has_deposit = d_pd_machine_centralized_processing }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_machine_centralized_processing_effects
+		hidden_effect = {
+			add_deposit = d_pd_machine_centralized_processing
+			generate_pd_machine_arc_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}
