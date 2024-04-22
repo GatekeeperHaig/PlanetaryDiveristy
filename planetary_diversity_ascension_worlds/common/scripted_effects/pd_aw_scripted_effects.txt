@@ -1372,23 +1372,56 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 		limit = {
 			pd_aw_is_necro_planet = yes
 		}
-		#Non-Capital
 		if = {
 			limit = {
-				NOT = { has_deposit = d_pd_confluence_spire_building }
+				is_planet_class = pc_hive
 			}
-			set_planet_entity = {
-				picture = pc_pd_necro_hive
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_confluence_spire_building }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro
+					entity = pd_necro_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_confluence_spire_building
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_hive_capital
+					entity = pd_necro_planet_01_entity
+				}
 			}
 		}
-		#Capital
 		if = {
 			limit = {
-				has_deposit = d_pd_confluence_spire_building
+				pd_is_pd_hive_arc = yes
 			}
-			set_planet_entity = {
-				picture = pc_pd_necro_hive_capital
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_confluence_spire_building }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro
+					entity = pd_necro_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_confluence_spire_building
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_hive_capital
+					entity = pd_necro_planet_01_entity
+				}
 			}
 		}
 	}
 }
+

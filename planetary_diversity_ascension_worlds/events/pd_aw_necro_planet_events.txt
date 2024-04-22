@@ -15,9 +15,27 @@ planet_event = {
 	immediate = {
 		switch = {
 			trigger = is_planet_class
+			pc_hive = {
+				set_planet_entity = {
+					picture = pc_pd_necro
+					entity = pd_necro_planet_01_entity
+				}
+			}
 			pc_city = {
 				planet_event = { id = pdnecroplanet.101 days = 1 }
 			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_nuked
+					is_planet_class = pc_hive
+					is_planet_class = pc_city
+				}
+			}
+			remove_modifier = pd_aw_necro_planet
+			remove_modifier = pd_aw_necro_city_planet
+			remove_modifier = pd_necro_planet
 		}
 	}
 }
