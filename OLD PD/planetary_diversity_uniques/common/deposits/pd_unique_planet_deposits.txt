@@ -1,0 +1,1323 @@
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+
+
+#Floating World
+d_eludium_islands = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			building_eludium_mine_max = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_eludium_research }
+		}
+		modifier = {
+			job_researcher_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			building_eludium_mine_max = 3
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			owner = { has_technology = tech_eludium_research }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			building_eludium_mine_max = 3
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			owner = { has_technology = tech_eludium_research }
+		}
+		modifier = {
+			job_calculator_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			has_planet_flag = pd_extra_eludium_mine_1
+		}
+		modifier = {
+			building_eludium_mine_max = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			has_planet_flag = pd_extra_eludium_mine_2
+		}
+		modifier = {
+			building_eludium_mine_max = 2
+		}
+	}
+
+	potential = {
+			is_planet_class = pc_floating
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_floating_mineral_island_blocker = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	use_weights_for_blocker_swap_types = no
+	blocker_swap_types = {
+		d_floating_mineral_island
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+
+	prerequisites = { "tech_floating_mineral_island_blocker" }
+}
+d_floating_mineral_island = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+	}
+	
+	category = deposit_cat_minerals
+	
+	planet_modifier = { 
+		district_mining_max = 3
+	}
+	
+	potential = {
+		is_planet_class = pc_floating
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_floating_energy_island_blocker = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	use_weights_for_blocker_swap_types = no
+	blocker_swap_types = {
+		d_floating_energy_island
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+
+	prerequisites = { "tech_floating_energy_island_blocker" }
+}
+d_floating_energy_island = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+	
+	category = deposit_cat_energy
+	
+	planet_modifier = { 
+		district_generator_max = 3
+	}
+	
+	potential = {
+		is_planet_class = pc_floating
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_floating_food_island_blocker = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	use_weights_for_blocker_swap_types = no
+	blocker_swap_types = {
+		d_floating_food_island
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+
+	prerequisites = { "tech_floating_food_island_blocker" }
+}
+d_floating_food_island = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+	
+	category = deposit_cat_food
+	
+	planet_modifier = { 
+		district_farming_max = 3
+	}
+	
+	potential = {
+		is_planet_class = pc_floating
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_floating_housing_island_blocker = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+
+	prerequisites = { "tech_floating_housing_island_blocker" }
+}
+
+#Graveyard World
+d_graveyard_well = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+			owner = { has_technology = tech_tiyanki_research }
+		}
+		modifier = {
+			job_researcher_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			owner = { has_technology = tech_tiyanki_research }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			owner = { has_technology = tech_tiyanki_research }
+		}
+		modifier = {
+			job_calculator_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = tiyankidefault
+		}
+		modifier = {
+			planet_max_districts_add = -6
+			planet_housing_mult = -0.2
+			planet_stability_add = -10
+			pop_environment_tolerance = 0.5
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = tiyankileavebe
+		}
+		modifier = {
+			planet_max_districts_add = -6
+			planet_housing_mult = -0.2
+			planet_stability_add = -10
+			pop_environment_tolerance = 0.5
+			building_graveyard_well_max = 2
+			building_gas_extractors_max = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = tiyankinobutcher
+		}
+		modifier = {
+			planet_max_districts_add = -6
+			planet_housing_mult = -0.2
+			planet_stability_add = -10
+			pop_environment_tolerance = 0.5
+			#building_graveyard_well_max = 0
+			building_gas_extractors_max = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = tiyankibutchertown
+		}
+		modifier = {
+			planet_max_districts_add = -3
+			planet_housing_mult = -0.1
+			planet_stability_add = -10
+			pop_environment_tolerance = 0.25
+			building_graveyard_well_max = 4
+			#building_gas_extractors_max = 0
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = tiyankicolonyprotect
+		}
+		modifier = {
+			planet_max_districts_add = -3
+			planet_housing_mult = -0.1
+			pop_environment_tolerance = 0.25
+			building_graveyard_well_max = 1
+			building_gas_extractors_max = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = tiyankinofalling
+		}
+		modifier = {
+			planet_max_districts_add = 3
+			planet_housing_mult = 0.2
+			planet_stability_add = 20
+		}
+	}
+
+	potential = {
+			is_planet_class = pc_graveyard
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#The Crucible
+pd_crucible_furnace = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+	}
+
+	triggered_planet_modifier = {
+		potential = { is_planet_class = pc_crucible	}
+		planet_stability_add = -10
+		planet_crime_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = { is_planet_class = pc_clean_crucible }
+	}
+
+	triggered_planet_modifier = {
+		potential = { is_planet_class = pc_shroud_crucible }
+		planet_stability_add = -20
+		planet_crime_mult = 0.20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_crucible_study }
+		}
+		modifier = {
+			job_researcher_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			owner = { has_technology = tech_crucible_study }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			owner = { has_technology = tech_crucible_study }
+		}
+		modifier = {
+			job_calculator_add = 6
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_crucible
+			is_planet_class = pc_clean_crucible
+			is_planet_class = pc_shroud_crucible
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_sizable_ruins = {
+	time = 365
+	icon = d_city_ruins
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_building_build_speed_mult = -0.1
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 750
+			minerals = 250
+		}
+	}
+
+	on_cleared = {
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					has_ancrel = yes
+				}
+			}
+
+			custom_tooltip = minor_artifacts_found
+			random_list = {
+				33 = {
+					owner = { add_resource = { minor_artifacts = 10 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 30 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 50 } }
+				}
+			}
+		}
+	}
+}
+
+#Crystal World
+d_crystal_guild = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+	}
+
+	#Research
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			owner = { has_technology = tech_acean_study }
+		}
+		modifier = {
+			job_researcher_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			owner = { has_technology = tech_acean_study }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			owner = { has_technology = tech_acean_study }
+		}
+		modifier = {
+			job_calculator_add = 6
+		}
+	}
+
+	# Choices - Help It
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			has_planet_flag = pdcrystalhelpit
+		}
+		modifier = {
+			building_crystal_carver_max = 4
+			job_farmer_add = 8
+			biological_pop_happiness = 0.2
+			BIOLOGICAL_pop_growth_speed = 0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = yes }
+			has_planet_flag = pdcrystalhelpit
+		}
+		modifier = {
+			building_crystal_carver_max = 4
+			job_agri_drone_add = 8
+			biological_pop_happiness = 0.2
+			BIOLOGICAL_pop_growth_speed = 0.2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = no }
+			has_planet_flag = pdcrystalhelpit
+		}
+		modifier = {
+			building_crystal_carver_max = 4
+			biological_pop_happiness = 0.2
+			BIOLOGICAL_pop_growth_speed = 0.2
+		}
+	}
+
+	# Choices - Leave It
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			has_planet_flag = pdcrystalleaveit
+		}
+		modifier = {
+			building_crystal_carver_max = 2
+			building_crystal_mines_max = 1
+			job_farmer_add = 4
+			job_miner_add = 2
+			biological_pop_happiness = 0.1
+			BIOLOGICAL_pop_growth_speed = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = yes }
+			has_planet_flag = pdcrystalleaveit
+		}
+		modifier = {
+			building_crystal_carver_max = 2
+			building_crystal_mines_max = 1
+			job_agri_drone_add = 4
+			job_mining_drone_add = 2
+			biological_pop_happiness = 0.1
+			BIOLOGICAL_pop_growth_speed = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = no }
+			has_planet_flag = pdcrystalleaveit
+		}
+		modifier = {
+			building_crystal_carver_max = 2
+			building_crystal_mines_max = 1
+			job_mining_drone_add = 4
+			biological_pop_happiness = 0.1
+			BIOLOGICAL_pop_growth_speed = 0.1
+		}
+	}
+
+	# Choices - Mine It
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			has_planet_flag = pdcrystalmineit
+		}
+		modifier = {
+			building_crystal_carver_max = 1
+			building_crystal_mines_max = 2
+			job_farmer_add = 2
+			job_miner_add = 4
+			biological_pop_happiness = 0.05
+			BIOLOGICAL_pop_growth_speed = 0.05
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = yes }
+			has_planet_flag = pdcrystalmineit
+		}
+		modifier = {
+			building_crystal_carver_max = 1
+			building_crystal_mines_max = 2
+			job_agri_drone_add = 4
+			job_mining_drone_add = 2
+			biological_pop_happiness = 0.05
+			BIOLOGICAL_pop_growth_speed = 0.05
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = no }
+			has_planet_flag = pdcrystalmineit
+		}
+		modifier = {
+			building_crystal_carver_max = 1
+			building_crystal_mines_max = 2
+			job_mining_drone_add = 6
+			biological_pop_happiness = 0.05
+			BIOLOGICAL_pop_growth_speed = 0.05
+		}
+	}
+
+	# Choices - Kill It
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			has_planet_flag = pdcrystalkillit
+		}
+		modifier = {
+			building_crystal_mines_max = 4
+			job_miner_add = 8
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+			has_planet_flag = pdcrystalkillit
+		}
+		modifier = {
+			building_crystal_mines_max = 4
+			job_mining_drone_add = 12
+		}
+	}
+
+	# Origin State
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			has_planet_flag = crystal_planet_home
+		}
+		modifier = {
+			building_crystal_carver_max = 2
+			building_crystal_mines_max = 2
+			biological_pop_happiness = 0.1
+			BIOLOGICAL_pop_growth_speed = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = yes }
+			has_planet_flag = crystal_planet_home
+		}
+		modifier = {
+			building_crystal_carver_max = 2
+			building_crystal_mines_max = 2
+			biological_pop_happiness = 0.1
+			BIOLOGICAL_pop_growth_speed = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes country_uses_food = no }
+			has_planet_flag = crystal_planet_home
+		}
+		modifier = {
+			building_crystal_carver_max = 2
+			building_crystal_mines_max = 2
+			biological_pop_happiness = 0.1
+			BIOLOGICAL_pop_growth_speed = 0.1
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_crystal
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Techno-Orgnaic World
+d_subsurface_assembly = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+		planet_jobs_minerals_produces_mult = -0.25
+	}
+ 
+	#Techno Planet
+	#Regular Empire
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			is_planet_class = pc_technoorganic
+		}
+		modifier = {
+			job_techno_eng_per_pop = 0.05
+		}
+	}
+
+	#Hives
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			is_planet_class = pc_technoorganic
+		}
+		modifier = {
+			job_techno_drone_per_pop = 0.05
+		}
+	}
+	
+	#Machine Empires
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			is_planet_class = pc_technoorganic
+		}
+		modifier = {
+			job_techno_drone_per_pop = 0.05
+		}
+	}
+ 
+	#Techno Arc
+	#Regular Empire
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+			is_planet_class = pc_pd_techno_arc
+		}
+		modifier = {
+			job_techno_eng_add = 5
+		}
+	}
+
+	#Hives
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt =  yes }
+			is_planet_class = pc_pd_techno_arc
+		}
+		modifier = {
+			job_techno_drone_add = 5
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_technoorganic
+			is_planet_class = pc_pd_techno_arc
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_unit04 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		is_planet_class = pc_technoorganic
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_roboticist_add = 2
+			planet_jobs_food_produces_mult = 0.10
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {	
+			job_agri_drone_add = 5
+			planet_jobs_food_produces_mult = 0.10
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_replicator_add = 2
+			planet_jobs_engineering_research_produces_mult = 0.10
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_dead04 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		is_planet_class = pc_technoorganic
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+			planet_jobs_engineering_research_produces_mult = 0.10
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {	
+			job_brain_drone_add = 2
+			planet_jobs_engineering_research_produces_mult = 0.10
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 2
+			planet_jobs_engineering_research_produces_mult = 0.10
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_home04 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_unit04
+
+	potential = {
+		is_planet_class = pc_technoorganic
+	}
+
+	resources = {
+		category = planet_deposits
+		produces = {
+			sr_living_metal = 3
+		}
+	}
+	planet_modifier = {
+		planet_max_buildings_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			biological_pop_happiness = 0.1
+			planet_jobs_unity_produces_mult = 0.1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {	
+			planet_jobs_food_produces_mult = 0.15
+			planet_jobs_unity_produces_mult = 0.15
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			planet_jobs_produces_mult = 0.15
+			planet_jobs_unity_produces_mult = 0.1
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_technocanal = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+
+	custom_tooltip = d_technocanal_effect
+	planet_modifier = {
+		planet_jobs_food_produces_mult = 0.1
+	}
+
+	potential = {
+		NOT = { is_planet_class = pc_technoorganic }
+		NOT = { is_planet_class = pc_pd_techno_arc }
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_technocanal_blocker = {
+	potential = { always = no }
+	can_be_cleared = {
+		custom_tooltip = {
+			always = no
+		}
+	}
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	custom_tooltip = d_technocanal_effect
+	planet_modifier = {
+		planet_jobs_food_produces_mult = 0.1
+	}
+}
+
+#Archive
+d_remaining_stores = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "d_station_reactor"
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+	
+	resources = {
+		category = planet_deposits
+		produces = {
+			food = 30
+			minerals = 20
+			energy = -50
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_remaining_stores_cat = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "d_station_reactor"
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+	
+	resources = {
+		category = planet_deposits
+		produces = {
+			food = 60
+			#minerals = 20
+			energy = -50
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Warform
+d_remaining_stores_warform = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = "d_station_junk"
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+	
+	resources = {
+		category = planet_deposits
+		produces = {
+			food = 20
+			minerals = 40
+			energy = -60
+		}
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Zro Stripmine World
+d_zro_stripmine_untouched_farmland = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+	}
+	
+	category = deposit_cat_minerals
+	
+	planet_modifier = { 
+		district_farming_max = 2
+		pop_environment_tolerance = 0.1
+	}
+	
+	potential = {
+		is_planet_class = pc_pd_zro
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_zro_stripmine_untouched_generator = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+	}
+	
+	category = deposit_cat_minerals
+	
+	planet_modifier = { 
+		district_generator_max = 2
+		pop_environment_tolerance = 0.1
+	}
+	
+	potential = {
+		is_planet_class = pc_pd_zro
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_zro_stripmine_mining_pit = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+	}
+	
+	category = deposit_cat_minerals
+	
+	planet_modifier = { 
+		district_mining_max = 2
+		building_pdzro_harvester_max = 1
+	}
+	
+	potential = {
+		is_planet_class = pc_pd_zro
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Scrapyard
+d_pd_scrapyard_landfill = {
+	is_for_colonizable = yes
+	
+	category = deposit_cat_rare
+	
+	planet_modifier = { 
+		planet_max_districts_add = -2
+		trade_value_mult = 0.1
+		habitability_ceil_add = -0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		job_pd_scrap_miner_per_pop = 0.1
+		job_pd_scrap_recycler_per_pop = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_pd_scrap_miner_drone_per_pop = 0.1
+		job_pd_scrap_recycler_drone_per_pop = 0.05
+	}
+	
+	potential = {
+		is_planet_class = pc_pd_scrapyard
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+d_scrapheap = {
+	time = 360
+	icon = d_pd_scrapyard_landfill
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 750
+		}
+	}
+
+	on_cleared = {
+		random_list = {
+			33 = {
+				owner = { add_resource = { minerals = 500 } }
+			}
+			33 = {
+				owner = { add_resource = { alloys = 100 } }
+			}
+			33 = {
+				owner = { add_resource = { engineering_research = 500 } }
+			}	
+		}
+	}
+}
+
+#Warform World
+d_pd_destoryed_cities = {
+	time = 365
+	icon = d_city_ruins
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_building_build_speed_mult = -0.1
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 750
+			minerals = 250
+		}
+	}
+
+	on_cleared = {
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					has_ancrel = yes
+				}
+			}
+
+			custom_tooltip = minor_artifacts_found
+			random_list = {
+				33 = {
+					owner = { add_resource = { minor_artifacts = 10 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 30 } }
+				}
+				33 = {
+					owner = { add_resource = { minor_artifacts = 50 } }
+				}
+			}
+		}
+	}
+}

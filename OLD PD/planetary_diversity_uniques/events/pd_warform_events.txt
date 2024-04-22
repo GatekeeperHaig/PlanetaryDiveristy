@@ -1,0 +1,434 @@
+namespace = pdwarform
+
+#EnterSystem
+ship_event = {
+	id = pdwarform.10
+	title = pdwarform.10.name
+	desc = pdwarform.10.desc
+	picture = GFX_evt_pdwarform
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = pd_warform_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = pd_warform_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = pd_warform_encounter
+		}
+	}
+
+	option = {
+		name = pdwarform.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdwarform.20
+	title = pdwarform.20.name
+	desc = pdwarform.20.desc
+	picture = GFX_evt_pdwarform2
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_warform_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_warform_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_warform_planet
+		}
+	}
+
+	option = {
+		name = pdwarform.20.a
+	}
+}
+
+#Start Event Chain
+planet_event = {
+	id = pdwarform.300
+	title = pdwarform.300.name
+	desc = pdwarform.300.desc
+	picture = GFX_evt_pdwarform2
+	location = from
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		has_planet_flag = pd_warform_planet
+		#is_planet_class = pc_pd_orange_warform
+		NOT = {
+			has_planet_flag = pd_warform_planet_situation_over
+		}
+	}
+
+	option = {
+		name = pdwarform.300.a
+		owner = {
+			start_situation = {
+				type = pd_warform_situation
+				target = root
+			}
+		}
+	}
+}
+
+#Situation Events
+situation_event = {
+	id = pdwarform.305
+	title = pdwarform.305.name
+	desc = pdwarform.305.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+	
+	option = {
+		name = pdwarform.305.a
+		custom_tooltip = pdwarform.305.a.tooltip
+		target = {
+			set_planet_flag = pd_warform_repaired_housing
+			remove_deposit = d_pd_warform_drone_storage
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.310
+	title = pdwarform.310.name
+	desc = pdwarform.310.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+	
+	option = {
+		name = pdwarform.310.a
+		custom_tooltip = pdwarform.310.a.tooltip
+		target = {
+			set_planet_flag = pd_warform_repaired_power
+			remove_deposit = d_pd_warform_power_core
+			add_deposit = d_pd_warform_power_core_fixed
+		}
+	}
+	
+	option = {
+		name = pdwarform.310.b
+		custom_tooltip = pdwarform.310.b.tooltip
+		target = {
+			remove_deposit = d_pd_warform_power_core
+			owner = {
+				IF = {
+					limit = {
+						NOT = { has_technology = tech_zero_point_power }
+					}
+					add_research_option = tech_zero_point_power
+				}
+				ELSE_IF = {
+					limit = {
+						has_technology = tech_zero_point_power
+					}
+					add_research_option = tech_dark_matter_power_core
+				}
+				ELSE_IF = {
+					limit = {
+						has_technology = tech_dark_matter_power_core
+					}
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier4researchreward
+						min = @tier4researchmin
+						max = @tier4researchmax
+					}
+				}
+			}
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.315
+	title = pdwarform.315.name
+	desc = pdwarform.315.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdwarform.315.a
+		custom_tooltip = pdwarform.315.a.tooltip
+		target = {
+			remove_deposit = d_pd_warform_factory
+			add_deposit = d_pd_warform_factory_fixed
+			set_planet_flag = pd_warform_warforms
+		}
+	}
+	
+	option = {
+		name = pdwarform.315.b
+		custom_tooltip = pdwarform.315.b.tooltip
+		target = {
+			remove_deposit = d_pd_warform_factory
+			add_deposit = d_pd_warform_factory_fixed
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.320
+	title = pdwarform.320.name
+	desc = pdwarform.320.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdwarform.320.a
+		custom_tooltip = pdwarform.320.a.tooltip
+		target = {
+			set_planet_flag = pd_warform_regular_research
+			remove_deposit = d_pd_warform_research
+			add_deposit = d_pd_warform_research_fixed
+			add_research_option = tech_pd_warform_cyber_lab
+		}
+	}
+	
+	option = {
+		name = pdwarform.320.b
+		custom_tooltip = pdwarform.320.b.tooltip
+		target = {
+			set_planet_flag = pd_warform_organic_research
+			remove_deposit = d_pd_warform_research
+			add_deposit = d_pd_warform_research_fixed
+			add_research_option = tech_pd_warform_cyber_lab
+		}
+	}
+}
+situation_event = {
+	id = pdwarform.325
+	title = pdwarform.325.name
+	desc = pdwarform.325.desc
+	picture = GFX_evt_pdwarform2
+	show_sound = event_ship_bridge
+	situation = this
+
+	is_triggered_only = yes
+	
+	option = {
+		name = pdwarform.325.a
+		custom_tooltip = pdwarform.325.a.tooltip
+		trigger = {
+			owner = {
+				is_pacifist = no
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_war_room
+			set_planet_entity = {
+				picture = pc_pd_red_warform
+				entity = pd_red_warform_planet_01_entity
+			}
+		}
+	}
+	
+	option = {
+		name = pdwarform.325.b
+		custom_tooltip = pdwarform.325.b.tooltip
+		trigger = {
+			owner = {
+				NOT = { has_civic = civic_machine_servitor }
+			}
+		}
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_peace_room
+			set_planet_entity = {
+				picture = pc_pd_blue_warform
+				entity = pd_blue_warform_planet_01_entity
+			}
+		}
+	}
+	
+	option = {
+		name = pdwarform.325.c
+		trigger = {
+			owner = {
+				has_civic = civic_machine_servitor
+			}
+		}
+		custom_tooltip = pdwarform.325.c.tooltip
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_biotrophy_room
+			set_planet_entity = {
+				picture = pc_pd_blue_warform
+				entity = pd_blue_warform_planet_01_entity
+			}
+		}
+	}
+	
+	option = {
+		name = pdwarform.325.d
+		custom_tooltip = pdwarform.325.d.tooltip
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		target = {
+			remove_deposit = d_pd_warform_war_room
+			set_planet_flag = pd_warform_machine_room
+		}
+	}
+	
+	after = { destroy_situation = this }
+}
+
+#Fixing Up The House
+country_event = {
+	id = pdwarform.400
+	title = pdwarform.400.name
+	desc = pdwarform.400.desc
+	picture = GFX_evt_tomb_world
+	location = ROOT
+	show_sound = event_ship_bridge
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_warform_world
+	}
+
+	option = {
+		name = pdwarform.400.a
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = pd_warform_planet_homeworld_origin
+			}
+			enable_special_project = {
+				name = "PD_RESTORE_THE_WARFORM_HOMEWORLD"
+				location = THIS
+				owner = root.owner
+			}
+		}
+	}
+}
+
+#Fixed Up The House
+country_event = {
+	id = pdwarform.405
+	title = pdwarform.405.name
+	desc = pdwarform.405.desc
+	picture = GFX_evt_animal_wildlife
+	location = ROOT
+	show_sound = event_celebration
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = pdwarform.405.a
+		random_galaxy_planet = {
+			limit = {
+				has_planet_flag = pd_warform_planet_homeworld_origin
+			}
+			change_pc = root.owner_species
+			space_owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = @tier3unityreward
+					min = @tier3unitymin
+					max = @tier3unitymax
+				}
+				country_event = {
+					id = pdwarform.410
+					days = 1800
+					random = 1800
+				}
+			}
+			hidden_effect = {
+				add_deposit = d_black_soil
+			}
+		}
+	}
+}
+
+#Planet, Transform and Roll Out
+country_event = {
+	id = pdwarform.410
+	title = pdwarform.410.name
+	desc = pdwarform.410.desc
+	picture = GFX_evt_pdwarform2
+	location = ROOT
+	show_sound = event_energy_field
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = pdwarform.410.a
+		hidden_effect = {
+			add_research_option = tech_pd_warform_cyber_lab
+			add_tech_progress = {
+				tech = tech_pd_warform_cyber_lab
+				progress = 0.1
+			}
+			add_research_option = tech_pd_warform_transforming
+			add_tech_progress = {
+				tech = tech_pd_warform_transforming
+				progress = 0.1
+			}
+		}
+	}
+}

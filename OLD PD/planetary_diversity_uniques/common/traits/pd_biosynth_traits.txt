@@ -1,0 +1,283 @@
+pd_trait_fossorial_attachments = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_industrious" "pd_trait_fiscal_sub_routines" "pd_trait_agricultural_bio_sensors"}
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+	modifier = {
+		planet_jobs_minerals_produces_mult = 0.25
+	}
+	assembly_score = { # This makes sure they the will be priorty on the relevent desegnation
+		modifier = {
+			add = 1.5
+			from = { has_mining_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+
+}
+pd_trait_fiscal_sub_routines = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	opposites = { "trait_ingenious" "pd_trait_fossorial_attachments" "pd_trait_agricultural_bio_sensors"} 
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+	modifier = {
+		planet_jobs_energy_produces_mult = 0.25
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_generator_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+pd_trait_agricultural_bio_sensors = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_agrarian" "pd_trait_fiscal_sub_routines" "pd_trait_fossorial_attachments"}
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+	modifier = {
+		planet_jobs_food_produces_mult = 0.25
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_generator_designation = yes }
+		}
+		modifier = {
+			add = 0.5
+			from = { has_rural_designation = yes }
+		}
+	}
+}
+pd_trait_positronic_creativity = {
+	cost = 2
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_intelligent" "trait_nerve_stapled" "trait_erudite" "trait_enigmatic_intelligence_poor" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_HIGH
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.20
+		planet_jobs_society_research_produces_mult = 0.20
+		planet_jobs_engineering_research_produces_mult = 0.20
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_research_designation = yes }
+		}
+	}
+}
+pd_trait_resolute_programming = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_hive_mind" "trait_decadent" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_HIGH
+	modifier = {
+		pop_happiness = 0.2
+	}
+}
+pd_trait_minaturization = {
+	cost = 2
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_solitary" "trait_communal" } 
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_HIGH
+	modifier = {
+		pop_housing_usage_mult = -0.25
+	}
+}
+pd_trait_leadership_algorithms = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_nerve_stapled" "trait_talented" "trait_quick_learners" "trait_slow_learners" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+	modifier = { 
+		negative_leader_traits_species = -1
+		species_leader_exp_gain = 0.2
+		leaders_upkeep_mult = -0.2
+	}
+	ai_weight = {
+		factor = 0
+	}
+}
+pd_trait_self_repair_systems ={
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_repugnant" "trait_charismatic" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_HIGH
+	modifier = {
+		pop_amenities_usage_add = -0.5
+		pop_environment_tolerance = 0.20
+	}
+}
+pd_trait_shared_meaning = {
+	cost = 2
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_unruly" "trait_docile" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_HIGH
+	modifier = {
+		species_empire_size_mult = -0.25
+	}
+}
+pd_trait_facial_micro_adustments = {
+	cost = 2
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_thrifty" "trait_hive_mind" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_HIGH
+	modifier = {
+		pop_job_trade_mult = 0.5
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_trade_designation = yes }
+		}
+	}
+}
+pd_trait_macro_consciousnesss = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID } 
+	opposites = { "trait_deviants" "trait_hive_mind" "trait_machine_unit" "trait_conformists" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+	modifier = { 
+		pop_government_ethic_attraction = 0.50 
+	}
+}
+pd_trait_group_think = {
+	cost = 1
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	opposites = { "trait_quarrelsome" "trait_traditional" }
+	initial = no
+	species_potential_add = {
+		can_add_biosynth_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_biosynth_traits = yes
+	}
+	randomized = no
+	custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+	modifier = {
+		planet_jobs_unity_produces_mult = 0.2
+	}
+	assembly_score = {
+		modifier = {
+			add = 1.5
+			from = { has_unity_designation = yes }
+		}
+	}
+}
+
+# Trait Testing
+ #	pd_trait_hyper_reactive_skin = {
+ #		cost = 1
+ #		allowed_archetypes = { BIOLOGICAL LITHOID } 
+ #		opposites = { "trait_extremely_adaptive" "trait_nonadaptive" "trait_adaptive" "trait_robust" "trait_adaptive_lithoid" }
+ #		initial = no
+ #		species_potential_add = {
+ #			can_add_biosynth_traits = yes
+ #		}
+ #		species_possible_remove = {
+ #			can_remove_biosynth_traits = yes
+ #		}
+ #		randomized = no
+ #		custom_tooltip_with_modifiers = BIOSYNTH_LM_UPKEEP_EFFECT_LOW
+ #		modifier = {
+ #			pop_environment_tolerance = 0.20
+ #		}
+ #		slave_cost = {
+ #			energy = 750
+ #		}
+ #	}

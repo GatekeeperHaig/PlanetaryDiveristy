@@ -1,0 +1,56 @@
+@terraforming_cost_radblooms = 1000
+
+sr_rad_bloom_expenditure_buffer = {
+	# Buffer, will not be spent
+	resource = sr_rad_bloom
+	type = expenditure
+	category = buffer
+	potential = {
+		always = yes
+	}
+	weight = {
+		weight = 0.1
+	}
+	desired_min = {
+		base = 50
+	}
+	desired_max = {
+		base = 50
+	}
+}
+
+sr_rad_bloom_expenditure_decisions = {
+	resource = sr_rad_bloom
+	type = expenditure
+	category = decisions
+	potential = {
+		has_technology = tech_upgrade_rad_blooms
+	}
+	weight = {
+		weight = 0.2
+	}
+	desired_min = {
+		base = 500
+	}
+	desired_max = {
+		base = 500
+	}
+}
+
+sr_rad_bloom_expenditure_terraforming = {
+	resource = sr_rad_bloom
+	type = expenditure
+	category = terraforming
+	potential = {
+		has_technology = tech_rad_bloom_terraform_2
+	}
+	weight = {
+		weight = 0.7
+	}
+	desired_min = {
+		base = @terraforming_cost_radblooms
+	}
+	desired_max = {
+		base = 2000
+	}
+}

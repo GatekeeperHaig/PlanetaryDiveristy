@@ -1,0 +1,1325 @@
+#PD AW Decisions
+
+###Tree Of Life
+#Transplanet Tree TOL
+decision_pd_replant_tree_of_life = {
+	owned_planets_only = yes
+	sound = event_mystic_reveal
+	icon = decision_pd_replant_tree_of_life
+
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			food = 1000
+		}
+	}
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		has_modifier = pd_no_lifetree
+		OR = {
+			pd_is_planet_class_superhabitable = yes
+			pd_is_planet_class_tidally_locked = yes
+			pd_is_planet_class_cave = yes
+		}
+	}
+
+	allow = {
+		has_modifier = pd_no_lifetree
+		OR = {
+			pd_is_planet_class_superhabitable = yes
+			pd_is_planet_class_tidally_locked = yes
+			pd_is_planet_class_cave = yes
+		}
+	}
+
+	effect = {
+		remove_modifier = pd_no_lifetree
+		hidden_effect = {
+			add_deposit = d_pd_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					planet_event = {
+						id = pdtreeoflife.21
+						days = 2160
+					}
+					add_modifier = { modifier = pd_tree_of_life_growing days = 2160 }
+				}
+				pc_ringworld_habitable = {
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_continental = {
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_tropical = {
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				pc_ocean = {
+					planet_event = { id = pdtreeoflife.21 days = 9000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 9000
+					}
+				}
+				default = {
+					planet_event = { id = pdtreeoflife.21 days = 18000 }
+					add_modifier = {
+						modifier = pd_tree_of_life_growing
+						days = 18000
+					}
+				}
+			}
+			remove_modifier = pd_no_lifetree #as the planet transfer events fire before this
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+#Bloom Megaflora Hive
+decision_pd_bloom_tree_of_life = {
+	owned_planets_only = yes
+	sound = event_mystic_reveal
+	icon = decision_pd_aw_bloom_tree_of_life
+
+	enactment_time = 3600
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			food = 20000
+		}
+	}
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		has_modifier = pd_tree_of_life_home
+		has_deposit = d_pd_tree_of_life_home
+		owner = {
+			has_ascension_perk = ap_pd_tree_of_life_bloomed
+		}
+		is_planet_class = pc_pd_wet_gaia
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_bloom_tree_of_life_tooltip
+		hidden_effect = {
+			add_modifier = {
+				modifier = pd_tree_of_life_bloomed
+				days = -1
+			}
+			add_deposit = d_pd_tree_of_life_bloomed
+			remove_modifier = pd_tree_of_life_home
+			remove_deposit = d_pd_tree_of_life_home
+			set_planet_entity = {
+				picture = pc_pd_megaflora_hive_bloomed
+				entity = megafloratol_bloomed_planet_01_entity
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+}
+
+###Flooded Worlds
+@expand_planetary_sea_length = 1800
+decision_pd_flood_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_flooding
+
+	enactment_time = 1800
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		OR = {
+			is_planet_class = pc_pd_wet_gaia
+			is_planet_class = pc_pd_wet_superhabitable
+			is_planet_class = pc_pd_wet_tidally_locked
+			is_planet_class = pc_pd_wet_cave
+		}
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_hydrocentric
+		}
+		NOR = {
+			has_modifier = flooded_habitat
+			has_modifier = ocean_paradise
+			has_modifier = ocean_paradise_hive
+			has_planet_flag = pd_unique_world
+		}
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = requires_free_ice_mining_station
+			owner = {
+				any_owned_starbase = {
+					has_starbase_building = ice_mining_station
+					solar_system = {
+						NOT = { has_star_flag = ice_mining_in_progress }
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 2000
+		}
+	}
+
+	on_queued = {
+		set_variable = {
+			which = decision_length
+			value = @expand_planetary_sea_length
+		}
+		export_modifier_to_variable = {
+			modifier = planet_decision_enact_speed_mult
+			variable = decision_mult_var
+		}
+		change_variable = {
+			which = decision_mult_var
+			value = 1
+		}
+		divide_variable = {
+			which = decision_length
+			value = decision_mult_var
+		}
+		change_variable = { #ideally, may as well refer to this in the final effect
+			which = decision_length
+			value = 1
+		}
+
+		owner = {
+			random_owned_starbase = {
+				limit = {
+					has_starbase_building = ice_mining_station
+					solar_system = {
+						NOT = { has_star_flag = ice_mining_in_progress }
+					}
+				}
+				solar_system = {
+					set_timed_star_flag = {
+						flag = ice_mining_in_progress
+						days = root.decision_length
+					}
+					set_timed_star_flag = {
+						flag = ice_mining@root
+						days = root.decision_length
+					}
+				}
+			}
+		}
+		clear_variable = decision_length
+		clear_variable = decision_mult_var
+	}
+
+	abort_trigger = {
+		NOT = {
+			owner = {
+				any_owned_starbase = {
+					has_starbase_building = ice_mining_station
+				}
+			}
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			random_owned_starbase = {
+				limit = {
+					solar_system = {
+						has_star_flag = ice_mining@root
+					}
+				}
+				solar_system = {
+					remove_star_flag = ice_mining@root
+					remove_star_flag = ice_mining_in_progress
+				}
+			}
+		}
+	}
+
+	abort_effect = {
+		owner = {
+			random_owned_starbase = {
+				limit = {
+					solar_system = {
+						has_star_flag = ice_mining@root
+					}
+				}
+				solar_system = {
+					remove_star_flag = ice_mining@root
+					remove_star_flag = ice_mining_in_progress
+				}
+			}
+		}
+		create_message = {
+			type = ICE_MINING_INTERRUPTED
+			localization = ICE_MINING_INTERRUPTED_HABITAT_DESC
+			days = 20
+			target = root
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_flood_planet_tooltip
+		hidden_effect = {
+			add_modifier = {
+				modifier = flooded_habitat
+				days = -1
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_aquatic_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_aquatic_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			ice_mining_depletion_effect = yes
+
+			if = {
+				limit = {
+					has_planet_flag = temp_ice_mine_exhausted_flag
+				}
+				event_target:mined_system.starbase = {
+					remove_starbase_building = {
+						building = ice_mining_station
+					}
+				}
+				create_message = {
+					type = ICE_MINING_PD_PLANET_SUCCESS
+					localization = ICE_MINING_HABITAT_SUCCESS_BUT_EXHAUSTED_DESC
+					days = 20
+					target = root
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:mined_system
+					}
+				}
+			}
+			else = {
+				create_message = {
+					type = ICE_MINING_PD_PLANET_SUCCESS
+					localization = ICE_MINING_PD_PLANET_SUCCESS_DESC
+					days = 20
+					target = root
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:mined_system
+					}
+				}
+			}
+			change_variable = {
+				which = ice_dumping_happened
+				value = 1
+			}
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+#Flood Domed Colony
+decision_pd_flood_domed_colony = {
+	owned_planets_only = yes
+	icon = decision_pd_flooding
+
+	enactment_time = 1800
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_is_domed_colony_class = yes
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_hydrocentric
+		}
+		NOR = {
+			has_modifier = flooded_habitat
+			has_modifier = ocean_paradise
+			has_modifier = ocean_paradise_hive
+			has_planet_flag = pd_unique_world
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = requires_free_ice_mining_station
+			owner = {
+				any_owned_starbase = {
+					has_starbase_building = ice_mining_station
+					solar_system = {
+						NOT = { has_star_flag = ice_mining_in_progress }
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 2000
+		}
+	}
+
+	on_queued = {
+		set_variable = {
+			which = decision_length
+			value = @expand_planetary_sea_length
+		}
+		export_modifier_to_variable = {
+			modifier = planet_decision_enact_speed_mult
+			variable = decision_mult_var
+		}
+		change_variable = {
+			which = decision_mult_var
+			value = 1
+		}
+		divide_variable = {
+			which = decision_length
+			value = decision_mult_var
+		}
+		change_variable = { #ideally, may as well refer to this in the final effect
+			which = decision_length
+			value = 1
+		}
+
+		owner = {
+			random_owned_starbase = {
+				limit = {
+					has_starbase_building = ice_mining_station
+					solar_system = {
+						NOT = { has_star_flag = ice_mining_in_progress }
+					}
+				}
+				solar_system = {
+					set_timed_star_flag = {
+						flag = ice_mining_in_progress
+						days = root.decision_length
+					}
+					set_timed_star_flag = {
+						flag = ice_mining@root
+						days = root.decision_length
+					}
+				}
+			}
+		}
+		clear_variable = decision_length
+		clear_variable = decision_mult_var
+	}
+
+	abort_trigger = {
+		NOT = {
+			owner = {
+				any_owned_starbase = {
+					has_starbase_building = ice_mining_station
+				}
+			}
+		}
+	}
+
+	on_unqueued = {
+		owner = {
+			random_owned_starbase = {
+				limit = {
+					solar_system = {
+						has_star_flag = ice_mining@root
+					}
+				}
+				solar_system = {
+					remove_star_flag = ice_mining@root
+					remove_star_flag = ice_mining_in_progress
+				}
+			}
+		}
+	}
+
+	abort_effect = {
+		owner = {
+			random_owned_starbase = {
+				limit = {
+					solar_system = {
+						has_star_flag = ice_mining@root
+					}
+				}
+				solar_system = {
+					remove_star_flag = ice_mining@root
+					remove_star_flag = ice_mining_in_progress
+				}
+			}
+		}
+		create_message = {
+			type = ICE_MINING_INTERRUPTED
+			localization = ICE_MINING_INTERRUPTED_HABITAT_DESC
+			days = 20
+			target = root
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_flood_planet_tooltip
+		hidden_effect = {
+			add_modifier = {
+				modifier = flooded_habitat
+				days = -1
+			}
+			pd_create_aquatic_dome_colony_effect = yes
+			ice_mining_depletion_effect = yes
+
+			if = {
+				limit = {
+					has_planet_flag = temp_ice_mine_exhausted_flag
+				}
+				event_target:mined_system.starbase = {
+					remove_starbase_building = {
+						building = ice_mining_station
+					}
+				}
+				create_message = {
+					type = ICE_MINING_PD_PLANET_SUCCESS
+					localization = ICE_MINING_HABITAT_SUCCESS_BUT_EXHAUSTED_DESC
+					days = 20
+					target = root
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:mined_system
+					}
+				}
+			}
+			else = {
+				create_message = {
+					type = ICE_MINING_PD_PLANET_SUCCESS
+					localization = ICE_MINING_PD_PLANET_SUCCESS_DESC
+					days = 20
+					target = root
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:mined_system
+					}
+				}
+			}
+			change_variable = {
+				which = ice_dumping_happened
+				value = 1
+			}
+		}
+	}
+	ai_weight = {
+		weight = 1
+	}
+}
+#Unflood Planet
+decision_pd_unflood_planet = {
+	owned_planets_only = yes
+	icon = decision_satellite_in_orbit
+
+	enactment_time = @expand_planetary_sea_length
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		OR = {
+			is_planet_class = pc_pd_wet_gaia
+			is_planet_class = pc_pd_wet_superhabitable
+			is_planet_class = pc_pd_wet_tidally_locked
+			is_planet_class = pc_pd_wet_cave
+		}
+		exists = owner
+		has_modifier = flooded_habitat
+		owner = {
+			NOT = { has_ascension_perk = ap_hydrocentric }
+		}
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		remove_modifier = flooded_habitat
+		hidden_effect = {
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_back_to_normal_view_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_aw_is_shroud_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 0
+			owner = {
+				has_trait = trait_aquatic
+			}
+		}
+	}
+}
+
+###Toxic Wasteland Worlds
+#Make Wasteland
+decision_pd_wasteland_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_wasteland
+
+	enactment_time = 1800
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_is_planet_class_all = yes
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_pd_wasteland_worlds
+		}
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = pd_wasteland_planet
+			days = -1
+		}
+		hidden_effect = {
+			pd_create_wasteland_world_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+#Clean Up Toxic Wasteland
+decision_pd_wasteland_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	enactment_time = 1800
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		exists = owner
+		owner = {
+			NOT = { has_ascension_perk = ap_pd_wasteland_worlds }
+			has_technology = tech_climate_restoration
+		}
+		has_modifier = pd_wasteland_planet
+		pd_is_planet_class_all = yes
+	}
+
+	allow = {
+		owner = { has_technology = tech_climate_restoration }
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		remove_modifier = pd_wasteland_planet
+		custom_tooltip = decision_pd_wasteland_planet_cleanup_tooltip
+		hidden_effect = {
+			pd_back_to_normal_view_effect = yes
+			create_message = {
+				type = MESSAGE_PD_WASTELAND_CLEANUP_TYPE
+				localization = MESSAGE_PD_WASTELAND_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+###Shroud Worlds
+#Make Shroud World - Uncommon + PD Gaia
+decision_pd_shroud_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_shroud
+
+	enactment_time = 1800
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		exists = owner
+		owner = { has_tradition = tr_psionics_finish }
+		pd_is_planet_class_all = yes
+		pd_aw_is_shroud_planet = no
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			sr_zro = 750
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = pd_aw_shroud_planet
+			days = -1
+		}
+		hidden_effect = {
+			IF = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_aquatic_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_necro_shroud_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			IF = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			remove_pd_modifier = yes
+			create_message = {
+				type = MESSAGE_PD_SHROUD_TYPE
+				localization = MESSAGE_PD_SHROUD_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+#UnShroud World - Uncommon + PD Gaia
+decision_pd_shroud_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	enactment_time = 1800
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		exists = owner
+		owner = {
+			NOT = { has_tradition = tr_psionics_finish }
+		}
+		pd_aw_is_shroud_planet = yes
+		pd_is_planet_class_all = yes
+	}
+
+	allow = {
+		owner = { has_technology = tech_psionic_theory }
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		remove_modifier = pd_aw_shroud_planet
+		custom_tooltip = decision_pd_shroud_planet_cleanup_tooltip
+		hidden_effect = {
+			create_message = {
+				type = MESSAGE_PD_SHROUD_CLEANUP_TYPE
+				localization = MESSAGE_PD_SHROUD_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_back_to_normal_view_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_aquatic_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_create_necro_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_create_lithoid_world_effect = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+###Necro Worlds
+@pd_necro_time = 1800
+#Make Necro World - Uncommon + PD Gaia
+decision_pd_necro_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_necro
+
+	enactment_time = @pd_necro_time
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_is_planet_class_all = yes
+		exists = owner
+		owner = { has_ascension_perk = ap_pd_necro_worlds }
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			minerals = 5000
+		}
+	}
+
+	effect = {
+		IF = {
+			limit = {
+				pd_aw_is_shroud_planet = no
+				pd_aw_is_lithoid_planet = no
+			}
+			pd_create_necro_world_effect = yes
+		}
+		IF = {
+			limit = {
+				pd_aw_is_shroud_planet = yes
+				pd_aw_is_lithoid_planet = no
+			}
+			pd_create_necro_shroud_world_effect = yes
+		}
+		IF = {
+			limit = {
+				pd_aw_is_shroud_planet = no
+				pd_aw_is_lithoid_planet = yes
+			}
+			pd_create_lithoid_world_effect = yes
+		}
+		IF = {
+			limit = {
+				pd_aw_is_shroud_planet = yes
+				pd_aw_is_lithoid_planet = yes
+			}
+			pd_create_lithoid_world_effect = yes
+		}
+		remove_pd_modifier = yes
+		create_message = {
+			type = MESSAGE_PD_NECRO_TYPE
+			localization = MESSAGE_PD_NECRO_DESC
+			days = 20
+			target = root
+			variable = {
+				type = name
+				localization = PLANET
+				scope = this
+			}
+		}
+		hidden_effect = {
+			set_planet_flag = nuked_planet_anomalies_disabled
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+#Remove Necro Modifier - Uncommon + PD Gaia
+decision_pd_necro_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	enactment_time = @pd_necro_time
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_aw_is_necro_planet = yes
+		pd_is_planet_class_all = yes
+		exists = owner
+		owner = { NOT = { has_ascension_perk = ap_pd_necro_worlds } }
+		OR = {
+			has_modifier = pd_aw_necro_planet
+			has_modifier = pd_aw_necro_city_planet
+			has_modifier = pd_necro_planet
+		}
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		hidden_effect = {
+			IF = {
+				limit = {
+					pd_aw_is_necro_planet = yes
+				}
+				remove_modifier = pd_aw_necro_planet
+				remove_modifier = pd_aw_necro_city_planet
+				remove_modifier = pd_necro_planet
+				IF = {
+					limit = {
+						pd_aw_is_lithoid_planet = no
+						pd_aw_is_shroud_planet = no
+					}
+					pd_back_to_normal_view_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_lithoid_planet = no
+					}
+					pd_create_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_lithoid_planet = yes
+					}
+					pd_create_lithoid_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_lithoid_planet = yes
+					}
+					pd_create_lithoid_world_effect = yes
+				}
+			}
+			create_message = {
+				type = MESSAGE_PD_NECRO_CLEANUP_TYPE
+				localization = MESSAGE_PD_NECRO_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+###Lithoid Worlds
+@pd_lithoid_time = 1800
+#Make Lithoid World
+decision_pd_lithoid_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_lithoid
+
+	enactment_time = @pd_lithoid_time
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_is_planet_class_all = yes
+		exists = owner
+		owner = { has_ascension_perk = ap_pd_lithoid_worlds }
+		pd_is_flooded_planet = no
+		pd_aw_is_wasteland_planet = no
+		pd_aw_is_lithoid_planet = no
+		pd_aw_is_necro_planet = no
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			minerals = 5000
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_lithoid_planet_tooltip
+		hidden_effect = {
+			planet_event = {
+				id = pdlithoidplanets.100
+				days = 0
+			}
+			remove_pd_modifier = yes
+			create_message = {
+				type = MESSAGE_PD_LITHOID_TYPE
+				localization = MESSAGE_PD_LITHOID_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+#Remove Lithoid Modifier
+decision_pd_lithoid_planet_cleanup = {
+	owned_planets_only = yes
+	icon = decision_resort_colony
+
+	enactment_time = @pd_lithoid_time
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_is_planet_class_all = yes
+		exists = owner
+		owner = { NOT = { has_ascension_perk = ap_pd_lithoid_worlds } }
+		pd_aw_is_lithoid_planet = yes
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 5000
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_lithoid_planet_cleanup_tooltip
+		hidden_effect = {
+			IF = {
+				limit = {
+					pd_aw_is_lithoid_planet = yes
+				}
+				remove_modifier = pd_aw_lithoid_planet_cyan
+				remove_modifier = pd_aw_lithoid_planet_red
+				remove_modifier = pd_aw_lithoid_planet_yellow
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = no
+					}
+					pd_back_to_normal_view_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = no
+					}
+					pd_create_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = yes
+						pd_is_flooded_planet = no
+					}
+					pd_create_necro_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = no
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = yes
+					}
+					pd_create_aquatic_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = yes
+						pd_is_flooded_planet = no
+					}
+					pd_create_necro_shroud_world_effect = yes
+				}
+				IF = {
+					limit = {
+						pd_aw_is_shroud_planet = yes
+						pd_aw_is_necro_planet = no
+						pd_is_flooded_planet = yes
+					}
+					pd_create_aquatic_shroud_world_effect = yes
+				}
+			}
+			create_message = {
+				type = MESSAGE_PD_LITHOID_CLEANUP_TYPE
+				localization = MESSAGE_PD_LITHOID_CLEANUP_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+#Change Lithoid Modifier
+decision_pd_lithoid_change_frequency = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_lithoid
+
+	enactment_time = 360
+
+	potential = {
+		has_global_flag = planetarydiversityascensionworlds
+		pd_is_planet_class_all = yes
+		OR = {
+			has_modifier = pd_aw_lithoid_planet_cyan
+			has_modifier = pd_aw_lithoid_planet_red
+			has_modifier = pd_aw_lithoid_planet_yellow
+		}
+		exists = owner
+		owner = { has_ascension_perk = ap_pd_lithoid_worlds }
+		pd_aw_is_lithoid_planet = yes
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+			energy = 1000
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_lithoid_change_frequency_tooltip
+		hidden_effect = {
+			remove_modifier = pd_aw_lithoid_planet_cyan
+			remove_modifier = pd_aw_lithoid_planet_red
+			remove_modifier = pd_aw_lithoid_planet_yellow
+			planet_event = {
+				id = pdlithoidplanets.100
+				days = 0
+			}
+		}
+	}
+}

@@ -1,0 +1,31 @@
+namespace = pd_ai_unique_remove
+
+#Removes unique origins from AI
+
+country_event = {
+	id = pd_ai_unique_remove.001
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_origin = origin_crystal_world
+			has_origin = origin_floating_world
+			has_origin = origin_graveyard_world
+			has_origin = origin_techno_world
+			has_origin = origin_archive_world
+			has_origin = origin_crucible_world
+			has_origin = origin_pd_zro_world
+			has_origin = origin_pd_scrapyard_world
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			pd_reset_ai_start = yes
+		}
+	}
+}

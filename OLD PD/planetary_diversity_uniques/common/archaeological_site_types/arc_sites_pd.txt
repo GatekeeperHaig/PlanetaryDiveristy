@@ -1,0 +1,217 @@
+# site_type_name = {				# Key of the site, used for name and desc lookup etc.
+#	max_instances = <int>			# Max instances of this type a galaxy can have, only checked when using `create_archaeological_site = random`
+#	weight = <scriptable value>		# Weight used for random weight, only used when using `create_archaeological_site = random`. scriptable value type is defined either by '<int>' or `<mean time to happen>`.
+#	stages = <int>					# Should match number of defined stages below.
+#	potential = <trigger>			# Trigger checking if a scope with this=fleet ,prev=archaeological site is potential to excavate (this will add/remove this option without giving the player a reason).
+#	allow = <trigger>				# Trigger checking if a scope with this=fleet ,prev=archaeological site is allowed to excavate (this will toggle enable/disabled mode on buttons etc).
+#	stage = {						# Stage definition, order dependent.
+#		difficulty = <interval int> 	# min max interval type. interval is defined either by '<int>' or '{ min = <int> max=<int> }' where the later will randomize a value between min and max.
+#		icon = <string>			# rune icon gfx type.
+#		event = <string>			# event to fire when finished the state.
+#	}
+#	stage = {...}					# Second stage
+#	on_roll_failed = <effect>			# effect to fire when a roll fails
+#}
+
+#Archive World
+#Relic + 
+pdarchive_site = {
+	desc = pdarchive_site_desc
+	picture = GFX_evt_archive2
+	stages = 5
+	max_instances = 1
+	allow = {
+		is_ship_class = shipclass_science_ship
+		exists = leader
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}	
+	
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D1
+		event = pdarchive.50
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_D2
+		event = pdarchive.51
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_D3
+		event = pdarchive.52
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D4
+		event = pdarchive.53
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D4
+		event = pdarchive.54
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}
+
+pdcrucible_site = {
+	desc = pdcrucible_site_desc
+	picture = GFX_evt_shielded_planet
+	stages = 5
+	max_instances = 1
+	allow = {
+		is_ship_class = shipclass_science_ship
+		exists = leader
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}	
+	
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D1
+		event = pdcrucible.50
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_D2
+		event = pdcrucible.51
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_D3
+		event = pdcrucible.52
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D4
+		event = pdcrucible.53
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D4
+		event = pdcrucible.54
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}
+
+pdcrystal_site = {
+	desc = pdcrystal_site_desc
+	picture = GFX_evt_crystal2
+	stages = 5
+	max_instances = 1
+	allow = {
+		is_ship_class = shipclass_science_ship
+		exists = leader
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}	
+	
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D1
+		event = pdcrystal.50
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_D2
+		event = pdcrystal.51
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_D3
+		event = pdcrystal.52
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D4
+		event = pdcrystal.53
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D5
+		event = pdcrystal.54
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}
+
+pdzrostripmine_site = {
+	desc = pdzrostripmine_site_desc
+	picture = GFX_evt_pdzrostripmine2
+	stages = 6
+	max_instances = 1
+	allow = {
+		is_ship_class = shipclass_science_ship
+		exists = leader
+	}
+	visible = {
+		default_site_visible_trigger = yes
+	}
+	on_visible = {
+		country_event = { id = story.5 days = 30 }
+	}	
+	
+	stage = {
+		difficulty = 2
+		icon = GFX_archaeology_runes_D1
+		event = pdzrostripmine.30
+	}
+	stage = {
+		difficulty = 3
+		icon = GFX_archaeology_runes_D2
+		event = pdzrostripmine.31
+	}
+	stage = {
+		difficulty = 4
+		icon = GFX_archaeology_runes_D3
+		event = pdzrostripmine.32
+	}
+	stage = {
+		difficulty = 5
+		icon = GFX_archaeology_runes_D4
+		event = pdzrostripmine.33
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D5
+		event = pdzrostripmine.34
+	}
+	stage = {
+		difficulty = 6
+		icon = GFX_archaeology_runes_D6
+		event = pdzrostripmine.35
+	}
+
+	on_roll_failed = {
+		from = {
+			standard_archaeological_site_on_roll_failed = { RANDOM_EVENTS = all_random_events }
+		}
+	}
+}

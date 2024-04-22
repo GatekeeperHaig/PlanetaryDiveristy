@@ -1,0 +1,210 @@
+#civic_example = {
+#	playable = {}								# AND trigger, no scope; use this to prevent the civic from being selectable by the player (UI)
+#	potential = {}								# requirements list, see ../readme_requirements.txt
+#	possible = {}								# requirements list, see ../readme_requirements.txt
+#	pickable_at_start = yes / no				# default: yes
+#	modification = yes / no						# default: yes, set to no to prevent adding or removing this after creation of the empire
+#
+#	random_weight = { base = 5 }				# scriptable weight for randomizing a civic; required, else the civic will not get assigned randomly
+#
+#	modifier = {}								# modifier added to the country if the civic is selected and valid
+#	can_build_ruler_ship = yes / no				# default: no
+#	traits = { trait = ... }					# default: empty; trait set to enforce on the primary species. They cannot be removed, but more can be added if points/picks permit
+#	has_secondary_species = {					# default: none; if present, will enable secondary species customization in empire designer and will create secondary species & pops at galaxy generation time (see empire_init_create_capital_secondary_pops)
+#		traits = { trait = ... }					# default: empty; trait set to enforce on the secondary species. They cannot be removed, but more can be added if points/picks permit
+#	}
+#}
+
+origin_crystal_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdcrystal.dds"
+	picture = GFX_origin_pd_crystal
+	starting_colony = pc_crystal
+	habitability_preference = pc_crystal
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_crystal_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_crystal }
+	possible = { 
+		civics = { 
+			NOT = { value = civic_machine_terminator } 
+		}
+	}
+}
+origin_floating_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdfloating.dds"
+	picture = GFX_origin_pd_floating
+	starting_colony = pc_floating
+	habitability_preference = pc_floating
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_floating_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_floating }
+	possible = { 
+		civics = { 
+			NOT = { value = civic_machine_terminator } 
+			NOT = { value = civic_fanatic_purifiers } 
+		}
+	}
+}
+origin_graveyard_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdgraveyard.dds"
+	picture = GFX_origin_pd_graveyard
+	starting_colony = pc_graveyard
+	habitability_preference = pc_graveyard
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_graveyard_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_graveyard }
+	#max_once_global = yes
+	possible = { 
+		civics = { 
+			NOT = { value = civic_machine_terminator } 
+			NOT = { value = civic_fanatic_purifiers } 
+		}
+	}
+}
+origin_techno_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdtechno.dds"
+	picture = GFX_origin_pd_techno
+	starting_colony = pc_technoorganic
+	habitability_preference = pc_technoorganic
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_techno_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_technoorganic }
+	traits = { trait = trait_organic_fourschildren }
+	possible = { 
+		ethics = { NOT = { value = ethic_gestalt_consciousness } }
+		civics = { 
+			NOT = { value = civic_fanatic_purifiers } 
+			NOT = { value = civic_barbaric_despoilers }
+			NOT = { value = civic_hive_devouring_swarm }
+		}
+		species_archetype = {
+			NOT = { value = LITHOID }
+		}
+	}
+	flags = { custom_start_screen }
+	#max_once_global = yes
+}
+origin_archive_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdarchive.dds"
+	picture = GFX_origin_pd_archive
+	starting_colony = pc_archive
+	#habitability_preference = pc_archive
+	#preferred_planet_class_neighbor = no
+	description = "origin_tooltip_archive_world_effects"
+	#random_weight = { base = 0 }
+	possible = { 
+		authority = { NOT = { value = auth_hive_mind } } 
+		civics = { 
+			NOT = { value = civic_fanatic_purifiers } 
+			NOT = { value = civic_barbaric_despoilers }
+			NOT = { value = civic_machine_terminator }
+			NOT = { value = civic_machine_servitor }
+			NOT = { value = civic_machine_assimilator }
+		}
+	}
+	initializers = { pd_origin_init_archive }
+	flags = { custom_start_screen }
+	#max_once_global = yes
+}
+origin_crucible_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pd_crucible.dds"
+	picture = GFX_origin_pd_crucible_start
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_crucible_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_crucible }
+	flags = { custom_start_screen }
+	possible = { 
+		authority = { 
+			NOT = { value = auth_machine_intelligence } 
+			NOT = { value = auth_hive_mind } 
+		} 
+	}
+	#max_once_global = yes
+}
+origin_pd_zro_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pd_zro.dds"
+	picture = GFX_origin_pd_zro_world
+	starting_colony = pc_pd_zro
+	#habitability_preference = pc_pd_zro
+	preferred_planet_class_neighbor = no
+	description = "origin_pd_zro_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_pd_zro }
+	flags = { custom_start_screen }
+	possible = { 
+		authority = { 
+			NOT = { value = auth_machine_intelligence } 
+			NOT = { value = auth_hive_mind } 
+		} 	
+	}
+	traits = {
+		trait = trait_pd_zro_uplifted
+	}
+	#max_once_global = yes
+}
+origin_pd_scrapyard_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pd_scrapyard.dds"
+	picture = GFX_origin_pd_scrapyard_world
+	starting_colony = pc_pd_scrapyard
+	#habitability_preference = pc_pd_zro
+	preferred_planet_class_neighbor = no
+	description = "origin_pd_scrapyard_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_scrapyard }
+	flags = { custom_start_screen }
+	possible = { 
+		civics = { 
+			NOT = { value = civic_environmentalist } 
+			NOT = { value = civic_idyllic_bloom } 
+			NOT = { value = civic_agrarian_idyll } 
+			NOT = { value = civic_anglers } 
+			NOT = { value = civic_machine_terminator } 
+		}
+	}
+	modifier = {
+		starbase_shipyard_build_speed_mult = 0.1
+		starbase_shipyard_build_cost_mult = -0.1
+		ship_hull_mult = -0.2
+		country_naval_cap_mult = 0.2
+	}
+}
+origin_pd_warform_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pd_warform.dds"
+	picture = GFX_origin_pd_warform
+	starting_colony = pc_pd_orange_warform
+	#preferred_planet_class_neighbor = no
+	description = "origin_tooltip_pd_warform_world_effects"
+	#random_weight = { base = 0 }
+	possible = { 
+		authority = { 
+			NOT = { value = auth_machine_intelligence } 
+		}
+		civics = { 
+			NOT = { value = civic_environmentalist } 
+			NOT = { value = civic_idyllic_bloom } 
+			NOT = { value = civic_agrarian_idyll } 
+			NOT = { value = civic_catalytic_processing } 
+			NOT = { value = civic_corporate_catalytic_processing }
+			NOT = { value = civic_hive_catalytic_processing }
+		}
+	}
+	traits = {
+		trait = trait_cybernetic
+	}
+	initializers = { pd_origin_init_warform }
+	flags = { custom_start_screen }
+	#max_once_global = yes
+}

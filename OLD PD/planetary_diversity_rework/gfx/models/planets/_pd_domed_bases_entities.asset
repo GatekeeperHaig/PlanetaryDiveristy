@@ -1,0 +1,301 @@
+#####    Domed Bases    ######
+# Luna
+entity = {
+    name = "pd_moon_base_planet_luna_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0 # Animation speed 0 - The Moon is tidally locked to Earth
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "pd_moon_base_planet_luna_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+entity = {
+	name = "pd_moon_base_planet_luna_mesh"
+	pdxmesh = "planet_no_pole_no_clouds_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "moon_base_cold_barren_04_diffuse.dds"
+		texture_normal = "moon_base_cold_barren_04_normal.dds"
+		texture_specular = "moon_base_cold_barren_04_specular.dds"
+		shader = "PdxMeshTerra"
+		#shader = "PdxMeshPlanetEmissive"
+	}
+
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "luna_poles_barren_2_diffuse.dds"
+		texture_normal = "luna_poles_barren_2_normal.dds"
+		texture_specular = "cold_barren_04_specular.dds"
+		shader = "AlphaBlend_00"
+	}
+
+	default_state = "idle"
+	playback_rate = 1.0 # Animation speed 0 - The Moon is tidally locked to Earth
+	state = { name = "idle" animation = "idle" time_offset = { 15 0 } animation_speed = 0
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+}
+
+# Barren
+entity = {
+    name = "pd_moon_base_barren_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "pd_moon_base_barren_planet_01_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+entity = {
+	name = "pd_moon_base_barren_planet_01_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "moon_base_barren_01_diffuse.dds"
+		texture_normal = "moon_base_barren_01_normal.dds"
+		texture_specular = "moon_base_barren_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_barren_1_diffuse.dds"
+		texture_normal = "poles_barren_1_normal.dds"
+		texture_specular = "poles_barren_1_specular.dds"
+		shader = "AlphaBlend_00"
+	}
+
+	default_state = "idle"
+	playback_rate = -1.0 # Rotation is reversed
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+}
+
+# Barren Cold
+entity = {
+    name = "pd_moon_base_cold_barren_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "pd_moon_base_cold_barren_planet_01_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+entity = {
+	name = "pd_moon_base_cold_barren_planet_01_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		shader = "PdxMeshTerra"
+		texture_diffuse = "moon_base_cold_barren_01_diffuse.dds"
+		texture_normal = "moon_base_barren_01_normal.dds"
+		texture_specular = "moon_base_barren_01_specular.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_barren_1_diffuse.dds"
+		texture_normal = "poles_barren_1_normal.dds"
+		texture_specular = "poles_barren_1_specular.dds"
+		shader = "AlphaBlend_00"
+	}
+
+	default_state = "idle"
+	playback_rate = -1.0 # Rotation is reversed
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+}
+
+# Frozen
+entity = {
+    name = "pd_moon_base_frozen_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "pd_moon_base_frozen_planet_01_mesh" }
+    attach = { "planetloc" = "pd_moon_base_frozen_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+entity = {
+	name = "pd_moon_base_frozen_planet_01_mesh"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		shader = "PdxMeshTerra"
+		texture_diffuse = "moon_base_frozen_01_diffuse.dds"
+		texture_normal = "moon_base_frozen_01_normals.dds"
+		texture_specular = "moon_base_frozen_01_spec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+}
+#Frozen Clouds
+entity = {
+	name = "pd_moon_base_frozen_planet_cloud_mesh"
+	pdxmesh = "planet_cloud_mesh"
+	scale = 1
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_thin_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_thin_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+#Molten
+entity = {
+	name = "pd_moon_base_molten_planet_01_entity"
+	pdxmesh = "planet_no_pole_no_clouds_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		shader = "PdxMeshTerra"
+		texture_diffuse = "moon_base_molten_01_diffuse.dds"
+		texture_normal = "moon_base_molten_01_normals.dds"
+		texture_specular = "moon_base_molten_01_specular.dds"
+	}
+
+	default_state = "idle"
+	playback_rate = -1.0 # Rotation is reversed
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_molten_world_a" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_molten_world_b" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+}
+
+#Toxic
+entity = {
+    name = "pd_moon_base_toxic_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "pd_moon_base_toxic_planet_01_mesh" }
+    attach = { "planetloc" = "pd_moon_base_toxic_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+entity = {
+	name = "pd_moon_base_toxic_planet_01_mesh"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		shader = "PdxMeshTerra"
+		texture_diffuse = "moon_base_toxic_01_diffuse.dds"
+		texture_normal = "moon_base_toxic_01_normal.dds"
+		texture_specular = "moon_base_toxic_01_spec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_1_diffuse.dds"
+		texture_normal = "poles_1_normal.dds"
+		texture_specular = "poles_1_specular.dds"
+	}
+
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_toxic_world_a" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_toxic_world_b" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+}
+#Toxic Clouds
+entity = {
+	name = "pd_moon_base_toxic_planet_cloud_mesh"
+	pdxmesh = "planet_cloud_mesh"
+	scale = 0.9
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "toxic_clouds_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}

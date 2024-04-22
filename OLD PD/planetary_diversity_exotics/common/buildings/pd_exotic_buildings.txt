@@ -1,0 +1,1722 @@
+#Radiotrophic
+building_sugarbush = {
+	base_buildtime = 360
+
+	is_capped_by_modifier = yes
+
+	category = resource
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_pd_radiotrophic_world = yes
+	}
+
+	prerequisites = {
+		"tech_rad_bloom_farm"
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_bloom_evaporator_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_bloom_hive_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			energy = 1
+		}
+	}	  
+
+    ai_weight = {
+        weight = 10000
+    } 
+}
+pd_building_gamma_research = {
+	base_buildtime = 600
+	category = research
+
+	potential = {
+		is_pd_radiotrophic_world = yes
+		NOT = { has_building = pd_building_gamma_research }
+		NOT = { has_building = pd_building_rad_farms }
+		NOT = { has_building = pd_building_gamma_energy }
+		NOT = { has_building_construction = pd_building_gamma_research }
+		NOT = { has_building_construction = pd_building_rad_farms }
+		NOT = { has_building_construction = pd_building_gamma_energy }
+		NOT = { has_modifier = resort_colony }
+	}
+
+	planet_modifier = {
+		planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_society_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+		planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_society_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+		planet_researchers_physics_research_produces_add = 0.5
+		planet_researchers_society_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	}
+
+	destroy_trigger = {
+		planet = {
+			is_pd_radiotrophic_world = no
+		}
+	}
+}
+pd_building_rad_farms = {
+	base_buildtime = 600
+	category = resource
+
+	potential = {
+		is_pd_radiotrophic_world = yes
+		NOT = { has_building = pd_building_gamma_research }
+		NOT = { has_building = pd_building_rad_farms }
+		NOT = { has_building = pd_building_gamma_energy }
+		NOT = { has_building_construction = pd_building_gamma_research }
+		NOT = { has_building_construction = pd_building_rad_farms }
+		NOT = { has_building_construction = pd_building_gamma_energy }
+		NOT = { has_modifier = resort_colony }
+	}
+
+	inline_script = "buildings/pd_rare_farm_building"
+
+	destroy_trigger = {
+		planet = {
+			is_pd_radiotrophic_world = no
+		}
+	}
+}
+pd_building_gamma_energy = {
+	base_buildtime = 600
+	category = resource
+	
+	potential = {
+		is_pd_radiotrophic_world = yes
+		NOT = { has_building = pd_building_gamma_research }
+		NOT = { has_building = pd_building_rad_farms }
+		NOT = { has_building = pd_building_gamma_energy }
+		NOT = { has_building_construction = pd_building_gamma_research }
+		NOT = { has_building_construction = pd_building_rad_farms }
+		NOT = { has_building_construction = pd_building_gamma_energy }
+		NOT = { has_modifier = resort_colony }
+	}
+
+	inline_script = "buildings/pd_rare_energy_building"
+
+	destroy_trigger = {
+		planet = {
+			is_pd_radiotrophic_world = no
+		}
+	}
+
+}
+
+#Acid
+building_acid_lab = {
+	base_buildtime = 360
+
+	is_capped_by_modifier = yes
+
+	category = research
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_acid
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	#prerequisites = {
+	#	"tech_acid_lab_building"
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_acid_tech_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_acid_drone_add = 6
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			energy = 1
+		}
+	}	  
+
+    ai_weight = {
+        weight = 10000
+    } 
+}
+building_acidseeders_1 = {
+	base_buildtime = @b4_time
+	base_cap_amount = 1
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_acidseeders_2" }
+
+	potential = {
+		exists = owner
+		owner = {
+			owner = { has_trait = trait_pc_acid_preference }
+		}
+		NOR = {
+			is_planet_class = pc_acid	# No double bonuses if player uses other tools to turn it into a Gaia world.
+			is_planet_class = pc_city
+			is_pd_arcology = yes
+			is_pd_hive_world = yes
+			is_pd_hive_arcology = yes
+			is_pd_machine = yes
+			is_pd_robot_arcology = yes
+			is_planet_class = pc_relic
+		}
+		is_pd_unique = no
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	destroy_trigger = {
+		OR = {
+			is_planet_class = pc_acid	# No double bonuses if player uses other tools to turn it into a Gaia world.
+			is_planet_class = pc_city
+			is_pd_arcology = yes
+			is_pd_hive_world = yes
+			is_pd_hive_arcology = yes
+			is_pd_machine = yes
+			is_pd_robot_arcology = yes
+			is_pd_unique = yes	
+			is_planet_class = pc_relic
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_trait = trait_pc_acid_preference }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 4000
+			exotic_gases = 250
+		}
+		upkeep = {
+			energy = 20
+			exotic_gases = 2
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.1
+		pop_environment_tolerance = -0.3
+	}  
+
+    ai_weight = {
+        weight = 10000
+    }
+}
+building_acidseeders_2 = {
+	base_buildtime = @b4_time
+	can_build = no
+	category = government
+	can_be_disabled = no
+
+	destroy_trigger = {
+		OR = {
+			is_planet_class = pc_acid	# No double bonuses if player uses other tools to turn it into a Gaia world.
+			is_planet_class = pc_city
+			is_pd_arcology = yes
+			is_pd_hive_world = yes
+			is_pd_hive_arcology = yes
+			is_pd_machine = yes
+			is_pd_robot_arcology = yes
+			is_planet_class = pc_relic
+			is_pd_unique = yes
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_trait = trait_pc_acid_preference }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 4000
+			exotic_gases = 500
+		}
+	}
+
+	prerequisites = {
+		"tech_acid_lab_building"
+	}
+
+	allow = {
+		owner = { 
+			has_trait = trait_pc_acid_preference 
+			has_technology = tech_ecological_adaptation
+		}
+		has_upgraded_capital = yes
+	}
+
+	triggered_desc = {
+		text = building_acidseeders_2_effect_desc
+	}  
+
+    ai_weight = {
+        weight = 10000
+    }
+}
+pd_building_acid_farm = {
+	base_buildtime = 600
+	category = resource
+	
+	potential = {
+		is_planet_class = pc_acid
+		NOT = { has_building = pd_building_acid_farm }
+		NOT = { has_building = pd_building_acid_rock}
+		NOT = { has_building = pd_building_acid_research }
+		NOT = { has_building_construction = pd_building_acid_farm }
+		NOT = { has_building_construction = pd_building_acid_rock }
+		NOT = { has_building_construction = pd_building_acid_research}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	inline_script = "buildings/pd_rare_farm_building"
+
+	destroy_trigger = {
+		planet = {
+			NOT = { is_planet_class = pc_acid }
+		}
+	}
+}
+pd_building_acid_rock = {
+	base_buildtime = 600
+	category = resource
+	
+	potential = {
+		is_planet_class = pc_acid
+		NOT = { has_building = pd_building_acid_farm }
+		NOT = { has_building = pd_building_acid_rock}
+		NOT = { has_building = pd_building_acid_research }
+		NOT = { has_building_construction = pd_building_acid_farm }
+		NOT = { has_building_construction = pd_building_acid_rock }
+		NOT = { has_building_construction = pd_building_acid_research}
+		NOT = { has_modifier = resort_colony }
+	}
+
+	inline_script = "buildings/pd_rare_mining_building"	
+
+	destroy_trigger = {
+		planet = {
+			NOT = { is_planet_class = pc_acid }
+		}
+	}
+
+}
+pd_building_acid_research = {
+	base_buildtime = 600
+	category = research
+	
+	potential = {
+		is_planet_class = pc_acid
+		NOT = { has_building = pd_building_acid_farm }
+		NOT = { has_building = pd_building_acid_rock}
+		NOT = { has_building = pd_building_acid_research }
+		NOT = { has_building_construction = pd_building_acid_farm }
+		NOT = { has_building_construction = pd_building_acid_rock }
+		NOT = { has_building_construction = pd_building_acid_research}
+		NOT = { has_modifier = resort_colony }
+	}
+
+
+
+	destroy_trigger = {
+		planet = {
+			NOT = { is_planet_class = pc_acid }
+		}
+	}
+
+	planet_modifier = {
+		planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+		planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+		planet_researchers_physics_research_produces_add = 0.5
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	}
+
+}
+
+#Ash
+building_pd_tectonic_drills = {
+	base_buildtime = @b4_time
+	base_cap_amount = 1
+	category = government
+	can_be_disabled = no
+	upgrades = { "building_pd_tectonic_drills_2" }
+
+	potential = {
+		exists = owner
+		owner = { has_origin = origin_pd_ash_tectonic_drillers }
+		has_deposit = d_pd_tectonic_fissure
+		#is_pd_unique = no
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	destroy_trigger = {
+		OR = {
+			is_planet_class = pc_ash	# No double bonuses if player uses other tools to turn it into a Gaia world.
+			is_planet_class = pc_city
+			is_pd_arcology = yes
+			is_pd_hive_world = yes
+			is_pd_hive_arcology = yes
+			is_pd_machine = yes
+			is_pd_robot_arcology = yes
+			is_planet_class = pc_relic
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_trait = trait_pc_ash_preference }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 3000
+		}
+		upkeep = {
+			energy = 20
+			rare_crystals = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_jobs_energy_produces_mult = 0.1
+		pop_environment_tolerance =  -0.2
+	}  
+
+    ai_weight = {
+        weight = 10000
+    }
+
+}
+building_pd_tectonic_drills_2 = {
+	icon = building_pd_tectonic_drills
+	base_buildtime = @b4_time
+	can_build = no
+	category = government
+	can_be_disabled = no
+
+	destroy_trigger = {
+		OR = {
+			is_planet_class = pc_ash	# No double bonuses if player uses other tools to turn it into a Gaia world.
+			is_planet_class = pc_city
+			is_pd_arcology = yes
+			is_pd_hive_world = yes
+			is_pd_hive_arcology = yes
+			is_pd_machine = yes
+			is_pd_robot_arcology = yes
+			is_planet_class = pc_relic
+			NOT = { exists = owner }
+			owner = {
+				NOT = { has_trait = trait_pc_ash_preference }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			energy = 3000
+			rare_crystals = 350
+		}
+	}
+
+	allow = {
+		owner = { 
+			has_origin = origin_pd_ash_tectonic_drillers
+			has_technology = tech_ecological_adaptation 
+		}
+		is_pd_unique = no
+		has_upgraded_capital = yes
+	}
+
+	triggered_desc = {
+		text = building_pd_tectonic_2_effect_desc
+	}  
+
+    ai_weight = {
+        weight = 10000
+    }
+}
+building_ash_grid = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_ash
+		NOT = { has_building = building_ash_grid }
+		NOT = { has_building_construction = building_ash_grid }
+		NOT = { has_building = building_ash_foundry }
+		NOT = { has_building_construction = building_ash_foundry }
+		NOT = { has_building = building_ash_lab }
+		NOT = { has_building_construction = building_ash_lab }
+	}
+
+	inline_script = "buildings/pd_rare_energy_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_ash } 
+		}
+	}	 
+}
+building_ash_foundry = {
+	base_buildtime = 600
+
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		owner = { NOT = { is_catalytic_empire = yes } }
+		is_planet_class = pc_ash
+		NOT = { has_building = building_ash_grid }
+		NOT = { has_building_construction = building_ash_grid }
+		NOT = { has_building = building_ash_foundry }
+		NOT = { has_building_construction = building_ash_foundry }
+		NOT = { has_building = building_ash_lab }
+		NOT = { has_building_construction = building_ash_lab }
+	}
+	inline_script = "buildings/pd_rare_foundry_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_ash }
+		}
+	}	
+}
+building_ash_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_ash
+		NOT = { has_building = building_ash_grid }
+		NOT = { has_building_construction = building_ash_grid }
+		NOT = { has_building = building_ash_foundry }
+		NOT = { has_building_construction = building_ash_foundry }
+		NOT = { has_building = building_ash_lab }
+		NOT = { has_building_construction = building_ash_lab }
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	planet_modifier = {
+        planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+        planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+        planet_researchers_engineering_research_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_ash } 
+		}
+	}		
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	}
+}
+
+#Methane
+building_frozen_gas_mine = {
+	base_buildtime = 360
+
+	is_capped_by_modifier = yes
+
+	category = research
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_methane
+	}
+	
+	#prerequisites = {
+	#	"tech_mine_exotic_gases"
+	#}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_methane_miner_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 6
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			energy = 1
+		}
+	}	
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		physics_research = 30
+		minerals = 20
+	}   
+
+    ai_weight = {
+        weight = 10000
+    }
+}
+building_methane_mine = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_methane
+		NOT = { has_building = building_methane_mine }
+		NOT = { has_building_construction = building_methane_mine }
+		NOT = { has_building = building_methane_lab }
+		NOT = { has_building_construction = building_methane_lab }
+		NOT = { has_building = building_methane_guild }
+		NOT = { has_building_construction = building_methane_guild }
+	}
+	
+	inline_script = "buildings/pd_rare_mining_building"	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_methane }
+		}
+	}	  	 
+}
+building_methane_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_methane
+		NOT = { has_building = building_methane_mine }
+		NOT = { has_building_construction = building_methane_mine }
+		NOT = { has_building = building_methane_lab }
+		NOT = { has_building_construction = building_methane_lab }
+		NOT = { has_building = building_methane_guild }
+		NOT = { has_building_construction = building_methane_guild }
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	planet_modifier = {
+        planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+        planet_researchers_physics_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+        planet_researchers_physics_research_produces_add = 0.5
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 8
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_methane }
+		}
+	}	  
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	}  
+}
+building_methane_guild = {
+	base_buildtime = 600
+
+	category = manufacturing
+	
+	potential = {
+		owner = { is_gestalt = no }
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_methane
+		NOT = { has_building = building_methane_mine }
+		NOT = { has_building_construction = building_methane_mine }
+		NOT = { has_building = building_methane_lab }
+		NOT = { has_building_construction = building_methane_lab }
+		NOT = { has_building = building_methane_guild }
+		NOT = { has_building_construction = building_methane_guild }
+	}
+
+	inline_script = "buildings/pd_rare_consumer_goods_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_methane } 
+		}
+	}
+}
+
+#Sulfur
+building_sulfur_onsen = {
+	base_buildtime = 360
+
+	category = amenity
+	
+	potential = {
+		#NOT = { has_modifier = resort_colony }
+		NOT = { is_planet_class = pc_sulfur }
+		NOT = {	owner = { is_robot_empire = yes } }
+		owner = { has_origin = origin_pd_sulfur_springs }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+	
+	prerequisites = {
+		"tech_pd_sulfur_springs"
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_sulfur_ent_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_sulfur_ent_drone_add = 4
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		society_research = 30
+		minerals = 20
+	}	 
+
+	destroy_trigger = {
+		NOT = {
+			owner = { has_origin = origin_pd_sulfur_springs }
+		}
+	}  
+
+    ai_weight = {
+        weight = 10000
+    }
+}
+pd_building_sulfer_springs = {
+	base_buildtime = 600
+	
+	category = resource
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class =  pc_sulfur
+		NOT = { has_building = pd_building_sulfer_lab }
+		NOT = { has_building = pd_building_sulfer_springs }
+		NOT = { has_building = pd_building_sulfer_resort }
+		NOT = { has_building_construction = pd_building_sulfer_springs }
+		NOT = { has_building_construction = pd_building_sulfer_lab }
+		NOT = { has_building_construction = pd_building_sulfer_resort }	
+	}
+
+	inline_script = "buildings/pd_rare_energy_building"
+
+	destroy_trigger = {
+		planet = {
+			NOT = { is_planet_class = pc_sulfur }
+		}
+	}
+}
+pd_building_sulfer_lab = {
+	base_buildtime = 600
+	
+	category = research
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class =  pc_sulfur
+		NOT = { has_building = pd_building_sulfer_lab }
+		NOT = { has_building = pd_building_sulfer_springs }
+		NOT = { has_building = pd_building_sulfer_resort }
+		NOT = { has_building_construction = pd_building_sulfer_springs }
+		NOT = { has_building_construction = pd_building_sulfer_lab }
+		NOT = { has_building_construction = pd_building_sulfer_resort }	
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	planet_modifier = {
+        planet_researchers_society_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+        planet_researchers_society_research_produces_add = 0.25
+		planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+        planet_researchers_society_research_produces_add = 0.5
+		planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+	
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = engineering_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	} 
+
+	destroy_trigger = {
+		planet = {
+			NOT = { is_planet_class = pc_sulfur }
+		}
+	}
+}
+pd_building_sulfer_resort = {
+	base_buildtime = 600
+	
+	category = resource
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class =  pc_sulfur
+		NOT = { has_building = pd_building_sulfer_lab }
+		NOT = { has_building = pd_building_sulfer_springs }
+		NOT = { has_building = pd_building_sulfer_resort }
+		NOT = { has_building_construction = pd_building_sulfer_springs }
+		NOT = { has_building_construction = pd_building_sulfer_lab }
+		NOT = { has_building_construction = pd_building_sulfer_resort }	
+	}
+
+	inline_script = "buildings/pd_rare_resort_building"
+
+	destroy_trigger = {
+		planet = {
+			NOT = { is_planet_class = pc_sulfur }
+		}
+	}
+}
+
+#Ammonia
+building_ammonia_electrodeposition = {
+	base_buildtime = 360
+
+	is_capped_by_modifier = yes
+
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_ammonia
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+	
+	#prerequisites = {
+	#	"tech_mine_volatile_motes"
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_electrodepositionist_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_alloy_drone_add = 6
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_fabricator_add = 6
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			energy = 1
+		}
+	}	
+
+	ai_resource_production = {
+		trigger = { always = yes }
+		alloys = 10
+		minerals = 20
+	}	  
+
+    ai_weight = {
+        weight = 10000
+    } 
+}
+pd_building_ammonia_artisans = {
+	base_buildtime = 600
+
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_ammonia
+		NOT = { has_building = pd_building_ammonia_artisans }
+		NOT = { has_building = pd_building_ammonia_farm }
+		NOT = { has_building = pd_building_ammonia_study }
+		NOT = { has_building_construction = pd_building_ammonia_artisans }
+		NOT = { has_building_construction = pd_building_ammonia_farm}
+		NOT = { has_building_construction = pd_building_ammonia_study }
+	}
+
+	inline_script = "buildings/pd_rare_consumer_goods_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_ammonia } 
+		}
+	}
+
+}
+pd_building_ammonia_farm = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_ammonia
+		NOT = { has_building = pd_building_ammonia_artisans }
+		NOT = { has_building = pd_building_ammonia_farm }
+		NOT = { has_building = pd_building_ammonia_study }
+		NOT = { has_building_construction = pd_building_ammonia_artisans }
+		NOT = { has_building_construction = pd_building_ammonia_farm}
+		NOT = { has_building_construction = pd_building_ammonia_study }
+	}
+
+	inline_script = "buildings/pd_rare_farm_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_ammonia } 
+		}
+	}
+
+}
+pd_building_ammonia_study = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_ammonia
+		NOT = { has_building = pd_building_ammonia_artisans }
+		NOT = { has_building = pd_building_ammonia_farm }
+		NOT = { has_building = pd_building_ammonia_study }
+		NOT = { has_building_construction = pd_building_ammonia_artisans }
+		NOT = { has_building_construction = pd_building_ammonia_farm}
+		NOT = { has_building_construction = pd_building_ammonia_study }
+	}
+	planet_modifier = {
+        planet_researchers_society_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+        planet_researchers_society_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+        planet_researchers_society_research_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_ammonia } 
+		}
+	}		
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	}
+
+}
+
+#Rogue
+building_rogue_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_rogue
+		NOT = { has_building = building_rogue_lab }
+		NOT = { has_building = building_rogue_grid }
+		NOT = { has_building_construction = building_rogue_grid }
+		NOT = { has_building_construction = building_rogue_lab }
+		NOT = { has_building = building_rogue_mine }
+		NOT = { has_building_construction = building_rogue_mine }
+	}
+
+	#allow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	planet_modifier = {
+        planet_researchers_physics_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+        planet_researchers_physics_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+        planet_researchers_physics_research_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 8
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_rogue }
+		}
+	}	  
+
+	ai_resource_production = {
+		trigger = {
+			planet_resource_compare = {
+				resource = physics_research
+				value >= 30
+			}
+		}
+		physics_research = 5
+		society_research = 5
+		engineering_research = 5
+	}  
+}
+building_rogue_grid = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_rogue
+		NOT = { has_building = building_rogue_lab }
+		NOT = { has_building = building_rogue_grid }
+		NOT = { has_building_construction = building_rogue_grid }
+		NOT = { has_building_construction = building_rogue_lab }
+		NOT = { has_building = building_rogue_mine }
+		NOT = { has_building_construction = building_rogue_mine }
+	}
+
+	inline_script = "buildings/pd_rare_energy_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_rogue }
+		}
+	}	  
+}
+building_rogue_mine = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_rogue
+		NOT = { has_building = building_rogue_lab }
+		NOT = { has_building_construction = building_rogue_lab }
+		NOT = { has_building = building_rogue_grid }
+		NOT = { has_building_construction = building_rogue_grid }
+		NOT = { has_building = building_rogue_mine }
+		NOT = { has_building_construction = building_rogue_mine }
+	}
+	
+	inline_script = "buildings/pd_rare_mining_building"	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_rogue }
+		}
+	}	  	 
+}
+
+#Hycean
+building_hycean_farm = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		owner = {
+			country_uses_food = yes
+		}
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_pd_hycean
+		NOT = { has_building = building_hycean_farm }
+		NOT = { has_building_construction = building_hycean_farm }
+		NOT = { has_building = building_hycean_lab }
+		NOT = { has_building_construction = building_hycean_lab }
+		NOT = { has_building = building_hycean_foundry }
+		NOT = { has_building_construction = building_hycean_foundry }
+	}
+
+	inline_script = "buildings/pd_rare_farm_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_pd_hycean }
+		}
+	}	 
+}
+building_hycean_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		is_planet_class = pc_pd_hycean
+		NOT = { has_building = building_hycean_farm }
+		NOT = { has_building_construction = building_hycean_farm }
+		NOT = { has_building = building_hycean_lab }
+		NOT = { has_building_construction = building_hycean_lab }
+		NOT = { has_building = building_hycean_foundry }
+		NOT = { has_building_construction = building_hycean_foundry }
+	}
+
+	#llow = {
+	#	has_upgraded_capital = yes
+	#}
+
+	planet_modifier = {
+        planet_researchers_society_research_produces_add = 0.25
+        planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_2 }
+		}
+        planet_researchers_society_research_produces_add = 0.25
+        planet_researchers_engineering_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_basic_science_lab_3 }
+		}
+        planet_researchers_society_research_produces_add = 0.5
+        planet_researchers_engineering_research_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_pd_hycean }
+		}
+	}	
+}
+building_hycean_foundry = {
+	base_buildtime = 600
+
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		owner = { NOT = { is_catalytic_empire = yes } }
+		is_planet_class = pc_pd_hycean
+		NOT = { has_building = building_hycean_farm }
+		NOT = { has_building_construction = building_hycean_farm }
+		NOT = { has_building = building_hycean_lab }
+		NOT = { has_building_construction = building_hycean_lab }
+		NOT = { has_building = building_hycean_foundry }
+		NOT = { has_building_construction = building_hycean_foundry }
+	}
+
+	inline_script = "buildings/pd_rare_foundry_building"
+
+	destroy_trigger = {
+		planet = { 
+			NOT = { is_planet_class = pc_pd_hycean }
+		}
+	}	 
+}

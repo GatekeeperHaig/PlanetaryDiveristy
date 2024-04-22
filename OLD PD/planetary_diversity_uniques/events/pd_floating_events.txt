@@ -1,0 +1,210 @@
+namespace = pdfloating
+
+#EnterSystem
+ship_event = {
+	id = pdfloating.10
+	title = pdfloating.10.name
+	desc = pdfloating.10.desc
+	picture = GFX_evt_floating
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = floating_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = floating_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = floating_encounter
+		}
+	}
+
+	option = {
+		name = pdfloating.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdfloating.20
+	title = pdfloating.20.name
+	desc = pdfloating.20.desc
+	picture = GFX_evt_floating2
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = floating_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_floating_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_floating_planet
+		}
+	}
+
+	option = {
+		name = pdfloating.20.a
+	}
+}
+
+
+#Skyfall
+planet_event = {
+	id = pdfloating.30
+	title = pdfloating.30.name
+	desc = pdfloating.30.desc
+	picture = GFX_evt_floating2
+	show_sound = event_air_raid_siren
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = floating_planet			
+		#owner = { not = { has_authority = auth_machine_intelligence } }
+		#owner = { not = { has_authority = auth_hive_mind } }
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event		
+		set_planet_flag = floatingislandcrash_choice
+		owner = { set_country_flag = colony_floatingislandcrash_choice }
+	}
+
+	option = {
+		name = pdfloating.30.a
+		custom_tooltip = pdfloating.30.a.tooltip
+		enable_special_project = {
+			name = "floating_islands"
+			location = this
+			owner = root
+		}	
+	}
+
+	option = {
+		name = pdfloating.30.b
+		custom_tooltip = pdfloating.30.b.tooltip
+		hidden_effect = {
+			planet_event = { id = pdfloating.41 days = 360 }
+		}	
+	}
+
+	option = {
+		name = pdfloating.30.c
+		custom_tooltip = pdfloating.30.c.tooltip
+		hidden_effect = {
+			planet_event = { id = pdfloating.42 days = 360 }
+		}		
+	}
+}
+
+#No more skyfall
+planet_event = {
+	id = pdfloating.40
+	title = pdfloating.40.name
+	desc = pdfloating.40.desc
+	picture = GFX_evt_floating2
+	show_sound = event_laboratory_sound
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event		
+		remove_planet_flag = floatingislandcrash_choice
+		owner = { remove_country_flag = colony_floatingislandcrash_choice }
+	}
+
+	option = {
+		name = pdfloating.40.a		
+		add_modifier = { modifier = "stableislands" days = -1 }
+	}
+}
+
+#Save the main island, destory the rest
+planet_event = {
+	id = pdfloating.41
+	title = pdfloating.41.name
+	desc = pdfloating.41.desc
+	picture = GFX_evt_floating2
+	show_sound = event_ghost_town
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event		
+		remove_planet_flag = floatingislandcrash_choice
+		owner = { remove_country_flag = colony_floatingislandcrash_choice }
+	}
+
+	option = {
+		name = pdfloating.41.a		
+		add_modifier = { modifier = "stableislands1" days = -1 }
+		hidden_effect = {
+			set_planet_flag = pd_extra_eludium_mine_1
+		}	
+	}
+}
+
+#Island Crash, much mine
+planet_event = {
+	id = pdfloating.42
+	title = pdfloating.42.name
+	desc = pdfloating.42.desc
+	picture = GFX_evt_floating2
+	show_sound = event_structural_collapse
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event		
+		remove_planet_flag = floatingislandcrash_choice
+	}
+
+	option = {
+		name = pdfloating.42.a
+		add_modifier = { modifier = "relocationprotest" days = 1800 }
+		add_modifier = { modifier = "stableislands0" days = -1 }
+		hidden_effect = {
+			set_planet_flag = pd_extra_eludium_mine_2
+		}	
+	}
+}

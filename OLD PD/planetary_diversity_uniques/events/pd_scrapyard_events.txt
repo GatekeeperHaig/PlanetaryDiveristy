@@ -1,0 +1,80 @@
+namespace = pdscrapyard
+
+#EnterSystem
+ship_event = {
+	id = pdscrapyard.10
+	title = pdscrapyard.10.name
+	desc = pdscrapyard.10.desc
+	picture = GFX_evt_pdscrapyard
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = pd_scrapyard_system
+		}
+		owner = {
+			NOR = {
+				has_country_flag = pd_pdscrapyard_encounter
+				has_origin = origin_pd_scrapyard_world
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = pd_pdscrapyard_encounter
+		}
+	}
+
+	option = {
+		name = pdscrapyard10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdscrapyard.20
+	title = pdscrapyard.20.name
+	desc = pdscrapyard.20.desc
+	picture = GFX_evt_pdscrapyard2
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_scrapyard_planet
+		}
+		owner = {
+			NOR = {
+				has_country_flag = pd_pdscrapyard_encounter
+				has_origin = origin_pd_scrapyard_world
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_scrapyard_planet
+		}
+	}
+
+	option = {
+		name = pdscrapyard.20.a
+		#FROM = { create_archaeological_site = pdscrapyard_site }
+	}
+}

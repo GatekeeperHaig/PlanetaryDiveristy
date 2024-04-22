@@ -1,0 +1,63 @@
+namespace = pdarcs
+
+event = {
+	id = pdarcs.00
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { set_global_flag = planetarydiversityarcs }
+}
+
+# Choose Which Earth Palace Arc Event
+planet_event = {
+	id = pdarcs.01
+	is_triggered_only = yes
+	title = "pdarcs.01.name"
+	desc = "pdarcs.01.desc"
+	picture = GFX_evt_city_planet
+	show_sound = event_cityscape
+	location = root
+
+	trigger = {
+		is_planet_class = pc_palacearc
+	}
+	
+	#Oceans
+	option = {
+		name = pdarcs.01.a
+		set_planet_entity = { entity = earthpalacearc_planet_01_entity }
+	}
+	
+	#No Oceans
+	option = {
+		name = pdarcs.01.b
+		set_planet_entity = { entity = earthpalacearc_planet_02_entity }
+	}
+}
+
+# Choose Which Earth Capital Arc Event
+planet_event = {
+	id = pdarcs.02
+	is_triggered_only = yes
+	title = "pdarcs.02.name"
+	desc = "pdarcs.01.desc"
+	picture = GFX_evt_city_planet
+	show_sound = event_cityscape
+	location = root
+
+	trigger = {
+		is_planet_class = pc_capitalarc
+	}
+	
+	#Oceans
+	option = {
+		name = pdarcs.01.a
+		set_planet_entity = { entity = earthcapitalarc_planet_01_entity }
+	}
+	
+	#No Oceans
+	option = {
+		name = pdarcs.01.b
+		set_planet_entity = { entity = earthcapitalarc_planet_02_entity }
+	}
+}

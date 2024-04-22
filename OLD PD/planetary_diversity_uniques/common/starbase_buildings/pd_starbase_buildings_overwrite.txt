@@ -1,0 +1,45 @@
+cordyceptic_reanimation_facility = {
+	icon = "GFX_cordyceptic_reanimation_facility"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_valid_civic = civic_hive_cordyceptic_drones }
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_tiyanki_spawning_system"
+			star.solar_system = { 
+				OR = {
+					has_star_flag = tiyanki_graveyard_system
+					has_star_flag = tiyanki_spawn_system
+					has_star_flag = amoeba_home_system
+					#PD Addition
+					has_star_flag = pd_tiyanki_graveyard_system
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			food = 10
+		}
+	}
+
+	custom_tooltip = sm_cordyceptic_reanimation_facility_desc_modifier
+	on_finished = {
+		starbase_event = { id = necroids.305 days = 1800 }
+	}
+	
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}

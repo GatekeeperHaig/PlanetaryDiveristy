@@ -1,0 +1,688 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Stripmine Zro World
+decision_pd_stripmine_remove_food = {
+	icon = decision_pd_stripmine_remove
+	owned_planets_only = yes
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			energy = 4000
+		}
+	}
+
+	allow = {
+		is_planet_class = pc_pd_zro
+		has_deposit = d_zro_stripmine_untouched_farmland
+		owner = { has_technology = tech_mine_pd_zro }
+	}
+	
+	potential = {
+		is_planet_class = pc_pd_zro
+		has_deposit = d_zro_stripmine_untouched_farmland
+	}
+
+	effect = {
+		remove_deposit = d_zro_stripmine_untouched_farmland
+		custom_tooltip = decision_pd_stripmine_remove
+		hidden_effect = {
+			add_deposit = d_zro_stripmine_mining_pit
+			owner = {
+				add_resource = {
+					minerals = 2000
+					sr_zro = 100
+				}
+			}
+			if = {
+				limit = {
+					num_free_districts = { type = district_farming value < 1 }
+				}
+				remove_district = district_farming
+				remove_district = district_farming
+			}
+			if = { 
+				limit = {
+					NOT = { has_deposit = d_zro_stripmine_untouched_farmland }
+					NOT = { has_deposit = d_zro_stripmine_untouched_generator }
+				}
+				set_planet_entity = { entity = pd_zro_strip_planet_01_entity picture = pc_pd_zro_strip }
+			}
+		}
+	}   
+	
+	ai_weight = {
+        weight = 10
+  	}
+}
+decision_pd_stripmine_remove_generator = {
+	icon = decision_pd_stripmine_remove
+	owned_planets_only = yes
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			energy = 4000
+		}
+	}
+
+	allow = {
+		is_planet_class = pc_pd_zro
+		has_deposit = d_zro_stripmine_untouched_generator
+		owner = { has_technology = tech_mine_pd_zro }
+	}
+	
+	potential = {
+		is_planet_class = pc_pd_zro
+		has_deposit = d_zro_stripmine_untouched_generator
+	}
+
+	effect = {
+		remove_deposit = d_zro_stripmine_untouched_generator
+		custom_tooltip = decision_pd_stripmine_remove
+		hidden_effect = {
+			add_deposit = d_zro_stripmine_mining_pit
+			owner = {
+				add_resource = {
+					minerals = 2000
+					sr_zro = 100
+				}
+			}
+			if = {
+				limit = {
+					num_free_districts = { type = district_generator value < 1 }
+				}
+				remove_district = district_generator
+				remove_district = district_generator
+			}
+			if = { 
+				limit = {
+					NOT = { has_deposit = d_zro_stripmine_untouched_farmland }
+					NOT = { has_deposit = d_zro_stripmine_untouched_generator }
+				}
+				set_planet_entity = { entity = pd_zro_strip_planet_01_entity picture = pc_pd_zro_strip }
+			}
+		}
+	}   
+	
+	ai_weight = {
+        weight = 10
+  	}
+}
+
+# Scrapyard
+decision_pd_scrapyard_landfill = {
+	icon = decision_pd_scrapyard_landfill
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+		}
+	}
+	
+	prerequisites = {
+		"tech_pd_scrapyard_landfill"	
+	}
+
+	allow = {
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { has_deposit = d_pd_scrapyard_landfill }
+		#owner = { has_technology = tech_pd_scrapyard_landfill }
+		is_pd_shroud_world = no
+		is_pd_hive_world = no
+		is_artificial = no
+		is_pd_unique = no
+		is_pd_arcology = no
+		is_pd_machine = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+	}
+	
+	potential = {
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { has_deposit = d_pd_scrapyard_landfill }
+		#owner = { has_technology = tech_pd_scrapyard_landfill }
+		is_pd_shroud_world = no
+		is_pd_hive_world = no
+		is_artificial = no
+		is_pd_unique = no
+		is_pd_arcology = no
+		is_pd_machine = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+	}
+
+	effect = {
+		add_deposit = d_pd_scrapyard_landfill
+		hidden_effect = {
+			if = {
+				limit = {
+					num_free_districts = {
+						type = any
+						value < 2
+					}
+				}
+				remove_district = district_farming
+				remove_district = district_farming
+			}
+		}
+	}  
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+
+#Techno Organic
+decision_pd_techno_canal = {
+	icon = decision_techno_canal
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			sr_living_metal = 200
+			influence = 50
+		}
+	}
+	
+	prerequisites = {
+		"tech_techno_canal"	
+	}
+
+	allow = {
+		NOT = { is_planet_class = pc_technoorganic }
+		NOT = { is_planet_class = pc_pd_techno_arc }
+		NOT = { has_deposit = d_technocanal }
+		is_pd_hive_world = no
+		is_artificial = no
+		is_pd_unique = no
+		is_pd_arcology = no
+		is_pd_machine = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+	}
+	
+	potential = {
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { has_deposit = d_pd_scrapyard_landfill }
+		#owner = { has_technology = tech_pd_scrapyard_landfill }
+		is_pd_hive_world = no
+		is_artificial = no
+		is_pd_unique = no
+		is_pd_arcology = no
+		is_pd_machine = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+	}
+
+	effect = {
+		add_deposit = d_technocanal
+		hidden_effect = {	
+				while = {
+					limit = { num_districts = { type = district_farming value > 0 } }
+					remove_district = district_farming
+					add_district_and_planet_size_if_needed_effect = {
+					district = district_farming_uncapped
+				}
+			}
+		}
+	}  
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+
+# Tiyanki Planet, Under New Managment
+decision_change_tiyanki_choice = {
+	owned_planets_only = yes
+
+	enactment_time = 0
+	resources = {
+		category = decisions
+		cost = {
+			unity = 100
+		}
+	}
+	
+	#allow = {
+	#	free_district_slots >= 1
+	#}
+	
+	potential = {
+		is_planet_class = pc_graveyard
+		NOT = { has_planet_flag = tiyankidefault }
+		NOT = { owner = { has_country_flag = pdtiyankichoice } }
+	}
+
+	effect = {
+		custom_tooltip = decision_change_tiyanki_choice_tooltip
+		hidden_effect = {
+			planet_event = { id = pdgraveyard.30 days = 0 }
+			remove_planet_flag = tiyankileavebe
+			remove_planet_flag = tiyankinobutcher
+			remove_planet_flag = tiyankibutchertown
+			remove_planet_flag = tiyankicolonyprotect
+			remove_planet_flag = tiyankinofalling
+		}
+	}   
+	
+	ai_weight = {
+        weight = 0
+ 	}
+}
+
+# Crucible Upgrade to Clean
+decision_clean_crucible = {
+	owned_planets_only = yes
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			unity = 1000
+			energy = 5000
+		}
+	}
+	
+	potential = {
+		is_planet_class = pc_crucible
+		owner = { has_technology = tech_crucible_upgrade }
+	}
+
+	effect = {
+		custom_tooltip = decision_clean_crucible_tooltip
+		hidden_effect = {
+			change_pc = pc_clean_crucible
+			remove_modifier = crucible
+			add_modifier = { modifier = clean_crucible days = -1 }
+		}
+	}   
+	
+	ai_weight = {
+        weight = 0
+ 	}
+}
+# Crucible Upgrade to Shroud
+decision_shroud_crucible = {
+	owned_planets_only = yes
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			unity = 100
+			sr_zro = 500
+		}
+	}
+	
+	potential = {
+		is_planet_class = pc_crucible
+		owner = { has_technology = tech_crucible_upgrade }
+	}
+
+	effect = {
+		custom_tooltip = decision_shroud_crucible_tooltip
+		hidden_effect = {
+			change_pc = pc_shroud_crucible
+			remove_modifier = crucible
+			add_modifier = { modifier = shroud_crucible days = -1 }
+		}
+	}   
+	
+	ai_weight = {
+        weight = 0
+ 	}
+}
+
+
+# Waform Tranforms
+# Regular Research
+decision_pd_warform_transform_research_regular = {
+	icon = decision_pd_warform_transform_research
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		has_planet_flag = pd_warform_organic_research
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		has_planet_flag = pd_warform_organic_research
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_regular_tooltip
+		remove_planet_flag = pd_warform_organic_research
+		set_planet_flag = pd_warform_regular_research
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+# Cyber Research
+decision_pd_warform_transform_research_cyberlab = {
+	icon = decision_pd_warform_transform_research
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		has_planet_flag = pd_warform_regular_research
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		has_planet_flag = pd_warform_regular_research
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_organic_tooltip
+		remove_planet_flag = pd_warform_regular_research
+		set_planet_flag = pd_warform_organic_research
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+# Boosted Industry
+decision_pd_warform_transform_industrial_regular = {
+	icon = decision_pd_warform_transform_industrial
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		has_planet_flag = pd_warform_warforms
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		has_planet_flag = pd_warform_warforms
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_industrial_regular_tooltip
+		remove_planet_flag = pd_warform_warforms
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+# Cry Havoc and let loose the warforms of war
+decision_pd_warform_transform_industrial_warform = {
+	icon = decision_pd_warform_transform_industrial
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		NOT = { has_planet_flag = pd_warform_warforms }
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		NOT = { has_planet_flag = pd_warform_warforms }
+		owner = { has_technology = tech_pd_warform_transforming }
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_industrial_warform_tooltip
+		set_planet_flag = pd_warform_warforms
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+# Transform Blue!
+decision_pd_warform_transform_blue_warform = {
+	icon = decision_pd_warform_transform_blue
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		NOT = { 
+			OR = {
+				has_planet_flag = pd_warform_peace_room
+				has_planet_flag = pd_warform_biotrophy_room
+			} 
+		}
+		owner = { 
+			has_technology = tech_pd_warform_transforming 
+			OR = {
+				is_regular_empire = yes
+				AND = {					
+					has_authority = auth_machine_intelligence
+					has_civic = civic_machine_servitor
+				}
+			}
+		}
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		NOT = { 
+			OR = {
+				has_planet_flag = pd_warform_peace_room
+				has_planet_flag = pd_warform_biotrophy_room
+			} 
+		}
+		owner = { 
+			has_technology = tech_pd_warform_transforming 
+			OR = {
+				is_regular_empire = yes
+				AND = {					
+					has_authority = auth_machine_intelligence
+					has_civic = civic_machine_servitor
+				}
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_blue_warform_tooltip
+		remove_planet_flag = pd_warform_war_room
+		remove_planet_flag = pd_warform_machine_room
+		remove_planet_flag = pd_warform_origin_start
+		if = {
+			limit = {
+				owner = {
+					has_civic = civic_machine_servitor
+				}
+			}
+			set_planet_flag = pd_warform_biotrophy_room
+		}
+		if = {
+			limit = {
+				owner = {
+					NOT = { has_civic = civic_machine_servitor }
+				}
+			}
+			set_planet_flag = pd_warform_peace_room
+		}
+		set_planet_entity = {
+			picture = pc_pd_blue_warform
+			entity = pd_blue_warform_planet_01_entity
+		}
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+# Transform Red!
+decision_pd_warform_transform_red_warform = {
+	icon = decision_pd_warform_transform_red
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		NOT = { 
+			has_planet_flag = pd_warform_war_room 
+		}
+		owner = { 
+			has_technology = tech_pd_warform_transforming 
+			OR = {
+				is_regular_empire = yes
+				AND = {					
+					has_authority = auth_machine_intelligence
+					NOT = { has_civic = civic_machine_servitor }
+				}
+			}
+		}
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		NOT = { 
+			has_planet_flag = pd_warform_war_room 
+		}
+		owner = { 
+			has_technology = tech_pd_warform_transforming 
+			OR = {
+				is_regular_empire = yes
+				AND = {					
+					has_authority = auth_machine_intelligence
+					NOT = { has_civic = civic_machine_servitor }
+				}
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_red_warform_tooltip
+		remove_planet_flag = pd_warform_peace_room
+		remove_planet_flag = pd_warform_machine_room
+		remove_planet_flag = pd_warform_origin_start
+		remove_planet_flag = pd_warform_biotrophy_room
+		set_planet_flag = pd_warform_war_room
+		set_planet_entity = {
+			picture = pc_pd_red_warform
+			entity = pd_red_warform_planet_01_entity
+		}
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+# Transform Orange!
+decision_pd_warform_transform_orange_warform = {
+	icon = decision_pd_warform_transform_orange
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+		}
+	}
+
+	allow = {
+		is_pd_warform_world = yes
+		NOT = { 
+			has_planet_flag = pd_warform_machine_room 
+		}
+		owner = { 
+			has_technology = tech_pd_warform_transforming 
+			has_authority = auth_machine_intelligence
+		}
+	}
+	
+	potential = {
+		is_pd_warform_world = yes
+		NOT = { 
+			has_planet_flag = pd_warform_machine_room 
+		}
+		owner = { 
+			has_technology = tech_pd_warform_transforming 
+			has_authority = auth_machine_intelligence
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_warform_transform_orange_warform_tooltip
+		remove_planet_flag = pd_warform_peace_room
+		remove_planet_flag = pd_warform_war_room
+		remove_planet_flag = pd_warform_origin_start
+		remove_planet_flag = pd_warform_biotrophy_room
+		set_planet_flag = pd_warform_machine_room
+		set_planet_entity = {
+			picture = pc_pd_orange_warform
+			entity = pd_orange_warform_planet_01_entity
+		}
+	}   
+	
+	ai_weight = {
+        weight = 0
+  	}
+}
+
+

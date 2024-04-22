@@ -1,0 +1,41 @@
+namespace = pdlithoidplanets
+
+# PD Lithoid Planets - Requires Lithoids
+# This event fires after the decision to choose the color of the lithoid world
+planet_event = {
+	id = pdlithoidplanets.100
+	title = "pdlithoidplanets.100.name"
+	desc = "pdlithoidplanets.100.desc"
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = this
+	is_triggered_only = yes
+
+	option = {
+		name = pdlithoidplanets.100.cyan
+		add_modifier = {
+			modifier = pd_aw_lithoid_planet_cyan
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdlithoidplanets.100.red
+		add_modifier = {
+			modifier = pd_aw_lithoid_planet_red
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdlithoidplanets.100.yellow
+		add_modifier = {
+			modifier = pd_aw_lithoid_planet_yellow
+			days = -1
+		}
+	}
+
+	after = {
+		pd_create_lithoid_world_effect = yes
+	}
+}

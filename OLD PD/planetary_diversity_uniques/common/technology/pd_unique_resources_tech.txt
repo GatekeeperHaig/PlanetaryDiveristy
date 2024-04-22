@@ -1,0 +1,1706 @@
+#########PD Unique Techs
+
+#Floating World
+tech_eludium_mine = {
+	icon = tech_eludium_mine
+	cost = @tier2cost1
+	area = physics
+	tier = 2
+	category = { particles }	
+	prerequisites = { "tech_basic_industry" "tech_eludium_research" }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+}
+tech_eludium_research = {
+	icon = tech_eludium_research
+	cost = @tier1cost3
+	area = physics
+	tier = 1
+	category = { particles }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.1
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+}
+tech_floating_mineral_island_blocker = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" "tech_eludium_research" }
+	weight = @tier2weight2
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_mineral_island_blocker"
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 3
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_mineral_island_blocker"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+tech_floating_energy_island_blocker = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" "tech_eludium_research" }
+	weight = @tier2weight2
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_energy_island_blocker"
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 3
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_energy_island_blocker"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+tech_floating_food_island_blocker = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" "tech_eludium_research" }
+	weight = @tier2weight2
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_food_island_blocker"
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 3
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_food_island_blocker"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+tech_floating_housing_island_blocker = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" "tech_eludium_research" }
+	weight = @tier2weight2
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_housing_island_blocker"
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 3
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_floating_housing_island_blocker"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+tech_eludium_research_initiative = {
+	area = physics
+	tier = 3
+	cost = @tier3cost1
+	category = { computing }
+	prerequisites = { "tech_colonial_centralization" "tech_eludium_mine" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { has_resource = { type = sr_eludium amount > 0 } } 
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_computing }
+		}
+	}
+}
+tech_eludium_floating_islands = {
+	area = society
+	tier = 3
+	cost = @tier3cost1
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" "tech_eludium_mine" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { has_resource = { type = sr_eludium amount > 0 } } 
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+		}
+	}
+}
+
+#Crystal
+tech_acean_study = {
+	icon = tech_crystal_propagation
+	cost = @tier1cost3
+	area = society
+	tier = 1
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_crystal } }
+
+	modifier = {
+		planet_jobs_food_produces_mult = 0.1
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_crystal
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+tech_acean_mine = {
+	icon = tech_acean_mine
+	cost = @tier2cost1
+	area = engineering
+	tier = 2
+	category = { materials }	
+	prerequisites = { "tech_basic_industry" "tech_acean_study" }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_crystal } }
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_crystal
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+tech_acean_farm = {
+	icon = tech_acean_farm
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" "tech_acean_mine" }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_crystal }
+		country_uses_food = yes
+	}
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_crystal
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+tech_acean_patch = {
+	icon = tech_acean_patch
+	cost = @tier2cost1
+	area = engineering
+	tier = 2
+	category = { industry }	
+	prerequisites = { "tech_basic_industry" "tech_acean_mine" }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_crystal } }
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_crystal
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+
+#Graveyard
+tech_tiyanki_research = {
+	icon = tech_tiyanki_research
+	cost = @tier1cost3
+	area = society
+	tier = 1
+	category = { biology }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_graveyard } }
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.1
+	}
+	
+	weight_modifier = {
+		factor = 15
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_graveyard
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+tech_mine_tiyanki_butcher = {
+	icon = tech_mine_tiyanki_butcher
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { biology }	
+	prerequisites = { "tech_basic_industry" "tech_tiyanki_research" }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		has_country_flag = pdtiyankiharvest
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+tech_tiyanki_research_centre = {
+	icon = tech_tiyanki_research_centre
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { biology }	
+	prerequisites = { "tech_colonial_centralization" "tech_tiyanki_research" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		has_country_flag = pdtiyankiharvest
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+tech_tiyanki_parts_market = {
+	area = society
+	tier = 3
+	cost = @tier3cost1
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" "tech_mine_tiyanki_butcher" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = { 
+		is_gestalt = no 
+		has_country_flag = pdtiyankiharvest
+	}
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+		}
+	}
+}
+tech_tiyanki_power_plant = {
+	area = physics
+	tier = 3
+	cost = @tier3cost1
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" "tech_mine_tiyanki_butcher" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = {
+		is_gestalt = yes
+		has_country_flag = pdtiyankiharvest
+	}
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { owner = { has_country_flag = pdtiyankiharvest } }
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+	}
+}
+tech_tiyanki_observation_headquarters = {
+	icon = tech_tiyanki_observation_headquarters
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { biology }	
+	prerequisites = { "tech_colonial_centralization" "tech_tiyanki_research" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		has_country_flag = pdtiyankistudyonly
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+tech_tiyanki_observation_lab = {
+	area = society
+	tier = 2
+	cost = @tier2cost1
+	category = { biology }
+	prerequisites = { "tech_colonial_centralization" "tech_tiyanki_research" }
+	weight = @tier2weight1
+	is_rare = yes
+
+	potential = {
+		has_country_flag = pdtiyankistudyonly
+	}
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+
+#Crucible
+tech_crucible_study = {
+	icon = tech_crucible_study
+	cost = @tier1cost3
+	area = engineering
+	tier = 1
+	category = { materials }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { 
+		any_owned_planet =  { 
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_clean_crucible 
+				is_planet_class = pc_shroud_crucible 
+			}
+		} 
+	}
+
+	modifier = {
+		planet_jobs_alloys_produces_mult = 0.1
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					OR = {
+						is_planet_class = pc_crucible
+						is_planet_class = pc_clean_crucible
+						is_planet_class = pc_shroud_crucible
+					}
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+tech_crucible_upgrade = {
+	icon = tech_crucible_study
+	cost = 12000
+	area = engineering
+	tier = 1
+	category = { materials }	
+	prerequisites = { "tech_crucible_study" "tech_mine_zro" }
+	weight = @tier1weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { 
+		any_owned_planet =  { 
+			OR = {
+				is_planet_class = pc_crucible 
+				is_planet_class = pc_clean_crucible 
+				is_planet_class = pc_shroud_crucible 
+			}
+		} 
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					OR = {
+						is_planet_class = pc_crucible
+						is_planet_class = pc_clean_crucible
+						is_planet_class = pc_shroud_crucible
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+	
+	prereqfor_desc = {
+		custom = {
+			title = "tech_crucible_upgrade_custom"
+			desc = "tech_crucible_upgrade_custom_desc"
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+tech_pd_magma_forge = {
+    cost = 12000
+    area = engineering
+    tier = 3
+    category = { materials }
+    weight = @tier3cost3
+    is_rare = yes
+    is_reverse_engineerable = no
+
+    prerequisites = { "tech_crucible_study" }
+
+    potential = { 
+    	any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_crucible 
+               is_planet_class = pc_clean_crucible 
+               is_planet_class = pc_shroud_crucible 
+            }
+        } 
+		NOT = { is_catalytic_empire = yes }
+    }
+
+    weight_modifier = {
+        factor = 20
+        modifier = {
+            factor = 0
+            NOT = {
+                any_owned_planet = {
+                    is_planet_class = pc_crucible
+                }
+            }
+        }
+    }
+
+    ai_weight = {
+        factor = 5 #important resource
+        modifier = {
+            factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+        }
+    }
+}
+
+#Techno-Organic World
+#Event Rewards
+#SyntheicLifeforms
+tech_syntheticlifeforms = {
+	cost = @tier4cost2
+	area = engineering
+	tier = 4
+	category = { industry }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+
+	modifier = {
+		ROBOT_species_trait_points_add = 1
+		BIOLOGICAL_species_trait_points_add = 1
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+#BioSynth Research
+tech_dead04 = {
+	cost = @tier4cost2
+	area = engineering
+	tier = 4
+	category = { industry }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+
+	modifier = {
+		planet_jobs_robotic_produces_mult = 0.1
+		planet_researchers_engineering_research_produces_mult = 0.25
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+#Synth Trait
+tech_fourschildren = {
+	cost = @tier4cost2
+	area = engineering
+	tier = 4
+	category = { industry }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+	
+	modifier = {
+		ROBOT_species_trait_points_add = 2
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+#Hive-Synth Trait
+tech_biosynths = {
+	cost = @tier4cost2
+	area = society
+	tier = 4
+	category = { biology }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+	
+	modifier = {
+		BIOLOGICAL_species_trait_points_add = 2
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+tech_techno_canal = {
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { new_worlds  }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = d_subsurface_assembly
+					is_colony = yes
+				}
+				owner = { has_origin = origin_techno_world }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 4 #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}	
+}
+tech_techno_synth_workshop = {
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { new_worlds  }
+	prerequisites = { "tech_basic_industry" } #"tech_subsurface_assembly" 
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = d_subsurface_assembly
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 4 #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}	
+}
+tech_biosynth_lm_refinery = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { materials }
+	prerequisites = { "tech_basic_industry" "tech_exotic_gases" "tech_volatile_motes" "tech_rare_crystals" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	potential = { 
+        any_owned_planet =  { 
+            OR = {
+               is_planet_class = pc_technoorganic 
+               is_planet_class = pc_pd_techno_arc 
+            }
+        } 
+    }
+
+	weight_modifier = {
+		factor = 0
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+
+##Zro-Stripmine
+#Zro Mining Tech
+tech_mine_pd_zro = {
+	cost = @tier2cost1
+	area = engineering
+	tier = 2
+	category = { materials }
+	prerequisites = { "tech_space_construction" }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_zro }
+	}
+	
+	weight_modifier = {
+		factor = 25
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_zro
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+tech_edicts_pd_zro = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { materials }
+	prerequisites = { "tech_mine_zro" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_zro }
+	}
+
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_PD_ZRO_EDICTS_TITLE"
+			desc = "TECH_PD_ZRO_EDICTS_DESC"
+		}
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_zro
+					is_colony = yes
+				}
+				is_gestalt = no
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+tech_edicts_pd_zro_gestalt = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { materials }
+	prerequisites = { "tech_mine_pd_zro" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_zro }
+	}
+
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_PD_ZRO_EDICTS_TITLE"
+			desc = "TECH_PD_ZRO_EDICTS_DESC"
+		}
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_zro
+					is_colony = yes
+				}
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+tech_pd_zro_dealer = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { psionics }
+	prerequisites = { "tech_mine_pd_zro" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_zro }
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_zro
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			is_machine_empire = yes
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_psionics }
+		}
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_psionics }
+		}
+	}
+}
+tech_zro_research_initiative = {
+	area = society
+	tier = 3
+	cost = @tier3cost1
+	category = { psionics }
+	prerequisites = { "tech_colonial_centralization" "tech_mine_pd_zro" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_zro }
+	}
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { has_resource = { type = sr_zro amount > 0 } } 
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_zro
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_psionics }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_psionics }
+		}
+	}
+}
+tech_pd_robo_zro_processing = {
+	cost = @tier3cost1
+	area = physics
+	tier = 3
+	category = { computing }
+	prerequisites = { "tech_mine_pd_zro" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_zro }
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_zro
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = { is_machine_empire = yes }
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_computing }
+		}
+	}
+
+	ai_weight = {
+		factor = @strategic_resource_ai_tech_factor #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_computing }
+		}
+	}
+}
+
+##Scrapyard
+#Incinerator Tech
+tech_pd_scrapyard_incinerator = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry  }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_scrapyard }
+	}
+	
+	weight_modifier = {
+		factor = 20
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_scrapyard
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 4 #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}	
+}
+tech_pd_scrapyard_coordination = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry  }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_scrapyard }
+	}
+	
+	weight_modifier = {
+		factor = 20
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_scrapyard
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 4 #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}	
+}
+tech_pd_scrapyard_landfill = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry  }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet =  { is_planet_class = pc_pd_scrapyard }
+	}
+	
+	weight_modifier = {
+		factor = 20
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_pd_scrapyard
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 4 #strategic resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}	
+}
+
+##Archive
+#Uplink Node Tech 
+tech_pd_archive_link_node = {
+	cost = @tier3cost3
+	area = physics
+	tier = 3
+	category = { computing }
+	weight = @tier3cost3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet = { is_planet_class = pc_archive } 
+	}
+
+	weight_modifier = {
+		factor = 20
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					is_planet_class = pc_archive
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_computing }
+		}
+	}
+}
+
+tech_pd_warform_cyber_lab = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry }
+	weight = @tier3cost3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet = { 
+			is_pd_warform_world = yes
+		} 
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+
+tech_pd_warform_transforming = {
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry }
+	weight = @tier3cost3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	potential = {
+		any_owned_planet = { 
+			is_pd_warform_world = yes
+		} 
+	}
+
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_PD_WARFORM_TRANSFORM_TITLE"
+			desc = "TECH_PD_WARFORM_TRANSFORM_DESC"
+		}
+	}
+	
+	weight_modifier = {
+		factor = 20
+		modifier = {
+			factor = 0
+			OR = {
+				NOT = {
+					any_owned_planet = {
+						is_pd_warform_world = yes
+					}
+				}
+				has_origin = origin_pd_warform_world
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 4
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}

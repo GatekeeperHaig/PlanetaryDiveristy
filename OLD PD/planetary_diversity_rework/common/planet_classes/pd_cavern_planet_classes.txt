@@ -1,0 +1,366 @@
+###PD Cavern Worlds
+# These classes are added by Planetary Diversity
+#Cold
+pc_pd_cold_cave = {
+	entity = "pd_cold_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_pd_cold_cave
+	climate = "cold"
+	#appearance
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tundra.dds"
+	#planet defines
+	colonizable = yes
+	initial = yes
+	planet_size = { min = 25 max = 30 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	can_be_moon = no
+	carry_cap_per_free_district = @carry_cap_normal
+}
+#Dry
+pc_pd_dry_cave = {
+	entity = "pd_dry_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_pd_dry_cave
+	climate = "dry"
+	#appearance
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
+	#planet defines
+	colonizable = yes
+	initial = yes
+	planet_size = { min = 25 max = 30 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	can_be_moon = no
+	carry_cap_per_free_district = @carry_cap_normal
+}
+#Wet
+pc_pd_wet_cave = {
+	entity = "karst_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_karst
+	climate = "wet"
+	#appearance
+	atmosphere_color 		= hsv { 0.58 0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	#planet defines
+	colonizable = yes
+	initial = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+}
+#Gaia - Dummy
+pc_pd_gaia_cave = {
+	entity = "pd_gaia_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_gaia
+
+	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+
+	modifier = {
+		pop_environment_tolerance = 1
+		planet_jobs_produces_mult = 0.10
+		biological_pop_happiness = 0.10
+		lithoid_pop_happiness = 0.10
+	}
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	uses_alternative_skies_if_has_orbital_ring = no
+
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Barren
+pc_pd_barren_cave = {
+	entity = "barren_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren
+	picture = pc_barren
+
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }		#DONE
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 200
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+
+	colonizable = no
+}
+#Nuked
+pc_pd_nuked_cave = {
+	entity = "nuked_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_nuked
+
+	atmosphere_color		= hsv { 0.6 0.4 0.5 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.85
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_necropolis.dds"
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 110
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	starting_planet = no
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = no
+
+	carry_cap_per_free_district = @carry_cap_low
+}
+#Hive
+pc_pd_hive_cave = {
+	entity = "infested_cave_planet"
+	picture = pc_hive_cave
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_hive
+	atmosphere_color		= hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+	can_be_moon = no
+	chance_of_ring = 0.0
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	district_set = hive_world
+	ideal = yes
+	starting_planet = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_high
+	modifier = {
+		pop_environment_tolerance = 1
+		planet_jobs_produces_mult = 0.10
+		planet_max_buildings_add = 12
+		job_spawning_drone_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+}
+#Machine
+pc_pd_machine_cave = {
+	entity = "machine_cave_planet"
+	entity_scale = @planet_standard_scale
+	picture = pc_machine_cave
+	icon = GFX_planet_type_machine
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_housing_usage_mult = -0.10
+		pop_environment_tolerance = 0.0
+		planet_max_buildings_add = 12
+		job_replicator_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+	can_be_moon = no
+	chance_of_ring = 0.0
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	district_set = machine_world
+	starting_planet = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_low
+}
+#Flooded - Dummy
+pc_pd_aquatic_cave = {
+	entity = "aquatic_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_karst
+	climate = "wet"
+	#appearance
+	atmosphere_color 		= hsv { 0.58 0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	#planet defines
+	spawn_odds = 0
+	colonizable = yes
+	starting_planet = no
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+}
+#Wasteland - Dummy
+pc_pd_wasteland_cave = {
+	entity = "pd_wasteland_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_wasteland
+	picture = pc_pd_wasteland_cave
+	atmosphere_color 		= hsv { 0.75 0.10 0.60 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_wasteland.dds"
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	#ideal = yes
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Shroud - Dummy
+pc_pd_shroud_cave = {
+	entity = "pdshroud_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_pdshroud.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Aqua Shroud - Dummy
+pc_pd_aquatic_shroud_cave = {
+	entity = "pdshroud_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_pdshroud.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Necro Cave - Dummy
+pc_pd_necro_cave = {
+	entity = "pd_necro_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_necropolis.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Necro Shroud Cave - Dummy
+pc_pd_necro_shroud_cave = {
+	entity = "pd_necro_shroud_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_pdshroud.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}

@@ -1,0 +1,468 @@
+#########PD Exotic Techs
+
+#Radiotropic Farming
+tech_rad_bloom_farm = {
+	icon = tech_rad_bloom_farm
+	cost = @tier1cost3
+	area = society
+	tier = 1
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_trait = trait_pc_irradiated_preference
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+#Radiotropic Upgrade Transplanted Rad-Blooms
+tech_upgrade_rad_blooms = {
+	icon = tech_upgrade_rad_blooms
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }	
+	prerequisites = { "tech_rad_bloom_farm" "tech_rad_bloom_terraform_2" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_trait = trait_pc_irradiated_preference
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+#Radiotropic Terraforming 
+tech_rad_bloom_terraform_2 = {
+	weight = @tier2weight1
+	icon = tech_rad_bloom_terraform_1
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { new_worlds }	
+	prerequisites = { "tech_rad_bloom_farm" "tech_terrestrial_sculpting" }
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	modifier = {
+		custom_tooltip = RADBLOOM_TERRAFORM
+	}
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_trait = trait_pc_irradiated_preference
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+#Acid Buildings
+tech_acid_lab_building = {
+	icon = tech_acid_lab_building
+	cost = @tier1cost3
+	area = society
+	tier = 1
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_trait = trait_pc_acid_preference
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+#Ammonia Suits
+tech_ammonia_suits = {
+	cost = @tier3cost3
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier3weight3
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+
+	modifier = {
+		custom_tooltip = PDAMMONIA_SUITS
+	}
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_origin = origin_pd_ammonia_breathers
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+tech_pd_ammonia_suits_2 = {
+	cost = @tier4cost1
+	area = society
+	tier = 4
+	category = { new_worlds }
+	prerequisites = { "tech_ammonia_suits" }
+	weight = @tier4weight1
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+
+	modifier = {
+		custom_tooltip = PDAMMONIA_SUITS_TECH_2
+	}
+	
+	weight_modifier = {
+		factor = 0
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+tech_pd_ammonia_suits_3 = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { new_worlds }
+	prerequisites = { "tech_pd_ammonia_suits_2" }
+	weight = @tier5weight1
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+
+	modifier = {
+		custom_tooltip = PDAMMONIA_SUITS_TECH_3
+	}
+	
+	weight_modifier = {
+		factor = 0
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+#Sulfur
+tech_pd_sulfur_springs = {
+	icon = tech_pd_sulfur_springs
+	cost = @tier2cost3
+	area = society
+	tier = 2
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier2weight3
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_origin = origin_pd_sulfur_springs
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+#Ash Drills
+tech_ash_tectonic_drillers = {
+	icon = tech_ash_tectonic_drillers
+	cost = @tier3cost3
+	area = society
+	tier = 1
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier3weight3
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+	
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_origin = origin_pd_ash_tectonic_drillers
+				}
+			}
+		}
+		#modifier = {
+		#	factor = 0
+		#	owner = {
+		#		is_machine_empire = yes
+		#	}
+		#}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	prereqfor_desc = {	
+		ship = {
+			title = "allow_pdlavamines_0"
+			desc = "allow_pdlavamines_0_MEGASTRUCTURE_DETAILS"
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+#Rogue Star collapsing
+tech_rogue_star_collapsing = {
+	icon = tech_rogue_star_collapsing
+	cost = @tier4cost2
+	area = society
+	tier = 1
+	category = { new_worlds }	
+	prerequisites = { "tech_mine_dark_matter" "tech_climate_restoration" }
+	weight = @tier4weight2
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+	
+	weight_modifier = {
+		factor = 100
+		modifier = {
+			factor = 0
+			NOT = {
+				owner = {
+					has_origin = origin_pd_rogue_voidfarers
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000 #important
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+tech_hycean_climate_restoration = {
+	cost = @tier4cost1
+	area = society
+	tier = 4
+	category = { new_worlds }
+	prerequisites = { "tech_terrestrial_sculpting" }
+	weight = @tier4weight1
+	is_reverse_engineerable = no
+	start_tech = no
+	is_rare = yes
+
+	# unlocks additional terraforming-options
+
+	prereqfor_desc = {
+		diplo_action = {
+			title = "TECH_UNLOCK_TERRAFORMING_HYCEAN_CHANGE_TITLE"
+			desc = "TECH_UNLOCK_TERRAFORMING_HYCEAN_CHANGE_DESC"
+		}
+	}
+	
+	weight_modifier = {
+		factor = 100
+		modifier = {
+			factor = 0
+			NOT = {
+				has_origin = origin_pd_hycean_aquatic
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+
+	ai_weight = {
+		factor = @terraforming_tech_ai_factor
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 5
+			has_origin = origin_life_seeded
+		}
+		modifier = {
+			factor = 5
+			any_system_within_border = {
+				any_system_planet = {
+					is_planet_class = pc_pd_hycean
+				}
+			}
+		}
+	}
+}

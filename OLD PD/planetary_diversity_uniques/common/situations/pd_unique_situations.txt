@@ -1,0 +1,140 @@
+#Warform Rebuilding
+pd_warform_situation = {
+	picture = GFX_evt_pdwarform2
+
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+
+	start_value = 0
+	progress_direction = monodirectional
+
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_red
+
+	on_fail = {
+	}
+	on_progress_complete = {
+		custom_tooltip = pd_warform_situation_completion_tooltip
+		hidden_effect = {
+			situation_event = { id = pdwarform.325 }
+		}
+	}
+
+	stages = {
+		stage_housing = {
+			end = 50
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+		}
+		stage_power = {
+			end = 100
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				situation_event = { id = pdwarform.305 }
+			}
+		}
+		stage_industrial = {
+			end = 150
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				situation_event = { id = pdwarform.310 }
+			}
+		}
+		stage_research = {
+			end = 200
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				situation_event = { id = pdwarform.315 }
+			}
+		}
+		stage_final = {
+			end = 250
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_green
+			on_first_enter = {
+				situation_event = { id = pdwarform.320 }
+			}
+		}
+	}
+
+	monthly_progress = {
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = approach_pd_warform_colonization_team
+			add = 1
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = approach_pd_warform_extra_support
+			add = 1.5
+		}
+	}
+
+	approach = {
+		name = approach_pd_warform_colonization_team
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_red
+		default = yes
+
+		allow = {
+			always = yes
+		}
+
+		on_select = {
+			custom_tooltip = approach_pd_warform_colonization_team
+		}
+		triggered_target_modifier = {
+			potential = { owner = { is_gestalt = no } }
+			planet_jobs_worker_produces_mult = -0.50
+		}
+		triggered_target_modifier = {
+			potential = { owner = { is_gestalt = yes } }
+			planet_jobs_simple_drone_produces_mult = -0.50
+		}
+
+		ai_weight = {
+			base = 1
+		}
+	}
+
+	approach = {
+		name = approach_pd_warform_extra_support
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_green
+
+		allow = {
+			always = yes
+		}
+
+		on_select = {
+			custom_tooltip = approach_pd_warform_colonization_team
+		}
+		triggered_target_modifier = {
+			potential = { owner = { is_gestalt = no } }
+			planet_jobs_worker_produces_mult = -0.25
+		}
+		triggered_target_modifier = {
+			potential = { owner = { is_gestalt = yes } }
+			planet_jobs_simple_drone_produces_mult = -0.25
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 25
+			}
+		}
+
+		ai_weight = {
+			base = 0
+		}
+	}
+}

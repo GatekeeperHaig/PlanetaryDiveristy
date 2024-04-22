@@ -1,0 +1,7888 @@
+namespace = pdengine
+#This event sets a flag at game start
+event = {
+	id = pdengine.00
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { set_global_flag = planetarydiversity }
+}
+
+###These events fire at game start, changing all classes to PD classes, and changing starting classes to normal classes
+#This event changes all non homeworld, non prescripted to PD classes, Non ideal
+country_event = {
+	id = pdengine.10
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		#Continental
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_continental
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_continental }
+				}
+				25 = {
+					pd_retinal_world_effect = yes
+				}
+				25 = {
+					pd_lake_world_effect = yes
+				}
+				25 = {
+					pd_forest_world_effect = yes
+				}
+				25 = {
+					pd_temperate_world_effect = yes
+				}
+				25 = {
+					pd_tepid_world_effect = yes
+				}
+				25 = {
+					pd_mushroom_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_megaflora_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_petrified_world_effect = yes
+				}
+			}
+        }
+		#Ocean
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_ocean
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = living_planet
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_ocean }
+				}
+				25 = {
+					pd_cascadian_world_effect = yes
+				}
+				25 = {
+					pd_swamp_world_effect = yes
+				}
+				25 = {
+					pd_crag_world_effect = yes
+				}
+				25 = {
+					pd_fog_world_effect = yes
+				}
+				25 = {
+					pd_kelp_world_effect = yes
+				}
+				25 = {
+					pd_algae_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_reef_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_archipelago_world_effect = yes
+				}
+			}
+        }
+		#Tropical
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_tropical
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_tropical }
+				}
+				25 = {
+					pd_atoll_world_effect = yes
+				}
+				25 = {
+					pd_tepui_world_effect = yes
+				}
+				25 = {
+					pd_mangrove_world_effect = yes
+				}
+				25 = {
+					pd_cenote_world_effect = yes
+				}
+				25 = {
+					pd_fungal_world_effect = yes
+				}
+				25 = {
+					pd_aerial_world_effect = yes
+				}
+				25 = {
+					pd_lilypad_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_geothermal_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_biolumen_world_effect = yes
+				}
+			}
+        }
+		#Desert
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_desert
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_desert }
+				}
+				25 = {
+					pd_dune_world_effect = yes
+				}
+				25 = {
+					pd_oasis_world_effect = yes
+				}
+				25 = {
+					pd_outback_world_effect = yes
+				}
+				25 = {
+					pd_coastal_world_effect = yes
+				}
+				25 = {
+					pd_fungi_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_salt_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_aquifer_world_effect = yes
+				}
+			}
+        }
+		#Arid
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_arid
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_arid }
+				}
+				25 = {
+					pd_mesa_world_effect = yes
+				}
+				25 = {
+					pd_fog_desert_world_effect = yes
+				}
+				25 = {
+					pd_mediterranean_world_effect = yes
+				}
+				25 = {
+					pd_badlands_world_effect = yes
+				}
+				25 = {
+					pd_succulent_world_effect = yes
+				}
+				25 = {
+					pd_striped_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_coral_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_primal_world_effect = yes
+				}
+			}
+        }
+		#Savannah
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_savannah
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_savannah }
+				}
+				25 = {
+					pd_steppe_world_effect = yes
+				}
+				25 = {
+					pd_prairie_world_effect = yes
+				}
+				25 = {
+					pd_veld_world_effect = yes
+				}
+				25 = {
+					pd_semi_arid_world_effect = yes
+				}
+				25 = {
+					pd_aspen_world_effect = yes
+				}
+				25 = {
+					pd_sandstone_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_supercontinent_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_sinkhole_world_effect = yes
+				}
+			}
+        }
+		#Arctic
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_arctic
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_arctic }
+				}
+				25 = {
+					pd_cold_desert_world_effect = yes
+				}
+				25 = {
+					pd_glacial_world_effect = yes
+				}
+				25 = {
+					pd_antarctic_world_effect = yes
+				}
+				25 = {
+					pd_aeolian_world_effect = yes
+				}
+				25 = {
+					pd_ice_spike_world_effect = yes
+				}
+				25 = {
+					pd_crevasse_world_effect = yes
+				}
+				25 = {
+					pd_ice_dunes_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_storm_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_iceberg_world_effect = yes
+				}
+			}
+        }
+		#Alpine
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_alpine
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_alpine }
+				}
+				25 = {
+					pd_boreal_world_effect = yes
+				}
+				25 = {
+					pd_snow_world_effect = yes
+				}
+				25 = {
+					pd_highland_world_effect = yes
+				}
+				25 = {
+					pd_dune_forest_world_effect = yes
+				}
+				25 = {
+					pd_fjord_world_effect = yes
+				}
+				25 = {
+					pd_blossom_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_glaciovolcanic_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_lanthanide_world_effect = yes
+				}
+			}
+        }
+		#Tundra
+        every_galaxy_planet = {
+            limit = {
+				is_planet_class = pc_tundra
+				is_homeworld = no
+				has_pd_modifier = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+				}
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_tundra }
+				}
+				25 = {
+					pd_bog_world_effect = yes
+				}
+				25 = {
+					pd_mycelium_world_effect = yes
+				}
+				25 = {
+					pd_mud_world_effect = yes
+				}
+				25 = {
+					pd_basalt_world_effect = yes
+				}
+				25 = {
+					pd_tuya_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_cryoflora_world_effect = yes
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_lichen_world_effect = yes
+				}
+			}
+        }
+	}
+}
+#This Event Changes any planets that slipped through, and any non homeworld planets
+country_event = {
+	id = pdengine.11
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		#Continental Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_continental = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_continental
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_continental }
+				}
+				25 = {
+					pd_retinal_world_effect = yes
+				}
+				25 = {
+					pd_lake_world_effect = yes
+				}
+				25 = {
+					pd_forest_world_effect = yes
+				}
+				25 = {
+					pd_temperate_world_effect = yes
+				}
+				25 = {
+					pd_tepid_world_effect = yes
+				}
+				25 = {
+					pd_mushroom_world_effect = yes
+				}
+			}
+		}
+		#Ocean Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_ocean = yes
+				has_pd_modifier = no
+				is_homeworld = no
+				NOT = { has_planet_flag = living_planet }
+			}
+			change_pc = pc_ocean
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_ocean }
+				}
+				25 = {
+					pd_cascadian_world_effect = yes
+				}
+				25 = {
+					pd_swamp_world_effect = yes
+				}
+				25 = {
+					pd_crag_world_effect = yes
+				}
+				25 = {
+					pd_fog_world_effect = yes
+				}
+				25 = {
+					pd_kelp_world_effect = yes
+				}
+				25 = {
+					pd_algae_world_effect = yes
+				}
+			}
+		}
+		#Tropical Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_tropical = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_tropical
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_tropical }
+				}
+				25 = {
+					pd_atoll_world_effect = yes
+				}
+				25 = {
+					pd_tepui_world_effect = yes
+				}
+				25 = {
+					pd_mangrove_world_effect = yes
+				}
+				25 = {
+					pd_cenote_world_effect = yes
+				}
+				25 = {
+					pd_fungal_world_effect = yes
+				}
+				25 = {
+					pd_aerial_world_effect = yes
+				}
+				25 = {
+					pd_lilypad_world_effect = yes
+				}
+			}
+		}
+		#Desert Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_desert = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_desert
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_desert }
+				}
+				25 = {
+					pd_dune_world_effect = yes
+				}
+				25 = {
+					pd_oasis_world_effect = yes
+				}
+				25 = {
+					pd_outback_world_effect = yes
+				}
+				25 = {
+					pd_coastal_world_effect = yes
+				}
+				25 = {
+					pd_fungi_world_effect = yes
+				}
+			}
+		}
+		#Arid Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_arid = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_arid
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_arid }
+				}
+				25 = {
+					pd_mesa_world_effect = yes
+				}
+				25 = {
+					pd_fog_desert_world_effect = yes
+				}
+				25 = {
+					pd_mediterranean_world_effect = yes
+				}
+				25 = {
+					pd_badlands_world_effect = yes
+				}
+				25 = {
+					pd_succulent_world_effect = yes
+				}
+				25 = {
+					pd_striped_world_effect = yes
+				}
+			}
+		}
+		#Savannah Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_savannah = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_savannah
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_savannah }
+				}
+				25 = {
+					pd_steppe_world_effect = yes
+				}
+				25 = {
+					pd_prairie_world_effect = yes
+				}
+				25 = {
+					pd_veld_world_effect = yes
+				}
+				25 = {
+					pd_semi_arid_world_effect = yes
+				}
+				25 = {
+					pd_aspen_world_effect = yes
+				}
+				25 = {
+					pd_sandstone_world_effect = yes
+				}
+			}
+		}
+		#Arctic Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_arctic = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_arctic
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_arctic }
+				}
+				25 = {
+					pd_cold_desert_world_effect = yes
+				}
+				25 = {
+					pd_glacial_world_effect = yes
+				}
+				25 = {
+					pd_antarctic_world_effect = yes
+				}
+				25 = {
+					pd_aeolian_world_effect = yes
+				}
+				25 = {
+					pd_ice_spike_world_effect = yes
+				}
+				25 = {
+					pd_crevasse_world_effect = yes
+				}
+				25 = {
+					pd_ice_dunes_world_effect = yes
+				}
+			}
+		}
+		#Alpine Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_alpine = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_alpine
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_alpine }
+				}
+				25 = {
+					pd_boreal_world_effect = yes
+				}
+				25 = {
+					pd_snow_world_effect = yes
+				}
+				25 = {
+					pd_highland_world_effect = yes
+				}
+				25 = {
+					pd_dune_forest_world_effect = yes
+				}
+				25 = {
+					pd_fjord_world_effect = yes
+				}
+				25 = {
+					pd_blossom_world_effect = yes
+				}
+			}
+		}
+		#Tundra Planets
+		every_galaxy_planet = {
+			limit = {
+				pd_is_tundra = yes
+				has_pd_modifier = no
+				is_homeworld = no
+			}
+			change_pc = pc_tundra
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_tundra }
+				}
+				25 = {
+					pd_bog_world_effect = yes
+				}
+				25 = {
+					pd_mycelium_world_effect = yes
+				}
+				25 = {
+					pd_mud_world_effect = yes
+				}
+				25 = {
+					pd_basalt_world_effect = yes
+				}
+				25 = {
+					pd_tuya_world_effect = yes
+				}
+			}
+		}
+		#Gives Prescripted their correct deposits
+        every_galaxy_planet = {
+            limit = {
+				has_planet_flag = prescripted_ideal
+			}
+			clear_deposits = yes
+			reroll_deposits = yes
+		}
+	}
+}
+#This Event Changes any homeworlds back into normal classes after game start
+country_event = {
+	id = pdengine.12
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		#Continental Planets
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_continental
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_continental }
+				}
+				add_modifier = { modifier = pd_continental }
+			}
+		}
+        every_galaxy_planet = {
+            limit = {
+                is_planet_class = pc_pd_retinal
+                has_pd_modifier = no
+                is_homeworld = yes
+            }
+            change_pc = pc_continental
+            pd_retinal_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+        }
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_lake
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_lake_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_tepid
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_tepid_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_mushroom
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_mushroom_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_temperate
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_temperate_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_forest
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_forest_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_megaflora
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_megaflora_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_petrified
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_continental
+			pd_petrified_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Ocean Worlds
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_ocean
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_modifier = ocean_paradise
+					has_modifier = ocean_paradise_hive
+				}
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_ocean }
+				}
+				add_modifier = { modifier = pd_ocean }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cascadian
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_cascadian_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_swamp
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_swamp_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_crag
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_crag_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_fog
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_fog_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_kelp
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_kelp_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_algae
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_algae_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_reef
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_reef_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_archipelago
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_ocean
+			pd_archipelago_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Tropical Worlds
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_tropical
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_tropical }
+				}
+				add_modifier = { modifier = pd_tropical }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_atoll
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_atoll_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_tepui
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_tepui_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_mangrove
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_mangrove_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cenote
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_cenote_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_fungal
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_fungal_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_aerial
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_aerial_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_lilypad
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_lilypad_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_geothermal
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_geothermal_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_biolumen
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tropical
+			pd_biolumen_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Desert
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_desert
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_desert }
+				}
+				add_modifier = { modifier = pd_desert }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_dune
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_dune_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_oasis
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_oasis_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_outback
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_outback_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_coastal
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_coastal_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_fungi
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_fungi_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_salt
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_salt_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_aquifer
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_desert
+			pd_aquifer_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Arid
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_arid
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_arid }
+				}
+				add_modifier = { modifier = pd_arid }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_mesa
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_mesa_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_fog_desert
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_fog_desert_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_mediterranean
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_mediterranean_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_badlands
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_badlands_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_succulent
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_succulent_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_striped
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_striped_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_coral
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_coral_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_primal
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arid
+			pd_primal_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Savannah
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_savannah
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_savannah }
+				}
+				add_modifier = { modifier = pd_savannah }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_steppe
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_steppe_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_prairie
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_prairie_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_veld
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_veld_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_semi_arid
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_semi_arid_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_aspen
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_aspen_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_sandstone
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_sandstone_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_supercontinent
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_supercontinent_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_sinkhole
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_savannah
+			pd_sinkhole_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Arctic
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_arctic
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_arctic }
+				}
+				add_modifier = { modifier = pd_arctic }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cold_desert
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_cold_desert_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_glacial
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_glacial_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_antarctic
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_antarctic_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_aeolian
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_aeolian_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ice_spike
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_ice_spike_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_crevasse
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_crevasse_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ice_dunes
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_ice_dunes_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_storm
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_storm_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_iceberg
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_arctic
+			pd_iceberg_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Alpine
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_alpine
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_alpine }
+				}
+				add_modifier = { modifier = pd_alpine }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_boreal
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_boreal_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_snow
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_snow_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_highland
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_highland_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_dune_forest
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_dune_forest_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_fjord
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_fjord_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_blossom
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_blossom_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_glaciovolcanic
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_glaciovolcanic_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_lanthanide
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_alpine
+			pd_lanthanide_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		#Tundra
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_tundra
+				has_pd_modifier = no
+				is_homeworld = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_tundra }
+				}
+				add_modifier = { modifier = pd_tundra }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_bog
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_bog_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_mycelium
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_mycelium_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_mud
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_mud_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_start_deposits_and_blockers = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_basalt
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_basalt_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_tuya
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_tuya_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cryoflora
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_cryoflora_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_lichen
+				has_pd_modifier = no
+				is_homeworld = yes
+			}
+			change_pc = pc_tundra
+			pd_lichen_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+	}
+}
+#This Event Changes any other traits, but with other homeworlds (relic, tomb etc)
+country_event = {
+	id = pdengine.13
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		#Continental
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_retinal_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_retinal_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_lake_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_lake_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_tepid_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_tepid_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mushroom_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mushroom_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_temperate_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_temperate_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_forest_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_forest_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_megaflora_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_megaflora_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_petrified_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_petrified_preference
+					add_trait = trait_pc_continental_preference
+				}
+			}
+		}
+		#Ocean
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_cascadian_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_cascadian_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_swamp_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_swamp_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_crag_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_crag_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mushroom_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mushroom_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_fog_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_fog_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_kelp_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_kelp_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_algae_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_algae_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_reef_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_reef_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_archipelago_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_archipelago_preference
+					add_trait = trait_pc_ocean_preference
+				}
+			}
+		}
+		#Tropical
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_atoll_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_atoll_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_tepui_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_tepui_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mangrove_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mangrove_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_cenote_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_cenote_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_fungal_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_fungal_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_aerial_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_aerial_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_lilypad_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_lilypad_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_geothermal_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_geothermal_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_biolumen_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_biolumen_preference
+					add_trait = trait_pc_tropical_preference
+				}
+			}
+		}
+		#Desert
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_dune_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_dune_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_oasis_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_oasis_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_outback_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_outback_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_coastal_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_coastal_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_fungi_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_fungi_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_salt_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_salt_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_aquifer_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_aquifer_preference
+					add_trait = trait_pc_desert_preference
+				}
+			}
+		}
+		#Arid
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mesa_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mesa_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_fog_desert_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_fog_desert_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mediterranean_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mediterranean_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_badlands_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_badlands_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_succulent_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_succulent_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_striped_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_striped_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_coral_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_coral_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_primal_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_primal_preference
+					add_trait = trait_pc_arid_preference
+				}
+			}
+		}
+		#Savannah
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_steppe_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_steppe_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_prairie_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_prairie_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_veld_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_veld_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_semi_arid_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_semi_arid_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_aspen_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_aspen_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_sandstone_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_sandstone_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_supercontinent_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_supercontinent_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_sinkhole_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_sinkhole_preference
+					add_trait = trait_pc_savannah_preference
+				}
+			}
+		}
+		#Arctic
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_cold_desert_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_cold_desert_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_glacial_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_glacial_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_antarctic_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_antarctic_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_aeolian_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_aeolian_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_ice_spike_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_ice_spike_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_crevasse_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_crevasse_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_ice_dunes_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_ice_dunes_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_storm_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_storm_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_iceberg_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_iceberg_preference
+					add_trait = trait_pc_arctic_preference
+				}
+			}
+		}
+		#Alpine
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_boreal_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_boreal_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_snow_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_snow_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_highland_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_highland_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_dune_forest_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_dune_forest_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_fjord_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_fjord_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_blossom_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_blossom_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_glaciovolcanic_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_glaciovolcanic_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_lanthanide_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_lanthanide_preference
+					add_trait = trait_pc_alpine_preference
+				}
+			}
+		}
+		#Tundra
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_bog_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_bog_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mycelium_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mycelium_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_mud_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_mud_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_basalt_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_basalt_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_tuya_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_tuya_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_cryoflora_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_cryoflora_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+		IF = {
+			limit = {
+				any_owned_species = {
+					has_trait =	trait_pc_pd_lichen_preference
+				}
+			}
+			every_owned_species = {
+				change_species_characteristics = {
+					remove_trait = trait_pc_pd_lichen_preference
+					add_trait = trait_pc_tundra_preference
+				}
+			}
+		}
+	}
+}
+#This double checks any weird starts from vanilla
+country_event = {
+	id = pdengine.14
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		if = {
+			limit = {
+				has_origin = origin_toxic_knights
+			}
+			capital_scope = {
+				generate_start_pops = yes
+				toxic_knights_order_habitat_setup = yes
+
+				remove_deposit = d_toxic_god_blight_upon_the_land
+				remove_deposit = d_toxic_god_deitys_swarms
+				remove_deposit = d_toxic_god_pools_most_venemous
+				remove_deposit = d_toxic_god_pestilential_wasteland
+				remove_deposit = d_toxic_god_envenomed_seas
+			}
+			every_owned_planet = {
+				limit = {
+					is_planet_class = pc_habitat
+				}
+				remove_building = building_order_keep
+			}
+		}
+	}
+}
+
+###These are the Terraforming Events
+#This Event Fires After Terraforming to let you choose PD Classes
+#Has Country Flag = pd_choose_every_planet_terraforming
+planet_event = {
+	id = pdengine.20
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+		exists = space_owner
+		space_owner = {
+			OR = {
+				has_policy_flag = pd_choose_every_planet_terraforming
+				has_country_flag = pd_choose_every_planet_terraforming
+			}
+		}
+		OR = {
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tropical
+			is_planet_class = pc_desert
+			is_planet_class = pc_arid
+			is_planet_class = pc_savannah
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_tundra
+		}
+		NOR = {
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_wasteland_planet = yes
+		}
+	}
+
+	immediate = {
+		space_owner = {
+			country_event = { id = pdengine.21 }
+		}
+	}
+}
+country_event = {
+	id = pdengine.21
+	title = pdengine.21.name
+	desc = pdengine.21.desc
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = from
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			remove_pd_modifier = yes
+		}
+	}
+
+	#Continental
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.continental
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_continental }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.retinal
+		hidden_effect = {
+			from = {
+				pd_retinal_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.lake
+		hidden_effect = {
+			from = {
+				pd_lake_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.forest
+		hidden_effect = {
+			from = {
+				pd_forest_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.tepid
+		hidden_effect = {
+			from = {
+				pd_tepid_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.mushroom
+		hidden_effect = {
+			from = {
+				pd_mushroom_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.temperate
+		hidden_effect = {
+			from = {
+				pd_temperate_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.megaflora
+		hidden_effect = {
+			from = {
+				pd_megaflora_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.petrified
+		hidden_effect = {
+			from = {
+				pd_petrified_world_effect = yes
+			}
+		}
+	}
+	#Ocean
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.ocean
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_ocean }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.cascadian
+		hidden_effect = {
+			from = {
+				pd_cascadian_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.swamp
+		hidden_effect = {
+			from = {
+				pd_swamp_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.crag
+		hidden_effect = {
+			from = {
+				pd_crag_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.fog
+		hidden_effect = {
+			from = {
+				pd_fog_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.kelp
+		hidden_effect = {
+			from = {
+				pd_kelp_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.algae
+		hidden_effect = {
+			from = {
+				pd_algae_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.reef
+		hidden_effect = {
+			from = {
+				pd_reef_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.archipelago
+		hidden_effect = {
+			from = {
+				pd_archipelago_world_effect = yes
+			}
+		}
+	}
+	#Tropical
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.tropical
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_tropical }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.atoll
+		hidden_effect = {
+			from = {
+				pd_atoll_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.tepui
+		hidden_effect = {
+			from = {
+				pd_tepui_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.mangrove
+		hidden_effect = {
+			from = {
+				pd_mangrove_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.cenote
+		hidden_effect = {
+			from = {
+				pd_cenote_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.fungal
+		hidden_effect = {
+			from = {
+				pd_fungal_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.aerial
+		hidden_effect = {
+			from = {
+				pd_aerial_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.lilypad
+		hidden_effect = {
+			from = {
+				pd_lilypad_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.geothermal
+		hidden_effect = {
+			from = {
+				pd_geothermal_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.biolumen
+		hidden_effect = {
+			from = {
+				pd_biolumen_world_effect = yes
+			}
+		}
+	}
+	#Desert
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.desert
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_desert }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.dune
+		hidden_effect = {
+			from = {
+				pd_dune_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.oasis
+		hidden_effect = {
+			from = {
+				pd_oasis_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.outback
+		hidden_effect = {
+			from = {
+				pd_outback_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.coastal
+		hidden_effect = {
+			from = {
+				pd_coastal_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.fungi
+		hidden_effect = {
+			from = {
+				pd_fungi_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.salt
+		hidden_effect = {
+			from = {
+				pd_salt_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.aquifer
+		hidden_effect = {
+			from = {
+				pd_aquifer_world_effect = yes
+			}
+		}
+	}
+	#Arid
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.arid
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_arid }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.mesa
+		hidden_effect = {
+			from = {
+				pd_mesa_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.fog_desert
+		hidden_effect = {
+			from = {
+				pd_fog_desert_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.mediterranean
+		hidden_effect = {
+			from = {
+				pd_mediterranean_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.badlands
+		hidden_effect = {
+			from = {
+				pd_badlands_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.succulent
+		hidden_effect = {
+			from = {
+				pd_succulent_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.striped
+		hidden_effect = {
+			from = {
+				pd_striped_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.coral
+		hidden_effect = {
+			from = {
+				pd_coral_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.primal
+		hidden_effect = {
+			from = {
+				pd_primal_world_effect = yes
+			}
+		}
+	}
+	#Savannah
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.savannah
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_savannah }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.steppe
+		hidden_effect = {
+			from = {
+				pd_steppe_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.prairie
+		hidden_effect = {
+			from = {
+				pd_prairie_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.veld
+		hidden_effect = {
+			from = {
+				pd_veld_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.semi_arid
+		hidden_effect = {
+			from = {
+				pd_semi_arid_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.aspen
+		hidden_effect = {
+			from = {
+				pd_aspen_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_sandstone }
+		}
+		name = pdengine.21.sandstone
+		hidden_effect = {
+			from = {
+				pd_sandstone_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.supercontinent
+		hidden_effect = {
+			from = {
+				pd_supercontinent_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.sinkhole
+		hidden_effect = {
+			from = {
+				pd_sinkhole_world_effect = yes
+			}
+		}
+	}
+	#Arctic
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.arctic
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_arctic }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.cold_desert
+		hidden_effect = {
+			from = {
+				pd_cold_desert_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.glacial
+		hidden_effect = {
+			from = {
+				pd_glacial_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.antarctic
+		hidden_effect = {
+			from = {
+				pd_antarctic_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.aeolian
+		hidden_effect = {
+			from = {
+				pd_aeolian_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.ice_spike
+		hidden_effect = {
+			from = {
+				pd_ice_spike_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.crevasse
+		hidden_effect = {
+			from = {
+				pd_crevasse_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.ice_dunes
+		hidden_effect = {
+			from = {
+				pd_ice_dunes_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.storm
+		hidden_effect = {
+			from = {
+				pd_storm_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.iceberg
+		hidden_effect = {
+			from = {
+				pd_iceberg_world_effect = yes
+			}
+		}
+	}
+	#Alpine
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.alpine
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_alpine }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.boreal
+		hidden_effect = {
+			from = {
+				pd_boreal_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.snow
+		hidden_effect = {
+			from = {
+				pd_snow_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.highland
+		hidden_effect = {
+			from = {
+				pd_highland_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.dune_forest
+		hidden_effect = {
+			from = {
+				pd_dune_forest_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.fjord
+		hidden_effect = {
+			from = {
+				pd_fjord_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.blossom
+		hidden_effect = {
+			from = {
+				pd_blossom_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.glaciovolcanic
+		hidden_effect = {
+			from = {
+				pd_glaciovolcanic_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.lanthanide
+		hidden_effect = {
+			from = {
+				pd_lanthanide_world_effect = yes
+			}
+		}
+	}
+	#Tundra
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.tundra
+		hidden_effect = {
+			from = {
+				add_modifier = { modifier = pd_tundra }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.bog
+		hidden_effect = {
+			from = {
+				pd_bog_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.mycelium
+		hidden_effect = {
+			from = {
+				pd_mycelium_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.mud
+		hidden_effect = {
+			from = {
+				pd_mud_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.basalt
+		hidden_effect = {
+			from = {
+				pd_basalt_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.tuya
+		hidden_effect = {
+			from = {
+				pd_tuya_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.cryoflora
+		hidden_effect = {
+			from = {
+				pd_cryoflora_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
+			space_owner = {
+				has_ascension_perk = ap_world_shaper
+			}
+		}
+		name = pdengine.21.lichen
+		hidden_effect = {
+			from = {
+				pd_lichen_world_effect = yes
+			}
+		}
+	}
+
+	after = {
+		if = {
+			limit = {
+				from = {
+					OR = {
+						has_planet_flag = pdmars
+						has_planet_flag = planet_mars
+						has_planet_flag = pdvenus
+					}
+				}
+			}
+			from = { planet_event = { id = pdengine.72 days = 0 } }
+		}
+	}
+}
+#This Event Fires After Terraforming to let you choose Gaia Classes
+#Has Country Flag = pd_choose_every_planet_terraforming
+planet_event = {
+	id = pdengine.23
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+		exists = space_owner
+		space_owner = {
+			OR = {
+				has_policy_flag = pd_choose_every_planet_terraforming
+				has_country_flag = pd_choose_every_planet_terraforming
+			}
+		}
+		is_planet_class = pc_gaia
+		pd_aw_is_shroud_planet = no
+		pd_aw_is_wasteland_planet = no
+	}
+
+	immediate = {
+		IF = {
+			limit = {
+				pd_is_flooded_planet = yes
+			}
+			change_pc = pc_pd_wet_gaia
+			set_planet_entity = {
+				picture = pc_aquatic_hot
+				entity = ocean_paradise_planet_01_entity
+			}
+		}
+		IF = {
+			limit = {
+				pd_is_flooded_planet = yes
+				has_modifier = pd_aw_shroud_planet
+			}
+			change_pc = pc_pd_wet_gaia
+			set_planet_entity = {
+				picture = pc_aquatic_shroud_hot
+				entity = ocean_paradise_shroud_planet_01_entity
+			}
+		}
+		IF = {
+			limit = {
+				NOT = {	pd_is_flooded_planet = yes }
+			}
+			space_owner = {
+				country_event = { id = pdengine.24 }
+			}
+		}
+	}
+}
+country_event = {
+	id = pdengine.24
+	title = pdengine.24.name
+	desc = pdengine.24.desc
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = root
+	is_triggered_only = yes
+
+	immediate = {
+		from = {
+			remove_pd_modifier = yes
+		}
+	}
+
+	#Continental
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_gaia }
+		}
+		name = pdengine.24.wet_gaia
+		hidden_effect = {
+			from = {
+				pd_wet_gaia_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_gaia }
+		}
+		name = pdengine.24.dry_gaia
+		hidden_effect = {
+			from = {
+				pd_dry_gaia_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_gaia }
+		}
+		name = pdengine.24.cold_gaia
+		hidden_effect = {
+			from = {
+				pd_cold_gaia_world_effect = yes
+			}
+		}
+	}
+}
+#This Event Fires After Terraforming and fires a random class
+#Has Country Flag = pd_random_same_class_terraforming
+planet_event = {
+	id = pdengine.22
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+		exists = space_owner
+		space_owner = {
+			OR = {
+				has_policy_flag = pd_random_same_class_terraforming
+				has_country_flag = pd_random_same_class_terraforming
+			}
+		}
+		can_have_habitable_deposits = yes
+		OR = {
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tropical
+			is_planet_class = pc_desert
+			is_planet_class = pc_arid
+			is_planet_class = pc_savannah
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_tundra
+		}
+	}
+
+	immediate = {
+		remove_pd_modifier = yes
+		IF = {
+			limit = {
+				is_planet_class = pc_continental
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_continental }
+				}
+				25 = {
+					pd_retinal_world_effect = yes
+				}
+				25 = {
+					pd_lake_world_effect = yes
+				}
+				25 = {
+					pd_forest_world_effect = yes
+				}
+				25 = {
+					pd_temperate_world_effect = yes
+				}
+				25 = {
+					pd_tepid_world_effect = yes
+				}
+				25 = {
+					pd_mushroom_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_megaflora_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_petrified_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_ocean
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_ocean }
+				}
+				25 = {
+					pd_cascadian_world_effect = yes
+				}
+				25 = {
+					pd_swamp_world_effect = yes
+				}
+				25 = {
+					pd_crag_world_effect = yes
+				}
+				25 = {
+					pd_fog_world_effect = yes
+				}
+				25 = {
+					pd_kelp_world_effect = yes
+				}
+				25 = {
+					pd_algae_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_reef_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_archipelago_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_tropical
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_tropical }
+				}
+				25 = {
+					pd_atoll_world_effect = yes
+				}
+				25 = {
+					pd_tepui_world_effect = yes
+				}
+				25 = {
+					pd_mangrove_world_effect = yes
+				}
+				25 = {
+					pd_cenote_world_effect = yes
+				}
+				25 = {
+					pd_fungal_world_effect = yes
+				}
+				25 = {
+					pd_aerial_world_effect = yes
+				}
+				25 = {
+					pd_lilypad_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_geothermal_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_biolumen_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_desert
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_desert }
+				}
+				25 = {
+					pd_dune_world_effect = yes
+				}
+				25 = {
+					pd_oasis_world_effect = yes
+				}
+				25 = {
+					pd_outback_world_effect = yes
+				}
+				25 = {
+					pd_coastal_world_effect = yes
+				}
+				25 = {
+					pd_fungi_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_salt_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_salt_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_arid
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_arid }
+				}
+				25 = {
+					pd_mesa_world_effect = yes
+				}
+				25 = {
+					pd_fog_desert_world_effect = yes
+				}
+				25 = {
+					pd_mediterranean_world_effect = yes
+				}
+				25 = {
+					pd_badlands_world_effect = yes
+				}
+				25 = {
+					pd_succulent_world_effect = yes
+				}
+				25 = {
+					pd_striped_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_coral_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_primal_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_savannah
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_savannah }
+				}
+				25 = {
+					pd_steppe_world_effect = yes
+				}
+				25 = {
+					pd_prairie_world_effect = yes
+				}
+				25 = {
+					pd_veld_world_effect = yes
+				}
+				25 = {
+					pd_semi_arid_world_effect = yes
+				}
+				25 = {
+					pd_aspen_world_effect = yes
+				}
+				25 = {
+					pd_sandstone_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_supercontinent_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_sinkhole_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_arctic
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_arctic }
+				}
+				25 = {
+					pd_cold_desert_world_effect = yes
+				}
+				25 = {
+					pd_glacial_world_effect = yes
+				}
+				25 = {
+					pd_antarctic_world_effect = yes
+				}
+				25 = {
+					pd_aeolian_world_effect = yes
+				}
+				25 = {
+					pd_ice_spike_world_effect = yes
+				}
+				25 = {
+					pd_crevasse_world_effect = yes
+				}
+				25 = {
+					pd_ice_dunes_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_storm_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_iceberg_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_alpine
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_alpine }
+				}
+				25 = {
+					pd_boreal_world_effect = yes
+				}
+				25 = {
+					pd_snow_world_effect = yes
+				}
+				25 = {
+					pd_highland_world_effect = yes
+				}
+				25 = {
+					pd_dune_forest_world_effect = yes
+				}
+				25 = {
+					pd_fjord_world_effect = yes
+				}
+				25 = {
+					pd_blossom_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_glaciovolcanic_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_lanthanide_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_tundra
+			}
+			random_list = {
+				25 = {
+					add_modifier = { modifier = pd_tundra }
+				}
+				25 = {
+					pd_bog_world_effect = yes
+				}
+				25 = {
+					pd_mycelium_world_effect = yes
+				}
+				25 = {
+					pd_mud_world_effect = yes
+				}
+				25 = {
+					pd_basalt_world_effect = yes
+				}
+				25 = {
+					pd_tuya_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_cryoflora_world_effect = yes
+				}
+				0 = {
+					modifier = {
+						add = 25
+						space_owner = {
+							has_ascension_perk = ap_world_shaper
+						}
+					}
+					pd_lichen_world_effect = yes
+				}
+			}
+		}
+	}
+}
+#This event fires to keep the correct view for Uncommon Gaias
+#Has Country Flag = pd_random_same_class_terraforming
+planet_event = {
+	id = pdengine.25
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			pd_is_planet_class_superhabitable = yes
+			pd_is_planet_class_tidally_locked = yes
+			pd_is_planet_class_cave = yes
+		}
+		has_modifier = pd_uncommon_gaia_world
+	}
+
+	immediate = {
+		pd_make_uncommon_gaia_worlds_effect = yes
+	}
+}
+
+#These Events are for Uncommon Worlds
+#This event changes some planets from Regular into Uncommon Worlds
+country_event = {
+	id = pdengine.30
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Superhabitable
+	immediate = {
+		every_galaxy_planet = {
+            limit = {
+				is_wet = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_k
+						is_star_class = sc_trinary_3
+						is_star_class = sc_binary_7
+					}
+				}
+				is_homeworld = no
+				is_moon = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					has_planet_flag = living_planet
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_wet_superhabitable
+			reroll_planet = yes
+			add_modifier = {
+				modifier = pd_wet_superhabitable
+				days = -1
+			}
+			random_list = {
+				20 = { set_planet_size = 31 }
+				20 = { set_planet_size = 32 }
+				20 = { set_planet_size = 33 }
+				20 = { set_planet_size = 34 }
+				20 = { set_planet_size = 35 }
+			}
+		}
+		every_galaxy_planet = {
+            limit = {
+				is_dry = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_k
+						is_star_class = sc_trinary_3
+						is_star_class = sc_binary_7
+					}
+				}
+				is_homeworld = no
+				is_moon = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_dry_superhabitable
+			add_modifier = {
+				modifier = pd_dry_superhabitable
+				days = -1
+			}
+			reroll_planet = yes
+			random_list = {
+				20 = { set_planet_size = 31 }
+				20 = { set_planet_size = 32 }
+				20 = { set_planet_size = 33 }
+				20 = { set_planet_size = 34 }
+				20 = { set_planet_size = 35 }
+			}
+        }
+		every_galaxy_planet = {
+            limit = {
+				is_cold = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_k
+						is_star_class = sc_trinary_3
+						is_star_class = sc_binary_7
+					}
+				}
+				is_homeworld = no
+				is_moon = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_cold_superhabitable
+			add_modifier = {
+				modifier = pd_cold_superhabitable
+				days = -1
+			}
+			reroll_planet = yes
+			random_list = {
+				20 = { set_planet_size = 31 }
+				20 = { set_planet_size = 32 }
+				20 = { set_planet_size = 33 }
+				20 = { set_planet_size = 34 }
+				20 = { set_planet_size = 35 }
+			}
+        }
+		every_galaxy_planet = {
+            limit = {
+				is_wet = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_6
+						is_star_class = sc_trinary_1
+					}
+				}
+				is_homeworld = no
+				is_moon = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					has_planet_flag = living_planet
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_wet_tidally_locked
+			reroll_planet = yes
+			add_modifier = {
+				modifier = pd_wet_tidally_locked
+				days = -1
+			}
+		}
+		every_galaxy_planet = {
+            limit = {
+				is_dry = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_6
+						is_star_class = sc_trinary_1
+					}
+				}
+				is_homeworld = no
+				is_moon = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_dry_tidally_locked
+			add_modifier = {
+				modifier = pd_dry_tidally_locked
+				days = -1
+			}
+			reroll_planet = yes
+        }
+		every_galaxy_planet = {
+            limit = {
+				is_cold = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_6
+						is_star_class = sc_trinary_1
+					}
+				}
+				is_homeworld = no
+				is_moon = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_cold_tidally_locked
+			add_modifier = {
+				modifier = pd_cold_tidally_locked
+				days = -1
+			}
+			reroll_planet = yes
+        }
+		every_galaxy_planet = {
+            limit = {
+				is_wet = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_f
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_7
+						is_star_class = sc_binary_8
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_3
+					}
+				}
+				is_homeworld = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					has_planet_flag = living_planet
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_wet_cave
+			reroll_planet = yes
+			add_modifier = {
+				modifier = pd_wet_cave
+				days = -1
+			}
+		}
+		every_galaxy_planet = {
+            limit = {
+				is_cold = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_f
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_7
+						is_star_class = sc_binary_8
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_3
+					}
+				}
+				is_homeworld = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_cold_cave
+			reroll_planet = yes
+			add_modifier = {
+				modifier = pd_cold_cave
+				days = -1
+			}
+		}
+		every_galaxy_planet = {
+            limit = {
+				is_dry = yes
+				system_star = {
+					OR = {
+						is_star_class = sc_f
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_7
+						is_star_class = sc_binary_8
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_3
+					}
+				}
+				is_homeworld = no
+				planet_size > 9
+				planet_size < 31
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore
+					has_planet_flag = planet_earth
+					has_planet_flag = fallen_empire_world
+					solar_system = {
+						OR = {
+							has_star_flag = empire_cluster
+							has_star_flag = empire_home_system
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+				}
+			}
+			remove_pd_modifier = yes
+			change_pc = pc_pd_dry_cave
+			reroll_planet = yes
+			add_modifier = {
+				modifier = pd_dry_cave
+				days = -1
+			}
+		}
+	}
+}
+#This event makes sure Uncommon homeworlds have the correct deposits.
+country_event = {
+	id = pdengine.31
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		#Wet Superhabitable
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_wet_superhabitable
+				is_capital = yes
+			}
+			change_planet_size = +14
+			generate_pd_uncommon_planet = yes
+		}
+		#Dry Superhabitable
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_dry_superhabitable
+				is_capital = yes
+			}
+			change_planet_size = +14
+			generate_pd_uncommon_planet = yes
+		}
+		#Cold Superhabitable
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cold_superhabitable
+				is_capital = yes
+			}
+			change_planet_size = +14
+			generate_pd_uncommon_planet = yes
+		}
+		#Wet Tidally Locked
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_wet_tidally_locked
+				is_capital = yes
+			}
+			generate_pd_uncommon_planet = yes
+		}
+		#Dry Tidally Locked
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_dry_tidally_locked
+				is_capital = yes
+			}
+			generate_pd_uncommon_planet = yes
+		}
+		#Cold Tidally Locked
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cold_tidally_locked
+				is_capital = yes
+			}
+			generate_pd_uncommon_planet = yes
+		}
+		#Wet Cave
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_wet_cave
+				is_capital = yes
+			}
+			generate_pd_uncommon_planet = yes
+		}
+		#Dry Cave
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_dry_cave
+				is_capital = yes
+			}
+			generate_pd_uncommon_planet = yes
+		}
+		#Cold Cave
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_cold_cave
+				is_capital = yes
+			}
+			generate_pd_uncommon_planet = yes
+		}
+	}
+}
+#This event makes sure that Uncommon worlds don't have their uncommon classes as their nearby planets
+country_event = {
+	id = pdengine.32
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		#Wet Superhabitable Player Start
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_pd_wet_superhabitable
+					is_planet_class = pc_pd_dry_superhabitable
+					is_planet_class = pc_pd_cold_superhabitable
+				}
+				is_homeworld = no
+				has_planet_flag = prescripted_ideal
+			}
+			change_pc = pc_pd_barren_superhabitable
+			add_modifier = {
+				modifier = terraforming_candidate
+				days = -1
+			}
+			random_list = {
+				25 = {
+					set_planet_size = 31
+				}
+				25 = {
+					set_planet_size = 32
+				}
+				25 = {
+					set_planet_size = 33
+				}
+				25 = {
+					set_planet_size = 34
+				}
+				25 = {
+					set_planet_size = 35
+				}
+			}
+		}
+		#Wet Tidally Locked Player Start
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_pd_wet_tidally_locked
+					is_planet_class = pc_pd_dry_tidally_locked
+					is_planet_class = pc_pd_cold_tidally_locked
+				}
+				is_homeworld = no
+				has_planet_flag = prescripted_ideal
+			}
+			change_pc = pc_pd_barren_tidally_locked
+			add_modifier = {
+				modifier = terraforming_candidate
+				days = -1
+			}
+		}
+		#Wet Cave Player Start
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_pd_wet_cave
+					is_planet_class = pc_pd_dry_cave
+					is_planet_class = pc_pd_cold_cave
+				}
+				is_homeworld = no
+				has_planet_flag = prescripted_ideal
+			}
+			change_pc = pc_pd_barren_cave
+			add_modifier = {
+				modifier = terraforming_candidate
+				days = -1
+			}
+		}
+	}
+}
+#This event sets up the Uncommon barren worlds.
+country_event = {
+	id = pdengine.33
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Uncommon Terraforming Candidates
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+				}
+				NOR = {
+					has_modifier = terraforming_candidate
+					is_moon = yes
+				}
+				planet_size > 9
+				planet_size < 31
+				solar_system = { is_star_class = sc_k }
+			}
+			random_list = {
+				5 = {
+					change_pc = pc_pd_barren_superhabitable
+					add_modifier = { modifier = terraforming_candidate days = -1 }
+					random_list = {
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
+					}
+				}
+				95 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+				}
+				NOR = {
+					has_modifier = terraforming_candidate
+					is_moon = yes
+				}
+				planet_size > 9
+				planet_size < 31
+				is_moon = no
+				has_moon = no
+				solar_system = { is_star_class = sc_m }
+			}
+			random_list = {
+				8 = {
+					change_pc = pc_pd_barren_tidally_locked
+					add_modifier = { modifier = terraforming_candidate days = -1 }
+				}
+				92 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+				}
+				NOR = {
+					has_modifier = terraforming_candidate
+					is_moon = yes
+				}
+				planet_size > 9
+				planet_size < 31
+				is_moon = no
+				solar_system = { is_star_class = sc_f }
+			}
+			random_list = {
+				6 = {
+					change_pc = pc_pd_barren_cave
+					add_modifier = { modifier = terraforming_candidate days = -1 }
+				}
+				94 = { }
+			}
+		}
+	}
+}
+#This event gives all the uncommon worlds flags
+country_event = {
+	id = pdengine.34
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					pd_is_planet_class_superhabitable = yes
+					is_planet_class = pc_pd_barren_superhabitable
+				}
+			}
+			set_planet_flag = pd_superhabitable_world
+		}
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					pd_is_planet_class_tidally_locked = yes
+					is_planet_class = pc_pd_barren_tidally_locked
+				}
+			}
+			set_planet_flag = pd_tidally_locked_world
+		}
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					pd_is_planet_class_cave = yes
+					is_planet_class = pc_pd_barren_cave
+				}
+			}
+			set_planet_flag = pd_cave_world
+		}
+	}
+}
+#This event gives uncommon arcologies their correct modifer
+planet_event = {
+	id = pdengine.35
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_city
+	}
+
+	immediate = {
+		switch = {
+		trigger = has_planet_flag
+			pd_superhabitable_world = {
+				add_modifier = {
+					modifier = pd_arcology_superhabitable
+					days = -1
+				}
+			}
+			pd_cave_world = {
+				add_modifier = {
+					modifier = pd_arcology_cave
+					days = -1
+				}
+			}
+			pd_tidally_locked_world = {
+				add_modifier = {
+					modifier = pd_arcology_tidally_locked
+					days = -1
+				}
+			}
+		}
+		planet_event = { id = pdengine.36 days = 1 }
+	}
+}
+#This event gives uncommon arcologies their correct view
+planet_event = {
+	id = pdengine.36
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		switch = {
+		trigger = has_planet_flag
+			pd_cave_world = {
+				set_planet_entity = {
+					picture = pc_pd_arcology_cave
+					entity = "city_planet_cave_entity"
+					graphical_culture = owner
+				}
+			}
+			pd_tidally_locked_world = {
+				set_planet_entity = {
+					picture = pc_pd_arcology_tidally_locked
+					entity = "city_planet_tidally_locked_entity"
+					graphical_culture = owner
+				}
+			}
+		}
+	}
+}
+
+#These events check modifiers after terraforming
+#This event removing modifiers from incorrect planets after planet change and terraforming
+planet_event = {
+	id = pdengine.40
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		#Continental
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_continental
+				}
+			}
+			remove_pd_continental_modifier = yes
+		}
+		#Ocean
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_ocean
+				}
+			}
+			remove_pd_ocean_modifier = yes
+		}
+		#Tropical
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_tropical
+				}
+			}
+			remove_pd_tropical_modifier = yes
+		}
+		#Desert
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_desert
+				}
+			}
+			remove_pd_desert_modifier = yes
+		}
+		#Arid
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_arid
+				}
+			}
+			remove_pd_arid_modifier = yes
+		}
+		#Savannah
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_savannah
+				}
+			}
+			remove_pd_savannah_modifier = yes
+		}
+		#Arctic
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_arctic
+				}
+			}
+			remove_pd_arctic_modifier = yes
+		}
+		#Alpine
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_alpine
+				}
+			}
+			remove_pd_alpine_modifier = yes
+		}
+		#Tundra
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_tundra
+				}
+			}
+			remove_pd_tundra_modifier = yes
+		}
+		#Gaia World
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_gaia
+				}
+			}
+			remove_modifier = pd_gaia_world
+		}
+		#Superhabtiables
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_wet_superhabitable
+				}
+			}
+			remove_modifier = pd_wet_superhabitable
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_dry_superhabitable
+				}
+			}
+			remove_modifier = pd_dry_superhabitable
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_cold_superhabitable
+				}
+			}
+			remove_modifier = pd_cold_superhabitable
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_gaia_superhabitable
+				}
+			}
+			remove_modifier = pd_gaia_superhabitable
+		}
+		#Tidally Locked
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_wet_tidally_locked
+				}
+			}
+			remove_modifier = pd_wet_tidally_locked
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_dry_tidally_locked
+				}
+			}
+			remove_modifier = pd_dry_tidally_locked
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_cold_tidally_locked
+				}
+			}
+			remove_modifier = pd_cold_tidally_locked
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_gaia_tidally_locked
+				}
+			}
+			remove_modifier = pd_gaia_tidally_locked
+		}
+		#Caves
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_wet_cave
+				}
+			}
+			remove_modifier = pd_wet_cave
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_dry_cave
+				}
+			}
+			remove_modifier = pd_dry_cave
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_cold_cave
+				}
+			}
+			remove_modifier = pd_cold_cave
+		}
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_pd_gaia_cave
+				}
+			}
+			remove_modifier = pd_gaia_cave
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_city
+					is_planet_class = pc_relic
+				}
+			}
+			remove_modifier = pc_pd_nuked_arcology
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_gaia
+					is_planet_class = pc_pd_dry_gaia
+					is_planet_class = pc_pd_cold_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+			remove_modifier = pd_gaia_world
+		}
+		#This makes sure gaias don't get the gaia modifier as well
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_gaia
+					is_planet_class = pc_pd_dry_gaia
+					is_planet_class = pc_pd_cold_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+			remove_modifier = engineered_environment_gaia
+		}
+		#This makes sure domed habs lose their modifers if the planet class changes
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_toxic
+					is_planet_class = pc_molten
+					is_planet_class = pc_gas_giant
+				}
+			}
+			remove_modifier = pd_moon_base_trade
+			remove_modifier = pd_moon_base_military
+			remove_modifier = pd_moon_base_factory
+			remove_modifier = pd_moon_base_foundry
+			remove_modifier = pd_moon_base_admin
+			remove_modifier = pd_moon_base_priest
+			remove_modifier = pd_domed_base_research
+			remove_modifier = pd_domed_base_mining
+			remove_modifier = pd_domed_base_energy
+			remove_modifier = pd_domed_base_food
+			remove_modifier = pd_domed_moonbase_site
+			remove_modifier = pd_domed_mining_site
+			remove_modifier = pd_domed_food_site
+			remove_modifier = pd_domed_energy_site
+			remove_modifier = pd_domed_research_site
+		}
+	}
+}
+#This event makes sure certain special classes get their modifier after terraforming or events
+planet_event = {
+	id = pdengine.41
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		#Gaia World
+		if = {
+			limit = {
+				is_planet_class = pc_gaia
+				NOR = {
+					has_modifier = pd_gaia_world
+				}
+			}
+			add_modifier = {
+				modifier = pd_gaia_world
+				days = -1
+			}
+			change_pc = pc_pd_wet_gaia
+		}
+		#Superhabtiables
+		if = {
+			limit = {
+				is_planet_class = pc_pd_wet_superhabitable
+				NOT = {
+					has_modifier = pd_wet_superhabitable
+				}
+			}
+			add_modifier = {
+				modifier = pd_wet_superhabitable
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_dry_superhabitable
+				NOT = {
+					has_modifier = pd_dry_superhabitable
+				}
+			}
+			add_modifier = {
+				modifier = pd_dry_superhabitable
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_cold_superhabitable
+				NOT = {
+					has_modifier = pd_cold_superhabitable
+				}
+			}
+			add_modifier = {
+				modifier = pd_cold_superhabitable
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_gaia_superhabitable
+				NOT = {
+					has_modifier = pd_gaia_superhabitable
+				}
+			}
+			add_modifier = {
+				modifier = pd_gaia_superhabitable
+				days = -1
+			}
+		}
+		#Tidally Locked
+		if = {
+			limit = {
+				is_planet_class = pc_pd_wet_tidally_locked
+				NOT = {
+					has_modifier = pd_wet_tidally_locked
+				}
+			}
+			add_modifier = {
+				modifier = pd_wet_tidally_locked
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_dry_tidally_locked
+				NOT = {
+					has_modifier = pd_dry_tidally_locked
+				}
+			}
+			add_modifier = {
+				modifier = pd_dry_tidally_locked
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_cold_tidally_locked
+				NOT = {
+					has_modifier = pd_cold_tidally_locked
+				}
+			}
+			add_modifier = {
+				modifier = pd_cold_tidally_locked
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_gaia_tidally_locked
+				NOT = {
+					has_modifier = pd_gaia_tidally_locked
+				}
+			}
+			add_modifier = {
+				modifier = pd_gaia_tidally_locked
+				days = -1
+			}
+		}
+		#Caves
+		if = {
+			limit = {
+				is_planet_class = pc_pd_wet_cave
+				NOT = {
+					has_modifier = pd_wet_cave
+				}
+			}
+			add_modifier = {
+				modifier = pd_wet_cave
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_dry_cave
+				NOT = {
+					has_modifier = pd_dry_cave
+				}
+			}
+			add_modifier = {
+				modifier = pd_dry_cave
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_cold_cave
+				NOT = {
+					has_modifier = pd_cold_cave
+				}
+			}
+			add_modifier = {
+				modifier = pd_cold_cave
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_gaia_cave
+				NOT = {
+					has_modifier = pd_gaia_cave
+				}
+			}
+			add_modifier = {
+				modifier = pd_gaia_cave
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_gaia
+					is_planet_class = pc_pd_dry_gaia
+					is_planet_class = pc_pd_cold_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+			add_modifier = {
+				modifier = pd_gaia_world
+				days = -1
+			}
+		}
+	}
+}
+
+#These are checks for Starting on a Tidally Locked World
+#This is a pre event that checks if tidally locked starting worlds are moons
+country_event = {
+	id = pdengine.50
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_pd_wet_tidally_locked
+					is_planet_class = pc_pd_dry_tidally_locked
+					is_planet_class = pc_pd_cold_tidally_locked
+				}
+				is_homeworld = yes
+				is_moon = yes
+			}
+			ROOT = { set_country_flag = pdtidallylockedhomeworldmoon }
+		}
+	}
+}
+#This is an event that changes the tidally locked homeworld to another planet if the empire starts on a moon
+country_event = {
+	id = pdengine.51
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger	 = {
+		has_country_flag = pdtidallylockedhomeworldmoon
+		any_owned_planet = {
+			OR = {
+				is_planet_class = pc_pd_wet_tidally_locked
+				is_planet_class = pc_pd_dry_tidally_locked
+				is_planet_class = pc_pd_cold_tidally_locked
+			}
+		}
+	}
+
+	immediate = {
+		random_planet_within_border = {
+			limit = {
+				is_capital = no
+				is_moon = no
+				is_star = no
+				is_asteroid = no
+				NOT = { is_planet_class = pc_gas_giant }
+				is_artificial = no
+			}
+			set_planet_size = 20
+			if = {
+				limit = {
+					root = { any_planet_within_border = { is_planet_class = pc_pd_wet_tidally_locked } }
+				}
+				change_pc = pc_pd_wet_tidally_locked
+			}
+			if = {
+				limit = {
+					root = { any_planet_within_border = { is_planet_class = pc_pd_dry_tidally_locked } }
+				}
+				change_pc = pc_pd_dry_tidally_locked
+			}
+			if = {
+				limit = {
+					root = { any_planet_within_border = { is_planet_class = pc_pd_cold_tidally_locked } }
+				}
+				change_pc = pc_pd_cold_tidally_locked
+			}
+			if = {
+				limit = {
+					root = {
+						has_origin = origin_default
+						is_gestalt = no
+					}
+				}
+				add_modifier = { modifier = prosp_uni_mod days = 7200 }
+			}
+			if = {
+				limit = {
+					root = {
+						has_origin = origin_default
+						is_gestalt = yes
+					}
+				}
+				add_modifier = { modifier = prosp_uni_mod_gestalt days = 7200 }
+			}
+			generate_pd_start_deposits_and_blockers = yes
+			set_owner = ROOT
+			set_planet_flag = tidallylockedhomeworld
+			#All other pop types
+			create_pop = {
+				species = owner_species
+				ethos = random
+			}
+			set_capital = yes
+			generate_start_buildings_and_districts = yes
+			generate_home_planet_final_pass = yes
+			generate_start_pops = yes
+			IF = {
+				limit = { owner = { has_origin = origin_tree_of_life } }
+				add_deposit = d_tree_of_life_home
+				remove_modifier = no_lifetree
+			}
+			set_planet_flag = pd_tidally_locked_world
+		}
+		every_owned_pop = {
+			modify_species = {
+				species = this
+				ideal_planet_class = pc_pd_wet_tidally_locked
+				base = none # makes this replace parent species
+			}
+		}
+		random_owned_planet = {
+			limit = { is_capital = no }
+			change_pc = pc_barren
+			reset_planet = yes
+		}
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+			}
+			change_pc = pc_m_star
+		}
+		solar_system = { set_star_class = sc_m }
+	}
+}
+
+#These events are for Uninhabitable Planets
+#This event changes the adds deposits and updates the visuals of the special uninhabitable worlds
+country_event = {
+	id = pdengine.61
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_barren_cold
+				NOR = {
+					has_modifier = terraforming_candidate
+					has_planet_flag = pd_special_uninhabitable
+				}
+				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
+			}
+			random_list = {
+				3 = {
+					set_planet_entity = {
+						picture = pc_diamond
+						entity = "diamond_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_diamond
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_rare_crystals_5 }
+						10 = { add_deposit = d_rare_crystals_4 }
+						20 = { add_deposit = d_rare_crystals_3 }
+						20 = { add_deposit = d_rare_crystals_2 }
+						40 = { add_deposit = d_rare_crystals_1 }
+					}
+				}
+				97 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_barren
+				NOR = {
+					has_modifier = terraforming_candidate
+					has_planet_flag = pd_special_uninhabitable
+				}
+				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
+			}
+			random_list = {
+				2 = {
+					set_planet_entity = {
+						picture = pc_carbon
+						entity = "carbon_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_carbon
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_minerals_5 }
+						10 = { add_deposit = d_minerals_4 }
+						10 = { add_deposit = d_minerals_3 }
+						20 = { add_deposit = d_minerals_2 }
+						25 = { add_deposit = d_minerals_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_minerals_5 }
+						10 = { add_deposit = d_minerals_4 }
+						10 = { add_deposit = d_minerals_3 }
+						20 = { add_deposit = d_minerals_2 }
+						25 = { add_deposit = d_minerals_1 }
+					}
+				}
+				98 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_molten
+				not = {
+					OR = {
+						has_planet_flag = hoard_planet
+						has_modifier = terraforming_candidate
+						is_moon = yes
+						has_planet_flag = pd_special_uninhabitable
+					}
+				}
+				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					NOT = { has_star_flag = empire_home_system }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+							is_star_class = sc_k
+						}
+					}
+				}
+			}
+			random_list = {
+				15 = {
+					set_planet_entity = {
+						picture = pc_chthonian
+						entity = "chthonian_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_chthonian
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						5 = { add_deposit = d_alloys_5 }
+						5 = { add_deposit = d_alloys_4 }
+						20 = { add_deposit = d_alloys_3 }
+						30 = { add_deposit = d_alloys_2 }
+						40 = { add_deposit = d_alloys_1 }
+					}
+					random_list = {
+						5 = { add_deposit = d_alloys_5 }
+						5 = { add_deposit = d_alloys_4 }
+						20 = { add_deposit = d_alloys_3 }
+						30 = { add_deposit = d_alloys_2 }
+						40 = { add_deposit = d_alloys_1 }
+					}
+				}
+				85 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_molten
+				NOR = {
+					has_planet_flag = hoard_planet
+					has_modifier = terraforming_candidate
+					is_moon = yes
+					has_planet_flag = pd_special_uninhabitable
+				}
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+							is_star_class = sc_k
+						}
+					}
+				}
+			}
+			random_list = {
+				15 = {
+					set_planet_entity = {
+						picture = pc_iron
+						entity = "iron_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_iron
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						5 = { add_deposit = d_alloys_5 }
+						5 = { add_deposit = d_alloys_4 }
+						20 = { add_deposit = d_alloys_3 }
+						30 = { add_deposit = d_alloys_2 }
+						40 = { add_deposit = d_alloys_1 }
+					}
+					random_list = {
+						5 = { add_deposit = d_alloys_5 }
+						5 = { add_deposit = d_alloys_4 }
+						20 = { add_deposit = d_alloys_3 }
+						30 = { add_deposit = d_alloys_2 }
+						40 = { add_deposit = d_alloys_1 }
+					}
+				}
+				85 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_molten
+				is_moon = yes
+				NOR = {
+					has_planet_flag = hoard_planet
+					has_modifier = terraforming_candidate
+					has_planet_flag = pd_special_uninhabitable
+				}
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+							is_star_class = sc_k
+						}
+					}
+				}
+			}
+			random_list = {
+				15 = {
+					set_planet_entity = {
+						picture = pc_volcanic
+						entity = "volcanic_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_volcanic
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						5 = { add_deposit = d_alloys_5 }
+						5 = { add_deposit = d_alloys_4 }
+						20 = { add_deposit = d_alloys_3 }
+						30 = { add_deposit = d_alloys_2 }
+						40 = { add_deposit = d_alloys_1 }
+					}
+					random_list = {
+						5 = { add_deposit = d_alloys_5 }
+						5 = { add_deposit = d_alloys_4 }
+						20 = { add_deposit = d_alloys_3 }
+						30 = { add_deposit = d_alloys_2 }
+						40 = { add_deposit = d_alloys_1 }
+					}
+				}
+				85 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_frozen
+				is_moon = yes
+				NOR = {
+					has_modifier = terraforming_candidate
+					has_planet_flag = pd_special_uninhabitable
+				}
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+							is_star_class = sc_k
+						}
+					}
+				}
+			}
+			random_list = {
+				15 = {
+					set_planet_entity = {
+						picture = pc_hydrocarbon
+						entity = "hydrocarbon_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_hydrocarbon
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_energy_5 }
+						10 = { add_deposit = d_energy_4 }
+						10 = { add_deposit = d_energy_3 }
+						20 = { add_deposit = d_energy_2 }
+						25 = { add_deposit = d_energy_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_energy_5 }
+						10 = { add_deposit = d_energy_4 }
+						10 = { add_deposit = d_energy_3 }
+						20 = { add_deposit = d_energy_2 }
+						25 = { add_deposit = d_energy_1 }
+					}
+				}
+				85 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_frozen
+				NOT = { has_planet_flag = pd_special_uninhabitable }
+				is_moon = yes
+				not = { has_modifier = terraforming_candidate }
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+							is_star_class = sc_k
+						}
+					}
+				}
+			}
+			random_list = {
+				15 = {
+					set_planet_entity = {
+						picture = pc_subglacial
+						entity = "subglacial_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_subglacial
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_physics_5 }
+						10 = { add_deposit = d_physics_4 }
+						10 = { add_deposit = d_physics_3 }
+						20 = { add_deposit = d_physics_2 }
+						25 = { add_deposit = d_physics_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_society_5 }
+						10 = { add_deposit = d_society_4 }
+						10 = { add_deposit = d_society_3 }
+						20 = { add_deposit = d_society_2 }
+						25 = { add_deposit = d_society_1 }
+					}
+				}
+				85 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_molten
+				NOT = { has_moon = yes }
+				NOT = { is_moon = yes }
+				NOT = { has_planet_flag = hoard_planet }
+				NOT = { has_planet_flag = pd_special_uninhabitable }
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+						}
+					}
+				}
+			}
+			random_list = {
+				50 = {
+					change_pc = pc_gas_giant
+					set_planet_size = 20
+					set_planet_entity = {
+						picture = pc_hot_gas_giant
+						entity = "hot_gas_giant_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_hot_gas_giant
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_exotic_gases_5 }
+						10 = { add_deposit = d_exotic_gases_4 }
+						20 = { add_deposit = d_exotic_gases_3 }
+						20 = { add_deposit = d_exotic_gases_2 }
+						40 = { add_deposit = d_exotic_gases_1 }
+					}
+				}
+				50 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_molten
+				NOT = { has_moon = yes }
+				NOT = { is_moon = yes }
+				NOT = {	has_planet_flag = hoard_planet }
+				NOT = { has_planet_flag = pd_special_uninhabitable }
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_a
+							is_star_class = sc_b
+							is_star_class = sc_f
+						}
+					}
+				}
+			}
+			random_list = {
+				40 = {
+					change_pc = pc_gas_giant
+					set_planet_entity = {
+						picture = pc_cloudless_gas_giant
+						entity = "cloudless_gas_giant_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_cloudless_gas_giant
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_society_5 }
+						10 = { add_deposit = d_society_4 }
+						10 = { add_deposit = d_society_3 }
+						20 = { add_deposit = d_society_2 }
+						25 = { add_deposit = d_society_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_engineering_5 }
+						10 = { add_deposit = d_engineering_4 }
+						10 = { add_deposit = d_engineering_3 }
+						20 = { add_deposit = d_engineering_2 }
+						25 = { add_deposit = d_engineering_1 }
+					}
+				}
+				60 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_gas_giant
+				NOT = { has_planet_flag = pd_special_uninhabitable }
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+					star = {
+						OR = {
+							is_star_class = sc_m
+							is_star_class = sc_m_giant
+							is_star_class = sc_k
+							is_star_class = sc_g
+						}
+					}
+				}
+			}
+			random_list = {
+				10 = {
+					set_planet_entity = {
+						picture = pc_cold_gas_giant
+						entity = "cold_gas_giant_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_cold_gas_giant
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_physics_5 }
+						10 = { add_deposit = d_physics_4 }
+						10 = { add_deposit = d_physics_3 }
+						20 = { add_deposit = d_physics_2 }
+						25 = { add_deposit = d_physics_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_engineering_5 }
+						10 = { add_deposit = d_engineering_4 }
+						10 = { add_deposit = d_engineering_3 }
+						20 = { add_deposit = d_engineering_2 }
+						25 = { add_deposit = d_engineering_1 }
+					}
+				}
+				90 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_gas_giant
+				not = { has_modifier = terraforming_candidate }
+				solar_system = { NOT = { has_star_flag = empire_home_system } }
+			}
+			random_list = {
+				10 = {
+					set_planet_entity = {
+						picture = pc_dwarf_gas_giant
+						entity = "dwarf_gas_giant"
+					}
+					add_modifier = {
+						modifier = pd_dwarf_gas
+						days = -1
+					}
+					this = { clear_deposits = yes }
+					random_list = {
+						20 = { set_planet_size = 35 }
+						20 = { set_planet_size = 36 }
+						20 = { set_planet_size = 38 }
+						20 = { set_planet_size = 39 }
+						20 = { set_planet_size = 40 }
+					}
+					random_list = {
+						10 = { add_deposit = d_physics_5 }
+						10 = { add_deposit = d_physics_4 }
+						10 = { add_deposit = d_physics_3 }
+						20 = { add_deposit = d_physics_2 }
+						25 = { add_deposit = d_physics_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_physics_5 }
+						10 = { add_deposit = d_physics_4 }
+						10 = { add_deposit = d_physics_3 }
+						20 = { add_deposit = d_physics_2 }
+						25 = { add_deposit = d_physics_1 }
+					}
+				}
+				90 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_toxic
+				NOT = { has_planet_flag = pd_special_uninhabitable }
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+				}
+			}
+			random_list = {
+				10 = {
+					set_planet_entity = {
+						picture = pc_ethane_ocean
+						entity = "ethane_ocean_planet_01_entity"
+					}
+					add_modifier = {
+						modifier = pd_ethane_ocean
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_volatile_motes_5 }
+						10 = { add_deposit = d_volatile_motes_4 }
+						20 = { add_deposit = d_volatile_motes_3 }
+						20 = { add_deposit = d_volatile_motes_2 }
+						40 = { add_deposit = d_volatile_motes_1 }
+					}
+				}
+				90 = { }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_toxic
+				NOT = { has_planet_flag = pd_special_uninhabitable }
+				solar_system = {
+					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
+				}
+			}
+			random_list = {
+				10 = {
+					set_planet_entity = {
+						picture = pc_hothouse
+						entity = "hothouse_planet"
+					}
+					add_modifier = {
+						modifier = pd_hothouse
+						days = -1
+					}
+					set_planet_flag = pd_special_uninhabitable
+					this = { clear_deposits = yes }
+					random_list = {
+						10 = { add_deposit = d_society_5 }
+						10 = { add_deposit = d_society_4 }
+						10 = { add_deposit = d_society_3 }
+						20 = { add_deposit = d_society_2 }
+						25 = { add_deposit = d_society_1 }
+					}
+					random_list = {
+						10 = { add_deposit = d_society_5 }
+						10 = { add_deposit = d_society_4 }
+						10 = { add_deposit = d_society_3 }
+						20 = { add_deposit = d_society_2 }
+						25 = { add_deposit = d_society_1 }
+					}
+				}
+				90 = { }
+			}
+		}
+	}
+}
+
+#These Events for the Sol System
+#This event gives Sol it unique entities at game start
+country_event = {
+	id = pdengine.71
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+	            is_planet_class = pc_gas_giant
+	            planet_size = 35
+			}
+			set_planet_flag = pdjupiter
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+	            is_planet_class = pc_molten
+				planet_size = 6
+				is_moon = yes
+			}
+			set_planet_flag = pdio
+			set_planet_entity = {
+				picture = pc_volcanic
+				entity = "volcanic_planet_01_entity"
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+	            is_planet_class = pc_frozen
+				planet_size = 6
+				is_moon = yes
+			}
+			set_planet_flag = pdeuropa
+			set_planet_entity = {
+				picture = pc_subglacial
+				entity = "subglacial_planet_01_entity"
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+	            is_planet_class = pc_frozen
+				planet_size = 9
+				is_moon = yes
+			}
+			set_planet_flag = pdganymede
+			clear_deposits = yes
+			add_modifier = {
+				modifier = pd_domed_food_site
+				days = -1
+			}
+
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+	            is_planet_class = pc_gas_giant
+	            planet_size = 30
+					}
+			set_planet_flag = pdsaturn
+			set_planet_entity = {
+				entity = "gas_giant_saturn_entity"
+			}
+			clear_deposits = yes
+			add_deposit = d_physics_2
+			add_modifier = {
+				modifier = pd_domed_research_site
+				days = -1
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+	            is_planet_class = pc_frozen
+				planet_size = 8
+				is_moon = yes
+			}
+			set_planet_flag = pdtitan
+			set_planet_entity = {
+				picture = pc_hydrocarbon
+				entity = "hydrocarbon_planet_01_entity"
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+				is_planet_class = pc_barren_cold
+				is_moon = yes
+	            planet_size = 5
+			}
+			set_planet_flag = pdluna
+		}
+		every_galaxy_planet = {
+			limit = {
+                solar_system = { has_star_flag = sol }
+				is_planet_class = pc_barren
+				OR = {
+					planet_size = 13
+					planet_size = 11
+				}
+			}
+			set_planet_flag = pdmars
+			set_planet_entity = {
+				picture = pc_barren_mars
+				entity = "barren_planet_mars_entity"
+			}
+		}
+		every_galaxy_planet = {
+			if = {
+				limit = {
+					solar_system = { has_star_flag = sol }
+					OR = {
+						is_planet_class = pc_gaia
+						is_planet_class = pc_pd_wet_gaia
+					}
+					has_planet_flag = planet_earth
+					}
+				set_planet_entity = { entity = "gaia_planet_earth_entity" }
+			}
+		}
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = sol }
+                    is_planet_class = pc_toxic
+					is_moon = no
+				}
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                add_modifier = { modifier = pd_hothouse days = -1 }
+                set_planet_flag = pdvenus
+				set_planet_size = 17
+            }
+		}
+	}
+}
+#This event makes sure Earth, Venus and Mars get the correct special entities
+planet_event = {
+	id = pdengine.72
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				OR = {
+					is_planet_class = pc_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+			set_planet_entity = {
+				entity = "gaia_planet_earth_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_continental
+			}
+			set_planet_entity = {
+				picture = pc_continental_earth
+				entity = continental_planet_earth_entity
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_nuked
+			}
+			set_planet_entity = {
+				entity = "nuked_planet_earth_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				is_planet_class = pc_gaia
+			}
+			set_planet_entity = {
+				picture = pc_wet_mars
+				entity = "gaiamars_planet_entity"
+			}
+		}
+		#Mars
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				is_wet = yes
+				NOR = {
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_tropical
+				}
+			}
+			set_planet_entity = {
+				picture = pc_wet_mars
+				entity = "wetmars_planet_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				OR = {
+					is_planet_class = pc_continental
+					is_planet_class = pc_ocean
+					is_planet_class = pc_tropical
+				}
+			}
+			set_planet_entity = {
+				picture = pc_wet_mars
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				is_dry = yes
+				NOR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+				}
+			}
+			set_planet_entity = {
+				picture = pc_dry_mars
+				entity = "drymars_planet_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				OR = {
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+				}
+			}
+			set_planet_entity = {
+				picture = pc_dry_mars
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				is_cold = yes
+				NOR = {
+					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
+			}
+			set_planet_entity = {
+				picture = pc_cold_mars
+				entity = "coldmars_planet_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdmars
+				OR = {
+					is_planet_class = pc_arctic
+					is_planet_class = pc_tundra
+					is_planet_class = pc_alpine
+				}
+			}
+			set_planet_entity = {
+				picture = pc_cold_mars
+			}
+		}
+		#Venus
+		if = {
+			limit = {
+				has_planet_flag = pdvenus
+				is_wet = yes
+			}
+			set_planet_entity = {
+				picture = pc_wetvenus
+				entity = "wetvenus_planet_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdvenus
+				is_dry = yes
+			}
+			set_planet_entity = {
+				picture = pc_dryvenus
+				entity = "dryvenus_planet_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdvenus
+				is_cold = yes
+			}
+			set_planet_entity = {
+				picture = pc_coldvenus
+				entity = "coldvenus_planet_entity"
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdvenus
+				is_planet_class = pc_gaia
+			}
+			set_planet_entity = {
+				picture = pc_wetvenus
+				entity = "gaiavenus_planet_entity"
+			}
+		}
+	}
+}
+#This event makes sure Earth gets the special entities on game start
+country_event = {
+	id = pdengine.73
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = {
+		any_galaxy_planet = {
+			has_planet_flag = planet_earth
+		}
+	}
+
+	immediate = {
+			every_galaxy_planet = {
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+					OR = {
+						is_planet_class = pc_gaia
+						is_planet_class = pc_pd_wet_gaia
+					}
+				}
+				set_planet_entity = {
+					entity = "gaia_planet_earth_entity"
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+					is_planet_class = pc_relic
+				}
+				set_planet_entity = {
+					entity = "relic_world_earth_01_entity"
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+					is_planet_class = pc_nuked
+				}
+				set_planet_entity = {
+					entity = "nuked_planet_earth_entity"
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+					is_planet_class = pc_continental
+				}
+				set_planet_entity = {
+					picture = pc_continental_earth
+					entity = continental_planet_earth_entity
+				}
+			}
+		}
+		every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = sol }
+                    is_planet_class = pc_toxic
+                    NOT = { has_planet_flag = pdvenusnoterraform }
+					#planet_size = 20
+					is_moon = no
+				}
+				clear_deposits = yes
+				change_pc = pc_hothouse
+				set_planet_entity = {
+					entity = toxic_planet_venus_entity
+					picture = pc_hothouse_venus
+				}
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                set_planet_flag = pdvenus
+				set_planet_size = 17
+            }
+		}
+	}
+}
+
+#These are Events that Change Gaia world art on Game start.
+#This event gives every gaia world it's PD modifier
+country_event = {
+	id = pdengine.80
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_gaia
+					is_planet_class = pc_pd_dry_gaia
+					is_planet_class = pc_pd_cold_gaia
+					is_planet_class = pc_pd_wet_gaia
+				}
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_modifier = pd_gaia_world
+					}
+				}
+				add_modifier = {
+					modifier = pd_gaia_world
+					days = -1
+				}
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_planet_flag = fallen_empire_world
+					}
+				}
+				pd_wet_gaia_world_effect = yes
+			}
+		}
+	}
+}
+#The next three events change fallen empire homeworlds to PD Gaia Worlds
+country_event = {
+	id = pdengine.81
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_fallen_empire = yes
+		owner_main_species = {
+			OR = {
+				has_trait = trait_pc_savannah_preference
+				has_trait = trait_pc_arid_preference
+				has_trait = trait_pc_desert_preference
+				has_trait = trait_pc_pd_dry_cave_preference
+				has_trait = trait_pc_pd_dry_superhabitable_preference
+				has_trait = trait_pc_pd_dry_tidally_locked_preference
+				has_trait = trait_pc_pd_dune_preference
+				has_trait = trait_pc_pd_oasis_preference
+				has_trait = trait_pc_pd_outback_preference
+				has_trait = trait_pc_pd_coastal_preference
+				has_trait = trait_pc_pd_fungi_preference
+				has_trait = trait_pc_pd_salt_preference
+				has_trait = trait_pc_pd_aquifer_preference
+				has_trait = trait_pc_pd_mesa_preference
+				has_trait = trait_pc_pd_fog_desert_preference
+				has_trait = trait_pc_pd_mediterranean_preference
+				has_trait = trait_pc_pd_badlands_preference
+				has_trait = trait_pc_pd_succulent_preference
+				has_trait = trait_pc_pd_striped_preference
+				has_trait = trait_pc_pd_coral_preference
+				has_trait = trait_pc_pd_primal_preference
+				has_trait = trait_pc_pd_steppe_preference
+				has_trait = trait_pc_pd_prairie_preference
+				has_trait = trait_pc_pd_veld_preference
+				has_trait = trait_pc_pd_semi_arid_preference
+				has_trait = trait_pc_pd_aspen_preference
+				has_trait = trait_pc_pd_sandstone_preference
+				has_trait = trait_pc_pd_supercontinent_preference
+				has_trait = trait_pc_pd_sinkhole_preference
+			}
+
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				is_planet_class = pc_gaia
+			}
+			pd_dry_gaia_world_effect = yes
+		}
+	}
+}
+country_event = {
+	id = pdengine.82
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_fallen_empire = yes
+		owner_main_species = {
+			OR = {
+				has_trait = trait_pc_continental_preference
+				has_trait = trait_pc_tropical_preference
+				has_trait = trait_pc_ocean_preference
+				has_trait = trait_pc_pd_wet_cave_preference
+				has_trait = trait_pc_pd_wet_superhabitable_preference
+				has_trait = trait_pc_pd_wet_tidally_locked_preference
+				has_trait = trait_pc_pd_forest_preference
+				has_trait = trait_pc_pd_tepid_preference
+				has_trait = trait_pc_pd_retinal_preference
+				has_trait = trait_pc_pd_lake_preference
+				has_trait = trait_pc_pd_temperate_preference
+				has_trait = trait_pc_pd_mushroom_preference
+				has_trait = trait_pc_pd_petrified_preference
+				has_trait = trait_pc_pd_megaflora_preference
+				has_trait = trait_pc_pd_fog_desert_preference
+				has_trait = trait_pc_pd_cascadian_preference
+				has_trait = trait_pc_pd_swamp_preference
+				has_trait = trait_pc_pd_crag_preference
+				has_trait = trait_pc_pd_fog_preference
+				has_trait = trait_pc_pd_kelp_preference
+				has_trait = trait_pc_pd_algae_preference
+				has_trait = trait_pc_pd_reef_preference
+				has_trait = trait_pc_pd_archipelago_preference
+				has_trait = trait_pc_pd_atoll_preference
+				has_trait = trait_pc_pd_tepui_preference
+				has_trait = trait_pc_pd_mangrove_preference
+				has_trait = trait_pc_pd_cenote_preference
+				has_trait = trait_pc_pd_fungal_preference
+				has_trait = trait_pc_pd_aerial_preference
+				has_trait = trait_pc_pd_lilypad_preference
+				has_trait = trait_pc_pd_geothermal_preference
+				has_trait = trait_pc_pd_biolumen_preference
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				is_planet_class = pc_gaia
+			}
+			pd_wet_gaia_world_effect = yes
+		}
+	}
+}
+country_event = {
+	id = pdengine.83
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_fallen_empire = yes
+		owner_main_species = {
+			OR = {
+				has_trait = trait_pc_arctic_preference
+				has_trait = trait_pc_tundra_preference
+				has_trait = trait_pc_alpine_preference
+				has_trait = trait_pc_pd_cold_cave_preference
+				has_trait = trait_pc_pd_cold_superhabitable_preference
+				has_trait = trait_pc_pd_cold_tidally_locked_preference
+				has_trait = trait_pc_pd_cold_desert_preference
+				has_trait = trait_pc_pd_glacial_preference
+				has_trait = trait_pc_pd_antarctic_preference
+				has_trait = trait_pc_pd_aeolian_preference
+				has_trait = trait_pc_pd_ice_spike_preference
+				has_trait = trait_pc_pd_crevasse_preference
+				has_trait = trait_pc_pd_ice_dunes_preference
+				has_trait = trait_pc_pd_storm_preference
+				has_trait = trait_pc_pd_iceberg_preference
+				has_trait = trait_pc_pd_boreal_preference
+				has_trait = trait_pc_pd_snow_preference
+				has_trait = trait_pc_pd_highland_preference
+				has_trait = trait_pc_pd_dune_forest_preference
+				has_trait = trait_pc_pd_fjord_preference
+				has_trait = trait_pc_pd_blossom_preference
+				has_trait = trait_pc_pd_glaciovolcanic_preference
+				has_trait = trait_pc_pd_lanthanide_preference
+				has_trait = trait_pc_pd_bog_preference
+				has_trait = trait_pc_pd_mycelium_preference
+				has_trait = trait_pc_pd_mud_preference
+				has_trait = trait_pc_pd_basalt_preference
+				has_trait = trait_pc_pd_tuya_preference
+				has_trait = trait_pc_pd_cryoflora_preference
+				has_trait = trait_pc_pd_lichen_preference
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				is_planet_class = pc_gaia
+			}
+			pd_cold_gaia_world_effect = yes
+		}
+	}
+}
+
+#This event is for Life Seeder Origin to choose which Gaia
+country_event = {
+	id = pdengine.90
+	title = pdengine.90.name
+	desc = pdengine.90.desc
+	picture = GFX_evt_gaia
+	show_sound = event_ship_bridge
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_life_seeded
+	}
+
+	immediate = {
+		add_modifier = {
+			modifier = pd_gaia_world
+			days = -1
+		}
+	}
+
+	#Gaia Choice
+	option = {
+		name = pdengine.90.wet_gaia
+		hidden_effect = {
+			capital_scope = {
+				pd_wet_gaia_world_effect = yes
+			}
+		}
+	}
+	option = {
+		name = pdengine.90.dry_gaia
+		hidden_effect = {
+			capital_scope = {
+				pd_dry_gaia_world_effect = yes
+			}
+		}
+	}
+	option = {
+		name = pdengine.90.cold_gaia
+		hidden_effect = {
+			capital_scope = {
+				pd_cold_gaia_world_effect = yes
+			}
+		}
+	}
+}
+
+#This Event Fires After Terraforming to let you choose Gaia Classes
+#Has Country Flag = pd_choose_every_planet_terraforming
+planet_event = {
+	id = pdengine.95
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+		exists = space_owner
+		space_owner = {
+			OR = {
+				has_policy_flag = pd_choose_every_planet_terraforming
+				has_country_flag = pd_choose_every_planet_terraforming
+			}
+		}
+		OR = {
+			is_planet_class = pc_pd_gaia_cave
+			is_planet_class = pc_pd_gaia_superhabitable
+			is_planet_class = pc_pd_gaia_tidally_locked
+		}
+		pd_aw_is_shroud_planet = no
+		pd_aw_is_wasteland_planet = no
+	}
+
+	immediate = {
+		IF = {
+			limit = {
+				NOT = {	pd_is_flooded_planet = yes }
+			}
+			space_owner = {
+				country_event = { id = pdengine.96 }
+			}
+		}
+		IF = {
+			limit = {
+				pd_is_flooded_planet = yes
+			}
+			switch = {
+				trigger = is_planet_class
+				pc_pd_wet_gaia = {
+					set_planet_entity = {
+						picture = pc_aquatic_hot
+						entity = ocean_paradise_planet_01_entity
+					}
+					add_modifier = {
+						modifier = pd_uncommon_gaia_world
+						days = -1
+					}
+				}
+				pc_pd_gaia_cave = {
+					change_pc = pc_pd_wet_cave
+					set_planet_entity = {
+						picture = pc_pd_aquatic_cave
+						entity = aquatic_cave_planet_01_entity
+					}
+					add_modifier = {
+						modifier = pd_uncommon_gaia_world
+						days = -1
+					}
+				}
+				pc_pd_gaia_superhabitable = {
+					change_pc = pc_pd_wet_superhabitable
+					set_planet_entity = {
+						picture = pc_aquatic_hot
+						entity = ocean_paradise_planet_01_entity
+					}
+					add_modifier = {
+						modifier = pd_uncommon_gaia_world
+						days = -1
+					}
+				}
+				pc_pd_gaia_tidally_locked = {
+					change_pc = pc_pd_wet_tidally_locked
+					set_planet_entity = {
+						picture = pc_aquatic
+						entity = tidallyaquatic_planet_01_entity
+					}
+					add_modifier = {
+						modifier = pd_uncommon_gaia_world
+						days = -1
+					}
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = pdengine.96
+	title = pdengine.96.name
+	desc = pdengine.96.desc
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = root
+	is_triggered_only = yes
+
+	#Cave
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_cave }
+		}
+		name = pdengine.96.wet_gaia_cave
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_wet_cave
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_cave }
+		}
+		name = pdengine.96.dry_gaia_cave
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_dry_cave
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_cave }
+		}
+		name = pdengine.96.cold_gaia_cave
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_cold_cave
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	#Superhabitable
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_superhabitable }
+		}
+		name = pdengine.96.wet_gaia_superhabitable
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_wet_superhabitable
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_superhabitable }
+		}
+		name = pdengine.96.dry_gaia_superhabitable
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_dry_superhabitable
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_superhabitable }
+		}
+		name = pdengine.96.cold_gaia_superhabitable
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_cold_superhabitable
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	#Tidally Locked
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_tidally_locked }
+		}
+		name = pdengine.96.wet_gaia_tidally_locked
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_wet_tidally_locked
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_tidally_locked }
+		}
+		name = pdengine.96.dry_gaia_tidally_locked
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_dry_tidally_locked
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_pd_gaia_tidally_locked }
+		}
+		name = pdengine.96.cold_gaia_tidally_locked
+		hidden_effect = {
+			from = {
+				change_pc = pc_pd_cold_tidally_locked
+				clear_deposits = yes
+				reroll_planet = yes
+				pd_make_uncommon_gaia_worlds_effect = yes
+				add_modifier = {
+					modifier = pd_uncommon_gaia_world
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+###These events are for PD Domed Bases
+#This event gives all homeworld moons their moonbase modifiers, and random planets their dome base modifiers
+country_event = {
+	id = pdengine.100
+	hide_window = yes
+	location = root
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+		every_galaxy_planet = {
+			if = {
+				limit = {
+					has_moon = yes
+					OR = {
+						is_colonizable = yes
+						is_colony = yes
+						is_terraforming_candidate = yes
+					}
+					any_moon = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+							is_planet_class = pc_toxic
+							is_planet_class = pc_frozen
+							is_planet_class = pc_molten
+						}
+						NOT = {
+							has_modifier = pd_domed_moonbase_site
+						}
+					}
+				}
+				every_moon = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+							is_planet_class = pc_toxic
+							is_planet_class = pc_frozen
+							is_planet_class = pc_molten
+						}
+						NOT = {
+							has_modifier = pd_domed_moonbase_site
+						}
+					}
+					add_modifier = {
+						modifier = pd_domed_moonbase_site
+						days = -1
+					}
+					clear_deposits = yes
+					remove_modifier = carbon_world
+					remove_modifier = chthonian_planet
+				}
+			}
+			if = {
+				limit = {
+					is_moon = no
+					has_moon = yes
+					any_moon = {
+						OR = {
+							is_colonizable = yes
+							is_colony = yes
+							is_terraforming_candidate = yes
+						}
+					}
+					NOT = {
+						has_modifier = pd_domed_moonbase_site
+					}
+				}
+				every_moon = {
+					limit = {
+						OR = {
+							is_planet_class = pc_barren
+							is_planet_class = pc_barren_cold
+							is_planet_class = pc_toxic
+							is_planet_class = pc_frozen
+							is_planet_class = pc_molten
+						}
+						NOR = {
+							is_colonizable = yes
+							is_colony = yes
+							is_terraforming_candidate = yes
+						}
+					}
+					add_modifier = {
+						modifier = pd_domed_moonbase_site
+						days = -1
+					}
+					clear_deposits = yes
+					remove_modifier = carbon_world
+					remove_modifier = chthonian_planet
+				}
+			}
+			if = {
+				limit = {
+					solar_system = {
+						any_system_planet = {
+							OR = {
+								is_colonizable = yes
+								is_colony = yes
+							}
+						}
+						NOR = {
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+					is_star = no
+					habitable_planet = no
+					is_asteroid = no
+					NOR = {
+						is_planet_class = pc_shattered
+						has_modifier = pd_domed_moonbase_site
+						is_terraforming_candidate = yes
+					}
+					has_orbital_mining_deposit = yes
+				}
+				random_list = {
+					40 = {}
+					60 = {
+						add_modifier = {
+							modifier = pd_domed_mining_site
+							days = -1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					solar_system = {
+						any_system_planet = {
+							OR = {
+								is_colonizable = yes
+								is_colony = yes
+							}
+						}
+						NOR = {
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+					is_star = no
+					habitable_planet = no
+					is_asteroid = no
+					NOR = {
+						is_planet_class = pc_shattered
+						is_planet_class = pc_broken
+						has_modifier = pd_domed_moonbase_site
+						is_terraforming_candidate = yes
+					}
+					has_orbital_energy_deposit = yes
+				}
+				random_list = {
+					40 = {}
+					60 = {
+						add_modifier = {
+							modifier = pd_domed_energy_site
+							days = -1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					solar_system = {
+						any_system_planet = {
+							OR = {
+								is_colonizable = yes
+								is_colony = yes
+							}
+						}
+						NOR = {
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+					is_planet_class = pc_frozen
+					NOR = {
+						is_planet_class = pc_shattered
+						has_modifier = pd_domed_moonbase_site
+						is_terraforming_candidate = yes
+					}
+					has_orbital_energy_deposit = no
+					has_orbital_mining_deposit = no
+					NOR = {
+						has_deposit = d_engineering_1
+						has_deposit = d_engineering_2
+						has_deposit = d_engineering_3
+						has_deposit = d_engineering_4
+						has_deposit = d_engineering_5
+						has_deposit = d_engineering_6
+						has_deposit = d_engineering_7
+						has_deposit = d_engineering_8
+						has_deposit = d_engineering_9
+						has_deposit = d_society_10
+						has_deposit = d_society_1
+						has_deposit = d_society_2
+						has_deposit = d_society_3
+						has_deposit = d_society_4
+						has_deposit = d_society_5
+						has_deposit = d_society_6
+						has_deposit = d_society_7
+						has_deposit = d_society_8
+						has_deposit = d_society_9
+						has_deposit = d_society_10
+						has_deposit = d_physics_1
+						has_deposit = d_physics_2
+						has_deposit = d_physics_3
+						has_deposit = d_physics_4
+						has_deposit = d_physics_5
+						has_deposit = d_physics_6
+						has_deposit = d_physics_7
+						has_deposit = d_physics_8
+						has_deposit = d_physics_9
+						has_deposit = d_physics_10
+					}
+				}
+				random_list = {
+					40 = {}
+					60 = {
+						add_modifier = {
+							modifier = pd_domed_food_site
+							days = -1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					solar_system = {
+						any_system_planet = {
+							OR = {
+								is_colonizable = yes
+								is_colony = yes
+							}
+						}
+						NOR = {
+							has_star_flag = sol_system
+							has_star_flag = sol
+						}
+					}
+					is_star = no
+					habitable_planet = no
+					is_asteroid = no
+					NOR = {
+						is_planet_class = pc_shattered
+						has_modifier = pd_domed_moonbase_site
+						is_terraforming_candidate = yes
+					}
+					OR = {
+						has_deposit = d_engineering_1
+						has_deposit = d_engineering_2
+						has_deposit = d_engineering_3
+						has_deposit = d_engineering_4
+						has_deposit = d_engineering_5
+						has_deposit = d_engineering_6
+						has_deposit = d_engineering_7
+						has_deposit = d_engineering_8
+						has_deposit = d_engineering_9
+						has_deposit = d_society_10
+						has_deposit = d_society_1
+						has_deposit = d_society_2
+						has_deposit = d_society_3
+						has_deposit = d_society_4
+						has_deposit = d_society_5
+						has_deposit = d_society_6
+						has_deposit = d_society_7
+						has_deposit = d_society_8
+						has_deposit = d_society_9
+						has_deposit = d_society_10
+						has_deposit = d_physics_1
+						has_deposit = d_physics_2
+						has_deposit = d_physics_3
+						has_deposit = d_physics_4
+						has_deposit = d_physics_5
+						has_deposit = d_physics_6
+						has_deposit = d_physics_7
+						has_deposit = d_physics_8
+						has_deposit = d_physics_9
+						has_deposit = d_physics_10
+					}
+				}
+				random_list = {
+					40 = {}
+					60 = {
+						add_modifier = {
+							modifier = pd_domed_research_site
+							days = -1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+###These events are for Necrophage PD Planets
+#This makes sure that Necrophage empires that start on PD planets are randomized
+country_event = {
+	id = pdengine.110
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_origin = origin_necrophage
+	}
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = prescripted_ideal
+				OR = {
+					has_planet_flag = pre_ftl_default
+					has_planet_flag = pre_ftl_hive_mind
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_continental
+						is_planet_class = pc_pd_wet_cave
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_cave_world
+				change_pc = pc_continental
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_continental }
+					}
+					25 = {
+						pd_retinal_world_effect = yes
+					}
+					25 = {
+						pd_lake_world_effect = yes
+					}
+					25 = {
+						pd_forest_world_effect = yes
+					}
+					25 = {
+						pd_temperate_world_effect = yes
+					}
+					25 = {
+						pd_tepid_world_effect = yes
+					}
+					25 = {
+						pd_mushroom_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_ocean
+						is_planet_class = pc_pd_wet_superhabitable
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_superhabitable_world
+				change_pc = pc_ocean
+				random_list = {
+					1 = { set_planet_size = 15 }
+					1 = { set_planet_size = 16 }
+					1 = { set_planet_size = 18 }
+					1 = { set_planet_size = 19 }
+					1 = { set_planet_size = 20 }
+					1 = { set_planet_size = 21 }
+					1 = { set_planet_size = 22 }
+				}
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_ocean }
+					}
+					25 = {
+						pd_cascadian_world_effect = yes
+					}
+					25 = {
+						pd_swamp_world_effect = yes
+					}
+					25 = {
+						pd_crag_world_effect = yes
+					}
+					25 = {
+						pd_fog_world_effect = yes
+					}
+					25 = {
+						pd_kelp_world_effect = yes
+					}
+					25 = {
+						pd_algae_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_tropical
+						is_planet_class = pc_pd_wet_tidally_locked
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_tidally_locked_world
+				change_pc = pc_tropical
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_tropical }
+					}
+					25 = {
+						pd_atoll_world_effect = yes
+					}
+					25 = {
+						pd_tepui_world_effect = yes
+					}
+					25 = {
+						pd_mangrove_world_effect = yes
+					}
+					25 = {
+						pd_cenote_world_effect = yes
+					}
+					25 = {
+						pd_fungal_world_effect = yes
+					}
+					25 = {
+						pd_aerial_world_effect = yes
+					}
+					25 = {
+						pd_lilypad_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_desert
+						is_planet_class = pc_pd_dry_cave
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_cave_world
+				change_pc = pc_desert
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_desert }
+					}
+					25 = {
+						pd_dune_world_effect = yes
+					}
+					25 = {
+						pd_oasis_world_effect = yes
+					}
+					25 = {
+						pd_outback_world_effect = yes
+					}
+					25 = {
+						pd_coastal_world_effect = yes
+					}
+					25 = {
+						pd_fungi_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_arid
+						is_planet_class = pc_pd_dry_superhabitable
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_superhabitable_world
+				random_list = {
+					1 = { set_planet_size = 15 }
+					1 = { set_planet_size = 16 }
+					1 = { set_planet_size = 18 }
+					1 = { set_planet_size = 19 }
+					1 = { set_planet_size = 20 }
+					1 = { set_planet_size = 21 }
+					1 = { set_planet_size = 22 }
+				}
+				change_pc = pc_arid
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_arid }
+					}
+					25 = {
+						pd_mesa_world_effect = yes
+					}
+					25 = {
+						pd_fog_desert_world_effect = yes
+					}
+					25 = {
+						pd_mediterranean_world_effect = yes
+					}
+					25 = {
+						pd_badlands_world_effect = yes
+					}
+					25 = {
+						pd_succulent_world_effect = yes
+					}
+					25 = {
+						pd_striped_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_savannah
+						is_planet_class = pc_pd_dry_tidally_locked
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_tidally_locked_world
+				change_pc = pc_savannah
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_savannah }
+					}
+					25 = {
+						pd_steppe_world_effect = yes
+					}
+					25 = {
+						pd_prairie_world_effect = yes
+					}
+					25 = {
+						pd_veld_world_effect = yes
+					}
+					25 = {
+						pd_semi_arid_world_effect = yes
+					}
+					25 = {
+						pd_aspen_world_effect = yes
+					}
+					25 = {
+						pd_sandstone_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_arctic
+						is_planet_class = pc_pd_cold_tidally_locked
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_tidally_locked_world
+				change_pc = pc_arctic
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_arctic }
+					}
+					25 = {
+						pd_cold_desert_world_effect = yes
+					}
+					25 = {
+						pd_glacial_world_effect = yes
+					}
+					25 = {
+						pd_antarctic_world_effect = yes
+					}
+					25 = {
+						pd_aeolian_world_effect = yes
+					}
+					25 = {
+						pd_ice_spike_world_effect = yes
+					}
+					25 = {
+						pd_crevasse_world_effect = yes
+					}
+					25 = {
+						pd_ice_dunes_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_alpine
+						is_planet_class = pc_pd_cold_cave
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_cave_world
+				change_pc = pc_alpine
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_alpine }
+					}
+					25 = {
+						pd_boreal_world_effect = yes
+					}
+					25 = {
+						pd_snow_world_effect = yes
+					}
+					25 = {
+						pd_highland_world_effect = yes
+					}
+					25 = {
+						pd_dune_forest_world_effect = yes
+					}
+					25 = {
+						pd_fjord_world_effect = yes
+					}
+					25 = {
+						pd_blossom_world_effect = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						is_planet_class = pc_tundra
+						is_planet_class = pc_pd_cold_superhabitable
+					}
+				}
+				remove_pd_modifier = yes
+				remove_planet_flag = pd_superhabitable_world
+				random_list = {
+					1 = { set_planet_size = 15 }
+					1 = { set_planet_size = 16 }
+					1 = { set_planet_size = 18 }
+					1 = { set_planet_size = 19 }
+					1 = { set_planet_size = 20 }
+					1 = { set_planet_size = 21 }
+					1 = { set_planet_size = 22 }
+				}
+				change_pc = pc_tundra
+				random_list = {
+					25 = {
+						add_modifier = { modifier = pd_tundra }
+					}
+					25 = {
+						pd_bog_world_effect = yes
+					}
+					25 = {
+						pd_mycelium_world_effect = yes
+					}
+					25 = {
+						pd_mud_world_effect = yes
+					}
+					25 = {
+						pd_basalt_world_effect = yes
+					}
+					25 = {
+						pd_tuya_world_effect = yes
+					}
+				}
+			}
+		}
+	}
+}

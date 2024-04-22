@@ -1,0 +1,231 @@
+namespace = pdarchive
+
+#EnterSystem
+ship_event = {
+	id = pdarchive.10
+	title = pdarchive.10.name
+	desc = pdarchive.10.desc
+	picture = GFX_evt_archive
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = archive_system_notorigin
+		}
+		owner = {
+			NOT = {
+				has_country_flag = archive_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = archive_encounter
+		}
+	}
+
+	option = {
+		name = pdarchive.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdarchive.20
+	title = pdarchive.20.name
+	desc = pdarchive.20.desc
+	picture = GFX_evt_archive2
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = archive_planet_notorigin
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_archive_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_archive_planet
+		}
+	}
+
+	option = {
+		name = pdarchive.20.a
+	}
+}
+
+#The One Who Made This
+#planet_event = {
+#	id = pdarchive.30
+#	title = pdarchive.30.name
+#	desc = pdarchive.30.desc
+#	picture = GFX_evt_archive2
+#	show_sound = event_ship_bridge
+#	location = root
+#
+#	is_triggered_only = yes
+#
+#	pre_triggers = {
+#		has_owner = yes
+#		is_homeworld = no
+#		has_ground_combat = no
+#		is_occupied_flag = no
+#	}
+#
+#	trigger = {
+#		has_planet_flag = archive_planet
+#		owner = { NOT = { has_authority = auth_machine_intelligence	} }	
+#	}
+#
+#	immediate = {
+#		owner = {
+#			set_country_flag = archive_planet_event
+#		}
+#	}
+#
+#	option = {
+#		name = pdarchive.30.a
+#	}
+#}
+
+#Arc Event
+fleet_event = { 
+	id = pdarchive.50
+	title = "pdarchive.50.name"
+	desc = pdarchive.50.desc
+	picture = GFX_evt_archive2
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdarchive.50.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdarchive.51
+	title = "pdarchive.50.name"
+	desc = pdarchive.51.desc
+	picture = GFX_evt_archive2
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ancrel.51.a
+		owner = {
+			locked_random_list = {
+				50 = {
+					add_monthly_resource_mult = {
+     					resource = society_research
+     					value = @tier2researchreward
+     					min = @tier2researchmin
+     					max = @tier2researchmax
+     				}
+				}
+				50 = {
+					add_monthly_resource_mult = {
+     					resource = engineering_research
+     					value = @tier2researchreward
+     					min = @tier2researchmin
+     					max = @tier2researchmax
+     				}
+				}
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdarchive.52
+	title = "pdarchive.50.name"
+	desc = pdarchive.52.desc
+	picture = GFX_evt_archive2
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdarchive.52.a
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = { 
+	id = pdarchive.53
+	title = "pdarchive.50.name"
+	desc = pdarchive.53.desc
+	picture = GFX_evt_archive2
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdarchive.53.a
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = { 
+	id = pdarchive.54
+	title = "pdarchive.50.name"
+	desc = pdarchive.54.desc
+	picture = GFX_evt_archive2
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+		large_artifact_reward = yes
+		owner = {
+			add_relic = r_pdarchive
+		}
+	}
+}

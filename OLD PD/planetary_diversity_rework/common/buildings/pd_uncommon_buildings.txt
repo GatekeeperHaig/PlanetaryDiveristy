@@ -1,0 +1,473 @@
+###Uncommon Buildings
+
+#Tidal Locked Buildings
+building_wet_td_farm = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		owner = {
+			country_uses_food = yes
+		}
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_tidally_locked = yes
+		NOT = { has_building = building_wet_td_farm }
+		NOT = { has_building_construction = building_wet_td_farm }
+		NOT = { has_building = building_wet_td_grid }
+		NOT = { has_building_construction = building_wet_td_grid }
+		NOT = { has_building = building_wet_td_bio_lab }
+		NOT = { has_building_construction = building_wet_td_bio_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
+	}
+
+	inline_script = "buildings/pd_rare_farm_building"
+
+	destroy_trigger = {
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { 
+				NOT = {
+					pd_is_planet_class_tidally_locked = yes
+				}
+			}
+		}
+	}	 
+}
+building_wet_td_grid = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_tidally_locked = yes
+		NOT = { has_building = building_wet_td_farm }
+		NOT = { has_building_construction = building_wet_td_farm }
+		NOT = { has_building = building_wet_td_grid }
+		NOT = { has_building_construction = building_wet_td_grid }
+		NOT = { has_building = building_wet_td_bio_lab }
+		NOT = { has_building_construction = building_wet_td_bio_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
+	}
+
+	inline_script = "buildings/pd_rare_energy_building"
+
+	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
+		planet = { 
+			NOT = {
+				pd_is_planet_class_tidally_locked = yes
+			}
+		}
+	}		  
+}
+building_wet_td_bio_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_tidally_locked = yes
+		NOT = { has_building = building_wet_td_farm }
+		NOT = { has_building_construction = building_wet_td_farm }
+		NOT = { has_building = building_wet_td_grid }
+		NOT = { has_building_construction = building_wet_td_grid }
+		NOT = { has_building = building_wet_td_bio_lab }
+		NOT = { has_building_construction = building_wet_td_bio_lab }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+	inline_script = "buildings/pd_rare_society_building"
+	inline_script = "buildings/pd_rare_physics_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			NOT = {
+				pd_is_planet_class_tidally_locked = yes
+			}
+		}
+	}		 
+}
+
+#Karst Buildings
+building_karst_grid = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_cave = yes
+		NOT = { has_building = building_karst_grid }
+		NOT = { has_building_construction = building_karst_grid }
+		NOT = { has_building = building_karst_mine }
+		NOT = { has_building_construction = building_karst_mine }
+		NOT = { has_building = building_karst_lab }
+		NOT = { has_building_construction = building_karst_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_generator_district_or_building = yes
+		}
+	}
+
+	inline_script = "buildings/pd_rare_energy_building"
+
+	destroy_trigger = {
+		OR = {
+			OR = {
+				has_modifier = resort_colony
+				has_modifier = crucible_colony
+			}
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_generator_district_or_building = no
+			}
+		}
+		planet = { 
+			pd_is_planet_class_cave = no
+		}
+	}	
+}
+building_karst_mine = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_cave = yes
+		NOT = { has_building = building_karst_grid }
+		NOT = { has_building_construction = building_karst_grid }
+		NOT = { has_building = building_karst_mine }
+		NOT = { has_building_construction = building_karst_mine }
+		NOT = { has_building = building_karst_lab }
+		NOT = { has_building_construction = building_karst_lab }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_mining_district = yes
+		}
+	}
+	
+	inline_script = "buildings/pd_rare_mining_building"
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				exists = owner
+				owner = {
+					is_ai = yes
+				}
+				has_any_mining_district = no
+			}
+		}
+		planet = { 
+			pd_is_planet_class_cave = no
+		}
+	}
+}
+building_karst_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_cave = yes
+		NOT = { has_building = building_karst_grid }
+		NOT = { has_building_construction = building_karst_grid }
+		NOT = { has_building = building_karst_mine }
+		NOT = { has_building_construction = building_karst_mine }
+		NOT = { has_building = building_karst_lab }
+		NOT = { has_building_construction = building_karst_lab }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	inline_script = "buildings/pd_rare_engineering_building"
+	inline_script = "buildings/pd_rare_engineering_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			pd_is_planet_class_cave = no
+		}
+	} 
+}
+
+#Superhabitable Buildings
+building_superhab_lab = {
+	base_buildtime = 600
+
+	category = research
+	
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_superhabitable = yes
+		NOT = { has_building = building_superhab_lab }
+		NOT = { has_building_construction = building_superhab_lab }
+		NOT = { has_building = building_superhab_farm }
+		NOT = { has_building_construction = building_superhab_farm }
+		NOT = { has_building = building_superhab_foundry }
+		NOT = { has_building_construction = building_superhab_foundry }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	inline_script = "buildings/pd_rare_society_building"
+	inline_script = "buildings/pd_rare_society_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_head_researcher_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}	
+
+	destroy_trigger = {
+		planet = { 
+			pd_is_planet_class_superhabitable = no
+		}
+	}
+}
+building_superhab_farm = {
+	base_buildtime = 600
+
+	category = resource
+	
+	potential = {
+		exists = owner
+		owner = {
+			country_uses_food = yes
+		}
+		NOT = { has_modifier = resort_colony }
+		pd_is_planet_class_superhabitable = yes
+		NOT = { has_building = building_superhab_lab }
+		NOT = { has_building_construction = building_superhab_lab }
+		NOT = { has_building = building_superhab_farm }
+		NOT = { has_building_construction = building_superhab_farm }
+		NOT = { has_building = building_superhab_foundry }
+		NOT = { has_building_construction = building_superhab_foundry }
+		OR = {
+			owner = {
+				is_ai = no
+			}
+			has_any_farming_district_or_buildings = yes
+		}
+	}
+
+	inline_script = "buildings/pd_rare_farm_building"	
+
+	destroy_trigger = {
+		OR = {
+			owner = {
+				is_ai = yes
+				country_uses_food = no
+			}
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+			AND = {
+				owner = {
+					is_ai = yes
+				}
+				has_any_farming_district_or_buildings = no
+			}
+			planet = { 
+				pd_is_planet_class_superhabitable = no
+			}
+		}
+	}		
+}
+building_superhab_foundry = {
+	base_buildtime = 600
+
+	category = manufacturing
+	
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		owner = { NOT = { is_catalytic_empire = yes } }
+		pd_is_planet_class_superhabitable = yes
+		NOT = { has_building = building_superhab_lab }
+		NOT = { has_building_construction = building_superhab_lab }
+		NOT = { has_building = building_superhab_farm }
+		NOT = { has_building_construction = building_superhab_farm }
+		NOT = { has_building = building_superhab_foundry }
+		NOT = { has_building_construction = building_superhab_foundry }
+	}
+
+	inline_script = "buildings/pd_rare_foundry_building"
+
+	destroy_trigger = {
+		planet = { 
+			pd_is_planet_class_superhabitable = no
+		}
+	}	
+}

@@ -1,0 +1,119 @@
+namespace = necroids
+
+starbase_event = {
+	id = necroids.305
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_starbase_building = cordyceptic_reanimation_facility
+		owner = {
+			has_valid_civic = civic_hive_cordyceptic_drones
+		}
+	}
+	immediate = {
+		starbase_event = { id = necroids.305 days = 1800 }
+		solar_system = {
+			save_event_target_as = cordyceptic_reanimation_system
+		}
+		if = {
+			limit = {
+				solar_system = {
+					OR = {
+						has_star_flag = tiyanki_graveyard_system
+						has_star_flag = tiyanki_spawn_system
+						has_star_flag = pd_tiyanki_graveyard_system
+					}
+				}
+			}
+			owner = {
+				create_fleet = {
+					effect = {
+						set_owner = root.owner
+						while = {
+							count = 5
+							create_ship = {
+								name = NAME_Reanimated_Tiyanki_Cow
+								design = NAME_Reanimated_Tiyanki_Cow
+								prefix = yes
+							}
+						}
+						while = {
+							count = 3
+							create_ship = {
+								name = NAME_Reanimated_Tiyanki_Bull
+								design = NAME_Reanimated_Tiyanki_Bull
+								prefix = yes
+							}
+						}
+						while = {
+							count = 8
+							create_ship = {
+								name = NAME_Reanimated_Tiyanki_Calf
+								design = NAME_Reanimated_Tiyanki_Calf
+								prefix = yes
+							}
+						}
+						set_location = root.solar_system
+					}
+				}
+			}
+			owner = {
+				create_message = {
+					type = MESSAGE_REANIMATION_COMPLETE
+					localization = MESSAGE_REANIMATION_COMPLETE_TIYANKI_DESC
+					days = 30
+					target = root
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:cordyceptic_reanimation_system
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				solar_system = {
+					has_star_flag = amoeba_home_system
+				}
+			}
+			owner = {
+				create_fleet = {
+					effect = {
+						set_owner = root.owner
+						while = {
+							count = 12
+							create_ship = {
+								name = NAME_Reanimated_Great_Space_Organism
+								design = NAME_Reanimated_Great_Space_Organism
+								prefix = yes
+							}
+						}
+						while = {
+							count = 6
+							create_ship = {
+								name = NAME_Reanimated_Small_Space_Organism
+								design = NAME_Reanimated_Small_Space_Organism
+								prefix = yes
+							}
+						}
+						set_location = root.solar_system
+					}
+				}
+			}
+			owner = {
+				create_message = {
+					type = MESSAGE_REANIMATION_COMPLETE
+					localization = MESSAGE_REANIMATION_AMOEBA_TIYANKI_DESC
+					days = 30
+					target = root
+					variable = {
+						type = name
+						localization = SYSTEM
+						scope = event_target:cordyceptic_reanimation_system
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,1523 @@
+namespace = pdexotic
+
+#General Events
+event = {
+	id = pdexotic.00
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { set_global_flag = planetarydiversityexotics }
+}
+#Give their habitats
+country_event = {
+    id = pdexotic.01
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = { has_trait = trait_pc_ammonia_preference }
+    }
+    immediate = {
+        every_planet_within_border = {
+			IF = {
+				limit = { 
+					OR = {
+					is_planet_class = pc_habitat 
+					is_planet_class = pc_pd_barren_hab
+					is_planet_class = pc_pd_barren_cold_hab
+					is_planet_class = pc_pd_frozen_hab
+					is_planet_class = pc_pd_molten_hab
+					is_planet_class = pc_pd_hothouse_hab
+					is_planet_class = pc_pd_toxic_hab
+					is_planet_class = pc_pd_gas_giant_hab
+					is_planet_class = pc_pd_asteroid_hab
+					}
+					NOT = { has_modifier = pdammoniaatmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+				#set_planet_entity = { picture = pc_ammoniahab }
+				#set_planet_entity = { entity = "habitat_phase_01_entity" graphical_culture = from }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = "pc_ringworld_habitable" 
+					NOT = { has_modifier = pdammoniaatmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+				set_planet_entity = { picture = pc_ammoniaring entity = ammoniaring_habitable_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_seam
+				}	
+				set_planet_entity = { entity = ringworld_seam_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_tech
+				}	
+				set_planet_entity = { entity = ringworld_tech_entity_01_entity }
+            }
+        }
+    }
+}
+country_event = {
+    id = pdexotic.02
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = { has_trait = trait_pc_methane_preference }
+    }
+    immediate = {
+        every_planet_within_border = {
+			IF = {
+				limit = { 
+					OR = {
+					is_planet_class = pc_habitat 
+					is_planet_class = pc_pd_barren_hab
+					is_planet_class = pc_pd_barren_cold_hab
+					is_planet_class = pc_pd_frozen_hab
+					is_planet_class = pc_pd_molten_hab
+					is_planet_class = pc_pd_hothouse_hab
+					is_planet_class = pc_pd_toxic_hab
+					is_planet_class = pc_pd_gas_giant_hab
+					is_planet_class = pc_pd_asteroid_hab
+					}
+					NOT = { has_modifier = pdmethaneatmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+				#set_planet_entity = { picture = pc_methanehab }
+				#set_planet_entity = { entity = "habitat_phase_01_entity" graphical_culture = from }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = "pc_ringworld_habitable" 
+					NOT = { has_modifier = pdmethaneatmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+				set_planet_entity = { picture = pc_methanering entity = methanering_habitable_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_seam
+				}	
+				set_planet_entity = { entity = ringworld_seam_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_tech
+				}	
+				set_planet_entity = { entity = ringworld_tech_entity_01_entity }
+            }
+        }
+    }
+}
+country_event = {
+    id = pdexotic.03
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = { has_trait = trait_pc_ash_preference }
+    }
+    immediate = {
+        every_planet_within_border = {
+			IF = {
+				limit = { 
+					OR = {
+					is_planet_class = pc_habitat 
+					is_planet_class = pc_pd_barren_hab
+					is_planet_class = pc_pd_barren_cold_hab
+					is_planet_class = pc_pd_frozen_hab
+					is_planet_class = pc_pd_molten_hab
+					is_planet_class = pc_pd_hothouse_hab
+					is_planet_class = pc_pd_toxic_hab
+					is_planet_class = pc_pd_gas_giant_hab
+					is_planet_class = pc_pd_asteroid_hab
+					}
+					NOT = { has_modifier = pdashatmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdashatmosphere days = -1 }
+				#set_planet_entity = { picture = pc_ashhab }
+				#set_planet_entity = { entity = "habitat_phase_01_entity" graphical_culture = from }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = "pc_ringworld_habitable" 
+					NOT = { has_modifier = pdashatmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdashatmosphere days = -1 }
+				set_planet_entity = { picture = pc_ashring entity = ashring_habitable_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_seam
+				}	
+				set_planet_entity = { entity = ringworld_seam_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_tech
+				}	
+				set_planet_entity = { entity = ringworld_tech_entity_01_entity }
+            }
+        }
+    }
+}
+country_event = {
+    id = pdexotic.04
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = { has_trait = trait_pc_sulfur_preference }
+    }
+    immediate = {
+        every_planet_within_border = {
+			IF = {
+				limit = { 
+					OR = {
+					is_planet_class = pc_habitat 
+					is_planet_class = pc_pd_barren_hab
+					is_planet_class = pc_pd_barren_cold_hab
+					is_planet_class = pc_pd_frozen_hab
+					is_planet_class = pc_pd_molten_hab
+					is_planet_class = pc_pd_hothouse_hab
+					is_planet_class = pc_pd_toxic_hab
+					is_planet_class = pc_pd_gas_giant_hab
+					is_planet_class = pc_pd_asteroid_hab
+					}
+					NOT = { has_modifier = pdsulfuratmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+				#set_planet_entity = { picture = pc_ashhab }
+				#set_planet_entity = { entity = "habitat_phase_01_entity" graphical_culture = from }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = "pc_ringworld_habitable" 
+					NOT = { has_modifier = pdsulfuratmosphere }
+					is_colony = no
+				}	
+				add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+				set_planet_entity = { picture = pc_sulfurring entity = sulfurring_habitable_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_seam
+				}	
+				set_planet_entity = { entity = ringworld_seam_entity_01_entity }
+            }
+			IF = {
+				limit = { 
+					is_planet_class = pc_ringworld_tech
+				}	
+				set_planet_entity = { entity = ringworld_tech_entity_01_entity }
+            }
+        }
+    }
+}
+planet_event = {
+	id = pdexotic.07
+	title = pdexotic.07.name
+	desc = pdexotic.07.desc
+	picture = GFX_evt_pdradiotrophic
+	show_sound = event_alien_nature
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		planet = {
+			change_pc = pc_irradiated		
+				if = {
+					limit = { has_modifier = engineered_environment_gaia }
+					remove_modifier = engineered_environment_gaia
+				}
+				if = {
+					limit = { has_modifier = engineered_environment }
+					remove_modifier = engineered_environment
+				}
+				if = {
+					limit = { has_modifier = bleak_planet }
+					remove_modifier = bleak_planet
+				}
+				if = {
+					limit = { has_modifier = high_gravity }
+					remove_modifier = high_gravity
+				}
+				if = {
+					limit = { has_modifier = irradiated_planet }
+					remove_modifier = irradiated_planet
+				}
+				if = {
+					limit = { has_modifier = mineral_poor }
+					remove_modifier = mineral_poor
+				}
+				if = {
+					limit = { has_modifier = unstable_tectonics }
+					remove_modifier = unstable_tectonics
+				}
+				if = {
+					limit = { has_modifier = weak_magnetic_field }
+					remove_modifier = weak_magnetic_field
+				}
+				if = {
+					limit = { has_modifier = exofungus }
+					remove_modifier = exofungus
+				}
+				if = {
+					limit = { has_modifier = exofungus }
+					remove_modifier = exofungus
+				} 
+				hidden_effect = {
+					pd_remove_special_deposits_modifiers = yes
+					remove_planet_flag = pd_radiotrophic_transformation
+					remove_modifier = pdradiotrophictransformation
+					add_deposit = d_rad_blooms_transplant
+					add_modifier = { modifier = radiotrophic days = -1 }
+			}
+		}
+	}
+	
+	option = {
+		name = pdexotic.07.a
+	}
+}
+
+#Exotic Unique Worlds Habitats
+planet_event = {
+	id = pdexotic.08
+	title = pdexotic.08.name
+	desc = pdexotic.08.desc
+	picture = GFX_evt_colony_settlement
+	show_sound = event_alien_nature
+	location = root
+	hide_window = no
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_pd_unique = yes
+		#has_modifier = buildinexotichhab
+		has_planet_flag = uniqueexotichab
+	}
+
+	immediate = {
+		#Ash Habs
+		IF = {
+			limit = { 
+				is_planet_class = pc_crystal 
+				space_owner = { has_trait = trait_pc_ash_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_ashcrystalhab
+			}
+			add_modifier = { modifier = pdashatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_floating
+				space_owner = { has_trait = trait_pc_ash_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_ashfloatinghab
+			}
+			add_modifier = { modifier = pdashatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_pd_zro
+				space_owner = { has_trait = trait_pc_ash_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_ashzrohab
+			}
+			add_modifier = { modifier = pdashatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_technoorganic 
+				space_owner = { has_trait = trait_pc_ash_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_ashtechnohab
+			}
+			add_modifier = { modifier = pdashatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_graveyard 
+				space_owner = { has_trait = trait_pc_ash_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_ashgraveyardhab
+			}
+			add_modifier = { modifier = pdashatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		#Ammonia Habs
+		IF = {
+			limit = { 
+				is_planet_class = pc_crystal 
+				space_owner = { has_trait = trait_pc_ammonia_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_ammoniacrystalhab
+			}
+			add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_floating
+				space_owner = { has_trait = trait_pc_ammonia_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_ammoniafloatinghab
+			}
+			add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_pd_zro
+				space_owner = { has_trait = trait_pc_ammonia_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_ammoniazrohab
+			}
+			add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_technoorganic 
+				space_owner = { has_trait = trait_pc_ammonia_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_ammoniatechnohab
+			}
+			add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_graveyard 
+				space_owner = { has_trait = trait_pc_ammonia_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_ammoniagraveyardhab
+			}
+			add_modifier = { modifier = pdammoniaatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		#Sulfur Habs
+		IF = {
+			limit = { 
+				is_planet_class = pc_crystal 
+				space_owner = { has_trait = trait_pc_sulfur_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_sulfurcrystalhab
+			}
+			add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_floating
+				space_owner = { has_trait = trait_pc_sulfur_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_sulfurfloatinghab
+			}
+			add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_pd_zro
+				space_owner = { has_trait = trait_pc_sulfur_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_sulfurzrohab
+			}
+			add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_technoorganic 
+				space_owner = { has_trait = trait_pc_sulfur_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_sulfurtechnohab
+			}
+			add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_graveyard 
+				space_owner = { has_trait = trait_pc_sulfur_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_sulfurgraveyardhab
+			}
+			add_modifier = { modifier = pdsulfuratmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		#Methane Habs
+		IF = {
+			limit = { 
+				is_planet_class = pc_crystal 
+				space_owner = { has_trait = trait_pc_methane_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_methanecrystalhab
+			}
+			add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_floating
+				space_owner = { has_trait = trait_pc_methane_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_methanefloatinghab
+			}
+			add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_pd_zro
+				space_owner = { has_trait = trait_pc_methane_preference } 
+			}
+			set_planet_entity = {
+				picture = pc_pd_methanezrohab
+			}
+			add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_technoorganic 
+				space_owner = { has_trait = trait_pc_methane_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_methanetechnohab
+			}
+			add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+		IF = {
+			limit = { 
+				is_planet_class = pc_graveyard 
+				space_owner = { has_trait = trait_pc_methane_preference }
+			}
+			set_planet_entity = {
+				picture = pc_pd_methanegraveyardhab
+			}
+			add_modifier = { modifier = pdmethaneatmosphere days = -1 }
+			add_modifier = { modifier = exoticuniquehab days = -1 }
+		}
+	}
+	
+	option = {
+		name = pdexotic.08.a
+	}
+}
+
+# Acid Seed building chain completed.
+planet_event = {
+	id = pdexotic.09
+	is_triggered_only = yes
+	title = "pdexotic.09.name"
+	desc = "pdexotic.09.desc"
+	picture = GFX_evt_pdacid
+
+	trigger = {
+		last_building_changed = building_acidseeders_2
+		NOT = {
+			is_planet_class = pc_acid
+		}
+	}
+
+	immediate = {
+		# Turn planet into Acid world.
+		change_pc = pc_acid
+
+		# Remove Acid Seed building.
+		remove_building = building_acidseeders_2
+	}
+
+	option = {
+		name = pdexotic.09.a
+		hidden_effect = {
+			add_modifier = {
+				modifier = pdacid
+				days = -1
+			}
+			#add_deposit = d_acid_lakes	
+		}
+	}
+
+	after = {
+		tooltip = {
+			change_pc = pc_acid
+			remove_building = building_acidseeders_2
+		}
+	}
+}
+
+###Ash
+# Ash Seed building chain completed.
+planet_event = {
+	id = pdexotic.10
+	is_triggered_only = yes
+	title = "pdexotic.10.name"
+	desc = "pdexotic.10.desc"
+	picture = GFX_evt_pdash
+
+	trigger = {
+		last_building_changed = building_pd_tectonic_drills_2
+		NOT = {
+			is_planet_class = pc_ash
+		}
+	}
+
+	immediate = {
+		# Turn planet into Ash world.
+		change_pc = pc_ash
+
+		# Remove Ash Seed building.
+		remove_building = building_pd_tectonic_drills_2
+	}
+
+	option = {
+		name = pdexotic.10.a
+		hidden_effect = {
+			add_modifier = {
+				modifier = ash
+				days = -1
+			}
+			remove_deposit = d_pd_tectonic_fissure
+		}
+	}
+
+	after = {
+		tooltip = {
+			change_pc = pc_ash
+			remove_building = building_pd_tectonic_drills_2
+		}
+	}
+}
+#Ash Origin Gains Tech
+country_event = {
+	id = "pdexotic.15"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_ash_tectonic_drillers
+	}
+
+	immediate = {
+		owner = { 
+			add_research_option = tech_ash_tectonic_drillers
+			add_research_option = tech_mine_rare_crystals
+		}
+	}
+}
+
+###Ammonia
+# Ammonia Suits 1 Project Start
+country_event = {
+	id = pdexotic.11
+	title = "pdexotic.11.name"
+	desc = "pdexotic.11.desc"
+	picture = GFX_evt_cybernetics
+	show_sound = event_laboratory_sound
+	trackable = yes
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {	
+		owner = { 
+			has_origin = origin_pd_ammonia_breathers
+			last_increased_tech = tech_ammonia_suits
+			NOT = { any_owned_pop = { has_trait = trait_pd_ammonia_suits } }
+		} 
+	}
+
+	option = {
+		name = "pdexotic.11.a"
+		hidden_effect = { save_event_target_as = ammonia_suits_owner }
+		capital_scope = {
+			enable_special_project = {
+				name = "AMMONIA_SUITS_1"
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+# Ammonia Suits 1 Project End
+country_event = {
+	id = pdexotic.12
+	title = "pdexotic.12.name"
+	desc = "pdexotic.12.desc"
+	picture = GFX_evt_cybernetics
+	show_sound = event_laboratory_sound
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop = {
+			limit = {
+				is_same_species = root
+				has_trait = trait_pc_ammonia_preference
+				NOT = { 
+					species = { 
+						OR = {
+							has_trait = trait_pd_ammonia_suits 
+							has_trait = trait_pd_ammonia_suits_2 
+							has_trait = trait_pd_ammonia_suits_3 
+						}
+					} 
+				}
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_pd_ammonia_suits
+			}
+			species = { save_event_target_as = ammonia_suit_species }
+		}
+		change_dominant_species = { species = event_target:ammonia_suit_species change_all = yes }
+
+		every_controlled_ship = {
+			limit = {
+				is_ship_class = shipclass_colonizer
+				species = {
+					has_trait = trait_pc_ammonia_preference
+				}
+			}
+			root.capital_scope = { #workaround to prevent main species from accidentally flipping
+				create_pop = {
+					species = prev
+				}
+				last_created_pop = {
+					create_species = {
+						is_mod = yes
+						name = this
+						plural = this
+						class = this
+						portrait = this
+						traits = this
+						can_be_modified = yes
+						homeworld = this
+						namelist = this
+						gender = this
+						traits = {
+							ideal_planet_class = this
+							trait = trait_pd_ammonia_suits_2
+						}
+					}
+					kill_pop = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "pdexotic.12.a"
+		add_research_option = tech_pd_ammonia_suits_2
+	}
+}
+# Ammonia Suits 2 Tech
+country_event = {
+	id = pdexotic.13
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {	
+		owner = { 
+			has_origin = origin_pd_ammonia_breathers
+			last_increased_tech = tech_pd_ammonia_suits_2
+		} 
+	}
+
+	immediate = {
+		add_research_option = tech_pd_ammonia_suits_3
+		every_owned_pop = {
+			limit = {
+				is_same_species = root
+				has_trait = trait_pc_ammonia_preference
+				NOT = { 
+					species = { 
+						OR = {
+							has_trait = trait_pd_ammonia_suits_2 
+							has_trait = trait_pd_ammonia_suits_3 
+						}
+					} 
+				}
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_pd_ammonia_suits_2
+				remove_trait = trait_pd_ammonia_suits
+			}
+			species = { save_event_target_as = ammonia_suit_species2 }
+		}
+		change_dominant_species = { species = event_target:ammonia_suit_species2 change_all = yes }
+
+		every_controlled_ship = {
+			limit = {
+				is_ship_class = shipclass_colonizer
+				species = {
+					has_trait = trait_pc_ammonia_preference
+				}
+			}
+			root.capital_scope = { #workaround to prevent main species from accidentally flipping
+				create_pop = {
+					species = prev
+				}
+				last_created_pop = {
+					create_species = {
+						is_mod = yes
+						name = this
+						plural = this
+						class = this
+						portrait = this
+						traits = this
+						can_be_modified = this
+						homeworld = this
+						namelist = this
+						gender = this
+						traits = {
+							ideal_planet_class = this
+							trait = trait_pd_ammonia_suits_2
+						}
+					}
+					kill_pop = yes
+				}
+			}
+		}
+	}
+}
+# Ammonia Suits 3 Tech
+country_event = {
+	id = pdexotic.14
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {	
+		owner = { 
+			has_origin = origin_pd_ammonia_breathers
+			last_increased_tech = tech_pd_ammonia_suits_3
+		} 
+	}
+
+	immediate = {
+		every_owned_pop = {
+			limit = {
+				is_same_species = root
+				has_trait = trait_pc_ammonia_preference
+				NOT = { 
+					species = { 
+							has_trait = trait_pd_ammonia_suits_3 
+					} 
+				}
+			}
+			modify_species = {
+				species = this
+				remove_trait = trait_pd_ammonia_suits_2
+				add_trait = trait_pd_ammonia_suits_3
+			}
+			species = { save_event_target_as = ammonia_suit_species3 }
+		}
+		change_dominant_species = { species = event_target:ammonia_suit_species3 change_all = yes }
+
+		every_controlled_ship = {
+			limit = {
+				is_ship_class = shipclass_colonizer
+				species = {
+					has_trait = trait_pc_ammonia_preference
+				}
+			}
+			root.capital_scope = { #workaround to prevent main species from accidentally flipping
+				create_pop = {
+					species = prev
+				}
+				last_created_pop = {
+					create_species = {
+						is_mod = yes
+						name = this
+						plural = this
+						class = this
+						portrait = this
+						traits = this
+						can_be_modified = this
+						homeworld = this
+						namelist = this
+						gender = this
+						traits = {
+							ideal_planet_class = this
+							trait = trait_pd_ammonia_suits_3
+						}
+					}
+					kill_pop = yes
+				}
+			}
+		}
+	}
+}
+
+#Methane
+#On gain AP
+#Game Start, Gain Terraforming Candidates
+country_event = {
+	id = "pdexotic.16"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_pd_methane_cryogenics }
+	}
+
+	immediate = {
+		capital_scope = { save_event_target_as = methanecapital }
+		while = {
+			count = 5
+			every_galaxy_planet = {
+				limit = {
+					distance = {
+						source = event_target:methanecapital
+						use_bypasses = no
+						min_jumps = 0
+						max_jumps = 3
+					}
+					is_planet_class = pc_frozen
+					planet_size > 9
+					planet_size < 31
+					#has_owner = no
+				}
+				add_modifier = { modifier = methane_terraforming_candidate_for_others days = -1 }
+			}
+		}
+	}
+}
+#Non Methane gains Sulfur systems
+country_event = {
+	id = "pdexotic.17"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			NOT = { 
+				has_origin = origin_pd_methane_cryogenics 
+			} 
+		}
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					has_modifier = methane_terraforming_candidate
+				}
+				remove_modifier = methane_terraforming_candidate
+				add_modifier = { modifier = methane_terraforming_candidate_for_others days = -1 }
+			}
+		}
+	}
+}
+#Methane Empire gains systems
+country_event = {
+	id = "pdexotic.18"
+	hide_window = yes
+	
+	is_triggered_only = yes
+	trigger = {
+		owner = { 
+			has_origin = origin_pd_methane_cryogenics
+		}	
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_frozen
+					has_modifier = methane_terraforming_candidate_for_others
+				}
+				remove_modifier = methane_terraforming_candidate_for_others
+				add_modifier = { modifier = methane_terraforming_candidate days = -1 }
+			}
+		}
+	}
+}
+
+###Sulfur
+#Game Start, Gain Terraforming Candidates
+country_event = {
+	id = "pdexotic.22"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { has_origin = origin_pd_sulfur_springs }
+	}
+
+	immediate = {
+		capital_scope = { save_event_target_as = sulfurcapital }
+		while = {
+			count = 5
+			every_galaxy_planet = {
+				limit = {
+					distance = {
+						source = event_target:sulfurcapital
+						use_bypasses = no
+						min_jumps = 0
+						max_jumps = 3
+					}
+					is_planet_class = pc_toxic
+					planet_size > 9
+					planet_size < 31
+					#has_owner = no
+				}
+				add_modifier = { modifier = sulfur_terraforming_candidate_for_others days = -1 }
+			}
+		}
+	}
+}
+#Non Sulfur gains Sulfur systems
+country_event = {
+	id = "pdexotic.23"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			NOT = { 
+				has_origin = origin_pd_sulfur_springs 
+			} 
+		}
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					has_modifier = sulfur_terraforming_candidate
+				}
+				remove_modifier = sulfur_terraforming_candidate
+				add_modifier = { modifier = sulfur_terraforming_candidate_for_others days = -1 }
+			}
+		}
+	}
+}
+#Sulfur Empire gains systems
+country_event = {
+	id = "pdexotic.24"
+	hide_window = yes
+	
+	is_triggered_only = yes
+	trigger = {
+		owner = { 
+			has_origin = origin_pd_sulfur_springs
+		}	
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_toxic
+					has_modifier = sulfur_terraforming_candidate_for_others
+				}
+				remove_modifier = sulfur_terraforming_candidate_for_others
+				add_modifier = { modifier = sulfur_terraforming_candidate days = -1 }
+			}
+		}
+	}
+}
+
+###Rogue
+#Rogue World - Turn Planets Around Black Holes to Rogue Barrens
+country_event = {
+	id = "pdexotic.25"
+	hide_window = yes
+	fire_only_once = yes
+	
+	is_triggered_only = yes
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_molten
+					is_planet_class = pc_frozen
+					is_planet_class = pc_toxic
+					is_planet_class = pc_broken
+					is_planet_class = pc_shattered
+					is_planet_class = pc_hothouse
+				}
+				solar_system = { is_star_class = sc_black_hole }
+			}
+			change_pc = pc_rogue_barren
+			IF = {
+				limit = {
+					planet_size <= 25
+					planet_size >= 10
+
+				}
+				add_modifier = { modifier = pdterra_rogue days = -1	}
+			}
+		}
+	}
+}
+#Rogue Empire gains systems 
+country_event = {
+	id = "pdexotic.26"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			has_origin = origin_pd_rogue_voidfarers
+		}	
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_rogue_barren
+					NOT = { has_modifier = pdterra_rogue }
+				}
+				add_modifier = { modifier = pdterra_rogue days = -1 }
+			}
+		}
+	}
+}
+#Non Rogue gains Rogue systems
+country_event = {
+	id = "pdexotic.27"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			NOT = { 
+				has_origin = origin_pd_rogue_voidfarers 
+			} 
+		}
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					has_modifier = pdterra_rogue
+				}
+				remove_modifier = pdterra_rogue
+			}
+		}
+	}
+}
+#Rogue Races Can Build Habitat and get Dark Matter Tech
+country_event = {
+	id = "pdexotic.28"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {	has_origin = origin_pd_rogue_voidfarers }
+	
+	immediate = {
+		owner = { 
+			add_research_option = tech_habitat_1 
+			give_technology = { 
+				tech = tech_mine_dark_matter
+				message = no
+			}
+		}
+	}
+}
+#Rogue World Collapse Star Event
+planet_event = {
+	id = "pdexotic.29"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {	space_owner = { has_origin = origin_pd_rogue_voidfarers } }
+	
+	immediate = {
+		solar_system = { 
+			set_star_class = sc_black_hole
+			every_system_planet = {
+				limit = {
+					OR = {
+						colonizable_planet = yes
+						has_modifier = terraforming_candidate
+					}
+					NOT = { is_artificial = yes }
+				}
+				#People Are Angry if you kill people for some reasons, nerds
+				if = {
+					limit = {
+						has_observation_outpost = yes
+					}
+					observation_outpost = {
+						dismantle = yes
+					}
+				}		
+				#you've basically shortcutted terraforming. Yep, that's a breach
+				if = { 
+					limit = {
+						exists = space_owner
+						space_owner = {
+							is_same_value = from.owner
+						}
+						OR = {
+							NOT = { exists = owner }
+							owner = { is_same_value = from.owner }
+						}
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					from.owner = {
+						set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					}
+				}
+				#People Are Angry if you kill primative people for some reasons, nerds
+				if = {
+					limit = {
+						exists = owner
+						owner = { is_country_type = primitive }
+					}
+					# modifier for allies + those upset by genocide
+					every_country = {
+						limit = {
+							NOR = { is_same_value = from.space_owner }
+							OR = {
+								has_communications = from.space_owner
+								has_communications = root.space_owner
+							}
+							is_country_type = default
+							NOR = {
+								is_xenophobe = yes
+								is_homicidal = yes
+								is_xenophile = yes
+							}
+						}
+						add_opinion_modifier = {
+							modifier = opinion_pd_roguebh_a_primitive_world
+							who = from.space_owner
+						}
+					}
+					every_country = {
+						limit = {
+							NOR = { is_same_value = from.space_owner }
+							OR = {
+								has_communications = from.space_owner
+								has_communications = root.space_owner
+							}
+							OR = {
+								has_ai_personality = awakened_fallen_empire_xenophile
+								AND = {
+									is_country_type = default
+									is_xenophile = yes
+								}
+							}
+						}
+						add_opinion_modifier = {
+							modifier = opinion_pd_roguebh_a_primitive_world_phile
+							who = from.space_owner
+						}
+					}
+				}
+				#Whoopsie, did a genocide
+				if = {
+					limit = { 
+						planet = { is_colony = yes }
+					}
+					every_country = {
+						limit = {
+							has_communications = from.space_owner
+							NOT = { is_country = from.space_owner }
+							NOT = { is_same_species = FROMFROM.space_owner }
+							NOT = { has_ai_personality_behaviour = purger }
+							OR = {
+								is_country_type = default
+								has_ai_personality = awakened_fallen_empire_xenophile
+							}
+							has_intel_level = {
+								who = from.space_owner
+								category = economy
+								level >= 1
+							}
+						}
+						while = { 
+							count = 50
+							add_opinion_modifier = { 
+								who = from.space_owner 
+								modifier = opinion_genocidal 
+							}
+						}
+					}
+				}
+				change_pc = pc_rogue_barren
+				reset_planet = yes
+				remove_modifier = terraforming_candidate
+				add_modifier = { modifier = pdterra_rogue days = -1	}
+			} 
+			every_system_planet = {
+				limit = {
+					NOT = {
+						OR = {
+							colonizable_planet = yes
+							has_modifier = terraforming_candidate
+							is_planet_class = pc_gas_giant
+							is_planet_class = pc_gas_giant 
+							is_planet_class = pc_hot_gas_giant 
+							is_planet_class = pc_cold_gas_giant 
+							is_planet_class = pc_cloudless_gas_giant
+							is_planet_class = pc_rogue_barren
+							is_star = yes
+							is_artificial = yes
+							is_pd_habitat = yes
+							is_asteroid = yes
+						}
+					}
+				}
+				change_pc = pc_rogue_barren
+				reset_planet = yes
+			} 
+			every_system_planet = {
+				limit = { 
+					OR = {
+						is_planet_class = pc_gas_giant 
+						is_planet_class = pc_hot_gas_giant 
+						is_planet_class = pc_cold_gas_giant 
+						is_planet_class = pc_cloudless_gas_giant
+					}
+				}
+				change_pc = pc_rogue_gas_giant
+				reset_planet = yes
+			} 
+			every_system_planet = {
+				limit = { is_star = yes	}
+				change_pc = pc_black_hole
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				remove_modifier = pdroguestarcollapse
+				set_planet_flag = pdhasbeenrogueholed
+			} 
+			create_message = {
+				type = ROGUEHOLE_MESSAGE_TYPE
+				localization = MESSAGE_ROGUEHOLE
+				days = 30
+				target = this
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+}
+
+###Hycean
+#Hycean Habitat Set Up
+planet_event = {
+	id = pdexotic.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_planet_flag = pd_hycean_homeworld }
+			pd_hycean_habitat_setup = yes
+		}
+	}
+}
+#Gas Dwarf Spawning
+country_event = {
+	id = pdexotic.31
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_galaxy_planet = { 
+			limit = { 
+				is_planet_class = pc_gas_giant
+				not = { has_modifier = terraforming_candidate }	
+				solar_system = { NOT = { has_star_flag = empire_home_system } }
+			}	
+			random_list = {
+				10 = { 
+					change_pc = pc_dwarf_gas_giant
+					this = { clear_deposits = yes }
+					random_list = {
+						20 = { set_planet_size = 35 }
+						20 = { set_planet_size = 36 }
+						20 = { set_planet_size = 38 }
+						20 = { set_planet_size = 39 }
+						20 = { set_planet_size = 40 }
+					}
+				}
+				90 = { }	
+			}
+		}
+	}
+}
+#Hycean Empire gains Gas Dwarf 
+country_event = {
+	id = "pdexotic.32"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			has_origin = origin_pd_hycean_aquatic
+		}	
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_dwarf_gas_giant
+					NOT = { has_modifier = hycean_terraforming_candidate}
+				}
+				add_modifier = { modifier = hycean_terraforming_candidate days = -1 }
+			}
+		}
+	}
+}
+#Non Hycean gains Hycean Gas Dwarf 
+country_event = {
+	id = "pdexotic.33"
+	hide_window = yes
+	
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			NOT = { 
+				has_origin = origin_pd_hycean_aquatic 
+			} 
+		}
+	}
+	immediate = {
+		from = { 
+			every_system_planet = {
+				limit = {
+					has_modifier = hycean_terraforming_candidate
+				}
+				remove_modifier = hycean_terraforming_candidate
+			}
+		}
+	}
+}
+#Hycean Megastructures
+country_event = {
+    id = pdexotic.34
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        owner = { has_trait = trait_pc_pd_hycean_preference }
+    }
+    immediate = {
+        every_planet_within_border = {
+			IF = {
+				limit = { 
+					OR = {
+					is_planet_class = pc_habitat 
+					is_planet_class = pc_pd_barren_hab
+					is_planet_class = pc_pd_barren_cold_hab
+					is_planet_class = pc_pd_frozen_hab
+					is_planet_class = pc_pd_molten_hab
+					is_planet_class = pc_pd_hothouse_hab
+					is_planet_class = pc_pd_toxic_hab
+					is_planet_class = pc_pd_gas_giant_hab
+					is_planet_class = pc_pd_asteroid_hab
+					}
+					NOT = { has_modifier = hyceanfloodedhabitat }
+					is_colony = no
+				}	
+				add_modifier = { modifier = hyceanfloodedhabitat days = -1 }
+				IF = {
+					limit = {
+						is_planet_class = pc_habitat
+					}
+					set_planet_entity = { picture = pc_hyceanhabitat entity = "habitat_phase_01_entity" graphical_culture = from }
+				}
+				IF = { limit = { is_planet_class = pc_pd_barren_hab	} set_planet_entity = { picture = pc_pd_barren_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_barren_cold_hab	} set_planet_entity = { picture = pc_pd_barren_cold_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_frozen_hab	} set_planet_entity = { picture = pc_pd_frozen_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_molten_hab	} set_planet_entity = { picture = pc_pd_molten_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_hothouse_hab	} set_planet_entity = { picture = pc_pd_hothouse_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_toxic_hab	} set_planet_entity = { picture = pc_pd_toxic_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_gas_giant_hab	} set_planet_entity = { picture = pc_pd_gas_giant_hyceanhab } }
+				IF = { limit = { is_planet_class = pc_pd_asteroid_hab	} set_planet_entity = { picture = pc_pd_asteroid_hyceanhab } }
+			}
+			IF = {
+				limit = { 
+					is_planet_class = "pc_ringworld_habitable" 
+					NOT = { has_modifier = hyceanfloodedworld }
+					is_colony = no
+				}	
+				add_modifier = { modifier = hyceanfloodedworld days = -1 }
+				set_planet_entity = { 
+					picture = pc_pd_hycean 
+					entity = hycean_ringworld_habitable_entity_01_entity 
+					graphical_culture = root.owner
+				}
+            }
+#			IF = {
+#				limit = { 
+#					is_planet_class = pc_ringworld_seam
+#				}	
+#				set_planet_entity = { 
+#					entity = aquatic_01_ringworld_seam_entity_01_entity 
+#					graphical_culture = root.owner
+#				}
+#            }
+#			IF = {
+#				limit = { 
+#					is_planet_class = pc_ringworld_tech
+#				}	
+#				set_planet_entity = { 
+#					entity = aquatic_01_ringworld_tech_entity_01_entity 
+#					graphical_culture = root.owner
+#				}
+#            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+@hiveCost = 10000
+@hiveTime = 7200
+
+terraform_link = {
+	from = pc_frozen
+	to = pc_methane
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_2 } }
+	duration = @terraforming_duration_level_2
+	potential = { has_origin = origin_pd_methane_cryogenics from = { has_modifier = methane_terraforming_candidate } }
+	condition = { has_origin = origin_pd_methane_cryogenics from = { has_modifier = methane_terraforming_candidate } }
+	effect = { from = { remove_modifier = methane_terraforming_candidate reroll_planet = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_methane } } modifier = { factor = 10 has_trait = trait_pc_methane_preference } }
+}
+
+#Special Habitats
+terraform_link = {
+	from = pc_pd_frozen_hab
+	to = pc_methane
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_2 } }
+	duration = @terraforming_duration_level_2
+	potential = { has_origin = origin_pd_methane_cryogenics from = { has_modifier = methane_terraforming_candidate } }
+	condition = { has_origin = origin_pd_methane_cryogenics from = { has_modifier = methane_terraforming_candidate } }
+	effect = { from = { remove_modifier = methane_terraforming_candidate reroll_deposits = yes remove_modifier = master_builders_habitats remove_building = building_hab_major_capital remove_building = building_hab_capital add_building = building_major_capital} }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_frozen_hab CLASS_TO = pc_methane } } modifier = { factor = 10 has_trait = trait_pc_methane_preference } }
+}

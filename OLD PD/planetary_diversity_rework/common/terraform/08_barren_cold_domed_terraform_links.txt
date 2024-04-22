@@ -1,0 +1,181 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+
+#Bareen
+#Regular
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_continental
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_ocean
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_tropical
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_desert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_arid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_savannah
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_arctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_alpine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_tundra
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+#Special
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_pd_wet_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = {
+		OR = {
+			from = { has_planet_flag = terraform_nucleus_transfixed }
+			AND = {
+				exists = owner
+				has_ascension_perk = "ap_world_shaper"
+				from = { has_modifier = hab_terraforming_candidate }
+			}
+		}
+	}
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_pd_dry_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = {
+		OR = {
+			from = { has_planet_flag = terraform_nucleus_transfixed }
+			AND = {
+				exists = owner
+				has_ascension_perk = "ap_world_shaper"
+				from = { has_modifier = hab_terraforming_candidate }
+			}
+		}
+	}
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_pd_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = {
+		OR = {
+			from = { has_planet_flag = terraform_nucleus_transfixed }
+			AND = {
+				exists = owner
+				has_ascension_perk = "ap_world_shaper"
+				from = { has_modifier = hab_terraforming_candidate }
+			}
+		}
+	}
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_barren_cold
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
+	ai_weight = { weight = 5 }
+}

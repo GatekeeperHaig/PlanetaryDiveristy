@@ -1,0 +1,234 @@
+
+
+## If this returns true, the species will be set to decline even if it is not being purged
+# This = species
+# From = planet
+## Note: success text tooltips are shown in alert_pops_declining alert.
+should_force_decline_species = {
+	OR = {
+		custom_tooltip = {
+			success_text = CLONE_ARMY_FORCE_DECLINE
+			OR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
+			}
+			from = {
+				OR = {
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
+								NOT = {
+									has_origin = origin_clone_army
+								}
+								has_country_flag = clone_army_fertility_unlocked
+								NOT = {
+									owner_main_species = {
+										is_same_species = root
+									}
+								}
+							}
+						}
+					}
+					check_variable = {
+						which = clone_pops_missing
+						value < 0
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			success_text = UNIT04CHILDREN_FORCE_DECLINE
+			OR = {
+				has_trait = trait_organic_fourschildren
+				has_trait = trait_organic_fourschildren_2
+			}
+			from = {
+				OR = {
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
+								NOT = {
+									has_origin = origin_techno_world
+								}
+								NOT = {
+									owner_main_species = {
+										is_same_species = root
+									}
+								}
+							}
+						}
+					}
+					check_variable = {
+						which = techno_pops_missing
+						value < 0
+					}
+				}
+			}
+		}
+	}
+}
+
+# ROOT = country
+# THIS = pop
+can_be_sold_on_slave_market = {
+	exists = owner
+	OR = {
+		is_enslaved = yes
+		is_non_sapient_robot = yes
+		is_shackled_robot = yes
+	}
+	OR ={
+		ROOT = { is_ai = no }
+		has_citizenship_rights = no
+		AND = {
+			is_unemployed = yes
+			planet = {
+				num_unemployed > 3
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_global_flag = organic_slave_trade_banned_flag
+		}
+		is_organic_species = no
+	}
+	if = {
+		limit = {
+			has_global_flag = sentient_slave_trade_banned_flag
+		}
+		is_sapient = no
+	}
+	NOR = {
+		# Since they can't reproduce, they die out too fast for anyone to want to buy them.
+		has_trait = trait_clone_soldier_infertile
+		has_trait = trait_clone_soldier_infertile_full_potential
+		has_trait = trait_organic_fourschildren
+		has_trait = trait_organic_fourschildren_2
+	}
+}
+
+can_species_be_assembled = {
+	is_sapient = yes
+	OR = {
+		AND = {
+			is_robotic = yes
+			root = {
+				check_modifier_value = {
+					modifier = planet_pop_assembly_add
+					value > 0
+				}
+			}
+		}
+		AND = {
+			is_organic_species = yes
+			if = {
+				limit = {
+					root.owner = { is_hive_empire = yes }
+				}
+				has_trait = trait_hive_mind
+			}
+			else_if = {
+				limit = { has_budding_trait = yes }
+				root = {
+					any_owned_species = { is_exact_same_species = prevprev }
+				}
+			}
+			else_if = {
+				limit = { has_trait = trait_tiyanki }
+				root = {
+					any_owned_species = { is_exact_same_species = prevprev }
+				}
+			}
+			else_if = {
+				limit = {
+					root.owner = {
+						has_tradition = tr_cybernetics_assembly_standards
+						has_policy_flag = roboticist_output_build_cyborgs
+					}
+				}
+				has_trait = trait_cybernetic
+			}
+			else_if = {
+				limit = {
+					OR = {
+						has_trait = trait_clone_soldier_infertile
+						has_trait = trait_clone_soldier_infertile_full_potential
+					}
+				}
+				root = {
+					# Event 'clones.3' should cover this, but extra safety check.
+					has_building = building_clone_army_clone_vat
+					NOT = {
+						check_variable = {
+							which = clone_pops_missing
+							value = 0
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					OR = {
+						has_trait = trait_organic_fourschildren
+						has_trait = trait_organic_fourschildren_2
+					}
+				}
+				root = {
+					# Event 'clones.3' should cover this, but extra safety check.
+					has_building = building_techno_04_clone_vat
+					NOT = {
+						check_variable = {
+							which = techno_pops_missing
+							value = 0
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					root.owner = { has_civic = civic_permanent_employment }
+				}
+				root = {
+					has_building = building_posthumous_employment_center
+				}
+			}
+			else_if = {
+				limit = {
+					root = { has_modifier = tiyanki_trophy }
+				}
+			}
+			else = {
+				OR = {
+					root = { has_building = building_clone_vats }
+				}
+			}
+		}
+	}
+	has_population_control = {
+		type = no
+		country = root.owner
+	}
+}
+
+can_remove_positive_traits_organic = {
+	OR = {
+		AND = {
+			has_utopia = yes
+			OR = {
+				has_tradition = tr_genetics_resequencing
+				has_tradition = tr_cybernetics_integrated_anatomy
+				has_tradition = tr_cybernetics_assimilator_integrated_anatomy
+				has_tradition = pd_tr_biosynth_perk_2a #PD Additions
+			}
+		}
+		AND = {
+			has_toxoids = yes
+			has_origin = origin_overtuned
+		}
+		has_technology = tech_epigenetic_triggers
+	}
+}
+	

@@ -1,0 +1,478 @@
+
+@distance = 50
+@base_moon_distance = 10
+@jumps = 3
+
+
+# Rogue World
+pd_rogue_start_init = {
+	class = "sc_black_hole"
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 169
+	}
+	
+	flags = { empire_home_system }
+	usage = origin
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		count = 1
+		class = "pc_black_hole"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 40
+		has_ring = no
+	}
+
+	planet = {
+		count = 1
+		class = pc_black_hole
+		orbit_distance = 260
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 20 max = 30 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_dark_matter_deposit_1
+		}
+
+		change_orbit = 30
+	
+		planet = {
+				count = 1
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 25
+				satellite_naming_policy = lower_case_latin_letters
+				change_orbit = @base_moon_distance
+				class = "pc_rogue"
+				init_effect = {
+					add_modifier = { modifier = pdrogue days = -1 }
+			}
+		}
+	}
+
+	planet = {
+		count = 1
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 15 max = 30 }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+
+		init_effect = {
+			set_planet_flag = ignore_startup_effect
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_dark_matter_deposit_1
+		}
+
+		change_orbit = 30
+
+		planet = {
+			count = 1
+			size = { min = 12 max = 18 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 60
+			class = pc_rogue
+			init_effect = {
+				add_modifier = { modifier = pdrogue days = -1 }
+			}
+		}
+	}
+
+	change_orbit = -140
+
+    planet = {
+		class = "pc_rogue"
+		orbit_distance = 0
+		orbit_angle = 85
+		size = { min = 18 max = 21 }
+		modifiers = none
+		starting_planet = yes
+		
+		init_effect = {
+			IF = {
+				limit = { is_planet_class = pc_rogue }
+				set_planet_flag = pd_rogue_planet
+				add_modifier = {
+					modifier = pdrogue
+					days = -1
+				}
+			}
+        }
+    }
+	
+	change_orbit = 50
+
+	planet = {
+		class = "pc_frozen"
+		orbit_distance = 0
+		orbit_angle = -116
+		size = { min = 6 max = 10 }
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -116
+		size = { min = 2 max = 4 }
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_frozen"
+		orbit_distance = 0
+		orbit_angle = -140
+		size = { min = 6 max = 10 }
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 50
+		size = { min = 2 max = 4 }
+		has_ring = no
+		init_effect = { add_deposit = d_engineering_2 }
+		
+	}
+
+	planet = {
+		class = "pc_frozen"
+		orbit_distance = 0
+		orbit_angle = 26
+		size = { min = 6 max = 10 }
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -210
+		size = { min = 2 max = 4 }
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_frozen"
+		orbit_distance = 0
+		orbit_angle = -293
+		size = { min = 6 max = 10 }
+		has_ring = no
+	}
+	
+	planet = {
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = { min = 2 max = 4 }
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_frozen"
+		orbit_distance = 0
+		orbit_angle = 209
+		size = { min = 6 max = 10 }
+		has_ring = no
+	}
+	
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = { min = 2 max = 4 }
+		has_ring = no
+		init_effect = { add_deposit = d_physics_2 }
+	}
+	
+}
+
+#Hycean
+pd_hycean_start_init = {
+	class = "rl_starting_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+
+	usage = origin
+
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 50
+
+	planet = {
+		count = { min = 1 max = 3 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 40 max = 100 }
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 30
+		home_planet = yes
+		class = pc_pd_hycean
+		orbit_angle = { min = 90 max = 270 }
+		size = 36
+		flags = { pd_hycean_homeworld }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			generate_empire_home_planet = yes
+			prevent_anomaly = yes
+		}	
+
+		change_orbit = @base_moon_distance	
+		
+		moon = {
+			count = 1
+			size = 8
+			class = pc_barren_cold
+			orbit_angle = { min = 90 max = 270 }
+			init_effect = {
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				set_planet_flag = megastructure
+				set_planet_flag = habitat
+			}
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				class = pc_habitat
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 5
+				size = 6
+				flags = { hycean_flooded_habitat megastructure habitat }
+				deposit_blockers = none
+			}
+		}
+	}
+
+	planet = {
+		count = { min = 2 max = 4 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 1 max = 2 }
+		orbit_distance = 20
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t2_second_colony_hycean"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony_hycean"
+	}
+}
+
+# Neighbor Tier 1 First Colony
+neighbor_t1_first_colony_hycean = {
+	class = "rl_standard_stars"
+	flags = { neighbor_t1_first_colony }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_distance = 20
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = pc_dwarf_gas_giant
+		modifiers = none
+		anomaly = none
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 36 max = 40 }
+
+		init_effect = {
+			set_planet_flag = prescripted_ideal		# used by code, do not remove
+			prevent_anomaly = yes
+		}
+	}
+
+	planet = {
+		count = { min = 2 max = 5 }
+		orbit_distance = 25
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_distance = 5
+		}
+	}
+
+	neighbor_system = {
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t2"
+	}
+}
+
+# Neighbor Tier 2 Second Colony
+neighbor_t2_second_colony_hycean = {
+	class = "rl_standard_stars"
+	flags = { neighbor_t2_second_colony }
+
+	init_effect = {
+		every_neighbor_system = { set_star_flag = empire_cluster }
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 25
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = pc_dwarf_gas_giant
+		modifiers = none
+		anomaly = none
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = 36 max = 40 }
+
+		init_effect = {
+			set_planet_flag = prescripted_ideal		# used by code, do not remove
+			prevent_anomaly = yes
+		}
+	}
+
+	planet = {
+		count = 2
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	planet = {
+		count = { min = 0 max = 2 }
+		orbit_angle = { min = 90 max = 270 }
+		orbit_distance = 20
+	}
+}

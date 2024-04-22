@@ -1,0 +1,134 @@
+
+
+building_techno_04_clone_vat = {
+	icon = building_gaiaseeders_3
+	base_buildtime = 90
+	position_priority = 100
+
+	#empire_limit = {
+	#	base = 5
+	#}
+
+	category = pop_assembly
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_techno_world
+		}
+		if = {
+			limit = {
+				owner = { is_ai = yes }
+			}
+			NOR = {
+				has_building = building_techno_04_clone_vat
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_robotic_species = yes }
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = {
+				OR = {
+					NOT = { exists = owner }
+					NOT = { has_origin = origin_techno_world }
+					is_synthetic_empire = yes					
+				}
+			}
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_ai = yes }
+			can_assemble_unit04_pop = yes
+			#owner = { NOT = { has_deficit = sr_living_metal	} }
+		}
+		planet_pop_assembly_organic_add = 2
+	}
+
+	# Add growth from 0 to 25 depending on 'clone_pops_missing_per_vat'.
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_deficit = sr_living_metal	} }
+			can_assemble_unit04_pop = yes
+			check_variable = { which = techno_pops_missing_per_vat value > 0 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 2 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_deficit = sr_living_metal	} }
+			can_assemble_unit04_pop = yes
+			check_variable = { which = techno_pops_missing_per_vat value > 2 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 3 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_deficit = sr_living_metal	} }
+			can_assemble_unit04_pop = yes
+			check_variable = { which = techno_pops_missing_per_vat value > 8 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 2 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_deficit = sr_living_metal	} }
+			can_assemble_unit04_pop = yes
+			check_variable = { which = techno_pops_missing_per_vat value > 16 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 3 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = { NOT = { has_deficit = sr_living_metal	} }
+			can_assemble_unit04_pop = yes
+			years_passed > 10
+			check_variable = { which = techno_pops_missing_per_vat value > 32 }
+		}
+		modifier = { planet_pop_assembly_organic_add = 5 }
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+			sr_living_metal = 1
+		}
+	}
+
+	upgrades = {
+	}
+
+	prerequisites = {
+	}
+
+	triggered_desc = {
+		text = building_techno_vat_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			OR = {
+				has_building = building_robot_assembly_plant
+				AND = {
+					exists = assembling_species
+					assembling_species = { is_robotic_species = yes }
+				}
+			}
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+
+	is_essential = yes
+	ai_estimate_without_unemployment = yes
+}

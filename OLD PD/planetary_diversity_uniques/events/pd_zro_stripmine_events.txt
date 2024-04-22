@@ -1,0 +1,251 @@
+namespace = pdzrostripmine
+
+#EnterSystem
+ship_event = {
+	id = pdzrostripmine.10
+	title = pdzrostripmine.10.name
+	desc = pdzrostripmine.10.desc
+	picture = GFX_evt_pdzrostripmine
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = pd_stripmine_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = pd_stripmine_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = pd_stripmine_encounter
+		}
+	}
+
+	option = {
+		name = pdzrostripmine.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdzrostripmine.20
+	title = pdzrostripmine.20.name
+	desc = pdzrostripmine.20.desc
+	picture = GFX_evt_pdzrostripmine2
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_stripmine_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_pd_stripmine_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_pd_stripmine_planet
+		}
+	}
+
+	option = {
+		name = pdzrostripmine.20.a
+		IF = {
+			limit = {
+				owner = { is_gestalt = no }
+			}
+			owner = { add_research_option = tech_mine_zro }
+		}
+		FROM = { create_archaeological_site = pdzrostripmine_site }
+	}
+}
+
+#Stripmine Arc Event
+fleet_event = { 
+	id = pdzrostripmine.30
+	title = "pdzrostripmine.30.name"
+	desc = pdzrostripmine.30.desc
+	picture = GFX_evt_pdzrostripmine2
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdzrostripmine.30.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = engineering_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdzrostripmine.31
+	title = "pdzrostripmine.30.name"
+	desc = pdzrostripmine.31.desc
+	picture = GFX_evt_habitable_dig_site
+	show_sound = event_dig_site
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ancrel.51.a
+		owner = {
+			add_research_option = tech_mine_pd_zro
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdzrostripmine.32
+	title = "pdzrostripmine.30.name"
+	desc = pdzrostripmine.32.desc
+	picture = GFX_evt_archaeology_camp
+	show_sound = event_scanner
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdzrostripmine.32.a
+		owner = {
+			small_artifact_reward = yes
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdzrostripmine.33
+	title = "pdzrostripmine.30.name"
+	desc = pdzrostripmine.33.desc
+	picture = GFX_evt_collapsing_roof
+	show_sound = event_ghost_town
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdzrostripmine.33.a
+		owner = {
+			small_artifact_reward = yes
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdzrostripmine.34
+	title = "pdzrostripmine.30.name"
+	desc = pdzrostripmine.34.desc
+	picture = GFX_evt_surreal_visions
+	show_sound = event_bad_omen
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdzrostripmine.34.a
+		owner = {
+			small_artifact_reward = yes
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdzrostripmine.35
+	title = "pdzrostripmine.30.name"
+	desc = pdzrostripmine.35.desc
+	picture = GFX_evt_zro_4
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_galaxy_planet = {
+			limit = { has_planet_flag = pd_stripmine_planet }
+			planet_event = { id = pdzrostripmine.40 days = 14 }
+		}
+	}
+
+	option = {
+		name = pdzrostripmine.35.a
+		owner = {
+			small_artifact_reward = yes
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+#Story Ends
+planet_event = {
+	id = pdzrostripmine.40
+	title = pdzrostripmine.40.name
+	desc = pdzrostripmine.40.desc
+	picture = GFX_evt_pdzrostripmine2
+	show_sound = event_alien_nature
+	location = root
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdzrostripmine.40.a
+	}
+}

@@ -1,0 +1,1423 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+@hiveCost = 10000
+@hiveTime = 7200
+
+@terraforming_cost_radblooms = 1000
+
+#Radiotrophic World
+#All Others
+terraform_link = {
+	from = pc_irradiated
+	to = pc_continental
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_continental } } modifier = { factor = 10 has_trait = trait_pc_continental_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_ocean
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_ocean } } modifier = { factor = 10 has_trait = trait_pc_ocean_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_tropical
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_tropical } } modifier = { factor = 10 has_trait = trait_pc_tropical_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_cascadian
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_cascadian } } modifier = { factor = 10 has_trait = trait_pc_cascadian_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_desertislands
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_desertislands } } modifier = { factor = 10 has_trait = trait_pc_desertislands_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_subarctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_subarctic } } modifier = { factor = 10 has_trait = trait_pc_subarctic_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_mangrove
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_mangrove } } modifier = { factor = 10 has_trait = trait_pc_mangrove_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_wetswamp
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_wetswamp } } modifier = { factor = 10 has_trait = trait_pc_wetswamp_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_fog
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_fog } } modifier = { factor = 10 has_trait = trait_pc_fog_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_hajungle
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_hajungle } } modifier = { factor = 10 has_trait = trait_pc_hajungle_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_cenote
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_cenote } } modifier = { factor = 10 has_trait = trait_pc_cenote_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_retinal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_retinal } } modifier = { factor = 10 has_trait = trait_pc_retinal_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_forest
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_retinal } } modifier = { factor = 10 has_trait = trait_pc_retinal_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_lake
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_lake } } modifier = { factor = 10 has_trait = trait_pc_lake_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_tepid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_tepid } } modifier = { factor = 10 has_trait = trait_pc_tepid_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_aquatic
+	resources = { category = terraforming cost = { energy = @terraforming_cost_gaia} }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric  has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_aquatic } } modifier = { factor = 10 has_trait = trait_pc_aquatic_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_desert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_desert } } modifier = { factor = 10 has_trait = trait_pc_desert_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_arid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_arid } } modifier = { factor = 10 has_trait = trait_pc_arid_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_savannah
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_savannah } } modifier = { factor = 10 has_trait = trait_pc_savannah_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_steppe
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_steppe } } modifier = { factor = 10 has_trait = trait_pc_steppe_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_sandsea
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_sandsea } } modifier = { factor = 10 has_trait = trait_pc_sandsea_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_oasis
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_oasis } } modifier = { factor = 10 has_trait = trait_pc_oasis_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_mesa
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_mesa } } modifier = { factor = 10 has_trait = trait_pc_mesa_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_badlands
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_badlands } } modifier = { factor = 10 has_trait = trait_pc_badlands_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_outback
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_outback } } modifier = { factor = 10 has_trait = trait_pc_outback_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_coastal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_coastal } } modifier = { factor = 10 has_trait = trait_pc_coastal_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_arctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_arctic } } modifier = { factor = 10 has_trait = trait_pc_arctic_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_alpine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_alpine } } modifier = { factor = 10 has_trait = trait_pc_alpine_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_tundra
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_tundra } } modifier = { factor = 10 has_trait = trait_pc_tundra_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_swamp
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_swamp } } modifier = { factor = 10 has_trait = trait_pc_swamp_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_mud
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_mud } } modifier = { factor = 10 has_trait = trait_pc_mud_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_basalt
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_basalt } } modifier = { factor = 10 has_trait = trait_pc_basalt_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_frozen_desert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_frozen_desert } } modifier = { factor = 10 has_trait = trait_pc_frozen_desert_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_glacial
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_glacial } } modifier = { factor = 10 has_trait = trait_pc_glacial_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_hadesert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_hadesert } } modifier = { factor = 10 has_trait = trait_pc_hadesert_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_prairie
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_prairie } } modifier = { factor = 10 has_trait = trait_pc_prairie_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_veld
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_veld } } modifier = { factor = 10 has_trait = trait_pc_veld_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_semiarid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_semiarid } } modifier = { factor = 10 has_trait = trait_pc_semiarid_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_med
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_med } } modifier = { factor = 10 has_trait = trait_pc_med_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_boreal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_boreal } } modifier = { factor = 10 has_trait = trait_pc_boreal_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_mushroom
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_mushroom } } modifier = { factor = 10 has_trait = trait_pc_mushroom_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_antarctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_antarctic } } modifier = { factor = 10 has_trait = trait_pc_antarctic_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_aeolian
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_aeolian } } modifier = { factor = 10 has_trait = trait_pc_aeolian_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_snow
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_snow } } modifier = { factor = 10 has_trait = trait_pc_snow_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_highland
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_highland } } modifier = { factor = 10 has_trait = trait_pc_highland_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_duneforest
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration }
+	potential = { has_technology = tech_climate_restoration }	
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated CLASS_TO = pc_duneforest } } modifier = { factor = 10 has_trait = trait_pc_duneforest_preference } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+#Special
+terraform_link = {
+	from = pc_irradiated
+	to = pc_gaia
+	resources = { category = terraforming cost = { energy = @terraforming_cost_gaia} }
+	duration = @terraforming_duration_gaia
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { has_trait = trait_pc_irradiated_preference is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_hot_gaia
+	resources = { category = terraforming cost = { energy = @terraforming_cost_gaia} }
+	duration = @terraforming_duration_gaia
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { has_trait = trait_pc_irradiated_preference is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_cold_gaia
+	resources = { category = terraforming cost = { energy = @terraforming_cost_gaia} }
+	duration = @terraforming_duration_gaia
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { has_trait = trait_pc_irradiated_preference is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_machine_worlds }
+	potential = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = radiotrophic } }
+	ai_weight = { weight = 10 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit has_trait = trait_mechanical    } is_sapient = yes } } } }
+}
+#Rare
+terraform_link = {
+	from = pc_irradiated
+	to = pc_cryoflora
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_lichen
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_glacio
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_lanthanide
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_storm
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_pd_iceberg
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_megaflora
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_pd_petrified
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_reef
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_pd_archipelago
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_cryoflora
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_geothermal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_biolumen
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_salt
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_aquifer
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_coral
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_primal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_supercon
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+terraform_link = {
+	from = pc_irradiated
+	to = pc_pd_sinkhole
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 1 }
+	effect = { from = { remove_modifier = ash } }
+}
+
+#Superhab
+terraform_link = {
+	from = pc_irradiated_superhab
+	to = pc_superhabitable
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_superhab CLASS_TO = pc_superhabitable } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_irradiated_superhab
+	to = pc_pd_dry_superhab
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_superhab CLASS_TO = pc_pd_dry_superhab } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_irradiated_superhab
+	to = pc_pd_cold_superhab
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_superhab CLASS_TO = pc_pd_cold_superhab } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+#Cave
+terraform_link = {
+	from = pc_irradiated_cave
+	to = pc_karst
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_cave CLASS_TO = pc_karst } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_irradiated_cave
+	to = pc_pd_dry_cave
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_cave CLASS_TO = pc_pd_dry_cave } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_irradiated_cave
+	to = pc_pd_cold_cave
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_cave CLASS_TO = pc_pd_cold_cave } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+#Tidal
+terraform_link = {
+	from = pc_irradiated_tidal	
+	to = pc_tidallylocked
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_tidal CLASS_TO = pc_tidallylocked } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_irradiated_tidal
+	to = pc_wettidallylocked
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_tidal CLASS_TO = pc_wettidallylocked } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_irradiated_tidal
+	to = pc_eyeball
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	condition = { has_ascension_perk = ap_world_shaper }
+	potential = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_irradiated_tidal CLASS_TO = pc_eyeball } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+
+
+
+
+
+
+
+#Special
+terraform_link = {
+	from = pc_nuked
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = 500 } }
+	duration = @terraforming_duration_level_1
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_nuked CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_pd_barren_hab
+	to = pc_irradiated
+    resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_4
+	condition = { has_technology = tech_climate_restoration has_technology = tech_rad_bloom_terraform_2 }
+	potential = { from = { has_modifier = terraforming_candidate } has_technology = tech_rad_bloom_terraform_2 }
+	effect = { from = { remove_modifier = terraforming_candidate reroll_planet = yes remove_modifier = master_builders_habitats} }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_barren_hab CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_pd_barren_cold_hab
+	to = pc_irradiated
+    resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_4
+	condition = { has_technology = tech_climate_restoration has_technology = tech_rad_bloom_terraform_2 }
+	potential = { from = { has_modifier = terraforming_candidate } has_technology = tech_rad_bloom_terraform_2 }
+	effect = { from = { remove_modifier = terraforming_candidate reroll_planet = yes remove_modifier = master_builders_habitats } }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_barren_cold_hab CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_gray_goo
+	to = pc_irradiated
+    resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_technology = tech_rad_bloom_terraform_2 }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_gray_goo CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	to = pc_hive
+	from = pc_irradiated
+	resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }	
+	ai_weight = { weight = 10 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } }} } modifier = { factor = 0 from = { is_colony = no } }}
+	effect = { from = { remove_modifier = radiotrophic } }
+}
+terraform_link = {
+	from = pc_hothouse
+	to = pc_irradiated
+    resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = terraforming_candidate } has_technology = tech_rad_bloom_terraform_2 }
+	condition = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_hothouse CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_machine
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_climate_restoration }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_machine CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+
+#Regular
+terraform_link = {
+	from = pc_alpine
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_alpine CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_antarctic
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_antarctic CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_aeolian
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_aeolian CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_arctic
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_arctic CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_arid
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_arid CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_hadesert
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_hadesert CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_desertislands
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_desertislands CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_barren
+	to = pc_irradiated
+    resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration has_technology = tech_rad_bloom_terraform_2 }
+	potential = { from = { has_modifier = terraforming_candidate } has_technology = tech_rad_bloom_terraform_2 }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_barren CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_barren_cold
+	to = pc_irradiated
+    resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_climate_restoration has_technology = tech_rad_bloom_terraform_2 }
+	potential = { from = { has_modifier = terraforming_candidate } has_technology = tech_rad_bloom_terraform_2 }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_barren_cold CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_swamp
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_swamp CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_mud
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_mud CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_basalt
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_basalt CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_boreal
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_boreal CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_cascadian
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_cascadian CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_desertislands
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_desertislands CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_subarctic
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_subarctic CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_desert
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_desert CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_sandsea
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_sandsea CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_forest
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_forest CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_lake
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_lake CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_tepid
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_tepid CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_aquatic
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_aquatic CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_frozen_desert
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_frozen_desert CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_glacial
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_glacial CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_mangrove
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_mangrove CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_wetswamp
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_wetswamp CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_fog
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_fog CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_med
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_med CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_continental
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_continental CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_mesa
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_mesa CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_badlands
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_badlands CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_outback
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_outback CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_coastal
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_coastal CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_mushroom
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_mushroom CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_oasis
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_oasis CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_ocean
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_ocean CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_prairie
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_prairie CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_veld
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_veld CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_semiarid
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_semiarid CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_retinal
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_retinal CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_savannah
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_savannah CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_snow
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_snow CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_highland
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_highland CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_duneforest
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_duneforest CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_steppe
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_steppe CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_hajungle
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_hajungle CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_cenote
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_cenote CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_tropical
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_tropical CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_tundra
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_tundra CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_gaia
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_gaia CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_hot_gaia
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_hot_gaia CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_cold_gaia
+	to = pc_irradiated
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_cold_gaia CLASS_TO = pc_irradiated } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+#Superhab
+terraform_link = {
+	from = pc_superhabitable
+	to = pc_irradiated_superhab
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_superhabitable CLASS_TO = pc_irradiated_superhab } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_pd_dry_superhab
+	to = pc_irradiated_superhab
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_dry_superhab CLASS_TO = pc_irradiated_superhab } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_pd_cold_superhab
+	to = pc_irradiated_superhab
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_cold_superhab CLASS_TO = pc_irradiated_superhab } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+#Cave
+terraform_link = {
+	from = pc_karst
+	to = pc_irradiated_cave
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_karst CLASS_TO = pc_irradiated_cave } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_pd_dry_cave
+	to = pc_irradiated_cave
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_dry_cave CLASS_TO = pc_irradiated_cave } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_pd_cold_cave
+	to = pc_irradiated_cave
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_pd_cold_cave CLASS_TO = pc_irradiated_cave } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+#Tidal
+terraform_link = {
+	from = pc_tidallylocked
+	to = pc_irradiated_tidal
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_tidallylocked CLASS_TO = pc_irradiated_tidal } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_wettidallylocked
+	to = pc_irradiated_tidal
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_wettidallylocked CLASS_TO = pc_irradiated_tidal } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}
+terraform_link = {
+	from = pc_eyeball
+	to = pc_irradiated_tidal
+	resources = { category = terraforming cost = { sr_rad_bloom = @terraforming_cost_radblooms } }
+	duration = @terraforming_duration_level_3
+	condition = { has_technology = tech_rad_bloom_terraform_2 }
+	potential = { has_technology = tech_rad_bloom_terraform_2 }
+	ai_weight = { weight = 0 modifier = { weight = 1 should_terraform_trigger = { CLASS_FROM = pc_eyeball CLASS_TO = pc_irradiated_tidal } } modifier = { factor = 10 has_trait = trait_pc_irradiated_preference } }
+}

@@ -1,0 +1,933 @@
+@pdbadhab = -5.0
+
+trait_pc_pd_hycean_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_pd_hycean_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_METHANE_PREFERENCE_EFFECT
+	modifier = {
+		pc_pd_hycean_habitability = 0.8
+	}
+	custom_tooltip_with_modifiers = trait_hycean_tooltip
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_planet_class = pc_pd_hycean
+					has_modifier = hyceanfloodedhabitat
+					has_modifier = hyceanfloodedworld
+				}
+			}
+		}
+		pop_housing_usage_mult = -0.1
+		planet_jobs_food_produces_mult = 0.1
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_jobs_energy_produces_mult = 0.1
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_planet_class = pc_pd_hycean
+					has_modifier = hyceanfloodedhabitat
+					has_modifier = hyceanfloodedworld
+				}
+				exists = owner
+				owner = { has_ascension_perk = ap_hydrocentric }
+			}
+		}
+		pop_housing_usage_mult = -0.05
+		planet_jobs_food_produces_mult = 0.05
+		planet_jobs_minerals_produces_mult = 0.05
+		planet_jobs_energy_produces_mult = 0.05
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { 
+				OR = {
+					has_modifier = hyceanfloodedhabitat 
+					has_modifier = hyceanfloodedworld
+				}
+			}
+		}
+		pop_environment_tolerance = 1.0
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_pd_hycean has_modifier = hyceanfloodedhabitat has_modifier = hyceanfloodedworld } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_methane_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_methane_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_METHANE_PREFERENCE_EFFECT
+	modifier = {
+		pc_methane_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_methane has_modifier = pdmethaneatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_ammonia_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ammonia_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_AMMONIA_PREFERENCE_EFFECT
+	modifier = {
+		pc_ammonia_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_ammonia has_modifier = pdammoniaatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				is_pd_gaia = yes
+			} 
+		} 
+		pop_environment_tolerance = -1.0
+	}
+}
+
+trait_pd_ammonia_suits = {
+	icon = "gfx/interface/icons/traits/trait_pd_ammonia_suits.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+
+	custom_tooltip_with_modifiers = trait_pd_ammonia_suits_tooltip 
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = { NOT = { is_planet_class = pc_ammonia	} }
+		}
+		pop_happiness = -0.1
+		pop_amenities_usage_mult = -0.2
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { NOT = { is_planet_class = pc_ammonia	} }
+		}
+		pop_environment_tolerance = 5.4
+	}
+}
+
+trait_pd_ammonia_suits_2 = {
+	icon = "gfx/interface/icons/traits/trait_pd_ammonia_suits.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+
+	custom_tooltip_with_modifiers = trait_pd_ammonia_suits_2_tooltip 
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = { NOT = { is_planet_class = pc_ammonia	} }
+		}
+		pop_happiness = -0.05
+		pop_amenities_usage_mult = -0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { NOT = { is_planet_class = pc_ammonia	} }
+		}
+		pop_environment_tolerance = 5.6
+	}
+}
+
+trait_pd_ammonia_suits_3 = {
+	icon = "gfx/interface/icons/traits/trait_pd_ammonia_suits.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+
+	custom_tooltip_with_modifiers = trait_pd_ammonia_suits_3_tooltip 
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { NOT = { is_planet_class = pc_ammonia	} }
+		}
+		pop_environment_tolerance = 5.8
+	}
+}
+
+trait_pc_sulfur_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_sulfur_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_AMMONIA_PREFERENCE_EFFECT
+	modifier = {
+		pc_sulfur_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_sulfur has_modifier = pdsulfuratmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_acid_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_acid_preference.dds"
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	custom_tooltip = TRAIT_ACID_PREFERENCE_EFFECT
+	modifier = {
+		pc_acid_habitability = 0.8
+		pc_continental_habitability = 0.35
+		pc_ocean_habitability = 0.35
+		pc_tropical_habitability = 0.35
+		pc_cascadian_habitability = 0.35		
+		pc_desertislands_habitability = 0.35
+		pc_subarctic_habitability = 0.35
+		pc_mangrove_habitability = 0.35
+		pc_wetswamp_habitability = 0.35
+		pc_fog_habitability = 0.35
+		pc_hajungle_habitability = 0.35
+		pc_cenote_habitability = 0.35
+		pc_retinal_habitability = 0.35
+		pc_forest_habitability = 0.35
+		pc_lake_habitability = 0.35
+		pc_tepid_habitability = 0.35
+		pc_desert_habitability = 0.35
+		pc_arid_habitability = 0.35
+		pc_outback_habitability = 0.35
+		pc_coastal_habitability = 0.35
+		pc_savannah_habitability = 0.35
+		pc_steppe_habitability = 0.35
+		pc_sandsea_habitability = 0.35
+		pc_oasis_habitability = 0.35
+		pc_mesa_habitability = 0.35
+		pc_badlands_habitability = 0.35
+		pc_hadesert_habitability = 0.35
+		pc_prairie_habitability = 0.35
+		pc_veld_habitability = 0.35
+		pc_semiarid_habitability = 0.35
+		pc_med_habitability = 0.35
+		pc_arctic_habitability = 0.35
+		pc_alpine_habitability = 0.35
+		pc_highland_habitability = 0.35
+		pc_duneforest_habitability = 0.35
+		pc_tundra_habitability = 0.35
+		pc_swamp_habitability = 0.35
+		pc_mud_habitability = 0.35
+		pc_basalt_habitability = 0.35
+		pc_frozen_desert_habitability = 0.35
+		pc_glacial_habitability = 0.35
+		pc_boreal_habitability = 0.35
+		pc_mushroom_habitability = 0.35
+		pc_antarctic_habitability = 0.35
+		pc_aeolian_habitability = 0.35
+		pc_snow_habitability = 0.35
+		pc_geothermal_habitability = 0.35
+		pc_superhabitable_habitability = 0.35
+		pc_pd_dry_superhab_habitability = 0.35
+		pc_pd_cold_superhab_habitability = 0.35
+		pc_tidallylocked_habitability = 0.35
+		pc_wettidallylocked_habitability = 0.35
+		pc_supercon_habitability = 0.35
+		pc_pd_sinkhole_habitability = 0.35
+		pc_biolumen_habitability = 0.35
+		pc_karst_habitability = 0.35
+		pc_pd_cold_cave_habitability = 0.35
+		pc_pd_dry_cave_habitability = 0.35
+		pc_primal_habitability = 0.35
+		pc_salt_habitability = 0.35
+		pc_aquifer_habitability = 0.35
+		pc_coral_habitability = 0.35
+		pc_storm_habitability = 0.35
+		pc_pd_iceberg_habitability = 0.35
+		pc_megaflora_habitability = 0.35
+		pc_pd_petrified_habitability = 0.35
+		pc_cryoflora_habitability = 0.35
+		pc_lichen_habitability = 0.35
+		pc_eyeball_habitability = 0.35
+		pc_glacio_habitability = 0.35
+		pc_lanthanide_habitability = 0.35
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = { is_planet_class = pc_acid }
+		}
+		planet_jobs_produces_mult = 0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { is_planet_class = pc_acid }
+		}
+		pop_growth_speed = 0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { planet = { is_pd_bad_exotic = yes } }
+		pop_environment_tolerance = @pdbadhab
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				has_building = building_acidseeders_1 
+				is_pd_unique = no
+			} 
+		}
+		pop_environment_tolerance = 0.5
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				has_building = building_acidseeders_1 
+				is_pd_unique = yes
+			} 
+		}
+		pop_environment_tolerance = 1.0
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				is_pd_gaia = yes
+			} 
+		}
+		pop_environment_tolerance = -1.0
+	}
+}
+
+trait_pc_ash_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ash_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_ash_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_ash has_modifier = pdashatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { planet = { has_deposit = d_pd_tectonic_fissure } } 
+		pop_environment_tolerance = 5.6
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { planet = { has_building = building_pd_tectonic_drills } } 
+		pop_environment_tolerance = 0.4
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				is_pd_gaia = yes
+			} 
+		} 
+		pop_environment_tolerance = -1.0
+	}
+}
+
+trait_pc_ammoniacity_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ammonia_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_ammoniacity_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_ammonia has_modifier = pdammoniaatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_sulfurcity_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_sulfur_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_sulfurcity_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_sulfur has_modifier = pdsulfuratmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_ammoniaring_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ammonia_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_ammoniaring_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_ammonia has_modifier = pdammoniaatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_sulfurring_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_sulfur_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_sulfurring_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_sulfur has_modifier = pdsulfuratmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_methanecity_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_methane_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_METHANE_PREFERENCE_EFFECT
+	modifier = {
+		pc_methanecity_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_methane has_modifier = pdmethaneatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_methanering_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_methane_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_METHANE_PREFERENCE_EFFECT
+	modifier = {
+		pc_methanering_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_methane has_modifier = pdmethaneatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_ashcity_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ash_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_ashcity_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_ash has_modifier = pdashatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_ashring_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ash_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	advanced_trait = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ASH_PREFERENCE_EFFECT
+	modifier = {
+		pc_ashring_habitability = 0.8
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { NOT = { planet = { OR = { is_planet_class = pc_ash has_modifier = pdashatmosphere } } } } 
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_radiotrophic_mutants = {
+	cost = 1
+	opposites = { "trait_weak" "trait_strong" "trait_very_strong" "trait_plantoid_radiotrophic" "trait_plantoid_phototrophic" "trait_lithoid_radiotrophic" } 
+
+	sorting_priority = 20
+
+	allowed_planet_classes = {
+		pc_irradiated
+	}
+
+	randomized = no
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	initial = yes
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	ai_weight = {
+		weight = 0
+	}
+
+	modifier = {
+		army_damage_mult = 0.30
+	}
+
+	#custom_tooltip = TRAIT_PLANTOID_RADIOTROPHIC_EFFECT
+	#On Radiotrophic
+	custom_tooltip_with_modifiers = trait_radiotrophic_mutant_tooltip
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_pd_radiotrophic_world = yes
+					NOT = { is_artificial = yes }
+					NOT = { is_pd_habitat = yes }
+					NOT = { is_planet_class = pc_city }
+					is_pd_arcology = no
+					is_pd_hive_arcology = no
+					is_pd_robot_arcology = no
+				}
+			}
+		}
+		planet_jobs_produces_mult = 0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_pd_radiotrophic_world = yes
+					NOT = { is_artificial = yes }
+					NOT = { is_pd_habitat = yes }
+					NOT = { is_planet_class = pc_city }
+					is_pd_arcology = no
+					is_pd_hive_arcology = no
+					is_pd_robot_arcology = no
+				}
+			}
+		}
+		pop_growth_speed = 0.10
+	}
+
+	#Not On Radiotrophic
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = { 
+				is_pd_radiotrophic_world = no
+				NOT = { is_artificial = yes }
+				NOT = { is_pd_habitat = yes }
+				NOT = { is_planet_class = pc_city }
+				is_pd_arcology = no
+				is_pd_hive_arcology = no
+				is_pd_robot_arcology = no
+			}
+		}
+		planet_jobs_produces_mult = -0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { 
+				is_pd_radiotrophic_world = no
+				NOT = { is_artificial = yes }
+				NOT = { is_pd_habitat = yes }
+				NOT = { is_planet_class = pc_city }
+				is_pd_arcology = no
+				is_pd_hive_arcology = no
+				is_pd_robot_arcology = no
+			}
+		}
+		pop_growth_speed = -0.10
+	}
+	slave_cost = {
+		energy = 500
+	}
+
+	icon = "gfx/interface/icons/traits/trait_radiotrophic_mutants.dds"
+}
+
+trait_pc_irradiated_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_radiotropic_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	} 
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	custom_tooltip = TRAIT_IRRADIATED_PREFERENCE_EFFECT
+	modifier = {
+		pc_irradiated_habitability = 0.8
+		pc_irradiated_cave_habitability = 0.8
+		pc_irradiated_superhab_habitability = 0.8
+		pc_irradiated_tidal_habitability = 0.8
+		pc_nuked_habitability = 0.6
+		pc_nuked_tl_habitability = 0.6
+		pc_nuked_superhab_habitability = 0.6
+		pc_nuked_relic_habitability = 0.6
+		pc_continental_habitability = 0.35
+		pc_ocean_habitability = 0.35
+		pc_tropical_habitability = 0.35
+		pc_cascadian_habitability = 0.35		
+		pc_desertislands_habitability = 0.35
+		pc_subarctic_habitability = 0.35
+		pc_mangrove_habitability = 0.35
+		pc_wetswamp_habitability = 0.35
+		pc_fog_habitability = 0.35
+		pc_hajungle_habitability = 0.35
+		pc_cenote_habitability = 0.35
+		pc_retinal_habitability = 0.35
+		pc_forest_habitability = 0.35
+		pc_lake_habitability = 0.35
+		pc_tepid_habitability = 0.35
+		pc_desert_habitability = 0.35
+		pc_arid_habitability = 0.35
+		pc_outback_habitability = 0.35
+		pc_coastal_habitability = 0.35
+		pc_savannah_habitability = 0.35
+		pc_steppe_habitability = 0.35
+		pc_sandsea_habitability = 0.35
+		pc_oasis_habitability = 0.35
+		pc_mesa_habitability = 0.35
+		pc_badlands_habitability = 0.35
+		pc_hadesert_habitability = 0.35
+		pc_prairie_habitability = 0.35
+		pc_veld_habitability = 0.35
+		pc_semiarid_habitability = 0.35
+		pc_med_habitability = 0.35
+		pc_arctic_habitability = 0.35
+		pc_alpine_habitability = 0.35
+		pc_highland_habitability = 0.35
+		pc_duneforest_habitability = 0.35
+		pc_tundra_habitability = 0.35
+		pc_swamp_habitability = 0.35
+		pc_mud_habitability = 0.35
+		pc_basalt_habitability = 0.35
+		pc_frozen_desert_habitability = 0.35
+		pc_glacial_habitability = 0.35
+		pc_boreal_habitability = 0.35
+		pc_mushroom_habitability = 0.35
+		pc_antarctic_habitability = 0.35
+		pc_aeolian_habitability = 0.35
+		pc_snow_habitability = 0.35
+		pc_geothermal_habitability = 0.35
+		pc_superhabitable_habitability = 0.35
+		pc_pd_dry_superhab_habitability = 0.35
+		pc_pd_cold_superhab_habitability = 0.35
+		pc_tidallylocked_habitability = 0.35
+		pc_wettidallylocked_habitability = 0.35
+		pc_supercon_habitability = 0.35
+		pc_pd_sinkhole_habitability = 0.35
+		pc_biolumen_habitability = 0.35
+		pc_karst_habitability = 0.35
+		pc_pd_cold_cave_habitability = 0.35
+		pc_pd_dry_cave_habitability = 0.35
+		pc_primal_habitability = 0.35
+		pc_salt_habitability = 0.35
+		pc_aquifer_habitability = 0.35
+		pc_coral_habitability = 0.35
+		pc_storm_habitability = 0.35
+		pc_pd_iceberg_habitability = 0.35
+		pc_megaflora_habitability = 0.35
+		pc_pd_petrified_habitability = 0.35
+		pc_cryoflora_habitability = 0.35
+		pc_lichen_habitability = 0.35
+		pc_eyeball_habitability = 0.35
+		pc_glacio_habitability = 0.35
+		pc_lanthanide_habitability = 0.35
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { planet = { is_pd_bad_exotic = yes } }
+		pop_environment_tolerance = @pdbadhab
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				is_pd_gaia = yes
+			} 
+		}
+		pop_environment_tolerance = -1.0
+	}
+}
+
+trait_pc_nuked_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_nuked_preference.dds"
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	} 
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	custom_tooltip = TRAIT_NUKED_PREFERENCE_EFFECT
+	modifier = {
+		pc_nuked_habitability = 0.8
+		pc_nuked_tl_habitability = 0.8
+		pc_nuked_superhab_habitability = 0.8
+		pc_nuked_relic_habitability = 0.8
+		pc_irradiated_habitability = 0.7
+		pc_irradiated_cave_habitability = 0.7
+		pc_irradiated_superhab_habitability = 0.7
+		pc_irradiated_tidal_habitability = 0.7
+		pc_continental_habitability = 0.6
+		pc_ocean_habitability = 0.6
+		pc_tropical_habitability = 0.6
+		pc_cascadian_habitability = 0.6		
+		pc_desertislands_habitability = 0.6
+		pc_subarctic_habitability = 0.6
+		pc_mangrove_habitability = 0.6
+		pc_wetswamp_habitability = 0.6
+		pc_fog_habitability = 0.6
+		pc_hajungle_habitability = 0.6
+		pc_cenote_habitability = 0.6
+		pc_retinal_habitability = 0.6
+		pc_forest_habitability = 0.6
+		pc_lake_habitability = 0.6
+		pc_tepid_habitability = 0.6
+		pc_desert_habitability = 0.6
+		pc_arid_habitability = 0.6
+		pc_outback_habitability = 0.6
+		pc_coastal_habitability = 0.6
+		pc_savannah_habitability = 0.6
+		pc_steppe_habitability = 0.6
+		pc_sandsea_habitability = 0.6
+		pc_oasis_habitability = 0.6
+		pc_mesa_habitability = 0.6
+		pc_badlands_habitability = 0.6
+		pc_hadesert_habitability = 0.6
+		pc_prairie_habitability = 0.6
+		pc_veld_habitability = 0.6
+		pc_semiarid_habitability = 0.6
+		pc_med_habitability = 0.6
+		pc_arctic_habitability = 0.6
+		pc_alpine_habitability = 0.6
+		pc_highland_habitability = 0.6
+		pc_duneforest_habitability = 0.6
+		pc_tundra_habitability = 0.6
+		pc_swamp_habitability = 0.6
+		pc_mud_habitability = 0.6
+		pc_basalt_habitability = 0.6
+		pc_frozen_desert_habitability = 0.6
+		pc_glacial_habitability = 0.6
+		pc_boreal_habitability = 0.6
+		pc_mushroom_habitability = 0.6
+		pc_antarctic_habitability = 0.6
+		pc_aeolian_habitability = 0.6
+		pc_snow_habitability = 0.6
+		pc_geothermal_habitability = 0.6
+		pc_superhabitable_habitability = 0.6
+		pc_pd_dry_superhab_habitability = 0.6
+		pc_pd_cold_superhab_habitability = 0.6
+		pc_tidallylocked_habitability = 0.6
+		pc_wettidallylocked_habitability = 0.6
+		pc_supercon_habitability = 0.6
+		pc_pd_sinkhole_habitability = 0.6
+		pc_biolumen_habitability = 0.6
+		pc_karst_habitability = 0.6
+		pc_pd_cold_cave_habitability = 0.6
+		pc_pd_dry_cave_habitability = 0.6
+		pc_reef_habitability = 0.6
+		pc_pd_archipelago_habitability = 0.6
+		pc_primal_habitability = 0.6
+		pc_salt_habitability = 0.6
+		pc_aquifer_habitability = 0.6
+		pc_coral_habitability = 0.6
+		pc_storm_habitability = 0.6
+		pc_pd_iceberg_habitability = 0.6
+		pc_cryoflora_habitability = 0.6
+		pc_lichen_habitability = 0.6
+		pc_eyeball_habitability = 0.6
+		pc_megaflora_habitability = 0.6
+		pc_pd_petrified_habitability = 0.6
+		pc_glacio_habitability = 0.6
+		pc_lanthanide_habitability = 0.6
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { planet = { is_pd_bad_exotic = yes } }
+		pop_environment_tolerance = @pdbadhab
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				is_pd_gaia = yes
+			} 
+		}
+		pop_environment_tolerance = -1.0
+	}
+}
+
+trait_pc_rogue_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_rogue_preference.dds"
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = yes
+	} 
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	#custom_tooltip = TRAIT_ROGUE_PREFERENCE_EFFECT
+	modifier = {
+		pc_rogue_habitability = 1.0
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { planet = { is_pd_bad_exotic = yes } }
+		pop_environment_tolerance = @pdbadhab
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = { 
+			planet = { 
+				is_pd_gaia = yes
+			} 
+		}
+		pop_environment_tolerance = -1.0
+	}
+}

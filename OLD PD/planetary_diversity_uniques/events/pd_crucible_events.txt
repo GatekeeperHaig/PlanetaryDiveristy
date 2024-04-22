@@ -1,0 +1,253 @@
+namespace = pdcrucible
+
+#EnterSystem
+ship_event = {
+	id = pdcrucible.10
+	title = pdcrucible.10.name
+	desc = pdcrucible.10.desc
+	picture = GFX_evt_shielded_planet
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_star_flag = crucible_system
+		}
+		owner = {
+			NOT = {
+				has_country_flag = crucible_encounter
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = crucible_encounter
+		}
+	}
+
+	option = {
+		name = pdcrucible.10.a
+	}
+}
+
+#SurveyPlanet
+ship_event = {
+	id = pdcrucible.20
+	title = pdcrucible.20.name
+	desc = pdcrucible.20.desc
+	picture = GFX_evt_shielded_planet
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_crucible_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_crucible_planet
+			}
+			OR = {
+				is_country_type = default
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_crucible_planet
+		}
+	}
+
+	option = {
+		name = pdcrucible.20.a
+	}
+}
+
+#Arc Event
+fleet_event = { 
+	id = pdcrucible.50
+	title = "pdcrucible.50.name"
+	desc = pdcrucible.50.desc
+	picture = GFX_evt_shielded_planet
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrucible.50.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = engineering_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = { 
+	id = pdcrucible.51
+	title = "pdcrucible.50.name"
+	desc = pdcrucible.51.desc
+	picture = GFX_evt_shielded_planet
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ancrel.51.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = engineering_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+		small_artifact_reward = yes
+	}
+}
+
+fleet_event = { 
+	id = pdcrucible.52
+	title = "pdcrucible.50.name"
+	desc = pdcrucible.52.desc
+	picture = GFX_evt_shielded_planet
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrucible.52.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier4researchreward
+     			min = @tier4researchmin
+     			max = @tier4researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcrucible.53
+	title = "pdcrucible.50.name"
+	desc = pdcrucible.53.desc
+	picture = GFX_evt_shielded_planet
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrucible.53.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = physics_research
+     			value = @tier4researchreward
+     			min = @tier4researchmin
+     			max = @tier4researchmax
+			}
+		}
+	}
+}
+
+fleet_event = { 
+	id = pdcrucible.54
+	title = "pdcrucible.50.name"
+	desc = pdcrucible.54.desc
+	picture = GFX_evt_shielded_planet
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+		large_artifact_reward = yes
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = physics_research
+     			value = @tier4researchreward
+     			min = @tier4researchmin
+     			max = @tier4researchmax
+			}
+		}
+		random_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_shielded
+				has_planet_flag = pd_crucible_planet
+			}
+			enable_special_project = { name = pd_crucible_shieldbreaker	}
+		}
+	}
+}
+
+#Change to Crucible
+planet_event = {
+	id = pdcrucible.30
+	title = pdcrucible.30.name
+	desc = pdcrucible.30.desc
+	picture = GFX_evt_shielded_planet
+	show_sound = event_mysterious_signal
+	location = ROOT
+
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_planet_flag = pd_crucible_planet
+			has_planet_flag = pd_crucible_planet_origin
+		}
+	}
+
+	immediate = {
+		remove_modifier = crucible_shieldedplanet
+		remove_deposit = d_physics_5
+		
+		change_pc = pc_crucible
+		add_modifier = { modifier = crucible days = -1 }
+		add_deposit = pd_crucible_furnace
+	}
+
+	option = {
+		name = pdcrucible.30.a
+		hidden_effect = {
+			IF = {
+				limit = {
+					owner = { is_gestalt = no }
+				}
+				owner = { add_research_option = tech_mine_zro }
+			}
+		}
+	}
+}
