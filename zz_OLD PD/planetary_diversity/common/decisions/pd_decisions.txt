@@ -1,0 +1,747 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Adapted Environment Gaia
+decision_engineered_environment_gaia = {
+	icon = decision_engineered_environment_gaia
+	owned_planets_only = yes
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			energy = 7500
+		}
+	}
+
+	allow = {
+		is_pd_gaia = no
+		is_pd_wasteland = no
+		NOT = { has_modifier = engineered_environment_gaia }
+		NOT = { has_modifier = engineered_environment_rare }
+	}
+	
+	potential = {
+		is_artificial = no
+		is_pd_arcology = no
+		is_pd_hive_arcology = no
+		is_pd_robot_arcology = no
+		is_pd_unique = no
+		is_pd_gaia = no
+		is_pd_machine = no
+		is_pd_shroud_world = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_gaia = no
+		is_pd_hive_world = no
+		is_pd_wasteland = no
+		NOR = {
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked_relic
+			is_planet_class = pc_milarc_relic
+			has_modifier = engineered_environment_gaia
+			has_modifier = engineered_environment_rare
+		}
+		owner = { has_ascension_perk = ap_world_shaper }
+	}
+
+	effect = {
+		if = { 
+			limit = { 
+				is_pd_gaia = no
+				is_pd_rare = no
+			}
+			add_modifier = {
+				modifier = engineered_environment_gaia
+				days = -1
+			}
+		}
+		if = { 
+			limit = { 
+				is_pd_rare = yes
+			}
+			add_modifier = {
+				modifier = engineered_environment_rare
+				days = -1
+			}
+		}
+		hidden_effect = {
+			remove_modifier = engineered_environment
+		}
+	}   
+	
+	ai_weight = {
+        weight = 1
+  	}
+}
+
+# Change Ocean Picture
+decision_removeocean = {
+	icon = decision_removeocean
+	owned_planets_only = yes
+
+	#enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			unity = 100
+		}
+	}
+	
+	potential = {
+		#NOT = { owner = { has_trait = trait_aquatic } }
+		NOT = { is_planet_class = pc_relic }
+		NOT = { is_planet_class = pc_nuked_relic }
+		NOT = { is_planet_class = pc_milarc_relic }
+		NOT = { is_planet_class = pc_city }
+		is_pd_shroud_world = no
+		NOT = { is_planet_class = pc_ecocity }
+		NOT = { is_planet_class = pc_corpoarc }
+		NOT = { is_planet_class = pc_palacearc }
+		NOT = { is_planet_class = pc_capitalarc }
+		NOT = { is_planet_class = pc_necropolis }
+		NOT = { is_planet_class = pc_necrohive }
+		NOT = { is_planet_class = pc_pd_gas_giant_hab }
+		NOT = { is_planet_class = pc_pd_barren_hab }
+		NOT = { is_planet_class = pc_pd_barren_cold_hab }
+		NOT = { is_planet_class = pc_pd_frozen_hab }
+		NOT = { is_planet_class = pc_pd_molten_hab }
+		NOT = { is_planet_class = pc_pd_toxic_hab }
+		NOT = { is_planet_class = pc_pd_hothouse_hab }
+		NOT = { is_planet_class = pc_pd_asteroid_hab }
+		NOT = { is_planet_class = pc_shroudcity }
+		NOT = { is_planet_class = pc_shroudecocity }
+		NOT = { is_planet_class = pc_shroudcapitalarc }
+		NOT = { is_planet_class = pc_shroudpalacearc }
+		NOT = { is_planet_class = pc_shroudmilarc }
+		NOT = { is_planet_class = pc_shroudcorpoarc }
+		NOT = { is_planet_class = pc_milarc }
+		is_pd_machine = no
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		has_planet_flag = pdaquapicture
+	}
+
+	effect = {
+		custom_tooltip = decision_removeocean_tooltip
+		hidden_effect = {
+			remove_planet_flag = pdaquapicture
+			IF = { limit = { is_planet_class = pc_ocean } set_planet_entity = { picture = pc_ocean } }
+			IF = { limit = { is_planet_class = pc_continental } set_planet_entity = { picture = pc_continental } }
+			IF = { limit = { is_planet_class = pc_tropical } set_planet_entity = { picture = pc_tropical } }
+			IF = { limit = { is_planet_class = pc_cascadian } set_planet_entity = { picture = pc_cascadian } }
+			IF = { limit = { is_planet_class = pc_retinal } set_planet_entity = { picture = pc_retinal } }
+			IF = { limit = { is_planet_class = pc_forest } set_planet_entity = { picture = pc_forest } }
+			IF = { limit = { is_planet_class = pc_lake } set_planet_entity = { picture = pc_lake } }
+			IF = { limit = { is_planet_class = pc_tepid } set_planet_entity = { picture = pc_tepid } }
+			IF = { limit = { is_planet_class = pc_desertislands } set_planet_entity = { picture = pc_desertislands } }
+			IF = { limit = { is_planet_class = pc_subarctic } set_planet_entity = { picture = pc_subarctic } }
+			IF = { limit = { is_planet_class = pc_mangrove } set_planet_entity = { picture = pc_mangrove } }
+			IF = { limit = { is_planet_class = pc_wetswamp } set_planet_entity = { picture = pc_wetswamp } }
+			IF = { limit = { is_planet_class = pc_fog } set_planet_entity = { picture = pc_fog } }
+			IF = { limit = { is_planet_class = pc_hajungle } set_planet_entity = { picture = pc_hajungle } }
+			IF = { limit = { is_planet_class = pc_cenote } set_planet_entity = { picture = pc_cenote } }
+			IF = { limit = { is_planet_class = pc_gaia } set_planet_entity = { picture = pc_gaia } }
+			IF = { limit = { is_planet_class = pc_hot_gaia } set_planet_entity = { picture = pc_hot_gaia } }
+			IF = { limit = { is_planet_class = pc_cold_gaia } set_planet_entity = { picture = pc_cold_gaia } }
+			IF = { limit = { is_planet_class = pc_prairie } set_planet_entity = { picture = pc_prairie } }
+			IF = { limit = { is_planet_class = pc_veld } set_planet_entity = { picture = pc_veld } }
+			IF = { limit = { is_planet_class = pc_semiarid } set_planet_entity = { picture = pc_semiarid } }
+			IF = { limit = { is_planet_class = pc_steppe } set_planet_entity = { picture = pc_steppe } }
+			IF = { limit = { is_planet_class = pc_swamp } set_planet_entity = { picture = pc_swamp } }
+			IF = { limit = { is_planet_class = pc_mud } set_planet_entity = { picture = pc_mud } }
+			IF = { limit = { is_planet_class = pc_basalt } set_planet_entity = { picture = pc_basalt } }
+			IF = { limit = { is_planet_class = pc_glacial } set_planet_entity = { picture = pc_glacial } }
+			IF = { limit = { is_planet_class = pc_boreal } set_planet_entity = { picture = pc_boreal } }
+			IF = { limit = { is_planet_class = pc_arctic } set_planet_entity = { picture = pc_arctic } }
+			IF = { limit = { is_planet_class = pc_alpine } set_planet_entity = { picture = pc_alpine } }
+			IF = { limit = { is_planet_class = pc_mushroom } set_planet_entity = { picture = pc_mushroom } }
+			IF = { limit = { is_planet_class = pc_med } set_planet_entity = { picture = pc_med } }
+			IF = { limit = { is_planet_class = pc_savannah } set_planet_entity = { picture = pc_savannah } }
+			IF = { limit = { is_planet_class = pc_city } set_planet_entity = { picture = pc_city } }
+			IF = { limit = { is_planet_class = pc_geothermal } set_planet_entity = { picture = pc_geothermal } }
+			IF = { limit = { is_planet_class = pc_superhabitable } set_planet_entity = { picture = pc_superhabitable } }
+			IF = { limit = { is_planet_class = pc_pd_cold_superhab } set_planet_entity = { picture = pc_pd_cold_superhab } }
+			IF = { limit = { is_planet_class = pc_pd_dry_superhab } set_planet_entity = { picture = pc_pd_dry_superhab } }
+			IF = { limit = { is_planet_class = pc_tidallylocked } set_planet_entity = { picture = pc_tidallylocked } }
+			IF = { limit = { is_planet_class = pc_wettidallylocked } set_planet_entity = { picture = pc_wettidallylocked } }
+			IF = { limit = { is_planet_class = pc_supercon } set_planet_entity = { picture = pc_supercon } }
+			IF = { limit = { is_planet_class = pc_pd_sinkhole } set_planet_entity = { picture = pc_pd_sinkhole } }
+			IF = { limit = { is_planet_class = pc_biolumen } set_planet_entity = { picture = pc_biolumen } }
+			IF = { limit = { is_planet_class = pc_primal } set_planet_entity = { picture = pc_primal } }
+			IF = { limit = { is_planet_class = pc_salt } set_planet_entity = { picture = pc_salt } }
+			IF = { limit = { is_planet_class = pc_aquifer } set_planet_entity = { picture = pc_aquifer } }
+			IF = { limit = { is_planet_class = pc_coral } set_planet_entity = { picture = pc_coral } }
+			IF = { limit = { is_planet_class = pc_storm } set_planet_entity = { picture = pc_storm } }
+			IF = { limit = { is_planet_class = pc_pd_iceberg } set_planet_entity = { picture = pc_pd_iceberg } }
+			IF = { limit = { is_planet_class = pc_cryoflora } set_planet_entity = { picture = pc_cryoflora } }
+			IF = { limit = { is_planet_class = pc_lichen } set_planet_entity = { picture = pc_lichen } }
+			IF = { limit = { is_planet_class = pc_eyeball } set_planet_entity = { picture = pc_eyeball } }
+			IF = { limit = { is_planet_class = pc_glacio } set_planet_entity = { picture = pc_glacio } }
+			IF = { limit = { is_planet_class = pc_lanthanide } set_planet_entity = { picture = pc_lanthanide } }
+			IF = { limit = { is_planet_class = pc_aquatic } set_planet_entity = { picture = pc_aquatic_surface } }
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Change Ocean Picture
+decision_oceancapital = {
+	icon = decision_oceancapital
+	owned_planets_only = yes
+
+	#enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			unity = 100
+		}
+	}
+	
+	potential = {
+		owner = { has_trait = trait_aquatic }
+		is_pd_shroud_world = no
+		NOT = { is_planet_class = pc_aquatic }
+		NOT = { has_planet_flag = pdaquapicture }
+		NOT = { is_planet_class = pc_relic }
+		NOT = { is_planet_class = pc_nuked_relic }
+		NOT = { is_planet_class = pc_milarc_relic }
+		NOT = { is_planet_class = pc_city }
+		NOT = { is_planet_class = pc_ecocity }
+		NOT = { is_planet_class = pc_corpoarc }
+		NOT = { is_planet_class = pc_palacearc }
+		NOT = { is_planet_class = pc_capitalarc }
+		NOT = { is_planet_class = pc_necropolis }
+		NOT = { is_planet_class = pc_necrohive }
+		NOT = { is_planet_class = pc_habitat }
+		NOT = { is_planet_class = pc_pd_gas_giant_hab }
+		NOT = { is_planet_class = pc_pd_barren_hab }
+		NOT = { is_planet_class = pc_pd_barren_cold_hab }
+		NOT = { is_planet_class = pc_pd_frozen_hab }
+		NOT = { is_planet_class = pc_pd_molten_hab }
+		NOT = { is_planet_class = pc_pd_toxic_hab }
+		NOT = { is_planet_class = pc_pd_hothouse_hab }
+		NOT = { is_planet_class = pc_pd_asteroid_hab }
+		NOT = { is_planet_class = pc_shroudcity }
+		NOT = { is_planet_class = pc_shroudecocity }
+		NOT = { is_planet_class = pc_shroudcapitalarc }
+		NOT = { is_planet_class = pc_shroudpalacearc }
+		NOT = { is_planet_class = pc_shroudmilarc }
+		NOT = { is_planet_class = pc_shroudcorpoarc }
+		NOT = { is_planet_class = pc_milarc }
+		NOT = { is_planet_class = pc_crucible }
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { is_planet_class = pc_shroud_crucible }
+		NOT = { is_planet_class = pc_clean_crucible }
+		NOT = { is_dry = yes }
+		is_pd_unique_hab = no
+		is_pd_machine = no
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+
+	}
+
+	effect = {
+		custom_tooltip = decision_oceancapital_tooltip
+		hidden_effect = {
+			set_planet_flag = pdaquapicture
+			IF = { limit = { is_planet_class = pc_ocean } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_continental } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_forest } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_lake } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_tepid } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_cascadian } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture } 
+			IF = { limit = { is_planet_class = pc_retinal } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_steppe } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_city } set_planet_entity = { picture = pc_aquaticcity } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_hadesert } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_tidallylocked } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_wettidallylocked } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_supercon } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_sinkhole } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_karst } set_planet_entity = { picture = pc_aquatickarst_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_cold_cave } set_planet_entity = { picture = pc_aquatickarst_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_dry_cave } set_planet_entity = { picture = pc_aquatickarst_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_reef } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_archipelago } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_superhabitable } set_planet_entity = { picture = pc_aquatic } set_planet_flag = pdaquapicture }
+			#Cold
+			IF = { limit = { is_planet_class = pc_subarctic } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_swamp } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_mud } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_basalt } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_glacial } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_boreal } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_arctic } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_alpine } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_highland } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_duneforest } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_mushroom } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_wetswamp } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_fog } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_antarctic } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_aeolian } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_snow } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_tundra } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_frozen_desert } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_cold_gaia } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_storm } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_iceberg } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_eyeball } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_cold_superhab } set_planet_entity = { picture = pc_aquaticcold_uw } set_planet_flag = pdaquapicture }
+			#Tropical
+			IF = { limit = { is_planet_class = pc_desertislands } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_tropical } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_mangrove } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_hajungle } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_cenote } set_planet_entity = { picture = pc_aquaticcenote_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_oasis } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_med } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_savannah } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_gaia } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_hot_gaia } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_ringworld_habitable } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_mesa } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_badlands } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_outback } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_coastal } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_desert } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_arid } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_sandsea } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_geothermal } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pd_dry_superhab } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_biolumen } set_planet_entity = { picture = pc_aquaticbio_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_primal } set_planet_entity = { picture = pc_aquatichot_uw } set_planet_flag = pdaquapicture }
+			#Shroud
+			IF = { limit = { is_planet_class = pc_pdshroud } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_tidallyshroud } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pdshroud_superhab } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+			IF = { limit = { is_planet_class = pc_pdshroud_cave } set_planet_entity = { picture = pc_aquaticshroud_uw } set_planet_flag = pdaquapicture }
+		}
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+
+#Set off the Bombs
+decision_armbombownplanet = {
+	owned_planets_only = yes
+	sound = event_red_alert
+	icon = decision_armbombownplanet
+
+	enactment_time = 1800
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 5000
+			unity = 1000
+		}
+	}
+
+	potential = { 
+		owner = { has_origin = origin_post_apocalyptic } 
+		is_pd_nuked = no
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_unique = no
+	}
+
+	allow = { 
+	}
+
+	effect = {
+		IF = {
+			limit = {
+				is_pd_superhab = no
+				is_pd_tidally_locked = no
+				is_pd_cave = no
+			}
+			change_pc = pc_nuked
+		}
+		IF = {
+			limit = {
+				is_pd_cave = yes
+			}
+			change_pc = pc_nuked_cave
+		}
+		IF = {
+			limit = {
+				is_pd_superhab = yes
+			}
+			change_pc = pc_nuked_superhab
+		}
+		IF = {
+			limit = {
+				is_pd_tidally_locked = yes
+			}
+			change_pc = pc_nuked_tl
+		}
+		add_planet_devastation = 50
+		hidden_effect = {
+			pd_remove_special_deposits_modifiers = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 10
+	}
+}
+
+# TOL Can Terraform Barren
+decision_tolbarren_no_colony = {
+	icon = decision_pd_transplant_tree
+	#owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 10000
+		}
+	}
+	
+	potential = {
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		has_owner = no
+		FROM = { owner = { has_origin = origin_pd_tree_of_life has_technology = tech_climate_restoration } }
+		OR = {
+			AND = {
+			OR = {
+				is_planet_class = pc_barren
+				is_planet_class = pc_barren_cold
+				is_planet_class = pc_hothouse
+				is_planet_class = pc_barren_superhab
+				is_planet_class = pc_barren_cave
+				is_planet_class = pc_tidallylocked_barren
+			}
+			has_modifier = terraforming_candidate
+			}
+			OR = {
+				is_planet_class = pc_acid
+				is_pd_radiotrophic_world = yes
+				is_planet_class = pc_methane
+				is_planet_class = pc_ash
+				is_planet_class = pc_sulfur
+				is_planet_class = pc_ammonia
+			}
+		}
+		NOT = { has_modifier = pdintoaforest }
+	}
+
+	effect = {
+		add_modifier = { modifier = pdintoaforest days = -1 }
+		hidden_effect = { 
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = terraforming_candidate
+			remove_modifier = pdhabcavesystem
+			remove_modifier = pdhabcalmwinds
+			remove_modifier = pdhabsubglacialocean
+			remove_modifier = pdhabvolcanicminerals
+			pd_remove_special_deposits_modifiers = yes
+			planet_event = { id = pdengine.50 days = 3600 } 
+		}
+	}
+	
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+		}
+	}
+}
+
+# TOL Can Terraform phab
+decision_tolbarren_phab = {
+	icon = decision_pd_transplant_tree
+	owned_planets_only = yes
+
+	enactment_time = 7200
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 10000
+		}
+	}
+	
+	potential = {
+		is_pd_habitat = yes
+		owner = { 
+			has_origin = origin_pd_tree_of_life 
+			has_technology = tech_climate_restoration 
+		}
+		has_modifier = hab_terraforming_candidate
+	}
+
+	effect = {
+		change_pc = pc_forest
+		hidden_effect = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pdhabcavesystem
+			remove_modifier = pdhabcalmwinds
+			remove_modifier = pdhabsubglacialocean
+			remove_modifier = pdhabvolcanicminerals
+			reroll_planet = yes
+			clear_blockers = yes
+			remove_deposit = d_pd_tree_of_life_habitat
+			remove_planet_flag = pdhab
+			remove_planet_flag = pd_hab_d1
+			remove_planet_flag = pd_hab_d2
+			remove_planet_flag = pd_mining_hab
+			remove_planet_flag = pd_science_hab
+			remove_planet_flag = pd_farming_hab
+			remove_planet_flag = pd_foundry_hab
+			remove_planet_flag = pd_mil_hab
+			remove_planet_flag = pd_energy_hab
+			remove_planet_flag = pd_commercial_hab
+			remove_planet_flag = pd_tolx
+			planet_event = { id = pdengine.35 }
+			planet_event = { id = pdengine.39 }
+			if = {
+				limit = { has_building = building_hab_capital }
+				remove_building = building_hab_capital
+				add_building = building_capital		
+			}
+			if = {
+				limit = { has_building = building_hab_major_capital }
+				remove_building = building_hab_major_capital
+				add_building = building_major_capital		
+			}
+		}
+	}
+	
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+		}
+	}
+}
+
+#Transplanet Tree TOL
+decision_pd_transplant_tree = {
+	owned_planets_only = yes
+	sound = event_laboratory_sound
+	icon = decision_pd_transplant_tree
+
+	enactment_time = 180
+
+	resources = {
+		category = decisions
+		cost = {
+			food = 500
+		}
+	}
+
+	potential = {
+		has_modifier = no_pd_lifetree
+		NOT = {
+			OR = {
+				has_deposit = d_pd_tree_of_life_habitat
+				has_deposit = d_pd_tree_of_life_ringworld
+				has_deposit = d_pd_tree_of_life_special
+			}
+		}
+	}
+
+	allow = { }
+
+	effect = {
+		remove_modifier = no_pd_lifetree
+		hidden_effect = {
+		remove_deposit = d_pd_tree_of_life_dead
+		IF = {
+			limit = { 
+				is_pd_unique = no
+				is_pd_machine = no
+				NOT = { has_planet_flag = pd_tol1 }
+				NOT = { has_planet_flag = pd_tol2 }
+				NOT = { has_planet_flag = pd_tol3 }
+				NOT = { is_artificial = yes }
+				NOT = { is_pd_habitat = yes }
+				NOT = { is_pd_planetary_megaproject = yes }
+				NOT = { is_planet_class = pc_ecocity }
+				NOT = { is_planet_class = pc_corpoarc }
+				NOT = { is_planet_class = pc_palacearc }
+				NOT = { is_planet_class = pc_capitalarc }
+				NOT = { is_planet_class = pc_necropolis }
+				NOT = { is_planet_class = pc_necrohive }
+				NOT = { is_planet_class = pc_milarc }
+				NOT = { is_planet_class = pc_shroudcity }
+				NOT = { is_planet_class = pc_shroudecocity }
+				NOT = { is_planet_class = pc_shroudcapitalarc }
+				NOT = { is_planet_class = pc_shroudpalacearc }
+				NOT = { is_planet_class = pc_shroudmilarc }
+				NOT = { is_planet_class = pc_shroudcorpoarc }
+				NOT = { is_planet_class = pc_relic }
+				NOT = { is_planet_class = pc_nuked_relic }
+				NOT = { is_planet_class = pc_milarc_relic }
+				NOT = { is_planet_class = pc_city }
+			 }
+			add_deposit = d_pd_tree_of_life_1
+			set_planet_flag = pd_tol1	
+			IF = {
+				limit = { owner = { NOT = { has_technology = tech_pdtoltech } } }
+				planet_event = { id = pdengine.40 days = 7200 random = 7200 } 
+			}
+			IF = {
+				limit = { owner = { has_technology = tech_pdtoltech } }
+				planet_event = { id = pdengine.40 days = 3600 random = 3600 }
+			}
+		}
+		ELSE_IF = {
+			limit = { 
+				is_artificial = yes
+				is_pd_habitat = yes
+				is_pd_planetary_megaproject = yes
+				NOT = { is_planet_class = pc_ringworld_habitable }
+			 }
+		add_deposit = d_pd_tree_of_life_habitat
+		}
+		ELSE_IF = {
+			limit = { 
+				is_planet_class = pc_ringworld_habitable
+			 }
+		add_deposit = d_pd_tree_of_life_ringworld
+		}
+		ELSE_IF = {
+			limit = { 
+				OR = {
+				is_planet_class = pc_relic
+				is_planet_class = pc_nuked_relic
+				is_planet_class = pc_milarc_relic
+				is_planet_class = pc_city
+				is_pd_unique = yes
+				is_pd_arcology = yes
+				is_pd_robot_arcology = yes
+				is_pd_hive_arcology = yes
+				}
+			 }
+			add_deposit = d_pd_tree_of_life_special
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+#Make Wasteland Worlds 
+decision_wasteland_world = {
+	owned_planets_only = yes
+	icon = decision_wasteland_world
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+		}
+	}
+	
+	potential = {
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked_relic
+			is_planet_class = pc_milarc_relic
+			is_planet_class = pc_necropolis
+			is_planet_class = pc_necrohive
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		is_pd_wasteland = no
+		is_pd_habitat = no
+		is_pd_shroud_world = no
+		is_pd_machine = no
+		is_pd_arcology = no
+		is_pd_unique = no
+		is_artificial = no
+		is_pd_planetary_megaproject = no
+		#is_pd_tidally_locked = no
+		is_pd_exotic = no
+		exists = owner
+		owner = { has_ascension_perk = ap_pd_wasteland_worlds }
+	}
+
+	allow = {
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_wasteland_project_effects
+		hidden_effect = {	
+			remove_deposit = d_pd_orbital_mirrors
+			remove_deposit = d_pd_seismic_resonators
+			remove_deposit = d_pd_bionanite_soil
+			IF = {
+				limit = {
+					OR = {
+						is_pd_tidally_locked = no
+						is_pd_superhab = no
+						is_pd_cave = no
+					}
+				}
+				change_pc = pc_pd_wasteland
+			}
+			IF = {
+				limit = {
+					is_pd_cave = yes
+				}
+				change_pc = pc_pd_wasteland_cave
+			}
+			IF = {
+				limit = {
+					is_pd_tidally_locked = yes
+				}
+				change_pc = pc_pd_tidally_wasteland
+			}
+			IF = {
+				limit = {
+					is_pd_superhab = yes
+				}
+				change_pc = pc_pd_wasteland_superhab
+			}
+			while = {
+				limit = { num_districts = { type = district_farming value > 0 } }
+				remove_district = district_farming
+			}
+			while = {
+				limit = { num_districts = { type = district_farming_uncapped value > 0 } }
+				remove_district = district_farming_uncapped
+			}
+			create_message = {
+				type = TOXICWASTE_MESSAGE_TYPE
+				localization = MESSAGE_TOXICWASTE
+				days = 30
+				target = this
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+

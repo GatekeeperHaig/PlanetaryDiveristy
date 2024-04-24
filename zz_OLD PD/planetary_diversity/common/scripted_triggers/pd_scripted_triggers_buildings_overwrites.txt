@@ -1,0 +1,427 @@
+ideal_planet_is_wet = {
+	OR = {
+		ideal_planet_class = pc_continental
+		ideal_planet_class = pc_forest
+		ideal_planet_class = pc_tepid
+		ideal_planet_class = pc_retinal
+		ideal_planet_class = pc_lake
+		ideal_planet_class = pc_ocean
+		ideal_planet_class = pc_cascadian
+		ideal_planet_class = pc_wetswamp
+		ideal_planet_class = pc_subarctic
+		ideal_planet_class = pc_fog
+		ideal_planet_class = pc_tropical
+		ideal_planet_class = pc_hajungle
+		ideal_planet_class = pc_desertislands
+		ideal_planet_class = pc_mangrove
+		ideal_planet_class = pc_cenote
+	}
+}
+
+ideal_planet_is_dry = {
+	OR = {
+		ideal_planet_class = pc_desert
+		ideal_planet_class = pc_sandsea
+		ideal_planet_class = pc_oasis
+		ideal_planet_class = pc_outback
+		ideal_planet_class = pc_coastal
+		ideal_planet_class = pc_arid
+		ideal_planet_class = pc_mesa
+		ideal_planet_class = pc_hadesert
+		ideal_planet_class = pc_med
+		ideal_planet_class = pc_badlands
+		ideal_planet_class = pc_savannah
+		ideal_planet_class = pc_steppe
+		ideal_planet_class = pc_prairie
+		ideal_planet_class = pc_veld
+		ideal_planet_class = pc_semiarid
+	}
+}
+
+ideal_planet_is_cold = {
+	OR = {
+		ideal_planet_class = pc_tundra
+		ideal_planet_class = pc_swamp
+		ideal_planet_class = pc_mushroom
+		ideal_planet_class = pc_mud
+		ideal_planet_class = pc_basalt
+		ideal_planet_class = pc_arctic
+		ideal_planet_class = pc_frozen_desert
+		ideal_planet_class = pc_glacial
+		ideal_planet_class = pc_antarctic
+		ideal_planet_class = pc_aeolian
+		ideal_planet_class = pc_alpine
+		ideal_planet_class = pc_boreal
+		ideal_planet_class = pc_snow
+		ideal_planet_class = pc_highland
+		ideal_planet_class = pc_duneforest
+	}
+}
+
+ideal_planet_is_special = {
+	NOR = {
+		ideal_planet_class = pc_continental
+		ideal_planet_class = pc_forest
+		ideal_planet_class = pc_tepid
+		ideal_planet_class = pc_retinal
+		ideal_planet_class = pc_lake
+		ideal_planet_class = pc_ocean
+		ideal_planet_class = pc_cascadian
+		ideal_planet_class = pc_wetswamp
+		ideal_planet_class = pc_subarctic
+		ideal_planet_class = pc_fog
+		ideal_planet_class = pc_tropical
+		ideal_planet_class = pc_hajungle
+		ideal_planet_class = pc_desertislands
+		ideal_planet_class = pc_mangrove
+		ideal_planet_class = pc_cenote
+		ideal_planet_class = pc_desert
+		ideal_planet_class = pc_sandsea
+		ideal_planet_class = pc_oasis
+		ideal_planet_class = pc_outback
+		ideal_planet_class = pc_coastal
+		ideal_planet_class = pc_arid
+		ideal_planet_class = pc_mesa
+		ideal_planet_class = pc_hadesert
+		ideal_planet_class = pc_med
+		ideal_planet_class = pc_badlands
+		ideal_planet_class = pc_savannah
+		ideal_planet_class = pc_steppe
+		ideal_planet_class = pc_prairie
+		ideal_planet_class = pc_veld
+		ideal_planet_class = pc_semiarid
+		ideal_planet_class = pc_tundra
+		ideal_planet_class = pc_swamp
+		ideal_planet_class = pc_mushroom
+		ideal_planet_class = pc_mud
+		ideal_planet_class = pc_basalt
+		ideal_planet_class = pc_arctic
+		ideal_planet_class = pc_frozen_desert
+		ideal_planet_class = pc_glacial
+		ideal_planet_class = pc_antarctic
+		ideal_planet_class = pc_aeolian
+		ideal_planet_class = pc_alpine
+		ideal_planet_class = pc_boreal
+		ideal_planet_class = pc_snow
+		ideal_planet_class = pc_highland
+		ideal_planet_class = pc_duneforest
+	}
+}
+
+can_build_gaiaseeder = {
+	# Can always build on ideal worlds
+	if = {
+		limit = {
+			is_ideal_planet_class = {
+				who = owner
+				status = yes
+			}
+		}
+		always = yes
+	}
+	
+	# Requires Climate Restoration for Tomb Worlds
+	else_if = {
+		limit = {
+			planet = { 
+				is_pd_nuked = yes
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_tomb_world
+			owner = { has_technology = tech_climate_restoration }
+		}
+	}
+
+	# Requires Terrestrial Sculpting for same climate as homeworld
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				is_wet = yes
+				is_ideal_planet_class = {
+					who = owner
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_wet
+			owner = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				is_dry = yes
+				is_ideal_planet_class = {
+					who = owner
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_dry
+			owner = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				is_cold = yes
+				is_ideal_planet_class = {
+					who = owner
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_cold
+			owner = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	# Requires Ecological Adaptation for other climates
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				OR = {
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_wet
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_dry
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_cold
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner_species = {
+				ideal_planet_is_special = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_special_habitability_preference
+			owner = { has_technology = tech_ecological_adaptation }
+		}
+	}
+}
+
+can_build_overlord_gaiaseeder = {
+	# Can always build on ideal worlds
+	if = {
+		limit = {
+			is_ideal_planet_class = {
+				who = owner.overlord
+				status = yes
+			}
+		}
+		always = yes
+	}
+	
+	# Requires Climate Restoration for Tomb Worlds
+	else_if = {
+		limit = {
+			planet = { 
+				is_planet_class = pc_nuked 
+				is_planet_class = pc_nuked_tl
+				is_planet_class = pc_nuked_superhab
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_tomb_world
+			owner.overlord = { has_technology = tech_climate_restoration }
+		}
+	}
+
+	# Requires Terrestrial Sculpting for same climate as homeworld
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				is_wet = yes
+				is_ideal_planet_class = {
+					who = owner.overlord
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_wet
+			owner.overlord = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				is_dry = yes
+				is_ideal_planet_class = {
+					who = owner.overlord
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_dry
+			owner.overlord = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				is_cold = yes
+				is_ideal_planet_class = {
+					who = owner.overlord
+					status = no
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_same_climate_cold
+			owner.overlord = { has_technology = tech_terrestrial_sculpting }
+		}
+	}
+
+	# Requires Ecological Adaptation for other climates
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_wet = yes
+			}
+			planet = {
+				OR = {
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_wet
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_dry = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_dry
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_cold = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_different_climate_cold
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+
+	else_if = {
+		limit = {
+			owner.overlord.species = {
+				ideal_planet_is_special = yes
+			}
+			planet = {
+				OR = {
+					is_wet = yes
+					is_dry = yes
+					is_cold = yes
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = gaiaseeders_special_habitability_preference
+			owner.overlord = { has_technology = tech_ecological_adaptation }
+		}
+	}
+}

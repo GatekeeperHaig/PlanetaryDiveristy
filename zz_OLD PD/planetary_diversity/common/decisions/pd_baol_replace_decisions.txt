@@ -1,0 +1,146 @@
+##########################################################################
+# Ancient Relics Decisions
+##########################################################################
+@minor_artifact_decision_cost = 100
+@minor_artifact_decision_duration = 3600
+
+# Baol Organism Lifeseed
+decision_baol_life_seed = {
+	owned_planets_only = yes
+	sound = event_laboratory_sound
+	icon = decision_resort_colony
+
+	enactment_time = 720
+	
+	potential = {
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked_relic
+			is_planet_class = pc_milarc_relic
+		}
+		is_pd_wasteland = no
+		is_pd_shroud_world = no
+		is_pd_hive_world = no
+		is_artificial = no
+		is_pd_unique = no
+		is_pd_arcology = no
+		is_pd_machine = no
+		is_pd_exotic = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		exists = owner
+		owner = { has_country_flag = relic_last_baol_activated }
+		owner = {
+			has_country_flag = not_activated_baol
+		}
+	}
+	
+	allow = { }
+	
+	effect = {
+		# Convert to Gaia world, spawn Nu-Baol pops
+		custom_tooltip = decision_baol_life_seed_effects
+		hidden_effect = {
+			owner = { remove_country_flag = relic_last_baol_activated }
+			if = {
+				limit = { 
+					is_pd_tidally_locked = yes
+				}
+				change_pc = pc_tidallygaia
+			}
+			if = {
+				limit = { 
+					is_pd_superhab = yes
+				}
+				change_pc = pc_gaia_superhab
+			}
+			if = {
+				limit = { 
+					is_pd_cave = yes
+				}
+				change_pc = pc_gaia_cave
+			}
+			if = {
+				limit = { 
+					OR = {
+						is_pd_tidally_locked = no
+						is_pd_superhab = no
+						is_pd_cave = no
+					}
+				}
+				change_pc = pc_gaia
+			}
+			if = {
+				limit = { NOT = { exists = event_target:nu_baol_species } }
+				if = {
+					limit = {
+						owner = {
+							is_hive_empire = yes
+						}
+					}
+					create_hive_nu_baol_effect = yes
+				}
+				else = {
+					create_nu_baol_effect = yes
+				}
+			}
+			while = {
+				count = 4
+				create_pop = {
+					species = event_target:nu_baol_species
+					ethos = {
+						ethic = "ethic_pacifist"
+					}
+				}
+			}
+			pd_remove_special_deposits_modifiers = yes
+			planet_event = { id = ancrel.2025 } #Notification event
+			if = {
+				limit = { 
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					entity = "gaia_planet_earth_entity"
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = pdmars
+				}
+				set_planet_entity = {
+					picture = pc_wet_mars
+					entity = "gaiamars_planet_entity"
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = pdvenus
+				}
+				set_planet_entity = {
+					picture = pc_wetvenus
+					entity = "gaiavenus_planet_entity"
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = pdaquapicture
+				}
+				remove_planet_flag = pdaquapicture
+			}
+		}
+	}
+
+	on_queued = {
+		owner = { remove_country_flag = not_activated_baol }
+	}
+
+	on_unqueued = {
+		owner = { set_country_flag = not_activated_baol }
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}
+

@@ -1,0 +1,72 @@
+##########################################################################
+# Ancient Relics Decisions
+##########################################################################
+@minor_artifact_decision_cost = 2
+@minor_artifact_decision_duration = 3600
+
+
+decision_prospect = {
+	owned_planets_only = yes
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			unity = 250
+			energy = 500
+		}
+	}
+
+	potential = {
+		is_artificial = no
+		is_pd_arcology = no
+		is_pd_unique = no
+		is_pd_hive_arcology = no
+		is_pd_robot_arcology = no
+		is_pd_machine = no
+		is_pd_hive_world = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
+		NOT = { is_planet_class = pc_pdhive1 }
+		NOT = { is_planet_class = pc_pdhive2 }
+		NOT = { is_planet_class = pc_city }
+		owner = {
+			has_active_tradition = tr_adaptability_finish
+		}
+		NOT = { has_planet_flag = planet_prospected }
+	}
+
+	effect = {
+		custom_tooltip = decision_prospect_effects_short
+		hidden_effect = {
+			set_planet_flag = planet_prospected
+			add_random_non_blocker_deposit = yes
+			create_message = {
+				type = MESSAGE_TYPE_PLANET_PROSPECTED
+				localization = MESSAGE_PLANET_PROSPECTED
+				days = 30
+				target = this
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+				variable = {
+					type = name
+					localization = DEPOSIT
+					scope = last_added_deposit
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 20
+		}
+	}
+}
+

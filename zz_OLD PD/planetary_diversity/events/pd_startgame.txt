@@ -1,0 +1,1351 @@
+namespace = pdstartgame
+
+country_event = {
+    id = pdstartgame.01
+	title = pdstartgame.01.name
+	desc = pdstartgame.01.desc
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { is_ai = no }
+		solar_system = { has_star_flag = sol_system }
+	}
+
+	immediate = {
+		every_galaxy_planet = { 
+		if = {
+			limit = {
+				solar_system = { has_star_flag = sol }
+					is_planet_class = pc_gaia       
+					has_planet_flag = planet_earth
+				}	
+			set_planet_entity = { entity = "gaia_planet_earth_entity" }
+			}
+		}
+	}
+
+	option = {
+		name = pdstartgame.01.a
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = sol }
+                    is_planet_class = pc_toxic       
+                    NOT = { has_planet_flag = pdvenusnoterraform }
+					#planet_size = 20
+					is_moon = no
+				}
+				change_pc = pc_hothouse
+				set_planet_entity = {
+					entity = toxic_planet_venus_entity
+					picture = pc_hothouse_venus
+				}
+				set_planet_flag = pdvenusnoterraform
+			}
+		}
+	}
+
+	option = {
+		name = pdstartgame.01.b
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = sol }
+                    is_planet_class = pc_toxic       
+                    NOT = { has_planet_flag = pdvenusnoterraform }
+					#planet_size = 20
+					is_moon = no
+				}
+				clear_deposits = yes 
+				change_pc = pc_hothouse
+				set_planet_entity = {
+					entity = toxic_planet_venus_entity
+					picture = pc_hothouse_venus
+				}
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                set_planet_flag = pdvenus
+				set_planet_size = 17
+            }
+		}
+	}
+
+	#option = {
+	#	name = pdstartgame.01.c
+	#	every_galaxy_planet = {
+	#		if = {
+	#            limit = {
+	#                solar_system = { has_star_flag = sol }
+    #                is_planet_class = pc_gas_giant       
+    #                planet_size = 30         
+    #            }
+    #            random_moon = {    
+	#				change_pc = pc_superhabitable
+	#				clear_deposits = yes  
+	#				reroll_deposits = yes 
+	#				set_planet_flag = pdmethane   
+	#      		}
+	#		}	
+	#	}
+	#}
+
+	#option = {
+	#	name = pdstartgame.01.d
+	#	every_galaxy_planet = {
+	#			if = {
+    #            limit = {
+    #                solar_system = { has_star_flag = sol }
+	#                   is_planet_class = pc_gas_giant       
+	#                   planet_size = 30      
+	#           }
+	#           random_moon = {  
+	#				clear_deposits = yes    
+	#				change_pc = pc_methane
+	#				reroll_planet = yes
+	#				set_planet_flag = pdmethane
+	#           	} 
+	#      		}
+	#		}
+	#   every_galaxy_planet = {
+    #       if = {
+    #            limit = {
+    #               solar_system = { has_star_flag = sol }
+    #                is_planet_class = pc_toxic       
+    #                NOT = { has_planet_flag = pdvenus }
+	#			}
+	#			clear_deposits = yes 
+	#			change_pc = pc_hothouse
+    #            add_modifier = { modifier = terraforming_candidate days = -1 }
+    #            set_planet_flag = pdvenus
+	#		}
+	#	}	
+	#}		
+}
+
+country_event = {
+    id = pdstartgame.02
+	title = pdstartgame.02.name
+	desc = pdstartgame.02.desc
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { is_ai = no }
+		solar_system = { has_star_flag = deneb_system }
+	}
+
+	option = {
+		name = pdstartgame.02.a
+		set_global_flag = css_tech_give_at_hypertech
+	}
+
+	option = {
+		name = pdstartgame.02.b
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = deneb_system }
+					is_planet_class = pc_barren       
+                    NOT = { has_planet_flag = pdtumbleweed }
+				}
+				clear_deposits = yes 
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                set_planet_flag = pdtumbleweed
+            }
+        }
+	}
+
+	option = {
+		name = pdstartgame.02.c
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = deneb_system }
+					is_planet_class = pc_barren_cold       
+                    NOT = { has_planet_flag = pdmarble }
+				}
+				clear_deposits = yes 
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                set_planet_flag = pdmarble
+            }
+        }
+	}
+
+	option = {
+		name = pdstartgame.02.d
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = deneb_system }
+					is_planet_class = pc_barren       
+                    NOT = { has_planet_flag = pdtumbleweed }
+				}
+				clear_deposits = yes 
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                set_planet_flag = pdtumbleweed
+            }
+        }
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = deneb_system }
+					is_planet_class = pc_barren_cold       
+                    NOT = { has_planet_flag = pdmarble }
+				}
+				clear_deposits = yes 
+                add_modifier = { modifier = terraforming_candidate days = -1 }
+                set_planet_flag = pdmarble
+            }
+        }
+    }
+}
+
+country_event = {
+    id = pdstartgame.03
+	title = pdstartgame.03.name
+	desc = pdstartgame.03.desc
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = root
+
+	is_triggered_only = yes
+
+	#trigger = {	
+	#	any_system = { has_star_flag = empire_cluster }
+	#	owner = { is_ai = no }
+	#}
+
+	trigger = {	
+		any_system = { any_system_planet= { has_planet_flag = prescripted_ideal } }
+		owner = { is_ai = no }
+	}
+
+	option = {
+		name = pdstartgame.03.b
+		hidden_effect = {
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_continental  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+						has_modifier = colonial_spirit_mod
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#20 = { change_pc = pc_continental reroll_planet = yes }		
+					25 = { change_pc = pc_retinal reroll_planet = yes }			
+					25 = { change_pc = pc_forest reroll_planet = yes }	
+					25 = { change_pc = pc_lake reroll_planet = yes }	
+					25 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_cascadian  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_wetswamp reroll_planet = yes }
+					#10 = { change_pc = pc_cascadian reroll_planet = yes }	
+					25 = { change_pc = pc_ocean reroll_planet = yes	}		
+					25 = { change_pc = pc_subarctic reroll_planet = yes }		
+					25 = { change_pc = pc_fog reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_ocean  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_wetswamp reroll_planet = yes }	
+					25 = { change_pc = pc_fog reroll_planet = yes }
+					25 = { change_pc = pc_cascadian reroll_planet = yes }	
+					#10 = { change_pc = pc_ocean reroll_planet = yes	}		
+					25 = { change_pc = pc_subarctic reroll_planet = yes }	
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_desertislands  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tropical reroll_planet = yes }
+					#10 = { change_pc = pc_desertislands reroll_planet = yes }	
+					25 = { change_pc = pc_mangrove reroll_planet = yes	}		
+					25 = { change_pc = pc_hajungle reroll_planet = yes }	
+					25 = { change_pc = pc_cenote reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_subarctic  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_wetswamp reroll_planet = yes }	
+					25 = { change_pc = pc_fog reroll_planet = yes }
+					25 = { change_pc = pc_cascadian reroll_planet = yes }	
+					25 = { change_pc = pc_ocean reroll_planet = yes	}		
+					#10 = { change_pc = pc_subarctic reroll_planet = yes }	
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_tropical  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#10 = { change_pc = pc_tropical reroll_planet = yes }
+					25 = { change_pc = pc_desertislands reroll_planet = yes }	
+					25 = { change_pc = pc_mangrove reroll_planet = yes	}		
+					25 = { change_pc = pc_hajungle reroll_planet = yes }
+					25 = { change_pc = pc_cenote reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_mangrove  
+					is_homeworld = no 
+					is_capital = no  
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tropical reroll_planet = yes }
+					25 = { change_pc = pc_desertislands reroll_planet = yes }	
+					#10 = { change_pc = pc_mangrove reroll_planet = yes	}		
+					25 = { change_pc = pc_hajungle reroll_planet = yes }
+					25 = { change_pc = pc_cenote reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_wetswamp  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#10 = { change_pc = pc_wetswamp reroll_planet = yes }
+					25 = { change_pc = pc_cascadian reroll_planet = yes }		
+					25 = { change_pc = pc_fog reroll_planet = yes }
+					25 = { change_pc = pc_ocean reroll_planet = yes	}		
+					25 = { change_pc = pc_subarctic reroll_planet = yes }	
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_fog  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_wetswamp reroll_planet = yes }
+					25 = { change_pc = pc_cascadian reroll_planet = yes }		
+					#25 = { change_pc = pc_fog reroll_planet = yes }
+					25 = { change_pc = pc_ocean reroll_planet = yes	}		
+					25 = { change_pc = pc_subarctic reroll_planet = yes }	
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_hajungle  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tropical reroll_planet = yes }
+					25 = { change_pc = pc_desertislands reroll_planet = yes }	
+					25 = { change_pc = pc_mangrove reroll_planet = yes	}		
+					#10 = { change_pc = pc_hajungle reroll_planet = yes }
+					25 = { change_pc = pc_cenote reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_cenote  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tropical reroll_planet = yes }
+					25 = { change_pc = pc_desertislands reroll_planet = yes }	
+					25 = { change_pc = pc_mangrove reroll_planet = yes	}		
+					25 = { change_pc = pc_hajungle reroll_planet = yes }
+					#25 = { change_pc = pc_cenote reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_retinal
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_continental reroll_planet = yes }		
+					#20 = { change_pc = pc_retinal reroll_planet = yes }			
+					25 = { change_pc = pc_forest reroll_planet = yes }	
+					25 = { change_pc = pc_lake reroll_planet = yes }	
+					25 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_forest  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_continental reroll_planet = yes }		
+					25 = { change_pc = pc_retinal reroll_planet = yes }			
+					#20 = { change_pc = pc_forest reroll_planet = yes }	
+					25 = { change_pc = pc_lake reroll_planet = yes }	
+					25 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_lake  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_continental reroll_planet = yes }		
+					25 = { change_pc = pc_retinal reroll_planet = yes }			
+					25 = { change_pc = pc_forest reroll_planet = yes }	
+					#20 = { change_pc = pc_lake reroll_planet = yes }	
+					25 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_tepid  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_continental reroll_planet = yes }		
+					25 = { change_pc = pc_retinal reroll_planet = yes }			
+					25 = { change_pc = pc_forest reroll_planet = yes }	
+					25 = { change_pc = pc_lake reroll_planet = yes }	
+					#20 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_desert  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#10 = { change_pc = pc_desert reroll_planet = yes }
+					25 = { change_pc = pc_sandsea reroll_planet = yes }	
+					25 = { change_pc = pc_oasis reroll_planet = yes }	
+					25 = { change_pc = pc_outback reroll_planet = yes }	
+					25 = { change_pc = pc_coastal reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_sandsea  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+					not = {
+					has_planet_flag = pddune_planet
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_desert reroll_planet = yes }
+					#10 = { change_pc = pc_sandsea reroll_planet = yes }	
+					25 = { change_pc = pc_oasis reroll_planet = yes }	
+					25 = { change_pc = pc_outback reroll_planet = yes }	
+					25 = { change_pc = pc_coastal reroll_planet = yes }					
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_oasis  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_desert reroll_planet = yes }
+					25 = { change_pc = pc_sandsea reroll_planet = yes }	
+					#10 = { change_pc = pc_oasis reroll_planet = yes }	
+					25 = { change_pc = pc_outback reroll_planet = yes }	
+					25 = { change_pc = pc_coastal reroll_planet = yes }						
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_arid  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#10 = { change_pc = pc_arid reroll_planet = yes	}	
+					20 = { change_pc = pc_mesa reroll_planet = yes }	
+					20 = { change_pc = pc_badlands reroll_planet = yes }	
+					20 = { change_pc = pc_hadesert reroll_planet = yes }		
+					20 = { change_pc = pc_med reroll_planet = yes }					
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_mesa  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					20 = { change_pc = pc_arid reroll_planet = yes	}	
+					#20 = { change_pc = pc_mesa reroll_planet = yes }	
+					20 = { change_pc = pc_badlands reroll_planet = yes }	
+					20 = { change_pc = pc_hadesert reroll_planet = yes }		
+					20 = { change_pc = pc_med reroll_planet = yes }							
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_outback  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_desert reroll_planet = yes }
+					25 = { change_pc = pc_sandsea reroll_planet = yes }	
+					25 = { change_pc = pc_oasis reroll_planet = yes }	
+					#10 = { change_pc = pc_outback reroll_planet = yes }
+					25 = { change_pc = pc_coastal reroll_planet = yes }								
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_coastal  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_desert reroll_planet = yes }
+					25 = { change_pc = pc_sandsea reroll_planet = yes }	
+					25 = { change_pc = pc_oasis reroll_planet = yes }	
+					25 = { change_pc = pc_outback reroll_planet = yes }
+					#25 = { change_pc = pc_coastal reroll_planet = yes }								
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_savannah  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#20 = { change_pc = pc_savannah reroll_planet = yes }		
+					25 = { change_pc = pc_steppe reroll_planet = yes }
+					25 = { change_pc = pc_prairie reroll_planet = yes }	
+					25 = { change_pc = pc_veld reroll_planet = yes }	
+					25 = { change_pc = pc_semiarid reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_steppe  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_savannah reroll_planet = yes }		
+					#20 = { change_pc = pc_steppe reroll_planet = yes }
+					25 = { change_pc = pc_prairie reroll_planet = yes }	
+					25 = { change_pc = pc_veld reroll_planet = yes }	
+					25 = { change_pc = pc_semiarid reroll_planet = yes }				
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_hadesert  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					20 = { change_pc = pc_arid reroll_planet = yes	}	
+					20 = { change_pc = pc_mesa reroll_planet = yes }	
+					20 = { change_pc = pc_badlands reroll_planet = yes }	
+					#20 = { change_pc = pc_hadesert reroll_planet = yes }		
+					20 = { change_pc = pc_med reroll_planet = yes }						
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_badlands  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					20 = { change_pc = pc_arid reroll_planet = yes	}	
+					20 = { change_pc = pc_mesa reroll_planet = yes }	
+					#20 = { change_pc = pc_badlands reroll_planet = yes }	
+					20 = { change_pc = pc_hadesert reroll_planet = yes }		
+					20 = { change_pc = pc_med reroll_planet = yes }						
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_prairie  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_savannah reroll_planet = yes }		
+					25 = { change_pc = pc_steppe reroll_planet = yes }
+					#20 = { change_pc = pc_prairie reroll_planet = yes }	
+					25 = { change_pc = pc_veld reroll_planet = yes }	
+					25 = { change_pc = pc_semiarid reroll_planet = yes }				
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_veld  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_savannah reroll_planet = yes }		
+					25 = { change_pc = pc_steppe reroll_planet = yes }
+					25 = { change_pc = pc_prairie reroll_planet = yes }	
+					#20 = { change_pc = pc_veld reroll_planet = yes }	
+					25 = { change_pc = pc_semiarid reroll_planet = yes }				
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_semiarid  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_savannah reroll_planet = yes }		
+					25 = { change_pc = pc_steppe reroll_planet = yes }
+					25 = { change_pc = pc_prairie reroll_planet = yes }	
+					25 = { change_pc = pc_veld reroll_planet = yes }	
+					#20 = { change_pc = pc_semiarid reroll_planet = yes }				
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_med  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					20 = { change_pc = pc_arid reroll_planet = yes	}	
+					20 = { change_pc = pc_mesa reroll_planet = yes }	
+					20 = { change_pc = pc_badlands reroll_planet = yes }	
+					20 = { change_pc = pc_hadesert reroll_planet = yes }		
+					#20 = { change_pc = pc_med reroll_planet = yes }					
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_arctic  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#20 = { change_pc = pc_arctic reroll_planet = yes }
+					25 = { change_pc = pc_frozen_desert reroll_planet = yes }	
+					25 = { change_pc = pc_glacial reroll_planet = yes }	
+					25 = { change_pc = pc_antarctic reroll_planet = yes }
+					25 = { change_pc = pc_aeolian reroll_planet = yes }		
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_frozen_desert  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_arctic reroll_planet = yes }
+					#20 = { change_pc = pc_frozen_desert reroll_planet = yes }	
+					25 = { change_pc = pc_glacial reroll_planet = yes }	
+					25 = { change_pc = pc_antarctic reroll_planet = yes }
+					25 = { change_pc = pc_aeolian reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_glacial  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_arctic reroll_planet = yes }
+					25 = { change_pc = pc_frozen_desert reroll_planet = yes }	
+					#20 = { change_pc = pc_glacial reroll_planet = yes }	
+					25 = { change_pc = pc_antarctic reroll_planet = yes }
+					25 = { change_pc = pc_aeolian reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_alpine  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#20 = { change_pc = pc_alpine reroll_planet = yes }		
+					25 = { change_pc = pc_boreal reroll_planet = yes }		
+					25 = { change_pc = pc_snow reroll_planet = yes }
+					25 = { change_pc = pc_highland reroll_planet = yes }	
+					25 = { change_pc = pc_duneforest reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_boreal  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_alpine reroll_planet = yes }		
+					#20 = { change_pc = pc_boreal reroll_planet = yes }		
+					25 = { change_pc = pc_snow reroll_planet = yes }
+					25 = { change_pc = pc_highland reroll_planet = yes }	
+					25 = { change_pc = pc_duneforest reroll_planet = yes }				
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_tundra  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					#10 = { change_pc = pc_tundra reroll_planet = yes }		
+					25 = { change_pc = pc_swamp reroll_planet = yes }	
+					25 = { change_pc = pc_mushroom reroll_planet = yes }
+					25 = { change_pc = pc_mud reroll_planet = yes }	
+					25 = { change_pc = pc_basalt reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_swamp  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tundra reroll_planet = yes }		
+					#10 = { change_pc = pc_swamp reroll_planet = yes }	
+					25 = { change_pc = pc_mushroom reroll_planet = yes }
+					25 = { change_pc = pc_mud reroll_planet = yes }
+					25 = { change_pc = pc_basalt reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_mushroom 
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { owner = { has_origin = origin_lost_colony } } 
+						has_planet_flag = mushroom_planet
+						has_planet_flag = pd_ignore
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tundra reroll_planet = yes }		
+					25 = { change_pc = pc_swamp reroll_planet = yes }	
+					#10 = { change_pc = pc_mushroom reroll_planet = yes }
+					25 = { change_pc = pc_mud reroll_planet = yes }	
+					25 = { change_pc = pc_basalt reroll_planet = yes }		
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_mud  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { owner = { has_origin = origin_lost_colony } } 
+						has_planet_flag = pd_ignore
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tundra reroll_planet = yes }		
+					25 = { change_pc = pc_swamp reroll_planet = yes }	
+					25 = { change_pc = pc_mushroom reroll_planet = yes }
+					25 = { change_pc = pc_basalt reroll_planet = yes }	
+					#10 = { change_pc = pc_mud reroll_planet = yes }		
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_basalt  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { owner = { has_origin = origin_lost_colony } } 
+						has_planet_flag = pd_ignore
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_tundra reroll_planet = yes }		
+					25 = { change_pc = pc_swamp reroll_planet = yes }	
+					25 = { change_pc = pc_mushroom reroll_planet = yes }
+					#25 = { change_pc = pc_basalt reroll_planet = yes }	
+					25 = { change_pc = pc_mud reroll_planet = yes }		
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_antarctic  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_arctic reroll_planet = yes }
+					25 = { change_pc = pc_frozen_desert reroll_planet = yes }	
+					25 = { change_pc = pc_glacial reroll_planet = yes }	
+					#20 = { change_pc = pc_antarctic reroll_planet = yes }
+					25 = { change_pc = pc_aeolian reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_aeolian  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_arctic reroll_planet = yes }
+					25 = { change_pc = pc_frozen_desert reroll_planet = yes }	
+					25 = { change_pc = pc_glacial reroll_planet = yes }	
+					25 = { change_pc = pc_antarctic reroll_planet = yes }
+					#20 = { change_pc = pc_aeolian reroll_planet = yes }			
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_snow  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_alpine reroll_planet = yes }		
+					25 = { change_pc = pc_boreal reroll_planet = yes }		
+					#20 = { change_pc = pc_snow reroll_planet = yes }
+					25 = { change_pc = pc_highland reroll_planet = yes }	
+					25 = { change_pc = pc_duneforest reroll_planet = yes }					
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_highland  
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_alpine reroll_planet = yes }		
+					25 = { change_pc = pc_boreal reroll_planet = yes }		
+					25 = { change_pc = pc_snow reroll_planet = yes }
+					#20 = { change_pc = pc_highland reroll_planet = yes }	
+					25 = { change_pc = pc_duneforest reroll_planet = yes }							
+				}
+			}
+			every_galaxy_planet = {
+				limit = { 
+					is_planet_class = pc_duneforest 
+					is_homeworld = no 
+					is_capital = no 
+					NOR = { 
+						from = { 
+							owner = { has_origin = origin_lost_colony } 
+						}
+						has_planet_flag = pd_ignore 
+					}
+					or = {
+					has_planet_flag = prescripted_ideal 
+					solar_system = { has_star_flag = empire_cluster } 
+					}
+				}
+				random_list = {
+					25 = { change_pc = pc_alpine reroll_planet = yes }		
+					25 = { change_pc = pc_boreal reroll_planet = yes }		
+					25 = { change_pc = pc_snow reroll_planet = yes }
+					25 = { change_pc = pc_highland reroll_planet = yes }	
+					#20 = { change_pc = pc_duneforest reroll_planet = yes }							
+				}
+			}
+		}
+	}
+
+	option = {
+		name = pdstartgame.03.a
+	}
+}
+
+country_event = {
+    id = pdstartgame.04
+	title = pdstartgame.04.name
+	desc = pdstartgame.04.desc
+	picture = GFX_evt_aquaticcity
+	show_sound = event_cityscape
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { 
+			is_ai = no 
+			has_trait = trait_aquatic
+			NOT = { has_trait = trait_pc_aquatic_preference }
+			NOT = { has_origin = origin_ocean_paradise }
+		}
+	}
+
+	option = {
+		name = pdstartgame.04.a
+		hidden_effect = {
+			set_country_flag = pd_aquatic_planetview
+			every_owned_planet = {
+				planet_event = { id = pdengine.16 }
+			}
+		}
+	}
+
+	option = {
+		name = pdstartgame.04.b
+	}	
+}

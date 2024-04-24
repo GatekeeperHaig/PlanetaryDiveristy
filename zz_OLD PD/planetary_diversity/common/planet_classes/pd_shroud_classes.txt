@@ -1,0 +1,147 @@
+#PD Shroud Planet
+
+pc_pdshroud = {
+	entity = "pdshroud_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_pdshroud.dds"
+	modifier = { 
+		pop_environment_tolerance = 1.0
+		planet_jobs_produces_mult = 0.15
+		pop_growth_speed = 0.10 
+		planet_jobs_unity_produces_mult = 0.1
+		planet_stability_add = -5
+		planet_crime_add = 10
+		planet_crime_mult = 0.25
+		planet_resettlement_unemployed_destination_mult = 0.5
+		}
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_tidallyshroud = {
+	entity = "tidallyshroud_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	#appearance
+	picture = pc_pdshroud  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	#planet defines
+	#initial = yes
+	#colonization_tech = { }
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	can_be_moon = no
+	carry_cap_per_free_district = @carry_cap_normal
+	modifier = { 
+		pop_environment_tolerance = 1.0
+		planet_jobs_produces_mult = 0.15
+		pop_growth_speed = 0.10 
+		planet_jobs_unity_produces_mult = 0.1
+		planet_stability_add = -5
+		planet_crime_add = 10
+		planet_crime_mult = 0.25
+		planet_resettlement_unemployed_destination_mult = 0.5
+		planet_max_districts_mult = -0.30
+	}
+	colonizable = yes
+	district_set = standard
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pdshroud_superhab = {
+	entity = "pdshroud_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_pdshroud.dds"
+	modifier = { 
+		pop_environment_tolerance = 1.0
+		planet_jobs_produces_mult = 0.15
+		pop_growth_speed = 0.10 
+		planet_jobs_unity_produces_mult = 0.1
+		planet_stability_add = -5
+		planet_crime_add = 10
+		planet_crime_mult = 0.25
+		planet_resettlement_unemployed_destination_mult = 0.5
+		planet_buildings_cost_mult = 0.1
+		planet_districts_cost_mult = 0.1
+		planet_max_districts_add = 2
+		pop_growth_speed = 0.05
+		}
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+	picture = pc_pdshroud
+}
+pc_pdshroud_cave = {
+	entity = "pdshroud_cave_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_shrouded
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_pdshroud.dds"
+	modifier = { 
+		pop_environment_tolerance = 0.9
+		planet_jobs_produces_mult = 0.15
+		pop_growth_speed = 0.10 
+		planet_jobs_unity_produces_mult = 0.1
+		planet_stability_add = -5
+		planet_crime_add = 10
+		planet_crime_mult = 0.25
+		planet_resettlement_unemployed_destination_mult = 0.5
+		planet_orbital_bombardment_damage = -0.3
+		planet_buildings_upkeep_mult = 0.1
+		planet_districts_upkeep_mult = 0.1
+		biological_pop_growth_speed = -0.10
+		lithoid_pop_growth_speed = 0.10
+	}
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}

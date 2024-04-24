@@ -1,0 +1,330 @@
+pd_create_eco_arc_effect = {
+	IF = {
+		limit = {
+			has_planet_flag = planet_earth
+		}
+		set_planet_entity = {
+			entity = "ecocity_planet_02_earth_entity"
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = pdmars
+		}
+		set_planet_entity = {
+			entity = "ecocity_planet_03_mars_entity"
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = pdvenus
+		}
+		set_planet_entity = {
+			entity = "ecocity_planet_04_venus_entity"
+		}
+	}
+	IF = {
+		limit = {
+			owner = { NOT = { has_trait = trait_pc_aquatic_preference } }
+			NOT = { has_planet_flag = planet_earth }
+			NOT = { has_planet_flag = pdmars }
+			NOT = { has_planet_flag = pdvenus }
+		 }
+		set_planet_entity = {
+			entity = "ecocity_planet_entity"
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = { owner = { has_trait = trait_pc_aquatic_preference } }
+		set_planet_entity = {
+			entity = aquaticecocity_planet_01_entity
+			picture = pc_aquaticcity
+		}
+		set_planet_flag = pdaquapicture
+	}
+	IF = {
+		limit = { owner = { has_origin = origin_pd_shroud pd_has_psionic_ascension_finished = yes  } }
+		set_planet_entity = { picture = pc_shroudcity entity = ecoshroud_planet_01_entity }
+		add_deposit = d_pd_shroud_arc
+	}
+}
+pd_create_eco_arc_exotic_effect = {
+	IF = {
+		limit = { is_planet_class = pc_pd_hycean }
+		IF = { limit = { NOT = { has_modifier = hyceanfloodedworld } }	add_modifier = { modifier = hyceanfloodedworld	} }
+		remove_modifier = pd_hycean
+		change_pc = pc_ecocity
+		set_planet_entity = {
+			picture = pc_hyceanecocity
+			entity = hyceanecocity_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_ammonia }
+		IF = { limit = { NOT = { has_modifier = pdammoniaatmosphere } }	add_modifier = { modifier = pdammoniaatmosphere	} }
+		remove_modifier = ammonia
+		change_pc = pc_ecocity
+		set_planet_entity = {
+			picture = pc_ammoniacity
+			entity = ecocity_ammonia_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_sulfur }
+		IF = { limit = { NOT = { has_modifier = pdsulfuratmosphere } }	add_modifier = { modifier = pdsulfuratmosphere	} }
+		remove_modifier = pdsulfur
+		change_pc = pc_ecocity
+		set_planet_entity = {
+			picture = pc_sulfurcity
+			entity = ecocity_sulfur_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_methane }
+		IF = { limit = { NOT = { has_modifier = pdmethaneatmosphere } }	add_modifier = { modifier = pdmethaneatmosphere	} }
+		remove_modifier = methane
+		change_pc = pc_ecocity
+		set_planet_entity = {
+			picture = pc_methanecity
+			entity = ecocity_methane_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_ash }
+		IF = { limit = { NOT = { has_modifier = pdashatmosphere } }	add_modifier = { modifier = pdashatmosphere	} }
+		remove_modifier = ash
+		change_pc = pc_ecocity
+		set_planet_entity = {
+			picture = pc_ashcity
+			entity = ecocity_ash_planet_01_entity
+		}
+	}
+}
+
+pd_create_mil_arc_effect = {
+	IF = {
+		limit = {
+			has_planet_flag = planet_earth
+		}
+		set_planet_entity = {
+			entity = "milarc_planet_02_earth_entity"
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = pdmars
+		}
+		set_planet_entity = {
+			entity = "milarc_planet_02_mars_entity"
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = pdvenus
+		}
+		set_planet_entity = {
+			entity = "milarc_planet_02_venus_entity"
+		}
+	}
+	IF = {
+		limit = {
+			owner = { NOT = { has_trait = trait_pc_aquatic_preference } }
+			NOT = { has_planet_flag = planet_earth }
+			NOT = { has_planet_flag = pdmars }
+			NOT = { has_planet_flag = pdvenus }
+		 }
+		set_planet_entity = {
+			entity = "milarc_planet_entity"
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = { owner = { has_trait = trait_pc_aquatic_preference } }
+		set_planet_entity = {
+			entity = "aquaticmilarc_planet_01_entity"
+			picture = "pc_aquaticcity"
+		}
+		set_planet_flag = pdaquapicture
+	}
+	IF = {
+		limit = { owner = { has_origin = origin_pd_shroud pd_has_psionic_ascension_finished = yes  } }
+		set_planet_entity = { picture = pc_shroudmilarc entity = milarcshroud_planet_01_entity }
+		add_deposit = d_pd_shroud_arc
+	}
+}
+pd_create_mil_arc_exotic_effect = {
+	IF = {
+		limit = { is_planet_class = pc_ammonia }
+		IF = { limit = { NOT = { has_modifier = pdammoniaatmosphere } }	add_modifier = { modifier = pdammoniaatmosphere	} }
+		remove_modifier = ammonia
+		change_pc = pc_milarc
+		set_planet_entity = { picture = pc_ammoniamilarc entity = milarc_ammonia_planet_01_entity }
+	}
+	IF = {
+		limit = { is_planet_class = pc_sulfur }
+		IF = { limit = { NOT = { has_modifier = pdsulfuratmosphere } }	add_modifier = { modifier = pdsulfuratmosphere	} }
+		remove_modifier = pdsulfur
+		change_pc = pc_milarc
+		set_planet_entity = {
+			picture = pc_sulfurmilarc
+			entity = milarc_sulfur_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_pd_hycean }
+		IF = { limit = { NOT = { has_modifier = hyceanfloodedworld } }	add_modifier = { modifier = hyceanfloodedworld	} }
+		remove_modifier = pd_hycean
+		change_pc = pc_milarc
+		set_planet_entity = {
+			picture = pc_hyceancity
+			entity = hyceanmilarc_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_methane }
+		IF = { limit = { NOT = { has_modifier = pdmethaneatmosphere } }	add_modifier = { modifier = pdmethaneatmosphere	} }
+		remove_modifier = methane
+		change_pc = pc_milarc
+		set_planet_entity = {
+			picture = pc_methanemilarc
+			entity = milarc_methane_planet_01_entity
+		}
+		set_planet_entity = { picture = pc_methanecity entity = milarc_methane_planet_01_entity }
+	}
+	IF = {
+		limit = { is_planet_class = pc_ash }
+		IF = { limit = { NOT = { has_modifier = pdashatmosphere } }	add_modifier = { modifier = pdashatmosphere	} }
+		remove_modifier = ash
+		change_pc = pc_milarc
+		set_planet_entity = {
+			picture = pc_ashmilarc
+			entity = milarc_ash_planet_01_entity
+		}
+	}
+}
+
+pd_create_corpo_arc_effect = {
+	IF = {
+		limit = { owner = { has_trait = trait_pc_aquatic_preference } }
+		set_planet_entity = {
+			entity = "aquaticcity_planet_01_entity"
+			picture = "pc_aquaticcorpoarc"
+		}
+		set_planet_flag = pdaquapicture
+	}
+	IF = {
+		limit = { owner = { has_origin = origin_pd_shroud pd_has_psionic_ascension_finished = yes } }
+		set_planet_entity = { picture = pc_shroudcorpoarc entity = pdshroudcity_planet_01_entity }
+		add_deposit = d_pd_shroud_arc
+	}
+}
+pd_create_corpo_arc_exotic_effect = {
+	IF = {
+		limit = { is_planet_class = pc_ammonia }
+		IF = { limit = { NOT = { has_modifier = pdammoniaatmosphere } }	add_modifier = { modifier = pdammoniaatmosphere	} }
+		remove_modifier = ammonia
+		change_pc = pc_corpoarc
+		set_planet_entity = {
+			picture = pc_ammoniacorpoarc
+			entity = ammonia_arc_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_sulfur }
+		IF = { limit = { NOT = { has_modifier = pdsulfuratmosphere } }	add_modifier = { modifier = pdsulfuratmosphere	} }
+		remove_modifier = pdsulfur
+		change_pc = pc_corpoarc
+		set_planet_entity = {
+			picture = pc_sulfurcorpoarc
+			entity = sulfur_arc_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_pd_hycean }
+		IF = { limit = { NOT = { has_modifier = hyceanfloodedworld } }	add_modifier = { modifier = hyceanfloodedworld	} }
+		remove_modifier = pd_hycean
+		change_pc = pc_corpoarc
+		set_planet_entity = {
+			picture = pc_hyceancorpoarc
+			entity = hyceancity_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_methane }
+		IF = { limit = { NOT = { has_modifier = pdmethaneatmosphere } }	add_modifier = { modifier = pdmethaneatmosphere	} }
+		remove_modifier = methane
+		change_pc = pc_corpoarc
+		set_planet_entity = {
+			picture = pc_methanecorpoarc
+			entity = methane_arc_planet_01_entity
+		}
+	}
+	IF = {
+		limit = { is_planet_class = pc_ash }
+		IF = { limit = { NOT = { has_modifier = pdashatmosphere } }	add_modifier = { modifier = pdashatmosphere	} }
+		remove_modifier = ash
+		change_pc = pc_corpoarc
+		set_planet_entity = {
+			picture = pc_ashcorpoarc
+			entity = ash_arc_planet_01_entity
+		}
+	}
+}
+pd_any_random_planet = {
+	random_list = {
+		3 = { change_pc = pc_continental reroll_planet = yes }
+		3 = { change_pc = pc_cascadian reroll_planet = yes }
+		3 = { change_pc = pc_ocean reroll_planet = yes }
+		3 = { change_pc = pc_desertislands	reroll_planet = yes	}
+		3 = { change_pc = pc_subarctic reroll_planet = yes }
+		3 = { change_pc = pc_tropical reroll_planet = yes }
+		3 = { change_pc = pc_mangrove reroll_planet = yes }
+		3 = { change_pc = pc_wetswamp reroll_planet = yes }
+		3 = { change_pc = pc_fog reroll_planet = yes }
+		3 = { change_pc = pc_hajungle reroll_planet = yes }
+		3 = { change_pc = pc_cenote reroll_planet = yes }
+		3 = { change_pc = pc_retinal reroll_planet = yes }
+		3 = { change_pc = pc_forest reroll_planet = yes }
+		3 = { change_pc = pc_lake reroll_planet = yes }
+		3 = { change_pc = pc_tepid reroll_planet = yes }
+		3 = { change_pc = pc_desert reroll_planet = yes }
+		3 = { change_pc = pc_sandsea reroll_planet = yes }
+		3 = { change_pc = pc_oasis reroll_planet = yes }
+		3 = { change_pc = pc_arid reroll_planet = yes }
+		3 = { change_pc = pc_mesa reroll_planet = yes }
+		3 = { change_pc = pc_badlands reroll_planet = yes }
+		3 = { change_pc = pc_outback reroll_planet = yes }
+		3 = { change_pc = pc_coastal reroll_planet = yes }
+		3 = { change_pc = pc_savannah reroll_planet = yes }
+		3 = { change_pc = pc_steppe reroll_planet = yes }
+		3 = { change_pc = pc_med reroll_planet = yes }
+		3 = { change_pc = pc_prairie reroll_planet = yes }
+		3 = { change_pc = pc_veld reroll_planet = yes }
+		3 = { change_pc = pc_semiarid reroll_planet = yes }
+		3 = { change_pc = pc_hadesert reroll_planet = yes }
+		3 = { change_pc = pc_arctic reroll_planet = yes }
+		3 = { change_pc = pc_frozen_desert reroll_planet = yes }
+		3 = { change_pc = pc_glacial reroll_planet = yes }
+		3 = { change_pc = pc_alpine reroll_planet = yes }
+		3 = { change_pc = pc_hadesert reroll_planet = yes }
+		3 = { change_pc = pc_boreal reroll_planet = yes }
+		3 = { change_pc = pc_tundra reroll_planet = yes }
+		3 = { change_pc = pc_swamp reroll_planet = yes }
+		3 = { change_pc = pc_mud reroll_planet = yes }
+		3 = { change_pc = pc_basalt reroll_planet = yes }
+		3 = { change_pc = pc_antarctic reroll_planet = yes }
+		3 = { change_pc = pc_aeolian reroll_planet = yes }
+		3 = { change_pc = pc_snow reroll_planet = yes }
+		3 = { change_pc = pc_highland reroll_planet = yes }
+		3 = { change_pc = pc_duneforest reroll_planet = yes }
+		1 = { change_pc = pc_gaia reroll_planet = yes }
+	}
+}
+pd_change_to_tidallygaia = { change_pc = pc_tidallygaia }
+pd_change_to_gaia_superhab = { change_pc = pc_gaia_superhab }
+pd_change_to_gaia_cave = { change_pc = pc_gaia_cave }
+pd_change_to_nuked_cave = { change_pc = pc_nuked_cave }
+pd_change_to_nuked_superhab = { change_pc = pc_nuked_superhab }
+pd_change_to_nuked_tl = { change_pc = pc_nuked_tl }
+pd_change_to_nuked_relic = { change_pc = pc_nuked_relic }

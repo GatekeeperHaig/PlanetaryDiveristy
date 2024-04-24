@@ -1,0 +1,106 @@
+origin_pd_hive = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_pd_hive_start.dds"
+	picture = GFX_origin_pd_hive_start
+	description = "origin_tooltip_pd_hive_start_effects"
+	starting_colony = pc_hive
+	habitability_preference = pc_hive
+	max_once_global = yes
+	random_weight = { base = 1 }
+	possible = { 
+		authority = { value = auth_hive_mind }
+		civics = {
+			value = civic_hive_devouring_swarm
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+			}
+		} 
+	}
+	#flags = { custom_start_screen }
+	#advanced_start = yes
+}
+
+origin_pd_tree_of_life = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origin_pd_tol_start.dds"
+	picture = GFX_origin_pd_tol_start
+	description = "origin_tooltip_pd_tree_of_life_start_effects"
+	starting_colony = pc_megaflorahive
+	habitability_preference = pc_megaflora
+	max_once_global = yes
+	random_weight = { base = 1 }
+	possible = { 
+		authority = { value = auth_hive_mind }
+		civics = {
+			NOR = {
+				text = civic_tooltip_not_idyllic_bloom
+				value = civic_hive_idyllic_bloom
+				value = civic_hive_devouring_swarm
+			}
+		} 
+	}
+	flags = { custom_start_screen }
+	#advanced_start = yes
+}
+
+#origin_pd_storm = {
+#	is_origin = yes
+#	icon = "gfx/interface/icons/origins/origin_pd_storm_start.dds"
+#	picture = GFX_origin_pd_storm_start
+#	description = "origin_tooltip_pd_storm_start_effects"
+#	starting_colony = pc_storm
+#	habitability_preference = pc_storm
+#	max_once_global = yes
+#	random_weight = { base = 1 }
+#	possible = { ethics = { NOT = {	value = ethic_gestalt_consciousness	} }	}
+#	#flags = { custom_start_screen }
+#	#advanced_start = yes
+#}
+
+#origin_pd_coral = {
+#	is_origin = yes
+#	icon = "gfx/interface/icons/origins/origin_pd_coral_start.dds"
+#	picture = GFX_origin_pd_coral_start
+#	description = "origin_tooltip_pd_coral_start_effects"
+#	starting_colony = pc_coral
+#	habitability_preference = pc_coral
+#	max_once_global = yes
+#	random_weight = { base = 1 }
+#	possible = { ethics = { NOT = {	value = ethic_gestalt_consciousness	} }	}
+#	#flags = { custom_start_screen }
+#	#advanced_start = yes
+#}
+
+origin_aquatic_paradise = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_ocean_paradise.dds"
+	picture = GFX_origin_aquatic_paradise
+	flags = { custom_start_screen }
+
+	starting_colony = pc_aquatic
+	habitability_preference = pc_aquatic
+	initializers = { ocean_paradise_start }
+
+	playable = {
+		has_aquatics = yes
+	}
+
+	possible = {
+		authority = {
+			NOT = { value = auth_machine_intelligence }
+		}
+	}
+
+	description = origin_aquatic_paradise_effects
+
+	traits = {
+		trait = trait_aquatic
+	}
+
+	advanced_start = yes
+
+	random_weight = {
+		base = 5
+	}
+}

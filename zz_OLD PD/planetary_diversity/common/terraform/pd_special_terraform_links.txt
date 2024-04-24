@@ -1,0 +1,1376 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+@machineCost = 10000
+@machineTime = 7200
+@hiveCost = 10000
+@hiveTime = 7200
+
+#Gaia to Gaia
+terraform_link = {
+	from = pc_gaia
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_1 } }
+	duration = @terraforming_duration_level_1
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_gaia
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_1 } }
+	duration = @terraforming_duration_level_1
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_hot_gaia
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_1 } }
+	duration = @terraforming_duration_level_1
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_hot_gaia
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_1 } }
+	duration = @terraforming_duration_level_1
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_cold_gaia
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_1 } }
+	duration = @terraforming_duration_level_1
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_cold_gaia
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_1 } }
+	duration = @terraforming_duration_level_1
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 0 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+
+#Gaia to Machine
+terraform_link = {
+	to = "pc_machine"
+	from = "pc_gaia"
+	resources = { category = terraforming cost = { energy = @machineCost} }
+	duration = @machineTime
+	potential = { has_ascension_perk = ap_machine_worlds }
+	#condition = { from = { OR = { is_owned_by = root NOT = { has_modifier = "holy_planet" } } } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } } } } modifier = { factor = 0	from = { is_colony = no } } }
+}
+terraform_link = {
+	to = "pc_machine"
+	from = "pc_hot_gaia"
+	resources = { category = terraforming cost = { energy = @machineCost} }
+	duration = @machineTime
+	potential = { has_ascension_perk = ap_machine_worlds }
+	#condition = { from = { OR = { is_owned_by = root NOT = { has_modifier = "holy_planet" } } } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } } } } modifier = { factor = 0	from = { is_colony = no } } }
+}
+terraform_link = {
+	to = "pc_machine"
+	from = "pc_cold_gaia"
+	resources = { category = terraforming cost = { energy = @machineCost} }
+	duration = @machineTime
+	potential = { has_ascension_perk = ap_machine_worlds }
+	#condition = { from = { OR = { is_owned_by = root NOT = { has_modifier = "holy_planet" } } } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } } } } modifier = { factor = 0	from = { is_colony = no } } }
+}
+
+#Nuked to Gaia
+terraform_link = {
+	from = "pc_nuked"
+	to = "pc_hot_gaia"
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4} }
+	duration = 9000
+	potential = { has_ascension_perk = "ap_world_shaper" }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } }	modifier = { factor = 0 OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = "pc_nuked"
+	to = "pc_cold_gaia"
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4} }
+	duration = 9000
+	potential = { has_ascension_perk = "ap_world_shaper" }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } }	modifier = { factor = 0 OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+
+#Relic to Machine
+terraform_link = {
+	to = "pc_machine"
+	from = "pc_relic"
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+	effect = { from = { clear_deposits = yes } }
+}
+terraform_link = {
+	to = "pc_machine"
+	from = "pc_nuked_relic"
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+	effect = { from = { clear_deposits = yes } }
+}
+
+#Relic to Hive
+terraform_link = {
+	to = "pc_hive"
+	from = "pc_relic"
+	resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 NOT = { has_origin = origin_necrophage } from = {	any_owned_species = { NOT = { has_trait = trait_hive_mind } is_sapient = yes } } } }
+	effect = { from = { clear_deposits = yes } }
+}
+terraform_link = {
+	to = "pc_hive"
+	from = "pc_nuked_relic"
+	resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 NOT = { has_origin = origin_necrophage } from = {	any_owned_species = { NOT = { has_trait = trait_hive_mind } is_sapient = yes } } } }
+	effect = { from = { clear_deposits = yes } }
+}
+
+#Proxima Centuri
+terraform_link = { #only available in certain circumstances
+	from = "pc_frozen"
+	to = "pc_ocean"
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4} }
+	duration = 7200
+	potential = { from = { has_modifier = terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_ocean } } modifier = { factor = 10  any_owned_species = { OR = { has_trait = trait_aquatic has_trait = trait_pc_aquatic_preference has_trait = trait_pc_ocean_preference } is_sapient = yes } } }
+}
+terraform_link = { #only available in certain circumstances
+	from = "pc_frozen"
+	to = "pc_cascadian"
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4} }
+	duration = 7200
+	potential = { from = { has_modifier = terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_cascadian } } }
+}
+terraform_link = { #only available in certain circumstances
+	from = "pc_frozen"
+	to = "pc_subarctic"
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4} }
+	duration = 7200
+	potential = { from = { has_modifier = terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_subarctic } } }
+}
+terraform_link = { #only available in certain circumstances
+	from = "pc_frozen"
+	to = "pc_wetswamp"
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4} }
+	duration = 7200
+	potential = { from = { has_modifier = terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_wetswamp } } }
+}
+terraform_link = { #only available in certain circumstances
+	from = "pc_frozen"
+	to = "pc_fog"
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4} }
+	duration = 7200
+	potential = { from = { has_modifier = terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = terraforming_candidate } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_fog } } }
+}
+
+#Rare Terraforming
+#Geothermal
+terraform_link = {
+	from = pc_frozen
+	to = pc_geothermal
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = pdterra_geothermal } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = pdterra_geothermal remove_deposit = d_alloys_5 reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_geothermal } } }
+}
+#Superhabitable
+terraform_link = {
+	from = pc_barren
+	to = pc_superhabitable
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = pdterra_superhabitable } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = pdterra_superhabitable remove_deposit = d_minerals_5 reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_barren CLASS_TO = pc_superhabitable } } }
+}
+#Dry Superhabitable
+terraform_link = {
+	from = pc_barren
+	to = pc_pd_dry_superhab
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = pdterra_superhabitable } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = pdterra_superhabitable remove_deposit = d_minerals_5 reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_barren CLASS_TO = pc_superhabitable } } }
+}
+#Cold Superhabitable
+terraform_link = {
+	from = pc_barren
+	to = pc_pd_cold_superhab
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = pdterra_superhabitable } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = pdterra_superhabitable remove_deposit = d_minerals_5 reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_barren CLASS_TO = pc_superhabitable } } }
+}
+#Salt
+terraform_link = {
+	from = pc_barren
+	to = pc_salt
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = pdterra_salt } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = pdterra_salt remove_deposit = d_minerals_5 reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_barren CLASS_TO = pc_salt } } }
+}
+#Primal
+terraform_link = {
+	from = pc_molten
+	to = pc_primal
+	resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = pdterra_primal } }
+	condition = { has_technology = "tech_climate_restoration" }
+	effect = { from = { remove_modifier = pdterra_primal remove_deposit = d_alloys_5 reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_molten CLASS_TO = pc_primal } } }
+}
+#Aquatic
+terraform_link = {
+	from = pc_frozen
+	to = pc_aquatic
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { OR = { has_modifier = pdterra_aquatic has_modifier = pdhabsubglacialocean } } }
+	condition = { has_technology = "tech_climate_restoration"  has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdterra_aquatic remove_deposit = d_society_5 remove_modifier = pdhabsubglacialocean reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_frozen CLASS_TO = pc_aquatic } } modifier = { factor = 10  any_owned_species = { OR = { has_trait = trait_aquatic has_trait = trait_pc_aquatic_preference has_trait = trait_pc_ocean_preference } is_sapient = yes } } }
+}
+terraform_link = {
+	from = pc_subglacial
+	to = pc_aquatic
+	resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_3
+	potential = { has_technology = "tech_climate_restoration"  has_ascension_perk = ap_world_shaper has_ascension_perk = ap_hydrocentric }
+	condition = { has_technology = "tech_climate_restoration"  has_ascension_perk = ap_world_shaper has_ascension_perk = ap_hydrocentric }
+	effect = { from = { clear_deposits = yes reroll_deposits = yes } }
+	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_subglacial CLASS_TO = pc_aquatic } } modifier = { factor = 10  any_owned_species = { OR = { has_trait = trait_aquatic has_trait = trait_pc_aquatic_preference has_trait = trait_pc_ocean_preference } is_sapient = yes } } }
+}
+
+#Rare to Gaia
+terraform_link = {
+	from = pc_megaflora
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_megaflora
+	to = pc_pd_petrified
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_reef
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_archipelago
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_geothermal
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_biolumen
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = biolumen } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_salt
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsalt } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_aquifer
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdaquifer } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_coral
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcoral } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_primal
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = primal } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_supercon
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_sinkhole
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_storm
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdstorm } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_iceberg
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdiceberg } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_glacio
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdglacio } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lanthanide
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlanthanide } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_cryoflora
+	to = pc_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { OR = { from = { has_azaryn_in_orbit = yes } AND = { exists = owner has_ascension_perk = "ap_world_shaper" } } }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcryoflora } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lichen
+	
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlichen } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+
+#Rare to Cold Gaia
+terraform_link = {
+	from = pc_megaflora
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_megaflora
+	to = pc_pd_petrified
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_reef
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_archipelago
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_geothermal
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_biolumen
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = biolumen } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_salt
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsalt } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_aquifer
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdaquifer } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_coral
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcoral } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_primal
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = primal } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_supercon
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = supercon } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_sinkhole
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsinkhole } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_storm
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdstorm } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_iceberg
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdiceberg } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_glacio
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdglacio } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lanthanide
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlanthanide } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_cryoflora
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcryoflora } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lichen
+	to = pc_cold_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlichen } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+
+#Rare to Hot Gaia
+terraform_link = {
+	from = pc_megaflora
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_petrified
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_reef
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_archipelago
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_geothermal
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_biolumen
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = biolumen } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_salt
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsalt } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_aquifer
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdaquifer } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_coral
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcoral } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_primal
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = primal } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_supercon
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = supercon } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_sinkhole
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsinkhole } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_storm
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdstorm } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_iceberg
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdiceberg } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_glacio
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdglacio } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lanthanide
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlanthanide } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_cryoflora
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcryoflora } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lichen
+	to = pc_hot_gaia
+    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlichen } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+
+#Rare to Aquatic
+terraform_link = {
+	from = pc_megaflora
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { set_planet_entity = { picture = pc_aquatic_surface } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_petrified
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { set_planet_entity = { picture = pc_aquatic_surface } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_reef
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { set_planet_entity = { picture = pc_aquatic_surface } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_archipelago
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { set_planet_entity = { picture = pc_aquatic_surface } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_geothermal
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = geothermal set_planet_entity = { picture = pc_aquatic_surface } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_biolumen
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = biolumen set_planet_entity = { picture = pc_aquatic_surface } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_salt
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsalt set_planet_flag = hotaquatic set_planet_entity = { entity = "aquatichot_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_aquifer
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdaquifer set_planet_flag = hotaquatic set_planet_entity = { entity = "aquatichot_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_coral
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcoral set_planet_flag = hotaquatic set_planet_entity = { entity = "aquatichot_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_primal
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = primal set_planet_flag = hotaquatic set_planet_entity = { entity = "aquatichot_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_supercon
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = supercon set_planet_flag = hotaquatic set_planet_entity = { entity = "aquatichot_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_sinkhole
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdsinkhole set_planet_flag = hotaquatic set_planet_entity = { entity = "aquatichot_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_storm
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdstorm set_planet_flag = coldaquatic set_planet_entity = { entity = "aquaticcold_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_pd_iceberg
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdiceberg set_planet_flag = coldaquatic set_planet_entity = { entity = "aquaticcold_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_glacio
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdglacio set_planet_flag = coldaquatic set_planet_entity = { entity = "aquaticcold_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lanthanide
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlanthanide set_planet_flag = coldaquatic set_planet_entity = { entity = "aquaticcold_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_cryoflora
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdcryoflora set_planet_flag = coldaquatic set_planet_entity = { entity = "aquaticcold_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+terraform_link = {
+	from = pc_lichen
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_hydrocentric has_ascension_perk = ap_world_shaper }
+	effect = { from = { remove_modifier = pdlichen set_planet_flag = coldaquatic set_planet_entity = { entity = "aquaticcold_planet_01_entity" } } }
+	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
+}
+
+#Rare to Machine
+terraform_link = {
+	from = pc_megaflora
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_pd_petrified
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_reef
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_pd_archipelago
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_geothermal
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_biolumen
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = biolumen } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_salt
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdsalt } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_aquifer
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdaquifer } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_coral
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdcoral } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_primal
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = primal } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_supercon
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = supercon } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_pd_sinkhole
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdsinkhole } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_storm
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdstorm } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_pd_iceberg
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdiceberg } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_glacio
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdglacio } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_lanthanide
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdlanthanide } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_cryoflora
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdcryoflora } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+terraform_link = {
+	from = pc_lichen
+	to = pc_machine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_4
+	potential = { has_ascension_perk = ap_machine_worlds }
+	condition = { has_ascension_perk = ap_machine_worlds }
+	effect = { from = { remove_modifier = pdlichen } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_species = { NOR = { has_trait = trait_machine_unit	has_trait = trait_mechanical } is_sapient = yes	} } } }
+}
+
+#Rare to Hive
+terraform_link = {
+	from = pc_megaflora
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_pd_petrified
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_reef
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_pd_archipelago
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_geothermal
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = geothermal } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_biolumen
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = biolumen } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_salt
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdsalt } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_aquifer
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdaquifer } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_coral
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdcoral } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_primal
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = primal } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_supercon
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = supercon } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_pd_sinkhole
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdsinkhole } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_storm
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdstorm } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_pd_iceberg
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdiceberg } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_glacio
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdglacio } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_lanthanide
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdlanthanide } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_cryoflora
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdcryoflora } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}
+terraform_link = {
+	from = pc_lichen
+	to = pc_hive
+    resources = { category = terraforming cost = { energy = @hiveCost } }
+	duration = @hiveTime
+	potential = { has_ascension_perk = ap_hive_worlds }
+	condition = { has_ascension_perk = ap_hive_worlds }
+	effect = { from = { remove_modifier = pdlichen } }
+	ai_weight = { weight = 20 modifier = { factor = 0 from = { any_owned_pop = { NOT = { has_trait = trait_hive_mind } } } } modifier = { factor = 0 from = { is_colony = no } } }
+}

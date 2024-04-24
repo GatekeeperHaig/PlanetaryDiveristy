@@ -1,0 +1,194 @@
+namespace = pd_retroactive
+
+# on_entering_system_first_time
+ship_event = {
+	id = pd_retroactive.001
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = from
+		from = {
+			has_star_flag = pd_system_spawned_from_event
+			NOT = { has_star_flag = pd_event_system_shuffled }
+		}
+	}
+
+	immediate = {
+		from = {
+			set_star_flag = pd_event_system_shuffled
+
+		#Wet Planets
+		every_system_planet = { 				
+			limit = { 
+				is_planet_class = pc_continental 
+				is_homeworld = no 
+				NOR = {
+					has_planet_flag = prescripted_ideal 
+					has_planet_flag = pd_ignore 
+					has_planet_flag = planet_earth
+					solar_system = { has_star_flag = empire_cluster }
+					solar_system = { has_star_flag = empire_home_system }
+					solar_system = { has_star_flag = sol_system }
+					solar_system = { has_star_flag = sol }
+				} 
+			}
+			random_list = {
+				20 = { change_pc = pc_retinal reroll_planet = yes }			
+				20 = { change_pc = pc_forest reroll_planet = yes }				
+				20 = { change_pc = pc_lake reroll_planet = yes }			
+				20 = { change_pc = pc_tepid reroll_planet = yes }		
+				20 = { 
+					change_pc = pc_superhabitable 
+					random_list = {
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
+					}
+					reroll_planet = yes 
+					clear_planet_modifiers = yes 
+					add_modifier = { modifier = superhabitable }
+				}	
+				20 = { change_pc = pc_megaflora reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdmegaflora } }	
+				20 = { change_pc = pc_pd_petrified reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdpetrified } }	
+				20 = { }		
+			}
+		}
+		every_system_planet = { 				
+			limit = { 
+				is_planet_class = pc_ocean is_homeworld = no  
+				NOR = {
+					has_planet_flag = prescripted_ideal
+					has_planet_flag = pd_ignore 
+				    has_planet_flag = living_planet
+					solar_system = { has_star_flag = empire_cluster }
+				}
+			}
+			random_list = {
+				20 = { }
+				20 = { change_pc = pc_cascadian reroll_planet = yes }		
+				20 = { change_pc = pc_subarctic reroll_planet = yes }	
+				20 = { change_pc = pc_wetswamp reroll_planet = yes }
+				20 = { change_pc = pc_fog reroll_planet = yes }
+				20 = { change_pc = pc_karst reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = karst } }
+				20 = { change_pc = pc_reef reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdreef } }	
+				20 = { change_pc = pc_pd_archipelago reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdarchipelago } }					
+			}
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_tropical is_homeworld = no is_moon = no solar_system = { any_system_planet = { is_planet_class = pc_m_star } } nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } } #TODO 80/20, no 0/100
+			change_pc = pc_wettidallylocked reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = wettidallylocked }
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_tropical is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { change_pc = pc_desertislands	reroll_planet = yes	}
+				20 = { }		
+				20 = { change_pc = pc_mangrove reroll_planet = yes }	
+				20 = { change_pc = pc_hajungle reroll_planet = yes }	
+				20 = { change_pc = pc_cenote reroll_planet = yes }		
+				20 = { change_pc = pc_biolumen reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = biolumen } }
+				20 = { change_pc = pc_geothermal reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = geothermal } }					
+			}
+		}
+
+		#Dry Planets
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_desert is_homeworld = no  nor = { has_planet_flag = prescripted_ideal  has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { }
+				20 = { change_pc = pc_sandsea reroll_planet = yes }	
+				20 = { change_pc = pc_oasis reroll_planet = yes }	
+				20 = { change_pc = pc_outback reroll_planet = yes }	
+				20 = { change_pc = pc_coastal reroll_planet = yes }		
+				20 = { change_pc = pc_salt reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdsalt } }
+				20 = { change_pc = pc_aquifer reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdaquifer } }
+				20 = { change_pc = pc_pd_dry_cave reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pd_dry_cave } }
+			}
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_arid is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { }	
+				20 = { change_pc = pc_mesa reroll_planet = yes }
+				20 = { change_pc = pc_badlands reroll_planet = yes }
+				20 = { change_pc = pc_hadesert reroll_planet = yes }	
+				20 = { change_pc = pc_med reroll_planet = yes }	
+				20 = { change_pc = pc_coral reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdcoral } }	
+				20 = { change_pc = pc_primal reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = primal } }				
+			}
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_savannah is_homeworld = no is_moon = no solar_system = { any_system_planet = { is_planet_class = pc_m_star } } nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } } #TODO 80/20, no 0/100
+			change_pc = pc_tidallylocked reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = tidal_locked2 }
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_savannah is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { }		
+				20 = { change_pc = pc_steppe reroll_planet = yes }
+				20 = { change_pc = pc_prairie reroll_planet = yes }		
+				20 = { change_pc = pc_veld reroll_planet = yes }	
+				20 = { change_pc = pc_semiarid reroll_planet = yes }	
+				20 = { change_pc = pc_supercon reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = supercon } }
+				20 = { change_pc = pc_pd_sinkhole reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdsinkhole } }						
+			}
+		}
+
+		#Cold Planets
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_arctic is_homeworld = no is_moon = no solar_system = { any_system_planet = { is_planet_class = pc_m_star } } nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			change_pc = pc_eyeball reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdeyeball }	
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_arctic is_homeworld = no nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { }
+				20 = { change_pc = pc_frozen_desert reroll_planet = yes }	
+				20 = { change_pc = pc_glacial reroll_planet = yes }	
+				20 = { change_pc = pc_antarctic reroll_planet = yes }	
+				20 = { change_pc = pc_aeolian reroll_planet = yes }	
+				20 = { change_pc = pc_storm reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdstorm } }	
+				20 = { change_pc = pc_pd_iceberg reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdiceberg } }		
+			}
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_alpine is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { }		
+				20 = { change_pc = pc_boreal reroll_planet = yes }		
+				20 = { change_pc = pc_snow reroll_planet = yes }	
+				20 = { change_pc = pc_highland reroll_planet = yes }	
+				20 = { change_pc = pc_duneforest reroll_planet = yes }		
+				20 = { change_pc = pc_glacio reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdglacio } }	
+				20 = { change_pc = pc_lanthanide reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdlanthanide } }	
+				20 = { change_pc = pc_pd_cold_cave reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pd_cold_cave } }				
+			}
+		}
+		every_system_planet = { 				
+			limit = { is_planet_class = pc_tundra is_homeworld = no  nor = { has_planet_flag = prescripted_ideal has_planet_flag = pd_ignore solar_system = { has_star_flag = empire_cluster } } }
+			random_list = {
+				20 = { }		
+				20 = { change_pc = pc_swamp reroll_planet = yes }	
+				20 = { change_pc = pc_mushroom reroll_planet = yes }					
+				20 = { change_pc = pc_mud reroll_planet = yes }						
+				20 = { change_pc = pc_basalt reroll_planet = yes }			
+				20 = { change_pc = pc_cryoflora reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdcryoflora } }
+				20 = { change_pc = pc_lichen reroll_planet = yes clear_planet_modifiers = yes add_modifier = { modifier = pdlichen } }			
+			}
+		}
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_toxic
+					solar_system = { not = { has_star_flag = sol_system } }
+				}
+				random_list = {
+					40 = { change_pc = pc_hothouse }
+					60 = { }
+				}
+			}
+		}
+	}
+}

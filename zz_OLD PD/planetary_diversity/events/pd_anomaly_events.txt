@@ -1,0 +1,278 @@
+namespace = pdanomaly
+### Colony Goes Missing
+planet_event = {
+	id = pdanomaly.20
+	title = pdanomaly.20.name
+	desc = pdanomaly.20.desc
+	picture = GFX_evt_surreal_visions
+	show_sound = event_wind_ruins
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		owner = {
+			NOT = { is_gestalt = yes }
+			NOT = { has_origin = origin_lost_colony }
+		}
+		num_pops > 3
+		OR = {
+			is_wet = yes
+			is_cold = yes
+			is_dry = yes
+		}
+		NOR = {
+			has_global_flag = pd_missing_colonists
+			has_planet_flag = colony_event
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = pd_missing_colonists
+		set_planet_flag = colony_event
+		#add_modifier = { modifier = "migrating_forests" days = -1 }
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+
+	option = {
+		name = pdanomaly.20.a
+		enable_special_project = {
+			name = "PD_MISSING_COLONISTS_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+### Stuck In Time
+planet_event = {
+	id = pdanomaly.21
+	title = pdanomaly.21.name
+	desc = pdanomaly.21.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_alien_signal
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		#add_modifier = { modifier = "migrating_forests" days = -1 }
+	}
+
+	option = {
+		name = pdanomaly.21.a
+		hidden_effect = {
+			planet_event = { id = pdanomaly.211	days = 360 }
+		}
+	}
+
+	option = {
+		name = pdanomaly.21.b
+		hidden_effect = {
+			planet_event = { id = pdanomaly.212	days = 360 }
+		}
+	}
+}
+
+### Bring them home!
+planet_event = {
+	id = pdanomaly.211
+	title = pdanomaly.211.name
+	desc = pdanomaly.211.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_laboratory_sound
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_pop = { 
+			species = owner_species
+			ethos = random
+		}	
+		create_pop = { 
+			species = owner_species
+			ethos = random
+		}	
+		create_pop = { 
+			species = owner_species
+			ethos = random
+		}	
+	}
+
+	option = {
+		name = pdanomaly.211.a
+		add_modifier = { modifier = pdbacktothefuture days = -1	}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 48
+				min = 500
+				max = 1500
+			}
+		}
+	}
+}
+
+### Leave Them There!
+planet_event = {
+	id = pdanomaly.212
+	title = pdanomaly.212.name
+	desc = pdanomaly.212.desc
+	picture = GFX_evt_physics_research
+	show_sound = event_energy_field
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		#add_modifier = { modifier = "migrating_forests" days = -1 }
+	}
+
+	option = {
+		name = pdanomaly.212.a
+		add_deposit = d_pd_portal_research_zone
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = 48
+				min = 500
+				max = 1500
+			}
+		}
+	}
+}
+
+### Dummies Now
+planet_event = {
+	id = pdanomaly.22
+	title = pdanomaly.22.name
+	picture = GFX_evt_alien_cavemen
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+	desc = {
+		text = pdanomaly.22.desc.1
+		trigger = { 
+			NOT = { 
+				owner = { has_technology = "tech_epigenetic_triggers" } 
+			}
+		}
+	}
+	desc = {
+		text = pdanomaly.22.desc.2
+		trigger = { 
+			owner = { has_technology = "tech_epigenetic_triggers" }
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = { 
+			create_species = {
+				name = random
+				class = random
+				portrait = pre_mam6
+				traits = {
+					ideal_planet_class = this
+					trait = trait_presapient_docile_livestock
+				}
+				homeworld = FROM
+				sapient = no
+			}
+		}
+		create_pop = {
+			species = last_created_species
+		}
+		create_pop = {
+			species = last_created_species
+		}
+		create_pop = {
+			species = last_created_species
+		}
+	}
+
+	option = {
+		name = pdanomaly.22.a
+		owner = {
+			IF = {
+				limit = { owner = { has_technology = tech_epigenetic_triggers } }
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = 48
+					min = 500
+					max = 1500
+				}
+			}
+			#ELSE_IF = {
+			#	limit = { owner = { NOT = { has_technology = tech_epigenetic_triggers } } }
+			#}
+		}
+	}
+}
+
+### In My Pocket
+planet_event = {
+	id = pdanomaly.23
+	title = pdanomaly.23.name
+	desc = pdanomaly.23.desc
+	picture = GFX_evt_habitable_dig_site
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_pop = { 
+			species = owner_species
+			ethos = random
+		}	
+		create_pop = { 
+			species = owner_species
+			ethos = random
+		}	
+		create_pop = { 
+			species = owner_species
+			ethos = random
+		}
+	}
+
+	option = {
+		name = pdanomaly.23.a
+		add_modifier = { modifier = pdnopocket days = 9000 }
+		hidden_effect = {
+			owner = {
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = 48
+					min = 500
+					max = 1500
+				}
+			}
+		}
+	}
+
+	option = {
+		name = pdanomaly.23.b
+		add_deposit = d_pd_dimensional_prison
+		add_modifier = { modifier = pdpocketmadness days = -1 }
+	}
+}

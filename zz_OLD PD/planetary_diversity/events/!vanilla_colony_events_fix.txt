@@ -1,0 +1,1581 @@
+############################
+############################
+#
+# Colony Events
+#
+# Written by Henrik Thyrwall
+#
+############################
+
+namespace = colony
+
+### Migrating Forests
+planet_event = {
+	id = colony.1
+	title = "colony.1.name"
+	desc = "colony.1.desc"
+	picture = GFX_evt_alien_nature
+	show_sound = event_alien_nature
+	location = ROOT
+	trackable = yes
+	event_chain = migrating_forests_chain
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		owner = {
+			NOT = { has_authority = auth_machine_intelligence }
+		}
+		num_pops > 0
+		OR = {
+			is_pd_continental = yes
+			is_pd_tropical = yes
+			is_pd_arid = yes
+			is_pd_tundra = yes
+			is_pd_savannah = yes
+		}
+		NOR = {
+			has_global_flag = migrating_forests_global
+			has_planet_flag = colony_event
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = migrating_forests_global
+		set_planet_flag = colony_event
+		add_deposit = d_migrating_forests
+		add_modifier = {
+			modifier = "migrating_forests"
+			days = -1
+		}
+		begin_event_chain = {
+			event_chain = "migrating_forests_chain"
+			target = ROOT
+		}
+	}
+
+	option = {
+		name = colony.1.a
+		tooltip = {
+			add_deposit = d_migrating_forests
+			begin_event_chain = {
+				event_chain = "migrating_forests_chain"
+				target = ROOT
+			}
+		}
+		enable_special_project = {
+			name = "MIGRATING_FORESTS_1_PROJECT"
+			location = this
+			owner = root
+		}
+		if = {
+			limit = {
+				owner = { NOT = { has_civic = civic_environmentalist } }
+			}
+			enable_special_project = {
+				name = "MIGRATING_FORESTS_2_PROJECT"
+				location = this
+				owner = root
+			}
+		}
+	}
+
+	after = {
+		planet_event = { id = colony.12 days = 180 random = 2400 }
+	}
+}
+
+### Abandoned Terraforming Equipment
+planet_event = {
+	id = colony.100
+	title = "colony.100.name"
+	desc = "colony.100.desc"
+	picture = GFX_evt_underground_civilization
+	show_sound = event_mystic_reveal
+	location = ROOT
+	trackable = yes
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+	
+	trigger = {
+		num_pops > 0
+		habitable_planet = yes
+		uses_district_set = standard
+		is_pd_unique = no
+		is_pd_arcology = no
+		is_pd_robot_arcology = no
+		is_pd_hive_arcology = no
+		is_pd_machine = no
+		is_pd_gaia = no
+		is_artificial = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_tidally_locked = no
+		is_pd_rare = no
+		is_pd_exotic = no
+		is_pd_shroud_world = no
+		is_pd_nuked = no
+		NOR = {
+			has_planet_flag = abandoned_terraforming_planet
+			has_planet_flag = colony_event
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_relic
+			is_planet_class = pc_milarc_relic
+			owner = { has_country_flag = abandoned_terraforming_country }
+			owner = { has_authority = auth_machine_intelligence }
+			owner = { has_origin = origin_pd_tree_of_life }
+			AND = {
+				owner = { ideal_planet_class = pc_arid }
+				is_planet_class = pc_arid
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_desert }
+				is_planet_class = pc_desert
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_tropical }
+				is_planet_class = pc_tropical
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_continental }
+				is_planet_class = pc_continental
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_ocean }
+				is_planet_class = pc_ocean
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_tundra }
+				is_planet_class = pc_tundra
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_arctic }
+				is_planet_class = pc_arctic
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_alpine }
+				is_planet_class = pc_alpine
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_savannah }
+				is_planet_class = pc_savannah
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_mangrove }
+				is_planet_class = pc_mangrove
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_wetswamp }
+				is_planet_class = pc_wetswamp
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_fog }
+				is_planet_class = pc_fog
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_desertislands }
+				is_planet_class = pc_desertislands
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_hajungle }
+				is_planet_class = pc_hajungle
+			} 
+			AND = {
+				owner = { ideal_planet_class = pc_cenote }
+				is_planet_class = pc_cenote
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_cascadian }
+				is_planet_class = pc_cascadian
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_swamp }
+				is_planet_class = pc_swamp
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_mud }
+				is_planet_class = pc_mud
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_basalt }
+				is_planet_class = pc_basalt
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_subarctic }
+				is_planet_class = pc_subarctic
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_glacial }
+				is_planet_class = pc_glacial
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_sandsea }
+				is_planet_class = pc_sandsea
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_mesa }
+				is_planet_class = pc_mesa
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_badlands }
+				is_planet_class = pc_badlands
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_outback }
+				is_planet_class = pc_outback
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_coastal }
+				is_planet_class = pc_coastal
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_oasis }
+				is_planet_class = pc_oasis
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_hadesert }
+				is_planet_class = pc_hadesert
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_steppe }
+				is_planet_class = pc_steppe
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_frozen_desert }
+				is_planet_class = pc_frozen_desert
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_boreal }
+				is_planet_class = pc_boreal
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_mushroom }
+				is_planet_class = pc_mushroom
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_antarctic }
+				is_planet_class = pc_antarctic
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_aeolian }
+				is_planet_class = pc_aeolian
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_snow }
+				is_planet_class = pc_snow
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_highland }
+				is_planet_class = pc_highland
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_duneforest }
+				is_planet_class = pc_duneforest
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_retinal }
+				is_planet_class = pc_retinal
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_forest }
+				is_planet_class = pc_forest
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_lake }
+				is_planet_class = pc_lake
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_tepid }
+				is_planet_class = pc_tepid
+			}
+		}
+	}
+	
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = abandoned_terraforming_planet
+		set_planet_flag = colony_event
+		owner = { set_country_flag = abandoned_terraforming_country }
+	}
+	
+	option = {
+		name = colony.100.a
+		hidden_effect = {
+			add_modifier = {
+				modifier = "abandoned_terraforming"
+				days = -1
+			}
+		}
+		begin_event_chain = {
+			event_chain = "abandoned_terraforming_chain"
+			target = ROOT
+		}
+		enable_special_project = {
+			name = "ABANDONED_TERRAFORMING_1_PROJECT"
+			location = this
+			owner = root
+		}
+		enable_special_project = {
+			name = "ABANDONED_TERRAFORMING_2_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+# Terraforming Complex Dismantled
+planet_event = {
+	id = colony.101
+	title = "colony.101.name"
+	desc = "colony.101.desc"
+	picture = GFX_evt_society_research
+	show_sound = event_construction
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_planet_flag = did_not_terraform
+	}
+	
+	option = {
+		name = EXCELLENT
+		if = {
+			limit = {
+				owner = {
+					NOT = { has_technology = tech_terrestrial_sculpting }
+				}
+			}
+			owner = { give_technology = { tech = tech_terrestrial_sculpting } }
+			break = yes
+		}
+		if = {
+			limit = {
+				owner = { has_technology = tech_terrestrial_sculpting }
+			}
+			owner = {
+				add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			}
+			break = yes
+		}
+	}
+}
+
+# Special Project Completed 1
+planet_event = {
+	id = colony.104
+	title = "PROJECT_COMPLETE"
+	desc = "colony.104.desc"
+	picture = GFX_evt_alien_nature
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = colony.104.a
+		custom_tooltip = abandoned_terraforming_completed
+		hidden_effect = {
+			remove_planet_flag = pdaquapicture
+			remove_modifier = "abandoned_terraforming"
+				random_list = {
+					3 = { change_pc = pc_mangrove }
+					3 = { change_pc = pc_wetswamp }
+					3 = { change_pc = pc_fog }
+					3 = { change_pc = pc_desertislands }
+					3 = { change_pc = pc_hajungle }
+					3 = { change_pc = pc_cenote }
+					3 = { change_pc = pc_cascadian }
+					3 = { change_pc = pc_swamp }
+					3 = { change_pc = pc_mud }
+					3 = { change_pc = pc_basalt }
+					3 = { change_pc = pc_subarctic }
+					3 = { change_pc = pc_glacial }
+					3 = { change_pc = pc_sandsea }
+					3 = { change_pc = pc_mesa }
+					3 = { change_pc = pc_badlands }
+					3 = { change_pc = pc_outback }
+					3 = { change_pc = pc_coastal }
+					3 = { change_pc = pc_oasis }
+					3 = { change_pc = pc_hadesert }
+					3 = { change_pc = pc_steppe }
+					3 = { change_pc = pc_frozen_desert }
+					3 = { change_pc = pc_boreal }
+					3 = { change_pc = pc_desert }
+					3 = { change_pc = pc_tropical }
+					3 = { change_pc = pc_arid }
+					3 = { change_pc = pc_continental }
+					3 = { change_pc = pc_ocean }
+					3 = { change_pc = pc_tundra }
+					3 = { change_pc = pc_arctic }
+					3 = { change_pc = pc_alpine }
+					3 = { change_pc = pc_savannah }	
+					3 = { change_pc = pc_mushroom }
+							
+			}
+		}
+	}
+}
+
+# Special Project Completed 2 (Mutated Creatures)
+planet_event = {
+	id = colony.105
+	title = "PROJECT_COMPLETE"
+	desc = "colony.105.desc"
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		hidden_effect = {
+			remove_planet_flag = pdaquapicture
+			random_list = {
+				3 = { change_pc = pc_mangrove }
+				3 = { change_pc = pc_wetswamp }
+				3 = { change_pc = pc_fog }
+				3 = { change_pc = pc_desertislands }
+				3 = { change_pc = pc_hajungle }
+				3 = { change_pc = pc_cenote }
+				3 = { change_pc = pc_cascadian }
+				3 = { change_pc = pc_swamp }
+				3 = { change_pc = pc_mud }
+				3 = { change_pc = pc_basalt }
+				3 = { change_pc = pc_subarctic }
+				3 = { change_pc = pc_glacial }
+				3 = { change_pc = pc_sandsea }
+				3 = { change_pc = pc_mesa }
+				3 = { change_pc = pc_badlands }
+				3 = { change_pc = pc_outback }
+				3 = { change_pc = pc_coastal }
+				3 = { change_pc = pc_oasis }
+				3 = { change_pc = pc_hadesert }
+				3 = { change_pc = pc_steppe }
+				3 = { change_pc = pc_frozen_desert }
+				3 = { change_pc = pc_boreal }
+				3 = { change_pc = pc_desert }
+				3 = { change_pc = pc_tropical }
+				3 = { change_pc = pc_arid }
+				3 = { change_pc = pc_continental }
+				3 = { change_pc = pc_ocean }
+				3 = { change_pc = pc_tundra }
+				3 = { change_pc = pc_arctic }
+				3 = { change_pc = pc_alpine }
+				3 = { change_pc = pc_savannah }	
+				3 = { change_pc = pc_mushroom }
+						
+			}
+			remove_modifier = "abandoned_terraforming"
+			owner = { set_country_flag = terraforming_mutants_invade_country }
+			set_planet_flag = terraforming_mutants_invade_planet
+			create_country = {
+				name = "NAME_Deformed_Creatures"
+				type = faction
+				effect = {
+					establish_communications_no_message = root.owner
+				}
+			}
+			create_army = {
+				name = "NAME_Deformed_Creatures"
+				owner = last_created_country
+				type = "mutant_army"
+			}
+			create_army = {
+				name = "NAME_Twisted_Beasts"
+				owner = last_created_country
+				type = "mutant_army"
+			}
+			create_army = {
+				name = "NAME_Mutated_Horrors"
+				owner = last_created_country
+				type = "mutant_army"
+			}
+		}
+	}
+	
+	option = {
+		name = colony.105.a
+		custom_tooltip = terraforming_mutants_attack
+	}
+}
+
+# Special Project Completed 3 (Gaia World)
+planet_event = {
+	id = colony.106
+	title = "PROJECT_COMPLETE"
+	desc = "colony.106.desc"
+	picture = GFX_evt_alien_nature
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MARVELOUS
+		change_pc = pc_gaia
+		add_modifier = {
+			modifier = "gaia_world"
+			days = -1
+		}
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+			remove_planet_flag = pdaquapicture
+		}
+	}
+}
+
+# Special Project Completed 4 (Tomb World)
+planet_event = {
+	id = colony.107
+	title = "PROJECT_COMPLETE"
+	desc = {
+		trigger = {
+			NOR = {
+				owner = { has_origin = origin_post_apocalyptic }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+				owner.species = { has_trait = trait_pc_irradiated_preference }
+			}
+		}
+		text = "colony.107.desc"
+	}
+	desc = {
+		trigger = {
+			OR = {
+				owner = { has_origin = origin_post_apocalyptic }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+				owner.species = { has_trait = trait_pc_irradiated_preference }
+			}
+		}
+		text = "colony.107.desc.nuked_pref"
+	}
+	picture = GFX_evt_dead_city
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		trigger = {
+			NOR = {
+				owner = { has_origin = origin_post_apocalyptic }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+				owner.species = { has_trait = trait_pc_irradiated_preference }
+			}
+		}
+		name = colony.107.a
+		change_pc = pc_nuked
+		hidden_effect = { set_planet_flag = nuked_planet_anomalies_disabled }
+		if = { #Destroys colony if no planet pops can live on Tomb Worlds
+			limit = {
+				NOT = {
+					any_owned_pop = {
+						OR = {
+							has_trait = trait_pc_nuked_preference
+							has_trait = trait_pc_irradiated_preference
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+				}
+			}
+			destroy_colony = yes
+		}
+		else = { #Kills only planet pops that cannot live on Tomb Worlds
+			hidden_effect = {
+				every_owned_pop = {
+					limit = {
+						NOR = {
+							has_trait = trait_pc_nuked_preference
+							has_trait = trait_pc_irradiated_preference
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+						}
+					}
+					kill_pop = yes
+				}
+			}
+			custom_tooltip = colony.107.a.tooltip
+		}
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+			remove_planet_flag = pdaquapicture
+		}
+	}
+	option = {
+		trigger = {
+			OR = {
+				owner = { has_origin = origin_post_apocalyptic }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+				owner.species = { has_trait = trait_pc_irradiated_preference }
+			}
+		}
+		name = EXCELLENT
+		hidden_effect = { change_pc = pc_nuked }
+		set_planet_flag = nuked_planet_anomalies_disabled		
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+			remove_planet_flag = pdaquapicture
+		}
+	}
+}
+
+#Trouble in Paradise
+planet_event = {
+	id = colony.2001
+	title = colony.2001.name
+	desc = colony.2001.desc
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_conversation
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		owner = {
+			OR = {
+				has_ethic = ethic_fanatic_militarist
+				has_ethic = ethic_militarist
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_pacifist
+			}
+			NOR = {
+				has_country_flag = colony_event_ethic_diverge
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		num_pops > 0
+		OR = {
+			is_pd_continental = yes
+			is_pd_tropical = yes
+			is_planet_class = pc_gaia
+			is_planet_class = pc_cold_gaia
+			is_planet_class = pc_hot_gaia
+		}
+		NOT = {
+			has_planet_flag = colony_event
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event
+		owner = {
+			set_timed_country_flag = { flag = colony_event_ethic_diverge days = 1825 } # 5 years
+		}
+	}
+
+	option = {
+		name = colony.2001.a
+		custom_tooltip = colony.2001.a.pacifist.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_militarist
+				}
+			}
+		}
+		hidden_effect = {
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_pacifist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_militarist days = 7 }
+				pop_diverge_ethic = yes #Scripted effect controlled by the pop flag set before it
+			}
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_pacifist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_militarist days = 7 }
+				pop_diverge_ethic = yes
+			}
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_pacifist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_militarist days = 7 }
+				pop_diverge_ethic = yes
+			}
+		}
+	}
+	option = {
+		name = colony.2001.a
+		custom_tooltip = colony.2001.a.military.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_pacifist
+				}
+			}
+		}
+		hidden_effect = {
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_militarist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_pacifist days = 7 }
+				pop_diverge_ethic = yes
+			}
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_militarist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_pacifist days = 7 }
+				pop_diverge_ethic = yes
+			}
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_militarist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_pacifist days = 7 }
+				pop_diverge_ethic = yes
+			}
+		}
+	}
+	option = {
+		name = colony.2001.b
+		custom_tooltip = colony.2001.b.pacifism.tooltip
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_pacifist
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+		}
+		hidden_effect = {
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_pacifist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_militarist days = 7 }
+				pop_diverge_ethic = yes
+			}
+			add_modifier = {
+				modifier = suppressed_opposition
+				days = 3600
+			}
+			set_timed_planet_flag = {
+				flag = suppressed_opposition_flag
+				days = 3600
+			}
+		}
+	}
+	option = {
+		name = colony.2001.b
+		custom_tooltip = colony.2001.b.military.tooltip
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_fanatic_militarist
+					has_ethic = ethic_militarist
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+		}
+		hidden_effect = {
+			random_owned_pop = {
+				limit = {
+					is_non_sapient_robot = no
+					NOR = {
+						has_ethic = ethic_militarist
+						has_pop_flag = pop_changed_ethics
+					}
+				}
+				set_timed_pop_flag = { flag = ethic_diverge_from_pacifist days = 7 }
+				pop_diverge_ethic = yes
+			}
+			add_modifier = {
+				modifier = suppressed_opposition
+				days = 3600
+			}
+			set_timed_planet_flag = {
+				flag = suppressed_opposition_flag
+				days = 3600
+			}
+		}
+	}
+}
+
+#Submerged Cruiser
+planet_event = {
+	id = colony.2005
+	title = colony.2005.name
+	desc = colony.2005.desc
+	picture = GFX_evt_ocean
+	show_sound = event_sensor_ping
+	location = root
+	trackable = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		owner = {
+			has_technology = tech_destroyers
+			NOT = { has_country_flag = colony_submerged_cruiser }
+		}
+		num_pops > 0
+		NOT = {
+			has_planet_flag = colony_event
+		}
+		OR = {
+			is_planet_class = pc_gaia
+			is_planet_class = pc_hot_gaia
+			is_planet_class = pc_cold_gaia
+			is_pd_continental = yes
+			is_pd_tropical = yes
+			is_pd_ocean = yes
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = colony_event
+		owner = { set_country_flag = colony_submerged_cruiser }
+	}
+	# Salvage the Ship
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = no
+			}
+		}
+		enable_special_project = {
+			name = "ANCIENT_OCEAN_SHIP"
+			owner = root
+			location = root
+		}
+	}
+	# Scrap the Ship to get tech
+	option = {
+		name = colony.2005.b
+		trigger = {
+			owner = {
+				NOR = {
+					is_scavenger = yes
+					has_technology = tech_destroyers
+				}
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_tech_option = tech_destroyers
+				}
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_destroyers
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	option = {
+		name = colony.2005.b
+		trigger = {
+			owner = {
+				has_technology = tech_destroyers
+				NOR = {
+					is_scavenger = yes
+					has_technology = tech_cruisers
+				}
+			}
+		}
+		owner = {
+			if = {
+				limit = {
+					has_tech_option = tech_cruisers
+				}
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_cruisers
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	# Scavengers get both
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = yes
+				NOT = {
+					has_technology = tech_destroyers
+				}
+			}
+		}
+		owner = {
+			enable_special_project = {
+				name = "ANCIENT_OCEAN_SHIP"
+				owner = root
+				location = root
+			}
+			if = {
+				limit = {
+					has_tech_option = tech_destroyers
+				}
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_destroyers
+				add_tech_progress = {
+					tech = tech_destroyers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = yes
+				has_technology = tech_destroyers
+				NOT = {
+					has_technology = tech_cruisers
+				}
+			}
+		}
+		owner = {
+			enable_special_project = {
+				name = "ANCIENT_OCEAN_SHIP"
+				owner = root
+				location = root
+			}
+			if = {
+				limit = {
+					has_tech_option = tech_cruisers
+				}
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.60
+				}
+			}
+			else = {
+				add_research_option = tech_cruisers
+				add_tech_progress = {
+					tech = tech_cruisers
+					progress = 0.20
+				}
+			}
+		}
+	}
+	option = {
+		name = colony.2005.a
+		trigger = {
+			owner = {
+				is_scavenger = yes
+				has_technology = tech_cruisers
+			}
+		}
+		enable_special_project = {
+			name = "ANCIENT_OCEAN_SHIP"
+			owner = root
+			location = root
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+############################
+#
+# Colony Events
+# Written by Douglas Furen
+#
+############################
+
+namespace = colony
+
+### FERAL OVERLOAD
+planet_event = {
+	id = colony.8001
+	title = "colony.8001.name"
+	desc = "colony.8001.desc"
+	picture = GFX_evt_colony_settlement
+	show_sound = event_planetary_riot
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+	}
+
+	trigger = {
+		owner = {
+			NOT = {
+				has_ethic = ethic_gestalt_consciousness
+				has_country_flag = feral_overload_flag
+			}
+		}
+		OR = {
+			is_pd_continental = yes
+			is_pd_tropical = yes
+			is_pd_ocean = yes
+			is_pd_arid = yes
+			is_pd_alpine = yes
+			is_pd_tundra = yes
+		}
+		num_pops > 0
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = feral_overload_flag
+		}
+		set_planet_flag = colony_event
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = colony.8001.a
+		add_modifier = {
+			modifier = feral_overload_00
+			days = -1
+		}
+		hidden_effect = {
+			planet_event = { id = colony.8002 days = 40 random = 20 }
+		}
+	}
+}
+
+#Nemma World
+planet_event = {
+	id = colony.9000
+	title = "colony.9000.name"
+	desc = "colony.9000.desc"
+	picture = GFX_evt_continental
+	show_sound = event_alien_nature
+	location = ROOT
+	trackable = yes
+
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+	}
+
+	trigger = {
+		num_pops > 0
+		OR = {
+			is_pd_ocean = yes
+			is_pd_continental = yes
+		}
+		NOR = {
+			any_country = { has_country_flag = turtle_world_spawned }
+			has_planet_flag = colony_event
+		}
+	}
+
+	immediate = {
+		set_planet_flag = turtle_world_colony
+		set_planet_flag = colony_event
+		owner = { set_country_flag = turtle_world_spawned }
+	}
+
+	option = {
+		name = {
+			trigger = {
+				owner = { NOT = { species_portrait = rep14 } }
+			}
+			text = "colony.9000.a"
+		}
+		name = {
+			trigger = {
+				owner = { species_portrait = rep14 }
+			}
+			text = "colony.9000.a.turtle"
+		}
+
+		add_modifier = {
+			modifier = "turtle_world_modifier"
+			days = -1
+		}
+		hidden_effect = {
+			planet_event = {
+				id = colony.9005 days = 700 random = 30
+			}
+		}
+	}
+}
+
+planet_event = { #Dimensional portal
+	id = colony.3005
+	title = "colony.3005.name"
+	desc = "colony.3005.desc"
+	picture = GFX_evt_wormhole
+	location = ROOT
+	situation = from #only does something if from is actually a situation
+	trackable = yes
+
+	trigger = {
+		has_owner = yes
+		original_owner = yes
+		is_homeworld = no
+		owner = {
+			is_ai = no
+			NOR = {	
+				has_country_flag = dportal_country
+				has_origin = origin_floating_world
+				has_origin = origin_crystal_world
+				has_origin = origin_crucible_world
+				has_origin = origin_pd_zro_world
+				has_origin = origin_pd_hive
+				has_origin = origin_archive_world
+				has_origin = origin_graveyard_world
+				has_origin = origin_graveyard_world
+				has_origin = origin_techno_world
+				has_origin = origin_pd_hycean_aquatic
+				has_origin = origin_pd_rogue_voidfarers
+				has_origin = origin_pd_sulfur_springs
+				has_origin = origin_pd_ammonia_breathers
+				has_origin = origin_pd_shroud
+				has_origin = origin_pd_methane_cryogenics
+				has_origin = origin_pd_ash_tectonic_drillers
+				has_origin = origin_pd_acid_seeders
+				has_origin = origin_pd_radiotrophic_mutants
+			}
+		}
+		is_capital = no
+		has_ground_combat = no
+		is_occupied_flag = no
+		num_pops > 0
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_ringworld_habitable
+			is_planet_class = pc_shattered_ring_habitable
+			has_planet_flag = colony_event
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = dportal_event
+		set_planet_flag = colony_event
+		owner = { set_country_flag = dportal_country }
+	}
+
+	option = {
+		name = INTRIGUING
+		enable_special_project = {
+			name = "DPORTAL_PROJECT"
+			location = this
+			owner = root
+		}
+		if = {
+			limit = {
+				owner = {
+					is_gestalt = yes
+				}
+			}
+			add_deposit = d_portal_research_zone_gestalt
+		}
+		else = {
+			add_deposit = d_portal_research_zone
+		}
+	}
+}
+
+#Sucessfuly bring planet into your reality
+country_event = {
+	id = colony.9850
+	title = "colony.9850.name"
+	desc = {
+		trigger = { is_machine_empire = yes }
+		text = "colony.9850.desc.robot"
+	}
+	desc = {
+		trigger = { is_hive_empire = yes }
+		text = "colony.9850.desc.hive"
+	}
+	desc = {
+		trigger = { is_regular_empire = yes }
+		text = "colony.9850.desc"
+	}
+	is_triggered_only = yes
+	picture = GFX_evt_atmospheric_entry
+	show_sound = event_activating_unknown_technology
+
+	immediate = {
+		set_country_flag = b_world_spawned 
+		if = {
+			limit = {
+				has_origin = origin_ocean_paradise
+			}
+			home_planet = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_ocean
+						location = root.home_planet
+						orbit_distance_offset = 2
+						orbit_angle_offset = 180
+						size = 30
+						init_effect = {
+							set_name = {
+								key = NAME_B_Planet
+								variable_string = "[Root.GetHomeWorldName]"
+							}
+							save_event_target_as = b_planet
+							set_owner = root
+							set_controller = root
+							prevent_anomaly = yes
+							clear_blockers = yes
+							set_planet_entity = {
+								entity = "ocean_paradise_planet_01_entity"
+							}
+							generate_start_deposits_and_blockers = yes
+							remove_all_buildings = yes
+							set_planet_flag = colony_event
+							if = {
+								limit = {
+									root = { is_gestalt = yes }
+								}
+								add_modifier = {
+									modifier = ocean_paradise_hive
+								}
+							}
+							else = {
+								add_modifier = {
+									modifier = ocean_paradise
+								}
+							}
+						}
+					}
+					every_ambient_object = {
+						limit = { has_ambient_object_flag = b_world_portal }
+						destroy_ambient_object = this
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_origin = origin_aquatic_paradise
+			}
+			home_planet = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_aquatic
+						location = root.home_planet
+						orbit_distance_offset = 2
+						orbit_angle_offset = 180
+						size = 30
+						init_effect = {
+							set_name = {
+								key = NAME_B_Planet
+								variable_string = "[Root.GetHomeWorldName]"
+							}
+							save_event_target_as = b_planet
+							set_owner = root
+							set_controller = root
+							prevent_anomaly = yes
+							clear_blockers = yes
+							set_planet_entity = {
+								entity = "ocean_paradise_planet_01_entity"
+							}
+							generate_start_deposits_and_blockers = yes
+							remove_all_buildings = yes
+							set_planet_flag = colony_event
+							if = {
+								limit = {
+									root = { is_gestalt = yes }
+								}
+								add_modifier = {
+									modifier = ocean_paradise_hive
+								}
+							}
+							else = {
+								add_modifier = {
+									modifier = ocean_paradise
+								}
+							}
+						}
+					}
+					every_ambient_object = {
+						limit = { has_ambient_object_flag = b_world_portal }
+						destroy_ambient_object = this
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_origin = origin_life_seeded
+			}
+			home_planet = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_gaia
+						location = root.home_planet
+						orbit_distance_offset = 2
+						orbit_angle_offset = 180
+						size = 30
+						init_effect = {
+							set_name = {
+								key = NAME_B_Planet
+								variable_string = "[Root.GetHomeWorldName]"
+							}
+							save_event_target_as = b_planet
+							set_owner = root
+							set_controller = root
+							prevent_anomaly = yes
+							clear_blockers = yes
+							generate_start_deposits_and_blockers = yes
+							remove_all_buildings = yes
+							set_planet_flag = colony_event
+							generate_start_buildings_and_districts = yes
+						}
+					}
+					every_ambient_object = {
+						limit = { has_ambient_object_flag = b_world_portal }
+						destroy_ambient_object = this
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_origin = origin_post_apocalyptic
+			}
+			home_planet = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_nuked
+						location = root.home_planet
+						orbit_distance_offset = 2
+						orbit_angle_offset = 180
+						size = 20
+						init_effect = {
+							set_name = {
+								key = NAME_B_Planet
+								variable_string = "[Root.GetHomeWorldName]"
+							}
+							save_event_target_as = b_planet
+							set_owner = root
+							set_controller = root
+							prevent_anomaly = yes
+							clear_blockers = yes
+							generate_start_deposits_and_blockers = yes
+							remove_all_buildings = yes
+							set_planet_flag = colony_event
+							generate_start_buildings_and_districts = yes
+						}
+					}
+					every_ambient_object = {
+						limit = { has_ambient_object_flag = b_world_portal }
+						destroy_ambient_object = this
+					}
+				}
+			}
+		}
+		else = {
+			home_planet = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_ocean
+						location = root.home_planet
+						orbit_distance_offset = 2
+						orbit_angle_offset = 180
+						size = 18
+						init_effect = {
+							set_name = {
+								key = NAME_B_Planet
+								variable_string = "[Root.GetHomeWorldName]"
+							}
+							save_event_target_as = b_planet
+							set_owner = root
+							set_controller = root
+							prevent_anomaly = yes
+							clear_deposits = yes
+							remove_all_buildings = yes
+							if = {
+								limit = {
+									root.home_planet = {
+										has_planet_flag = planet_earth
+									}
+								}
+								generate_earth_deposits_and_blockers = yes
+								if = {
+									limit = {
+										root.home_planet = {
+											is_planet_class = pc_continental
+										}
+									}
+									set_planet_entity = {
+										entity = "continental_planet_earth_entity"
+									}
+								}
+							}
+							else = {
+								generate_start_deposits_and_blockers = yes
+							}
+							generate_start_buildings_and_districts = yes
+							set_planet_flag = colony_event
+							if = {
+								limit = {
+									root = {
+										is_machine_empire = no
+									}
+								}
+								change_pc = root.owner_species
+							}
+							else = {
+								change_pc = pc_nuked
+							}
+						}
+					}
+					every_ambient_object = {
+						limit = { has_ambient_object_flag = b_world_portal }
+						destroy_ambient_object = this
+					}
+				}
+			}
+		}
+		event_target:b_planet = {
+			while = {
+				count = 18
+				create_pop = {
+					species = root.species	
+				}
+				last_created_pop = { set_pop_flag = b_worlder }
+			}
+			every_owned_pop = {
+				limit = {
+					has_pop_flag = b_worlder
+				}
+				if = { 
+					limit = { is_robot_pop = yes }
+					modify_species = {
+						species = this
+						add_trait = trait_robot_notofthisworld
+					}
+				}
+				else = {
+					modify_species = {
+						species = this 
+						add_trait = trait_notofthisworld
+					}
+				}
+			}
+			add_modifier = {
+				modifier = b_world_saved
+				days = 3600
+			}
+		}
+	}
+	option = {
+		name = colony.9850.a
+		remove_modifier = "harvesting_negative_mass"
+		random_situation = {
+			limit = { is_situation_type = situation_negative_mass }
+			destroy_situation = this
+		}
+	}
+}

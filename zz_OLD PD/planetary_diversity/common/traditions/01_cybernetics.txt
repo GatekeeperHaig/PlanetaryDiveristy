@@ -1,0 +1,257 @@
+tr_cybernetics_adopt = {
+	possible = {
+		if = {
+			limit = { is_hive_empire = no }
+			OR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				AND = {
+					has_origin = origin_pd_warform_world
+					has_technology =  tech_neuro_quantum_links
+				}	
+			}
+		}
+		else = {
+			has_ascension_perk = ap_organo_machine_interfacing
+		}
+	}
+	unlocks_agenda = agenda_cybernetic_advantage
+	custom_tooltip = tr_cybernetics_adopt_desc
+
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2500 }
+		}
+		
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_adopt_hive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		custom_tooltip = tr_cybernetics_adopt_hive_desc
+		on_enabled = {
+			hidden_effect = {
+				country_event = { id = utopia.2500 }
+			}
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_cybernetics_finish = {
+	modifier = {
+		planet_cyborg_jobs_produces_mult = 0.10
+		BIOLOGICAL_species_trait_picks_add = 1
+		ascension_perks_add = 1
+	}
+}
+
+tr_cybernetics_transubstantiation_synthesis = {
+	possible = {
+		if = {
+			limit = { has_country_flag = cyborg_empire }
+			has_tradition = tr_cybernetics_adopt
+		}
+		else = {
+			custom_tooltip = {
+				fail_text = REQUIRES_CYBORG_EMPIRE
+				has_country_flag = cyborg_empire
+			}
+		}
+	}
+	custom_tooltip = tr_cybernetics_transubstantiation_synthesis_desc
+
+	tradition_swap = {
+		name = tr_cybernetics_organ_harvesting
+		inherit_name = no
+		inherit_icon = no
+		trigger = {
+			is_homicidal = yes
+		}
+		custom_tooltip = tr_cybernetics_organ_harvesting_desc
+	}
+}
+
+tr_cybernetics_metabolic_reprocessing = {
+	possible = {
+		has_tradition = tr_cybernetics_transubstantiation_synthesis
+	}
+	modifier = {
+		planet_pops_cyborgs_upkeep_mult = -0.10
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_metabolic_reprocessing_hive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		custom_tooltip = tr_cybernetics_metabolic_reprocessing_hive_desc
+		modifier = {
+			planet_pops_cyborgs_upkeep_mult = -0.10
+		}
+	}
+}
+
+tr_cybernetics_integrated_anatomy = {
+	possible = {
+		has_tradition = tr_cybernetics_transubstantiation_synthesis
+	}
+	custom_tooltip_with_modifiers = tr_cybernetics_integrated_anatomy_desc
+	modifier = {
+		BIOLOGICAL_species_trait_picks_add = 1
+	}
+	# Allows application and removal of cybernetic traits onto cybernetic species.
+}
+
+tr_cybernetics_assembly_standards = {
+	possible = {
+		has_tradition = tr_cybernetics_metabolic_reprocessing
+	}
+	custom_tooltip = tr_cybernetics_assembly_standards_desc
+	# Unlocks Assmebly Standards policy, allowing Roboticists to provide Organic Pop Assembly for Cyborgs
+
+	tradition_swap = {
+		name = tr_cybernetics_synaptic_sub_processing
+		inherit_name = no
+		inherit_icon = no
+		trigger = {
+			is_hive_empire = yes
+		}
+		modifier = {
+			empire_size_districts_mult = -0.5
+		}
+	}
+}
+
+tr_cybernetics_modular_cybernetics = {
+	possible = {
+		has_tradition = tr_cybernetics_integrated_anatomy
+	}
+	custom_tooltip_with_modifiers = tr_cybernetics_modular_cybernetics_tt
+	modifier = {
+		modify_species_cost_mult = -0.50
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_hive
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			is_hive_empire = yes
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_hive_tt
+		modifier = {
+			modify_species_cost_mult = -0.50
+		}
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_1
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 2
+			modify_species_cost_mult = -0.50
+		}
+		weight = {
+			factor = 1
+		}
+		on_enabled = {
+			hidden_effect = {
+				if = {
+					limit = {
+						any_pre_ftl_within_border = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+					country_event = { id = origin.6096 days = 3 }
+				}
+			}
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_2
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding
+			has_technology = tech_robomodding_points_1
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 3
+			modify_species_cost_mult = -0.50
+		}
+		weight = {
+			factor = 2
+		}
+		on_enabled = {
+			hidden_effect = {
+				if = {
+					limit = {
+						any_pre_ftl_within_border = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+					country_event = { id = origin.6096 days = 3 }
+				}
+			}
+		}
+	}
+	tradition_swap = {
+		name = tr_cybernetics_modular_cybernetics_3
+		inherit_name = yes
+		inherit_icon = yes
+		trigger = {
+			has_technology = tech_robomodding
+			has_technology = tech_robomodding_points_1
+			has_technology = tech_robomodding_points_2
+		}
+		custom_tooltip = tr_cybernetics_modular_cybernetics_tt_2
+		modifier = {
+			BIOLOGICAL_species_trait_points_add = 4
+			modify_species_cost_mult = -0.50
+		}
+		weight = {
+			factor = 3
+		}
+		on_enabled = {
+			hidden_effect = {
+				if = {
+					limit = {
+						any_pre_ftl_within_border = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+					country_event = { id = origin.6096 days = 3 }
+				}
+			}
+		}
+	}
+	on_enabled = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_pre_ftl_within_border = {
+						has_country_flag = fotd_seperatist_country@root
+					}
+				}
+				country_event = { id = origin.6096 days = 3 }
+			}
+		}
+	}
+}

@@ -142,14 +142,20 @@ pd_aw_create_necro_world_effect = {
 	}
 	IF = {
 		limit = {
-			OR = {
-				is_planet_class = pc_hive
-				is_planet_class = pc_machine
-			}
+			is_planet_class = pc_hive
 		}
 		set_planet_entity = {
 			picture = pc_pd_necro
 			entity = pd_necro_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_machine
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_machine
+			entity = pd_necro_machine_planet_01_entity
 		}
 	}
 	generate_pd_ascension_worlds_arc_portrait_effect = yes
@@ -1419,6 +1425,122 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 				set_planet_entity = {
 					picture = pc_pd_necro_hive_capital
 					entity = pd_necro_planet_01_entity
+				}
+			}
+		}
+	}
+}
+
+#This adds the Ascenion World Views to the More Arcologies Classes
+generate_pd_ascension_worlds_machine_arc_portrait_effect = {
+	#Aquatic
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_machine_centralized_processing }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_machine_centralized_processing
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine_capital
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_machine_centralized_processing }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_machine_centralized_processing
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine_capital
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+		}
+	}
+	#Necro
+	if = {
+		limit = {
+			pd_aw_is_necro_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_machine_centralized_processing }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_machine_centralized_processing
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine_capital
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_machine_centralized_processing }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_machine_centralized_processing
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine_capital
+					entity = pd_necro_machine_planet_01_entity
 				}
 			}
 		}

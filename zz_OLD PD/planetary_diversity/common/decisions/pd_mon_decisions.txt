@@ -1,0 +1,264 @@
+##########################################################################
+# World Shaper Extra Decisions
+##########################################################################
+
+# Orbital Mirrors
+decision_orbital_mirrors = {
+	icon = decision_pd_orbital_mirrors
+	owned_planets_only = yes
+	
+	prerequisites = {
+		"tech_pd_mastery_of_nature"
+	}
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+		}
+	}
+	
+	potential = {
+		is_artificial = no
+		is_pd_arcology = no
+		is_pd_hive_arcology = no
+		is_pd_robot_arcology = no
+		is_pd_machine = no
+		is_pd_hive_world = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
+		NOT = { has_modifier = resort_colony }
+		NOT = { is_planet_class = pc_city }
+		NOT = { is_planet_class = pc_crucible }
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { has_deposit = d_pd_orbital_mirrors }
+		NOT = { has_deposit = d_pd_seismic_resonators }
+		NOT = { has_deposit = d_pd_bionanite_soil }
+		NOT = { has_deposit = d_snowball_wasteland_1 }
+		NOT = { is_planet_class = pc_relic }
+		NOT = { is_planet_class = pc_nuked_relic }
+		NOT = { has_building_construction = yes }	
+	}
+
+	effect = {
+		add_deposit = d_pd_orbital_mirrors
+	}    
+	
+	ai_weight = {
+        weight = 10
+	}
+}
+# Seismic Resonators
+decision_seismic_resonators = {
+	icon = decision_seismic_resonators
+	owned_planets_only = yes
+	
+	prerequisites = {
+		"tech_pd_mastery_of_nature"		
+	}
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+		}
+	}
+	
+	potential = {
+		is_artificial = no
+		is_pd_arcology = no
+		is_pd_hive_arcology = no
+		is_pd_robot_arcology = no
+		is_pd_machine = no
+		is_pd_hive_world = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
+		NOT = { has_modifier = resort_colony }
+		NOT = { is_planet_class = pc_city }
+		NOT = { is_planet_class = pc_crucible }
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { has_deposit = d_pd_orbital_mirrors }
+		NOT = { has_deposit = d_pd_seismic_resonators }
+		NOT = { has_deposit = d_pd_bionanite_soil }
+		NOT = { has_building_construction = yes }
+		NOT = { has_deposit = d_snowball_wasteland_1 }
+		NOT = { is_planet_class = pc_relic }
+		NOT = { is_planet_class = pc_nuked_relic }
+	}
+
+	effect = {
+		add_deposit = d_pd_seismic_resonators
+	}    
+	
+	ai_weight = {
+        weight = 10
+	}
+}
+# Nanite Soil
+decision_bionanite_soil = {
+	icon = decision_bionanite_soil
+	owned_planets_only = yes
+	
+	prerequisites = {
+		"tech_pd_mastery_of_nature"		
+	}
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+		}
+	}
+	
+	potential = {
+		is_artificial = no
+		is_pd_arcology = no
+		is_pd_hive_arcology = no
+		is_pd_robot_arcology = no
+		is_pd_machine = no
+		is_pd_hive_world = no
+		is_pd_habitat = no
+		is_pd_planetary_megaproject = no
+		is_pd_wasteland = no
+		NOT = { has_modifier = resort_colony }
+		NOT = { is_planet_class = pc_city }
+		NOT = { is_planet_class = pc_crucible }
+		NOT = { is_planet_class = pc_pd_scrapyard }
+		NOT = { has_deposit = d_pd_orbital_mirrors }
+		NOT = { has_deposit = d_pd_seismic_resonators }
+		NOT = { has_deposit = d_pd_bionanite_soil }
+		NOT = { has_building_construction = yes }
+		NOT = { has_deposit = d_snowball_wasteland_1 }
+		NOT = { is_planet_class = pc_relic }
+		NOT = { is_planet_class = pc_nuked_relic }
+	}
+
+	effect = {
+		add_deposit = d_pd_bionanite_soil
+	}    
+	
+	ai_weight = {
+        weight = 10
+	}
+}
+#Make Core Tap Worlds 
+decision_pd_megacoretap_world = {
+	owned_planets_only = yes
+	icon = decision_pd_megacoretap_world
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			minerals = 10000
+		}
+	}
+	
+	potential = {
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked_relic
+			is_planet_class = pc_milarc_relic
+			is_planet_class = pc_necropolis
+			is_planet_class = pc_necrohive
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		is_pd_wasteland = no
+		is_pd_habitat = no
+		is_pd_shroud_world = no
+		is_pd_machine = no
+		is_pd_arcology = no
+		is_pd_unique = no
+		is_artificial = no
+		is_pd_planetary_megaproject = no
+		is_pd_exotic = no
+		exists = owner
+		owner = { 
+			has_ascension_perk = ap_mastery_of_nature
+		}
+	}
+
+	prerequisites = {
+		"tech_planet_mega_power"
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = decision_pd_megacoretap_requirements
+				num_districts = { type = district_farming value < 1 }
+				num_districts = { type = district_mining value < 1 }
+				num_districts = { type = district_industrial value < 1 }
+				num_districts = { type = district_farming_uncapped value < 1 }
+				num_districts = { type = district_mining_uncapped value < 1 }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+	
+	effect = {
+		# Make city-planet
+		custom_tooltip = decision_pd_megacoretap_project_effects
+		hidden_effect = {	
+			clear_deposits = yes
+			clear_planet_modifiers = yes
+			IF = {
+				limit = {
+					is_pd_tidally_locked = no
+					is_pd_superhab = no
+					is_pd_cave = no
+				}
+				change_pc = pc_pd_mega_power
+			}
+			IF = {
+				limit = {
+					is_pd_tidally_locked = yes
+				}
+				change_pc = pc_pd_mega_power_tidal
+			}
+			IF = {
+				limit = {
+					is_pd_superhab = yes
+				}
+				change_pc = pc_pd_mega_power_superhab
+			}
+			IF = {
+				limit = {
+					is_pd_cave = yes
+				}
+				change_pc = pc_pd_mega_power_cave
+			}
+			create_message = {
+				type = MEGAPOWERPLANET_MESSAGE_TYPE
+				localization = MESSAGE_MEGAPOWERPLANET
+				days = 30
+				target = this
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+

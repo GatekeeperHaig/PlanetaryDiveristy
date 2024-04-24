@@ -1,0 +1,718 @@
+@terraforming_cost_level_1 = 2000 #<-- same category terraforming
+@terraforming_cost_level_2 = 5000 #<-- different category terraforming
+@terraforming_cost_level_3 = 10000 #<-- Hive and machine
+@terraforming_cost_level_4 = 15000 #<-- climate restoration
+@terraforming_cost_gaia = 7500
+@terraforming_duration_level_1 = 1800 #<-- same category terraforming
+@terraforming_duration_level_2 = 3600 #<-- different category terraforming
+@terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
+@terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
+@terraforming_duration_gaia = 3600
+@gaiaCost = 7500
+@gaiaTime = 3600
+@highestCost = 12500
+@highestTime = 9000
+@machineCost = 10000
+@machineTime = 7200
+@hiveCost = 10000
+@hiveTime = 7200
+@lClusterCost = 1000
+
+#Toxic
+
+terraform_link = {
+	from = pc_toxic
+	to = pc_continental
+    resources = { category = terraforming cost = { energy = 10000 } }
+	duration = 3600
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_ocean
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_tropical
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_cascadian
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_desertislands
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_subarctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_mangrove
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_wetswamp
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_fog
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_hajungle
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_cenote
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_retinal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_forest
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_lake
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_tepid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_aquatic
+    resources = { category = terraforming_ocean cost = { energy = @terraforming_cost_gaia } }
+	duration = @terraforming_duration_gaia
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_hydrocentric }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox"  has_ascension_perk = ap_hydrocentric }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 10 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_desert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_arid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_savannah
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_steppe
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_sandsea
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_oasis
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_mesa
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_badlands
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_outback
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_coastal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_arctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_alpine
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_tundra
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_swamp
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_mud
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_basalt
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }	
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_frozen_desert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_glacial
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_hadesert
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_prairie
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_veld
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_semiarid
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_med
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_boreal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_mushroom
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_antarctic
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_aeolian
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_snow
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_highland
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_duneforest
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = "tech_climate_restoration" has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+#Rare
+terraform_link = {
+	from = pc_toxic
+	to = pc_lichen
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_glacio
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_lanthanide
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_storm
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_pd_iceberg
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_megaflora
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_pd_petrified
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_reef
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_pd_archipelago
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_cryoflora
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_geothermal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_biolumen
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_salt
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_aquifer
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_coral
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_primal
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_supercon
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_pd_sinkhole
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	duration = @terraforming_duration_level_3
+	potential = { from = { has_modifier = toxic_terraforming_candidate } has_ascension_perk = ap_world_shaper }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+#Special
+terraform_link = {
+	from = pc_toxic
+	to = pc_gaia
+	
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_hot_gaia
+	
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_cold_gaia
+	
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_ascension_perk = ap_world_shaper has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_machine
+	
+    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	duration = @terraforming_duration_level_4
+	potential = { from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_ascension_perk = ap_machine_worlds has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 5 }
+}
+terraform_link = {
+	from = pc_toxic
+	to = pc_nuked
+	resources = { category = terraforming cost = { energy = @highestCost } }
+	duration = @highestTime
+	potential = { has_policy_flag = relentless_industrialists_study has_country_flag = relentless_industrialists_study_completed from = { has_modifier = toxic_terraforming_candidate } }
+	condition = { has_technology = tech_climate_restoration has_ascension_perk = "ap_detox" }
+	effect = { from = { detox_hangover = yes } }
+	ai_weight = { weight = 10 }
+}

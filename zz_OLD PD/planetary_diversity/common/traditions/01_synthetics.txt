@@ -1,0 +1,190 @@
+tr_synthetics_adopt = {
+	possible = {
+		if = {
+			limit = { is_machine_empire = no }
+			has_ascension_perk = ap_synthetic_evolution
+		}
+		else = {
+			has_ascension_perk = ap_synthetic_age
+		}
+	}
+
+	unlocks_agenda = agenda_synthetic_yield
+	modifier = {
+		species_leader_exp_gain = 0.25
+		leader_skill_levels = 1
+	}
+
+	tradition_swap = {
+		name = tr_synthetics_adopt_machine
+		inherit_name = yes
+		inherit_icon = yes
+		custom_tooltip = tr_synthetics_adopt_machine_desc
+		trigger = {
+			is_machine_empire = yes
+		}
+		weight = {
+			factor = 1
+		}
+	}
+	on_enabled = {
+		hidden_effect = {
+			if = {
+				limit = {
+					any_planet_within_border = {
+						has_planet_flag = fotd_seperatist_planet@root
+						owner = {
+							has_country_flag = fotd_seperatist_country@root
+						}
+					}
+				}
+				country_event = { id = origin.6099 days = 5 random = 2 }
+			}
+		}
+	}
+}
+
+tr_synthetics_finish = {
+	modifier = {
+		ROBOT_species_trait_picks_add = 1
+		ascension_perks_add = 1
+	}
+	custom_tooltip = tr_synthetics_finish_desc
+	tradition_swap = {
+		name = tr_synthetics_finish_machine
+		inherit_name = no
+		inherit_icon = yes
+		inherit_effects = no
+		custom_tooltip = tr_synthetics_finish_machine_desc
+		trigger = {
+			is_machine_empire = yes
+		}
+		on_enabled = {
+			hidden_effect = {
+				machine_synthetic_leader_effect = yes
+			}
+		}
+		modifier = {
+			ascension_perks_add = 1
+		}
+		weight = {
+			factor = 1
+		}
+	}
+}
+
+tr_synthetics_maintenance_protocols = {
+	modifier = {
+		pop_amenities_usage_robotic_mult = -0.1
+	}
+}
+
+tr_synthetics_optimization_algorithms = {
+	possible = {
+		has_tradition = tr_synthetics_maintenance_protocols
+	}
+	modifier = {
+		planet_jobs_robotic_produces_mult = 0.10
+	}
+}
+
+tr_synthetics_synthetic_age = {
+	possible = {
+		if = {
+			limit = {
+				OR = {
+					has_technology = tech_synthetic_leaders
+					is_machine_empire = yes
+				}
+			}
+			always = yes
+		}
+		else = {
+			has_technology = tech_synthetic_leaders
+		}
+	}
+	# Unlocks Synthetic Assimilation.
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2550 }
+		}
+	}
+
+	custom_tooltip = tr_synthetics_synthetic_age_desc
+
+	tradition_swap = {
+		name = tr_synthetics_assembly_systems
+		inherit_effects = no
+		inherit_icon = no
+		trigger = {
+			has_civic = civic_fanatic_purifiers
+			has_technology = tech_synthetic_leaders
+		}
+		custom_tooltip = tr_synthetics_assembly_systems_desc
+		modifier = {
+			planet_pop_assembly_mult = 0.10
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				country_event = { id = utopia.2550 }
+			}
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+
+	tradition_swap = {
+		name = tr_synthetics_power_systems
+		inherit_effects = no
+		inherit_icon = no
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		modifier = {
+			MACHINE_species_trait_picks_add = 1
+		}
+
+		weight = {
+			factor = 2
+		}
+	}
+}
+
+tr_synthetics_prefabricated_components = {
+	possible = {
+		has_tradition = tr_synthetics_synthetic_age
+	}
+	modifier = {
+		modify_species_cost_mult = -0.50
+	}
+}
+
+tr_synthetics_solid_state_actuators = {
+	possible = {
+		has_tradition = tr_synthetics_synthetic_age
+	}
+	modifier = {
+		ROBOT_species_trait_points_add = 2
+	}
+	tradition_swap = {
+		name = tr_synthetics_solid_state_actuators_machine
+		inherit_name = yes
+		inherit_effects = no
+		inherit_icon = yes
+		trigger = {
+			is_machine_empire = yes
+		}
+
+		modifier = {
+			MACHINE_species_trait_points_add = 2
+		}
+
+		weight = {
+			factor = 1
+		}
+	}
+}

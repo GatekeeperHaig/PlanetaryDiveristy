@@ -1,0 +1,151 @@
+# Available requirements:
+#
+#	SKILLS
+#	#skill = 2
+#
+#	LEADER
+#	leader = scientist
+#	leader = admiral
+#	leader = general
+#	leader = ruler
+#	leader = governor
+#	
+#	MILITARY SHIPS
+#	shipclass_military = 1
+#	
+#	CIVILIAN SHIPS
+#	shipclass_constructor = 2
+#	shipclass_science_ship = 1
+#	shipclass_colonizer = 2
+#	
+#	ARMIES
+#	shipclass_transport = 1
+#	assault_armies = 2
+#	defense_armies = 1
+#	
+#	STATIONS
+#	research_station = yes
+#	mining_station = yes
+#	observation_station = yes
+#
+#	SCOPES
+#	abort_trigger
+#	this = country (project owner)
+#	from = event scope (planet or ship, MIGHT NOT EXIST)
+#	fromfrom = project creation scope (usually equals location)
+#	
+#	on_success
+#	this = event scope (ship or planet)
+#	from = project creation scope (usually equals location)
+#	
+#	on_cancel 
+#	this = country (project owner)
+#	from = event scope (planet or ship, MIGHT NOT EXIST)
+#	fromfrom = project creation scope (usually equals location)
+#
+#	on_fail
+#	this = country (project owner)
+#	from = project creation scope (usually equals location)
+
+#Titanic life study
+#This is the default version which has a middling cost and a fairly good chance for a good outcome
+
+
+special_project = {
+	key = "floating_islands"
+	timelimit = 360
+	cost = 3500
+	tech_department = engineering_technology
+	picture = GFX_evt_floating2
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	event_scope = planet_event
+	on_success = { planet_event = { id = pdfloating.40 } }
+}
+
+special_project = {
+	key = "sea_monster_pd"
+	timelimit = -1
+	#cost = 4000
+	days_to_research = 180
+	tech_department = society_technology
+	picture = GFX_evt_alien_nature
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 1
+	}
+
+	on_success = { ship_event = { id = pdstorm.20 } }
+}
+
+special_project = {
+	key = "sea_monster_good_pd"
+	timelimit = -1
+	cost = 2500
+	tech_department = society_technology
+	picture = GFX_evt_alien_nature
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	event_scope = planet_event
+	on_success = { planet_event = { id = pdstorm.41 } }
+}
+
+special_project = {
+	key = "sea_monster_stuff_pd"
+	timelimit = -1
+	cost = 2500
+	tech_department = physics_technology
+	picture = GFX_evt_alien_nature
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	event_scope = planet_event
+	on_success = { planet_event = { id = pdstorm.42 } }
+}
+
+special_project = {
+	key = "PD_MISSING_COLONISTS_PROJECT"
+	timelimit = -1
+	cost = 2500
+	tech_department = society_technology
+	picture = GFX_evt_surreal_visions
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	event_scope = planet_event
+	on_success = { 
+		random_list = {
+			33 = { planet_event = { id = pdanomaly.21 } }
+			33 = { planet_event = { id = pdanomaly.22 } }
+			33 = { planet_event = { id = pdanomaly.23 } }
+		} 
+	}
+}
+
+special_project = {
+	key = "pd_crucible_shieldbreaker"
+	timelimit = -1
+	cost = 24000
+	tech_department = physics_technology
+	picture = GFX_evt_shielded_planet
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	event_scope = ship_event
+	on_success = { from = { planet_event = { id = pdcrucible.30 } } }
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+}
+
+special_project = {
+	key = "PD_RESTORE_THE_WARFORM_HOMEWORLD"
+	timelimit = -1
+	cost = 8000
+	tech_department = society_technology
+	picture = GFX_evt_tomb_world
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	event_scope = planet_event
+	on_success = { 
+		space_owner = { country_event = { id = pdwarform.405 } }
+	}
+}

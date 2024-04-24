@@ -1,0 +1,342 @@
+ ##		##		#		##		##		##	 # #		##
+# #	 # #	 #		# #	 #		#		# #	 #
+#		# #	 #		# #		#		#		# #		#
+# #	 # #	 #		# #		#		#	 # #		#
+ ##		##		###		##		##		##		##		##
+
+# UNLOCKED BY ASCENSION PERK PROJECT
+tech_colossus = {
+	cost = @tier5cost3
+	area = engineering
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { voidcraft }
+	prerequisites = { "tech_titans" }
+	weight = 0
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+	}
+
+	prereqfor_desc = {
+		ship = {
+			title = "TECH_UNLOCK_COLOSSUS_CONSTRUCTION_TITLE"
+			desc = "TECH_UNLOCK_COLOSSUS_CONSTRUCTION_DESC"
+		}
+	}
+
+	## unlock colossi
+
+	ai_weight = {
+
+		modifier = {
+			factor = 2
+			is_ai = no #auto-research
+		}
+	}
+}
+
+###		#		##		# #	 ###	 ###	 # #	 ###	 #		#		###	 ###		##
+# #	 #		# #	 ## #	 #		#		# #		#		#		#		#		# #	 #
+###		#		####	 # ##	 ##		#		##		#		#		#		##		###		#
+#		#		# #	 # #	 #		#		# #		#		#		#		#		# #		#
+#		###	 # #	 # #	 ###		#		# #	 ###	 ###	 ###	 ###	 # #	 ##
+
+# World Cracker
+tech_pk_cracker = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { voidcraft }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = @tier5weight3
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+		has_country_flag = colossus_project
+		is_pacifist = no
+	}
+
+	weight_modifier = {
+		factor = 0.50
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_pk_cracker
+		}
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+				has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft }
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 0.5
+	}
+}
+
+# Global Pacifier
+tech_pk_shielder = {
+	area = physics
+	cost = @tier5cost3
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { field_manipulation }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = @tier5weight3
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+		has_country_flag = colossus_project
+	}
+
+	weight_modifier = {
+		factor = 0.50
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_pk_shielder
+		}
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+				has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+			}
+		}
+		modifier = {
+			factor = 2
+			is_pacifist = yes
+		}
+	}
+
+	ai_weight = {
+		factor = 0.5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_fanatic_pacifist
+		}
+	}
+}
+
+# Neutron Sweep
+tech_pk_neutron = {
+	area = physics
+	cost = @tier5cost3
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { particles }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = @tier5weight3
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+		has_country_flag = colossus_project
+		OR = {
+			is_spiritualist = no
+			NOR = {
+				AND = {
+					NOT = { host_has_dlc = "Utopia" }
+					has_technology = tech_telepathy
+				}
+				AND = {
+					host_has_dlc = "Utopia"
+					OR = {
+						has_ascension_perk = ap_mind_over_matter
+						has_origin = origin_shroudwalker_apprentice
+					}
+				}
+			}
+		}
+		is_pacifist = no
+	}
+
+	weight_modifier = {
+		factor = 0.50
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_pk_neutron
+		}
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+				has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+			}
+		}
+		modifier = {
+			factor = 2
+			is_materialist = yes
+		}
+	}
+
+	ai_weight = {
+		factor = 0.5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# God Ray
+tech_pk_godray = {
+	area = society
+	cost = @tier5cost3
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { psionics }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = @tier5weight3
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+		has_country_flag = colossus_project
+		is_spiritualist = yes
+		OR = {
+			AND = {
+				NOT = { host_has_dlc = "Utopia" }
+				has_technology = tech_telepathy
+			}
+			AND = {
+				host_has_dlc = "Utopia"
+				OR = {
+					has_ascension_perk = ap_mind_over_matter
+					has_origin = origin_shroudwalker_apprentice
+					has_origin = origin_pd_shroud
+				}
+			}
+		}
+	}
+
+	weight_modifier = {
+		factor = 0.50
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_pk_godray
+		}
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+				has_trait_in_council = { TRAIT = leader_trait_expertise_psionics }
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 0.5
+		modifier = {
+			factor = 2
+			has_ethic = ethic_spiritualist
+		}
+		modifier = {
+			factor = 5
+			has_ethic = ethic_fanatic_spiritualist
+		}
+	}
+}
+
+# Nanobots
+tech_pk_nanobots = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { voidcraft }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = @tier5weight3
+
+	potential = {
+		host_has_dlc = "Apocalypse"
+		has_country_flag = colossus_project
+		has_valid_civic = civic_machine_assimilator
+	}
+
+	weight_modifier = {
+		factor = 0.50
+		inline_script = {
+			script = technologies/rare_technologies_weight_modifiers
+			TECHNOLOGY = tech_pk_nanobots
+		}
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+				has_trait_in_council = { TRAIT = leader_trait_expertise_voidcraft }
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 0.5
+		modifier = {
+			factor = 5
+			has_ethic = ethic_gestalt_consciousness
+			has_valid_civic = civic_machine_assimilator
+		}
+	}
+}
+
+# Star Cracker
+tech_btc_1 = {
+	area = engineering
+	cost = @tier5cost3
+	tier = 5
+	is_rare = yes
+	is_reverse_engineerable = no
+	category = { voidcraft }
+	prerequisites = { }
+	ai_update_type = military
+	weight = @tier5weight3
+
+	potential = {
+		has_nemesis = yes
+		has_ascension_perk = ap_become_the_crisis
+		has_country_flag = can_build_star_eaters
+	}
+
+	weight_modifier = {
+		factor = 0.00
+	}
+
+	ai_weight = {
+		factor = 0.0
+	}
+}

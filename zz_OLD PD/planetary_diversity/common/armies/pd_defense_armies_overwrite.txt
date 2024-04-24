@@ -1,0 +1,63 @@
+#Defensive armies can't transport of the planet
+#maintenance is directly scripted here. 0.25 translates to 0.25 monthly cost (excluding other upkeep modifiers)
+#morale_damage = 1		# average morale damage of the army, default: auto (calculated from morale * MORALE_DAMAGE_MULT)
+#building spawned armies can't be built normally, but only created from pops working buildings
+
+#spawn_chance: only works on defensive armies; pop scope check that lets you give weights for what sort of army should be spawned
+#		Calculation is health * spawn_chance (default: 1), and it always picks the best one
+
+
+# Undead Armies
+undead_defense_army = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 1.75
+	damage = 1.50
+	collateral_damage = 0.0
+	has_morale = no
+	morale_damage = 1.75
+	war_exhaustion = 0.0
+	icon = GFX_army_type_undead
+	use_armynames_from = undead_army
+
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		planet = {
+			OR = {
+				AND = {
+					OR = {
+						has_active_building = building_dread_encampment
+						has_deposit = d_pd_necro_arc
+						has_deposit = d_pd_necro_planet 
+					}
+					num_assigned_jobs = {
+						job = necromancer
+						value >= 1
+					}
+				}
+				has_planet_flag = active_dread_outpost
+			}
+		}
+	}
+
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+			}
+			unity = 0.5
+		}
+	}
+
+	spawn_chance = {
+		factor = 100
+	}
+}

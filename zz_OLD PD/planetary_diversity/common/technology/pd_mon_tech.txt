@@ -1,0 +1,67 @@
+######### PD World Shaper Techs
+
+tech_pd_mastery_of_nature = {
+	icon = tech_pd_mastery_of_nature
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }	
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+	
+	weight_modifier = {
+		factor = 0
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+tech_planet_mega_power = {
+	area = physics
+	cost = @tier4cost3
+	tier = 4
+	category = { field_manipulation }
+	ai_update_type = all
+	prerequisites = { "tech_power_plant_4" "tech_power_hub_2" "tech_ecological_adaptation" } #"tech_climate_restoration" 
+	weight = @tier4weight3
+	is_rare = yes
+
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0
+			NOT = {
+				has_ascension_perk = ap_mastery_of_nature
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = value:tech_weight_likelihood
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+		modifier = {
+			factor = 1.5
+			is_specialist_subject_type = { TYPE = prospectorium }
+		}
+	}
+
+	ai_weight = {
+		factor = @energy_grid_ai_factor # Energy grid
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_field_manipulation }
+		}
+	}
+}

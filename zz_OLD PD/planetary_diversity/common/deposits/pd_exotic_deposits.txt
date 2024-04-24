@@ -1,0 +1,368 @@
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+
+#Ammonia
+d_ammonia_sea = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			building_ammonia_electrodeposition_max = 1
+			#building_mote_harvesters_max = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			building_ammonia_electrodeposition_max = 1
+			#building_mote_harvesters_max = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			building_ammonia_electrodeposition_max = 1
+			#building_mote_harvesters_max = 1
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_ammonia
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Sulfur
+d_sulfur_pool = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			biological_pop_happiness = 0.1
+			lithoid_pop_happiness = 0.1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			planet_stability_add = 10
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			planet_stability_add = 10
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_sulfur
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Radiotrophic
+d_rad_blooms_field = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_rad_blooms_field
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		planet_housing_mult = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				OR = {
+					has_trait = trait_pc_irradiated_preference 
+					has_trait = trait_pc_nuked_preference 
+				}
+			}
+			is_pd_radiotrophic_world = yes
+		}
+		modifier = {
+			#pop_growth_speed = 0.1
+			building_sugarbush_max = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { 
+				owner = { 
+					OR = {
+						has_trait = trait_pc_irradiated_preference 
+						has_trait = trait_pc_nuked_preference
+					} 
+				} 
+			}
+			is_pd_radiotrophic_world = yes
+		}
+		modifier = {
+			pop_growth_speed = -0.10
+			planet_jobs_physics_research_produces_mult = 0.15
+			planet_jobs_society_research_produces_mult = 0.15
+		}
+	}
+
+	potential = {
+		is_pd_radiotrophic_world = yes
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Radiotrophic Transplant
+d_rad_blooms_transplant = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_rad_blooms_field
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		planet_housing_mult = -0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_trait = trait_pc_irradiated_preference }
+			is_pd_radiotrophic_world = yes
+		}
+		modifier = {
+			pop_growth_speed = 0.05
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_trait = trait_pc_irradiated_preference } }
+			is_pd_radiotrophic_world = yes
+		}
+		modifier = {
+			pop_growth_speed = -0.10
+		}
+	}
+
+	potential = {
+		is_pd_radiotrophic_world = yes
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Radiotrophic Transplanet Upgrade
+d_rad_blooms_transplant_upgrade = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_rad_blooms_field
+
+	use_weights_for_terraforming_swap_types = no
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		planet_housing_mult = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_trait = trait_pc_irradiated_preference }
+			is_pd_radiotrophic_world = yes
+		}
+		modifier = {
+			pop_growth_speed = 0.1
+			building_sugarbush_max = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			NOT = { owner = { has_trait = trait_pc_irradiated_preference } }
+			is_pd_radiotrophic_world = yes
+		}
+		modifier = {
+			pop_growth_speed = -0.10
+		}
+	}
+
+	potential = {
+		is_pd_radiotrophic_world = yes
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pdacid_rain = {
+	time = 270
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 2000
+		}
+	}
+
+	#potential = {
+	#	planet_size >= 10
+	#}
+
+	planet_modifier = {
+		planet_jobs_robotic_produces_mult = -1.0
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+
+	ai_weight = {
+		weight = 1000
+	}
+
+	prerequisites = { "tech_pdacid_rain" }
+}
+
+d_acid_lakes = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			building_acid_lab_max = 1
+			building_gas_extractors_max = 1
+			#building_gas_extractors_max = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			building_acid_lab_max = 1
+			building_gas_extractors_max = 1
+			#building_gas_extractors_max = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			building_acid_lab_max = 1
+			building_gas_extractors_max = 1
+			#building_gas_extractors_max = 1
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_acid
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pd_tectonic_fissure = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	planet_modifier = {
+		pop_environment_tolerance = -0.3
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_jobs_food_produces_mult = -0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_pd_unique = yes
+		}
+		pop_environment_tolerance = -1	
+	}
+
+	potential = {
+		NOT = { is_planet_class = pc_ash }
+	}
+	
+	drop_weight = {
+		weight = 0
+	}
+}

@@ -1,0 +1,263 @@
+#########PDtechs
+
+#Hunter Tricks
+tech_hunter_tricks = {
+	cost = @tier4cost2
+	area = society
+	tier = 4
+	category = { biology }
+	weight = 0
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	modifier = {
+		army_attack_damage_mult = 0.25
+		army_defense_damage_mult = 0.25
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+
+#TOL TECH
+tech_pdtoltech = {
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+	#prerequisites = { "tech_power_hub_2" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+
+	modifier = {
+		planet_max_districts_add = 1
+	}
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					is_planet_class = pc_megafloratol
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 10000
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					is_planet_class = pc_megafloratol
+				}
+			}
+		}
+	}	
+}
+
+#Acid Rain Tech
+tech_pdacid_rain = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_basic_industry" } 
+	weight = @tier2weight2
+	is_rare = yes
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_pdacid_rain"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 10000
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					has_deposit = "d_pdacid_rain"
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+#Coral World Adaptation
+tech_coral_world_adaption_wet = {
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { new_worlds }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	modifier = {
+		show_only_custom_tooltip = yes
+		custom_tooltip = CORAL_ADAPT_WET
+		pc_ocean_habitability = 0.4
+		pc_cascadian_habitability = 0.4
+		pc_subarctic_habitability = 0.4
+		pc_wetswamp_habitability = 0.4
+		pc_fog_habitability = 0.4
+		pc_karst_habitability = 0.4
+		pc_reef_habitability = 0.4
+		pc_pd_archipelago_habitability = 0.4
+		pc_aquatic_habitability = 0.4
+		pc_continental_habitability = 0.2
+		pc_tepid_habitability = 0.2
+		pc_forest_habitability = 0.2
+		pc_retinal_habitability = 0.2
+		pc_lake_habitability = 0.2
+		pc_megaflora_habitability = 0.2
+		pc_pd_petrified_habitability = 0.2
+		pc_superhabitable_habitability = 0.2
+		pc_tropical_habitability = 0.2
+		pc_desertislands_habitability = 0.2
+		pc_hajungle_habitability = 0.2
+		pc_cenote_habitability = 0.2
+		pc_mangrove_habitability = 0.2
+		pc_biolumen_habitability = 0.2
+		pc_geothermal_habitability = 0.2
+		pc_wettidallylocked_habitability = 0.2
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+
+tech_coral_world_adaption_dry = {
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { new_worlds }
+	weight = @tier2weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	
+	modifier = {
+		#show_only_custom_tooltip = yes
+		custom_tooltip = CORAL_ADAPT_DRY
+		pc_arid_habitability = 0.4
+		pc_mesa_habitability = 0.4
+		pc_hadesert_habitability = 0.4
+		pc_med_habitability = 0.4
+		pc_badlands_habitability = 0.4
+		pc_coral_habitability = 0.4
+		pc_primal_habitability = 0.4
+		pc_desert_habitability = 0.2
+		pc_sandsea_habitability = 0.2
+		pc_oasis_habitability = 0.2
+		pc_outback_habitability = 0.2
+		pc_coastal_habitability = 0.2
+		pc_salt_habitability = 0.2
+		pc_aquifer_habitability = 0.2
+		pc_savannah_habitability = 0.2
+		pc_steppe_habitability = 0.2
+		pc_prairie_habitability = 0.2
+		pc_veld_habitability = 0.2
+		pc_semiarid_habitability = 0.2
+		pc_tidallylocked_habitability = 0.2
+		pc_supercon_habitability = 0.2
+		pc_pd_sinkhole_habitability = 0.2
+	}
+
+	weight_modifier = {
+		factor = 0
+	}
+}
+
+tech_d_pdstorm_nice_2 = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0
+			NOT = {	any_owned_planet = { has_deposit = d_pdstorm_nice }	}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+
+tech_d_pdstorm_greedy_2 = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }
+	weight = @tier3weight1
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 0
+			NOT = { any_owned_planet = { has_deposit = d_pdstorm_greedy } }
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}

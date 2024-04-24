@@ -1,0 +1,137 @@
+namespace = pddune
+
+#EnterSystem
+
+#Zro!
+planet_event = {
+	id = pddune.10
+	title = pddune.10.name
+	desc = pddune.10.desc
+	picture = GFX_evt_dune
+	show_sound = event_laboratory_sound
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pddune_planet
+		owner = {
+			NOR = {
+				has_country_flag = pd_dunezro
+			}
+		}
+		is_planet_class = pc_sandsea
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = { save_event_target_as = pd_dunezro }
+		set_planet_flag = colony_event		
+		set_planet_flag = pd_dunezro
+		owner = { set_country_flag = pd_dunezro }
+		add_deposit = d_zro_dune
+	}
+
+	option = {
+		name = pddune.10.a
+	}
+}
+#Worms!
+planet_event = {
+	id = pddune.15
+	hide_window = yes
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pddune_planet
+		has_building = building_pdzro_harvester
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		planet_event = { id = pddune.20 days = 1800 }
+	}
+}
+#Worms!
+planet_event = {
+	id = pddune.20
+	title = pddune.20.name
+	desc = pddune.20.desc
+	picture = GFX_evt_dune2
+	show_sound = event_alien_nature
+	location = root
+	fire_only_once = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+	trigger = {
+		has_planet_flag = pddune_planet
+		
+		
+		
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_pdsandworms
+	}
+
+	option = {
+		name = pddune.20.a
+		custom_tooltip = pddune.20.a.tooltip
+	}
+
+	option = {
+		name = pddune.20.b
+		custom_tooltip = pddune.20.b.tooltip
+		hidden_effect = {
+			planet_event = { id = pddune.21 days = 360 }
+		}
+	}
+}
+#KilltheWorms!
+planet_event = {
+	id = pddune.21
+	title = pddune.21.name
+	desc = pddune.21.desc
+	picture = GFX_evt_dune
+	show_sound = event_alien_nature
+	location = root
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_deposit = d_pdsandworms
+		remove_deposit = d_zro_dune
+		remove_building = building_pdzro_harvester
+		remove_building = building_pdzro_harvester
+		remove_building = building_pdzro_harvester
+	}
+
+	option = {
+		name = pddune.21.a
+		owner = {
+			add_resource = { 
+				sr_zro = 2000 
+				society_research = 2000
+			}
+		}
+	}
+}

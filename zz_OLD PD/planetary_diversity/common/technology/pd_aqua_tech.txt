@@ -1,0 +1,158 @@
+#########PD Aqua Techs
+
+
+#Aquatic World Adaptation
+tech_aquatic_world_adaption = {
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier2weight1
+	is_rare = yes
+	
+	modifier = {
+		pc_aquatic_habitability = 0.6
+	}
+	
+	potential = {
+		NOT = { has_trait = trait_pc_aquatic_preference }
+		OR = {
+			has_trait = trait_pc_continental_preference
+			has_trait = trait_pc_lake_preference
+			has_trait = trait_pc_forest_preference
+			has_trait = trait_pc_tepid_preference
+			has_trait = trait_pc_retinal_preference
+			has_trait = trait_pc_superhabitable_preference
+			has_trait = trait_pc_megaflora_preference
+			has_trait = trait_pc_pd_petrified_preference
+			has_trait = trait_pc_tropical_preference
+			has_trait = trait_pc_hajungle_preference
+			has_trait = trait_pc_cenote_preference
+			has_trait = trait_pc_mangrove_preference
+			has_trait = trait_pc_desertislands_preference
+			has_trait = trait_pc_biolumen_preference
+			has_trait = trait_pc_geothermal_preference
+			has_trait = trait_pc_ocean_preference
+			has_trait = trait_pc_cascadian_preference
+			has_trait = trait_pc_wetswamp_preference
+			has_trait = trait_pc_fog_preference
+			has_trait = trait_pc_subarctic_preference
+			has_trait = trait_pc_karst_preference
+			has_trait = trait_pc_reef_preference
+			has_trait = trait_pc_pd_archipelago_preference
+			has_trait = trait_pc_aquatic_preference
+		}
+		OR = {
+			is_machine_empire = no
+			has_civic = civic_machine_assimilator
+			has_civic = civic_machine_servitor
+		}		
+	}	
+	
+	weight_modifier = {
+		factor = 0.5
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_planet_within_border = {
+					is_planet_class = pc_aquatic
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}
+#Aquatic World Adaptation
+tech_aquatic_world_adaption_non_wet = {
+	cost = @tier2cost1
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier2weight1
+	is_rare = yes
+	
+	modifier = {
+		pc_aquatic_habitability = 0.2
+	}
+	
+	potential = {
+		NOT = { has_trait = trait_pc_aquatic_preference }
+		NOT = { has_trait = trait_pc_continental_preference }
+		NOT = { has_trait = trait_pc_lake_preference }
+		NOT = { has_trait = trait_pc_forest_preference }
+		NOT = { has_trait = trait_pc_tepid_preference }
+		NOT = { has_trait = trait_pc_retinal_preference }
+		NOT = { has_trait = trait_pc_superhabitable_preference }
+		NOT = { has_trait = trait_pc_megaflora_preference }
+		NOT = { has_trait = trait_pc_pd_petrified_preference }
+		NOT = { has_trait = trait_pc_tropical_preference }
+		NOT = { has_trait = trait_pc_hajungle_preference }
+		NOT = { has_trait = trait_pc_cenote_preference }
+		NOT = { has_trait = trait_pc_mangrove_preference }
+		NOT = { has_trait = trait_pc_desertislands_preference }
+		NOT = { has_trait = trait_pc_biolumen_preference }
+		NOT = { has_trait = trait_pc_geothermal_preference }
+		NOT = { has_trait = trait_pc_ocean_preference }
+		NOT = { has_trait = trait_pc_cascadian_preference }
+		NOT = { has_trait = trait_pc_wetswamp_preference }
+		NOT = { has_trait = trait_pc_fog_preference }
+		NOT = { has_trait = trait_pc_subarctic_preference }
+		NOT = { has_trait = trait_pc_karst_preference }
+		NOT = { has_trait = trait_pc_reef_preference }
+		NOT = { has_trait = trait_pc_pd_archipelago_preference }
+		OR = {
+			is_machine_empire = no
+			has_civic = civic_machine_assimilator
+			has_civic = civic_machine_servitor
+		}		
+	}	
+	
+	weight_modifier = {
+		factor = 0.5
+		modifier = {
+			factor = 0.20
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_planet_within_border = {
+					is_planet_class = pc_aquatic
+				}
+			}
+		}
+	}
+	
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_new_worlds }
+		}
+	}
+}

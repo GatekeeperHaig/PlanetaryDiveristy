@@ -1,0 +1,74 @@
+entity = {
+	name = "ai_planet_01_entity"
+	pdxmesh = "planet_non_clouded_mesh"
+	
+	#planet surface texture override
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "ai_01_diffuse.dds"
+	texture_normal = "ai_01_normals.dds"
+	texture_specular = "ai_01_specular.dds"
+    shader = "PdxMeshPlanetEmissive"
+	}
+	
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_barren_1_diffuse.dds"
+	texture_normal = "poles_barren_1_normal.dds"
+	texture_specular = "poles_barren_1_specular.dds"
+	}	
+	
+	default_state = "idle"
+	playback_rate = -1.0 # Rotation is reversed
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 } }
+}
+
+
+entity = {
+	name = "machine_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+	
+	#planet surface texture override
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "ai_01_diffuse.dds"
+	texture_normal = "ai_01_normals.dds"
+	texture_specular = "ai_01_specular.dds"
+    shader = "PdxMeshPlanetEmissive"
+	}
+	
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "clouds_medium_diffuse.dds"
+	texture_normal = "clouds_medium_normal.dds"
+	texture_specular = "clouds_medium_specular.dds"
+	}
+	
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_barren_1_diffuse.dds"
+	texture_normal = "poles_barren_1_normal.dds"
+	texture_specular = "poles_barren_1_specular.dds"
+	}	
+	
+	default_state = "idle"
+	state = { 
+		name = "idle" 
+		animation = "idle" 
+		time_offset = { 0 100 } 
+		start_event = { 
+			trigger_once = yes 
+			sound = { soundeffect = "amb_planet_world_machine" } 
+			}
+		}
+}

@@ -1,0 +1,192 @@
+namespace = plant
+
+# Gaia Seed building chain completed.
+planet_event = {
+	id = plant.100
+	is_triggered_only = yes
+	title = "plant.100.name"
+	desc = "plant.100.desc"
+	picture = GFX_evt_gaia
+
+	trigger = {
+		last_building_changed = building_gaiaseeders_4
+		NOT = {
+			is_planet_class = pc_gaia
+		}
+	}
+
+	immediate = {
+		# Turn planet into Gaia world.
+		if = {
+			limit = { 
+				is_pd_tidally_locked = yes
+			}
+			change_pc = pc_tidallygaia
+		}
+		if = {
+			limit = { 
+				is_pd_superhab = yes
+			}
+			change_pc = pc_gaia_superhab
+		}
+		if = {
+			limit = { 
+				is_pd_cave = yes
+			}
+			change_pc = pc_gaia_cave
+		}
+		if = {
+			limit = { 
+				is_pd_tidally_locked = no
+				is_pd_superhab = no
+				is_pd_cave = no
+			}
+			change_pc = pc_gaia
+		}
+		set_planet_flag = gaia_seeder_bloom
+	}
+
+	option = {
+		# Not Hive-mind
+		name = plant.100.a
+		trigger = {
+			owner = { is_hive_empire = no }
+		}
+		add_modifier = {
+			modifier = celebrate_idyllic_bloom
+			days = 180
+		}
+	}
+
+	option = {
+		name = plant.100.b
+		# Hive-mind
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+	}
+
+	after = {
+		tooltip = {
+			change_pc = pc_gaia
+		}
+		hidden_effect = {
+			planet_event = {
+				id = plant.115
+				days = 180
+			}
+			set_saved_date = {
+				key = gaia_seeder_bloom_timer
+				days_from_present = 180
+				expires = 180
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = plant.101
+	hide_window = yes
+	is_triggered_only = yes
+
+
+	trigger = {
+		last_building_changed = building_gaiaseeders_pc_gaia
+		is_planet_class = pc_gaia
+	}
+
+	immediate = {
+		set_planet_flag = gaia_seeder_bloom
+		planet_event = {
+			id = plant.115
+			days = 180
+		}
+		set_saved_date = {
+			key = gaia_seeder_bloom_timer
+			days_from_present = 180
+			expires = 180
+		}
+	}
+}
+
+country_event = {
+	id = plant.105
+	is_triggered_only = yes
+	title = "plant.100.name"
+	desc = "plant.105.desc"
+	picture = GFX_evt_gaia
+
+	trigger = {
+		from.planet = {
+			NOR = {
+				is_planet_class = pc_gaia
+				has_planet_flag = anti_cheese_idyllic_bloom_flag
+			}
+			has_holding = {
+				holding = holding_idyllic_bloom
+				owner = root
+			}
+		}
+	}
+
+	option = {
+		name = plant.100.a
+		from.owner = {
+			country_event = { id = plant.110 }
+		}
+		if = {
+			limit = {
+				from.planet = {
+					is_planet_class = pc_ocean
+					owner = {
+						has_ascension_perk = ap_hydrocentric
+					}
+				}
+			}
+			from.planet = {
+				set_planet_flag = terraformed_against_will
+				owner = {
+					add_modifier = {
+						modifier =  terraformed_our_ocean_world
+						years = 3
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		from.planet = {
+			if = {
+				limit = { 
+					is_pd_tidally_locked = yes
+				}
+				change_pc = pc_tidallygaia
+			}
+			if = {
+				limit = { 
+					is_pd_superhab = yes
+				}
+				change_pc = pc_gaia_superhab
+			}
+			if = {
+				limit = { 
+					is_pd_cave = yes
+				}
+				change_pc = pc_gaia_cave
+			}
+			if = {
+				limit = { 
+					is_pd_tidally_locked = no
+					is_pd_superhab = no
+					is_pd_cave = no
+				}
+				change_pc = pc_gaia
+			}
+			remove_holding = {
+				holding = holding_idyllic_bloom
+				owner = root
+			}
+		}
+	}
+}

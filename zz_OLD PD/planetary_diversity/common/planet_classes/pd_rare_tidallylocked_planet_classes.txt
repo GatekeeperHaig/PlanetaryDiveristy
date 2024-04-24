@@ -1,0 +1,362 @@
+#Cold
+pc_eyeball = {
+	entity = "eyeball_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_eyeball
+	climate = "cold"
+	#appearance
+	picture = pc_eyeball
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arctic.dds"
+	#planet defines
+	colonizable = yes
+	initial = yes
+	starting_planet = no
+	#colonization_tech = { }
+	enable_tilt = no	
+	can_be_moon = no
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	#modifier = { pop_environment_tolerance = 0.50 }	
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+	modifier = {
+		planet_max_districts_mult = -0.30
+	}
+}
+#Dry
+pc_tidallylocked = {
+	entity = "tidallylocked_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_tidallocked
+	climate = "dry"
+	#appearance
+	picture = pc_tidallylocked  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	#planet defines
+	colonizable = yes
+	initial = yes
+	starting_planet = no
+	#colonization_tech = { }
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	#modifier = { pop_environment_tolerance = 0.50 }	
+	district_set = standard
+	can_be_moon = no
+	carry_cap_per_free_district = @carry_cap_normal
+	modifier = {
+		planet_max_districts_mult = -0.30
+	}
+}
+#Wet
+pc_wettidallylocked = {
+	entity = "wettidallylocked_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_wettidallylocked
+	climate = "wet"
+	#appearance
+	picture = pc_wettidallylocked  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+	#planet defines
+	colonizable = yes
+	initial = yes
+	starting_planet = no
+	#colonization_tech = { }
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	#modifier = { pop_environment_tolerance = 0.50 }	
+	district_set = standard
+	can_be_moon = no
+	carry_cap_per_free_district = @carry_cap_normal
+	modifier = {
+		planet_max_districts_mult = -0.30
+	}
+}
+#Gaia
+pc_tidallygaia = {
+	entity = "tidallygaia_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_gaia
+	#appearance
+	picture = pc_tidallygaia  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	#planet defines
+	#initial = yes
+	#colonization_tech = { }
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	can_be_moon = no
+	carry_cap_per_free_district = @carry_cap_normal
+	modifier = { 
+		pop_environment_tolerance = 1.0
+		planet_jobs_produces_mult = 0.10 
+		biological_pop_happiness = 0.10 
+		lithoid_pop_happiness = 0.10 
+		planet_max_districts_mult = -0.30
+	}
+	colonizable = yes
+	district_set = standard
+	#ideal = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Barren
+pc_tidallylocked_barren = {
+	entity = "tidallylocked_barren"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_barren
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }		#DONE
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	min_distance_from_sun = 40
+	max_distance_from_sun = 200
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = 12 max = 30 }
+	moon_size = { min = 6 max = 10 }
+	colonizable = no
+	enable_tilt = no
+	modifier = {
+		planet_max_districts_mult = -0.30
+	}
+}
+#Hive
+pc_hivetidallylocked = {
+	entity = "hivetidallylocked_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_hive
+	#appearance
+	picture = pc_infested  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	colonizable = yes
+	starting_planet = no
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = hive_world
+	can_be_moon = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_high
+	modifier = {
+		pop_environment_tolerance = 1
+		planet_jobs_produces_mult = 0.10
+		planet_max_buildings_add = 12
+		job_spawning_drone_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+		planet_max_districts_mult = -0.30
+	}
+	#ideal = yes
+}
+#Necro
+pc_necrotidallylocked = {
+	entity = "necrotidallylocked_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_pdnecro
+	#appearance
+	picture = pc_pd_necro  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	colonizable = yes
+	starting_planet = no
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = pdnecroplanet
+	can_be_moon = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_high
+	modifier = {
+		pop_environment_tolerance = 0.0
+		planet_jobs_produces_mult = 0.10
+		planet_max_buildings_add = 36
+		planet_resettlement_unemployed_destination_mult = 0.5
+		planet_max_districts_mult = -0.30
+	}
+}
+#Aquatic
+pc_tidallyaquatic = {
+	entity = "tidallyaquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_ocean
+	
+	climate = "wet"
+	
+	atmosphere_color 		= hsv { 0.58 0.5 0.9 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	
+	chance_of_ring = 0.2
+	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	
+	enable_tilt = no
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		biological_pop_happiness = 0.10
+		lithoid_pop_happiness = 0.10
+		planet_max_districts_mult = -0.30
+	}
+}
+#Machine
+pc_machinetidallylocked = {
+	entity = "machinetidallylocked_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_machine
+	#appearance
+	picture = pc_ai  
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	colonizable = yes
+	starting_planet = no
+	enable_tilt = no	
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = machine_world
+	can_be_moon = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_low
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_housing_usage_mult = -0.10
+		pop_environment_tolerance = 0.0
+		planet_max_buildings_add = 12
+		job_replicator_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+		planet_max_districts_mult = -0.30
+	}
+}
+#Toxic
+pc_pd_tidally_wasteland = {
+	entity = "pd_tidally_wasteland_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_wasteland
+	picture = pc_pd_wasteland  
+	atmosphere_color 		= hsv { 0.75 0.10 0.60 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_wasteland.dds"
+	modifier = { 
+		planet_jobs_alloys_produces_mult = 1.0
+		planet_jobs_consumer_goods_produces_mult = 1.0
+		planet_jobs_minerals_produces_mult = 0.5
+		planet_jobs_energy_produces_mult = 0.5
+		planet_refiners_produces_mult = 0.5
+		planet_translucers_produces_mult = 0.5
+		planet_chemists_produces_mult = 0.5
+		habitability_ceil_add = -0.3
+		planet_max_districts_mult = -0.30
+	}
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	can_be_moon = no
+	enable_tilt = no	
+	#ideal = yes
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+#Nuked
+pc_nuked_tl = {
+	entity = "pd_nuked_tl_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_nuked
+	picture = pc_nuked
+	atmosphere_color		= hsv { 0.6 0.4 0.5 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.85
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	modifier = { 
+		planet_buildings_cost_mult = 0.1
+		planet_districts_cost_mult = 0.1
+		pop_environment_tolerance = -0.05
+		planet_max_districts_add = 2
+		pop_growth_speed = 0.05
+	}
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	starting_planet = no
+	colonizable = yes
+	can_be_moon = no
+	enable_tilt = no	
+	district_set = standard
+	uses_alternative_skies_for_moons = no
+	carry_cap_per_free_district = @carry_cap_low
+}
+#Megaflora
+pc_megaflorahivetl = {
+	entity = "megaflorahivetl_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_megaflora
+	climate = "wet"
+	#appearance
+	picture = pc_megaflorahivetl
+	atmosphere_color 		= hsv { 0.58 0.3 0.7 }			
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	#planet defines
+	colonizable = yes
+	starting_planet = no
+	enable_tilt = no	
+	#colonization_tech = { }		
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	modifier = { pop_environment_tolerance = 1.0 }	
+	district_set = standard
+	show_city = no
+	#ideal = yes
+	carry_cap_per_free_district = @carry_cap_high
+}

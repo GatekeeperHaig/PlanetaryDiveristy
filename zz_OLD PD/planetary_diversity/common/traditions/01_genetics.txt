@@ -1,0 +1,106 @@
+@ap_genetic_opener_POINTS = 2
+@ap_genetic_finisher_POINTS = 2
+
+tr_genetics_adopt = {
+	possible = {
+		has_ascension_perk = ap_engineered_evolution
+	}
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2700 }
+		}
+	}
+	unlocks_agenda = agenda_genetic_pursuit
+	modifier = {
+		description = tr_genetics_adopt_modifier_desc
+		description_parameters = {
+			POINTS = @ap_genetic_opener_POINTS
+		}
+		BIOLOGICAL_species_trait_points_add = @ap_genetic_opener_POINTS
+	}
+	# Unlocks Clone Vats
+}
+
+tr_genetics_finish = {
+
+	on_enabled = {
+		hidden_effect = {
+			country_event = { id = utopia.2703 }
+		}
+	}
+	modifier = {
+		ascension_perks_add = 1
+		description = tr_genetics_finish_modifier_desc
+		description_parameters = {
+			POINTS = @ap_genetic_finisher_POINTS
+		}
+		BIOLOGICAL_species_trait_points_add = @ap_genetic_finisher_POINTS
+	}
+
+	tradition_swap = {
+		name = tr_genetics_finish_extra_traits
+		inherit_icon = yes
+		inherit_name = yes
+		trigger = {
+			has_genetic_dlc = yes
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				country_event = { id = utopia.2703 }
+			}
+		}
+
+		modifier = {
+			ascension_perks_add = 1
+			description = tr_genetics_finish_extra_traits_modifier_desc
+			description_parameters = {
+				POINTS = @ap_genetic_finisher_POINTS
+			}
+			BIOLOGICAL_species_trait_points_add = @ap_genetic_finisher_POINTS
+		}
+	}
+}
+
+tr_genetics_resequencing = {
+	# Can add negative traits to organic species.
+	# Can remove beneficial traits from organic species.
+	custom_tooltip = tr_genetics_resequencing_desc
+}
+
+tr_genetics_creation = {
+	possible = {
+		has_tradition = tr_genetics_resequencing
+	}
+	# Unlocks Advanced Traits
+	# Unlocks Assimilation to add or remove the Hive-Minded trait.
+	custom_tooltip_with_modifiers = tr_genetics_creation_desc
+	modifier = {
+		BIOLOGICAL_species_trait_points_add = 2
+	}
+}
+
+tr_genetics_enhanced_expression = {
+	possible = {
+		has_tradition = tr_genetics_creation
+	}
+	modifier = {
+		BIOLOGICAL_species_trait_picks_add = 1
+	}
+	# Can alter organic pop appearance within the same archtype
+	custom_tooltip = tr_genetics_enhanced_expression_desc
+}
+
+tr_genetics_efficient_cloning = {
+	# Double Organic Pop Assembly from Clone Vats
+	custom_tooltip = tr_genetics_efficient_cloning_desc
+}
+
+tr_genetics_retrovirus = {
+	possible = {
+		has_tradition = tr_genetics_efficient_cloning
+	}
+	modifier = {
+		modify_species_cost_mult = -0.50
+	}
+}

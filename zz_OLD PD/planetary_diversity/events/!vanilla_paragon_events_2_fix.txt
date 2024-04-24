@@ -1,0 +1,37 @@
+namespace = paragon_2
+
+# Shroud Preacher trait, on_decade_pulse
+event = {
+	id = paragon_2.1140
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			every_owned_leader = {
+				limit = {
+					has_trait = leader_trait_shroud_preacher
+					exists = planet
+				}
+				planet = {
+					random_owned_pop = {
+						limit = {
+							is_organic_species = yes
+							is_being_assimilated = no
+							NOR = {
+								has_trait = trait_cybernetic
+								has_trait = trait_latent_psionic
+								has_trait = trait_psionic
+								has_trait = trait_organic_fourschildren
+								has_trait = trait_organic_fourschildren_2
+							}
+						}
+						modify_species = {
+							add_trait = trait_latent_psionic
+						}
+					}
+				}
+			}
+		}
+	}
+}
