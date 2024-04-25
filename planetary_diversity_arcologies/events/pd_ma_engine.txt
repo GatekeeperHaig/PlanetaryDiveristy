@@ -23,21 +23,26 @@ planet_event = {
 	}
 }
 
+#this/root = new capital
+#from = old capital
 planet_event = {
 	id = pdmaengine.20
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		from = {
-			has_pd_capital_deposit = yes
-			is_capital = no
-		}
+		exists = from
 	}
 
 	immediate = {
 		from = {
-			remove_pd_capital_deposit_effect = yes
+			if = {
+				limit = {
+					has_pd_capital_deposit = yes
+					is_capital = no
+				}
+				remove_pd_capital_deposit_effect = yes
+			}
 		}
 	}
 }
