@@ -6,4 +6,4 @@ tags={
 	"Graphics"
 }
 name="Planetary Diversity - Ascension Worlds"
-supported_version="3.11.*"
+supported_version="3.12.*"

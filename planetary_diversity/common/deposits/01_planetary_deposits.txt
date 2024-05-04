@@ -556,7 +556,7 @@ d_ore_rich_caverns = {
 		potential = {
 			exists = owner
 			owner = {
-				has_origin = origin_subterranean
+				is_subterranean_empire = yes
 			}
 		}
 		modifier = {
@@ -1276,10 +1276,9 @@ d_teeming_reef = {
 
 	triggered_planet_modifier = {
 		potential = {
-			always = yes
+			has_modifier = mastery_of_nature
 		}
-		district_farming_max = 3
-		mult = value:district_amount_mastery_of_nature
+		district_farming_max = 0.75
 	}
 
 	potential = {
@@ -1763,6 +1762,19 @@ d_alien_pets_deposit = {
 
 	potential = {
 		can_have_habitable_deposits = yes
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_guided_sapience_empire = yes
+			}
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.10
+			planet_amenities_add = 10
+		}
 	}
 
 	drop_weight = {
@@ -2908,7 +2920,29 @@ d_hab_alloy_25 = {
 	}
 }
 
-d_hab_nanites_1 = {
+d_hab_consumer_goods_2 = {
+	icon = "unused/d_space_walk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+
+	resources = {
+		category = hab_mining_deposits
+		produces = {
+			consumer_goods = 2
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_hab_nanites_3 = {
 	icon = "unused/d_space_walk"
 	is_for_colonizable = yes
 	category = deposit_cat_rare
@@ -2921,7 +2955,73 @@ d_hab_nanites_1 = {
 	resources = {
 		category = hab_research_deposits
 		produces = {
-			nanites = 1
+			nanites = 3
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_hab_harvester_nanites_1 = {
+	icon = "unused/d_space_walk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+
+	resources = {
+		category = hab_research_deposits
+		produces = {
+			nanites = 0.1
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_hab_harvester_nanites_2 = {
+	icon = "unused/d_space_walk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+
+	resources = {
+		category = hab_research_deposits
+		produces = {
+			nanites = 1.6
+		}
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_hab_harvester_nanites_3 = {
+	icon = "unused/d_space_walk"
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	potential = {
+		can_have_habitable_deposits = yes
+		is_planet_class = pc_habitat
+	}
+
+	resources = {
+		category = hab_research_deposits
+		produces = {
+			nanites = 25.2
 		}
 	}
 

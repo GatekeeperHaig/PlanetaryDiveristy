@@ -5,7 +5,7 @@ building_wet_td_farm = {
 	base_buildtime = 600
 
 	category = resource
-	
+
 	potential = {
 		exists = owner
 		owner = {
@@ -36,26 +36,25 @@ building_wet_td_farm = {
 				country_uses_food = no
 			}
 			has_modifier = resort_colony
-			has_modifier = crucible_colony
 			AND = {
 				owner = {
 					is_ai = yes
 				}
 				has_any_farming_district_or_buildings = no
 			}
-			planet = { 
+			planet = {
 				NOT = {
 					pd_is_planet_class_tidally_locked = yes
 				}
 			}
 		}
-	}	 
+	}
 }
 building_wet_td_grid = {
 	base_buildtime = 600
 
 	category = resource
-	
+
 	potential = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
@@ -80,7 +79,6 @@ building_wet_td_grid = {
 		OR = {
 			OR = {
 				has_modifier = resort_colony
-				has_modifier = crucible_colony
 			}
 			AND = {
 				exists = owner
@@ -90,18 +88,18 @@ building_wet_td_grid = {
 				has_any_generator_district_or_building = no
 			}
 		}
-		planet = { 
+		planet = {
 			NOT = {
 				pd_is_planet_class_tidally_locked = yes
 			}
 		}
-	}		  
+	}
 }
 building_wet_td_bio_lab = {
 	base_buildtime = 600
 
 	category = research
-	
+
 	potential = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
@@ -129,7 +127,7 @@ building_wet_td_bio_lab = {
 			job_head_researcher_add = 1
 		}
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -139,7 +137,7 @@ building_wet_td_bio_lab = {
 			job_brain_drone_add = 1
 		}
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -149,7 +147,7 @@ building_wet_td_bio_lab = {
 			job_calculator_add = 1
 		}
 	}
-	
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -158,15 +156,15 @@ building_wet_td_bio_lab = {
 		upkeep = {
 			energy = 4
 		}
-	}	
+	}
 
 	destroy_trigger = {
-		planet = { 
+		planet = {
 			NOT = {
 				pd_is_planet_class_tidally_locked = yes
 			}
 		}
-	}		 
+	}
 }
 
 #Karst Buildings
@@ -174,7 +172,7 @@ building_karst_grid = {
 	base_buildtime = 600
 
 	category = resource
-	
+
 	potential = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
@@ -199,7 +197,6 @@ building_karst_grid = {
 		OR = {
 			OR = {
 				has_modifier = resort_colony
-				has_modifier = crucible_colony
 			}
 			AND = {
 				exists = owner
@@ -209,16 +206,16 @@ building_karst_grid = {
 				has_any_generator_district_or_building = no
 			}
 		}
-		planet = { 
+		planet = {
 			pd_is_planet_class_cave = no
 		}
-	}	
+	}
 }
 building_karst_mine = {
 	base_buildtime = 600
 
 	category = resource
-	
+
 	potential = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
@@ -236,13 +233,12 @@ building_karst_mine = {
 			has_any_mining_district = yes
 		}
 	}
-	
+
 	inline_script = "buildings/pd_rare_mining_building"
 
 	destroy_trigger = {
 		OR = {
 			has_modifier = resort_colony
-			has_modifier = crucible_colony
 			AND = {
 				exists = owner
 				owner = {
@@ -251,7 +247,7 @@ building_karst_mine = {
 				has_any_mining_district = no
 			}
 		}
-		planet = { 
+		planet = {
 			pd_is_planet_class_cave = no
 		}
 	}
@@ -260,7 +256,7 @@ building_karst_lab = {
 	base_buildtime = 600
 
 	category = research
-	
+
 	potential = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
@@ -289,7 +285,7 @@ building_karst_lab = {
 			job_head_researcher_add = 1
 		}
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -299,7 +295,7 @@ building_karst_lab = {
 			job_brain_drone_add = 1
 		}
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -309,7 +305,7 @@ building_karst_lab = {
 			job_calculator_add = 1
 		}
 	}
-	
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -318,13 +314,13 @@ building_karst_lab = {
 		upkeep = {
 			energy = 4
 		}
-	}	
+	}
 
 	destroy_trigger = {
-		planet = { 
+		planet = {
 			pd_is_planet_class_cave = no
 		}
-	} 
+	}
 }
 
 #Superhabitable Buildings
@@ -332,7 +328,7 @@ building_superhab_lab = {
 	base_buildtime = 600
 
 	category = research
-	
+
 	potential = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
@@ -361,7 +357,7 @@ building_superhab_lab = {
 			job_head_researcher_add = 1
 		}
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -371,7 +367,7 @@ building_superhab_lab = {
 			job_brain_drone_add = 1
 		}
 	}
-	
+
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -381,7 +377,7 @@ building_superhab_lab = {
 			job_calculator_add = 1
 		}
 	}
-	
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -390,10 +386,10 @@ building_superhab_lab = {
 		upkeep = {
 			energy = 4
 		}
-	}	
+	}
 
 	destroy_trigger = {
-		planet = { 
+		planet = {
 			pd_is_planet_class_superhabitable = no
 		}
 	}
@@ -402,7 +398,7 @@ building_superhab_farm = {
 	base_buildtime = 600
 
 	category = resource
-	
+
 	potential = {
 		exists = owner
 		owner = {
@@ -424,7 +420,7 @@ building_superhab_farm = {
 		}
 	}
 
-	inline_script = "buildings/pd_rare_farm_building"	
+	inline_script = "buildings/pd_rare_farm_building"
 
 	destroy_trigger = {
 		OR = {
@@ -433,24 +429,23 @@ building_superhab_farm = {
 				country_uses_food = no
 			}
 			has_modifier = resort_colony
-			has_modifier = crucible_colony
 			AND = {
 				owner = {
 					is_ai = yes
 				}
 				has_any_farming_district_or_buildings = no
 			}
-			planet = { 
+			planet = {
 				pd_is_planet_class_superhabitable = no
 			}
 		}
-	}		
+	}
 }
 building_superhab_foundry = {
 	base_buildtime = 600
 
 	category = manufacturing
-	
+
 	potential = {
 		NOT = { has_modifier = resort_colony }
 		owner = { NOT = { is_catalytic_empire = yes } }
@@ -466,8 +461,8 @@ building_superhab_foundry = {
 	inline_script = "buildings/pd_rare_foundry_building"
 
 	destroy_trigger = {
-		planet = { 
+		planet = {
 			pd_is_planet_class_superhabitable = no
 		}
-	}	
+	}
 }

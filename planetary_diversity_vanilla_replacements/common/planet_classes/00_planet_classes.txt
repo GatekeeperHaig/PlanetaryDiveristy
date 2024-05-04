@@ -3,6 +3,7 @@
 # Effects are set in particle effect for each star
 # New planets also need planet tiles (game\gfx\interface\icons\tile_backgrounds)
 # New planets need surface background (game\gfx\portraits\environments)
+# All planet classes generates their own max_buildings_add modifiers that can be used to increase only that specific planet class' building slots
 
 ### EXAMPLE:
 #pc_tropical = {
@@ -20,6 +21,8 @@
 #	min_distance_from_sun = 60
 #	max_distance_from_sun = 80
 #	spawn_odds = 10
+#
+#	building_set = ""  # If assigned only buildings with a matching building set will be possible to build
 #
 #	extra_orbit_size = 0
 #	extra_planet_count = 0
@@ -40,6 +43,7 @@
 #	space_monster_target = yes	# Country types with space monster AI will wander to this planet type if set to yes
 #
 #	is_artificial_planet = yes	# Will make sure that modifiers for non artificial planets are not added, e.g. max districts
+#	inherit_country_building_modifiers = yes/no # default = yes; Can be used to block all other additions of max building and district modifiers except the planet class specific ones.
 #}
 ###
 
@@ -692,7 +696,6 @@ pc_machine = {
 	district_set = machine_world
 	starting_planet = no
 	show_city = no
-
 	carry_cap_per_free_district = @carry_cap_low
 }
 
@@ -897,6 +900,38 @@ pc_cybrex = {
 	district_set = ring_world
 	show_health_bar_in_planet_view = yes # Determines whether to display 'surface integrity' gui component
 	is_artificial_planet = yes
+}
+
+pc_nanotech = {
+	entity = "gray_goo_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_toxic
+
+	atmosphere_color		= hsv { 0.19 0.45 0.9 }		#DONE
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = 12 max = 25 }
+	moon_size = { min = 6 max = 10 }
+
+	can_be_invaded = yes
+	can_have_no_pop_colony = no
+	colonizable = yes
+	district_set = machine_world
+	starting_planet = no
+	show_city = no
 }
 
 ########
@@ -1401,7 +1436,7 @@ pc_habitat = {
 	moon_size = 1
 	colonizable = yes
 	district_set = habitat
-	#ideal = yes
+#	ideal = yes
 	starting_planet = no
 	orbit_lines = no
 	has_colonization_influence_cost = no			# applies when within own borders
@@ -1412,6 +1447,47 @@ pc_habitat = {
 	modifier = {
 		planet_colony_development_speed_mult = 2.0 # Habitats should be fast to colonize
 		pop_environment_tolerance = 0.40
+	}
+
+	carry_cap_per_free_district = @carry_cap_low
+}
+
+pc_cosmogenesis_world = {
+	#habitat = yes
+	entity = "orbital_habitat"
+	icon = GFX_planet_type_synaptic_lathe
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	place_entity_on_planet_plane = no
+	entity_face_object = no #disable rotation towards sun or planet we orbit around
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	show_city = no
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 6
+	moon_size = 1
+	colonizable = yes
+	district_set = cosmogenesis_world
+	building_set = cosmogenesis_world
+	#holdings = no
+	#ideal = yes
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no			# applies when within own borders
+
+	is_artificial_planet = yes
+	default_planet_selection = yes
+	inherit_country_building_modifiers = no
+
+	modifier = {
+		pop_environment_tolerance = 0.85
+		pop_growth_speed = -1.0
+		planet_crime_mult = -1
 	}
 
 	carry_cap_per_free_district = @carry_cap_low
@@ -1545,6 +1621,14 @@ random_list = {
 		"pc_barren_cold"
 		"pc_toxic"
 		"pc_frozen"
+	}
+}
+
+random_list = {
+	name = "rl_barren_planets"
+	planets = {
+		"pc_barren"
+		"pc_barren_cold"
 	}
 }
 
