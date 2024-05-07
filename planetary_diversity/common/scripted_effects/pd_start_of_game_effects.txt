@@ -591,6 +591,29 @@ generate_double_check_pass = {
 		add_deposit = d_toxic_god_pestilential_wasteland
 		add_deposit = d_toxic_god_envenomed_seas
 	}
+
+	# Mechanist: spawn robot Pops; add Job-specific Traits; spawn Robot Assembly Plant
+	if = {
+		limit = {
+			owner = { has_origin = origin_mechanists }
+		}
+		add_building = building_robot_assembly_plant
+		add_district_and_planet_size_if_needed_effect = {
+			district = district_generator
+		}
+	}
+
+	# Clone Army: spawn Buildings
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_clone_army
+			}
+		}
+		add_building = building_clone_army_clone_vat
+		add_building = building_clone_army_clone_vat
+		planet_event = { id = clones.10 days = 1095 random = 720 }
+	}
 }
 
 generate_pd_regular_planet = {

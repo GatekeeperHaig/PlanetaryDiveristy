@@ -11,3 +11,85 @@ pd_remove_domed_base_modifier = {
 	remove_modifier = pd_domed_energy_site
 	remove_modifier = pd_domed_research_site
 }
+
+pd_generate_pd_domed_habitat_deposits = {
+	random_list = {
+		33 = { add_deposit = d_phab_mining_1 }
+		33 = { add_deposit = d_phab_mining_2 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_mining_1 }
+		33 = { add_deposit = d_phab_mining_2 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_mining_1 }
+		33 = { add_deposit = d_phab_mining_2 }
+		33 = { add_deposit = d_phab_mining_3 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_food_1 }
+		33 = { add_deposit = d_phab_food_2 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_food_1 }
+		33 = { add_deposit = d_phab_food_2 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_food_1 }
+		33 = { add_deposit = d_phab_food_2 }
+		33 = { add_deposit = d_phab_food_3 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_energy_1 }
+		33 = { add_deposit = d_phab_energy_2 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_energy_1 }
+		33 = { add_deposit = d_phab_energy_2 }
+	}
+	random_list = {
+		33 = { add_deposit = d_phab_energy_1 }
+		33 = { add_deposit = d_phab_energy_2 }
+		33 = { add_deposit = d_phab_energy_3 }
+	}
+	#Minerals
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_pd_domed_colony_barren
+				is_planet_class = pc_pd_domed_colony_barren_cold
+				is_planet_class = pc_pd_domed_colony_cave
+			}
+		}
+		random_list = {
+			50 = { add_deposit = d_phab_mining_2 }
+			50 = { add_deposit = d_phab_mining_3 }
+		}
+	}
+	#Food
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_pd_domed_colony_frozen
+				is_planet_class = pc_pd_domed_colony_superhabitable
+			}
+		}
+		random_list = {
+			50 = { add_deposit = d_phab_food_2 }
+			50 = { add_deposit = d_phab_food_3 }
+		}
+	}
+	#Energy
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_pd_domed_colony_toxic
+				is_planet_class = pc_pd_domed_colony_tidally_locked
+			}
+		}
+		random_list = {
+			50 = { add_deposit = d_phab_energy_2 }
+			50 = { add_deposit = d_phab_energy_3 }
+		}
+	}
+}

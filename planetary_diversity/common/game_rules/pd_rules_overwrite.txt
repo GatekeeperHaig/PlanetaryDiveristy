@@ -6,25 +6,48 @@
 #Root = planet
 #This = species
 species_can_live_on_planet = {
-	exists = root #somehow this appeared in the error log. No idea how!
-	NAND = {
-		root = { 
-			OR = {
-				is_planet_class = pc_machine
-				pd_is_planet_class_machine = yes 
+	hidden_trigger = {
+		exists = root #somehow this appeared in the error log. No idea how!
+		NAND = {
+			root = {
+				OR = {
+					is_planet_class = pc_machine
+					pd_is_planet_class_machine = yes
+				}
+			}
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+				AND = {
+					has_trait = trait_cybernetic
+					exists = root.owner
+					root.owner = {
+						has_authority = auth_machine_intelligence
+						OR = {
+							has_civic = civic_machine_assimilator # Assimilator empire
+							has_ascension_perk = ap_mechromancy
+						}
+					}
+				}
 			}
 		}
-		NOR = {
-			has_trait = trait_machine_unit
-			has_trait = trait_mechanical
-			AND = {
-				has_trait = trait_cybernetic
-				exists = root.owner
-				root.owner = {
-					has_authority = auth_machine_intelligence
+		if = {
+			limit = {
+				root = {
 					OR = {
-						has_civic = civic_machine_assimilator # Assimilator empire
-						has_ascension_perk = ap_mechromancy
+						is_planet_class = pc_hive
+						pd_is_planet_class_hive = yes
+					}
+				}
+			}
+			OR = {
+				has_trait = trait_hive_mind
+				AND = { #Necrophage Hive Mind can have Necrophytes
+					exists = root.owner
+					root.owner = {
+						is_hive_empire = yes
+						has_origin = origin_necrophage
+						prev = { species_can_be_necrophaged = yes }
 					}
 				}
 			}
@@ -32,22 +55,19 @@ species_can_live_on_planet = {
 	}
 	if = {
 		limit = {
-			root = { 
-				OR = {
-					is_planet_class = pc_hive
-					pd_is_planet_class_hive = yes 
-				}
+			exists = root.owner
+			root.owner = {
+				has_origin = origin_clone_army
+			}
+			OR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
 			}
 		}
-		OR = {
-			has_trait = trait_hive_mind
-			AND = { #Necrophage Hive Mind can have Necrophytes
-				exists = root.owner
-				root.owner = {
-					is_hive_empire = yes
-					has_origin = origin_necrophage
-					prev = { species_can_be_necrophaged = yes }
-				}
+		custom_tooltip = {
+			fail_text = CLONE_ARMY_FORCE_DECLINE
+			root = {
+				check_variable = { which = clone_pops_missing value >= 0 }
 			}
 		}
 	}
