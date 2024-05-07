@@ -26,17 +26,24 @@ entity = {
 	}
 }
 #Billboards
-entity = {
+entity = { 
 	name = "pd_commerical_planet_billboard_mesh"
+	pdxmesh = "locator_mesh"
+
+	attach = { root = pd_commerical_planet_billboard_mesh_highlight }
+	attach = { root = pd_commerical_planet_billboard_mesh_lowlight }
+}
+entity = {
+	name = "pd_commerical_planet_billboard_mesh_highlight"
 	pdxmesh = "ma_planet_cloud_mesh"
 	scale = 0.995
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
-		texture_diffuse = "cloud_commerical_billboards_diffuse.dds"
+		texture_diffuse = "cloud_commerical_billboards_highlight_diffuse.dds"
 		texture_normal = "cloud_commerical_billboards_normal.dds"
 		texture_specular = "cloud_commerical_billboards_spec.dds"
-		shader = "PdxMeshAlphaAdditive"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
 	}
 	##cloud shadow texture override
 	meshsettings = {
@@ -47,21 +54,63 @@ entity = {
 		shader = "PdxMeshAlphaAdditive"
 	}
 	default_state = "idle"
-	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+	state = { name = "idle" animation = "idle" # time_offset = { 0 100 }
 		animation_speed = 0.50
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.01
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_commerical_planet_billboard_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commerical_billboards_lowlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" # time_offset = { 0 100 }
+		animation_speed = 0.50
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.01
+		bloom_factor = 1.25 # More glare
 	}
 }
 entity = {
 	name = "pd_commerical_planet_billboard_2_mesh"
+	pdxmesh = "locator_mesh"
+
+	attach = { root = pd_commerical_planet_billboard_2_mesh_highlight }
+	attach = { root = pd_commerical_planet_billboard_2_mesh_lowlight }
+}
+entity = {
+	name = "pd_commerical_planet_billboard_2_mesh_highlight"
 	pdxmesh = "ma_planet_cloud_mesh"
 	scale = 0.995
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
-		texture_diffuse = "cloud_commerical_billboards_2_diffuse.dds"
-		texture_normal = "cloud_commerical_billboards_2_normal.dds"
-		texture_specular = "cloud_commerical_billboards_2_spec.dds"
-		shader = "PdxMeshAlphaAdditive"
+		texture_diffuse = "cloud_commerical_billboards_2_highlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
 	}
 	##cloud shadow texture override
 	meshsettings = {
@@ -72,21 +121,26 @@ entity = {
 		shader = "PdxMeshAlphaAdditive"
 	}
 	default_state = "idle"
-	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+	state = { name = "idle" animation = "idle"
 		animation_speed = -0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.015
+		bloom_factor = 0.75
 	}
 }
 entity = {
-	name = "pd_commerical_planet_billboard_3_mesh"
+	name = "pd_commerical_planet_billboard_2_mesh_lowlight"
 	pdxmesh = "ma_planet_cloud_mesh"
 	scale = 0.995
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
-		texture_diffuse = "cloud_commerical_billboards_3_diffuse.dds"
-		texture_normal = "cloud_commerical_billboards_3_normal.dds"
-		texture_specular = "cloud_commerical_billboards_3_spec.dds"
-		shader = "PdxMeshAlphaAdditive"
+		texture_diffuse = "cloud_commerical_billboards_2_lowlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
 	}
 	##cloud shadow texture override
 	meshsettings = {
@@ -97,21 +151,101 @@ entity = {
 		shader = "PdxMeshAlphaAdditive"
 	}
 	default_state = "idle"
-	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+	state = { name = "idle" animation = "idle"
+		animation_speed = -0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.015
+		bloom_factor = 1.25 # More glare
+	}
+}
+
+entity = {
+	name = "pd_commerical_planet_billboard_3_mesh"
+	pdxmesh = "locator_mesh"
+
+	attach = { root = pd_commerical_planet_billboard_3_mesh_highlight }
+	attach = { root = pd_commerical_planet_billboard_3_mesh_lowlight }
+}
+entity = {
+	name = "pd_commerical_planet_billboard_3_mesh_highlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commerical_billboards_3_highlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
 		animation_speed = -1
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.02
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_commerical_planet_billboard_3_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commerical_billboards_3_lowlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = -1
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.02
+		bloom_factor = 1.25 # More glare
 	}
 }
 entity = {
 	name = "pd_commerical_planet_billboard_4_mesh"
+	pdxmesh = "locator_mesh"
+
+	attach = { root = pd_commerical_planet_billboard_4_mesh_highlight }
+	attach = { root = pd_commerical_planet_billboard_4_mesh_lowlight }
+}
+entity = {
+	name = "pd_commerical_planet_billboard_4_mesh_highlight"
 	pdxmesh = "ma_planet_cloud_mesh"
 	scale = 0.995
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
-		texture_diffuse = "cloud_commerical_billboards_4_diffuse.dds"
-		texture_normal = "cloud_commerical_billboards_4_normal.dds"
-		texture_specular = "cloud_commerical_billboards_4_spec.dds"
-		shader = "PdxMeshAlphaAdditive"
+		texture_diffuse = "cloud_commerical_billboards_4_highlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
 	}
 	##cloud shadow texture override
 	meshsettings = {
@@ -122,8 +256,43 @@ entity = {
 		shader = "PdxMeshAlphaAdditive"
 	}
 	default_state = "idle"
-	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+	state = { name = "idle" animation = "idle"
 		animation_speed = 0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.015
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_commerical_planet_billboard_4_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commerical_billboards_4_lowlight_diffuse.dds"
+		texture_normal = "cloud_commerical_billboards_normal.dds"
+		texture_specular = "cloud_commerical_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = 0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.015
+		bloom_factor = 1.25 # More glare
 	}
 }
 
