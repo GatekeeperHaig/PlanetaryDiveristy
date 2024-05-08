@@ -7685,3 +7685,71 @@ country_event = {
 		}
 	}
 }
+
+###These events are for Machine Empires Starting Traits
+#This gives machines their correct traits on game start
+country_event = {
+	id = pdengine.120
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_wet = yes
+				is_capital = yes
+			}
+			every_owned_species = {
+				limit = {
+					has_trait = trait_machine_unit
+					NOR = {
+						has_trait = trait_dry_planet_preference
+						has_trait = trait_wet_planet_preference
+						has_trait = trait_frozen_planet_preference
+					}
+				}
+				change_species_characteristics = {
+					add_trait = trait_wet_planet_preference
+				}
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_dry = yes
+				is_capital = yes
+			}
+			every_owned_species = {
+				limit = {
+					has_trait = trait_machine_unit
+					NOR = {
+						has_trait = trait_dry_planet_preference
+						has_trait = trait_wet_planet_preference
+						has_trait = trait_frozen_planet_preference
+					}
+				}
+				change_species_characteristics = {
+					add_trait = trait_dry_planet_preference
+				}
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_cold = yes
+				is_capital = yes
+			}
+			every_owned_species = {
+				limit = {
+					has_trait = trait_machine_unit
+					NOR = {
+						has_trait = trait_dry_planet_preference
+						has_trait = trait_wet_planet_preference
+						has_trait = trait_frozen_planet_preference
+					}
+				}
+				change_species_characteristics = {
+					add_trait = trait_frozen_planet_preference
+				}
+			}
+		}
+	}
+}

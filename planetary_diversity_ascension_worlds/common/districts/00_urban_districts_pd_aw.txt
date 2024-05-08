@@ -154,7 +154,7 @@ district_pd_aw_necro = {
 			owner = {
 				is_megacorp = no
 				is_death_cult_empire = no
-				is_spiritualist = yes
+				NOT = { has_origin = origin_cybernetic_creed }
 			}
 		}
 		modifier = {
@@ -181,8 +181,8 @@ district_pd_aw_necro = {
 			exists = owner
 			owner = {
 				is_megacorp = yes
-				is_spiritualist = yes
 				is_death_cult_empire = no
+				NOT = { has_origin = origin_cybernetic_creed }
 			}
 		}
 		modifier = {
@@ -208,7 +208,28 @@ district_pd_aw_necro = {
 		potential = {
 			exists = owner
 			owner = {
-				is_spiritualist = yes
+				has_origin = origin_cybernetic_creed # mutually exclusive with Death Cults
+			}
+		}
+		modifier = {
+			job_haruspex_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_origin = origin_cybernetic_creed # mutually exclusive with Death Cults
+			}
+		}
+		text = job_haruspex_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
 				is_death_cult_empire = yes
 			}
 		}
