@@ -735,7 +735,6 @@ planet_event = {
 			random_system_planet = {
 				limit = { has_planet_flag = pd_habitat_start_capital }
 				remove_district = district_mining
-				add_deposit = d_pd_solar_system_network_hub
 				hidden_effect = {
 					set_planet_flag = pd_solar_system_network_hub
 				}
@@ -795,10 +794,16 @@ country_event = {
 				id = pddomebases.50
 			}
 		}
+		every_planet_within_border = {
+			limit = {
+				is_capital = yes
+			}
+			add_deposit = d_pd_solar_system_network_hub
+		}
 	}
 }
 
-#Darkconstorium Fix Event - make sure they always get a dark matter deposits
+#Dark Constorium Fix Event - make sure they always get a dark matter deposits
 country_event = {
 	id = pddomebases.210
 	hide_window = yes
