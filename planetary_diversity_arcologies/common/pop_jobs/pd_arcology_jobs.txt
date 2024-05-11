@@ -125,7 +125,7 @@ pd_naval_admin = {
 	}
 }
 
-#Naval Admin Gestalt
+#Naval Admin - Gestalt
 pd_naval_admin_gestalt = {
 	category = complex_drone
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -228,7 +228,7 @@ pd_naval_admin_gestalt = {
 	}
 }
 
-#Rogue Servitor Building
+#Rogue Servitor Politician
 pd_capital_bio_politician = {
 	category = bio_trophy
 	#is_capped_by_modifier = yes
@@ -285,4 +285,52 @@ pd_capital_bio_politician = {
 			}
 		}
 	}
+}
+
+#Rangers - Gestalt
+pd_robo_ranger = {
+	category = simple_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = holding_park_ranger_lodge
+	clothes_texture_index = 1
+	icon = ranger
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_rangers
+		produces = {
+			society_research = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight
+		mult = value:job_weights_research_modifier|JOB|brain_drone|
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
 }

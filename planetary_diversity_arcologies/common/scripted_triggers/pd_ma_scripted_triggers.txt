@@ -1,6 +1,7 @@
 pd_shielded_world_modifier = {
 	OR = {
 		has_modifier = pd_fortress_arcology
+		has_modifier = pd_fortress_arcology_rs
 		has_modifier = pd_hive_military
 		has_modifier = pd_machine_military
 	}
@@ -11,7 +12,9 @@ pd_is_pd_arcology = {
 	OR = {
 		has_modifier = pd_commerical_arcology
 		has_modifier = pd_fortress_arcology
+		has_modifier = pd_fortress_arcology_rs
 		has_modifier = pd_garden_arcology
+		has_modifier = pd_garden_arcology_rs
 	}
 }
 
@@ -56,9 +59,19 @@ has_pd_capital_deposit = {
 
 is_pd_commerical_arcology = { has_modifier = pd_commerical_arcology }
 
-is_pd_fortress_arcology = { has_modifier = pd_fortress_arcology }
+is_pd_fortress_arcology = {
+	OR = {
+		has_modifier = pd_fortress_arcology
+		has_modifier = pd_fortress_arcology_rs
+	}
+}
 
-is_pd_garden_arcology = { has_modifier = pd_fortress_arcology }
+is_pd_garden_arcology = {
+	OR = {
+		has_modifier = pd_garden_arcology
+		has_modifier = pd_garden_arcology_rs
+	}
+}
 
 is_pd_palace_arcology = { has_deposit = d_pd_palace_building }
 

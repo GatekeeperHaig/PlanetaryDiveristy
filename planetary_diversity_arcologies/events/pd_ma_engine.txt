@@ -46,3 +46,71 @@ planet_event = {
 		}
 	}
 }
+
+#This checks which empire controls an Arcology, swithes modifiers
+planet_event = {
+	id = pdmaengine.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_city
+		OR = {
+			has_modifier = pd_garden_arcology
+			has_modifier = pd_garden_arcology_rs
+			has_modifier = pd_fortress_arcology
+			has_modifier = pd_fortress_arcology_rs
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_modifier = pd_garden_arcology
+				owner = { has_civic = civic_machine_servitor }
+			}
+			remove_modifier = pd_garden_arcology
+			add_modifier = {
+				modifier = pd_garden_arcology_rs
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				has_modifier = pd_garden_arcology_rs
+				owner = {
+					NOT = { has_civic = civic_machine_servitor }
+				}
+			}
+			remove_modifier = pd_garden_arcology_rs
+			add_modifier = {
+				modifier = pd_garden_arcology
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				has_modifier = pd_fortress_arcology
+				owner = { has_civic = civic_machine_servitor }
+			}
+			remove_modifier = pd_fortress_arcology
+			add_modifier = {
+				modifier = pd_fortress_arcology_rs
+				days = -1
+			}
+		}
+		if = {
+			limit = {
+				has_modifier = pd_fortress_arcology_rs
+				owner = {
+					NOT = { has_civic = civic_machine_servitor }
+				}
+			}
+			remove_modifier = pd_fortress_arcology_rs
+			add_modifier = {
+				modifier = pd_fortress_arcology
+				days = -1
+			}
+		}
+	}
+}
