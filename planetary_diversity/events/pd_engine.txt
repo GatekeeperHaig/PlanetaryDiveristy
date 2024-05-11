@@ -10,457 +10,458 @@ event = {
 
 ###These events fire at game start, changing all classes to PD classes, and changing starting classes to normal classes
 #This event changes all non homeworld, non prescripted to PD classes, Non ideal
-country_event = {
-	id = pdengine.10
-	hide_window = yes
-	is_triggered_only = yes
-	fire_only_once = yes
+##This event appears to not be needed anymore.
+# country_event = {
+# 	id = pdengine.10
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
 
-	immediate = {
-		#Continental
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_continental
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_continental }
-				}
-				25 = {
-					pd_retinal_world_effect = yes
-				}
-				25 = {
-					pd_lake_world_effect = yes
-				}
-				25 = {
-					pd_forest_world_effect = yes
-				}
-				25 = {
-					pd_temperate_world_effect = yes
-				}
-				25 = {
-					pd_tepid_world_effect = yes
-				}
-				25 = {
-					pd_mushroom_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_megaflora_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_petrified_world_effect = yes
-				}
-			}
-        }
-		#Ocean
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_ocean
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-					has_planet_flag = living_planet
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_ocean }
-				}
-				25 = {
-					pd_cascadian_world_effect = yes
-				}
-				25 = {
-					pd_swamp_world_effect = yes
-				}
-				25 = {
-					pd_crag_world_effect = yes
-				}
-				25 = {
-					pd_fog_world_effect = yes
-				}
-				25 = {
-					pd_kelp_world_effect = yes
-				}
-				25 = {
-					pd_algae_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_reef_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_archipelago_world_effect = yes
-				}
-			}
-        }
-		#Tropical
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_tropical
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_tropical }
-				}
-				25 = {
-					pd_atoll_world_effect = yes
-				}
-				25 = {
-					pd_tepui_world_effect = yes
-				}
-				25 = {
-					pd_mangrove_world_effect = yes
-				}
-				25 = {
-					pd_cenote_world_effect = yes
-				}
-				25 = {
-					pd_fungal_world_effect = yes
-				}
-				25 = {
-					pd_aerial_world_effect = yes
-				}
-				25 = {
-					pd_lilypad_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_geothermal_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_biolumen_world_effect = yes
-				}
-			}
-        }
-		#Desert
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_desert
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_desert }
-				}
-				25 = {
-					pd_dune_world_effect = yes
-				}
-				25 = {
-					pd_oasis_world_effect = yes
-				}
-				25 = {
-					pd_outback_world_effect = yes
-				}
-				25 = {
-					pd_coastal_world_effect = yes
-				}
-				25 = {
-					pd_fungi_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_salt_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_aquifer_world_effect = yes
-				}
-			}
-        }
-		#Arid
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_arid
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_arid }
-				}
-				25 = {
-					pd_mesa_world_effect = yes
-				}
-				25 = {
-					pd_fog_desert_world_effect = yes
-				}
-				25 = {
-					pd_mediterranean_world_effect = yes
-				}
-				25 = {
-					pd_badlands_world_effect = yes
-				}
-				25 = {
-					pd_succulent_world_effect = yes
-				}
-				25 = {
-					pd_striped_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_coral_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_primal_world_effect = yes
-				}
-			}
-        }
-		#Savannah
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_savannah
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_savannah }
-				}
-				25 = {
-					pd_steppe_world_effect = yes
-				}
-				25 = {
-					pd_prairie_world_effect = yes
-				}
-				25 = {
-					pd_veld_world_effect = yes
-				}
-				25 = {
-					pd_semi_arid_world_effect = yes
-				}
-				25 = {
-					pd_aspen_world_effect = yes
-				}
-				25 = {
-					pd_sandstone_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_supercontinent_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_sinkhole_world_effect = yes
-				}
-			}
-        }
-		#Arctic
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_arctic
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_arctic }
-				}
-				25 = {
-					pd_cold_desert_world_effect = yes
-				}
-				25 = {
-					pd_glacial_world_effect = yes
-				}
-				25 = {
-					pd_antarctic_world_effect = yes
-				}
-				25 = {
-					pd_aeolian_world_effect = yes
-				}
-				25 = {
-					pd_ice_spike_world_effect = yes
-				}
-				25 = {
-					pd_crevasse_world_effect = yes
-				}
-				25 = {
-					pd_ice_dunes_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_storm_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_iceberg_world_effect = yes
-				}
-			}
-        }
-		#Alpine
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_alpine
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_alpine }
-				}
-				25 = {
-					pd_boreal_world_effect = yes
-				}
-				25 = {
-					pd_snow_world_effect = yes
-				}
-				25 = {
-					pd_highland_world_effect = yes
-				}
-				25 = {
-					pd_dune_forest_world_effect = yes
-				}
-				25 = {
-					pd_fjord_world_effect = yes
-				}
-				25 = {
-					pd_blossom_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_glaciovolcanic_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_lanthanide_world_effect = yes
-				}
-			}
-        }
-		#Tundra
-        every_galaxy_planet = {
-            limit = {
-				is_planet_class = pc_tundra
-				is_homeworld = no
-				has_pd_modifier = no
-				NOR = {
-					has_planet_flag = pd_ignore
-					has_planet_flag = planet_earth
-				}
-			}
-			random_list = {
-				25 = {
-					add_modifier = { modifier = pd_tundra }
-				}
-				25 = {
-					pd_bog_world_effect = yes
-				}
-				25 = {
-					pd_mycelium_world_effect = yes
-				}
-				25 = {
-					pd_mud_world_effect = yes
-				}
-				25 = {
-					pd_basalt_world_effect = yes
-				}
-				25 = {
-					pd_tuya_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_cryoflora_world_effect = yes
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_planet_flag = prescripted_ideal
-					}
-					pd_lichen_world_effect = yes
-				}
-			}
-        }
-	}
-}
+# 	immediate = {
+# 		#Continental
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_continental
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_continental }
+# 				}
+# 				25 = {
+# 					pd_retinal_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_lake_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_forest_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_temperate_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_tepid_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_mushroom_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_megaflora_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_petrified_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Ocean
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_ocean
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 					has_planet_flag = living_planet
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_ocean }
+# 				}
+# 				25 = {
+# 					pd_cascadian_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_swamp_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_crag_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_fog_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_kelp_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_algae_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_reef_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_archipelago_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Tropical
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_tropical
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_tropical }
+# 				}
+# 				25 = {
+# 					pd_atoll_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_tepui_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_mangrove_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_cenote_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_fungal_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_aerial_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_lilypad_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_geothermal_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_biolumen_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Desert
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_desert
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_desert }
+# 				}
+# 				25 = {
+# 					pd_dune_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_oasis_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_outback_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_coastal_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_fungi_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_salt_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_aquifer_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Arid
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_arid
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_arid }
+# 				}
+# 				25 = {
+# 					pd_mesa_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_fog_desert_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_mediterranean_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_badlands_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_succulent_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_striped_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_coral_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_primal_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Savannah
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_savannah
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_savannah }
+# 				}
+# 				25 = {
+# 					pd_steppe_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_prairie_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_veld_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_semi_arid_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_aspen_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_sandstone_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_supercontinent_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_sinkhole_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Arctic
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_arctic
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_arctic }
+# 				}
+# 				25 = {
+# 					pd_cold_desert_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_glacial_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_antarctic_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_aeolian_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_ice_spike_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_crevasse_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_ice_dunes_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_storm_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_iceberg_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Alpine
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_alpine
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_alpine }
+# 				}
+# 				25 = {
+# 					pd_boreal_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_snow_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_highland_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_dune_forest_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_fjord_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_blossom_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_glaciovolcanic_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_lanthanide_world_effect = yes
+# 				}
+# 			}
+#         }
+# 		#Tundra
+#         every_galaxy_planet = {
+#             limit = {
+# 				is_planet_class = pc_tundra
+# 				is_homeworld = no
+# 				has_pd_modifier = no
+# 				NOR = {
+# 					has_planet_flag = pd_ignore
+# 					has_planet_flag = planet_earth
+# 				}
+# 			}
+# 			random_list = {
+# 				25 = {
+# 					add_modifier = { modifier = pd_tundra }
+# 				}
+# 				25 = {
+# 					pd_bog_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_mycelium_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_mud_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_basalt_world_effect = yes
+# 				}
+# 				25 = {
+# 					pd_tuya_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_cryoflora_world_effect = yes
+# 				}
+# 				25 = {
+# 					modifier = {
+# 						factor = 0
+# 						has_planet_flag = prescripted_ideal
+# 					}
+# 					pd_lichen_world_effect = yes
+# 				}
+# 			}
+#         }
+# 	}
+# }
 #This Event Changes any planets that slipped through, and any non homeworld planets
 country_event = {
 	id = pdengine.11
@@ -473,7 +474,8 @@ country_event = {
 			limit = {
 				pd_is_continental = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_continental
 			random_list = {
@@ -498,6 +500,20 @@ country_event = {
 				25 = {
 					pd_mushroom_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_megaflora_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_petrified_world_effect = yes
+				}
 			}
 		}
 		#Ocean Planets
@@ -505,8 +521,11 @@ country_event = {
 			limit = {
 				pd_is_ocean = yes
 				has_pd_modifier = no
-				is_homeworld = no
-				NOT = { has_planet_flag = living_planet }
+				is_capital = no
+				NOR = {
+					has_planet_flag = pd_ignore
+					has_planet_flag = living_planet
+				}
 			}
 			change_pc = pc_ocean
 			random_list = {
@@ -531,6 +550,20 @@ country_event = {
 				25 = {
 					pd_algae_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_reef_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_archipelago_world_effect = yes
+				}
 			}
 		}
 		#Tropical Planets
@@ -538,7 +571,8 @@ country_event = {
 			limit = {
 				pd_is_tropical = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_tropical
 			random_list = {
@@ -566,6 +600,20 @@ country_event = {
 				25 = {
 					pd_lilypad_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_geothermal_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_biolumen_world_effect = yes
+				}
 			}
 		}
 		#Desert Planets
@@ -573,7 +621,8 @@ country_event = {
 			limit = {
 				pd_is_desert = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_desert
 			random_list = {
@@ -595,6 +644,20 @@ country_event = {
 				25 = {
 					pd_fungi_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_salt_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_aquifer_world_effect = yes
+				}
 			}
 		}
 		#Arid Planets
@@ -602,7 +665,8 @@ country_event = {
 			limit = {
 				pd_is_arid = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_arid
 			random_list = {
@@ -627,6 +691,20 @@ country_event = {
 				25 = {
 					pd_striped_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_coral_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_primal_world_effect = yes
+				}
 			}
 		}
 		#Savannah Planets
@@ -634,7 +712,8 @@ country_event = {
 			limit = {
 				pd_is_savannah = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_savannah
 			random_list = {
@@ -659,6 +738,20 @@ country_event = {
 				25 = {
 					pd_sandstone_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_supercontinent_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_sinkhole_world_effect = yes
+				}
 			}
 		}
 		#Arctic Planets
@@ -666,7 +759,8 @@ country_event = {
 			limit = {
 				pd_is_arctic = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_arctic
 			random_list = {
@@ -694,6 +788,20 @@ country_event = {
 				25 = {
 					pd_ice_dunes_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_storm_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_iceberg_world_effect = yes
+				}
 			}
 		}
 		#Alpine Planets
@@ -701,7 +809,8 @@ country_event = {
 			limit = {
 				pd_is_alpine = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_alpine
 			random_list = {
@@ -726,6 +835,20 @@ country_event = {
 				25 = {
 					pd_blossom_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_glaciovolcanic_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_lanthanide_world_effect = yes
+				}
 			}
 		}
 		#Tundra Planets
@@ -733,7 +856,8 @@ country_event = {
 			limit = {
 				pd_is_tundra = yes
 				has_pd_modifier = no
-				is_homeworld = no
+				is_capital = no
+				NOT = {	has_planet_flag = pd_ignore	}
 			}
 			change_pc = pc_tundra
 			random_list = {
@@ -755,6 +879,20 @@ country_event = {
 				25 = {
 					pd_tuya_world_effect = yes
 				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_cryoflora_world_effect = yes
+				}
+				15 = {
+					modifier = {
+						factor = 0
+						has_planet_flag = prescripted_ideal
+					}
+					pd_lichen_world_effect = yes
+				}
 			}
 		}
 		#Gives Prescripted their correct deposits
@@ -764,6 +902,13 @@ country_event = {
 			}
 			clear_deposits = yes
 			reroll_deposits = yes
+		}
+		#Gives living planet the modifier
+        every_galaxy_planet = {
+            limit = {
+				has_planet_flag = living_planet
+			}
+			add_modifier = { modifier = pd_ocean }
 		}
 	}
 }
@@ -779,7 +924,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_continental
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -793,7 +938,7 @@ country_event = {
             limit = {
                 is_planet_class = pc_pd_retinal
                 has_pd_modifier = no
-                is_homeworld = yes
+                is_capital = yes
             }
             change_pc = pc_continental
             pd_retinal_world_effect = yes
@@ -806,7 +951,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_lake
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_lake_world_effect = yes
@@ -819,7 +964,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_tepid
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_tepid_world_effect = yes
@@ -832,7 +977,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_mushroom
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_mushroom_world_effect = yes
@@ -845,7 +990,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_temperate
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_temperate_world_effect = yes
@@ -858,7 +1003,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_forest
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_forest_world_effect = yes
@@ -871,7 +1016,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_megaflora
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_megaflora_world_effect = yes
@@ -884,7 +1029,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_petrified
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_continental
 			pd_petrified_world_effect = yes
@@ -898,7 +1043,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_ocean
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOR = {
 					has_planet_flag = prescripted_ideal
 					has_modifier = ocean_paradise
@@ -916,7 +1061,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_cascadian
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_cascadian_world_effect = yes
@@ -929,7 +1074,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_swamp
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_swamp_world_effect = yes
@@ -942,7 +1087,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_crag
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_crag_world_effect = yes
@@ -955,7 +1100,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_fog
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_fog_world_effect = yes
@@ -968,7 +1113,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_kelp
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_kelp_world_effect = yes
@@ -981,7 +1126,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_algae
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_algae_world_effect = yes
@@ -994,7 +1139,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_reef
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_reef_world_effect = yes
@@ -1007,7 +1152,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_archipelago
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_ocean
 			pd_archipelago_world_effect = yes
@@ -1021,7 +1166,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_tropical
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1035,7 +1180,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_atoll
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_atoll_world_effect = yes
@@ -1048,7 +1193,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_tepui
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_tepui_world_effect = yes
@@ -1061,7 +1206,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_mangrove
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_mangrove_world_effect = yes
@@ -1074,7 +1219,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_cenote
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_cenote_world_effect = yes
@@ -1087,7 +1232,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_fungal
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_fungal_world_effect = yes
@@ -1100,7 +1245,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_aerial
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_aerial_world_effect = yes
@@ -1113,7 +1258,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_lilypad
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_lilypad_world_effect = yes
@@ -1126,7 +1271,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_geothermal
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_geothermal_world_effect = yes
@@ -1139,7 +1284,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_biolumen
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tropical
 			pd_biolumen_world_effect = yes
@@ -1153,7 +1298,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_desert
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1167,7 +1312,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_dune
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_dune_world_effect = yes
@@ -1180,7 +1325,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_oasis
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_oasis_world_effect = yes
@@ -1193,7 +1338,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_outback
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_outback_world_effect = yes
@@ -1206,7 +1351,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_coastal
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_coastal_world_effect = yes
@@ -1219,7 +1364,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_fungi
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_fungi_world_effect = yes
@@ -1232,7 +1377,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_salt
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_salt_world_effect = yes
@@ -1245,7 +1390,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_aquifer
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_desert
 			pd_aquifer_world_effect = yes
@@ -1259,7 +1404,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_arid
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1273,7 +1418,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_mesa
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_mesa_world_effect = yes
@@ -1286,7 +1431,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_fog_desert
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_fog_desert_world_effect = yes
@@ -1299,7 +1444,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_mediterranean
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_mediterranean_world_effect = yes
@@ -1312,7 +1457,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_badlands
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_badlands_world_effect = yes
@@ -1325,7 +1470,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_succulent
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_succulent_world_effect = yes
@@ -1338,7 +1483,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_striped
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_striped_world_effect = yes
@@ -1351,7 +1496,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_coral
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_coral_world_effect = yes
@@ -1364,7 +1509,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_primal
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arid
 			pd_primal_world_effect = yes
@@ -1378,7 +1523,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_savannah
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1392,7 +1537,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_steppe
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_steppe_world_effect = yes
@@ -1405,7 +1550,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_prairie
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_prairie_world_effect = yes
@@ -1418,7 +1563,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_veld
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_veld_world_effect = yes
@@ -1431,7 +1576,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_semi_arid
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_semi_arid_world_effect = yes
@@ -1444,7 +1589,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_aspen
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_aspen_world_effect = yes
@@ -1457,7 +1602,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_sandstone
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_sandstone_world_effect = yes
@@ -1470,7 +1615,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_supercontinent
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_supercontinent_world_effect = yes
@@ -1483,7 +1628,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_sinkhole
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_savannah
 			pd_sinkhole_world_effect = yes
@@ -1497,7 +1642,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_arctic
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1511,7 +1656,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_cold_desert
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_cold_desert_world_effect = yes
@@ -1524,7 +1669,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_glacial
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_glacial_world_effect = yes
@@ -1537,7 +1682,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_antarctic
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_antarctic_world_effect = yes
@@ -1550,7 +1695,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_aeolian
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_aeolian_world_effect = yes
@@ -1563,7 +1708,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_ice_spike
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_ice_spike_world_effect = yes
@@ -1576,7 +1721,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_crevasse
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_crevasse_world_effect = yes
@@ -1589,7 +1734,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_ice_dunes
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_ice_dunes_world_effect = yes
@@ -1602,7 +1747,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_storm
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_storm_world_effect = yes
@@ -1615,7 +1760,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_iceberg
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_arctic
 			pd_iceberg_world_effect = yes
@@ -1629,7 +1774,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_alpine
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1643,7 +1788,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_boreal
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_boreal_world_effect = yes
@@ -1656,7 +1801,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_snow
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_snow_world_effect = yes
@@ -1669,7 +1814,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_highland
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_highland_world_effect = yes
@@ -1682,7 +1827,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_dune_forest
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_dune_forest_world_effect = yes
@@ -1695,7 +1840,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_fjord
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_fjord_world_effect = yes
@@ -1708,7 +1853,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_blossom
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_blossom_world_effect = yes
@@ -1721,7 +1866,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_glaciovolcanic
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_glaciovolcanic_world_effect = yes
@@ -1734,7 +1879,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_lanthanide
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_alpine
 			pd_lanthanide_world_effect = yes
@@ -1748,7 +1893,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_tundra
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 				NOT = { has_planet_flag = prescripted_ideal }
 			}
 			IF = {
@@ -1762,7 +1907,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_bog
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_bog_world_effect = yes
@@ -1775,7 +1920,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_mycelium
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_mycelium_world_effect = yes
@@ -1788,7 +1933,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_mud
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_mud_world_effect = yes
@@ -1801,7 +1946,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_basalt
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_basalt_world_effect = yes
@@ -1814,7 +1959,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_tuya
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_tuya_world_effect = yes
@@ -1827,7 +1972,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_cryoflora
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_cryoflora_world_effect = yes
@@ -1840,7 +1985,7 @@ country_event = {
 			limit = {
 				is_planet_class = pc_pd_lichen
 				has_pd_modifier = no
-				is_homeworld = yes
+				is_capital = yes
 			}
 			change_pc = pc_tundra
 			pd_lichen_world_effect = yes
@@ -3529,19 +3674,24 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_wet_superhabitable
-			reroll_planet = yes
-			add_modifier = {
-				modifier = pd_wet_superhabitable
-				days = -1
-			}
 			random_list = {
-				20 = { set_planet_size = 31 }
-				20 = { set_planet_size = 32 }
-				20 = { set_planet_size = 33 }
-				20 = { set_planet_size = 34 }
-				20 = { set_planet_size = 35 }
+				40 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_wet_superhabitable
+					reroll_planet = yes
+					add_modifier = {
+						modifier = pd_wet_superhabitable
+						days = -1
+					}
+					random_list = {
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
+					}
+				}
+				60 = {}
 			}
 		}
 		every_galaxy_planet = {
@@ -3573,19 +3723,24 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_dry_superhabitable
-			add_modifier = {
-				modifier = pd_dry_superhabitable
-				days = -1
-			}
-			reroll_planet = yes
 			random_list = {
-				20 = { set_planet_size = 31 }
-				20 = { set_planet_size = 32 }
-				20 = { set_planet_size = 33 }
-				20 = { set_planet_size = 34 }
-				20 = { set_planet_size = 35 }
+				40 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_dry_superhabitable
+					add_modifier = {
+						modifier = pd_dry_superhabitable
+						days = -1
+					}
+					reroll_planet = yes
+					random_list = {
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
+					}
+				}
+				60 = {}
 			}
         }
 		every_galaxy_planet = {
@@ -3617,19 +3772,24 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_cold_superhabitable
-			add_modifier = {
-				modifier = pd_cold_superhabitable
-				days = -1
-			}
-			reroll_planet = yes
 			random_list = {
-				20 = { set_planet_size = 31 }
-				20 = { set_planet_size = 32 }
-				20 = { set_planet_size = 33 }
-				20 = { set_planet_size = 34 }
-				20 = { set_planet_size = 35 }
+				40 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_cold_superhabitable
+					add_modifier = {
+						modifier = pd_cold_superhabitable
+						days = -1
+					}
+					reroll_planet = yes
+					random_list = {
+						20 = { set_planet_size = 31 }
+						20 = { set_planet_size = 32 }
+						20 = { set_planet_size = 33 }
+						20 = { set_planet_size = 34 }
+						20 = { set_planet_size = 35 }
+					}
+				}
+				60 = {}
 			}
         }
 		every_galaxy_planet = {
@@ -3664,12 +3824,17 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_wet_tidally_locked
-			reroll_planet = yes
-			add_modifier = {
-				modifier = pd_wet_tidally_locked
-				days = -1
+			random_list = {
+				50 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_wet_tidally_locked
+					reroll_planet = yes
+					add_modifier = {
+						modifier = pd_wet_tidally_locked
+						days = -1
+					}
+				}
+				50 = {}
 			}
 		}
 		every_galaxy_planet = {
@@ -3703,13 +3868,18 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_dry_tidally_locked
-			add_modifier = {
-				modifier = pd_dry_tidally_locked
-				days = -1
+			random_list = {
+				50 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_dry_tidally_locked
+					add_modifier = {
+						modifier = pd_dry_tidally_locked
+						days = -1
+					}
+					reroll_planet = yes
+				}
+				50 = {}
 			}
-			reroll_planet = yes
         }
 		every_galaxy_planet = {
             limit = {
@@ -3742,13 +3912,18 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_cold_tidally_locked
-			add_modifier = {
-				modifier = pd_cold_tidally_locked
-				days = -1
+			random_list = {
+				50 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_cold_tidally_locked
+					add_modifier = {
+						modifier = pd_cold_tidally_locked
+						days = -1
+					}
+					reroll_planet = yes
+				}
+				50 = {}
 			}
-			reroll_planet = yes
         }
 		every_galaxy_planet = {
             limit = {
@@ -3782,12 +3957,17 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_wet_cave
-			reroll_planet = yes
-			add_modifier = {
-				modifier = pd_wet_cave
-				days = -1
+			random_list = {
+				50 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_wet_cave
+					reroll_planet = yes
+					add_modifier = {
+						modifier = pd_wet_cave
+						days = -1
+					}
+				}
+				50 = {}
 			}
 		}
 		every_galaxy_planet = {
@@ -3821,12 +4001,17 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_cold_cave
-			reroll_planet = yes
-			add_modifier = {
-				modifier = pd_cold_cave
-				days = -1
+			random_list = {
+				50 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_cold_cave
+					reroll_planet = yes
+					add_modifier = {
+						modifier = pd_cold_cave
+						days = -1
+					}
+				}
+				50 = {}
 			}
 		}
 		every_galaxy_planet = {
@@ -3860,12 +4045,17 @@ country_event = {
 					}
 				}
 			}
-			remove_pd_modifier = yes
-			change_pc = pc_pd_dry_cave
-			reroll_planet = yes
-			add_modifier = {
-				modifier = pd_dry_cave
-				days = -1
+			random_list = {
+				50 = {
+					remove_pd_modifier = yes
+					change_pc = pc_pd_dry_cave
+					reroll_planet = yes
+					add_modifier = {
+						modifier = pd_dry_cave
+						days = -1
+					}
+				}
+				50 = {}
 			}
 		}
 	}
@@ -4054,7 +4244,7 @@ country_event = {
 				solar_system = { is_star_class = sc_k }
 			}
 			random_list = {
-				5 = {
+				4 = {
 					change_pc = pc_pd_barren_superhabitable
 					add_modifier = { modifier = terraforming_candidate days = -1 }
 					random_list = {
@@ -4065,7 +4255,7 @@ country_event = {
 						20 = { set_planet_size = 35 }
 					}
 				}
-				95 = { }
+				96 = { }
 			}
 		}
 		every_galaxy_planet = {
@@ -4085,11 +4275,11 @@ country_event = {
 				solar_system = { is_star_class = sc_m }
 			}
 			random_list = {
-				8 = {
+				7 = {
 					change_pc = pc_pd_barren_tidally_locked
 					add_modifier = { modifier = terraforming_candidate days = -1 }
 				}
-				92 = { }
+				73 = { }
 			}
 		}
 		every_galaxy_planet = {
@@ -4108,11 +4298,11 @@ country_event = {
 				solar_system = { is_star_class = sc_f }
 			}
 			random_list = {
-				6 = {
+				5 = {
 					change_pc = pc_pd_barren_cave
 					add_modifier = { modifier = terraforming_candidate days = -1 }
 				}
-				94 = { }
+				95 = { }
 			}
 		}
 	}
@@ -5581,6 +5771,18 @@ country_event = {
 					}
 				}
 				clear_deposits = yes
+            }
+		}
+        every_galaxy_planet = {
+            if = {
+                limit = {
+                    solar_system = { has_star_flag = sol }
+					is_dry = yes
+					has_planet_flag = haven_flag
+				}
+				set_planet_entity = {
+					picture = pc_dry_mars
+				}
             }
 		}
 	}
