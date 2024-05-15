@@ -625,7 +625,7 @@ generate_pd_regular_planet = {
 
 generate_pd_uncommon_planet = {
 	generate_pd_start_deposits_and_blockers = yes
-	#generate_start_buildings_and_districts = yes
+	pd_generate_start_buildings_and_districts_uncommon = yes
 	generate_home_planet_final_pass = yes
 	generate_double_check_pass = yes
 }
@@ -2215,5 +2215,54 @@ pd_generate_start_buildings_and_districts = {
 			is_unemployed = yes
 		}
 		clear_pop_category = yes
+	}
+}
+
+pd_generate_start_buildings_and_districts_uncommon = {
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_broken_shackles
+			}
+		}
+		clear_blockers = yes
+		add_deposit = d_crashed_slaver_ship
+		add_deposit = random_blocker
+		add_deposit = random_blocker
+		add_deposit = random_blocker
+		while = {
+			count = 5
+			add_deposit = d_ship_debris_broken_shackles_blocker
+		}
+		while = {
+			count = 6
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_crashed_slaver_ship
+			}
+		}
+		# add_building = building_low_tech_farm
+		# add_building = building_low_tech_scrap_refinery
+		# add_building = building_low_tech_admin_hub
+		# add_building = building_low_tech_power_plant
+		# add_building = building_low_tech_capital
+		# add_building = building_low_tech_research_lab
+	}
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_toxic_knights
+			}
+		}
+		generate_start_pops = yes
+		remove_deposit = d_toxic_god_blight_upon_the_land
+		remove_deposit = d_toxic_god_deitys_swarms
+		remove_deposit = d_toxic_god_pools_most_venemous
+		remove_deposit = d_toxic_god_pestilential_wasteland
+		remove_deposit = d_toxic_god_envenomed_seas
+		add_district = district_city
+		add_district = district_farming
+		add_district = district_farming
+		add_district = district_generator
+		add_district = district_generator
 	}
 }
