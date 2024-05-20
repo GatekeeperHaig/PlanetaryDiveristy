@@ -4228,6 +4228,62 @@ planet_event = {
 			}
 			pd_remove_uninhabitable_modifiers = yes
 		}
+		#This makes sure my unihabitable modifiers lose their modifiers if the planet class is changed.
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_barren
+				}
+			}
+			remove_modifier = pd_carbon
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_barren_cold
+				}
+			}
+			remove_modifier = pd_diamond
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_molten
+				}
+			}
+			remove_modifier = pd_chthonian
+			remove_modifier = pd_iron
+			remove_modifier = pd_volcanic
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_frozen
+				}
+			}
+			remove_modifier = pd_hydrocarbon
+			remove_modifier = pd_subglacial
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_gas_giant
+				}
+			}
+			remove_modifier = pd_hot_gas_giant
+			remove_modifier = pd_cloudless_gas_giant
+			remove_modifier = pd_cold_gas_giant
+			remove_modifier = pd_dwarf_gas
+		}
+		if = {
+			limit = {
+				NOR = {
+					is_planet_class = pc_toxic
+				}
+			}
+			remove_modifier = pd_ethane_ocean
+			remove_modifier = pd_hothouse
+		}
 	}
 }
 #This event makes sure certain special classes get their modifier after terraforming or events
