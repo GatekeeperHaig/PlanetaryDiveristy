@@ -3795,35 +3795,13 @@ country_event = {
 					is_planet_class = pc_barren
 					is_planet_class = pc_barren_cold
 				}
-				NOR = {
-					has_modifier = terraforming_candidate
-					is_moon = yes
-				}
+				has_modifier = terraforming_candidate
+				is_moon = no
 				planet_size > 9
 				planet_size < 31
 				solar_system = { is_star_class = sc_k }
 			}
-			random_list = {
-				100 = {}
-				5 = {
-					change_pc = pc_pd_barren_superhabitable
-					add_modifier = { modifier = terraforming_candidate days = -1 }
-					random_list = {
-						20 = { set_planet_size = 31 }
-						20 = { set_planet_size = 32 }
-						20 = { set_planet_size = 33 }
-						20 = { set_planet_size = 34 }
-						20 = { set_planet_size = 35 }
-					}
-					complex_trigger_modifier = {
-						trigger = check_galaxy_setup_value
-						parameters = {
-							setting = habitable_worlds_scale
-						}
-						mode = factor
-					}
-				}
-			}
+			change_pc = pc_pd_barren_superhabitable
 		}
 		every_galaxy_planet = {
 			limit = {
@@ -3831,30 +3809,14 @@ country_event = {
 					is_planet_class = pc_barren
 					is_planet_class = pc_barren_cold
 				}
-				NOR = {
-					has_modifier = terraforming_candidate
-					is_moon = yes
-				}
+				has_modifier = terraforming_candidate
+				is_moon = no
+				#has_moon = no
 				planet_size > 9
 				planet_size < 31
-				is_moon = no
-				has_moon = no
 				solar_system = { is_star_class = sc_m }
 			}
-			random_list = {
-				100 = {}
-				15 = {
-					change_pc = pc_pd_barren_tidally_locked
-					add_modifier = { modifier = terraforming_candidate days = -1 }
-					complex_trigger_modifier = {
-						trigger = check_galaxy_setup_value
-						parameters = {
-							setting = habitable_worlds_scale
-						}
-						mode = factor
-					}
-				}
-			}
+			change_pc = pc_pd_barren_tidally_locked
 		}
 		every_galaxy_planet = {
 			limit = {
@@ -3862,29 +3824,13 @@ country_event = {
 					is_planet_class = pc_barren
 					is_planet_class = pc_barren_cold
 				}
-				NOR = {
-					has_modifier = terraforming_candidate
-					is_moon = yes
-				}
+				has_modifier = terraforming_candidate
+				is_moon = no
 				planet_size > 9
 				planet_size < 31
-				is_moon = no
 				solar_system = { is_star_class = sc_f }
 			}
-			random_list = {
-				100 = {}
-				10 = {
-					change_pc = pc_pd_barren_cave
-					add_modifier = { modifier = terraforming_candidate days = -1 }
-					complex_trigger_modifier = {
-						trigger = check_galaxy_setup_value
-						parameters = {
-							setting = habitable_worlds_scale
-						}
-						mode = factor
-					}
-				}
-			}
+			change_pc = pc_pd_barren_cave
 		}
 	}
 }
