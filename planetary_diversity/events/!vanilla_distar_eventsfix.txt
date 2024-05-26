@@ -1,0 +1,50 @@
+namespace = distar
+
+planet_event = { #If you terraform the planet to a non-seabearing class before completing chain
+	id = distar.197
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = living_planet
+		#from = {
+		#	has_event_chain = "living_planet_chain"
+		#	NOT = { has_country_flag = completed_living_sea }
+		#}
+		OR = {
+			has_modifier = "living_sea"
+			has_modifier = "pm_study_the_sea"
+		}
+		# should now remove modifiers even if terraformed after chain completion
+		NOR = {
+			#is_planet_class = pc_gaia
+			pd_is_planet_class_gaia = yes
+			is_planet_class = pc_ocean
+			is_planet_class = pc_continental
+			is_planet_class = pc_tropical
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { has_modifier = "living_sea" }
+			remove_modifier = "living_sea"
+		}
+		if = {
+			limit = { has_modifier = "pm_study_the_sea" }
+			remove_modifier = "pm_study_the_sea"
+		}
+		from = {
+			if = {
+				limit = { has_event_chain = "living_planet_chain" }
+				end_event_chain = "living_planet_chain"
+			}
+			if = {
+				limit = { has_country_flag = strange_calling_fired }
+				remove_country_flag = strange_calling_fired
+			}
+			country_event = { id = distar.198 }
+		}
+	}
+}

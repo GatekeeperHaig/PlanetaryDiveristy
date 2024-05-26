@@ -1,4 +1,3 @@
-
 @distance = 50
 @base_moon_distance = 10
 @jumps = 3
@@ -48,6 +47,14 @@ pd_interplanetary_sol_system_initializer = {
 		orbit_angle = 15
 		size = 10
 		has_ring = no
+		init_effect = {
+			set_planet_entity = {
+				entity = molten_planet_mercury_entity
+				atmosphere_color = hsv { 0.8 0.1 0.2 }
+				atmosphere_intensity = 0.1
+				atmosphere_width = 1.0
+			}
+		}
 	}
 
 	planet = {
@@ -57,6 +64,14 @@ pd_interplanetary_sol_system_initializer = {
 		orbit_angle = 125
 		size = 20
 		has_ring = no
+		init_effect = {
+			set_planet_entity = {
+				entity = toxic_planet_venus_entity
+				atmosphere_color = hsv { 0.854 0.072 0.7 }
+				atmosphere_intensity = 0.2
+				atmosphere_width = 1.0
+			}
+		}
 	}
 
 	planet = {
@@ -73,6 +88,7 @@ pd_interplanetary_sol_system_initializer = {
 		flags = { planet_earth pd_habitat_start_capital  }
 
 		init_effect = {
+			save_global_event_target_as = sol_system_earth
 			prevent_anomaly = yes
 		}
 
@@ -86,9 +102,9 @@ pd_interplanetary_sol_system_initializer = {
 			entity = "pd_moon_base_planet_luna_entity"
 			flags = { pd_habitat_start_moon_base colony_event }
 
-		init_effect = {
-			prevent_anomaly = yes
-			set_planet_entity = { picture = pc_pd_domed_barren_cold_luna }
+			init_effect = {
+				prevent_anomaly = yes
+				set_planet_entity = { picture = pc_pd_domed_barren_cold_luna }
 			}
 		}
 	}
@@ -171,7 +187,7 @@ pd_interplanetary_sol_system_initializer = {
 			class = "pc_frozen"
 			size = 6
 			orbit_distance = 2.5
-			orbit_angle = 10
+			orbit_angle = 190
 			has_ring = no
 		}
 		moon = {
@@ -219,7 +235,14 @@ pd_interplanetary_sol_system_initializer = {
 		orbit_angle = 125
 		size = 20
 		has_ring = no
-		entity = "gas_giant_03_entity"
+		init_effect = {
+			set_planet_entity = {
+				entity = gas_giant_uranus_entity
+				atmosphere_color = hsv { 0.548 0.519 0.9 }
+				atmosphere_intensity = 0.1
+				atmosphere_width = 1.0
+			}
+		}
 	}
 
 	planet = {
@@ -229,7 +252,6 @@ pd_interplanetary_sol_system_initializer = {
 		orbit_angle = -195
 		size = 20
 		has_ring = no
-		entity = "gas_giant_02_entity"
 		change_orbit = 4
 
 		moon = {
@@ -239,6 +261,15 @@ pd_interplanetary_sol_system_initializer = {
 			orbit_distance = 7
 			orbit_angle = 115
 			has_ring = no
+		}
+
+		init_effect = {
+			set_planet_entity = {
+				entity = gas_giant_neptune_entity
+				atmosphere_color = hsv { 0.626 0.782 0.9 }
+				atmosphere_intensity = 0.1
+				atmosphere_width = 1.0
+			}
 		}
 	}
 
