@@ -1,0 +1,192 @@
+#War Hive Shields
+entity = {
+	name = "pd_ma_hive_planet_shield_effect_entity"
+	pdxmesh = "pd_ma_hive_planet_shield_effect_mesh"
+
+	#get_state_from_parent = no
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		start_event = { node = root particle = "planet_shield_effect" keep_particle = yes trigger_once = yes }
+	}
+
+	game_data = {
+		bloom_factor = 1.2
+		uv_animation_speed 		= 2
+		uv_animation_direction 	= { 0.0 -0.02 }
+	}
+
+	locator = { name = "root" position = { 0 0 0 } }
+
+	scale = 1.03
+}
+#Overmind Hive Superhabitable
+entity = {
+	name = "pd_infested_superhabitable_arcology_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "infested_diffuse.dds"
+		texture_normal = "infested_normal.dds"
+		texture_specular = "infested_spec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_1_diffuse.dds"
+		texture_normal = "poles_1_normal.dds"
+		texture_specular = "poles_1_specular.dds"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_medium_diffuse.dds"
+		texture_normal = "clouds_medium_normal.dds"
+		texture_specular = "clouds_medium_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_world_hive" } }
+		start_event = { node = "planet" particle = "infested_planet_effect" keep_particle = yes trigger_once = yes }
+	}
+	attach = { root = "infested_planet_effect_mesh_entity" }
+	attach = { root = "pd_ma_hive_planet_shield_effect_entity" }
+}
+#Overmind Hive Tidally Locked
+entity = {
+    name = "pd_infested_tidally_locked_arcology_planet_01_entity"
+
+    locator = { name = "tiltLoc" position = { 0 0 0 } rotation = { 0 95 0 } }
+
+    default_state = "idle"
+	playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 15 0 } animation_speed = 0 }
+
+    attach = { "tiltLoc" = "hivetidallylocked_planet_mesh" }
+    attach = { "tiltLoc" = "hivetidallylocked_planet_cloud_mesh" }
+	attach = { "tiltLoc" = "infested_planet_effect_mesh_entity" }
+	attach = { "tiltLoc" = "pd_ma_hive_planet_shield_effect_entity" }
+
+	scale = 1.0
+}
+#Overmind Hive Cave
+entity = {
+	name = "pd_infested_cave_arcology_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+		name = "atmosphere_geosphereShape"
+		index = 0
+		shader = "PdxMeshAtmosphere"
+	}
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "hive_cave_diffuse.dds"
+		texture_normal = "hive_cave_normal.dds"
+		texture_specular = "hive_cave_spec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_1_diffuse.dds"
+		texture_normal = "poles_1_normal.dds"
+		texture_specular = "poles_1_specular.dds"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_medium_diffuse.dds"
+		texture_normal = "clouds_medium_normal.dds"
+		texture_specular = "clouds_medium_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_world_hive" } }
+		start_event = { node = "planet" particle = "infested_planet_effect" keep_particle = yes trigger_once = yes }
+	}
+	attach = { root = "infested_planet_effect_mesh_entity" }
+	attach = { root = "pd_ma_hive_planet_shield_effect_entity" }
+}
+
+#Machine Nexus Shield
+entity = {
+	name = "pd_machine_planet_shield_effect_entity"
+	pdxmesh = "pd_ma_machine_planet_shield_effect_mesh"
+
+	#get_state_from_parent = no
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		start_event = { node = root particle = "planet_shield_effect" keep_particle = yes trigger_once = yes }
+	}
+
+	game_data = {
+		bloom_factor = 1.2
+		uv_animation_speed 		= 2
+		uv_animation_direction 	= { 0.0 -0.02 }
+	}
+
+	locator = { name = "root" position = { 0 0 0 } }
+
+	scale = 1.03
+}
+#Machine Nexus
+entity = {
+	name = "pd_machine_arcology_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+	#planet surface texture override
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "ai_01_diffuse.dds"
+		texture_normal = "ai_01_normals.dds"
+		texture_specular = "ai_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_medium_diffuse.dds"
+		texture_normal = "clouds_medium_normal.dds"
+		texture_specular = "clouds_medium_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_barren_1_diffuse.dds"
+		texture_normal = "poles_barren_1_normal.dds"
+		texture_specular = "poles_barren_1_specular.dds"
+	}
+	default_state = "idle"
+	state = {
+		name = "idle"
+		animation = "idle"
+		time_offset = { 0 100 }
+		start_event = {
+		trigger_once = yes
+		sound = { soundeffect = "amb_planet_world_machine" }
+		}
+	}
+	attach = { root = "pd_machine_planet_shield_effect_entity" }
+}

@@ -428,7 +428,7 @@ decision_pd_fortress_arcology_project_relic = {
 	}
 }
 
-# Commerical Arcology Project
+# Commercial Arcology Project
 decision_pd_commerical_arcology_project = {
 	owned_planets_only = yes
 	icon = decision_pd_commerical_arcology_project
@@ -535,7 +535,7 @@ decision_pd_commerical_arcology_project = {
 		}
 	}
 }
-# Commerical Arcology Project (Relic Worlds)
+# Commercial Arcology Project (Relic Worlds)
 decision_pd_commerical_arcology_project_relic = {
 	owned_planets_only = yes
 	icon = decision_pd_commerical_arcology_project
@@ -664,22 +664,7 @@ decision_pd_hive_overmind_project = {
 		custom_tooltip = decision_arcology_project_effects
 		hidden_effect = {
 			set_industrial_focus_flags = yes
-			relic_world_conversion_effect = {
-				DISTRICT = district_hive
-				VARIABLE = num_housing_districts
-			}
-			swap_districts_effect = {
-				DISTRICT1 = district_hive
-				DISTRICT2 = district_pd_hive
-			}
-			relic_world_conversion_effect = {
-				DISTRICT = district_industrial
-				VARIABLE = num_industrial_districts
-			}
-			swap_districts_effect = {
-				DISTRICT1 = district_industrial
-				DISTRICT2 = district_pd_hive_industrial
-			}
+			pd_make_hive_arc_effect = yes
 			change_pc = pc_pd_hive
 			generate_pd_hive_arc_portrait_effect = yes
 			if = {
@@ -752,16 +737,9 @@ decision_pd_machine_nexus_project = {
 		custom_tooltip = decision_arcology_project_effects
 		hidden_effect = {
 			set_industrial_focus_flags = yes
+			pd_make_machine_arc_effect = yes
 			change_pc = pc_pd_machine
 			generate_pd_machine_arc_portrait_effect = yes
-			relic_world_conversion_effect = {
-				DISTRICT = district_pd_hive
-				VARIABLE = num_housing_districts
-			}
-			relic_world_conversion_effect = {
-				DISTRICT = district_pd_hive_industrial
-				VARIABLE = num_industrial_districts
-			}
 			if = {
 				limit = {
 					OR = {

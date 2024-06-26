@@ -12,6 +12,7 @@ pd_is_continental = {
  		is_planet_class = pc_pd_retinal
  		is_planet_class = pc_pd_lake
  		is_planet_class = pc_pd_temperate
+ 		is_planet_class = pc_pd_sakura
  		is_planet_class = pc_pd_mushroom
 		is_planet_class = pc_pd_petrified
  		is_planet_class = pc_pd_megaflora
@@ -126,6 +127,29 @@ pd_is_tundra = {
 has_pd_modifier = {
  	OR = {
 		#Continental
+		pd_continental_modifier = yes
+		#Ocean
+		pd_ocean_modifier = yes
+		#Tropical
+		pd_desert_modifier = yes
+		#Desert
+		pd_desert_modifier = yes
+		#Arid
+		pd_arid_modifier = yes
+		#Savannah
+		pd_savanna_modifier = yes
+		#Arctic
+		pd_arctic_modifier = yes
+		#Alpine
+		pd_alpine_modifier = yes
+		#Tundra
+		pd_tundra_modifier = yes
+ 	}
+}
+
+pd_continental_modifier = {
+	OR = {
+		#Continental
 		has_modifier = pd_continental
 		has_modifier = pd_retinal
 		has_modifier = pd_lake
@@ -133,8 +157,14 @@ has_pd_modifier = {
 		has_modifier = pd_tepid
 		has_modifier = pd_mushroom
 		has_modifier = pd_forest
+		has_modifier = pd_sakura
 		has_modifier = pd_megaflora
 		has_modifier = pd_petrified
+	}
+}
+
+pd_ocean_modifier = {
+	OR = {
 		#Ocean
 		has_modifier = pd_ocean
 		has_modifier = pd_cascadian
@@ -145,6 +175,11 @@ has_pd_modifier = {
 		has_modifier = pd_algae
 		has_modifier = pd_reef
 		has_modifier = pd_archipelago
+	}
+}
+
+pd_tropical_modifier = {
+	OR = {
 		#Tropical
 		has_modifier = pd_tropical
 		has_modifier = pd_atoll
@@ -156,6 +191,11 @@ has_pd_modifier = {
 		has_modifier = pd_lilypad
 		has_modifier = pd_geothermal
 		has_modifier = pd_biolumen
+	}
+}
+
+pd_desert_modifier = {
+	OR = {
 		#Desert
 		has_modifier = pd_desert
 		has_modifier = pd_dune
@@ -165,6 +205,11 @@ has_pd_modifier = {
 		has_modifier = pd_fungi
 		has_modifier = pd_salt
 		has_modifier = pd_aquifer
+	}
+}
+
+pd_arid_modifier = {
+	OR = {
 		#Arid
 		has_modifier = pd_arid
 		has_modifier = pd_mesa
@@ -175,6 +220,11 @@ has_pd_modifier = {
 		has_modifier = pd_striped
 		has_modifier = pd_coral
 		has_modifier = pd_primal
+	}
+}
+
+pd_savanna_modifier = {
+	OR = {
 		#Savannah
 		has_modifier = pd_savannah
 		has_modifier = pd_steppe
@@ -185,6 +235,11 @@ has_pd_modifier = {
 		has_modifier = pd_sandstone
 		has_modifier = pd_supercontinent
 		has_modifier = pd_sinkhole
+	}
+}
+
+pd_arctic_modifier = {
+	OR = {
 		#Arctic
 		has_modifier = pd_arctic
 		has_modifier = pd_cold_desert
@@ -196,6 +251,11 @@ has_pd_modifier = {
 		has_modifier = pd_ice_dunes
 		has_modifier = pd_storm
 		has_modifier = pd_iceberg
+	}
+}
+
+pd_alpine_modifier = {
+	OR = {
 		#Alpine
 		has_modifier = pd_alpine
 		has_modifier = pd_boreal
@@ -206,6 +266,11 @@ has_pd_modifier = {
 		has_modifier = pd_blossom
 		has_modifier = pd_glaciovolcanic
 		has_modifier = pd_lanthanide
+	}
+}
+
+pd_tundra_modifier = {
+	OR = {
 		#Tundra
 		has_modifier = pd_tundra
 		has_modifier = pd_bog
@@ -215,8 +280,9 @@ has_pd_modifier = {
 		has_modifier = pd_tuya
 		has_modifier = pd_cryoflora
 		has_modifier = pd_lichen
- 	}
+	}
 }
+
 
 pd_is_planet_class_all = {
 	OR = {
@@ -374,5 +440,46 @@ pd_is_possible_domed_base_modifier = {
 		has_modifier = pd_domed_food_site
 		has_modifier = pd_domed_energy_site
 		has_modifier = pd_domed_research_site
+	}
+}
+
+pd_is_planet_class_nuked_surveyed = {
+    OR = {
+        has_surveyed_class = pc_nuked
+        has_surveyed_class = pc_pd_nuked_superhabitable
+        has_surveyed_class = pc_pd_nuked_tidally_locked
+        has_surveyed_class = pc_pd_nuked_cave
+    }
+}
+
+is_pd_uncommon_hive = {
+	OR = {
+		is_planet_class = pc_pd_hive_superhabitable
+		is_planet_class = pc_pd_hive_tidally_locked
+		is_planet_class = pc_pd_hive_cave
+	}
+}
+
+is_pd_uncommon_hive_arc = {
+	OR = {
+		is_planet_class = pc_pd_hive_superhabitable_arc
+		is_planet_class = pc_pd_hive_tidally_locked_arc
+		is_planet_class = pc_pd_hive_cave_arc
+	}
+}
+
+is_pd_uncommon_machine = {
+	OR = {
+		is_planet_class = pc_pd_machine_superhabitable
+		is_planet_class = pc_pd_machine_tidally_locked
+		is_planet_class = pc_pd_machine_cave
+	}
+}
+
+is_pd_uncommon_machine_arc = {
+	OR = {
+		is_planet_class = pc_pd_machine_superhabitable_arc
+		is_planet_class = pc_pd_machine_tidally_locked_arc
+		is_planet_class = pc_pd_machine_cave_arc
 	}
 }

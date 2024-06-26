@@ -57,28 +57,28 @@ planet_event = {
 		}
 		from = { country_event = { id = action.83 } }
 		#if = {
-		#	limit = 
+		#	limit =
 		#}
 		if = {
-			limit = { 
+			limit = {
 				pd_is_planet_class_cave = yes
 			}
 			change_pc = pc_pd_nuked_cave
-		} 
+		}
 		if = {
-			limit = { 
+			limit = {
 				pd_is_planet_class_superhabitable = yes
 			}
 			change_pc = pc_pd_nuked_superhabitable
-		} 
+		}
 		if = {
-			limit = { 
+			limit = {
 				pd_is_planet_class_tidally_locked = yes
 			}
 			change_pc = pc_pd_nuked_tidally_locked
-		} 
+		}
 		if = {
-			limit = { 
+			limit = {
 				is_planet_class = pc_city
 			}
 			change_pc = pc_relic
@@ -90,9 +90,9 @@ planet_event = {
 				picture = pc_pd_nuked_relic
 				entity = nuked_relic_world_01_entity
 			}
-		} 
+		}
 		if = {
-			limit = { 
+			limit = {
 				is_planet_class = pc_relic
 			}
 			add_modifier = {
@@ -103,19 +103,19 @@ planet_event = {
 				picture = pc_pd_nuked_relic
 				entity = nuked_relic_world_01_entity
 			}
-		} 
+		}
 		if = {
-			limit = { 
-				OR = {
+			limit = {
+				NOR = {
 					is_planet_class = pc_city
 					is_planet_class = pc_relic
-					pd_is_planet_class_cave = no
-					pd_is_planet_class_superhabitable = no
-					pd_is_planet_class_tidally_locked = no
+					pd_is_planet_class_cave = yes
+					pd_is_planet_class_superhabitable = yes
+					pd_is_planet_class_tidally_locked = yes
 				}
 			}
 			change_pc = pc_nuked
-		} 
+		}
 		set_planet_flag = nuked_planet_anomalies_disabled
 		remove_all_buildings = yes
 		reroll_deposits = yes

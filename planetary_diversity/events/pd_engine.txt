@@ -42,6 +42,9 @@ country_event = {
 					pd_temperate_world_effect = yes
 				}
 				25 = {
+					pd_sakura_world_effect = yes
+				}
+				25 = {
 					pd_tepid_world_effect = yes
 				}
 				25 = {
@@ -541,6 +544,19 @@ country_event = {
 			}
 			change_pc = pc_continental
 			pd_temperate_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_sakura
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_continental
+			pd_sakura_world_effect = yes
 			clear_deposits = yes
 			remove_all_districts = yes
 			remove_all_buildings = yes
@@ -1734,6 +1750,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.sakura
+		hidden_effect = {
+			from = {
+				pd_sakura_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -2777,6 +2804,9 @@ planet_event = {
 				}
 				25 = {
 					pd_temperate_world_effect = yes
+				}
+				25 = {
+					pd_sakura_world_effect = yes
 				}
 				25 = {
 					pd_tepid_world_effect = yes
@@ -5759,6 +5789,7 @@ country_event = {
 				has_trait = trait_pc_pd_retinal_preference
 				has_trait = trait_pc_pd_lake_preference
 				has_trait = trait_pc_pd_temperate_preference
+				has_trait = trait_pc_pd_sakura_preference
 				has_trait = trait_pc_pd_mushroom_preference
 				has_trait = trait_pc_pd_petrified_preference
 				has_trait = trait_pc_pd_megaflora_preference
@@ -6206,6 +6237,9 @@ country_event = {
 						pd_temperate_world_effect = yes
 					}
 					25 = {
+						pd_sakura_world_effect = yes
+					}
+					25 = {
 						pd_tepid_world_effect = yes
 					}
 					25 = {
@@ -6531,7 +6565,10 @@ country_event = {
 			}
 			every_owned_species = {
 				limit = {
-					has_trait = trait_machine_unit
+					OR = {
+						has_trait = trait_machine_unit
+						has_trait = trait_mechanical
+					}
 					NOT = { has_trait = trait_wet_planet_preference }
 				}
 				change_species_characteristics = {
@@ -6551,7 +6588,10 @@ country_event = {
 			}
 			every_owned_species = {
 				limit = {
-					has_trait = trait_machine_unit
+					OR = {
+						has_trait = trait_machine_unit
+						has_trait = trait_mechanical
+					}
 					NOT = { has_trait = trait_dry_planet_preference }
 				}
 				change_species_characteristics = {
@@ -6568,7 +6608,10 @@ country_event = {
 			}
 			every_owned_species = {
 				limit = {
-					has_trait = trait_machine_unit
+					OR = {
+						has_trait = trait_machine_unit
+						has_trait = trait_mechanical
+					}
 					NOT = { has_trait = trait_frozen_planet_preference }
 				}
 				change_species_characteristics = {
@@ -6577,6 +6620,44 @@ country_event = {
 					add_trait = trait_frozen_planet_preference
 				}
 			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_machine
+				is_capital = yes
+			}
+			every_owned_species = {
+				limit = {
+					OR = {
+						has_trait = trait_machine_unit
+						has_trait = trait_mechanical
+					}
+					NOR = {
+						has_trait = trait_frozen_planet_preference
+						has_trait = trait_wet_planet_preference
+						has_trait = trait_dry_planet_preference
+					}
+				}
+				change_species_characteristics = {
+					add_trait = trait_dry_planet_preference
+				}
+			}
+		}
+	}
+}
+
+###This event is to double check earth textures after PD is done doing it's stuff
+country_event = {
+	id = pdengine.130
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = planet_earth
+			}
+			set_earth_entity = yes
 		}
 	}
 }

@@ -91,7 +91,7 @@ generate_pd_arcology_portrait_effect = {
 			}
 		}
 	}
-	#Commerical Arc
+	#Commercial Arc
 	if = {
 		limit = {
 			has_modifier = pd_commerical_arcology
@@ -160,6 +160,7 @@ generate_pd_arcology_portrait_effect = {
 		}
 		if = {
 			limit = {
+				NOT = {	has_planet_flag = planet_earth }
 				is_planet_class = pc_city
 				OR = {
 					has_modifier = pd_garden_arcology
@@ -170,6 +171,20 @@ generate_pd_arcology_portrait_effect = {
 				picture = pc_pd_garden_senate
 				entity = "pd_garden_city_planet_entity"
 				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_city
+				OR = {
+					has_modifier = pd_garden_arcology
+					has_modifier = pd_garden_arcology_rs
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_senate
+				entity = pd_garden_city_planet_earth_01_entity
 			}
 		}
 		if = {
@@ -377,16 +392,40 @@ generate_pd_hive_arc_portrait_effect = {
 	if = {
 		limit = {
 			has_deposit = d_pd_confluence_spire_building
+			OR = {
+				is_planet_class = pc_hive
+				is_planet_class = pc_pd_hive
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_hive_capital
+		}
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_confluence_spire_building
+			OR = {
+				is_pd_uncommon_hive = yes
+				is_pd_uncommon_hive_arc = yes
+			}
+		}
+		generate_pd_uncommon_hive_capital_portrait_effect = yes
+	}
+	if = {
+		limit = {
+			NOT = { has_deposit = d_pd_confluence_spire_building }
 		}
 		if = {
 			limit = {
 				OR = {
 					is_planet_class = pc_hive
 					is_planet_class = pc_pd_hive
+					is_pd_uncommon_hive = yes
+					is_pd_uncommon_hive_arc = yes
 				}
 			}
 			set_planet_entity = {
-				picture = pc_pd_hive_capital
+				picture = pc_infested
 			}
 		}
 	}
@@ -414,6 +453,15 @@ generate_pd_machine_arc_portrait_effect = {
 			set_planet_entity = {
 				picture = pc_pd_machine_capital
 			}
+		}
+		if = {
+			limit = {
+				OR = {
+					is_pd_uncommon_machine = yes
+					is_pd_uncommon_machine_arc = yes
+				}
+			}
+			generate_pd_uncommon_machine_capital_portrait_effect = yes
 		}
 		if = {
 			limit = {
@@ -517,5 +565,42 @@ remove_pd_capital_deposit_effect = {
 		remove_deposit = d_pd_machine_centralized_processing
 		generate_pd_machine_arc_portrait_effect = yes
 	}
+}
 
+pd_make_hive_arc_effect = {
+	relic_world_conversion_effect = {
+		DISTRICT = district_hive
+		VARIABLE = num_housing_districts
+	}
+	swap_districts_effect = {
+		DISTRICT1 = district_hive
+		DISTRICT2 = district_pd_hive
+	}
+	relic_world_conversion_effect = {
+		DISTRICT = district_industrial
+		VARIABLE = num_industrial_districts
+	}
+	swap_districts_effect = {
+		DISTRICT1 = district_industrial
+		DISTRICT2 = district_pd_hive_industrial
+	}
+}
+
+pd_make_machine_arc_effect = {
+	relic_world_conversion_effect = {
+		DISTRICT = district_nexus
+		VARIABLE = num_housing_districts
+	}
+	swap_districts_effect = {
+		DISTRICT1 = district_nexus
+		DISTRICT2 = district_pd_nexus
+	}
+	relic_world_conversion_effect = {
+		DISTRICT = district_industrial
+		VARIABLE = num_industrial_districts
+	}
+	swap_districts_effect = {
+		DISTRICT1 = district_industrial
+		DISTRICT2 = district_pd_hive_industrial
+	}
 }

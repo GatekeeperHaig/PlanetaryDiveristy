@@ -233,6 +233,35 @@ pc_pd_hive_tidally_locked = {
 	}
 	ideal = yes
 }
+#Hive Overmind - More Arcologies
+pc_pd_hive_tidally_locked_arc = {
+	entity = "pd_infested_tidally_locked_arcology_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_hive
+	picture = pc_pd_hive_tidally_locked
+	#appearance
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	colonizable = yes
+	starting_planet = no
+	enable_tilt = no
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = pd_hive_world
+	can_be_moon = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_high
+	modifier = {
+		pop_environment_tolerance = 1
+		planet_jobs_produces_mult = 0.10
+		planet_max_buildings_add = 12
+		job_spawning_drone_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+	ideal = yes
+}
 #Machine
 pc_pd_machine_tidally_locked = {
 	entity = "machinetidallylocked_planet"
@@ -250,6 +279,35 @@ pc_pd_machine_tidally_locked = {
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
 	district_set = machine_world
+	can_be_moon = no
+	show_city = no
+	carry_cap_per_free_district = @carry_cap_low
+	modifier = {
+		planet_jobs_produces_mult = 0.10
+		pop_housing_usage_mult = -0.10
+		pop_environment_tolerance = 0.0
+		planet_max_buildings_add = 12
+		job_replicator_add = 1
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+}
+#Machine Neuxs
+pc_pd_machine_tidally_locked_arc = {
+	entity = "pd_machine_tidally_locked_arcology_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_machine
+	#appearance
+	picture = pc_ai
+	atmosphere_color 		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+	colonizable = yes
+	starting_planet = no
+	enable_tilt = no
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = pd_machine_world
 	can_be_moon = no
 	show_city = no
 	carry_cap_per_free_district = @carry_cap_low
