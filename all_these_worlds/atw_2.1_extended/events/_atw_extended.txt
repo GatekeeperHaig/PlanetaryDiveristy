@@ -1,0 +1,120 @@
+namespace = atw_extended
+
+event = {
+	id = atw_extended.01
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		# Set the MOD's global flag
+		set_global_flag = all_these_worlds_extended
+		
+		
+	}	
+}
+
+event = {
+	id = atw_extended.02
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		
+		every_galaxy_planet = {
+			# Roll new star modifiers and deposits but take care not to remove strategic resources to avoid messing with scripted stuff
+			# This may remove home systems energy deposit from the star, but its compensated by extra energy from gas giants
+			if = {
+				#limit = { is_star = yes has_anomaly = no solar_system = { has_star_flag = "atw_misc" } NOT = { has_planet_flag = "deposit_spawned" } }
+				limit = {
+					is_star = yes
+					has_anomaly = no
+					NOT = { has_planet_flag = "deposit_spawned" }
+					NOT = {	has_sr_orbital_deposit = yes }
+				}
+				clear_deposits = yes
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+				spawn_star_features = yes
+			}
+			else_if = {
+				limit = {
+					is_star = yes
+					NOT = { has_planet_flag = "deposit_spawned" }
+				}
+				spawn_star_features_alt = yes
+			}
+			# Randomize asteroid sizes and assign a modifier to asteroids that already have a deposit
+			# Do not add any for now, will change later
+			else_if = {
+				limit = { is_asteroid = yes }
+				adjust_asteroid_size = yes
+				spawn_asteroid_features = yes
+			}
+			# Checks every gas giant, spawn proper modifiers, large enough ones should always give energy from gas siphoning
+			else_if = {
+				limit = { is_planet_class = "pc_gas_giant" }
+				spawn_giant_features = yes
+			}
+			# Checks rocky uninhabitable planets for a few things
+			else_if = {
+				limit = { is_rocky_uninhabitable = yes }
+				spawn_uninhabitable_features = yes
+			}
+
+			# On this second pass, remove the terraforming candidate modifiers, but for every one removed, add it elsewhere under different conditions
+			if = {
+				limit = { has_modifier = "terraforming_candidate" NOT = { has_planet_flag = "planet_mars" } }
+				remove_modifier = "terraforming_candidate"
+				random_galaxy_planet = {
+					limit = {
+						has_modifier = "class_dusty"
+						planet_size > 13
+						planet_size < 23
+						solar_system = { any_system_planet = { is_habitable = yes } } # I have plans for candidates to be used as system colonies requiring the presence of a standard habitable world, if those plans change I'll remove this line
+					}
+					add_modifier = {
+						modifier = "terraforming_candidate"
+						days = -1
+					}
+				}
+			}
+			else_if = {
+				limit = { has_modifier = "frozen_terraforming_candidate" }
+				remove_modifier = "frozen_terraforming_candidate"
+				random_galaxy_planet = {
+					limit = {
+						has_modifier = "class_ice"
+						planet_size > 13
+						planet_size < 23
+						solar_system = { any_system_planet = { is_habitable = yes } } # I have plans for candidates to be used as system colonies requiring the presence of a standard habitable world, if those plans change I'll remove this line
+					}
+					add_modifier = {
+						modifier = "frozen_terraforming_candidate"
+						days = -1
+					}
+				}
+			}
+			else_if = {
+				limit = { has_modifier = "toxic_terraforming_candidate" }
+				remove_modifier = "toxic_terraforming_candidate"
+				random_galaxy_planet = {
+					limit = {
+						has_modifier = "class_hothouse"
+						planet_size > 13
+						planet_size < 23
+						solar_system = { any_system_planet = { is_habitable = yes } } # I have plans for candidates to be used as system colonies requiring the presence of a standard habitable world, if those plans change I'll remove this line
+					}
+					add_modifier = {
+						modifier = "toxic_terraforming_candidate"
+						days = -1
+					}
+				}
+			}
+		}	
+		
+	}
+}

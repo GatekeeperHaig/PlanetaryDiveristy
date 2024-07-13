@@ -1,0 +1,681 @@
+# Energy cost is based on technology / perk requirement, most costs will be reduced to compensate the new resources added.
+@energy_atmospheric_manipulation = 1000
+@energy_climate_restoration = 2500
+@energy_world_shaper = 4000
+@energy_world_shaper_destructive = 2000
+@energy_hive_worlds = 10000
+@energy_machine_worlds = 10000
+@energy_subterranean = 2000
+
+# Greenhouse gases cost is based on original atmosphere type, upgrading an uninhabitable world's atmosphere will cost more than one which already has a thick atmosphere. Frozen worlds requiring warming will use a different value.
+@gases_uninhabitable = 2000		# ie: terraforming FROM a sub-telluric with thin atmosphere
+@gases_dry = 400				# ie: terraforming FROM a telluric with thick atmosphere or a dry habitable world
+@gases_temperate = 600			# ie: terraforming FROM a temperate habitable world
+@gases_frigid = 1000			# ie: terraforming FROM a frozen thalassic with thin atmosphere or a fright habitable world
+@gases_subterranean = 500
+
+# Water ices cost is based on original and final hydrosphere type, it depends on how much water is required. Frozen worlds already have enough water, so they will need extra greenhouse gases instead.
+@ices_1_step = 1000				# ie: terraforming FROM a sub-terrestrial into terrestrial, or terrestrial into oceanic
+@ices_2_steps = 2000			# ie: terraforming FROM a sub-terrestrial into oceanic, or uninhabitable into sub-terrestrial
+@ices_3_steps = 3000			# ie: terraforming FROM an uninhabitable into oceanic
+@ices_subterranean = 500
+
+# Seeds cost is based on the type of terraforming.
+@seeds_type_1 = 800				# ie: terraforming between habitable worlds
+@seeds_type_2 = 1200			# ie: upgrading a habitable into gaia
+@seeds_type_3 = 2000			# ie: restoring a tomb/machine/etc or terraforming a barren uninhabitable
+@seeds_subterranean = 400
+
+# Duration depends on the apparent complexity of the process, ie: thickening the atmosphere with some greenhouse gases and water vapor is much less complex than restoring a nuked world and re-introducing life to it.
+@duration_simple = 1800
+@duration_average = 3600
+@duration_complex = 7200
+
+## No more basic terraforming
+## Instead, we will allow terraforming without changing the planet class, which will result in a subterranean environment with a bonus to habitability at the cost of changes to district cost and upkeep
+
+terraform_link = {
+	from = "pc_continental"
+	to = "pc_continental"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_aquatic" }
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_tropical"
+	to = "pc_tropical"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				if = {
+					limit = { prev = { has_trait = "trait_aquatic" } }
+					add_modifier = { modifier = "submerged-sub_terrestrial" days = -1 }
+				}
+				else = {
+					add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				}				
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				if = {
+					limit = { has_modifier = "subterranean_terraformed" }
+					remove_modifier = "subterranean_terraformed"
+				}
+				if = {
+					limit = { has_modifier = "submerged-sub_terrestrial" }
+					remove_modifier = "submerged-sub_terrestrial"
+				}
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_ocean"
+	to = "pc_ocean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_aquatic" }
+		from = { NOT = { has_modifier = "class_okeanosgaean" } }
+		from = { NOT = { has_modifier = "class_panpelagic" } }
+		from = { NOT = { has_modifier = "class_ammoniapelagic" } }
+		from = { NOT = { has_modifier = "class_pagoslykofos" } }
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_desert"
+	to = "pc_desert"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_aquatic" }
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_arid"
+	to = "pc_arid"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_aquatic" }
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_savannah"
+	to = "pc_savannah"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				if = {
+					limit = { prev = { has_trait = "trait_aquatic" } }
+					add_modifier = { modifier = "submerged-sub_terrestrial" days = -1 }
+				}
+				else = {
+					add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				}				
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				if = {
+					limit = { has_modifier = "subterranean_terraformed" }
+					remove_modifier = "subterranean_terraformed"
+				}
+				if = {
+					limit = { has_modifier = "submerged-sub_terrestrial" }
+					remove_modifier = "submerged-sub_terrestrial"
+				}
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_arctic"
+	to = "pc_arctic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_aquatic" }
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_tundra"
+	to = "pc_tundra"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				if = {
+					limit = { prev = { has_trait = "trait_aquatic" } }
+					add_modifier = { modifier = "submerged-sub_terrestrial" days = -1 }
+				}
+				else = {
+					add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				}				
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				if = {
+					limit = { has_modifier = "subterranean_terraformed" }
+					remove_modifier = "subterranean_terraformed"
+				}
+				if = {
+					limit = { has_modifier = "submerged-sub_terrestrial" }
+					remove_modifier = "submerged-sub_terrestrial"
+				}
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_alpine"
+	to = "pc_alpine"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_aquatic" }
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}
+
+terraform_link = {
+	from = "pc_nuked"
+	to = "pc_nuked"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_subterranean
+			greenhouse_gases = @gases_subterranean
+			water_ices = @ices_subterranean
+			seeds = @seeds_subterranean
+		}
+	}
+
+	duration = @duration_simple
+
+	potential = {
+		exists = owner
+		has_technology = tech_terrestrial_sculpting
+		from = {
+			OR = {
+				has_modifier = "class_tomb"
+				has_modifier = "class_tomb_restored"
+				has_modifier = "class_barren_terraformed"
+			}
+		}			
+	}
+
+	effect = {
+		from = {
+			# IF terraforming a surface environemnt
+			if = {
+				limit = { NOT = { has_planet_flag = "subterranean_terraforming" } }
+				set_planet_flag = "subterranean_terraforming"
+				add_modifier = { modifier = "subterranean_terraformed" days = -1 }
+				roll_subterranean = yes
+			}
+			# ELSE means its being changed back to the surface environment
+			else = {
+				remove_modifier = subterranean_terraformed
+				remove_planet_flag = "subterranean_terraforming"
+				surface_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			NOT = { from = { has_planet_flag = "subterranean_terraforming" } }
+			from = { habitability = { who = root.owner value >= 0.60 } }
+		}
+		modifier = {
+			factor = 0
+			from = { has_planet_flag = "subterranean_terraforming" }
+			from = { habitability = { who = root.owner value <= 0.95 } }
+		}
+	}
+}

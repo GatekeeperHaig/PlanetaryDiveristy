@@ -1,0 +1,2105 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Convert the planet's atmosphere
+decision_atmospheric_conversion-higher_water_vapour = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			greenhouse_gases = 1000
+			water_ices = 2000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			greenhouse_gases = 1100
+			water_ices = 2200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			greenhouse_gases = 1200
+			water_ices = 2400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			greenhouse_gases = 1400
+			water_ices = 2800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			greenhouse_gases = 1600
+			water_ices = 3200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			greenhouse_gases = 2000
+			water_ices = 4000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			greenhouse_gases = 2500
+			water_ices = 5000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			greenhouse_gases = 3300
+			water_ices = 6600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			greenhouse_gases = 5000
+			water_ices = 10000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			greenhouse_gases = 10000
+			water_ices = 20000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for species with the same atmosphere type, determined by their homeworld (knowing a specific planet class is associated with a specific atmosphere type)
+	# Decision is disabled if owner does not have valid homeworld class
+	potential = {
+		OR = {
+			owner = { ideal_planet_class = pc_ocean }
+		}
+		NOT = { has_modifier = "atmosphere-higher_water_vapour" }
+		NOT = { has_sub_marginal_atmosphere = yes }
+		is_regular_habitable_planet = yes
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-higher_water_vapour"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+}
+
+decision_atmospheric_conversion-variable_water_vapour = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			greenhouse_gases = 1000
+			water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			greenhouse_gases = 1100
+			water_ices = 1100
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			greenhouse_gases = 1200
+			water_ices = 1200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			greenhouse_gases = 1400
+			water_ices = 1400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			greenhouse_gases = 1600
+			water_ices = 1600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			greenhouse_gases = 2000
+			water_ices = 2000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			greenhouse_gases = 2500
+			water_ices = 2500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			greenhouse_gases = 3300
+			water_ices = 3300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			greenhouse_gases = 5000
+			water_ices = 5000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			greenhouse_gases = 10000
+			water_ices = 10000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for species with the same atmosphere type, determined by their homeworld (knowing a specific planet class is associated with a specific atmosphere type)
+	# Decision is disabled if owner does not have valid homeworld class
+	potential = {
+		OR = {
+			owner = { ideal_planet_class = pc_continental }
+			owner = { ideal_planet_class = pc_arctic }
+		}
+		NOT = { has_modifier = "atmosphere-variable_water_vapour" }
+		NOT = { has_sub_marginal_atmosphere = yes }
+		is_regular_habitable_planet = yes
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-variable_water_vapour"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+
+}
+
+decision_atmospheric_conversion-oxygen_carbon_mix = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			greenhouse_gases = 2000
+			water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			greenhouse_gases = 2200
+			water_ices = 1100
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			greenhouse_gases = 2400
+			water_ices = 1200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			greenhouse_gases = 2800
+			water_ices = 1400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			greenhouse_gases = 3200
+			water_ices = 1600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			greenhouse_gases = 4000
+			water_ices = 2000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			greenhouse_gases = 5000
+			water_ices = 2500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			greenhouse_gases = 6600
+			water_ices = 3300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			greenhouse_gases = 10000
+			water_ices = 5000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			greenhouse_gases = 20000
+			water_ices = 10000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for species with the same atmosphere type, determined by their homeworld (knowing a specific planet class is associated with a specific atmosphere type)
+	# Decision is disabled if owner does not have valid homeworld class
+	potential = {
+		OR = {
+			owner = { ideal_planet_class = pc_tropical }
+			owner = { ideal_planet_class = pc_nuked }
+		}
+		NOT = { has_modifier = "atmosphere-oxygen_carbon_mix" }
+		NOT = { has_sub_marginal_atmosphere = yes }
+		is_regular_habitable_planet = yes
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-oxygen_carbon_mix"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+
+}
+
+decision_atmospheric_conversion-lower_water_vapour = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			greenhouse_gases = 1000
+			water_ices = 500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			greenhouse_gases = 1100
+			water_ices = 550
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			greenhouse_gases = 1200
+			water_ices = 600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			greenhouse_gases = 1400
+			water_ices = 700
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			greenhouse_gases = 1600
+			water_ices = 800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			greenhouse_gases = 2000
+			water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			greenhouse_gases = 2500
+			water_ices = 1250
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			greenhouse_gases = 3300
+			water_ices = 1650
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			greenhouse_gases = 5000
+			water_ices = 2500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			greenhouse_gases = 10000
+			water_ices = 5000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for species with the same atmosphere type, determined by their homeworld (knowing a specific planet class is associated with a specific atmosphere type)
+	# Decision is disabled if owner does not have valid homeworld class
+	potential = {
+		OR = {
+			owner = { ideal_planet_class = pc_savannah }
+			owner = { ideal_planet_class = pc_tundra }
+		}
+		NOT = { has_modifier = "atmosphere-lower_water_vapour" }
+		NOT = { has_sub_marginal_atmosphere = yes }
+		is_regular_habitable_planet = yes
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-lower_water_vapour"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+
+}
+
+decision_atmospheric_conversion-carbon_poor = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			water_ices = 2000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			water_ices = 2200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			water_ices = 2400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			water_ices = 2800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			water_ices = 3200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			water_ices = 4000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			water_ices = 5000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			water_ices = 6600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			water_ices = 10000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			water_ices = 20000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for species with the same atmosphere type, determined by their homeworld (knowing a specific planet class is associated with a specific atmosphere type)
+	# Decision is disabled if owner does not have valid homeworld class
+	potential = {
+		OR = {
+			owner = { ideal_planet_class = pc_alpine }
+		}
+		NOT = { has_modifier = "atmosphere-carbon_poor" }
+		NOT = { has_sub_marginal_atmosphere = yes }
+		is_regular_habitable_planet = yes
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-carbon_poor"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+
+}
+
+decision_atmospheric_conversion-carbon_rich = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			greenhouse_gases = 3000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			greenhouse_gases = 3300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			greenhouse_gases = 3600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			greenhouse_gases = 4200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			greenhouse_gases = 4800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			greenhouse_gases = 6000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			greenhouse_gases = 7500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			greenhouse_gases = 9900
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			greenhouse_gases = 15000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			greenhouse_gases = 30000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for species with the same atmosphere type, determined by their homeworld (knowing a specific planet class is associated with a specific atmosphere type)
+	# Decision is disabled if owner does not have valid homeworld class
+	potential = {
+		OR = {
+			owner = { ideal_planet_class = pc_arid }
+		}
+		NOT = { has_modifier = "atmosphere-carbon_rich" }
+		NOT = { has_sub_marginal_atmosphere = yes }
+		is_regular_habitable_planet = yes
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-carbon_rich"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+
+}
+
+decision_atmospheric_conversion-marginal = {
+	icon = decision_atmospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 1080
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the atmosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			greenhouse_gases = 1000
+			water_ices = 500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			greenhouse_gases = 1100
+			water_ices = 550
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			greenhouse_gases = 1200
+			water_ices = 600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			greenhouse_gases = 1400
+			water_ices = 700
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			greenhouse_gases = 1600
+			water_ices = 800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			greenhouse_gases = 2000
+			water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			greenhouse_gases = 2500
+			water_ices = 1250
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			greenhouse_gases = 3300
+			water_ices = 1650
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			greenhouse_gases = 5000
+			water_ices = 2500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			greenhouse_gases = 10000
+			water_ices = 5000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+	
+	# Only for improving the atmosphere of Barren class terraformed worlds, it will be the only sub-marginal type allowed to improve it (for now)
+	potential = {
+		NOT = { has_modifier = "atmosphere-hot_marginal" }
+		has_modifier = "class_barren_terraformed"
+		NOT = { has_marginal_atmosphere = yes }
+		NOT = { has_optimal_atmosphere = yes }
+	}
+
+	effect = {
+		remove_atmosphere_modifier = yes
+		add_modifier = {
+			modifier = "atmosphere-hot_marginal"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes			
+		}		
+	}
+
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has habitability below 70%
+			add = 10
+			habitability = { who = root.owner value < 0.70 }	
+		}
+		modifier = {
+			# Low weight is spacies has habitability below 85%
+			add = 5
+			habitability = { who = root.owner value < 0.85 }
+		}
+	}
+
+}
+
+# Convert the planet's biosphere
+decision_biospheric_conversion-tenuous = {
+	icon = decision_biospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the biosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			seeds = 500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			seeds = 550
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			seeds = 600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			seeds = 700
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			seeds = 800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			seeds = 1000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			seeds = 1250
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			seeds = 1650
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			seeds = 2500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			seeds = 5000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+
+	# Decision is disabled if the planet class does not support Tenuous biosphere or if it is already present on the planet
+	potential = {
+		NOT = { has_modifier = "biosphere-tenuous" }
+		supports_tenuous_biosphere = yes
+	}
+
+	effect = {
+		remove_biosphere_modifier = yes
+		add_modifier = {
+			modifier = "biosphere-tenuous"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes
+			surface_colony_update = yes
+		}		
+	}
+
+	prerequisites = {
+		"tech_ecological_adaptation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has Tenuous preference
+			add = 10
+			OR = {
+				owner = { ideal_planet_class = pc_alpine }
+			}			
+		}
+		modifier = {
+			# Low weight is spacies has Sparse preference and planet does not support sparse biosphere
+			add = 5
+			OR = {
+				owner = { ideal_planet_class = pc_desert }
+				owner = { ideal_planet_class = pc_savannah }
+				owner = { ideal_planet_class = pc_arctic }
+				owner = { ideal_planet_class = pc_arid }
+			}
+			NOR = {
+				has_modifier = "biosphere-sparse"
+				supports_sparse_biosphere = yes
+			}
+		}
+	}
+}
+
+decision_biospheric_conversion-sparse = {
+	icon = decision_biospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the biosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			seeds = 1000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			seeds = 1100
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			seeds = 1200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			seeds = 1400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			seeds = 1600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			seeds = 2000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			seeds = 2500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			seeds = 3300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			seeds = 5000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			seeds = 10000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+
+	# Decision is disabled if the planet class does not support Sparse biosphere or if it is already present on the planet
+	potential = {
+		NOT = { has_modifier = "biosphere-sparse" }
+		supports_sparse_biosphere = yes
+	}
+
+	effect = {
+		remove_biosphere_modifier = yes
+		add_modifier = {
+			modifier = "biosphere-sparse"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes
+			surface_colony_update = yes
+		}
+	}
+
+	prerequisites = {
+		"tech_ecological_adaptation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has Sparse preference
+			add = 10
+			OR = {
+				owner = { ideal_planet_class = pc_desert }
+				owner = { ideal_planet_class = pc_savannah }
+				owner = { ideal_planet_class = pc_arctic }
+				owner = { ideal_planet_class = pc_arid }
+			}			
+		}
+		modifier = {
+			# Low weight is spacies has Tenuous preference and planet does not support tenuous biosphere
+			add = 5
+			OR = {
+				owner = { ideal_planet_class = pc_alpine }
+			}
+			NOR = {
+				has_modifier = "biosphere-tenuous"
+				supports_tenuous_biosphere = yes
+			}
+		}
+		modifier = {
+			# Low weight is spacies has Diverse preference and planet does not support diverse biosphere
+			add = 5
+			OR = {
+				owner = { ideal_planet_class = pc_continental }
+				owner = { ideal_planet_class = pc_ocean }
+				owner = { ideal_planet_class = pc_tundra }
+			}
+			NOR = {
+				has_modifier = "biosphere-diverse"
+				supports_diverse_biosphere = yes
+			}
+		}
+	}
+}
+
+decision_biospheric_conversion-diverse = {
+	icon = decision_biospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the biosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			seeds = 2000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			seeds = 2200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			seeds = 2400
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			seeds = 2800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			seeds = 3200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			seeds = 4000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			seeds = 5000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			seeds = 6600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			seeds = 10000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			seeds = 20000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+
+	# Decision is disabled if the planet class does not support Diverse biosphere or if it is already present on the planet
+	potential = {
+		NOT = { has_modifier = "biosphere-diverse" }
+		supports_diverse_biosphere = yes
+	}
+
+	effect = {
+		remove_biosphere_modifier = yes
+		add_modifier = {
+			modifier = "biosphere-diverse"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes
+			surface_colony_update = yes
+		}
+	}
+
+	prerequisites = {
+		"tech_ecological_adaptation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has Diverse preference
+			add = 10
+			OR = {
+				owner = { ideal_planet_class = pc_continental }
+				owner = { ideal_planet_class = pc_ocean }
+				owner = { ideal_planet_class = pc_tundra }
+			}			
+		}
+		modifier = {
+			# Low weight is spacies has Sparse preference and planet does not support sparse biosphere
+			add = 5
+			OR = {
+				owner = { ideal_planet_class = pc_desert }
+				owner = { ideal_planet_class = pc_savannah }
+				owner = { ideal_planet_class = pc_arctic }
+				owner = { ideal_planet_class = pc_arid }
+			}
+			NOR = {
+				has_modifier = "biosphere-sparse"
+				supports_sparse_biosphere = yes
+			}
+		}
+		modifier = {
+			# Low weight is spacies has Dense preference and planet does not support dense biosphere
+			add = 5
+			OR = {
+				owner = { ideal_planet_class = pc_tropical }
+			}
+			NOR = {
+				has_modifier = "biosphere-dense"
+				supports_dense_biosphere = yes
+			}
+		}
+	}
+}
+
+decision_biospheric_conversion-dense = {
+	icon = decision_biospheric_conversion
+	owned_planets_only = yes
+
+	enactment_time = 720
+
+	# The cost is modified by the planet's habitability
+	# The logic is, if the planet is too hostile, the biosphere is likely very different than the intended one, so the cost increases
+	resources = {	
+		category = decisions
+		
+		# Modify cost based on planet current habitability
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value >= 0.90 }
+			}
+			energy = 1000
+			seeds = 3000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.90 }
+				habitability = { who = root.owner value >= 0.80 }
+			}
+			energy = 1100
+			seeds = 3300
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.80 }
+				habitability = { who = root.owner value >= 0.70 }
+			}
+			energy = 1200
+			seeds = 3600
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.70 }
+				habitability = { who = root.owner value >= 0.60 }
+			}
+			energy = 1400
+			seeds = 4200
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.60 }
+				habitability = { who = root.owner value >= 0.50 }
+			}
+			energy = 1600
+			seeds = 4800
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.50 }
+				habitability = { who = root.owner value >= 0.40 }
+			}
+			energy = 2000
+			seeds = 6000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.40 }
+				habitability = { who = root.owner value >= 0.30 }
+			}
+			energy = 2500
+			seeds = 7500
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.30 }
+				habitability = { who = root.owner value >= 0.20 }
+			}
+			energy = 3300
+			seeds = 9900
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.20 }
+				habitability = { who = root.owner value >= 0.10 }
+			}
+			energy = 5000
+			seeds = 15000
+		}
+		cost = {
+			trigger = {
+				habitability = { who = root.owner value < 0.10 }
+			}
+			energy = 10000
+			seeds = 30000
+		}
+	}
+
+	# A required number of Terraforming districts is required to allow Decision to be enacted
+	# Number of districts is determined by planet size
+	allow = {
+		if = {
+			limit = { planet_size < 11 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_10_tooltip
+				num_districts = { type = district_terraforming value >= 1 }
+			}
+		}
+		if = {
+			limit = { planet_size > 10 planet_size < 14 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_11_tooltip
+				num_districts = { type = district_terraforming value >= 2 }
+			}
+		}
+		if = {
+			limit = { planet_size > 13 planet_size < 17 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_14_tooltip
+				num_districts = { type = district_terraforming value >= 3 }
+			}
+		}
+		if = {
+			limit = { planet_size > 16 planet_size < 20 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_17_tooltip
+				num_districts = { type = district_terraforming value >= 4 }
+			}
+		}
+		if = {
+			limit = { planet_size > 19 planet_size < 23 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_20_tooltip
+				num_districts = { type = district_terraforming value >= 5 }
+			}
+		}
+		if = {
+			limit = { planet_size > 22 }
+			custom_tooltip = {
+				fail_text = decision_atmosphere_upgrade_23_tooltip
+				num_districts = { type = district_terraforming value >= 6 }
+			}
+		}
+	}
+
+	# Decision is disabled if the planet class does not support Dense biosphere or if it is already present on the planet
+	potential = {
+		NOT = { has_modifier = "biosphere-dense" }
+		supports_dense_biosphere = yes
+	}
+
+	effect = {
+		remove_biosphere_modifier = yes
+		add_modifier = {
+			modifier = "biosphere-dense"
+			days = -1
+		}
+		hidden_effect = {
+			correct_atmosphere_color = yes
+			surface_colony_update = yes
+		}
+	}
+
+	prerequisites = {
+		"tech_ecological_adaptation"
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# High weight if species has Dense preference
+			add = 10
+			OR = {
+				owner = { ideal_planet_class = pc_tropical }
+			}			
+		}
+		modifier = {
+			# Low weight is spacies has Diverse preference and planet does not support diverse biosphere
+			add = 5
+			OR = {
+				owner = { ideal_planet_class = pc_continental }
+				owner = { ideal_planet_class = pc_ocean }
+				owner = { ideal_planet_class = pc_tundra }
+			}
+			NOR = {
+				has_modifier = "biosphere-diverse"
+				supports_diverse_biosphere = yes
+			}
+		}
+	}
+}

@@ -1,0 +1,104 @@
+## Effects to run after terraforming without changing the planet class - Change to an underground environment
+
+roll_subterranean = {
+	# Standard habitable worlds will get the cabe biome associated with the planet's climate unless the species is aquatic
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_desert
+				is_planet_class = pc_arid
+				is_planet_class = pc_savannah
+			}
+			NOT = { prev = { has_trait = trait_aquatic } }
+		}
+		set_planet_entity = {
+			picture = "biome_hot_subterranean"			
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_tropical
+				is_planet_class = pc_continental
+				is_planet_class = pc_ocean
+			}
+			NOT = { prev = { has_trait = trait_aquatic } }
+		}
+		set_planet_entity = {
+			picture = "biome_temperate_subterranean"			
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_arctic
+				is_planet_class = pc_tundra
+				is_planet_class = pc_alpine
+			}
+			NOT = { prev = { has_trait = trait_aquatic } }
+		}
+		set_planet_entity = {
+			picture = "biome_frigid_subterranean"			
+		}
+	}
+	if = {
+		limit = {
+			prev = { has_trait = trait_aquatic }
+		}
+		set_planet_entity = {
+			picture = "biome_aquatic_subterranean"			
+		}
+	}
+	else = {
+		# If the species has a Hot climate preference
+		if = {
+			limit = {
+				OR = {
+					prev = { ideal_planet_class = pc_desert }
+					prev = { ideal_planet_class = pc_arid }
+					prev = { ideal_planet_class = pc_savannah }
+				}
+			}
+			set_planet_entity = {
+				picture = "biome_hot_subterranean"			
+			}
+		}
+		# If the species has a Temperate climate preference
+		if = {
+			limit = {
+				OR = {
+					prev = { ideal_planet_class = pc_continental }
+					prev = { ideal_planet_class = pc_tropical }
+					prev = { ideal_planet_class = pc_ocean NOT = { has_trait = trait_aquatic } }
+					prev = { ideal_planet_class = pc_gaia }
+				}
+			}
+			set_planet_entity = {
+				picture = "biome_temperate_subterranean"			
+			}
+		}
+		# If the species has a Frigid climate preference
+		if = {
+			limit = {
+				OR = {
+					prev = { ideal_planet_class = pc_arctic }
+					prev = { ideal_planet_class = pc_tundra }
+					prev = { ideal_planet_class = pc_alpine }
+					prev = { ideal_planet_class = pc_nuked }
+				}
+			}
+			set_planet_entity = {
+				picture = "biome_frigid_subterranean"			
+			}
+		}
+		# If the species has the Aquatic trait
+		if = {
+			limit = {
+				prev = { has_trait = trait_aquatic }
+			}
+			set_planet_entity = {
+				picture = "biome_aquatic_subterranean"			
+			}
+		}
+	}	
+}

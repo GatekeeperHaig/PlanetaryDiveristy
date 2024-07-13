@@ -1,0 +1,213 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Tomb world atmospheric restoration - Disabled, it was replaced in ATW Extended submod
+#decision_tomb_restoration = {
+#	icon = decision_tomb_restoration
+#	owned_planets_only = yes
+#
+#	enactment_time = 1800
+#	resources = {
+#		category = decisions
+#		cost = {
+#			energy = 7500
+#		}
+#	}
+#
+#	allow = {
+#		#is_planet_class = "pc_nuked"		
+#	}
+#	
+#	potential = {
+#		is_planet_class = "pc_nuked"
+#		has_modifier = "class_tomb"
+#	}
+#
+#	effect = {
+#		hidden_effect = {
+#			remove_atmosphere_modifier = yes
+#			remove_biosphere_modifier = yes
+#			#remove_class_modifier = yes
+#			add_modifier = { modifier = "atmosphere-thick_blue" days = -1 }
+#			add_modifier = { modifier = "biosphere-sparse" days = -1 }
+#		}
+#		remove_modifier = class_tomb
+#		add_modifier = { modifier = "class_tomb_restored" days = -1 }
+#		set_planet_entity = {
+#			picture = "biome_radiotrophic"
+#			entity = "tomb_planet_01_entity"
+#			atmosphere_color 		= hsv { 0.55 0.1 0.90 }
+#			atmosphere_intensity 	= 1.0
+#			atmosphere_width 		= 0.5
+#		}
+#		every_deposit = {
+#			limit = { is_deposit_type = d_radioactive_wasteland }	# -1 blocker
+#			prev = { remove_deposit = d_radioactive_wasteland }
+#			prev = { add_deposit = d_radiotrophic_fungi }
+#		}
+#		every_deposit = {
+#			limit = { is_deposit_type = d_bomb_crater }				# -1 blocker
+#			prev = { remove_deposit = d_bomb_crater }
+#			prev = { add_deposit = d_lush_cave }
+#		}
+#		add_deposit = d_fungal_forest
+#	}
+#	
+#	ai_weight = {
+#       weight = 1
+#	}
+#}
+
+# Habitable geo survey
+decision_small_geo_survey = {
+	owned_planets_only = yes
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+			energy = 250
+		}
+	}
+
+	potential = {
+		# Only regular planets plus Nuked as it represents marginal worlds, gaias excluded
+		OR = {
+			is_planet_class = pc_desert
+			is_planet_class = pc_tropical
+			is_planet_class = pc_arid
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tundra
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_savannah
+			is_planet_class = pc_nuked
+		}
+		NOT = { has_planet_flag = planet_geo_surveyed }
+		NOT = { owner = { is_machine_empire = yes } }
+		NOT = { is_homeworld = yes }
+		# Small planets only
+		planet_size < 14
+	}
+
+	effect = {
+		custom_tooltip = decision_small_geo_survey_effects_short
+		hidden_effect = {
+			set_planet_flag = planet_geo_surveyed
+			add_geo_survey_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 3
+		}
+	}
+}
+decision_medium_geo_survey = {
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			energy = 500
+		}
+	}
+
+	potential = {
+		# Only regular planets plus Nuked as it represents marginal worlds, gaias excluded
+		OR = {
+			is_planet_class = pc_desert
+			is_planet_class = pc_tropical
+			is_planet_class = pc_arid
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tundra
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_savannah
+			is_planet_class = pc_nuked
+		}
+		NOT = { has_planet_flag = planet_geo_surveyed }
+		NOT = { owner = { is_machine_empire = yes } }
+		NOT = { is_homeworld = yes }
+		# Medium planets only
+		planet_size > 13
+		planet_size < 22
+	}
+
+	effect = {
+		custom_tooltip = decision_medium_geo_survey_effects_short
+		hidden_effect = {
+			set_planet_flag = planet_geo_surveyed
+			add_geo_survey_deposits = yes
+			add_geo_survey_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 3
+		}
+	}
+}
+decision_large_geo_survey = {
+	owned_planets_only = yes
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			energy = 1000
+		}
+	}
+
+	potential = {
+		# Only regular planets plus Nuked as it represents marginal worlds, gaias excluded
+		OR = {
+			is_planet_class = pc_desert
+			is_planet_class = pc_tropical
+			is_planet_class = pc_arid
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+			is_planet_class = pc_tundra
+			is_planet_class = pc_arctic
+			is_planet_class = pc_alpine
+			is_planet_class = pc_savannah
+			is_planet_class = pc_nuked
+		}
+		NOT = { has_planet_flag = planet_geo_surveyed }
+		NOT = { owner = { is_machine_empire = yes } }
+		NOT = { is_homeworld = yes }
+		# Large planets only
+		planet_size > 21
+	}
+
+	effect = {
+		custom_tooltip = decision_large_geo_survey_effects_short
+		hidden_effect = {
+			set_planet_flag = planet_geo_surveyed
+			add_geo_survey_deposits = yes
+			add_geo_survey_deposits = yes
+			add_geo_survey_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			num_pops < 3
+		}
+	}
+}

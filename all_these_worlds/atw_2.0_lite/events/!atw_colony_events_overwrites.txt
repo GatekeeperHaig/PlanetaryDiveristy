@@ -1,0 +1,781 @@
+############################
+#
+# Colony Events
+#
+# Written by Henrik Thyrwall
+#
+############################
+
+namespace = colony
+
+############################
+#
+# Overwrite Tomb world events
+# Simply replace 'is_planet_class = "pc_nuked"' with 'has_modifier = class_tomb' as only pc_nuked spawned at game start receive that flag
+# and the code converts a percentage of random uninhabitable planets into pc_nuked meant to be used as marginal worlds of different classes.
+# We don't want tomb world events triggering on colonies that are not actually Tomb class.
+#
+############################
+
+# Special Project Completed 4 (Tomb World)
+planet_event = {
+	id = colony.107
+	title = "PROJECT_COMPLETE"
+	desc = {
+		trigger = {
+			NOR = {
+				owner = { is_apocalyptic_empire = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		text = "colony.107.desc"
+	}
+	desc = {
+		trigger = {
+			OR = {
+				owner = { is_apocalyptic_empire = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		text = "colony.107.desc.nuked_pref"
+	}
+	picture = GFX_evt_dead_city
+	show_sound = event_activating_unknown_technology
+	location = ROOT
+
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			NOR = {
+				owner = { is_apocalyptic_empire = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		name = colony.107.a
+		change_pc = pc_nuked
+		remove_biosphere_modifier = yes # NEW
+		roll_tomb = yes # NEW
+		hidden_effect = { set_planet_flag = nuked_planet_anomalies_disabled }
+		if = { #Destroys colony if no planet pops can live on Tomb Worlds
+			limit = {
+				NOT = {
+					any_owned_pop = {
+						OR = {
+							has_trait = trait_pc_nuked_preference
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+							has_trait = trait_survivor
+							has_trait = trait_cave_dweller
+							has_trait = trait_presapient_irradiated
+							has_trait = trait_plantoid_radiotrophic
+							has_trait = trait_lithoid_radiotrophic
+							has_trait = trait_harvested_radiotrophic
+						}
+					}
+				}
+			}
+			destroy_colony = yes
+		}
+		else = { #Kills only planet pops that cannot live on Tomb Worlds
+			hidden_effect = {
+				every_owned_pop = {
+					limit = {
+						NOR = {
+							has_trait = trait_pc_nuked_preference
+							has_trait = trait_mechanical
+							has_trait = trait_machine_unit
+							has_trait = trait_survivor
+							has_trait = trait_cave_dweller
+							has_trait = trait_presapient_irradiated
+							has_trait = trait_plantoid_radiotrophic
+							has_trait = trait_lithoid_radiotrophic
+							has_trait = trait_harvested_radiotrophic
+						}
+					}
+					kill_pop = yes
+				}
+			}
+			custom_tooltip = colony.107.a.tooltip
+		}
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+		}
+	}
+	option = {
+		trigger = {
+			OR = {
+				owner = { is_apocalyptic_empire = yes }
+				owner.species = { has_trait = trait_pc_nuked_preference }
+			}
+		}
+		name = EXCELLENT
+		hidden_effect = {
+			change_pc = pc_nuked
+			remove_biosphere_modifier = yes # NEW
+			roll_tomb = yes # NEW
+		}
+		set_planet_flag = nuked_planet_anomalies_disabled
+		hidden_effect = {
+			remove_modifier = "abandoned_terraforming"
+		}
+	}
+}
+
+### Underground Vault
+planet_event = {
+	id = colony.150
+	title = "colony.150.name"
+	desc = "colony.150.desc"
+	picture = GFX_evt_underground_civilization
+	show_sound = event_mystic_reveal
+	location = ROOT
+	trackable = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = { has_global_flag = underground_vault_global }
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		NOR = {
+			has_planet_flag = pre_ftls_nuked_themselves
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		owner = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+		}
+		num_pops > 0
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = underground_vault_planet
+		set_global_flag = underground_vault_global
+	}
+
+	option = {
+		name = colony.150.a
+		enable_special_project = {
+			name = "UNDERGROUND_VAULT_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	option = {
+		name = colony.150.b
+	}
+}
+
+# Nuclear Bomb
+planet_event = {
+	id = colony.155
+	title = "colony.155.name"
+	desc = "colony.155.desc"
+	picture = GFX_evt_colony_settlement
+	show_sound = event_air_raid_siren
+	location = ROOT
+	trackable = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		OR = {
+			has_planet_flag = pre_ftls_nuked_themselves
+			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		}
+		NOR = {
+			has_planet_flag = wasteland_nuclear_bomb
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		num_pops > 0
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_155
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = wasteland_nuclear_bomb
+			owner = {
+				set_country_flag = had_colony_155
+			}
+		}
+	}
+
+	option = {
+		name = colony.155.a
+		enable_special_project = {
+			name = "NUCLEAR_BOMB_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+# Particle Accelerator
+planet_event = {
+	id = colony.160
+	title = "colony.160.name"
+	desc = "colony.160.desc"
+	picture = GFX_evt_physics_research
+	show_sound = event_laboratory_sound
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		OR = {
+			has_planet_flag = pre_ftls_nuked_themselves
+			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		}
+		NOR = {
+			has_planet_flag = wasteland_particle_accelerator
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		num_pops > 0
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_160
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_planet_flag = wasteland_particle_accelerator
+		owner = {
+			set_country_flag = had_colony_160
+		}
+	}
+
+	option = {
+		name = FASCINATING
+		add_deposit = d_ancient_particle_accelerator
+	}
+}
+
+# Surviving Infrastructure
+planet_event = {
+	id = colony.161
+	title = "colony.161.name"
+	desc = "colony.161.desc"
+	picture = GFX_evt_city_ruins
+	show_sound = event_administrative_work
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		OR = {
+			has_planet_flag = pre_ftls_nuked_themselves
+			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		}
+		NOR = {
+			has_planet_flag = wasteland_infrastructure
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		num_pops > 0
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_161
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = wasteland_infrastructure
+			owner = {
+				set_country_flag = had_colony_161
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		add_modifier = {
+			modifier = "wasteland_infrastructure"
+			days = -1
+		}
+	}
+}
+
+# Space Station
+planet_event = {
+	id = colony.162
+	title = "colony.162.name"
+	desc = "colony.162.desc"
+	picture = GFX_evt_satellite_in_orbit
+	show_sound = event_ship_bridge
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		NOR = {
+			has_planet_flag = wasteland_space_station
+			has_planet_flag = pre_ftls_nuked_themselves
+			has_planet_flag = nuked_planet_anomalies_disabled
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		num_pops > 0
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_162
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = wasteland_space_station
+			owner = {
+				set_country_flag = had_colony_162
+			}
+		}
+	}
+
+	option = {
+		name = INTRIGUING
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+	}
+}
+
+# Wasteland Radiation
+planet_event = {
+	id = colony.163
+	title = "colony.163.name"
+	desc = "colony.163.desc"
+	picture = GFX_evt_colony_settlement
+	show_sound = event_administrative_work
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		OR = {
+			has_planet_flag = pre_ftls_nuked_themselves
+			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		}
+		NOR = {
+			has_planet_flag = wasteland_radiation
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		owner = {
+			empire_has_good_habitability_on_tomb_worlds = no
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+		}
+		num_pops > 0
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_163
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = wasteland_radiation
+			owner = {
+				set_country_flag = had_colony_163
+			}
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		add_modifier = {
+			modifier = "wasteland_radiation"
+			days = 3600
+		}
+	}
+}
+
+# Pacifist Movement
+planet_event = {
+	id = colony.164
+	title = "colony.164.name"
+	desc = "colony.164.desc"
+	picture = GFX_evt_smugglers_in_bar
+	show_sound = event_administrative_work
+	location = ROOT
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		OR = {
+			has_planet_flag = pre_ftls_nuked_themselves
+			NOT = { has_planet_flag = nuked_planet_anomalies_disabled }
+		}
+		NOR = {
+			has_planet_flag = wasteland_pacifist_movement
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		owner = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+		num_pops > 0
+		any_owned_pop = {
+			NOR = {
+				pop_has_trait = trait_mechanical
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+			}
+			is_enslaved = no
+			is_being_purged = no
+		}
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_164
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	#mean_time_to_happen = {
+	#	months = 240
+	#}
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = wasteland_pacifist_movement
+			owner = {
+				set_country_flag = had_colony_164
+			}
+		}
+	}
+
+	option = {
+		name = colony.164.a
+		custom_tooltip = colony.164.a.tooltip
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = "ethic_militarist"
+					has_ethic = "ethic_fanatic_militarist"
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+			}
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+	}
+	option = {
+		name = colony.164.b
+		custom_tooltip = colony.164.a.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = "ethic_militarist"
+					has_ethic = "ethic_fanatic_militarist"
+				}
+			}
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+	}
+	option = {
+		name = colony.164.c
+		custom_tooltip = colony.164.a.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+			}
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+		random_owned_pop = {
+			limit = {
+				NOR = {
+					has_ethic = "ethic_pacifist"
+					pop_has_trait = trait_mechanical
+				}
+			}
+			pop_change_ethic = ethic_pacifist
+		}
+	}
+}
+
+# Orbital Debris
+planet_event = {
+	id = colony.170
+	title = "colony.170.name"
+	desc = "colony.170.desc"
+	picture = GFX_evt_satellite_in_orbit
+	show_sound = event_ship_bridge
+	location = ROOT
+	trackable = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = armageddon_nuked
+			has_planet_flag = colony_event
+		}
+		has_modifier = class_tomb
+		NOR = {
+			has_planet_flag = wasteland_orbital_debris
+			has_planet_flag = pre_ftls_nuked_themselves
+			has_planet_flag = nuked_planet_anomalies_disabled
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+		num_pops > 0
+		NOT = {
+			owner = {
+				has_country_flag = had_colony_170
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = wasteland_orbital_debris
+			owner = {
+				set_country_flag = had_colony_170
+			}
+		}
+	}
+
+	option = {
+		name = colony.170.a
+		add_modifier = {
+			modifier = "wasteland_orbital_debris"
+			days = -1
+		}
+		enable_special_project = {
+			name = "ORBITAL_DEBRIS_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = { id = colony.171 days = 200 random = 7000 } # previously MTTH 240 months (20 years)
+			planet_event = { id = colony.172 days = 200 random = 7000 } # previously MTTH 240 months (20 years)
+		}
+	}
+}

@@ -1,0 +1,562 @@
+
+# This mod assumes most orbital deposits are associated with a planet modifier, including with stars and asteroids.
+# First step is to remove any deposits but only if its a regular deposit, to avoid messing with scripted stuff. Then remove any regular modifiers as well.
+# Some modifiers, like Dense Atmosphere which all gas giants have, are always associated with energy deposits, giving from 0 to 3 energy depending on the planet size.
+# Ringed planets or gas giants will also get an associated modifier and trade value bonus, representing private prospectors mining the rings for profit.
+# Finally, each star, asteroid and planet class will get a chance to spawn one bonus modifier, depending on planet class, which will result in a deposit which in some cases has a variable ammount depending on planet size.
+
+spawn_star_features = {
+	# Spawn a random modifier that results in an orbital deposit, or spawn nothing:
+	random_list = {
+		# Spawn nothing
+		50 = {
+			modifier = { factor = 0 is_planet_class = "pc_d_star" }
+			modifier = { factor = 0 is_planet_class = "pc_neutron_star" }
+			modifier = { factor = 0 is_planet_class = "pc_pulsar" }
+			modifier = { factor = 0 is_planet_class = "pc_black_hole" }
+		}
+		# Flare Star
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_m_star" }
+			modifier = { factor = 2 planet_size < 28 }
+			modifier = { factor = 5 planet_size < 24 }
+			add_modifier = {
+				modifier = "flare_star"
+				days = -1
+			}
+			add_deposit = d_engineering_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Dying Star
+		0 = {
+			modifier = { add = 5 is_planet_class = "pc_m_giant_star" }
+			modifier = { factor = 2 planet_size > 31 }
+			modifier = { factor = 5 planet_size > 33 }
+			add_modifier = {
+				modifier = "dying_star"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Fast-spinning Brown Dwarf
+		0 = {
+			modifier = { add = 5 is_planet_class = "pc_t_star" }
+			add_modifier = {
+				modifier = "fast_spinning_dwarf"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Degenerate Star
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_d_star" }
+			modifier = { add = 10 is_planet_class = "pc_neutron_star" }
+			add_modifier = {
+				modifier = "degenerate_star"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# Pulsar
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_pulsar" }
+			modifier = { factor = 0 has_planet_flag = "x-ray" }
+			add_modifier = {
+				modifier = "pulsar"
+				days = -1
+			}
+			add_deposit = d_physics_2
+			set_planet_flag = "deposit_spawned"
+		}
+		# X-ray Pulsar
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_pulsar" has_planet_flag = "x-ray" }
+			add_modifier = {
+				modifier = "x-ray_pulsar"
+				days = -1
+			}
+			add_deposit = d_physics_3
+			set_planet_flag = "deposit_spawned"
+		}
+		# Black-hole
+		0 = {
+			modifier = { add = 10 is_planet_class = "pc_black_hole" }
+			add_modifier = {
+				modifier = "black_hole"
+				days = -1
+			}
+			random_list = {
+				0 = {
+					modifier = { add = 10 planet_size < 28 }
+					add_deposit = d_physics_2
+				}
+				0 = {
+					modifier = { add = 10 planet_size > 27 planet_size < 33 }
+					add_deposit = d_physics_3
+					add_deposit = d_dark_matter_deposit_1
+				}
+				0 = {
+					modifier = { add = 10 planet_size > 32 }
+					add_deposit = d_physics_4
+					add_deposit = d_dark_matter_deposit_2
+				}
+			}			
+			set_planet_flag = "deposit_spawned"
+		}
+	}
+}
+spawn_star_features_alt = {
+	# Makes sure special starts always have the modifier, even without deposits
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = "pc_d_star" 
+				is_planet_class = "pc_neutron_star"
+			}
+		}
+		add_modifier = {
+			modifier = "degenerate_star"
+			days = -1
+		}
+	}
+	else_if = {
+		limit = { is_planet_class = "pc_pulsar" }
+		add_modifier = {
+			modifier = "pulsar"
+			days = -1
+		}
+	}
+	else_if = {
+		limit = { is_planet_class = "pc_black_hole" }
+		add_modifier = {
+			modifier = "black_hole"
+			days = -1
+		}
+	}
+}
+
+adjust_asteroid_size = {
+	random_list = {
+		8 = { set_planet_size = 6 }
+		25 = { set_planet_size = 5 }
+		50 = { set_planet_size = 4 }
+		20 = { set_planet_size = 3 }
+	}
+}
+
+spawn_asteroid_features = {
+	# Remove any existing modifiers:
+	remove_uninhabitable_planet_modifiers = yes
+	# Checks if the asteroid already has a mineral deposit and adds the proper modifier:
+	if = {
+		limit = { has_mineral_orbital_deposit = yes }
+		add_modifier = {
+			modifier = "asteroid-carbon_rich"
+			days = -1
+		}
+	}
+	# Now checks if the asteroid has an energy deposit and adds the proper modifier:
+	else_if = {
+		limit = { has_energy_orbital_deposit = yes }
+		add_modifier = {
+			modifier = "asteroid-frozen_gases"
+			days = -1
+		}
+	}
+	# Now checks if the asteroid has either an alloy, trade value or volatile motes deposit, and adds the proper modifier:
+	else_if = {
+		limit = {
+			OR = {
+				has_trade_value_orbital_deposit = yes
+				has_alloy_orbital_deposit = yes
+				has_volatile_motes_orbital_deposit = yes
+			}
+		}
+		add_modifier = {
+			modifier = "asteroid-precious_metals"
+			days = -1
+		}
+	}
+	# Now checks if the asteroid has a rare crystal deposit and adds the proper modifier:
+	else_if = {
+		limit = { has_rare_crystals_orbital_deposit = yes }
+		add_modifier = {
+			modifier = "asteroid-rare_crystals"
+			days = -1
+		}
+	}
+	# Now makes sure an Ice asteroid has no deposit or anomaly and gives a small chance of spawning Water Ices:
+	else_if = {
+		limit = {
+			is_planet_class = pc_ice_asteroid
+			has_deposit = no
+			has_anomaly = no
+			NOT = { has_planet_flag = "deposit_spawned" }
+			planet_size > 3
+		}
+		random_list = {
+			40 = {
+				modifier = { factor = 2.00 is_inside_nebula = yes }
+				add_modifier = {
+					modifier = "asteroid-frozen_gases"
+					days = -1
+				}
+				random_list = {					
+					0 = {
+						add_deposit = d_water_ices_1
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 4 }
+					}
+					0 = {
+						add_deposit = d_water_ices_2
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 5 }
+					}
+					0 = {
+						add_deposit = d_water_ices_3
+						set_planet_flag = "deposit_spawned"
+						modifier = { add = 1 planet_size = 6 }
+					}
+				}
+			}
+			60 = {
+				# do nothing
+			}
+		}
+	}
+}
+
+spawn_giant_features = {
+	# Remove any existing modifiers:
+	remove_uninhabitable_planet_modifiers = yes
+	# Remove standard deposits, this will also affect home systems, in which cases orbital stations will be removed too, makes game start a little harder:
+	if = {
+		limit = { has_non_sr_orbital_deposit = yes NOT = { has_planet_flag = "deposit_spawned" } }
+		clear_deposits = yes
+		if = {
+			limit = { has_orbital_station = yes }
+			orbital_station = {
+				dismantle = yes
+			}
+		}
+	}
+	# Remove rings from specific gas giant classes:
+	if = {
+		limit = { 
+				has_ring = yes
+				OR = {
+					has_modifier = "class_helium_giant"
+					has_modifier = "class_super_giant"
+				}		
+		}
+		set_ring = no
+	}
+	# Check for rings and spawn associated modifier when they exist:
+	if = {
+		limit = { has_ring = yes }
+		add_modifier = {
+			modifier = "ringed_giant"
+			days = -1
+		}
+		random_list = {
+			0 = {
+				modifier = { add = 1 planet_size < 26 }
+				add_deposit = d_trade_value_1
+			}
+			0 = {
+				modifier = { add = 1 planet_size > 25 }
+				add_deposit = d_trade_value_2
+			}
+		}
+	}	
+	# All Gas giants have the Dense Atmosphere modifier, so in most cases they should get energy, plus trade value if there is a ring.
+	# Also give a chance to spawn different bonus modifiers when certain conditions are met:	
+	if = {
+		limit = {
+			NOT = { has_planet_flag = "deposit_spawned" }
+		}
+		random_list = {
+			0 = {
+				modifier = { add = 10 planet_size < 21 }
+				modifier = { factor = 0.00 has_orbital_station = yes }
+				modifier = { factor = 0.00 has_sr_orbital_deposit = yes }
+				##
+				add_modifier = {
+					modifier = "gas_dwarf"
+					days = -1
+				}
+				#clear_deposits = yes
+				add_deposit = d_engineering_2
+				set_planet_flag = "deposit_spawned"
+			}
+			0 = {
+				modifier = { add = 10 planet_size > 20 planet_size < 27 }
+				modifier = { factor = 0.00 has_orbital_station = yes }
+				modifier = { factor = 0.00 has_sr_orbital_deposit = yes }
+				##
+				add_deposit = d_energy_2
+				set_planet_flag = "deposit_spawned"
+			}
+			0 = {
+				modifier = { add = 10 planet_size > 26 }
+				modifier = { factor = 0.00 has_orbital_station = yes  }
+				modifier = { factor = 0.00 has_sr_orbital_deposit = yes }
+				##
+				add_deposit = d_energy_3
+				set_planet_flag = "deposit_spawned"
+			}
+			0 = {
+				modifier = { add = 100 has_modifier = "class_super_giant" }
+				modifier = { factor = 0.00 has_orbital_station = yes  }
+				modifier = { factor = 0.00 has_sr_orbital_deposit = yes }
+				##
+				add_deposit = d_energy_4
+				set_planet_flag = "deposit_spawned"
+			}
+			1 = {
+				# Do nothing
+			}
+		}
+	}
+}
+
+spawn_uninhabitable_features = {
+	# Remove any existing modifiers:
+	remove_uninhabitable_planet_modifiers = yes
+	# Removes rings from Chthonian worlds:
+	if = {
+		limit = { 
+				has_ring = yes
+				has_modifier = "class_chthonian"
+		}
+		set_ring = no
+	}
+	# Check for rings and spawn associated modifier when they exist:
+	if = {
+		limit = { has_ring = yes }
+		add_modifier = {
+			modifier = "ringed_planet"
+			days = -1
+		}
+		add_deposit = d_trade_value_1
+	}	
+	# Spawns proper modifiers on planets with mineral and energy:
+	if = {
+		limit = { has_mineral_orbital_deposit = yes }
+		add_modifier = {
+			modifier = "mineral_rich"
+			days = -1
+		}
+	}
+	else_if = {
+		limit = { has_energy_orbital_deposit = yes NOT = { is_planet_class = "pc_frozen" } }
+		add_modifier = {
+			modifier = "geological_activity"
+			days = -1
+		}
+	}
+	else_if = {
+		limit = { has_energy_orbital_deposit = yes has_modifier = "class_ice"}
+		add_modifier = {
+			modifier = "ice_planetoid"
+			days = -1
+		}
+		clear_deposits = yes
+		add_deposit = d_water_ices_3
+	}
+	else_if = {
+		limit = { has_energy_orbital_deposit = yes }
+		clear_deposits = yes
+		if = {
+			limit = { has_orbital_station = yes }
+			orbital_station = {
+				dismantle = yes
+			}
+		}
+	}
+	else_if = {
+		limit = { has_volatile_motes_orbital_deposit = yes solar_system = { has_star_flag = "atw_misc" } }
+		# remove random motes from misc systems to avoid messing with scripted stuff
+		clear_deposits = yes
+		if = {
+			limit = { has_orbital_station = yes }
+			orbital_station = {
+				dismantle = yes
+			}
+		}
+	}
+	else_if = {
+		limit = { has_modifier = "class_chthonian"has_deposit = no NOT = { has_planet_flag = "deposit_spawned" } }
+		# to compensate removing random motes, lets add them to Chthonian worlds, they are rare enough
+		random_list = {
+			0 = {
+				modifier = { add = 10 planet_size < 20 }
+				##
+				add_deposit = d_volatile_motes_1
+				set_planet_flag = "deposit_spawned"
+			}
+			0 = {
+				modifier = { add = 10 planet_size > 19 }
+				##
+				add_deposit = d_volatile_motes_2
+				set_planet_flag = "deposit_spawned"
+			}
+		}
+		add_modifier = {
+			modifier = "scorched_planetoid"
+			days = -1
+		}
+	}
+	else_if = {
+		limit = { is_planet_class = "pc_toxic" NOT = { has_planet_flag = "deposit_spawned" } has_deposit = no }
+		# give toxic worlds a chance to spawn Greenhouse gases
+		random_list = {
+			2 = {
+				modifier = { add = 15 planet_size > 12 planet_size < 20 }
+				add_deposit = d_greenhouse_gases_1
+				add_modifier = {
+					modifier = "volcanic_outgassing"
+					days = -1
+				}
+				set_planet_flag = "deposit_spawned"
+			}
+			0 = {
+				modifier = { add = 10 planet_size > 19 }
+				add_deposit = d_greenhouse_gases_2
+				add_modifier = {
+					modifier = "volcanic_outgassing"
+					days = -1
+				}
+				set_planet_flag = "deposit_spawned"
+			}
+			15 = {
+				# Do nothing
+			}
+		}
+	}
+}
+
+remove_uninhabitable_planet_modifiers = {
+	if = {
+		limit = { has_modifier = chthonian_planet }
+		remove_modifier = chthonian_planet
+	}
+	if = {
+		limit = { has_modifier = extensive_moon_system }
+		remove_modifier = extensive_moon_system
+	}
+	if = {
+		limit = { has_modifier = carbon_world }
+		remove_modifier = carbon_world
+	}
+	if = {
+		limit = { has_modifier = mineral_rich }
+		remove_modifier = mineral_rich
+	}
+	if = {
+		limit = { has_modifier = ultra_rich }
+		remove_modifier = ultra_rich
+	}
+	if = {
+		limit = { has_modifier = mineral_poor }
+		remove_modifier = mineral_poor
+	}
+	if = {
+		limit = { has_modifier = asteroid_belt }
+		remove_modifier = asteroid_belt
+	}
+}
+
+remove_vanilla_planet_modifiers = {
+	if = {
+		limit = { has_modifier = hazardous_weather }
+		remove_modifier = hazardous_weather
+	}
+	if = {
+		limit = { has_modifier = dangerous_wildlife }
+		remove_modifier = dangerous_wildlife
+	}
+	if = {
+		limit = { has_modifier = weak_magnetic_field }
+		remove_modifier = weak_magnetic_field
+	}
+	if = {
+		limit = { has_modifier = strong_magnetic_field }
+		remove_modifier = strong_magnetic_field
+	}
+	if = {
+		limit = { has_modifier = unstable_tectonics }
+		remove_modifier = unstable_tectonics
+	}
+	if = {
+		limit = { has_modifier = tidal_locked }
+		remove_modifier = tidal_locked
+	}
+	if = {
+		limit = { has_modifier = chthonian_planet }
+		remove_modifier = chthonian_planet
+	}
+	if = {
+		limit = { has_modifier = asteroid_impacts }
+		remove_modifier = asteroid_impacts
+	}
+	if = {
+		limit = { has_modifier = extensive_moon_system }
+		remove_modifier = extensive_moon_system
+	}
+	if = {
+		limit = { has_modifier = carbon_world }
+		remove_modifier = carbon_world
+	}
+	if = {
+		limit = { has_modifier = wild_storms }
+		remove_modifier = wild_storms
+	}
+	if = {
+		limit = { has_modifier = mineral_rich }
+		remove_modifier = mineral_rich
+	}
+	if = {
+		limit = { has_modifier = ultra_rich }
+		remove_modifier = ultra_rich
+	}
+	if = {
+		limit = { has_modifier = mineral_poor }
+		remove_modifier = mineral_poor
+	}
+	if = {
+		limit = { has_modifier = titanic_life }
+		remove_modifier = titanic_life
+	}
+	if = {
+		limit = { has_modifier = asteroid_belt }
+		remove_modifier = asteroid_belt
+	}
+	if = {
+		limit = { has_modifier = natural_beauty }
+		remove_modifier = natural_beauty
+	}
+	if = {
+		limit = { has_modifier = atmospheric_aphrodisiac }
+		remove_modifier = atmospheric_aphrodisiac
+	}
+	if = {
+		limit = { has_modifier = atmospheric_hallucinogen }
+		remove_modifier = atmospheric_hallucinogen
+	}
+	if = {
+		limit = { has_modifier = lush_planet }
+		remove_modifier = lush_planet
+	}
+	if = {
+		limit = { has_modifier = bleak_planet }
+		remove_modifier = bleak_planet
+	}
+	if = {
+		limit = { has_modifier = irradiated_planet }
+		remove_modifier = irradiated_planet
+	}
+}

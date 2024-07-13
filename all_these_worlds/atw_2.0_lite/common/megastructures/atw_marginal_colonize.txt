@@ -1,0 +1,992 @@
+atw_marginal_colony_0 = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	show_galactic_map_icon = no
+	build_time = 600
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 250
+			influence = 50
+		}
+	}
+	construction_blocks_and_blocked_by = none
+
+	potential = { 
+		#has_technology = tech_terrestrial_sculpting 
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+
+			custom_tooltip = {
+				fail_text = "is_marginal"
+				OR = {
+					has_modifier = "class_stepikos"
+					has_modifier = "class_erimos"
+					has_modifier = "class_karstikos"
+					has_modifier = "class_agonos"
+					has_modifier = "class_almyros"
+					has_modifier = "class_elos"
+					has_modifier = "class_redux"
+					has_modifier = "class_archean"
+				}
+			}
+			custom_tooltip = {
+				fail_text = "is_marginal_habitable"
+				from = {
+					OR = {
+						has_trait = trait_adaptive
+						has_trait = trait_extremely_adaptive
+						has_trait = trait_lithoid
+						has_trait = trait_spliced_adaptability
+						has_tradition = tr_adaptability_finish
+					}
+					NOT = {
+						has_trait = trait_machine_unit
+					}
+				}				
+			}
+		} 
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0.5
+			NOT = {	owner_species = { empire_has_good_habitability_on_tomb_worlds = yes } }
+		}
+	}
+	
+	on_build_start = {}
+	on_build_cancel = {}
+	
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = colony_event
+			set_planet_flag = underground_infrastructure
+			clear_deposits = yes
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+			
+			IF = {
+				limit = {
+					has_modifier = "class_stepikos"
+				}
+				# Roll a Stepikos class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_stepikos"
+					entity = "marginal_stepikos_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_erimos"
+				}
+				# Roll an Erimos class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_erimos"
+					entity = "marginal_erimos_barren_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_karstikos"
+				}
+				# Roll a Karstikos class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_karstikos"
+					entity = "marginal_karstikos_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_agonos"
+				}
+				# Roll an Agonos class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_agonos"
+					entity = "marginal_agonos_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_almyros"
+				}
+				# Roll an Almyros class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_almyros"
+					entity = "marginal_almyros_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_elos"
+				}
+				# Roll an Elos class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_elos"
+					entity = "marginal_elos_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_redux"
+				}
+				# Roll a Redux class			
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_redux"
+					entity = "sub_marginal_redux_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_ammoniagenian"
+				}
+				# Roll an Ammoniagenian class			
+				change_pc = pc_arctic
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_ammoniagenian"
+					entity = "terrestrial_ammoniagenian_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_archean"
+				}
+				# Roll an Archean class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_archean"
+					entity = "primordial_archean_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			
+			if = {
+				limit = { has_modifier = terraforming_candidate }
+				remove_modifier = terraforming_candidate
+			}
+			IF = {
+				limit = {
+					has_planet_flag = planet_mars
+				}
+				#set_planet_entity = {
+				#	entity = "bhab_planet_mars_entity"
+				#	picture = pc_pd_mars_hab
+                #}
+			}
+		}
+		remove_megastructure = fromfrom
+		from = { country_event =  { id = atw_engine.07 } }
+	}
+}
+
+atw_marginal_exploit_0 = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	show_galactic_map_icon = no
+	build_time = 300
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 250
+			influence = 25
+		}
+	}
+	construction_blocks_and_blocked_by = none
+
+	potential = { 
+		#fromfrom.planet = {
+		#	NOT = { has_planet_flag = "planet_exploited" }
+		#}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+
+			custom_tooltip = {
+				fail_text = "is_marginal"
+				OR = {
+					has_modifier = "class_stepikos"
+					has_modifier = "class_erimos"
+					has_modifier = "class_karstikos"
+					has_modifier = "class_agonos"
+					has_modifier = "class_almyros"
+					has_modifier = "class_elos"
+					has_modifier = "class_redux"
+					has_modifier = "class_archean"
+				}
+			}
+
+			custom_tooltip = {
+				fail_text = "requires_robots"
+				from = {
+					OR = {
+						has_technology = tech_robotic_workers
+						has_authority = auth_machine_intelligence
+					}
+				}
+			}
+
+			custom_tooltip = {
+				fail_text = "already_exploited"
+				NOR = {
+					has_planet_flag = "planet_exploited"
+					has_planet_flag = "underground_infrastructure"
+				}
+			}
+			
+		} 
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0.1
+			owner_species = { empire_has_good_habitability_on_tomb_worlds = yes }
+		}
+	}
+	
+	on_build_start = {}
+	on_build_cancel = {}
+	
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = planet_exploited
+			clear_deposits = yes
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+
+			random_list = {
+				# Spawn mineral deposits
+				0 = {
+					modifier = { add = 5 has_modifier = "class_karstikos" }
+					modifier = { add = 3 has_modifier = "class_redux" }
+					modifier = { add = 1 has_modifier = "class_elos" }
+					modifier = { add = 3 has_modifier = "class_stepikos" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_minerals_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_minerals_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_minerals_5
+						}
+					}
+				}
+				# Spawn energy deposits
+				0 = {
+					modifier = { add = 5 has_modifier = "class_almyros" }
+					modifier = { add = 2 has_modifier = "class_agonos" }
+					modifier = { add = 4 has_modifier = "class_erimos" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_energy_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_energy_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_energy_5
+						}
+					}
+				}
+				# Spawn mixed deposits
+				0 = {
+					modifier = { add = 2 has_modifier = "class_archean" }
+					modifier = { add = 2 has_modifier = "class_almyros" }
+					modifier = { add = 2 has_modifier = "class_erimos" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_minerals_2
+							add_deposit = d_energy_1
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_minerals_2
+							add_deposit = d_energy_2
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_minerals_3
+							add_deposit = d_energy_2
+						}
+					}
+				}
+				# Spawn society
+				0 = {
+					modifier = { add = 3 has_modifier = "class_elos" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_society_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_society_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_society_5
+						}
+					}
+				}
+				# Spawn physics
+				0 = {
+					modifier = { add = 5 has_modifier = "class_agonos" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_physics_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_physics_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_physics_5
+						}
+					}
+				}
+				# Spawn engineering
+				0 = {
+					modifier = { add = 1 has_modifier = "class_archean" }
+					modifier = { add = 2 has_modifier = "class_karstikos" }
+					modifier = { add = 1 has_modifier = "class_redux" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_engineering_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_engineering_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_engineering_5
+						}
+					}
+				}
+			}
+			
+			
+		}
+		remove_megastructure = fromfrom
+		from = { country_event =  { id = atw_engine.09 } }
+	}
+}
+
+atw_sub_marginal_colony_0 = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	show_galactic_map_icon = no
+	build_time = 900
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 500
+			influence = 100
+		}
+	}
+	construction_blocks_and_blocked_by = none
+
+	potential = { 
+		#has_technology = tech_terrestrial_sculpting 
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+
+			custom_tooltip = {
+				fail_text = "is_sub_marginal"
+				OR = {
+					has_modifier = "class_hadean"
+					has_modifier = "class_anthracean"
+					has_modifier = "class_desolate"
+					has_modifier = "class_alkali"
+					has_modifier = "class_hydrocarbonal"
+					has_modifier = "class_sulfuric"
+				}
+			}
+			custom_tooltip = {
+				fail_text = "is_sub_marginal_habitable"
+				from = {
+					OR = {
+						has_trait = trait_extremely_adaptive
+						has_trait = trait_lithoid
+						has_trait = trait_spliced_adaptability
+					}
+					NOT = {
+						has_trait = trait_machine_unit
+					}
+				}				
+			}
+		} 
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 10
+		modifier = {
+			factor = 0.0
+			NOT = {	owner_species = { empire_has_good_habitability_on_tomb_worlds = yes } }
+		}
+	}
+	
+	on_build_start = {}
+	on_build_cancel = {}
+	
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = colony_event
+			set_planet_flag = underground_infrastructure
+			clear_deposits = yes
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+			
+			IF = {
+				limit = {
+					has_modifier = "class_desolate"
+				}
+				# Roll an Desolate class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_desolate"
+					entity = "sub_marginal_desolate_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_alkali"
+				}
+				# Roll an Alkali class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_alkali"
+					entity = "sub_marginal_alkali_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_hydrocarbonal"
+				}
+				# Roll a Hydrocarbonal class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_hydrocarbonal"
+					entity = "sub_marginal_hydrocarbonal_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"				
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_sulfuric"
+				}
+				# Roll a Sulfuric class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_sulfuric"
+					entity = "sub_marginal_sulfuric_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_hadean"
+				}
+				# Roll a Hadean class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_hadean"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"
+			}
+			IF = {
+				limit = {
+					has_modifier = "class_anthracean"
+				}
+				# Roll an Anthracean class
+				change_pc = pc_nuked
+				reroll_deposits = yes
+				set_planet_entity = {
+					picture = "biome_anthracean"
+					entity = "primordial_anthracean_01_entity"
+				}
+				correct_atmosphere_color = yes
+				correct_habitable_deposits = yes
+				set_planet_flag = "habitable_converted"
+			}
+			
+			if = {
+				limit = { has_modifier = terraforming_candidate }
+				remove_modifier = terraforming_candidate
+			}
+			IF = {
+				limit = {
+					has_planet_flag = planet_mars
+				}
+				#set_planet_entity = {
+				#	entity = "bhab_planet_mars_entity"
+				#	picture = pc_pd_mars_hab
+                #}
+			}
+		}
+		remove_megastructure = fromfrom
+		from = { country_event =  { id = atw_engine.08 } }
+	}
+}
+
+atw_sub_marginal_exploit_0 = {
+	entity = ""
+	construction_entity = ""
+	portrait = "GFX_megastructure_construction_background"
+	place_entity_on_planet_plane = yes
+	show_galactic_map_icon = no
+	build_time = 300
+
+	resources = {
+		category = megastructures
+		cost = {
+			alloys = 250
+			influence = 25
+		}
+	}
+	construction_blocks_and_blocked_by = none
+
+	potential = { 
+		#fromfrom.planet = {
+		#	NOT = { has_planet_flag = "planet_exploited" }
+		#}
+	}
+
+	possible = {
+		exists = starbase
+		custom_tooltip = {
+			fail_text = "requires_inside_border"
+			is_inside_border = from
+		}
+	}
+
+	placement_rules = {
+		planet_possible = {
+			custom_tooltip = {
+				fail_text = "requires_surveyed_planet"
+				is_surveyed = {			# prevent leaking habitability information
+					who = prev.from
+					status = yes
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_no_anomaly"
+				NOT = { has_anomaly = yes }
+			}
+
+			custom_tooltip = {
+				fail_text = "is_sub_marginal"
+				OR = {
+					has_modifier = "class_hadean"
+					has_modifier = "class_anthracean"
+					has_modifier = "class_desolate"
+					has_modifier = "class_alkali"
+					has_modifier = "class_hydrocarbonal"
+					has_modifier = "class_sulfuric"
+				}
+			}
+
+			custom_tooltip = {
+				fail_text = "requires_robots"
+				from = {
+					OR = {
+						has_technology = tech_robotic_workers
+						has_authority = auth_machine_intelligence
+					}
+				}
+			}
+
+			custom_tooltip = {
+				fail_text = "already_exploited"
+				NOR = {
+					has_planet_flag = "planet_exploited"
+					has_planet_flag = "underground_infrastructure"
+				}
+			}
+			
+		} 
+	}
+
+	# root = system
+	# from = country
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0.1
+			owner_species = { empire_has_good_habitability_on_tomb_worlds = yes }
+		}
+	}
+	
+	on_build_start = {}
+	on_build_cancel = {}
+	
+	on_build_complete = {
+		fromfrom.planet = {
+			set_planet_flag = planet_exploited
+			clear_deposits = yes
+			if = {
+				limit = { has_orbital_station = yes }
+				orbital_station = {
+					dismantle = yes
+				}
+			}
+
+			random_list = {
+				# Spawn mineral deposits
+				0 = {
+					modifier = { add = 5 has_modifier = "class_hydrocarbonal" }
+					modifier = { add = 3 has_modifier = "class_desolate" }
+					modifier = { add = 1 has_modifier = "class_anthracean" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_minerals_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_minerals_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_minerals_5
+						}
+					}
+				}
+				# Spawn energy deposits
+				0 = {
+					modifier = { add = 5 has_modifier = "class_alkali" }
+					modifier = { add = 2 has_modifier = "class_desolate" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_energy_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_energy_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_energy_5
+						}
+					}
+				}
+				# Spawn mixed deposits
+				0 = {
+					modifier = { add = 2 has_modifier = "class_alkali" }
+					modifier = { add = 4 has_modifier = "class_hadean" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_minerals_2
+							add_deposit = d_energy_1
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_minerals_2
+							add_deposit = d_energy_2
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_minerals_3
+							add_deposit = d_energy_2
+						}
+					}
+				}
+				# Spawn society
+				0 = {
+					modifier = { add = 3 has_modifier = "class_sulfuric" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_society_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_society_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_society_5
+						}
+					}
+				}
+				# Spawn physics
+				0 = {
+					modifier = { add = 2 has_modifier = "class_hadean" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_physics_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_physics_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_physics_5
+						}
+					}
+				}
+				# Spawn engineering
+				0 = {
+					modifier = { add = 1 has_modifier = "class_sulfuric" }
+					modifier = { add = 2 has_modifier = "class_hydrocarbonal" }
+					modifier = { add = 1 has_modifier = "class_hadean" }
+					random_list = {
+						0 = { # Small world
+							modifier = { add = 10 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 0 planet_size > 21 }
+							add_deposit = d_engineering_3
+						}
+						0 = { # Medium world
+							modifier = { add = 3 planet_size < 14 }
+							modifier = { add = 10 planet_size > 13 planet_size < 22 }
+							modifier = { add = 3 planet_size > 21 }
+							add_deposit = d_engineering_4
+						}
+						0 = { # Large world
+							modifier = { add = 0 planet_size < 14 }
+							modifier = { add = 3 planet_size > 13 planet_size < 22 }
+							modifier = { add = 10 planet_size > 21 }
+							add_deposit = d_engineering_5
+						}
+					}
+				}
+			}
+			
+			
+		}
+		remove_megastructure = fromfrom
+		from = { country_event =  { id = atw_engine.10 } }
+	}
+}

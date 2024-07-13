@@ -1,0 +1,1050 @@
+# Energy cost is based on technology / perk requirement, most costs will be reduced to compensate the new resources added.
+@energy_atmospheric_manipulation = 1000
+@energy_climate_restoration = 2500
+@energy_world_shaper = 4000
+@energy_world_shaper_destructive = 2000
+@energy_hive_worlds = 10000
+@energy_machine_worlds = 10000
+
+# Greenhouse gases cost is based on original atmosphere type, upgrading an uninhabitable world's atmosphere will cost more than one which already has a thick atmosphere. Frozen worlds requiring warming will use a different value.
+@gases_uninhabitable = 2000		# ie: terraforming FROM a sub-telluric with thin atmosphere
+@gases_dry = 400				# ie: terraforming FROM a telluric with thick atmosphere or a dry habitable world
+@gases_temperate = 600			# ie: terraforming FROM a temperate habitable world
+@gases_frigid = 1000			# ie: terraforming FROM a frozen thalassic with thin atmosphere or a fright habitable world
+
+# Water ices cost is based on original and final hydrosphere type, it depends on how much water is required. Frozen worlds already have enough water, so they will need extra greenhouse gases instead.
+@ices_1_step = 1000				# ie: terraforming FROM a sub-terrestrial into terrestrial, or terrestrial into oceanic
+@ices_2_steps = 2000			# ie: terraforming FROM a sub-terrestrial into oceanic, or uninhabitable into sub-terrestrial
+@ices_3_steps = 3000			# ie: terraforming FROM an uninhabitable into oceanic
+
+# Seeds cost is based on the type of terraforming.
+@seeds_type_1 = 800				# ie: terraforming between habitable worlds
+@seeds_type_2 = 1200			# ie: upgrading a habitable into gaia
+@seeds_type_3 = 2000			# ie: restoring a tomb/machine/etc or terraforming a barren uninhabitable
+
+# Duration depends on the apparent complexity of the process, ie: thickening the atmosphere with some greenhouse gases and water vapor is much less complex than restoring a nuked world and re-introducing life to it.
+@duration_simple = 1800
+@duration_average = 3600
+@duration_complex = 7200
+
+## Again, no more basic terraforming, and advanced seems to be more of the same
+## We will add the "basic" climate restoration projects in this file instead
+## Consisting of allowing worlds of different climates to be terraformed between themselves, but not different types
+## ie: Dry to Fright Terrestrial is ok, Dry Terrestrial to Temperate Oceanic is not possible
+
+# TERRESTRIAL LINKS
+
+terraform_link = {
+	from = "pc_continental"
+	to = "pc_arid"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_continental"
+	to = "pc_arctic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_arid"
+	to = "pc_continental"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_arid"
+	to = "pc_arctic"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_arctic"
+	to = "pc_continental"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_frigid
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_arctic"
+	to = "pc_arid"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_frigid
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+
+# SUB-TERRESTRIAL LINKS
+
+terraform_link = {
+	from = "pc_tropical"
+	to = "pc_savannah"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_tropical"
+	to = "pc_tundra"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_savannah"
+	to = "pc_tropical"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_savannah"
+	to = "pc_tundra"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_tundra"
+	to = "pc_tropical"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_frigid
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_tundra"
+	to = "pc_savannah"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_frigid
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+
+# OCEANIC LINKS
+
+terraform_link = {
+	from = "pc_ocean"
+	to = "pc_desert"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_ocean"
+	to = "pc_alpine"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_desert"
+	to = "pc_ocean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_desert"
+	to = "pc_alpine"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_alpine"
+	to = "pc_ocean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_frigid
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}
+terraform_link = {
+	from = "pc_alpine"
+	to = "pc_desert"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_dry
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		has_technology = tech_climate_restoration
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+	}
+}

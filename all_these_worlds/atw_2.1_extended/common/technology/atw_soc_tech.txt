@@ -1,0 +1,79 @@
+
+# ##################
+# Terraformation
+# ##################
+
+tech_atmospheric_manipulation = {
+	cost = @tier2cost3
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier2weight1
+
+	weight_modifier = {
+		factor = 1.5	# terraforming needs to be a bit more common
+		modifier = {
+			factor = 0
+			is_lithoid_empire = yes
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 1.25
+			has_origin = origin_life_seeded
+		}
+		modifier = {
+			factor = 2.50
+			has_technology = tech_terrestrial_sculpting
+		}
+		modifier = {
+			factor = 10.00
+			has_technology = tech_ecological_adaptation
+		}
+	}
+
+	ai_weight = {
+		factor = @terraforming_tech_ai_factor
+
+		modifier = {
+			factor = 2
+			OR = {
+				is_xenophobe = yes
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shattered_ring
+				has_void_dweller_origin = yes
+			}
+			is_ai = yes
+		}
+		modifier = {
+			factor = 5
+			any_system_within_border = {
+				any_system_planet = {
+					is_colonizable = yes
+					habitability = {
+						who = root
+						value < 0.5
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 100
+			has_origin = origin_life_seeded
+		}
+		modifier = {
+			factor = 2
+			is_ai = no #auto-research
+		}
+	}
+}

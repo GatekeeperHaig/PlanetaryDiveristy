@@ -1,0 +1,212 @@
+# Special for Earth
+generate_earth_deposits_and_blockers = {
+	optimize_memory
+	clear_deposits = yes
+	if = {
+		limit = {
+			NOT = { owner = { has_origin = origin_post_apocalyptic } }
+		}
+		add_deposit = d_mesopotamian_urban_corridor
+		add_deposit = d_boswash_metropolitan_axis
+		add_deposit = d_mauritanian_security_zone
+		add_deposit = d_great_albertan_crater
+		add_deposit = d_scandinavian_reclamation_sector
+		add_deposit = d_saharan_irrigation_project
+		add_deposit = d_pearl_river_agglomerate
+		add_deposit = d_great_pacific_garbage_patch
+		add_deposit = d_failing_infrastructure_earth
+		set_planet_flag = "deposits_corrected"
+	}
+	else = {
+		add_deposit = d_great_pacific_garbage_patch
+		add_deposit = d_city_ruins
+		add_deposit = d_radioactive_wasteland
+		add_deposit = d_radioactive_wasteland
+		add_deposit = d_bomb_crater
+		add_deposit = d_scandinavian_reclamation_sector
+		add_deposit = d_great_albertan_crater
+		add_deposit = d_hot_springs
+		add_deposit = d_underwater_vent
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_submerged_ore_veins
+		add_deposit = d_lichen_fields
+		set_planet_flag = "deposits_corrected"
+	}
+	
+	if = {
+		limit = {
+			owner = { is_machine_empire = yes }
+		}
+		add_deposit = d_rushing_waterfalls
+	}
+
+	if = {
+		limit = {
+			owner = { has_valid_civic = civic_machine_servitor }
+		}
+		add_deposit = d_hot_springs
+		add_deposit = d_strip_mine
+		add_deposit = d_unsupervised_settlement
+	}
+	else_if = {
+		limit = {
+			NOT = { owner = { has_origin = origin_post_apocalyptic } }
+		}
+		add_deposit = d_decrepit_dwellings
+	}
+
+	if = {
+		limit = {
+			owner = {
+				is_lithoid_empire = yes
+				NOT = { has_valid_civic = civic_hive_devouring_swarm }
+			}
+		}
+		while = {
+			count = 4
+			add_deposit = d_hibernating_lithoids
+		}
+	}
+
+	if = {
+		limit = {
+			owner = {
+				is_lithoid_empire = yes
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+		while = {
+			count = 2
+			add_deposit = d_hibernating_lithoids
+		}
+	}
+
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_life_seeded
+			}
+		}
+
+		set_planet_size = 30
+
+		add_deposit = d_dust_caverns
+		add_deposit = d_bubbling_swamp
+		add_deposit = d_crystalline_caverns
+	}
+
+	if = {
+		limit = {
+			is_planet_class = pc_desert # Just in case players cause trouble
+		}
+		set_planet_flag = tasty_desert
+	}
+}
+
+# TOMB WORLD CLASS FIXES
+nuke_pre_ftls_effect = {
+	every_owned_pop = {
+		kill_pop = yes
+	}
+	destroy_colony = yes
+	set_planet_flag = pre_ftls_nuked_themselves
+	if = {
+		limit = {
+			is_artificial = no
+		}
+		change_pc = pc_nuked
+		remove_class_modifier = yes # NEW
+		remove_atmosphere_modifier = yes # NEW
+		remove_biosphere_modifier = yes # NEW
+		roll_tomb = yes # NEW
+		reroll_planet = yes
+		remove_all_buildings = yes
+		add_deposit = d_metal_boneyard
+		set_planet_flag = nuked_planet_anomalies_disabled
+	}
+}
+nuke_pre_ftls_toxic_effect = {
+	every_owned_pop = {
+		kill_pop = yes
+	}
+	destroy_colony = yes
+	if = {
+		limit = {
+			is_artificial = no
+		}
+		change_pc = pc_toxic
+		remove_class_modifier = yes # NEW
+		remove_atmosphere_modifier = yes # NEW
+		remove_biosphere_modifier = yes # NEW
+		roll_hothouse_toxic = yes # NEW
+		set_deposit = d_society_3
+		if = {
+			limit = {
+				has_toxoids = yes
+			}
+			set_planet_flag = toxic_terraforming_candidate
+			add_modifier = {
+				modifier = toxic_terraforming_candidate
+			}
+		}
+	}
+	reset_planet = yes
+	add_modifier = {
+		modifier = "nuclear_devastation"
+		days = -1
+	}
+}
+# (Pre-FTL) planet scope | owner = pre-FTL country
+nuke_pre_ftls_stone_age_effect = {
+	every_owned_pop = {
+		limit = { is_robotic_species = yes }
+		kill_pop = yes
+	}
+	while = {
+		limit = {
+			num_pops > 2
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	owner = {
+		if = {
+			limit = {
+				NOT = {
+					has_pre_ftl_age = stone_age
+				}
+			}
+			set_pre_ftl_age_effect = {
+				PRE_FTL_AGE = stone_age
+			}
+		}
+	}
+	if = {
+		limit = {
+			is_artificial = no
+		}
+		owner = {
+			set_origin = origin_post_apocalyptic
+			# Propagate a new, 'Survivor' Trait species based on the existing pre-FTL one
+			random_owned_pop = {
+				limit = { is_exact_same_species = prev }
+				create_nuked_species_mod = yes
+				species = { save_event_target_as = new_main_species }
+			}
+			change_dominant_species = { species = event_target:new_main_species }
+			set_awareness = 0
+		}
+		change_pc = pc_nuked
+		remove_class_modifier = yes # NEW
+		remove_atmosphere_modifier = yes # NEW
+		remove_biosphere_modifier = yes # NEW
+		roll_tomb = yes # NEW
+		reroll_planet = yes
+		owner = {
+			add_pre_ftl_buildings = yes
+		}
+		add_deposit = d_metal_boneyard
+		set_planet_flag = nuked_planet_anomalies_disabled
+	}
+}

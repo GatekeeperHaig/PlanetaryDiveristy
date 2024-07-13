@@ -1,0 +1,1431 @@
+correct_habitable_deposits = {
+	optimize_memory
+	# PC_DESERT - DRY OCEANIC
+	if = {
+		limit = { is_planet_class = "pc_desert" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_thermopelagic" }
+		every_deposit = {
+			limit = { is_deposit_type = d_geothermal_vent }
+			prev = { remove_deposit = d_geothermal_vent }
+			prev = { add_deposit = d_underwater_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_prosperous_mesa }
+			prev = { remove_deposit = d_prosperous_mesa }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_great_river }
+			prev = { remove_deposit = d_great_river }
+			prev = { add_deposit = d_teeming_reef }
+			prev = { add_deposit = d_teeming_reef }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_tropical_island }
+			prev = { remove_deposit = d_tropical_island }
+			prev = { add_deposit = d_lichen_forest }
+			prev = { add_deposit = d_nutritious_mudland }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_desert" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_ipeirospelagic" }
+		every_deposit = {
+			limit = { is_deposit_type = d_geothermal_vent }
+			prev = { remove_deposit = d_geothermal_vent }
+			prev = { add_deposit = d_underwater_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_tropical_island }
+			prev = { remove_deposit = d_tropical_island }
+			prev = { add_deposit = d_great_river }
+			prev = { add_deposit = d_bountiful_plains }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_desert" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_aquatic_terraformed" }
+		every_deposit = {
+			limit = { is_deposit_type = d_geothermal_vent }
+			prev = { remove_deposit = d_geothermal_vent }
+			prev = { add_deposit = d_underwater_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_prosperous_mesa }
+			prev = { remove_deposit = d_prosperous_mesa }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_great_river }
+			prev = { remove_deposit = d_great_river }
+			prev = { add_deposit = d_teeming_reef }
+			prev = { add_deposit = d_teeming_reef }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_ARID - DRY SUB-TERRESTRIAL
+	if = {
+		limit = { is_planet_class = "pc_arid" NOR = { has_planet_flag = "deposits_corrected" has_modifier = "class_mukesgenian" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_tropical_island }
+			prev = { remove_deposit = d_tropical_island }
+			prev = { add_deposit = d_lichen_forest }
+			prev = { add_deposit = d_lichen_forest }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_arid" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_mukesgenian" }
+		every_deposit = {
+			limit = { is_deposit_type = d_fertile_lands }
+			prev = { remove_deposit = d_fertile_lands }
+			prev = { add_deposit = d_fungal_caves }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_marvelous_oasis }
+			prev = { remove_deposit = d_marvelous_oasis }
+			prev = { add_deposit = d_fungal_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_tropical_island }
+			prev = { remove_deposit = d_tropical_island }
+			prev = { add_deposit = d_fungal_forest }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_SAVANNAH - DRY TERRESTRIAL
+	if = {
+		limit = { is_planet_class = "pc_savannah" NOT = { has_planet_flag = "deposits_corrected" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_black_soil }
+			prev = { remove_deposit = d_black_soil }
+			prev = { add_deposit = d_lush_cave }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_CONTINENTAL - TEMPERATE TERRESTRIAL
+	if = {
+		limit = { is_planet_class = "pc_continental" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_photosgenian" }
+		every_deposit = {
+			limit = { is_deposit_type = d_prosperous_mesa }
+			prev = { remove_deposit = d_prosperous_mesa }
+			prev = { add_deposit = d_bioluminescent_cliffs }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_bioluminescent_cliffs }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rushing_waterfalls }
+			prev = { remove_deposit = d_rushing_waterfalls }
+			prev = { add_deposit = d_bioluminescent_cave }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rugged_woods }
+			prev = { remove_deposit = d_rugged_woods }
+			prev = { add_deposit = d_bioluminescent_shore }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fertile_lands }
+			prev = { remove_deposit = d_fertile_lands }
+			prev = { add_deposit = d_bioluminescent_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_black_soil }
+			prev = { remove_deposit = d_black_soil }
+			prev = { add_deposit = d_bioluminescent_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dense_jungle }
+			prev = { remove_deposit = d_dense_jungle }
+			prev = { add_deposit = d_bioluminescent_preserve }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_continental" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_retinalgenian" }
+		every_deposit = {
+			limit = { is_deposit_type = d_rushing_waterfalls }
+			prev = { remove_deposit = d_rushing_waterfalls }
+			prev = { add_deposit = d_hot_springs }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rugged_woods }
+			prev = { remove_deposit = d_rugged_woods }
+			prev = { add_deposit = d_retinal_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fertile_lands }
+			prev = { remove_deposit = d_fertile_lands }
+			prev = { add_deposit = d_retinal_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_black_soil }
+			prev = { remove_deposit = d_black_soil }
+			prev = { add_deposit = d_retinal_great_river }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dense_jungle }
+			prev = { remove_deposit = d_dense_jungle }
+			prev = { add_deposit = d_retinal_dense_jungle }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_TROPICAL - TEMPERATE SUB-TERRESTRIAL
+	if = {
+		limit = { is_planet_class = "pc_tropical" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_tropikostopio" }
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_lush_cave }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_tropical" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_alpikotopio" }
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_lush_cave }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lush_jungle }
+			prev = { remove_deposit = d_lush_jungle }
+			prev = { add_deposit = d_green_hills }
+			prev = { add_deposit = d_bountiful_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_tropical_island }
+			prev = { remove_deposit = d_tropical_island }
+			prev = { add_deposit = d_fungal_caves }
+			prev = { add_deposit = d_nutritious_mudland }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dense_jungle }
+			prev = { remove_deposit = d_dense_jungle }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_tropical" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_adapted_terraformed" }
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lush_jungle }
+			prev = { remove_deposit = d_lush_jungle }
+			prev = { add_deposit = d_green_hills }
+			prev = { add_deposit = d_bountiful_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_tropical_island }
+			prev = { remove_deposit = d_tropical_island }
+			prev = { add_deposit = d_fertile_lands }
+			prev = { add_deposit = d_nutritious_mudland }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dense_jungle }
+			prev = { remove_deposit = d_dense_jungle }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_OCEAN - TEMPERATE OCEANIC
+	if = {
+		limit = { is_planet_class = "pc_ocean" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_megalopelagic" has_modifier = "class_archipelagic" has_modifier = "class_aquatic_terraformed" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_boggy_fens }
+			prev = { remove_deposit = d_boggy_fens }
+			prev = { add_deposit = d_sea_grass }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_ocean" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_panpelagic" has_modifier = "class_okeanosgaean" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_underwater_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rushing_waterfalls }
+			prev = { remove_deposit = d_rushing_waterfalls }
+			prev = { add_deposit = d_underwater_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mineral_fields }
+			prev = { remove_deposit = d_mineral_fields }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_green_hills }
+			prev = { remove_deposit = d_green_hills }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_boggy_fens }
+			prev = { remove_deposit = d_boggy_fens }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lush_jungle }
+			prev = { remove_deposit = d_lush_jungle }
+			prev = { add_deposit = d_teeming_reef }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dense_jungle }
+			prev = { remove_deposit = d_dense_jungle }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mountain_range }
+			prev = { remove_deposit = d_mountain_range }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bubbling_swamp }
+			prev = { remove_deposit = d_bubbling_swamp }
+			#prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fuming_bog }
+			prev = { remove_deposit = d_fuming_bog }
+			#prev = { add_deposit = d_deep_ocean }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_ocean" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_ammoniapelagic" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_alkaline_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rushing_waterfalls }
+			prev = { remove_deposit = d_rushing_waterfalls }
+			prev = { add_deposit = d_alkaline_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mineral_fields }
+			prev = { remove_deposit = d_mineral_fields }
+			prev = { add_deposit = d_alkaline_cave }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_alkaline_cave }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_green_hills }
+			prev = { remove_deposit = d_green_hills }
+			prev = { add_deposit = d_alkaline_kelp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_boggy_fens }
+			prev = { remove_deposit = d_boggy_fens }
+			prev = { add_deposit = d_alkaline_kelp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lush_jungle }
+			prev = { remove_deposit = d_lush_jungle }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dense_jungle }
+			prev = { remove_deposit = d_dense_jungle }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mountain_range }
+			prev = { remove_deposit = d_mountain_range }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bubbling_swamp }
+			prev = { remove_deposit = d_bubbling_swamp }
+			#prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fuming_bog }
+			prev = { remove_deposit = d_fuming_bog }
+			#prev = { add_deposit = d_deep_ocean }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_ocean" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_pagoslykofos" }
+		every_deposit = {
+			limit = { is_deposit_type = d_tempestous_mountain }
+			prev = { remove_deposit = d_tempestous_mountain }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rich_mountain }
+			prev = { remove_deposit = d_rich_mountain }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_sea_grass }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_forest }
+			prev = { remove_deposit = d_fungal_forest }
+			prev = { add_deposit = d_teeming_reef }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_forgiving_tundra }
+			prev = { remove_deposit = d_forgiving_tundra }
+			prev = { add_deposit = d_twilight_shore }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_geothermal_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_noxious_swamp }
+			prev = { remove_deposit = d_noxious_swamp }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mountain_range }
+			prev = { remove_deposit = d_mountain_range }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_twilight_glacier }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_ARCTIC - FRIGID TERRESTRIAL
+	# PC_TUNDRA - FRIGID SUB-TERRESTRIAL
+	if = {
+		limit = { is_planet_class = "pc_tundra" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_cryotopio" has_modifier = "class_oreinos" has_modifier = "class_adapted_terraformed" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_mineral_fields }
+			#prev = { remove_deposit = d_mineral_fields }
+			prev = { add_deposit = d_geothermal_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_forest }
+			prev = { remove_deposit = d_fungal_forest }
+			prev = { add_deposit = d_black_soil }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_tundra" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_krystallomegagi" }
+		#every_deposit = {
+		#	limit = { is_deposit_type = d_mineral_fields }
+		#	prev = { remove_deposit = d_mineral_fields }
+		#	prev = { add_deposit = d_crystalline_caverns }
+		#}
+		every_deposit = {
+			limit = { is_deposit_type = d_frozen_gas_lake }
+			prev = { remove_deposit = d_frozen_gas_lake }
+			prev = { add_deposit = d_crystal_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_forgiving_tundra }
+			prev = { remove_deposit = d_forgiving_tundra }
+			prev = { add_deposit = d_black_soil }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_crystalline_caverns }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_ALPINE - FRIGID OCEANIC
+	if = {
+		limit = { is_planet_class = "pc_alpine" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_cryopelagic" has_modifier = "class_pagoslykofos" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_tempestous_mountain }
+			prev = { remove_deposit = d_tempestous_mountain }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rich_mountain }
+			prev = { remove_deposit = d_rich_mountain }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_sea_grass }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_forest }
+			prev = { remove_deposit = d_fungal_forest }
+			prev = { add_deposit = d_teeming_reef }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_forgiving_tundra }
+			prev = { remove_deposit = d_forgiving_tundra }
+			prev = { add_deposit = d_twilight_shore }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_geothermal_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_noxious_swamp }
+			prev = { remove_deposit = d_noxious_swamp }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mountain_range }
+			prev = { remove_deposit = d_mountain_range }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_twilight_glacier }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_alpine" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_aquatic_terraformed" }
+		every_deposit = {
+			limit = { is_deposit_type = d_tempestous_mountain }
+			prev = { remove_deposit = d_tempestous_mountain }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rich_mountain }
+			prev = { remove_deposit = d_rich_mountain }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_sea_grass }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_forest }
+			prev = { remove_deposit = d_fungal_forest }
+			prev = { add_deposit = d_teeming_reef }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_geothermal_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_noxious_swamp }
+			prev = { remove_deposit = d_noxious_swamp }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_alpine" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_pagospelagic" }
+		every_deposit = {
+			limit = { is_deposit_type = d_tempestous_mountain }
+			prev = { remove_deposit = d_tempestous_mountain }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_rich_mountain }
+			prev = { remove_deposit = d_rich_mountain }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_forgiving_tundra }
+			prev = { remove_deposit = d_forgiving_tundra }
+			prev = { add_deposit = d_geothermal_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_frozen_gas_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_submerged_ore_veins }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_forest }
+			prev = { remove_deposit = d_fungal_forest }
+			prev = { add_deposit = d_sea_grass }
+			prev = { add_deposit = d_sea_grass }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_noxious_swamp }
+			prev = { remove_deposit = d_noxious_swamp }
+			prev = { add_deposit = d_massive_glacier }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mountain_range }
+			prev = { remove_deposit = d_mountain_range }
+			prev = { add_deposit = d_deep_ocean }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_massive_glacier }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_massive_glacier }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	# PC_NUKED - MARGINAL
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_stepikos" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }			# 1 energy
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }		# 2 energy
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_frozen_gas_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }		# 3 energy
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }		# 1 minerals
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }	# 3 minerals
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }		# 1 food
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_bountiful_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }		# 2 food
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_forgiving_tundra }
+			prev = { add_deposit = d_forgiving_tundra }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }	# -1 blocker
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_massive_glacier }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }				# -2 blocker
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_noxious_swamp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }				# -1 blocker
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_massive_glacier }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_agonos" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_lichen_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_toxic_kelp }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_almyros" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_searing_desert }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_searing_desert }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_lithium_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_elos" }
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_rushing_waterfalls }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_boggy_fens }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_boggy_fens }
+			prev = { add_deposit = d_nutritious_mudland }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_toxic_kelp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_noxious_swamp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_noxious_swamp }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_karstikos" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_mountain_range }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_rushing_waterfalls }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_tempestous_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mountain_range }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_karst_skylight }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_karst_skylight }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_mountain_range }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_mountain_range }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_erimos" has_modifier = "class_barren_terraformed" } }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_searing_desert }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_prosperous_mesa }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_lichen_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_hadean" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_lava_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_lava_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_lava_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_active_volcano }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_anthracean" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_geothermal_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_hydrocarbon_gorge }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_carbon_rich_hills }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_hydrocarbon_gorge }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_tar_sea }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_mountain_range }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_archean" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_lava_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_active_volcano }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_protogenian" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_prosperous_mesa }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_retinal_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_retinal_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_toxic_kelp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_dangerous_wildlife_blocker }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_toxic_kelp }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_ammoniagenian" }
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_frozen_gas_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_alkaline_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_alkaline_cave }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_ammonia_bog }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_ammonia_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_ammonia_toxic_kelp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_noxious_swamp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_redux" }
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_frozen_gas_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_tempestous_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_green_hills }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_fertile_lands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_noxious_swamp }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_dangerous_wildlife_blocker }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_noxious_swamp }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_hydrocarbonal" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_hydrocarbon_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_hydrocarbon_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_hydrocarbon_gorge }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_hydrocarbon_gorge }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_carbon_rich_hills }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_hydrocarbon_lake }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_carbon_rich_hills }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_cryo_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_cryo_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_cryo_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_mountain_range }
+			prev = { remove_deposit = d_mountain_range }
+			prev = { add_deposit = d_cryo_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_cryo_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+			prev = { add_deposit = d_cryo_volcano }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_sulfuric" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_geothermal_vent }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_bountiful_plains }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_sulfur_rich_lands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_deep_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_active_volcano }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_alkali" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_searing_desert }
+			prev = { remove_deposit = d_searing_desert }
+			prev = { add_deposit = d_geothermal_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_tempestous_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_prosperous_mesa }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_rich_mountain }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_lichen_forest }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_active_volcano }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_desolate" }
+		every_deposit = {
+			limit = { is_deposit_type = d_hot_springs }
+			prev = { remove_deposit = d_hot_springs }
+			prev = { add_deposit = d_arid_highlands }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_underwater_vent }
+			prev = { remove_deposit = d_underwater_vent }
+			prev = { add_deposit = d_geothermal_sinkhole }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_veiny_cliffs }
+			prev = { remove_deposit = d_veiny_cliffs }
+			prev = { add_deposit = d_mineral_fields }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_ore_rich_caverns }
+			prev = { remove_deposit = d_ore_rich_caverns }
+			prev = { add_deposit = d_mineral_rich_crater }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_submerged_ore_veins }
+			prev = { remove_deposit = d_submerged_ore_veins }
+			prev = { add_deposit = d_mineral_rich_crater }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_lichen_fields }
+			prev = { remove_deposit = d_lichen_fields }
+			prev = { add_deposit = d_mossfield }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_mossfield }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_radioactive_wasteland }
+			prev = { remove_deposit = d_radioactive_wasteland }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_city_ruins }
+			prev = { remove_deposit = d_city_ruins }
+			prev = { add_deposit = d_mountain_range }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_bomb_crater }
+			prev = { remove_deposit = d_bomb_crater }
+			prev = { add_deposit = d_quicksand_basin }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_active_volcano }
+			prev = { remove_deposit = d_active_volcano }
+			prev = { add_deposit = d_mountain_range }
+		}
+		every_deposit = {
+			limit = { is_deposit_type = d_dangerous_wildlife_blocker }
+			prev = { remove_deposit = d_dangerous_wildlife_blocker }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_tomb" }
+		every_deposit = {
+			limit = { is_deposit_type = d_fungal_caves }		# 2 food
+			prev = { remove_deposit = d_fungal_caves }
+			prev = { add_deposit = d_mossfield }
+			prev = { add_deposit = d_radiotrophic_fungi }
+		}
+		set_planet_flag = "deposits_corrected"
+	}
+}

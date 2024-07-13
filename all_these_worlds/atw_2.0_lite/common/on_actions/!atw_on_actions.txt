@@ -1,0 +1,40 @@
+###
+
+on_game_start = {
+	events = { 
+		atw_engine.04 # Spawn CoM not far from UNE
+		atw_engine.01
+		atw_engine.11 # Give Hydroponic tech progress to empires with Post Apocalyptic origin
+	}
+}
+
+on_single_player_save_game_load = {
+	events = { 
+		atw_engine.06 # Check for planets that might have been modified by events and have wrong planet class modifier
+	}
+}
+
+on_colonized = {
+	events = {
+		atw_engine.02 # Aquatic portrait update
+		atw_engine.03 # Non-aquatic portrait update
+	}
+}
+
+on_terraforming_begun = {
+	events = {
+		atw_terraforming.1 # Get original planet class (terraforming from)
+	}
+}
+
+on_terraforming_complete = {
+	events = {
+		atw_terraforming.2 # Complete terraforming
+	}
+}
+
+on_entering_system_first_time = {
+	events = {
+		atw_engine.05 # Checks if system planets have been verified and spans proper modifiers and stuff (for systems spawned after game start)
+	}
+}

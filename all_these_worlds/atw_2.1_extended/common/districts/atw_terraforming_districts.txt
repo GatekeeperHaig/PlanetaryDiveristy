@@ -1,0 +1,285 @@
+@base_cost = 300
+
+district_terraforming = {
+	base_buildtime = 180
+
+	is_capped_by_modifier = no
+	exempt_from_ai_planet_specialization = yes
+
+	show_on_uncolonized = {
+		uses_district_set = standard
+	}
+
+	potential = {
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+		}		
+		exists = owner
+		owner = {
+			NOR = {
+				is_machine_empire = yes
+				is_fallen_empire_spiritualist = yes
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = district_terraforming_disabled_tooltip
+			NOR = {			
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_continental }
+					has_modifier = "atmosphere-variable_water_vapour"
+					has_modifier = "biosphere-diverse"
+				}		
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_tropical }
+					has_modifier = "atmosphere-oxygen_carbon_mix"
+					has_modifier = "biosphere-dense"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_ocean }
+					has_modifier = "atmosphere-higher_water_vapour"
+					has_modifier = "biosphere-diverse"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_desert }
+					has_modifier = "atmosphere-oxygen_carbon_mix"
+					has_modifier = "biosphere-sparse"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_arid }
+					has_modifier = "atmosphere-carbon_rich"
+					has_modifier = "biosphere-sparse"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_savannah }
+					has_modifier = "atmosphere-lower_water_vapour"
+					has_modifier = "biosphere-sparse"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_arctic }
+					has_modifier = "atmosphere-variable_water_vapour"
+					has_modifier = "biosphere-sparse"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_tundra }
+					has_modifier = "atmosphere-lower_water_vapour"
+					has_modifier = "biosphere-diverse"
+				}
+				AND = {
+					exists = owner
+					owner = { ideal_planet_class = pc_alpine }
+					has_modifier = "atmosphere-carbon_poor"
+					has_modifier = "biosphere-tenuous"
+				}
+				AND = {
+					has_modifier = "atmosphere-artificial"
+					has_modifier = "biosphere-engineered"
+				}
+				AND = {
+					has_modifier = "atmosphere-artificial"
+					has_modifier = "biosphere-seeded"
+				}
+			}
+		}
+	}
+
+	#conversion_ratio = 1
+	#convert_to = {
+	#	district_generator_uncapped
+	#}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_terraformer_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_terraformer_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_terraformer_drone_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_terraformer_effect_desc
+	}
+
+	prerequisites = {
+		tech_atmospheric_manipulation
+	}
+
+	destroy_trigger = {
+		OR = {			
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_continental }
+				has_modifier = "atmosphere-variable_water_vapour"
+				has_modifier = "biosphere-diverse"
+			}		
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_tropical }
+				has_modifier = "atmosphere-oxygen_carbon_mix"
+				has_modifier = "biosphere-dense"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_ocean }
+				has_modifier = "atmosphere-higher_water_vapour"
+				has_modifier = "biosphere-diverse"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_desert }
+				has_modifier = "atmosphere-oxygen_carbon_mix"
+				has_modifier = "biosphere-sparse"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_arid }
+				has_modifier = "atmosphere-carbon_rich"
+				has_modifier = "biosphere-sparse"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_savannah }
+				has_modifier = "atmosphere-lower_water_vapour"
+				has_modifier = "biosphere-sparse"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_arctic }
+				has_modifier = "atmosphere-variable_water_vapour"
+				has_modifier = "biosphere-sparse"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_tundra }
+				has_modifier = "atmosphere-lower_water_vapour"
+				has_modifier = "biosphere-diverse"
+			}
+			AND = {
+				exists = owner
+				owner = { ideal_planet_class = pc_alpine }
+				has_modifier = "atmosphere-carbon_poor"
+				has_modifier = "biosphere-tenuous"
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+		
+		modifier = {
+			# Add weight if planet has less than the required terraforming districts for its planet size
+			add = 10
+			planet_size < 11
+			num_districts = { type = district_terraforming value < 1 }
+		}
+		modifier = {
+			# Add weight if planet has less than the required terraforming districts for its planet size
+			add = 10
+			planet_size > 10 planet_size < 14
+			num_districts = { type = district_terraforming value < 2 }
+		}
+		modifier = {
+			# Add weight if planet has less than the required terraforming districts for its planet size
+			add = 10
+			planet_size > 13 planet_size < 17
+			num_districts = { type = district_terraforming value < 3 }
+		}
+		modifier = {
+			# Add weight if planet has less than the required terraforming districts for its planet size
+			add = 10
+			planet_size > 16 planet_size < 20
+			num_districts = { type = district_terraforming value < 4 }
+		}
+		modifier = {
+			# Add weight if planet has less than the required terraforming districts for its planet size
+			add = 10
+			planet_size > 19 planet_size < 23
+			num_districts = { type = district_terraforming value < 5 }
+		}
+		modifier = {
+			# Add weight if planet has less than the required terraforming districts for its planet size
+			add = 10
+			planet_size > 22
+			num_districts = { type = district_terraforming value < 6 }
+		}
+
+		modifier = {
+			# Halves weight of above modifiers, if it makes any difference, in case habitability is already good
+			factor = 0.50
+			habitability = { who = root.owner value > 0.75 }
+		}
+		modifier = {
+			# Nullifies above modifiers, in case habitability is near perfect
+			factor = 0.00
+			habitability = { who = root.owner value > 0.90 }
+		}
+	}
+}
+

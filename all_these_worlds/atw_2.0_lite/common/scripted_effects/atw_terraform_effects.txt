@@ -1,0 +1,478 @@
+## Effects to pick planet class and reroll modifiers with proper entity/portrait after terraforming
+
+terraform_update = {
+	if = {
+		# Shaped Super-terrestrials
+		limit = { is_planet_class = "pc_gaia" }
+		remove_biosphere_modifier = yes
+		# Roll one of the Gaia classes factoring its deposits
+		random_list = {
+			1 = {
+				modifier = { add = 100 has_deposit = "d_lush_jungle" }
+				modifier = { add = 100 has_deposit = "d_fertile_lands" }
+				modifier = { add = 1000 has_deposit = "d_crystal_reef" }
+				modifier = { factor = 0.00 prev = { has_origin = "origin_ocean_paradise" } }
+				modifier = { factor = 0.00 prev = { has_origin = "origin_ocean_machines" } }
+				modifier = { factor = 0.00 has_planet_flag = "planet_mars" }
+				modifier = { add = 1000 has_planet_flag = "planet_earth" }
+				roll_chloerosgaean = yes
+			}
+			0 = {
+				modifier = { add = 100 has_deposit = "d_searing_desert" }
+				modifier = { add = 100 has_deposit = "d_prosperous_mesa" }
+				modifier = { add = 1000 has_deposit = "d_dust_desert" }
+				modifier = { factor = 0.00 prev = { has_origin = "origin_ocean_paradise" } }
+				modifier = { factor = 0.00 prev = { has_origin = "origin_ocean_machines" } }
+				modifier = { factor = 0.00 has_planet_flag = "planet_earth" }
+				modifier = { add = 1000 has_planet_flag = "planet_mars" }
+				roll_thermogaean = yes
+			}
+			0 = {
+				modifier = { add = 100 has_deposit = "d_frozen_gas_lake" }
+				modifier = { add = 100 has_deposit = "d_ore_rich_caverns" }
+				modifier = { add = 1000 has_deposit = "d_fuming_bog" }
+				modifier = { factor = 0.00 prev = { has_origin = "origin_ocean_paradise" } }
+				modifier = { factor = 0.00 prev = { has_origin = "origin_ocean_machines" } }
+				modifier = { factor = 0.00 has_planet_flag = "planet_mars" }
+				modifier = { factor = 0.00 has_planet_flag = "planet_earth" }
+				roll_cryogaean = yes
+			}
+			0 = {
+				modifier = { add = 1000 prev = { has_origin = "origin_ocean_paradise" } }
+				modifier = { add = 1000 prev = { has_origin = "origin_ocean_machines" } }
+				change_pc = pc_ocean
+				create_ocean_paradise_planet = yes
+				roll_okeanosgaean = yes
+			}
+		}
+		#random_list = {
+		#	1 = {
+		#		remove_biosphere_modifier = yes
+		#		roll_chloerosgaean = yes
+		#		correct_habitable_deposits = yes
+		#		##
+		#		modifier = { factor = 100 was_temperate_class = yes }
+		#	}
+		#	1 = {
+		#		remove_biosphere_modifier = yes
+		#		roll_thermogaean = yes
+		#		correct_habitable_deposits = yes
+		#		##
+		#		modifier = { factor = 100 was_dry_class = yes }
+		#	}
+		#	1 = {
+		#		remove_biosphere_modifier = yes
+		#		roll_cryogaean = yes
+		#		correct_habitable_deposits = yes
+		#		##
+		#		modifier = { factor = 100 was_frigid_class = yes }
+		#	}
+		#}
+	}
+	# Temperate Terrestrials
+	if = {
+		limit = { is_planet_class = "pc_continental" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_megachlorida = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_chloerosorimos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_chloerosgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_retinalgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 50 OR = { orbits_red_star = yes orbits_orange_star = yes } }
+				modifier = { factor = 0.50 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_photosgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 25 is_gas_giant_moon = yes }
+				modifier = { factor = 0.50 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+		}
+	}
+	# Temperate Sub-terrestrials
+	if = {
+		limit = { is_planet_class = "pc_tropical" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_chloerosmegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_tropikostopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_sparse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_alpikotopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.50 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_adapted_terraformed = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "uninhabitable_terraforming" }
+			}
+		}
+	}
+	# Temperate Oceanics
+	if = {
+		limit = { is_planet_class = "pc_ocean" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_panpelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = {
+					add = 1000
+					owner = {
+						has_trait = trait_aquatic
+					}
+				}
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+				modifier = { factor = 0.00 has_planet_flag = "frozen_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_megalopelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+				modifier = { factor = 0.00 has_planet_flag = "frozen_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_archipelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+				modifier = { factor = 0.00 has_planet_flag = "frozen_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_aquatic_terraformed = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "uninhabitable_terraforming" }
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_panpelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "frozen_terraforming" }
+			}
+		}
+	}
+	# Dry Terrestrials
+	if = {
+		limit = { is_planet_class = "pc_arid" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_algaemegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_xirosorimos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_thermogenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_mukesgenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 100 OR = { orbits_red_star = yes orbits_orange_star = yes } }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+		}
+	}
+	# Dry Sub-terrestrials
+	if = {
+		limit = { is_planet_class = "pc_savannah" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_thermomegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_thermotopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_diverse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_savana = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_adapted_terraformed = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "uninhabitable_terraforming" }
+			}
+		}
+	}
+	# Dry Sub-oceanics
+	if = {
+		limit = { is_planet_class = "pc_desert" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_ipeirospelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_thermopelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_aquatic_terraformed = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "uninhabitable_terraforming" }
+			}
+		}
+	}
+	# Frigid Terrestrials
+	if = {
+		limit = { is_planet_class = "pc_arctic" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_cryomegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_pagosorimos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_cryogenian = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+		}
+	}
+	# Frigid Sub-terrestrials
+	if = {
+		limit = { is_planet_class = "pc_tundra" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				roll_krystallomegagi = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_cryotopio = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_tenuous_preference" }
+				modifier = { factor = 0.50 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_oreinos = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.50 has_planet_flag = "has_diverse_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "has_dense_preference" }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_adapted_terraformed = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "uninhabitable_terraforming" }
+			}
+		}
+	}
+	# Frigid Sub-oceanics
+	if = {
+		limit = { is_planet_class = "pc_alpine" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		random_list = {
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_pagospelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 planet_size > 23 }
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			10 = {
+				remove_biosphere_modifier = yes
+				roll_cryopelagic = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { factor = 0.00 has_planet_flag = "uninhabitable_terraforming"} 
+			}
+			0 = {
+				remove_biosphere_modifier = yes
+				roll_aquatic_terraformed = yes
+				correct_habitable_deposits = yes
+				##
+				modifier = { add = 1000 has_planet_flag = "uninhabitable_terraforming" }
+			}
+		}
+	}
+	# Marginal
+	if = {
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "subterranean_terraforming" } }
+		remove_biosphere_modifier = yes
+		if = {
+			limit = {
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+				}
+			}
+			roll_barren_terraformed = yes
+			remove_modifier = terraforming_candidate
+			remove_modifier = toxic_terraforming_candidate
+		}
+		else = {
+			roll_tomb = yes
+		}
+		correct_habitable_deposits = yes
+	}
+}
+
+clear_terraforming_flags = {
+	if = {
+		limit = { has_planet_flag = "has_gaia_preference" }
+		remove_planet_flag = has_gaia_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_nuked_preference" }
+		remove_planet_flag = has_nuked_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_dense_preference" }
+		remove_planet_flag = has_dense_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_diverse_preference" }
+		remove_planet_flag = has_diverse_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_sparse_preference" }
+		remove_planet_flag = has_sparse_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_tenuous_preference" }
+		remove_planet_flag = has_tenuous_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_artificial_preference" }
+		remove_planet_flag = has_artificial_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_oxygen_carbon_mix_preference" }
+		remove_planet_flag = has_oxygen_carbon_mix_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_variable_water_vapour_preference" }
+		remove_planet_flag = has_variable_water_vapour_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_higher_water_vapour_preference" }
+		remove_planet_flag = has_higher_water_vapour_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_lower_water_vapour_preference" }
+		remove_planet_flag = has_lower_water_vapour_preference
+	}
+	if = {
+		limit = { has_planet_flag = "has_carbon_poor_preference" }
+		remove_planet_flag = has_carbon_poor_preference
+	}
+}

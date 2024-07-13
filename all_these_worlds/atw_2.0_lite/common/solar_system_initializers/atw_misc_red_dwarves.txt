@@ -1,0 +1,101 @@
+@base_moon_distance = 6
+@extended_moon_distance = 8
+@sub_giant_moon_distance = 12
+@giant_moon_distance = 14
+@super_giant_moon_distance = 18
+
+# To help with the planet conversion engine, every planet should have at least one moon, which may be removed by script after the conversion engine runs.
+# Because vanilla habitable worlds have a global min and max spawn distance, every star class will have the same Eco Zone (60-100) range, but the vanilla habitable generation has been adapted to favor cold worlds in dim stars and dry worlds in bright stars. 
+# Some planets in or outside the eco range may get an extra flag which may result in the engine converting an uninhabitable into a marginal or sub=marginal world: liquid_water; frozen_water; aquifers; ammonia; primordial; chthonian; locked
+# Bright stars should have goldilock zones farther out, so we should force the water flags beyond the 60-100 range
+
+# Standard Red Dwarf
+red_dwarf_init_01 = {
+	class = "sc_m"
+
+	usage = misc_system_init
+	usage_odds = 35
+
+	flags = { atw_red_dwarf atw_misc }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 25 }
+		has_ring = no
+	}
+
+	# Inner Zone
+	change_orbit = 15
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_molten"
+		size = { min = 10 max = 14 }
+		flags = { orbit-15 }
+	}
+	change_orbit = 10
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_molten"
+		size = { min = 15 max = 22 }
+		flags = { orbit-25 locked_hot }
+	}
+	change_orbit = 20
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_molten"
+		size = { min = 15 max = 22 }
+		flags = { orbit-45 locked_temperate }
+	}
+	change_orbit = 15
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_barren"
+		size = { min = 15 max = 22 }
+		flags = { orbit-60 locked_cold }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 0 max = 2 }
+			class = "pc_barren_cold"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+		}
+	}
+	change_orbit = 25
+	planet = {
+		count = 1
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_frozen"
+		size = { min = 15 max = 22 }
+		flags = { orbit-85 }
+		change_orbit = @base_moon_distance
+		moon = {
+			count = { min = 0 max = 1 }
+			class = "pc_frozen"
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 2 max = 3 }
+			size = { min = 4 max = 10 }
+		}
+	}
+	change_orbit = 10
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		class = "pc_barren_cold"
+		size = { min = 10 max = 14 }
+		flags = { orbit-95 }
+	}
+}

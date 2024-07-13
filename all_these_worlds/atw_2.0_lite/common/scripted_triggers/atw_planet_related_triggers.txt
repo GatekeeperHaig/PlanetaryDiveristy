@@ -1,0 +1,466 @@
+is_gas_giant_moon = { has_planet_flag = gas_giant_moon }
+is_habitable_planet_moon = { has_planet_flag = habitable_planet_moon }
+has_habitable_moon = {
+	any_moon = {
+		habitable_planet_not_urban = yes
+	}
+}
+
+is_uninhabitable = {
+	OR = {
+		is_planet_class = pc_molten
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic
+		is_planet_class = pc_frozen	
+		is_planet_class = pc_asteroid
+		is_planet_class = pc_ice_asteroid
+		is_planet_class = pc_rare_crystal_asteroid
+		is_planet_class = pc_crystal_asteroid
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_broken
+		is_planet_class = pc_shattered
+		is_planet_class = pc_gray_goo
+		is_planet_class = pc_egg_cracked
+		is_planet_class = pc_shattered_2
+	}
+}
+
+is_rocky_uninhabitable = {
+	OR = {
+		is_planet_class = pc_molten
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic
+		is_planet_class = pc_frozen
+	}
+}
+
+is_habitable = {
+	OR = {
+		habitable_planet = yes
+	}
+}
+
+is_regular_habitable_planet = { # Used in the Geoengineering decisions
+	OR = {
+		is_planet_class = pc_desert
+		is_planet_class = pc_tropical
+		is_planet_class = pc_arid
+		is_planet_class = pc_continental
+		is_planet_class = pc_ocean
+		is_planet_class = pc_tundra
+		is_planet_class = pc_arctic
+		is_planet_class = pc_alpine
+		is_planet_class = pc_savannah
+		# Lets include marginals as well, while excluding sub-marginals except the Barren terraformed
+		has_modifier = "class_stepikos"
+		has_modifier = "class_erimos"
+		has_modifier = "class_karstikos"
+		has_modifier = "class_agonos"
+		has_modifier = "class_almyros"
+		has_modifier = "class_elos"
+		has_modifier = "class_redux"
+		has_modifier = "class_tomb"
+		has_modifier = "class_tomb_restored"
+		has_modifier = "class_barren_terraformed"
+	}
+}
+
+is_special_colony = {
+	OR = {
+		is_homeworld = yes
+		has_planet_flag = "prescripted_ideal"
+	}	
+}
+
+is_gas_giant = {
+	OR = {
+		is_planet_class = pc_gas_giant
+		#is_planet_class = ph_jovian
+		#is_planet_class = ph_super_jovian
+		#is_planet_class = ph_neptunian
+	}
+}
+
+supports_barren_biosphere = { # Used for Terraforming stuff, single-biome planet classes excluded
+	OR = {
+		has_modifier = "class_pagospelagic"
+		has_modifier = "class_oreinos"
+		has_modifier = "class_cryopelagic"
+	}
+}
+supports_tenuous_biosphere = { # Used for Terraforming stuff, single-biome planet classes excluded
+	OR = {
+		has_modifier = "class_ipeirospelagic"
+		has_modifier = "class_pagospelagic"
+		has_modifier = "class_xirosorimos"
+		has_modifier = "class_pagosorimos"
+		has_modifier = "class_thermogenian"
+		has_modifier = "class_cryogenian"
+		has_modifier = "class_thermotopio"
+		has_modifier = "class_oreinos"
+		has_modifier = "class_savana"
+		has_modifier = "class_archipelagic"
+		has_modifier = "class_thermopelagic"
+		has_modifier = "class_cryopelagic"
+		has_modifier = "class_tomb"
+	}
+}
+supports_sparse_biosphere = { # Used for Terraforming stuff, single-biome planet classes excluded
+	OR = {
+		has_modifier = "class_ipeirospelagic"
+		has_modifier = "class_chloerosorimos"
+		has_modifier = "class_xirosorimos"
+		has_modifier = "class_pagosorimos"
+		has_modifier = "class_chloerosgenian"
+		has_modifier = "class_thermogenian"
+		has_modifier = "class_cryogenian"
+		has_modifier = "class_retinalgenian"
+		has_modifier = "class_mukesgenian"
+		has_modifier = "class_thermotopio"
+		has_modifier = "class_cryotopio"
+		has_modifier = "class_alpikotopio"
+		has_modifier = "class_savana"
+		has_modifier = "class_archipelagic"
+		has_modifier = "class_thermopelagic"
+		has_modifier = "class_tomb"
+	}
+}
+supports_diverse_biosphere = { # Used for Terraforming stuff, single-biome planet classes excluded
+	OR = {
+		has_modifier = "class_megalopelagic"
+		has_modifier = "class_chloerosorimos"
+		has_modifier = "class_xirosorimos"
+		has_modifier = "class_pagosorimos"
+		has_modifier = "class_chloerosgenian"
+		has_modifier = "class_thermogenian"
+		has_modifier = "class_cryogenian"
+		has_modifier = "class_retinalgenian"
+		has_modifier = "class_mukesgenian"
+		has_modifier = "class_tropikostopio"
+		has_modifier = "class_cryotopio"
+		has_modifier = "class_alpikotopio"
+		has_modifier = "class_archipelagic"
+		has_modifier = "class_thermopelagic"
+	}
+}
+supports_dense_biosphere = { # Used for Terraforming stuff, single-biome planet classes excluded
+	OR = {
+		has_modifier = "class_megalopelagic"
+		has_modifier = "class_chloerosorimos"
+		has_modifier = "class_chloerosgenian"
+		has_modifier = "class_retinalgenian"
+		has_modifier = "class_tropikostopio"
+	}
+}
+
+has_optimal_atmosphere = {
+	OR = {
+		has_modifier = "atmosphere-artificial"
+		has_modifier = "atmosphere-variable_water_vapour"
+		has_modifier = "atmosphere-lower_water_vapour"
+		has_modifier = "atmosphere-higher_water_vapour"
+		has_modifier = "atmosphere-oxygen_carbon_mix"
+		has_modifier = "atmosphere-carbon_poor"
+		has_modifier = "atmosphere-carbon_rich"
+	}
+}
+
+has_marginal_atmosphere = {
+	OR = {
+		has_modifier = "atmosphere-polluted"
+		has_modifier = "atmosphere-ammonia_vapour"
+		has_modifier = "atmosphere-frigid_marginal"
+		has_modifier = "atmosphere-hot_marginal"
+		has_modifier = "atmosphere-wet_marginal"
+	}
+}
+
+has_sub_marginal_atmosphere = {
+	OR = {
+		has_modifier = "atmosphere-sulfuric_acid"
+		has_modifier = "atmosphere-volcanic"
+		has_modifier = "atmosphere-methane"
+		has_modifier = "atmosphere-hothouse"
+		has_modifier = "atmosphere-desolate"
+	}
+}
+
+has_mineral_orbital_deposit = {
+	OR = {
+		has_deposit = d_minerals_1
+		has_deposit = d_minerals_2
+		has_deposit = d_minerals_3
+		has_deposit = d_minerals_4
+		has_deposit = d_minerals_5
+		has_deposit = d_minerals_6
+		has_deposit = d_minerals_7
+		has_deposit = d_minerals_8
+		has_deposit = d_minerals_9
+		has_deposit = d_minerals_10
+	}
+}
+
+
+has_energy_orbital_deposit = {
+	OR = {
+		has_deposit = d_energy_1
+		has_deposit = d_energy_2
+		has_deposit = d_energy_3
+		has_deposit = d_energy_4
+		has_deposit = d_energy_5
+		has_deposit = d_energy_6
+		has_deposit = d_energy_7
+		has_deposit = d_energy_8
+		has_deposit = d_energy_9
+		has_deposit = d_energy_10
+	}
+}
+
+has_trade_value_orbital_deposit = {
+	OR = {
+		has_deposit = d_trade_value_1
+		has_deposit = d_trade_value_2
+		has_deposit = d_trade_value_3
+		has_deposit = d_trade_value_4
+		has_deposit = d_trade_value_5
+	}
+}
+
+has_alloy_orbital_deposit = {
+	OR = {
+		has_deposit = d_alloys_1
+		has_deposit = d_alloys_2
+		has_deposit = d_alloys_3
+		has_deposit = d_alloys_4
+		has_deposit = d_alloys_5
+	}
+}
+
+has_volatile_motes_orbital_deposit = {
+	OR = {
+		has_deposit = d_volatile_motes_1
+		has_deposit = d_volatile_motes_2
+		has_deposit = d_volatile_motes_3
+		has_deposit = d_volatile_motes_4
+		has_deposit = d_volatile_motes_5
+	}
+}
+
+has_exotic_gases_orbital_deposit = {
+	OR = {
+		has_deposit = d_exotic_gases_1
+		has_deposit = d_exotic_gases_2
+		has_deposit = d_exotic_gases_3
+		has_deposit = d_exotic_gases_4
+		has_deposit = d_exotic_gases_5
+	}
+}
+
+has_rare_crystals_orbital_deposit = {
+	OR = {
+		has_deposit = d_rare_crystals_1
+		has_deposit = d_rare_crystals_2
+		has_deposit = d_rare_crystals_3
+		has_deposit = d_rare_crystals_4
+		has_deposit = d_rare_crystals_5
+	}
+}
+
+has_zro_orbital_deposit = {
+	OR = {
+		has_deposit = d_zro_deposit_1
+		has_deposit = d_zro_deposit_2
+		has_deposit = d_zro_deposit_3
+		has_deposit = d_zro_deposit_4
+		has_deposit = d_zro_deposit_5
+	}
+}
+
+has_dark_matter_orbital_deposit = {
+	OR = {
+		has_deposit = d_dark_matter_deposit_1
+		has_deposit = d_dark_matter_deposit_2
+		has_deposit = d_dark_matter_deposit_3
+		has_deposit = d_dark_matter_deposit_10
+	}
+}
+
+has_science_orbital_deposit = {
+	OR = {
+		has_deposit = d_society_1
+		has_deposit = d_society_2
+		has_deposit = d_society_3
+		has_deposit = d_society_4
+		has_deposit = d_society_5
+		has_deposit = d_physics_1
+		has_deposit = d_physics_2
+		has_deposit = d_physics_3
+		has_deposit = d_physics_4
+		has_deposit = d_physics_5
+		has_deposit = d_engineering_1
+		has_deposit = d_engineering_2
+		has_deposit = d_engineering_3
+		has_deposit = d_engineering_4
+		has_deposit = d_engineering_5
+	}
+}
+
+has_sr_orbital_deposit = {
+	OR = {
+		has_volatile_motes_orbital_deposit = yes
+		has_exotic_gases_orbital_deposit = yes
+		has_rare_crystals_orbital_deposit = yes
+		has_zro_orbital_deposit = yes
+		has_dark_matter_orbital_deposit = yes
+		has_deposit = d_living_metal_deposit
+	}
+}
+
+has_non_sr_orbital_deposit = {
+	OR = {
+		has_mineral_orbital_deposit = yes
+		has_energy_orbital_deposit = yes
+		has_trade_value_orbital_deposit = yes
+		has_alloy_orbital_deposit = yes
+		has_science_orbital_deposit = yes
+	}
+}
+ 
+has_standard_orbital_deposit = {
+	# Only deposits with drop_weight > 0 go here, which means they are spawned during galaxy generation
+	# the goal is to use this trigger to clear only standard deposits and not mess with special ones spawned by events
+	OR = {
+		## BASIC RESOURCES
+		has_deposit = d_minerals_2 #base weight 5 (bonus to asteroids)
+		has_deposit = d_minerals_3 #base weight 2.5 (bonus to asteroids)
+		has_deposit = d_minerals_4 #base weight 1 (bonus to asteroids)
+		has_deposit = d_minerals_5 #base weight 0.1 (bonus to asteroids)
+		has_deposit = d_energy_2 #base weight 5 (bonus to stars and giants)
+		has_deposit = d_energy_3 #base weight 2.5 (bonus to stars and giants)
+		has_deposit = d_energy_4 #base weight 1 (bonus to stars and giants)
+		has_deposit = d_energy_5 #base weight 0.1 (bonus to stars and giants)
+		has_deposit = d_society_2 #base weight 5 (toxics)
+		has_deposit = d_society_3 #base weight 2.5 (toxics)
+		has_deposit = d_society_4 #base weight 0.5 (toxics)
+		has_deposit = d_society_5 #base weight 0.1 (toxics)
+		has_deposit = d_physics_2 #base weight 1 (stars)
+		has_deposit = d_physics_3 #base weight 0.5 (stars)
+		has_deposit = d_physics_4 #base weight 0.05 (stars)
+		has_deposit = d_physics_5 #base weight 0.01 (stars)
+		has_deposit = d_engineering_2 #base weight 2 (frozens, giants)
+		has_deposit = d_engineering_3 #base weight 1 (frozens, giants, degenerates *5 degenerates)
+		has_deposit = d_engineering_4 #base weight 0.2 (frozens, giants, degenerates *5 degenerates)
+		has_deposit = d_engineering_5 #base weight 0.05 (frozens, giants, degenerates *5 degenerates)
+		has_deposit = d_trade_value_2 #base weight 5 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_trade_value_3 #base weight 2.5 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_trade_value_4 #base weight 1 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_trade_value_5 #base weight 0.1 (giants, moltens, toxics, asteroids *0.5 moltens *2.0 ast)
+		has_deposit = d_alloys_1 #base weight 2 (moltens, asteroids *1.5 inside nebula)
+		has_deposit = d_alloys_2 #base weight 0.5 (asteroids *1.5 inside nebula)
+		## STRATEGIC RESOURCES
+		has_deposit = d_exotic_gases_1 #base weight 1.5 (giants or toxics *1.5 inside nebula)
+		has_deposit = d_exotic_gases_2 #base weight 0.5 (giants or toxics *1.5 inside nebula)
+		has_deposit = d_rare_crystals_1 #base weight 1.5 (frozens or ice ast. *1.5 inside nebula) 
+		has_deposit = d_rare_crystals_2 #base weight 0.25 (frozens or ice ast. *1.5 inside nebula) 
+		has_deposit = d_volatile_motes_1 #base weight 1.5 (moltens or ast. *1.5 inside nebula) 
+		has_deposit = d_volatile_motes_2 #base weight 0.5 (moltens or ast. *1.5 inside nebula) 
+		has_deposit = d_zro_deposit_1 #base weight 5 (toxics *0.5 outside nebula)
+		has_deposit = d_zro_deposit_2 #base weight 1 (toxics *0.5 outside nebula)
+		has_deposit = d_dark_matter_deposit_1 #base weight 10 (black holes *0.5 outside nebula)
+		has_deposit = d_dark_matter_deposit_2 #base weight 1 (black holes)
+		#has_deposit = d_nanites_deposit # THIS ONE ONLY SPAWNS IN L-CLUSTER, BEST NOT TO TOUCH IT
+	}
+}
+
+# For terraforming events/effects
+was_dry_class = {
+	OR = {
+		has_planet_flag = "class_thermogaean"
+		has_planet_flag = "class_algaemegagi"
+		has_planet_flag = "class_thermomegagi"
+		has_planet_flag = "class_xirosorimos"
+		has_planet_flag = "class_thermogenian"
+		has_planet_flag = "class_mukesgenian"
+		has_planet_flag = "class_thermotopio"
+		has_planet_flag = "class_savana"
+		has_planet_flag = "class_ipeirospelagic"
+		has_planet_flag = "class_thermopelagic"
+		has_planet_flag = "class_xiroslykofos"
+		has_planet_flag = "class_erimos"
+		has_planet_flag = "class_agonos"
+		has_planet_flag = "class_almyros"
+		has_planet_flag = "class_hadean"
+		has_planet_flag = "class_archean"
+		has_planet_flag = "class_desolate"
+		has_planet_flag = "class_alkali"
+		has_planet_flag = "class_sulfuric"
+	}
+}
+was_temperate_class = {
+	OR = {
+		has_planet_flag = "class_chloerosgaean"
+		has_planet_flag = "class_chloerosmegagi"
+		has_planet_flag = "class_chloerosorimos"
+		has_planet_flag = "class_chloerosgenian"
+		has_planet_flag = "class_retinalgenian"
+		has_planet_flag = "class_photosgenian"
+		has_planet_flag = "class_tropikostopio"
+		has_planet_flag = "class_megachlorida"
+		has_planet_flag = "class_alpikotopio"
+		has_planet_flag = "class_megalopelagic"
+		has_planet_flag = "class_archipelagic"
+		has_planet_flag = "class_panpelagic"
+		has_planet_flag = "class_chloeroslykofos"
+		has_planet_flag = "class_karstikos"
+		has_planet_flag = "class_elos"
+		has_planet_flag = "class_protogenian"
+	}
+}
+was_frigid_class = {
+	OR = {
+		has_planet_flag = "class_cryogaean"
+		has_planet_flag = "class_cryomegagi"
+		has_planet_flag = "class_krystallomegagi"
+		has_planet_flag = "class_pagosorimos"
+		has_planet_flag = "class_cryogenian"
+		has_planet_flag = "class_ammoniagenian"
+		has_planet_flag = "class_oreinos"
+		has_planet_flag = "class_cryopelagic"
+		has_planet_flag = "class_pagospelagic"
+		has_planet_flag = "class_ammoniapelagic"
+		has_planet_flag = "class_pagoslykofos"
+		has_planet_flag = "class_stepikos"
+		has_planet_flag = "class_anthracean"
+		has_planet_flag = "class_hydrocarbonal"
+		has_planet_flag = "class_redux"
+		has_planet_flag = "class_tomb"
+	}
+}
+was_terraformed_class = {
+	OR = {
+		has_planet_flag = "class_barren_terraformed"
+		has_planet_flag = "class_adapted_terraformed"
+		has_planet_flag = "class_aquatic_terraformed"
+		has_planet_flag = "class_ammonia_terraformed"
+	}
+}
+was_uninhabitable_class = {
+	OR = {
+		has_planet_flag = "class_molten"
+		has_planet_flag = "class_chthonian"
+		has_planet_flag = "class_iron"
+		has_planet_flag = "class_silicate"
+		has_planet_flag = "class_dusty"
+		has_planet_flag = "class_volcanic"
+		has_planet_flag = "class_frozen"
+		has_planet_flag = "class_methane"
+		has_planet_flag = "class_hothouse"
+		has_planet_flag = "class_carbonyl"
+		has_planet_flag = "class_ice"
+		has_planet_flag = "class_water_panthalassic"
+		has_planet_flag = "class_ammonia_panthalassic"
+		has_planet_flag = "class_methane_panthalassic"
+	}
+}
