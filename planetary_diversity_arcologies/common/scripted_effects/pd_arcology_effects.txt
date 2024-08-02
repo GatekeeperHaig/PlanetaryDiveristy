@@ -339,8 +339,10 @@ generate_pd_arcology_portrait_effect = {
 				}
 			}
 		}
+		#Garden Arc + HQ - Not Earth
 		if = {
 			limit = {
+				NOT = {	has_planet_flag = planet_earth }
 				is_planet_class = pc_city
 				OR = {
 					has_modifier = pd_garden_arcology
@@ -353,6 +355,23 @@ generate_pd_arcology_portrait_effect = {
 				graphical_culture = owner
 			}
 		}
+		#Garden Arc + HQ - Is Earth
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_city
+				OR = {
+					has_modifier = pd_garden_arcology
+					has_modifier = pd_garden_arcology_rs
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_headquarters
+				entity = "pd_capital_city_planet_earth_01_entity"
+				graphical_culture = owner
+			}
+		}
+		#Fort Arc + HQ
 		if = {
 			limit = {
 				is_planet_class = pc_city
@@ -367,6 +386,7 @@ generate_pd_arcology_portrait_effect = {
 				graphical_culture = owner
 			}
 		}
+		#Commerical Arc + HQ
 		if = {
 			limit = {
 				is_planet_class = pc_city
