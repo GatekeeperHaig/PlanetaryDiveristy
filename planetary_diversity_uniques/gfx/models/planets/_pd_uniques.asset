@@ -40,3 +40,72 @@ entity = {
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
 	}
 }
+
+entity = {
+	name = "floating_planetcloud_mesh"
+	pdxmesh = "planet_cloud_mesh"
+	scale = 1.004
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "clouds_floating_diffuse.dds"
+	texture_normal = "clouds_floating_normal.dds"
+	texture_specular = "clouds_medium_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "clouds_floating_shadow_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+entity = {
+    name = "pd_floating_planet_01_entity"
+    pdxmesh = "planet_clouded_mesh"
+
+    meshsettings = {
+    name = "planet_geosphereShape"
+    texture_diffuse = "floating_01_diffuse.dds"
+    texture_normal = "floating_01_normals.dds"
+    texture_specular = "floating_01_spec.dds"
+    }
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "clouds_floating_diffuse2.dds"
+	texture_normal = "clouds_floating_normal2.dds"
+	texture_specular = "clouds_medium_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "clouds_floating_shadow_diffuse2.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "nopoles_1_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+	attach = { "tiltLoc" = "floating_planetcloud_mesh"}
+}

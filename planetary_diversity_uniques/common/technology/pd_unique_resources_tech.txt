@@ -1,0 +1,118 @@
+#########PD Unique Techs
+
+#Floating World
+tech_eludium_research = {
+	icon = tech_eludium_research
+	cost = @tier1cost3
+	area = physics
+	tier = 1
+	category = { particles }
+	prerequisites = { "tech_basic_industry" }
+	weight = @tier1weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	modifier = {
+		planet_jobs_physics_research_produces_mult = 0.1
+	}
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+}
+tech_eludium_research_initiative = {
+	area = physics
+	tier = 3
+	cost = @tier3cost1
+	category = { computing }
+	prerequisites = { "tech_colonial_centralization" "tech_eludium_mine" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { has_resource = { type = sr_eludium amount > 0 } }
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_computing }
+		}
+	}
+}
+tech_eludium_floating_islands = {
+	area = society
+	tier = 3
+	cost = @tier3cost1
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" "tech_eludium_mine" }
+	weight = @tier3weight1
+	is_rare = yes
+
+	potential = { any_owned_planet =  { is_planet_class = pc_floating } }
+
+	weight_modifier = {
+		factor = 10
+		modifier = {
+			factor = 0
+			NOT = { has_resource = { type = sr_eludium amount > 0 } }
+			NOT = {
+				any_owned_planet =  {
+					is_planet_class = pc_floating
+					is_colony = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+		}
+	}
+}
