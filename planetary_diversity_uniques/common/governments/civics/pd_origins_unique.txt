@@ -23,3 +23,22 @@
 # 	flags = { custom_start_screen }
 # 	#max_once_global = yes
 # }
+
+origin_pd_floating_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdfloating.dds"
+	picture = GFX_origin_pd_floating
+	starting_colony = pc_pd_floating
+	habitability_preference = pc_continental
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_floating_world_effects"
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_floating }
+	possible = {
+		civics = {
+			NOT = { value = civic_machine_terminator }
+			NOT = { value = civic_fanatic_purifiers }
+		}
+	}
+	max_once_global = yes
+}

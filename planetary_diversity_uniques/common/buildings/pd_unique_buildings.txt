@@ -1,0 +1,157 @@
+###Unique Buildings
+
+#Floating World
+#Resort
+building_pd_eludium_floating_resort = {
+	base_buildtime = 720
+	base_cap_amount = 1
+
+	category = amenity
+
+	potential = {
+		NOR = {
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+			has_modifier = pd_floating
+		}
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+			has_modifier = pd_floating
+			owner = { is_regular_empire = no }
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			sr_eludium = 600
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		job_resort_worker_add = 3
+		job_entertainer_add = 3
+		trade_value_mult = 0.25
+	}
+
+	prerequisites = {
+		"tech_eludium_floating_resort"
+	}
+
+	triggered_desc = {
+		text = job_resort_worker_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_entertainer_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+#Gestalt Overseer
+building_pd_eludium_floating_overseer = {
+	base_buildtime = 720
+	base_cap_amount = 1
+
+	category = amenity
+
+	potential = {
+		NOT = {	has_modifier = pd_floating }
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			has_modifier = pd_floating
+			owner = { is_gestalt = no }
+		}
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			sr_eludium = 600
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_stability_add = 25
+		job_patrol_drone_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_synapse_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_coordinator_add = 3
+		}
+	}
+	prerequisites = {
+		"tech_eludium_floating_overseer"
+	}
+
+	triggered_desc = {
+		text = job_patrol_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_synapse_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_coordinator_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}

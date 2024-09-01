@@ -2226,6 +2226,34 @@ pd_generate_start_buildings_and_districts = {
 		add_deposit = d_genesis_preserve
 		set_planet_flag = pre_sapient_planet
 	}
+
+	if = {
+		limit = {
+			owner = {
+				has_civic = civic_private_healthcare_corporate
+			}
+		}
+		if = {
+			limit = {
+				has_building = building_commercial_zone
+			}
+			remove_building = building_commercial_zone
+		}
+		if = {
+			limit = {
+				free_building_slots <= 0
+				has_district = district_generator
+				has_district = district_city
+			}
+			remove_district = district_generator
+			add_district = district_city
+		}
+		add_building = building_clinic
+		owner = {
+			give_technology = { message = no tech = tech_frontier_health }
+			add_research_option = tech_subdermal_stimulation
+		}
+	}
 }
 
 pd_generate_start_buildings_and_districts_uncommon = {

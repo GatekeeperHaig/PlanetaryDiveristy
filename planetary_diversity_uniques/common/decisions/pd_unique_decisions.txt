@@ -19,6 +19,7 @@ decision_d_pd_the_great_knot_mining = {
 	allow = {
 		has_modifier = pd_floating
 		has_deposit = d_pd_floating_the_great_knot
+		owner = { has_technology = tech_eludium_research }
 	}
 
 	potential = {
@@ -64,6 +65,7 @@ decision_d_pd_whispering_glades_mining = {
 	allow = {
 		has_modifier = pd_floating
 		has_deposit = d_pd_floating_whispering_glades
+		owner = { has_technology = tech_eludium_research }
 	}
 
 	potential = {
@@ -109,6 +111,7 @@ decision_d_pd_skyfall_islands_mining = {
 	allow = {
 		has_modifier = pd_floating
 		has_deposit = d_pd_floating_skyfall_islands
+		owner = { has_technology = tech_eludium_research }
 	}
 
 	potential = {
@@ -135,5 +138,52 @@ decision_d_pd_skyfall_islands_mining = {
 				has_civic = civic_environmentalist
 			}
 		}
+  	}
+}
+
+decision_pd_add_floating_island = {
+	icon = decision_pd_add_floating_island
+	owned_planets_only = yes
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			sr_eludium = 2500
+			influence = 50
+		}
+	}
+
+	allow = {
+		owner = {
+			has_technology = tech_eludium_floating_islands
+		}
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_city
+			has_deposit = d_pd_artifical_floating_islands
+			has_modifier = pd_floating
+		}
+	}
+
+	potential = {
+		owner = {
+			has_technology = tech_eludium_floating_islands
+		}
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_city
+			has_deposit = d_pd_artifical_floating_islands
+			has_modifier = pd_floating
+		}
+	}
+
+	effect = {
+		add_deposit = d_pd_artifical_floating_islands
+		pd_create_artifical_floating_islands_effect = yes
+	}
+
+	ai_weight = {
+        weight = 10
   	}
 }

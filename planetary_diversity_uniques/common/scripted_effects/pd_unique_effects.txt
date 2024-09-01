@@ -1,3 +1,49 @@
+#Floating World
+pd_create_artifical_floating_islands_effect = {
+	if = {
+		limit = {
+			is_wet = yes
+		}
+		create_ambient_object = {
+			type = pd_floating_islands_wet_object
+			location = this
+			use_3d_location = yes
+			entity_scale_to_size = yes
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = pd_floating_islands
+		}
+	}
+	if = {
+		limit = {
+			is_dry = yes
+		}
+		create_ambient_object = {
+			type = pd_floating_islands_dry_object
+			location = this
+			use_3d_location = yes
+			entity_scale_to_size = yes
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = pd_floating_islands
+		}
+	}
+	if = {
+		limit = {
+			is_cold = yes
+		}
+		create_ambient_object = {
+			type = pd_floating_islands_cold_object
+			location = this
+			use_3d_location = yes
+			entity_scale_to_size = yes
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = pd_floating_islands
+		}
+	}
+}
+
 # pd_technoorganic_effect = {
 # 	add_modifier = {
 # 		modifier = pd_technoorganic
