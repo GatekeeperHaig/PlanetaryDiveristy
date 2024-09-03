@@ -1,3 +1,129 @@
+
+
+#Floating Start
+pd_origin_init_floating = {
+	class = "sc_a"
+	usage = origin
+	flags = { empire_home_system }
+
+	init_effect = {
+		set_star_flag = pd_floating_system
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 175
+	}
+	max_instances = 1
+	scaled_spawn_chance = 14
+	spawn_chance = 100
+	usage_odds = 100
+	planet = {
+		count = 1
+		class = "pc_a_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 40
+		has_ring = no
+	}
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_barren
+		orbit_distance = 50
+		init_effect = {
+			add_deposit = d_volatile_motes_1
+		}
+		moon = {
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = { min = 1 max = 1 }
+		class = pc_barren
+		orbit_distance = 25
+		moon = {
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 50
+		orbit_angle = 85
+		size = 30
+		has_ring = no
+		entity = "gas_giant_02_entity"
+		change_orbit = 10
+		moon = {
+			class = "pc_barren"
+			size = 15
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 10
+		}
+		moon = {
+			class = "pc_continental"
+			size = 20
+			modifiers = none
+			starting_planet = yes
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			init_effect = {
+				set_planet_flag = pd_floating_planet
+				set_planet_flag = colony_event
+				set_planet_flag = pd_ignore
+				set_planet_flag = legendary_leader_planet
+				set_planet_flag = pd_unique_cant_terraform
+				set_planet_flag = pd_unique_world
+				prevent_anomaly = yes
+				save_event_target_as = floating_planet
+				add_modifier = {
+					modifier = pd_floating
+					days = -1
+				}
+				change_pc = pc_continental
+				set_planet_entity = {
+					picture = pc_pd_floating
+					entity = pd_floating_planet_01_entity
+				}
+			}
+		}
+		moon = {
+			count = { min = 3 max = 3 }
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = 1
+		class = random_asteroid
+		orbit_distance = 50
+		orbit_angle = { min = 90 max = 270 }
+	}
+	planet = {
+		count = 5
+		class = random_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+	planet = {
+		count = { min = 3 max = 3 }
+		class = random_non_colonizable
+		orbit_distance = { min = 25 max = 30 }
+		change_orbit = 10
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_distance = 5
+		}
+	}
+}
+
+
 # pd_origin_init_technoorganic = {
 # 	class = "sc_g"
 # 	usage = origin
