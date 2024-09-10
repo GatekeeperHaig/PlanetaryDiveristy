@@ -29,9 +29,9 @@ triggered_planet_modifier = {
 	potential = {
 		exists = owner
 		owner = {
-			is_spiritualist = yes
 			is_megacorp = no
 			is_death_cult_empire = no
+			NOT = { has_origin = origin_cybernetic_creed }
 		}
 		OR = {
 			any_moon = { has_modifier = pd_moon_base_priest }
@@ -56,9 +56,9 @@ triggered_planet_modifier = {
 	potential = {
 		exists = owner
 		owner = {
-			is_spiritualist = yes
 			is_megacorp = yes
 			is_death_cult_empire = no
+			NOT = { has_origin = origin_cybernetic_creed }
 		}
 		OR = {
 			any_moon = { has_modifier = pd_moon_base_priest }
@@ -84,7 +84,32 @@ triggered_planet_modifier = {
 	potential = {
 		exists = owner
 		owner = {
-			is_spiritualist = yes
+			has_origin = origin_cybernetic_creed # mutually exclusive with Death Cults
+		}
+		OR = {
+			any_moon = { has_modifier = pd_moon_base_priest }
+			AND = {
+				is_moon = yes
+				solar_system = {
+					any_system_planet = {
+						has_moon = yes
+						any_moon = {
+							has_modifier = pd_moon_base_priest
+						}
+					}
+				}
+			}
+		}
+	}
+	# Death Cult YES.
+	job_haruspex_add = $AMOUNT$
+	mult = value:num_pd_priest_jobs
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
 			is_death_cult_empire = yes
 		}
 		OR = {
