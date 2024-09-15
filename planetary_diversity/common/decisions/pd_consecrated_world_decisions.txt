@@ -376,7 +376,14 @@ decision_consecrated_worlds = {
 				}
 			}
 			else_if = {
-				limit = { pd_is_planet_class_gaia = yes }
+				limit = {
+					OR = {
+						pd_is_planet_class_gaia = yes
+						has_modifier = pd_gaia_cave
+						has_modifier = pd_gaia_superhabitable
+						has_modifier = pd_gaia_tidally_locked
+					}
+				}
 				custom_tooltip = consecrated_worlds_perfect
 				random_list = {
 					0 = {
