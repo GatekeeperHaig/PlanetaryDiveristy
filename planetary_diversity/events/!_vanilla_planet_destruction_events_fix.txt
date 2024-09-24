@@ -1,0 +1,225 @@
+namespace = planet_destruction
+
+# Nanobot Assimilation
+planet_event = {
+	id = planet_destruction.500
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = { # remove hive mind?
+		from.owner = { country_event = { id = planet_destruction.501 } }
+
+		if = {
+			limit = {
+				OR = {
+					is_active_resolution = "resolution_rulesofwar_independent_tribunals"
+					is_active_resolution = "resolution_rulesofwar_last_resort_doctrine"
+					is_active_resolution = "resolution_rulesofwar_demobilization_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_fired_assimilator days = 3600 }
+			}
+		}
+
+		if = {
+			limit = {
+				exists = owner
+				owner = {
+					NOT = { is_same_value = from.owner }
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+			}
+			# Generate threat
+			add_threat = { who = from.owner amount = 3 }
+			# modifier for allies + those upset by robots
+			every_country = {
+				limit = {
+					NOR = {
+						is_same_value = from.owner
+						is_same_value = root.owner
+						AND = {
+							has_federation = yes
+							is_in_federation_with = from.owner
+						}
+					}
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						AND = {
+							has_federation = yes
+							is_in_federation_with = root.owner
+						}
+						has_ai_personality = awakened_fallen_empire_spiritualist
+						AND = {
+							is_country_type = default
+							OR = {
+								is_egalitarian = yes
+								is_spiritualist = yes
+							}
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_assimilated_a_world
+					who = from.owner
+				}
+			}
+			# modifiers for victim
+			owner = {
+				add_opinion_modifier = {
+					modifier = opinion_assimilated_my_world
+					who = from.owner
+				}
+				if = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					add_modifier = {
+						modifier = colossus_victim
+						days = 10800 # 30 years
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				exists = owner
+				owner = { is_country_type = primitive }
+			}
+			# modifier for allies + those upset by genocide
+			every_country = {
+				limit = {
+					NOR = { is_same_value = from.owner }
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					is_country_type = default
+					NOR = {
+						is_xenophobe = yes
+						is_homicidal = yes
+						is_xenophile = yes
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_assimilated_a_primitive_world
+					who = from.owner
+				}
+			}
+			every_country = {
+				limit = {
+					NOR = { is_same_value = from.owner }
+					OR = {
+						has_communications = from.owner
+						has_communications = root.owner
+					}
+					OR = {
+						has_ai_personality = awakened_fallen_empire_xenophile
+						AND = {
+							is_country_type = default
+							is_xenophile = yes
+						}
+					}
+				}
+				add_opinion_modifier = {
+					modifier = opinion_assimilated_a_primitive_world_phile
+					who = from.owner
+				}
+			}
+		}
+		# Add war exhaustion to planet owner
+		owner = {
+			if = {
+				limit = { #isn't the case when the crisis bombards planets, for instance
+					is_at_war_with = from.fleet.owner
+				}
+				add_static_war_exhaustion = {
+					attacker = from.fleet.owner
+					location = root
+					value_for_planet_destruction = 1.0
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_same_value = from.owner }
+			}
+			# already owned
+		}
+		else = {
+			set_owner = from.owner
+		}
+		every_owned_pop = {
+			limit = {
+				is_valid_pop_for_PLANET_KILLER_NANOBOTS = yes
+			}
+			modify_species = {
+				species = this
+				add_trait = trait_cybernetic
+				add_traits_at_start_of_list = yes
+				change_scoped_species = yes
+			}
+		}
+		every_owned_pop = {
+			limit = {
+				OR = {
+					has_trait = trait_hive_mind
+					has_trait = trait_mechanical
+					has_trait = trait_machine_unit
+				}
+			}
+			kill_pop = yes
+		}
+		every_owned_pop = {
+			limit = {
+				has_modifier = pop_recently_conquered
+			}
+			remove_modifier = pop_recently_conquered
+		}
+		every_owned_pop = {
+			set_citizenship_type = {
+				type = citizenship_full_machine
+				cooldown = yes
+			}
+		}
+		# Special graphics for Habitats and Ring Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			spawn_habitat_nanobot_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_cosmogenesis_world
+			}
+			spawn_lathe_nanobot_effect = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_ringworld_habitable
+			}
+			spawn_ringworld_nanobot_effect = yes
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_cosmogenesis_world
+				}
+			}
+			# nothing
+		}
+		else = {
+			#change_pc = this
+		}
+	}
+}

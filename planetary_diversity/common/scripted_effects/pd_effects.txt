@@ -403,6 +403,7 @@ pd_make_all_gaia_worlds_effect = {
 }
 
 pd_make_uncommon_gaia_worlds_effect = {
+	add_modifier = { modifier = pd_uncommon_gaia_world }
 	#Tidally Locked
 	if = {
 		limit = {
@@ -502,32 +503,25 @@ pd_make_regular_gaia_worlds_effect = {
 		if = {
 			limit = {
 				owner = {
-					capital_scope = {
-						is_wet = yes
-					}
-				}
-			}
-			change_pc = pc_pd_wet_gaia
-		}
-		if = {
-			limit = {
-				owner = {
-					capital_scope = {
-						is_dry = yes
+					founder_species = {
+						ideal_planet_is_dry = yes
 					}
 				}
 			}
 			change_pc = pc_pd_dry_gaia
 		}
-		if = {
+		else_if = {
 			limit = {
 				owner = {
-					capital_scope = {
-						is_cold = yes
+					founder_species = {
+						ideal_planet_is_cold = yes
 					}
 				}
 			}
 			change_pc = pc_pd_cold_gaia
+		}
+		else = {
+			change_pc = pc_pd_wet_gaia
 		}
 	}
 }

@@ -614,6 +614,37 @@ generate_double_check_pass = {
 		add_building = building_clone_army_clone_vat
 		planet_event = { id = clones.10 days = 1095 random = 720 }
 	}
+
+	#Vaults of Knowledge
+	if = {
+		limit = {
+			owner = {
+				is_memory_vault_empire = yes
+				is_country_type = default
+				NOR = {
+					has_origin = origin_broken_shackles
+					has_origin = origin_payback
+				}
+			}
+			NOT = {
+				has_building = building_paragon_memory_vaults
+			}
+		}
+		if = {
+			limit = {
+				free_building_slots <= 0
+				has_district = district_generator
+				has_district = district_city
+			}
+			remove_district = district_generator
+			add_district = district_city
+		}
+		set_variable = {
+			which = paragon_memory_vault
+			value = 0
+		}
+		add_building = building_paragon_memory_vaults
+	}
 }
 
 generate_pd_regular_planet = {

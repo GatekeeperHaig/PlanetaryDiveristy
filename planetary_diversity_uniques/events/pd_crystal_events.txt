@@ -1,0 +1,34 @@
+namespace = pdcrystal
+
+#This event fires when you first survey the crystal world
+ship_event = {
+	id = pdcrystal.100
+	title = pdcrystal.100.name
+	desc = pdcrystal.100.desc
+	picture = GFX_evt_pd_crystal
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_crystal_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_crystal_planet
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_crystal_planet
+		}
+	}
+
+	option = {
+		name = pdcrystal.100.a
+	}
+}
