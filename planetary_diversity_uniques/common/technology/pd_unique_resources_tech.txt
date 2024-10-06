@@ -7,7 +7,6 @@ tech_eludium_research = {
 	area = physics
 	tier = 2
 	category = { particles }
-	prerequisites = { "tech_basic_industry" }
 	weight = @tier2weight3
 	is_rare = yes
 	is_reverse_engineerable = no
@@ -161,6 +160,50 @@ tech_eludium_floating_overseer = {
 		modifier = {
 			factor = 1.25
 			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+		}
+	}
+}
+
+#Crystal World
+tech_acean_research = {
+	icon = tech_acean_research
+	cost = @tier2cost3
+	area = society
+	tier = 2
+	category = { biology }
+	weight = @tier2weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_crystal_tech = yes
+	}
+
+	weight_modifier = {
+		factor = 0
+		modifier = {
+			add = 10
+			pd_can_have_crystal_tech = yes
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+
+	prereqfor_desc = {
+		custom = {
+			title = "tech_acean_research_tt_desc"
+			desc = "tech_acean_research_desc"
+		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
 		}
 	}
 }

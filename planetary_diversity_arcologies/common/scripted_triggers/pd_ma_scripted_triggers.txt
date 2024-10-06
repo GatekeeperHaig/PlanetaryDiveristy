@@ -80,3 +80,80 @@ is_pd_senate_arcology = { has_deposit = d_pd_senate_building }
 is_pd_machine_capital = { has_deposit = d_pd_machine_centralized_processing }
 
 is_pd_headquarters_arcology = { has_deposit = d_pd_headquarters_building }
+
+pd_is_valid_capital_arcology_regular = {
+	OR = {
+		is_planet_class = pc_city
+		is_planet_class = pc_ringworld_habitable
+		AND = {
+			is_planet_class = pc_habitat
+			owner = {
+				has_origin = origin_void_dwellers
+			}
+		}
+	}
+}
+
+pd_is_valid_capital_arcology_hive = {
+	OR = {
+		is_planet_class = pc_hive
+		is_planet_class = pc_pd_hive
+		is_planet_class = pc_ringworld_habitable
+		AND = {
+			is_planet_class = pc_habitat
+			owner = {
+				has_civic = civic_void_hive
+			}
+		}
+		is_pd_uncommon_hive = yes
+		is_pd_uncommon_hive_arc = yes
+	}
+}
+
+pd_is_valid_capital_arcology_machine = {
+	OR = {
+		is_planet_class = pc_machine
+		is_planet_class = pc_pd_machine
+		is_planet_class = pc_ringworld_habitable
+		AND = {
+			is_planet_class = pc_city
+			owner = {
+				has_civic = civic_machine_servitor
+			}
+		}
+		is_pd_uncommon_machine = yes
+		is_pd_uncommon_machine_arc = yes
+	}
+}
+
+pd_is_valid_for_senate_capital_arcology = {
+OR = {
+		is_democratic_authority = yes
+		has_authority = auth_oligarchic
+	}
+}
+
+pd_is_valid_for_palace_capital_arcology = {
+OR = {
+		is_dictatorial_authority = yes
+		is_imperial_authority = yes
+	}
+}
+
+pd_is_valid_for_headquarters_capital_arcology = {
+OR = {
+		has_authority = auth_corporate
+	}
+}
+
+pd_is_valid_for_spire_capital_arcology = {
+OR = {
+		is_hive_empire = yes
+	}
+}
+
+pd_is_valid_for_cpu_capital_arcology = {
+OR = {
+		is_machine_empire = yes
+	}
+}

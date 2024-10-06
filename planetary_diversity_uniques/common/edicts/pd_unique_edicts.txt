@@ -93,3 +93,69 @@ eludium_weapons = {
 		}
 	}
 }
+
+#Acean - Crystal World
+acean_pop_growth = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_acean_research
+		any_owned_pop = {
+			NOT = {
+				is_mechanical_species = yes
+			}
+		}
+	}
+
+	modifier = {
+		biological_pop_happiness = 0.05
+		BIOLOGICAL_pop_growth_speed = 0.1
+		lithoid_pop_happiness = 0.10
+		LITHOID_pop_growth_speed = 0.20
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+
+acean_shield_resonance = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_acean_research
+	}
+
+	modifier = {
+		ship_shield_hardening_add = 0.2
+		ship_shield_regen_add_static = 5
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
