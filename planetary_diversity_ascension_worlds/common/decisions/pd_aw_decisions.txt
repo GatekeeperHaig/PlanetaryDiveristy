@@ -949,16 +949,9 @@ decision_pd_aw_shroud_planet = {
 	enactment_time = @pd_shroud_time
 
 	potential = {
-		OR = {
-			habitable_planet_not_urban = yes
-			is_planet_class = pc_ringworld_habitable
-			is_planet_class = pc_habitat
-			is_planet_class = pc_city
-			is_planet_class = pc_relic
-			is_planet_class = pc_nuked
-		}
+		pd_is_valid_for_shroud_planet = yes
 		exists = owner
-		owner = { has_tradition = tr_psionics_finish }
+		pd_can_shroud_planets = yes
 		pd_aw_is_shroud_planet = no
 		pd_aw_is_wasteland_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
@@ -1116,17 +1109,10 @@ decision_pd_aw_shroud_planet_cleanup = {
 	potential = {
 		exists = owner
 		owner = {
-			NOT = { has_tradition = tr_psionics_finish }
+			pd_can_shroud_planets = no
 		}
 		pd_aw_is_shroud_planet = yes
-		OR = {
-			habitable_planet_not_urban = yes
-			is_planet_class = pc_ringworld_habitable
-			is_planet_class = pc_habitat
-			is_planet_class = pc_city
-			is_planet_class = pc_relic
-			is_planet_class = pc_nuked
-		}
+		pd_is_valid_for_shroud_planet = yes
 	}
 
 	allow = {
