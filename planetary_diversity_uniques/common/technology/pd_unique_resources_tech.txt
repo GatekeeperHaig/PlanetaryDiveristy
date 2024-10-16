@@ -4,9 +4,9 @@
 tech_eludium_research = {
 	icon = tech_eludium_research
 	cost = @tier2cost3
-	area = physics
+	area = engineering
 	tier = 2
-	category = { particles }
+	category = { industry }
 	weight = @tier2weight3
 	is_rare = yes
 	is_reverse_engineerable = no
@@ -24,7 +24,7 @@ tech_eludium_research = {
 		}
 		modifier = {
 			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
 		}
 	}
 
@@ -39,7 +39,7 @@ tech_eludium_research = {
 		factor = 5 #important resource
 		modifier = {
 			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
 		}
 	}
 }
@@ -168,9 +168,9 @@ tech_eludium_floating_overseer = {
 tech_acean_research = {
 	icon = tech_acean_research
 	cost = @tier2cost3
-	area = society
+	area = engineering
 	tier = 2
-	category = { biology }
+	category = { industry }
 	weight = @tier2weight3
 	is_rare = yes
 	is_reverse_engineerable = no
@@ -188,7 +188,7 @@ tech_acean_research = {
 		}
 		modifier = {
 			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
 		}
 	}
 
@@ -203,7 +203,176 @@ tech_acean_research = {
 		factor = 5 #important resource
 		modifier = {
 			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+}
+
+tech_acean_superorganism_larva = {
+	icon = tech_acean_superorganism_larva
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+	prerequisites = { "tech_acean_research" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_crystal_tech = yes
+	}
+
+	weight_modifier = {
+		factor = 0
+		modifier = {
+			add = 10
+			pd_can_have_crystal_tech = yes
+			is_regular_empire = yes
+		}
+		modifier = {
+			factor = 1.25
 			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+
+	prereqfor_desc = {
+		custom = {
+			title = "tech_acean_superorganism_larva_tt_desc"
+			desc = "tech_acean_superorganism_larva_desc"
+		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+
+tech_acean_medical_center = {
+	icon = tech_acean_medical_center
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+	prerequisites = { "tech_frontier_hospital" "tech_acean_research" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_crystal_tech = yes
+	}
+
+	weight_modifier = {
+		factor = 0
+		modifier = {
+			add = 10
+			pd_can_have_crystal_tech = yes
+			is_hive_empire = yes
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+
+tech_acean_gestation_pools = {
+	icon = tech_acean_medical_center
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+	prerequisites = { "tech_acean_research" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_crystal_tech = yes
+		is_hive_empire = yes
+	}
+
+	weight_modifier = {
+		factor = 0
+		modifier = {
+			add = 10
+			pd_can_have_crystal_tech = yes
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
+		}
+	}
+}
+
+tech_acean_resonators = {
+	icon = tech_acean_resonators
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { industry }
+	prerequisites = { "tech_acean_research" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_crystal_tech = yes
+		OR = {
+			is_synthetic_empire = yes
+			has_origin = origin_mechanists
+		}
+	}
+
+	prereqfor_desc = {
+		custom = {
+			title = "tech_acean_resonators_tt_desc"
+			desc = "tech_acean_resonators_desc"
+		}
+	}
+
+	weight_modifier = {
+		factor = 0
+		modifier = {
+			add = 10
+			pd_can_have_crystal_tech = yes
+		}
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
 		}
 	}
 }

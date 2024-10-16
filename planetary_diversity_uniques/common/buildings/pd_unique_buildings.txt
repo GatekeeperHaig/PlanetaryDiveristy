@@ -1,7 +1,7 @@
 ###Unique Buildings
 
-#Floating World
-#Resort
+##Floating World
+#Resort- Regular
 building_pd_eludium_floating_resort = {
 	base_buildtime = 720
 	base_cap_amount = 1
@@ -67,7 +67,7 @@ building_pd_eludium_floating_resort = {
 		is_regular_empire = yes
 	}
 }
-#Gestalt Overseer
+#Overseer - Gestalt
 building_pd_eludium_floating_overseer = {
 	base_buildtime = 720
 	base_cap_amount = 1
@@ -153,5 +153,189 @@ building_pd_eludium_floating_overseer = {
 
 	show_tech_unlock_if = {
 		is_regular_empire = yes
+	}
+}
+
+##Crystal World
+#Medical - Regular
+building_pd_acean_medical_center = {
+	base_buildtime = 720
+	base_cap_amount = 1
+
+	category = amenity
+
+	allow = {
+		has_upgraded_capital = yes
+		NOT = {	has_modifier = pd_crystal }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			AND = {
+				buildings_stop_pop = yes
+				owner = { is_ai = yes }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			sr_acean = 600
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	country_modifier = {
+		category_biology_research_speed_mult = 0.25
+	}
+
+	planet_modifier = {
+		job_head_researcher_add = 1
+		job_healthcare_add = 4
+	}
+
+	prerequisites = {
+		"tech_acean_medical_center"
+	}
+
+	triggered_desc = {
+		text = job_head_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_healthcare_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+#Gestation Chamber - Hives
+#Robots Get a Trait
+building_pd_acean_gestation_chamber = {
+	base_buildtime = 720
+	base_cap_amount = 1
+	icon = building_pd_acean_medical_center
+
+	category = pop_assembly
+
+	allow = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+		}
+		has_upgraded_capital = yes
+		NOT = {	has_modifier = pd_crystal }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			is_hive_empire = no
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				NOT = { has_origin = origin_progenitor_hive }
+			}
+		}
+		modifier = {
+			job_spawning_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				has_origin = origin_progenitor_hive
+			}
+		}
+		modifier = {
+			job_offspring_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_cybernetics_synaptic_sub_processing }
+		}
+		modifier = {
+			job_augmentor_drone_add = 4
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			sr_acean = 600
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_acean_gestation_pools"
+	}
+
+	triggered_desc = {
+		trigger = {
+			NAND = {
+				exists = owner
+				owner = {
+					has_origin = origin_necrophage
+					NOT = { has_origin = origin_progenitor_hive }
+				}
+				exists = growing_species
+				growing_species = {
+					NOT = { has_trait = trait_hive_mind }
+				}
+			}
+		}
+		text = job_spawning_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_origin = origin_necrophage
+				NOT = { has_origin = origin_progenitor_hive }
+			}
+			exists = growing_species
+			growing_species = {
+				NOT = { has_trait = trait_hive_mind }
+			}
+		}
+		text = job_spawning_drone_necrophage_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_origin = origin_progenitor_hive }
+		}
+		text = job_offspring_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_cybernetics_synaptic_sub_processing
+			}
+		}
+		text = job_augmentor_drone_assembly_desc
 	}
 }

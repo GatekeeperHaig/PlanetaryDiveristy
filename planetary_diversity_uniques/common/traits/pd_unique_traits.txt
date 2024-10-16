@@ -1,3 +1,50 @@
+#Crystal World
+#Robot Trait
+trait_pd_acean_resonators = {
+	cost = 1
+	category = robotic
+
+	allowed_archetypes = { ROBOT MACHINE }
+
+	species_potential_add = {
+		always = yes
+	}
+	species_possible_add = {
+		custom_tooltip = {
+			fail_text = "requires_im_or_droid"
+			exists = from
+			from = {
+				OR = {
+					is_individual_machine = yes
+					is_machine_empire = yes
+					has_technology = tech_acean_resonators
+				}
+			}
+		}
+	}
+	species_possible_remove = {
+		always = yes
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+
+	initial = no
+	randomized = no
+
+	modifier = {
+		planet_pop_assembly_mult = 0.2
+		planet_pop_assembly_reduction = 0.2
+	}
+
+	slave_cost = {
+		energy = 1000
+	}
+
+	custom_tooltip_with_modifiers = trait_pd_acean_resonators_tt
+}
+
+
 # #Techno-Organic
 # trait_organic_fourschildren = {
 # 	cost = 0

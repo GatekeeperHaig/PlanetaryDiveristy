@@ -130,7 +130,33 @@ acean_pop_growth = {
 		}
 	}
 }
+acean_minerals = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
 
+	potential = {
+		has_technology = tech_acean_research
+	}
+
+	modifier = {
+		planet_miners_produces_mult = 0.25
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
 acean_shield_resonance = {
 	length = @EdictDuration
 	icon = "GFX_edict_type_time"

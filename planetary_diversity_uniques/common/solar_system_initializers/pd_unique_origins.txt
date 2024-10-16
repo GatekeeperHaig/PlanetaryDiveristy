@@ -20,10 +20,6 @@ pd_origin_init_floating = {
 		type = rocky_asteroid_belt
 		radius = 175
 	}
-	max_instances = 1
-	scaled_spawn_chance = 14
-	spawn_chance = 100
-	usage_odds = 100
 	planet = {
 		count = 1
 		class = "pc_a_star"
@@ -115,6 +111,145 @@ pd_origin_init_floating = {
 		count = { min = 3 max = 3 }
 		class = random_non_colonizable
 		orbit_distance = { min = 25 max = 30 }
+		change_orbit = 10
+		moon = {
+			count = { min = 0 max = 2 }
+			orbit_distance = 5
+		}
+	}
+}
+
+#Crystal Start
+pd_origin_init_crystal = {
+	class = "sc_b"
+	usage = origin
+	flags = { empire_home_system }
+
+	init_effect = {
+		set_star_flag = pd_crystal_system
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 70
+	}
+	flags = { pdcrystal_system }
+	init_effect = {
+		if = {
+			limit = {
+				is_inside_nebula = no
+			}
+			create_nebula = {
+				radius = 20
+			}
+			set_star_flag = pd_unique_nebula
+		}
+	}
+	planet = {
+		count = 1
+		class = "pc_b_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+		init_effect = {
+			create_ambient_object = {
+				type = "rare_nebula_1"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+	}
+	planet = {
+		count = { min = 1 max = 1 }
+		class = random_non_colonizable
+		orbit_distance = 45
+		moon = {
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = 1
+		class = random_asteroid
+		orbit_distance = 25
+		orbit_angle = { min = 90 max = 270 }
+	}
+	planet = {
+		count = 3
+		class = random_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+	}
+	planet = {
+		count = { min = 2 max = 2 }
+		class = random_non_colonizable
+		orbit_distance = 25
+		change_orbit = 10
+
+		moon = {
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		class = "pc_tropical"
+		orbit_distance = 25
+		orbit_angle = 85
+		size = 20
+		starting_planet = yes
+		has_ring = yes
+		modifiers = none
+
+		init_effect = {
+			set_planet_flag = pd_crystal_planet
+			set_planet_flag = colony_event
+			set_planet_flag = pd_ignore
+			set_planet_flag = legendary_leader_planet
+			set_planet_flag = pd_unique_cant_terraform
+			set_planet_flag = pd_unique_world
+			prevent_anomaly = yes
+			save_event_target_as = crystal_planet
+			add_modifier = {
+				modifier = pd_crystal
+				days = -1
+			}
+			change_pc = pc_tropical
+			set_planet_entity = {
+				picture = pc_pd_crystal
+				entity = pd_crystal_planet_01_entity
+			}
+			add_deposit = d_pd_acean_pillars
+		}
+
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_distance = 10
+		}
+
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		count = { min = 4 max = 5 }
+		class = random_non_colonizable
+		orbit_distance = 35
 		change_orbit = 10
 		moon = {
 			count = { min = 0 max = 2 }
