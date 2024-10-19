@@ -261,8 +261,12 @@ remove_pd_savannah_modifier = {
 		remove_modifier = pd_sandstone
 	}
 	if = {
-		limit = { has_modifier = pd_turquoise}
+		limit = { has_modifier = pd_turquoise }
 		remove_modifier = pd_turquoise
+	}
+	if = {
+		limit = { has_modifier = pd_calcite }
+		remove_modifier = pd_calcite
 	}
 	if = {
 		limit = { has_modifier = pd_supercontinent }
@@ -383,6 +387,10 @@ remove_pd_tundra_modifier = {
 	if = {
 		limit = { has_modifier = pd_tuya }
 		remove_modifier = pd_tuya
+	}
+	if = {
+		limit = { has_modifier = pd_cryovolcano }
+		remove_modifier = pd_cryovolcano
 	}
 	if = {
 		limit = { has_modifier = pd_cryoflora }
@@ -1213,6 +1221,19 @@ pd_remove_dummy_traits = {
 	}
 	every_galaxy_species = {
 		limit = {
+			has_trait = trait_pc_pd_calcite_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_calcite_preference
+			add_trait = trait_pc_savannah_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
 			has_trait = trait_pc_pd_supercontinent_preference
 			NOR = {
 				has_trait = trait_machine_unit
@@ -1523,6 +1544,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_tuya_preference
+			add_trait = trait_pc_tundra_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_cryovolcano_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_cryovolcano_preference
 			add_trait = trait_pc_tundra_preference
 		}
 	}
