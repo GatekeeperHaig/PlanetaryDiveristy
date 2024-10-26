@@ -57,6 +57,10 @@ remove_pd_continental_modifier = {
 		remove_modifier = pd_sakura
 	}
 	if = {
+		limit = { has_modifier = pd_moss }
+		remove_modifier = pd_moss
+	}
+	if = {
 		limit = { has_modifier = pd_megaflora }
 		remove_modifier = pd_megaflora
 	}
@@ -175,6 +179,10 @@ remove_pd_desert_modifier = {
 	if = {
 		limit = { has_modifier = pd_fungi }
 		remove_modifier = pd_fungi
+	}
+	if = {
+		limit = { has_modifier = pd_ironsand }
+		remove_modifier = pd_ironsand
 	}
 	if = {
 		limit = { has_modifier = pd_salt }
@@ -644,6 +652,19 @@ pd_remove_dummy_traits = {
 	}
 	every_galaxy_species = {
 		limit = {
+			has_trait = trait_pc_pd_moss_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_moss_preference
+			add_trait = trait_pc_continental_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
 			has_trait = trait_pc_pd_forest_preference
 			NOR = {
 				has_trait = trait_machine_unit
@@ -980,6 +1001,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_fungi_preference
+			add_trait = trait_pc_desert_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_ironsand_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_ironsand_preference
 			add_trait = trait_pc_desert_preference
 		}
 	}

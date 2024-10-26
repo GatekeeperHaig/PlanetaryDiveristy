@@ -31,7 +31,7 @@ pd_terraforming = {
 		}
 
 		on_enabled = {
-			hidden_effect = { 
+			hidden_effect = {
 				set_country_flag = pd_choose_every_planet_terraforming
 				#remove_country_flag = pd_same_as_homeworld_terraforming
 				remove_country_flag = pd_random_same_class_terraforming
@@ -51,7 +51,7 @@ pd_terraforming = {
 	#	}
 	#
 	#	on_enabled = {
-	#		hidden_effect = { 
+	#		hidden_effect = {
 	#			set_country_flag = pd_same_as_homeworld_terraforming
 	#			remove_country_flag = pd_choose_every_planet_terraforming
 	#			remove_country_flag = pd_random_same_class_terraforming
@@ -71,10 +71,71 @@ pd_terraforming = {
 		}
 
 		on_enabled = {
-			hidden_effect = { 
+			hidden_effect = {
 				set_country_flag = pd_random_same_class_terraforming
 				#remove_country_flag = pd_same_as_homeworld_terraforming
 				remove_country_flag = pd_choose_every_planet_terraforming
+			}
+		}
+
+		AI_weight = {
+			weight = 0
+		}
+	}
+}
+pd_gaia_modifier= {
+
+	potential = {
+		has_ascension_perk = ap_world_shaper
+	}
+
+	option = {
+		name = "pd_normal_terraforming"
+
+		policy_flags = {
+			pd_normal_terraforming
+		}
+
+		valid = {
+			any_planet_within_border = {
+				is_terraforming = no
+			}
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_country_flag = pd_normal_terraforming
+				remove_country_flag = pd_expensive_gaia_terraforming
+			}
+		}
+
+		AI_weight = {
+			weight = 10
+		}
+	}
+
+	option = {
+		name = "pd_expensive_gaia_terraforming"
+
+		policy_flags = {
+			pd_expensive_gaia_terraforming
+		}
+
+		valid = {
+			any_planet_within_border = {
+				is_terraforming = no
+			}
+		}
+
+		modifier = {
+			terraform_speed_mult = -0.25
+			terraforming_cost_mult = 0.5
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_country_flag = pd_expensive_gaia_terraforming
+				remove_country_flag = pd_normal_terraforming
 			}
 		}
 

@@ -114,3 +114,73 @@ planet_event = {
 		}
 	}
 }
+
+# THIS = country
+country_event = {
+	id = pdmaengine.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		capital_scope = {
+			has_pd_capital_deposit = yes
+		}
+	}
+
+	immediate = {
+		capital_scope = {
+			remove_pd_capital_deposit_effect = yes
+			if = {
+				limit = {
+					from = {
+						OR = {
+							is_democratic_authority = yes
+							is_oligarchic_authority = yes
+						}
+					}
+				}
+				add_deposit = d_pd_senate_building
+				generate_pd_arcology_portrait_effect = yes
+			}
+			if = {
+				limit = {
+					from = {
+						OR = {
+							is_imperial_authority = yes
+							is_dictatorial_authority = yes
+						}
+					}
+				}
+				add_deposit = d_pd_palace_building
+				generate_pd_arcology_portrait_effect = yes
+			}
+			if = {
+				limit = {
+					from = {
+						is_megacorp = yes
+					}
+				}
+				add_deposit = d_pd_headquarters_building
+				generate_pd_arcology_portrait_effect = yes
+			}
+			if = {
+				limit = {
+					from = {
+						is_hive_empire = yes
+					}
+				}
+				add_deposit = d_pd_confluence_spire_building
+				generate_pd_arcology_portrait_effect = yes
+			}
+			if = {
+				limit = {
+					from = {
+						is_machine_empire = yes
+					}
+				}
+				add_deposit = d_pd_machine_centralized_processing
+				generate_pd_machine_arc_portrait_effect = yes
+			}
+		}
+	}
+}

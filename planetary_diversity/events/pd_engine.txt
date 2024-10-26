@@ -45,6 +45,9 @@ country_event = {
 					pd_sakura_world_effect = yes
 				}
 				25 = {
+					pd_moss_world_effect = yes
+				}
+				25 = {
 					pd_tepid_world_effect = yes
 				}
 				25 = {
@@ -190,6 +193,9 @@ country_event = {
 				}
 				25 = {
 					pd_fungi_world_effect = yes
+				}
+				25 = {
+					pd_ironsand_world_effect = yes
 				}
 				15 = {
 					modifier = {
@@ -570,6 +576,19 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = {
+				is_planet_class = pc_pd_moss
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_continental
+			pd_moss_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
 				is_planet_class = pc_pd_forest
 				has_pd_modifier = no
 				is_capital = yes
@@ -937,6 +956,19 @@ country_event = {
 			}
 			change_pc = pc_desert
 			pd_fungi_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ironsand
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_desert
+			pd_ironsand_world_effect = yes
 			clear_deposits = yes
 			remove_all_districts = yes
 			remove_all_buildings = yes
@@ -1819,6 +1851,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.moss
+		hidden_effect = {
+			from = {
+				pd_moss_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -2131,6 +2174,17 @@ country_event = {
 		hidden_effect = {
 			from = {
 				pd_fungi_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.ironsand
+		hidden_effect = {
+			from = {
+				pd_ironsand_world_effect = yes
 			}
 		}
 	}
@@ -2900,6 +2954,9 @@ planet_event = {
 					pd_sakura_world_effect = yes
 				}
 				25 = {
+					pd_moss_world_effect = yes
+				}
+				25 = {
 					pd_tepid_world_effect = yes
 				}
 				25 = {
@@ -3042,6 +3099,9 @@ planet_event = {
 				}
 				25 = {
 					pd_fungi_world_effect = yes
+				}
+				25 = {
+					pd_ironsand_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -5837,6 +5897,7 @@ country_event = {
 				has_trait = trait_pc_pd_outback_preference
 				has_trait = trait_pc_pd_coastal_preference
 				has_trait = trait_pc_pd_fungi_preference
+				has_trait = trait_pc_pd_ironsand_preference
 				has_trait = trait_pc_pd_salt_preference
 				has_trait = trait_pc_pd_aquifer_preference
 				has_trait = trait_pc_pd_mesa_preference
@@ -5893,6 +5954,7 @@ country_event = {
 				has_trait = trait_pc_pd_lake_preference
 				has_trait = trait_pc_pd_temperate_preference
 				has_trait = trait_pc_pd_sakura_preference
+				has_trait = trait_pc_pd_moss_preference
 				has_trait = trait_pc_pd_mushroom_preference
 				has_trait = trait_pc_pd_petrified_preference
 				has_trait = trait_pc_pd_megaflora_preference
@@ -6344,6 +6406,9 @@ country_event = {
 						pd_sakura_world_effect = yes
 					}
 					25 = {
+						pd_moss_world_effect = yes
+					}
+					25 = {
 						pd_tepid_world_effect = yes
 					}
 					25 = {
@@ -6459,6 +6524,9 @@ country_event = {
 					}
 					25 = {
 						pd_fungi_world_effect = yes
+					}
+					25 = {
+						pd_ironsand_world_effect = yes
 					}
 				}
 			}
@@ -6771,6 +6839,42 @@ country_event = {
 				has_planet_flag = planet_earth
 			}
 			set_earth_entity = yes
+		}
+	}
+}
+
+###This event fires when you have the World Shaper Policy set to give the planet the modifier
+planet_event = {
+	id = pdengine.140
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		space_owner = {
+			has_policy_flag = pd_expensive_gaia_terraforming
+		}
+		is_artificial = no
+		pd_is_domed_colony_class = no
+		pd_is_planet_class_nuked = no
+		pd_is_planet_class_gaia = no
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			has_modifier = engineered_environment_gaia
+			has_modifier = pd_uncommon_gaia_world
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					has_modifier = engineered_environment_gaia
+				}
+			}
+			add_modifier = {
+				modifier = engineered_environment_gaia
+			}
 		}
 	}
 }
