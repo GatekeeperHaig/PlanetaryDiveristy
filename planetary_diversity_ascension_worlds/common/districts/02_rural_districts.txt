@@ -399,13 +399,13 @@ district_farming = {
 	resources = {
 		category = planet_districts_farming
 		cost = {
+			minerals = @base_cost
 			trigger = {
 				OR = {
 					pd_aw_is_megaflora_planet = no
 					NOT = { has_modifier = wooden_planet }
 				}
 			}
-			minerals = @base_cost
 		}
 		cost = {
 			food = @base_cost
@@ -726,6 +726,7 @@ district_generator_uncapped = {
 
 	triggered_planet_modifier = {
 		potential = {
+			NOT = { uses_district_set = shattered_ring_world }
 			exists = owner
 			owner = {
 				is_machine_empire = yes
