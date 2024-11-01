@@ -1,0 +1,101 @@
+special_project = {
+	key = "BARREN_ATMOSPHERIC_MANIPULATION"
+	cost = 0
+	days_to_research = 1080
+	tech_department = society_technology
+	picture = GFX_evt_warm_barren
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		skill = 3
+	}
+
+	on_success = {
+		from = {
+			change_pc = pc_nuked
+			roll_barren_terraformed = yes
+			remove_modifier = terraforming_candidate
+			clear_deposits = yes
+			reroll_deposits = yes
+			correct_habitable_deposits = yes
+		}
+	}
+
+	on_fail = {
+	}
+}
+
+special_project = {
+	key = "FROZEN_ATMOSPHERIC_MANIPULATION"
+	cost = 0
+	days_to_research = 1080
+	tech_department = society_technology
+	picture = GFX_evt_frozen
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		skill = 3
+	}
+
+	on_success = {
+		from = {
+			change_pc = pc_alpine
+			roll_cryopelagic = yes
+			remove_modifier = frozen_terraforming_candidate
+			clear_deposits = yes
+			reroll_deposits = yes
+			correct_habitable_deposits = yes
+		}
+	}
+
+	on_fail = {
+	}
+}
+
+special_project = {
+	key = "TOXIC_ATMOSPHERIC_MANIPULATION"
+	cost = 0
+	days_to_research = 1080
+	tech_department = society_technology
+	picture = GFX_evt_toxic
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		skill = 3
+	}
+
+	on_success = {
+		from = {
+			change_pc = pc_nuked
+			remove_atmosphere_modifier = yes
+			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
+			add_modifier = { modifier = "class_sulfuric" days = -1 }
+			spawn_atmosphere-sulfuric = yes
+			correct_atmosphere_color = yes
+			add_modifier = { modifier = "biosphere-sparse" days = -1 }
+			set_planet_entity = {
+				picture = "orbit_sulfuric"
+				entity = "sub_marginal_sulfuric_01_entity"
+				
+			}
+			set_planet_flag = "marginal_converted"
+			remove_modifier = frozen_terraforming_candidate
+			clear_deposits = yes
+			reroll_deposits = yes
+			correct_habitable_deposits = yes
+		}
+	}
+
+	on_fail = {
+	}
+}

@@ -10,6 +10,7 @@ surface_colony_update = {
 			# Super-terrestrials
 			0 = {
 				modifier = { add = 1 has_modifier = "class_chloerosgaean" }
+				modifier = { factor = 0.00 has_planet_flag = "planet_earth" }
 				##
 				set_planet_entity = {
 					picture = "biome_chloerosgaean"
@@ -18,11 +19,30 @@ surface_colony_update = {
 				}
 			}
 			0 = {
+				modifier = { add = 1 has_modifier = "class_chloerosgaean" has_planet_flag = "planet_earth" }
+				##
+				set_planet_entity = {
+					picture = "biome_chloerosgaean"
+					entity = "super_terrestrial_chloerosgaean_earth_01_entity"
+					
+				}
+			}
+			0 = {
 				modifier = { add = 1 has_modifier = "class_thermogaean" }
+				modifier = { factor = 0.00 has_planet_flag = "planet_mars" }
 				##
 				set_planet_entity = {
 					picture = "biome_thermogaean"
-					#entity = "super_terrestrial_thermogaean_01_entity"
+					#entity = "super_terrestrial_thermomegagi_mars_01_entity"
+					
+				}
+			}
+			0 = {
+				modifier = { add = 1 has_modifier = "class_thermogaean" has_planet_flag = "planet_mars" }
+				##
+				set_planet_entity = {
+					picture = "biome_thermogaean"
+					entity = "super_terrestrial_thermomegagi_mars_01_entity"
 					
 				}
 			}
@@ -96,6 +116,7 @@ surface_colony_update = {
 				random_list = {
 					0 = {
 						modifier = { add = 1 has_modifier = "biosphere-dense" }
+						modifier = { factor = 0.00 has_planet_flag = "planet_earth" }
 						## Dense Biosphere
 						set_planet_entity = {
 							picture = "biome_chloerosorimos_dense"
@@ -105,6 +126,7 @@ surface_colony_update = {
 					}
 					0 = {
 						modifier = { add = 1 has_modifier = "biosphere-diverse" }
+						modifier = { factor = 0.00 has_planet_flag = "planet_earth" }
 						## Diverse Biosphere
 						set_planet_entity = {
 							picture = "biome_chloerosorimos_diverse"
@@ -114,6 +136,7 @@ surface_colony_update = {
 					}
 					0 = {
 						modifier = { add = 1 has_modifier = "biosphere-sparse" }
+						modifier = { factor = 0.00 has_planet_flag = "planet_earth" }
 						## Sparse Biosphere
 						set_planet_entity = {
 							picture = "biome_chloerosorimos_sparse"
@@ -130,6 +153,14 @@ surface_colony_update = {
 						modifier = { add = 1 has_modifier = "biosphere-aquatic" }
 						## Aquatic Biosphere
 						
+					}
+					0 = {
+						modifier = { add = 1 has_planet_flag = "planet_earth" }
+						## Earth
+						set_planet_entity = {
+							picture = "biome_chloerosorimos_diverse"
+							entity = "continental_planet_earth_entity"
+						}
 					}
 				}			
 			}
@@ -1104,7 +1135,7 @@ surface_colony_update = {
 				modifier = { add = 1 has_modifier = "class_sulfuric" }
 				##
 				set_planet_entity = {
-					picture = "biome_sulfuric"
+					picture = "biome_sulfur"
 				}
 			}
 			0 = {
@@ -1131,43 +1162,97 @@ surface_colony_update = {
 			0 = {
 				modifier = { add = 1 is_planet_class = "pc_tropical" has_modifier = "class_adapted_terraformed" }
 				##
-				set_planet_entity = {
-					picture = "biome_adapted_temperate"
+				if = {
+					limit = { has_planet_flag = "planet_mars" }
+					set_planet_entity = {
+						picture = "biome_adapted_temperate"
+						entity = "terraformed_adapted_mars_temperate_01_entity"
+					}
 				}
+				else = {
+					set_planet_entity = {
+						picture = "biome_adapted_temperate"
+					}
+				}				
 			}
 			0 = {
 				modifier = { add = 1 is_planet_class = "pc_savannah" has_modifier = "class_adapted_terraformed" }
 				##
-				set_planet_entity = {
-					picture = "biome_adapted_dry"
+				if = {
+					limit = { has_planet_flag = "planet_mars" }
+					set_planet_entity = {
+						picture = "biome_adapted_dry"
+						entity = "terraformed_adapted_mars_hot_01_entity"
+					}
+				}
+				else = {
+					set_planet_entity = {
+						picture = "biome_adapted_dry"
+					}
 				}
 			}
 			0 = {
 				modifier = { add = 1 is_planet_class = "pc_tundra" has_modifier = "class_adapted_terraformed" }
 				##
-				set_planet_entity = {
-					picture = "biome_adapted_cold"
+				if = {
+					limit = { has_planet_flag = "planet_mars" }
+					set_planet_entity = {
+						picture = "biome_adapted_cold"
+						entity = "terraformed_adapted_mars_cold_01_entity"
+					}
+				}
+				else = {
+					set_planet_entity = {
+						picture = "biome_adapted_cold"
+					}
 				}
 			}
 			0 = {
 				modifier = { add = 1 is_planet_class = "pc_ocean" has_modifier = "class_aquatic_terraformed" }
 				##
-				set_planet_entity = {
-					picture = "biome_aquatic_temperate"
+				if = {
+					limit = { has_planet_flag = "planet_earth" }
+					set_planet_entity = {
+						picture = "biome_aquatic_temperate"
+						entity = "continental_planet_earth_entity"
+					}
+				}
+				else = {
+					set_planet_entity = {
+						picture = "biome_aquatic_temperate"
+					}
 				}
 			}
 			0 = {
 				modifier = { add = 1 is_planet_class = "pc_desert" has_modifier = "class_aquatic_terraformed" }
 				##
-				set_planet_entity = {
-					picture = "biome_aquatic_dry"
+				if = {
+					limit = { has_planet_flag = "planet_earth" }
+					set_planet_entity = {
+						picture = "biome_aquatic_dry"
+						entity = "desert_planet_earth_entity"
+					}
+				}
+				else = {
+					set_planet_entity = {
+						picture = "biome_aquatic_dry"
+					}
 				}
 			}
 			0 = {
 				modifier = { add = 1 is_planet_class = "pc_alpine" has_modifier = "class_aquatic_terraformed" }
 				##
-				set_planet_entity = {
-					picture = "biome_aquatic_cold"
+				if = {
+					limit = { has_planet_flag = "planet_earth" }
+					set_planet_entity = {
+						picture = "biome_aquatic_cold"
+						entity = "alpine_planet_earth_entity"
+					}
+				}
+				else = {
+					set_planet_entity = {
+						picture = "biome_aquatic_cold"
+					}
 				}
 			}
 			0 = {
@@ -4015,6 +4100,12 @@ marginal_entity_check = {
 				modifier = { add = 1 has_modifier = "class_redux" }
 				set_planet_entity = {
 					entity = "sub_marginal_redux_01_entity"					
+				}
+			}
+			0 = {
+				modifier = { add = 1 has_modifier = "class_ammoniagenian" }
+				set_planet_entity = {
+					entity = "terrestrial_ammoniagenian_01_entity"					
 				}
 			}
 			0 = {

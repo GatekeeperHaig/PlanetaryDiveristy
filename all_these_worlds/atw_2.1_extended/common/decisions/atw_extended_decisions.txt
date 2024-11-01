@@ -2103,3 +2103,306 @@ decision_biospheric_conversion-dense = {
 		}
 	}
 }
+
+# Decision to request Terraforming Candidate Adaptation
+decision_terraforming_candidate_upgrade = {
+	icon = decision_dusty_adaptation
+	owned_planets_only = yes
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	enactment_time = 60
+
+	# The cost is modified by the planet's size
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 11
+			}
+			#energy = 500
+			greenhouse_gases = 400
+			water_ices = 200
+		}
+		cost = {
+			trigger = {
+				planet_size > 10
+				planet_size < 14
+			}
+			#energy = 750
+			greenhouse_gases = 600
+			water_ices = 300
+		}
+		cost = {
+			trigger = {
+				planet_size > 13
+				planet_size < 17
+			}
+			#energy = 1250
+			greenhouse_gases = 900
+			water_ices = 450
+		}
+		cost = {
+			trigger = {
+				planet_size > 16
+				planet_size < 20
+			}
+			#energy = 2000
+			greenhouse_gases = 1300
+			water_ices = 650
+		}
+		cost = {
+			trigger = {
+				planet_size > 19
+				planet_size < 23
+			}
+			#energy = 3000
+			greenhouse_gases = 2000
+			water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				planet_size > 22
+			}
+			#energy = 5000
+			greenhouse_gases = 3000
+			water_ices = 1500
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				has_modifier = "terraforming_candidate"
+				NOT = { is_habitable = yes }
+				NOT = { has_planet_flag = "atmospheric_manipulation_started" }
+			}			
+		}
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		solar_system = {			
+			random_system_planet = {
+				limit = {
+					has_modifier = "terraforming_candidate"
+					NOT = { is_habitable = yes }
+				}
+				enable_special_project = {
+					name = "BARREN_ATMOSPHERIC_MANIPULATION"
+					location = this
+					owner = root
+				}
+				set_planet_flag = "atmospheric_manipulation_started"
+			} 	
+		}
+		
+	}
+		
+	ai_weight = {
+		weight = 10
+	}
+}
+decision_frozen_candidate_upgrade = {
+	icon = decision_frozen_adaptation
+	owned_planets_only = yes
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	enactment_time = 60
+
+	# The cost is modified by the planet's size
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 11
+			}
+			#energy = 500
+			greenhouse_gases = 800
+		}
+		cost = {
+			trigger = {
+				planet_size > 10
+				planet_size < 14
+			}
+			#energy = 750
+			greenhouse_gases = 1200
+		}
+		cost = {
+			trigger = {
+				planet_size > 13
+				planet_size < 17
+			}
+			#energy = 1250
+			greenhouse_gases = 1800
+		}
+		cost = {
+			trigger = {
+				planet_size > 16
+				planet_size < 20
+			}
+			#energy = 2000
+			greenhouse_gases = 2600
+		}
+		cost = {
+			trigger = {
+				planet_size > 19
+				planet_size < 23
+			}
+			#energy = 3000
+			greenhouse_gases = 4000
+		}
+		cost = {
+			trigger = {
+				planet_size > 22
+			}
+			#energy = 5000
+			greenhouse_gases = 6000
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				has_modifier = "frozen_terraforming_candidate"
+				NOT = { is_habitable = yes }
+				NOT = { has_planet_flag = "atmospheric_manipulation_started" }
+			}			
+		}
+		from = {
+			OR  = {
+				has_trait = trait_aquatic
+				has_trait = trait_robot_aquatic
+			}
+			has_ascension_perk = ap_hydrocentric
+		}		
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		solar_system = {			
+			random_system_planet = {
+				limit = {
+					has_modifier = "frozen_terraforming_candidate"
+					NOT = { is_habitable = yes }
+				}
+				enable_special_project = {
+					name = "FROZEN_ATMOSPHERIC_MANIPULATION"
+					location = this
+					owner = root
+				}
+				set_planet_flag = "atmospheric_manipulation_started"
+			} 	
+		}
+		
+	}
+		
+	ai_weight = {
+		weight = 10
+	}
+}
+decision_toxic_candidate_upgrade = {
+	icon = decision_toxic_adaptation
+	owned_planets_only = yes
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	enactment_time = 60
+
+	# The cost is modified by the planet's size
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 11
+			}
+			#energy = 500
+			water_ices = 600
+		}
+		cost = {
+			trigger = {
+				planet_size > 10
+				planet_size < 14
+			}
+			#energy = 750
+			water_ices = 900
+		}
+		cost = {
+			trigger = {
+				planet_size > 13
+				planet_size < 17
+			}
+			#energy = 1250
+			water_ices = 1350
+		}
+		cost = {
+			trigger = {
+				planet_size > 16
+				planet_size < 20
+			}
+			#energy = 2000
+			water_ices = 1950
+		}
+		cost = {
+			trigger = {
+				planet_size > 19
+				planet_size < 23
+			}
+			#energy = 3000
+			water_ices = 3000
+		}
+		cost = {
+			trigger = {
+				planet_size > 22
+			}
+			#energy = 5000
+			water_ices = 4500
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				has_modifier = "toxic_terraforming_candidate"
+				NOT = { is_habitable = yes }
+				NOT = { has_planet_flag = "atmospheric_manipulation_started" }
+			}			
+		}
+		from = {
+			has_ascension_perk = ap_detox
+		}		
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		solar_system = {			
+			random_system_planet = {
+				limit = {
+					has_modifier = "toxic_terraforming_candidate"
+					NOT = { is_habitable = yes }
+				}
+				enable_special_project = {
+					name = "TOXIC_ATMOSPHERIC_MANIPULATION"
+					location = this
+					owner = root
+				}
+				set_planet_flag = "atmospheric_manipulation_started"
+			} 	
+		}
+		
+	}
+		
+	ai_weight = {
+		weight = 10
+	}
+}

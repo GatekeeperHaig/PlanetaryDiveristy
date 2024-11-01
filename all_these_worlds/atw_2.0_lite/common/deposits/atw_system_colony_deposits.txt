@@ -1,0 +1,866 @@
+# Each system colony deposit spawned by decision on the main colony, should equal 4 districts on the system colony planet
+# So a blocker should also spawn on the system colony to reduce the available districts
+
+# If the system colony has more than 4 available farming districts for example, the Decision to build a farming system colony will be enabled on the main colony
+# Same for mining and generator, as long as number of free districts is higher than 4
+
+# Specialized system colonies are also a possibility
+# These can be Research, Industrial and Refinery if there are special resource deposits present on the planet
+
+d_system_colony-large = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	icon = d_system_colony
+
+	drop_weight = {
+		weight = 0
+	}
+	can_be_cleared = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+	}
+}
+
+d_system_colony-large_mining = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	icon = d_system_colony
+
+	drop_weight = {
+		weight = 0
+	}
+	can_be_cleared = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+		district_mining_max = -4
+	}
+}
+
+d_system_colony-large_farming = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	icon = d_system_colony
+
+	drop_weight = {
+		weight = 0
+	}
+	can_be_cleared = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+		district_farming_max = -4
+	}
+}
+
+d_system_colony-large_generator = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	icon = d_system_colony
+
+	drop_weight = {
+		weight = 0
+	}
+	can_be_cleared = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -4
+		district_generator_max = -4
+	}
+}
+
+d_system_colony-medium = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	icon = d_system_colony
+
+	drop_weight = {
+		weight = 0
+	}
+	can_be_cleared = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+}
+
+d_system_colony-small = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	icon = d_system_colony
+
+	drop_weight = {
+		weight = 0
+	}
+	can_be_cleared = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+}
+
+# Large colony
+d_system_colony-angler = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_angler_add = 4
+			job_pearl_diver_add = 2
+			job_clerk_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_angler_add = 4
+			job_pearl_diver_add = 2
+			job_maintenance_drone_add = 2
+		}
+	}
+
+}
+
+# Medium colony
+d_system_colony-artisan = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 4
+		planet_stability_add = -2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_artisan_add = 3
+			job_clerk_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_artisan_drone_add = 3
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_artisan_drone_add = 3
+			job_maintenance_drone_add = 1
+		}
+	}
+}
+
+# Large colony
+d_system_colony-enforcer = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_enforcer_add = 6
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_patrol_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+
+}
+
+# Large colony
+d_system_colony-farmer = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_farmer_add = 6
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+}
+
+# Medium colony
+d_system_colony-foundry = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 4
+		planet_stability_add = -2
+	}
+
+	inline_script = {
+		script = jobs/industrial_districts_foundry_add
+		AMOUNT = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			#job_foundry_add = 3
+			job_clerk_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			#job_alloy_drone_add = 3
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			#job_fabricator_add = 3
+			job_maintenance_drone_add = 1
+		}
+	}
+}
+
+# Large colony
+d_system_colony-miner = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_miner_add = 6
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+}
+
+# Small colony
+d_system_colony-mote_harvester_1 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_system_colony-mote_harvester
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		#planet_stability_add = -2
+		#trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_mote_harvester_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mote_harvesting_drone_add = 1
+		}
+	}
+
+}
+d_system_colony-mote_harvester_2 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_system_colony-mote_harvester
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		#planet_stability_add = -2
+		#trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_mote_harvester_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mote_harvesting_drone_add = 2
+		}
+	}
+
+}
+
+# Small colony
+d_system_colony-gas_extractor_1 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_system_colony-gas_extractor
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		#planet_stability_add = -2
+		#trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_gas_extractor_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_extraction_drone_add = 1
+		}
+	}
+
+}
+d_system_colony-gas_extractor_2 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_system_colony-gas_extractor
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		#planet_stability_add = -2
+		#trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_gas_extractor_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_extraction_drone_add = 2
+		}
+	}
+
+}
+
+# Large colony
+d_system_colony-researcher = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 6
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+}
+
+# Large colony
+d_system_colony-soldier = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_soldier_add = 6
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_warrior_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+}
+
+# Large colony
+d_system_colony-technician = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 8
+		planet_stability_add = -1
+		trade_value_mult = 0.02
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_technician_add = 6
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 6
+			job_maintenance_drone_add = 2
+		}
+	}
+}
+
+# Small colony
+d_system_colony-crystal_miner_1 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_system_colony-crystal_miner
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		#planet_stability_add = -2
+		#trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_crystal_miner_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_crystal_mining_drone_add = 1
+		}
+	}
+
+}
+d_system_colony-crystal_miner_2 = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	icon = d_system_colony-crystal_miner
+
+	drop_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_deposits
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		#planet_stability_add = -2
+		#trade_value_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_crystal_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_crystal_mining_drone_add = 2
+		}
+	}
+
+}

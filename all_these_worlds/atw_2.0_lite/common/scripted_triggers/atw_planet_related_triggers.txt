@@ -39,6 +39,7 @@ is_rocky_uninhabitable = {
 is_habitable = {
 	OR = {
 		habitable_planet = yes
+		is_planet_class = pc_nuked
 	}
 }
 
@@ -64,6 +65,44 @@ is_regular_habitable_planet = { # Used in the Geoengineering decisions
 		has_modifier = "class_tomb"
 		has_modifier = "class_tomb_restored"
 		has_modifier = "class_barren_terraformed"
+	}
+}
+
+is_marginal_planet = {
+	OR = {
+		has_modifier = "class_elos"		
+		has_modifier = "class_erimos"		
+		has_modifier = "class_ammoniagenian"
+		has_modifier = "class_redux"
+		has_modifier = "class_stepikos"
+		has_modifier = "class_almyros"
+		has_modifier = "class_archean"		
+		has_modifier = "class_tomb"
+		has_modifier = "class_tomb_restored"
+		has_modifier = "class_barren_terraformed"
+	}
+}
+
+is_sub_marginal_planet = {
+	OR = {
+		has_modifier = "class_anthracean"
+		has_modifier = "class_hadean"
+		has_modifier = "class_agonos"
+		has_modifier = "class_karstikos"
+		has_modifier = "class_desolate"
+		has_modifier = "class_alkali"
+		has_modifier = "class_hydrocarbonal"
+		has_modifier = "class_sulfuric"
+	}
+}
+
+is_terraforming_candidate = {
+	OR = {
+		has_modifier = terraforming_candidate
+		has_modifier = frozen_terraforming_candidate
+		has_modifier = toxic_terraforming_candidate
+		is_marginal_planet = yes
+		is_sub_marginal_planet = yes
 	}
 }
 
@@ -137,7 +176,7 @@ supports_diverse_biosphere = { # Used for Terraforming stuff, single-biome plane
 		has_modifier = "class_thermogenian"
 		has_modifier = "class_cryogenian"
 		has_modifier = "class_retinalgenian"
-		has_modifier = "class_mukesgenian"
+		#has_modifier = "class_mukesgenian"
 		has_modifier = "class_tropikostopio"
 		has_modifier = "class_cryotopio"
 		has_modifier = "class_alpikotopio"
@@ -164,12 +203,12 @@ has_optimal_atmosphere = {
 		has_modifier = "atmosphere-oxygen_carbon_mix"
 		has_modifier = "atmosphere-carbon_poor"
 		has_modifier = "atmosphere-carbon_rich"
+		has_modifier = "atmosphere-polluted"
 	}
 }
 
 has_marginal_atmosphere = {
-	OR = {
-		has_modifier = "atmosphere-polluted"
+	OR = {		
 		has_modifier = "atmosphere-ammonia_vapour"
 		has_modifier = "atmosphere-frigid_marginal"
 		has_modifier = "atmosphere-hot_marginal"

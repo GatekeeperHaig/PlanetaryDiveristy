@@ -350,7 +350,7 @@ event = {
 					limit = { is_planet_class = "pc_continental" has_planet_flag = "nuked_earth" }
 					change_pc = "pc_nuked"
 					add_modifier = { modifier = "class_tomb" days = -1 }
-					add_modifier = { modifier = "atmosphere-oxygen_carbon_mix" days = -1 }
+					add_modifier = { modifier = "atmosphere-polluted" days = -1 }
 					add_modifier = { modifier = "biosphere-tenuous" days = -1 }					
 					set_planet_entity = {
 						picture = "orbit_tomb"
@@ -393,13 +393,14 @@ event = {
 					limit = { is_planet_class = "pc_barren" }
 					add_modifier = { modifier = "class_dusty" days = -1 }
 					add_modifier = { modifier = "atmosphere-thin_brown" days = -1 }
-					
+					remove_modifier = "terraforming_candidate"
+					add_modifier = {
+						modifier = "terraforming_candidate"
+						days = -1
+					}
 					set_planet_entity = {
 						picture = "orbit_dusty_telluric"
 						entity = "barren_planet_mars_entity"
-						atmosphere_color = hsv { 0.10 0.40 0.90 }
-						atmosphere_intensity = 0.1
-						atmosphere_width = 0.5
 					}
 					set_planet_flag = planet_converted
 				}
@@ -562,6 +563,33 @@ event = {
 					}
 				}				
 			}
+			# Adapt Unity system
+			if = {
+				limit = { solar_system = { has_star_flag = "deneb_system" } }
+				# Helios
+				if = {
+					limit = { is_planet_class = "pc_frozen" planet_size = 13 }
+					remove_atmosphere_modifier = yes
+					remove_class_modifier = yes
+					remove_uninhabitable_modifiers = yes
+					# Roll a Karstikos class
+					add_modifier = { modifier = "class_karstikos" days = -1 }
+					change_pc = pc_nuked					
+					clear_deposits = yes
+					reroll_deposits = yes
+					correct_habitable_deposits = yes
+					spawn_atmosphere-karstikos = yes
+					correct_atmosphere_color = yes
+					add_modifier = { modifier = "biosphere-barren" days = -1 }
+					set_planet_entity = {
+						picture = "orbit_karstikos"
+						entity = "marginal_karstikos_01_entity"
+						
+					}
+					set_planet_flag = "marginal_converted"
+					set_planet_flag = "planet_converted"
+				}
+			}
 
 			# Check for special origin homeworlds
 			if = {
@@ -710,7 +738,7 @@ event = {
 					}
 					0 = {
 						modifier = { add = 5 is_gas_giant_moon = yes }
-						modifier = { factor = 0.00 orbits_hot_star = yes }
+						modifier = { factor = 0.50 orbits_hot_star = yes }
 						modifier = { factor = 0.00 is_homeworld = yes } # Homeworlds should be restricted or favor the default class
 						modifier = { add = 1000 has_planet_flag = "alternate_homeworld2" }
 						roll_photosgenian = yes
@@ -1168,29 +1196,31 @@ event = {
 							is_discovered = no
 						}
 						modifier = { factor = 0.00 has_star_flag = "no_CoM_please" }
+						modifier = { factor = 0.00 any_country = { has_country_flag = "custom_une" } }
 						#add_extra_hyperlane_to_spawned_system_effect = yes
 					}
-					# Quarter chance of spawning primitive Humans on Deneb(ola) if first contact DLC is present
+					# Higher chance of spawning primitive Humans on Deneb(ola) if first contact DLC is present and if using a custom UNE
 					25 = {
 						spawn_system = {
-							min_jumps = 2
-							max_jumps = 3
-							#min_distance >= 70
-							#max_distance <= 90
+							min_jumps = 4
+							max_jumps = 5
+							#min_distance >= 50
+							#max_distance <= 70
 							initializer = "pre_ftl_deneb_system"
 							hyperlane = yes
 							is_discovered = no
 						}
-						add_extra_hyperlane_to_spawned_system_effect = yes
+						add_extra_hyperlane_to_spawned_system_effect = yes						
+						modifier = { add = 1000 any_country = { has_country_flag = "custom_une" } }
 						modifier = { factor = 0 has_first_contact_dlc = no }
 					}
-					# Spawn empty Deneb if using a custom UNE
+					# Spawn empty Deneb if using a custom UNE - CURRENTLY DISABLED
 					0 = {
 						spawn_system = {
-							min_jumps = 4
+							min_jumps = 5
 							max_jumps = 6
-							min_distance >= 50
-							max_distance <= 70
+							min_distance >= 40
+							max_distance <= 60
 							initializer = "custom_une_deneb_system"
 							hyperlane = yes
 							is_discovered = no
@@ -1299,7 +1329,7 @@ event = {
 			random_system = {
 				limit = { has_star_flag = "deneb_system" }
 				random_list = {
-					66 = {
+					80 = {
 						random_system_planet = {
 							limit = { has_planet_flag = "planet_unity" }
 							change_pc = "pc_tropical"
@@ -1312,19 +1342,84 @@ event = {
 								entity = "sub_terrestrial_tropikostopio_diverse_01_entity"
 							}
 							correct_atmosphere_color = yes
-							generate_start_deposits_and_blockers = yes
+							#generate_start_deposits_and_blockers = yes
 							set_planet_flag = "habitable_converted"
 						}
 						spawn_system = {
-							min_distance >= 70
-							max_distance <= 90
+							min_jumps = 4
+							max_jumps = 5
+							#min_distance >= 50
+							#max_distance <= 70
 							initializer = "com_sol_system"
 							hyperlane = yes
 							is_discovered = no
 						}
+						modifier = {
+							factor = 0
+							any_country = {
+								has_country_flag = "custom_com"
+							}
+						}
+						last_created_system = {
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "com_sol_neighbor_t1_first_colony"
+								hyperlane = yes
+								is_discovered = no
+							}
+							last_created_system = {
+								if = {
+									limit = { NOT = { has_hyperlane_to = prev } }
+									add_hyperlane = {
+										from = this
+										to = prev
+									}
+								}
+							}
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "com_sol_neighbor_t1"
+								hyperlane = yes
+								is_discovered = no
+							}
+							last_created_system = {
+								if = {
+									limit = { NOT = { has_hyperlane_to = prev } }
+									add_hyperlane = {
+										from = this
+										to = prev
+									}
+								}
+							}
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "com_sol_neighbor_t2_second_colony"
+								hyperlane = yes
+								is_discovered = no
+							}
+							last_created_system = {
+								if = {
+									limit = { NOT = { has_hyperlane_to = prev } }
+									add_hyperlane = {
+										from = this
+										to = prev
+									}
+								}
+							}
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "deneb_neighbor_t2" # there's a reason for this
+								hyperlane = yes
+								is_discovered = no
+							}
+						}
 					}
-					# 33% chance chance of spawning nuked Earth on Sol but higher with a custom CoM
-					33 = {
+					# 20% chance chance of spawning nuked Earth on Sol but higher with a custom CoM
+					20 = {
 						modifier = {
 							factor = 1000
 							any_country = {
@@ -1343,76 +1438,96 @@ event = {
 								entity = "sub_terrestrial_tropikostopio_diverse_01_entity"
 							}
 							correct_atmosphere_color = yes
-							generate_start_deposits_and_blockers = yes
+							#generate_start_deposits_and_blockers = yes
 							set_planet_flag = "habitable_converted"
 						}
 						spawn_system = {
-							min_distance >= 70
-							max_distance <= 90
+							min_jumps = 4
+							max_jumps = 5
+							#min_distance >= 50
+							#max_distance <= 70
 							initializer = "special_init_04"
 							hyperlane = yes
 							is_discovered = no
 						}
+						last_created_system = {
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "sol_neighbor_t1_no_guaranteed_colony" # Alpha Centauri (no guaranteed habitable)
+								hyperlane = yes
+								is_discovered = no
+							}
+							last_created_system = {
+								if = {
+									limit = { NOT = { has_hyperlane_to = prev } }
+									add_hyperlane = {
+										from = this
+										to = prev
+									}
+								}
+							}
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "com_sol_neighbor_t1" # Sirius
+								hyperlane = yes
+								is_discovered = no
+							}
+							last_created_system = {
+								if = {
+									limit = { NOT = { has_hyperlane_to = prev } }
+									add_hyperlane = {
+										from = this
+										to = prev
+									}
+								}
+							}
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "sol_neighbor_t2" # Procyon
+								hyperlane = yes
+								is_discovered = no
+							}
+							last_created_system = {
+								if = {
+									limit = { NOT = { has_hyperlane_to = prev } }
+									add_hyperlane = {
+										from = this
+										to = prev
+									}
+								}
+							}
+							last_created_system = {
+								spawn_system = {
+									min_distance >= 15
+									max_distance <= 30
+									initializer = "com_sol_neighbor_t2_second_colony" # Epsilon Eridani (guaranteed habitable)
+									hyperlane = yes
+									is_discovered = no
+								}
+								last_created_system = {
+									if = {
+										limit = { NOT = { has_hyperlane_to = prev } }
+										add_hyperlane = {
+											from = this
+											to = prev
+										}
+									}
+								}
+							}
+							spawn_system = {
+								min_distance >= 15
+								max_distance <= 30
+								initializer = "deneb_neighbor_t2" # there's a reason for this
+								hyperlane = yes
+								is_discovered = no
+							}
+						}
 					}
 				}
-				random_system = {
-					limit = { has_star_flag = "sol" }
-					spawn_system = {
-						min_distance >= 15
-						max_distance <= 40
-						initializer = "com_sol_neighbor_t1_first_colony"
-						hyperlane = yes
-						is_discovered = no
-					}
-					last_created_system = {
-						if = {
-							limit = { NOT = { has_hyperlane_to = prev } }
-							add_hyperlane = {
-								from = this
-								to = prev
-							}
-						}
-					}
-					spawn_system = {
-						min_distance >= 15
-						max_distance <= 40
-						initializer = "com_sol_neighbor_t1"
-						hyperlane = yes
-						is_discovered = no
-					}
-					last_created_system = {
-						if = {
-							limit = { NOT = { has_hyperlane_to = prev } }
-							add_hyperlane = {
-								from = this
-								to = prev
-							}
-						}
-					}
-					spawn_system = {
-						min_distance >= 15
-						max_distance <= 40
-						initializer = "com_sol_neighbor_t2_second_colony"
-						hyperlane = yes
-						is_discovered = no
-					}
-					last_created_system = {
-						if = {
-							limit = { NOT = { has_hyperlane_to = prev } }
-							add_hyperlane = {
-								from = this
-								to = prev
-							}
-						}
-					}
-					spawn_system = {
-						min_distance >= 15
-						max_distance <= 40
-						initializer = "deneb_neighbor_t2" # there's a reason for this
-						hyperlane = yes
-						is_discovered = no
-					}
-				}
+				
 			}
 		}
 	}
@@ -1854,4 +1969,339 @@ event = {
 		}
 	}
 	
+}
+
+ship_event = { # triggered on_survey
+	id = atw_engine.12 # IDENTIFIES MARGINAL WORLDS ON SURVEY AND CONVERT TO HABITABLE
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			OR = { 
+				is_marginal_planet = yes
+				is_sub_marginal_planet = yes
+			}
+			NOT = { is_planet_class = "pc_nuked" }
+			NOT = { has_planet_flag = "planet_exploited" }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				#owner = { NOT = { has_country_flag = "marginal_candidate_found" } }
+				NOT = { owner = { is_machine_empire = yes } }
+			}
+			#owner = { set_country_flag = "marginal_candidate_found" }
+			ship_event = { id = atw_engine.13 scopes = { from = from } }
+			if = {
+				limit = { from = { is_marginal_planet = yes } }
+				from = { marginal_conversion = yes }
+			}
+			if = {
+				limit = { from = { is_sub_marginal_planet = yes } }
+				from = { sub_marginal_conversion = yes }
+			}
+		}
+		else = {
+			if = {
+				limit = { from = { is_marginal_planet = yes } }
+				owner = {
+					create_message = {
+						type = MESSAGE_MARGINAL_FOUND
+						localization = MESSAGE_MARGINAL_FOUND_DESC
+						days = 30
+						target = from
+						variable = {
+							type = name
+							localization = SYSTEM
+							scope = from
+						}
+					}
+				}
+				from = { marginal_conversion = yes }
+			}
+			if = {
+				limit = { from = { is_sub_marginal_planet = yes } }
+				owner = {
+					create_message = {
+						type = MESSAGE_SUB_MARGINAL_FOUND
+						localization = MESSAGE_SUB_MARGINAL_FOUND_DESC
+						days = 30
+						target = from
+						variable = {
+							type = name
+							localization = SYSTEM
+							scope = from
+						}
+					}
+				}
+				from = { sub_marginal_conversion = yes }
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = atw_engine.13
+	title = "atw_engine.13.name"
+	show_sound = event_mystic_reveal
+	picture = GFX_evt_colony_settlement
+	is_triggered_only = yes
+	location = FROM
+
+	desc = {
+		trigger = {
+			NOT = { owner = { has_technology = "tech_atmospheric_manipulation" } }
+		}
+		text = "atw_engine.13.desc.a"
+	}
+
+	desc = {
+		trigger = {
+			owner = { has_technology = "tech_atmospheric_manipulation" }
+		}
+		text = "atw_engine.13.desc.b"
+	}	
+
+	option = {
+		name = FASCINATING
+		exclusive_trigger = {
+			NOT = { owner = { has_technology = "tech_atmospheric_manipulation" } }
+		}
+		owner = {
+			if = {
+				limit = {
+					from.planet = { has_modifier = "class_elos" }
+					NOT = { has_country_flag = "class_elos-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_elos-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_erimos" }
+					NOT = { has_country_flag = "class_erimos-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_erimos-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_ammoniagenian" }
+					NOT = { has_country_flag = "class_ammoniagenian-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_ammoniagenian-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_redux" }
+					NOT = { has_country_flag = "class_redux-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_redux-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_stepikos" }
+					NOT = { has_country_flag = "class_stepikos-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_stepikos-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_almyros" }
+					NOT = { has_country_flag = "class_almyros-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_almyros-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_archean" }
+					NOT = { has_country_flag = "class_archean-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_archean-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_tomb" }
+					NOT = { has_country_flag = "class_tomb-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_tomb-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_tomb_restored" }
+					NOT = { has_country_flag = "class_tomb_restored-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_tomb_restored-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_anthracean" }
+					NOT = { has_country_flag = "class_anthracean-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_anthracean-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_hadean" }
+					NOT = { has_country_flag = "class_hadean-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_hadean-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_agonos" }
+					NOT = { has_country_flag = "class_agonos-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_agonos-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_karstikos" }
+					NOT = { has_country_flag = "class_karstikos-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_karstikos-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_desolate" }
+					NOT = { has_country_flag = "class_desolate-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_desolate-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_alkali" }
+					NOT = { has_country_flag = "class_alkali-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_alkali-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_hydrocarbonal" }
+					NOT = { has_country_flag = "class_hydrocarbonal-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_hydrocarbonal-found"
+			}
+			else_if = {
+				limit = {
+					from.planet = { has_modifier = "class_sulfuric" }
+					NOT = { has_country_flag = "class_sulfuric-found" }
+				}
+				# New planet class discovered - Add 5% Atmospheric Manipulation tech progress
+				add_tech_option_or_research_effect = {
+					TECH = "tech_atmospheric_manipulation"
+					PROGRESS = 0.05
+					CATEGORY = society_research
+				}
+				set_country_flag = "class_sulfuric-found"
+			}
+			else = {
+				# Planet class already discovered - Do nothing
+			}
+		}
+	}
+	option = {
+		name = EXCELLENT
+		exclusive_trigger = {
+			owner = { has_technology = "tech_atmospheric_manipulation" }
+		}
+		# Already have Atmospheric Manipulation tech - Do nothing
+	}
 }

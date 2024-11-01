@@ -17,6 +17,8 @@ mega_shipyard_0 = {
 		}
 	}
 
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_ONE_PER_COUNTRY"
+
 	prerequisites = { "tech_mega_shipyard" }
 
 	possible = {
@@ -135,7 +137,6 @@ mega_shipyard_0 = {
 	}
 }
 
-
 ring_world_1 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -154,6 +155,8 @@ ring_world_1 = {
 			energy = 5
 		}
 	}
+
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_RING_WORLD"
 
 	prerequisites = { "tech_ring_world" }
 
@@ -250,7 +253,6 @@ ring_world_1 = {
 	}
 }
 
-
 dyson_sphere_0 = {
 	entity = "construction_platform_entity"
 	construction_entity = "construction_platform_entity"
@@ -269,6 +271,8 @@ dyson_sphere_0 = {
 			energy = 5
 		}
 	}
+
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_DYSON_SPHERE"
 
 	prerequisites = { "tech_dyson_sphere" }
 
@@ -480,6 +484,7 @@ orbital_arc_furnace_1 = {
 	}
 
 	construction_blocks_and_blocked_by = self_type
+	build_system_tooltip = arc_furnace_tooltip
 
 	dismantle_cost = {
 		category = megastructures
@@ -652,26 +657,36 @@ orbital_arc_furnace_1 = {
 
 	on_build_start = {
 		set_star_flag = arc_furnace_construction
-		from = {
-			change_variable = {
-				which = arc_furnace_counter
-				value = 1
+		if = {
+			limit = {
+				exists = from
+			}
+			from = {
+				change_variable = {
+					which = arc_furnace_counter
+					value = 1
+				}
 			}
 		}
 	}
 	on_build_cancel = {
 		remove_star_flag = arc_furnace_construction
-		from = {
-			if = {
-				limit = {
-					check_variable = {
-						which = arc_furnace_counter
-						value >= 1
+		if = {
+			limit = {
+				exists = from
+			}
+			from = {
+				if = {
+					limit = {
+						check_variable = {
+							which = arc_furnace_counter
+							value >= 1
+						}
 					}
-				}
-				change_variable = {
-					which = arc_furnace_counter
-					value = -1
+					change_variable = {
+						which = arc_furnace_counter
+						value = -1
+					}
 				}
 			}
 		}
@@ -724,6 +739,7 @@ dyson_swarm_1 = {
 	}
 
 	construction_blocks_and_blocked_by = none
+	custom_tooltip_requirements = "MEGASTRUCTURE_TOOLTIP_REQUIREMENTS_DYSON_SWARM"
 
 	dismantle_cost = {
 		category = megastructures

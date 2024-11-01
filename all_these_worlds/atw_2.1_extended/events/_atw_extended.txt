@@ -30,6 +30,15 @@ event = {
 					has_anomaly = no
 					NOT = { has_planet_flag = "deposit_spawned" }
 					NOT = {	has_sr_orbital_deposit = yes }
+					NOR = {
+						has_deposit = d_energy_4
+						has_deposit = d_energy_5
+						has_deposit = d_energy_6
+						has_deposit = d_energy_7
+						has_deposit = d_energy_8
+						has_deposit = d_energy_9
+						has_deposit = d_energy_10
+					}
 				}
 				clear_deposits = yes
 				if = {
@@ -67,7 +76,7 @@ event = {
 
 			# On this second pass, remove the terraforming candidate modifiers, but for every one removed, add it elsewhere under different conditions
 			if = {
-				limit = { has_modifier = "terraforming_candidate" NOT = { has_planet_flag = "planet_mars" } }
+				limit = { has_modifier = "terraforming_candidate" NOR = { is_marginal_planet = yes is_sub_marginal_planet = yes has_planet_flag = "planet_mars" } solar_system = { has_star_flag = "lost_swarm_system" } solar_system = { has_star_flag = "wenkwort_system" } }
 				remove_modifier = "terraforming_candidate"
 				random_galaxy_planet = {
 					limit = {
@@ -83,7 +92,7 @@ event = {
 				}
 			}
 			else_if = {
-				limit = { has_modifier = "frozen_terraforming_candidate" }
+				limit = { has_modifier = "frozen_terraforming_candidate" NOR = { is_marginal_planet = yes is_sub_marginal_planet = yes has_planet_flag = "planet_mars" } }
 				remove_modifier = "frozen_terraforming_candidate"
 				random_galaxy_planet = {
 					limit = {
@@ -99,7 +108,7 @@ event = {
 				}
 			}
 			else_if = {
-				limit = { has_modifier = "toxic_terraforming_candidate" }
+				limit = { has_modifier = "toxic_terraforming_candidate" NOR = { is_marginal_planet = yes is_sub_marginal_planet = yes has_planet_flag = "toxic_terraforming_candidate" } }
 				remove_modifier = "toxic_terraforming_candidate"
 				random_galaxy_planet = {
 					limit = {

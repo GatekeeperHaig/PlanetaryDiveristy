@@ -2,6 +2,2193 @@
 # Decisions
 ##########################################################################
 
+# Decision to request Terraforming Candidate Adaptation
+decision_terraforming_candidate_upgrade = {
+	icon = decision_dusty_adaptation
+	owned_planets_only = yes
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	enactment_time = 60
+
+	# The cost is modified by the planet's size
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 11
+			}
+			energy = 500
+			#greenhouse_gases = 400
+			#water_ices = 200
+		}
+		cost = {
+			trigger = {
+				planet_size > 10
+				planet_size < 14
+			}
+			energy = 750
+			#greenhouse_gases = 600
+			#water_ices = 300
+		}
+		cost = {
+			trigger = {
+				planet_size > 13
+				planet_size < 17
+			}
+			energy = 1250
+			#greenhouse_gases = 900
+			#water_ices = 450
+		}
+		cost = {
+			trigger = {
+				planet_size > 16
+				planet_size < 20
+			}
+			energy = 2000
+			#greenhouse_gases = 1300
+			#water_ices = 650
+		}
+		cost = {
+			trigger = {
+				planet_size > 19
+				planet_size < 23
+			}
+			energy = 3000
+			#greenhouse_gases = 2000
+			#water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				planet_size > 22
+			}
+			energy = 5000
+			#greenhouse_gases = 3000
+			#water_ices = 1500
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				has_modifier = "terraforming_candidate"
+				NOT = { is_habitable = yes }
+				NOT = { has_planet_flag = "atmospheric_manipulation_started" }
+			}			
+		}
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		solar_system = {			
+			random_system_planet = {
+				limit = {
+					has_modifier = "terraforming_candidate"
+					NOT = { is_habitable = yes }
+				}
+				enable_special_project = {
+					name = "BARREN_ATMOSPHERIC_MANIPULATION"
+					location = this
+					owner = root
+				}
+				set_planet_flag = "atmospheric_manipulation_started"
+			} 	
+		}
+		
+	}
+		
+	ai_weight = {
+		weight = 10
+	}
+}
+decision_frozen_candidate_upgrade = {
+	icon = decision_frozen_adaptation
+	owned_planets_only = yes
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	enactment_time = 60
+
+	# The cost is modified by the planet's size
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 11
+			}
+			energy = 500
+			#greenhouse_gases = 400
+			#water_ices = 200
+		}
+		cost = {
+			trigger = {
+				planet_size > 10
+				planet_size < 14
+			}
+			energy = 750
+			#greenhouse_gases = 600
+			#water_ices = 300
+		}
+		cost = {
+			trigger = {
+				planet_size > 13
+				planet_size < 17
+			}
+			energy = 1250
+			#greenhouse_gases = 900
+			#water_ices = 450
+		}
+		cost = {
+			trigger = {
+				planet_size > 16
+				planet_size < 20
+			}
+			energy = 2000
+			#greenhouse_gases = 1300
+			#water_ices = 650
+		}
+		cost = {
+			trigger = {
+				planet_size > 19
+				planet_size < 23
+			}
+			energy = 3000
+			#greenhouse_gases = 2000
+			#water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				planet_size > 22
+			}
+			energy = 5000
+			#greenhouse_gases = 3000
+			#water_ices = 1500
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				has_modifier = "frozen_terraforming_candidate"
+				NOT = { is_habitable = yes }
+				NOT = { has_planet_flag = "atmospheric_manipulation_started" }
+			}			
+		}
+		from = {
+			OR  = {
+				has_trait = trait_aquatic
+				has_trait = trait_robot_aquatic
+			}
+			has_ascension_perk = ap_hydrocentric
+		}		
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		solar_system = {			
+			random_system_planet = {
+				limit = {
+					has_modifier = "frozen_terraforming_candidate"
+					NOT = { is_habitable = yes }
+				}
+				enable_special_project = {
+					name = "FROZEN_ATMOSPHERIC_MANIPULATION"
+					location = this
+					owner = root
+				}
+				set_planet_flag = "atmospheric_manipulation_started"
+			} 	
+		}
+		
+	}
+		
+	ai_weight = {
+		weight = 10
+	}
+}
+decision_toxic_candidate_upgrade = {
+	icon = decision_toxic_adaptation
+	owned_planets_only = yes
+	prerequisites = {
+		"tech_atmospheric_manipulation"
+	}
+	enactment_time = 60
+
+	# The cost is modified by the planet's size
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				planet_size < 11
+			}
+			energy = 500
+			#greenhouse_gases = 400
+			#water_ices = 200
+		}
+		cost = {
+			trigger = {
+				planet_size > 10
+				planet_size < 14
+			}
+			energy = 750
+			#greenhouse_gases = 600
+			#water_ices = 300
+		}
+		cost = {
+			trigger = {
+				planet_size > 13
+				planet_size < 17
+			}
+			energy = 1250
+			#greenhouse_gases = 900
+			#water_ices = 450
+		}
+		cost = {
+			trigger = {
+				planet_size > 16
+				planet_size < 20
+			}
+			energy = 2000
+			#greenhouse_gases = 1300
+			#water_ices = 650
+		}
+		cost = {
+			trigger = {
+				planet_size > 19
+				planet_size < 23
+			}
+			energy = 3000
+			#greenhouse_gases = 2000
+			#water_ices = 1000
+		}
+		cost = {
+			trigger = {
+				planet_size > 22
+			}
+			energy = 5000
+			#greenhouse_gases = 3000
+			#water_ices = 1500
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				has_modifier = "toxic_terraforming_candidate"
+				NOT = { is_habitable = yes }
+				NOT = { has_planet_flag = "atmospheric_manipulation_started" }
+			}			
+		}
+		from = {
+			has_ascension_perk = ap_detox
+		}		
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		solar_system = {			
+			random_system_planet = {
+				limit = {
+					has_modifier = "toxic_terraforming_candidate"
+					NOT = { is_habitable = yes }
+				}
+				enable_special_project = {
+					name = "TOXIC_ATMOSPHERIC_MANIPULATION"
+					location = this
+					owner = root
+				}
+				set_planet_flag = "atmospheric_manipulation_started"
+			} 	
+		}
+		
+	}
+		
+	ai_weight = {
+		weight = 10
+	}
+}
+
+##########################################################################################
+# Decisions for the main colonies to fund a system colony when one is available in-system:
+##########################################################################################
+
+##########################################################################################
+# Large basic colonies - require available resource districts on uncolonized world (except angler)
+
+# Miner colony
+decision_system_colony-miner = {
+	icon = decision_system_colony-miner
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 25
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = district_mining
+						value >= 4
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-miner
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = district_mining
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large_mining
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-miner"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-miner-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-miner"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-miner
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large_mining
+					}				
+					remove_deposit = d_system_colony-large_mining
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Farmer colony - not allowed on pc_ocean of a submerged class or any pc_ocean class if species is angler
+decision_system_colony-farmer = {
+	icon = decision_system_colony-farmer
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 25
+		}
+	}
+
+	potential = {
+		OR = {
+			AND = {
+				owner = { is_anglers_empire = yes }
+				solar_system = {			
+					any_system_planet = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						NOT = { is_planet_class = pc_ocean }
+					}			
+				}
+			}
+			AND = {
+				NOT = { owner = { is_anglers_empire = yes } }
+				solar_system = {			
+					any_system_planet = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						NOR = { 
+							has_modifier = "class_panpelagic"
+							has_modifier = "class_okeanosgaean"
+							has_modifier = "class_ammoniapelagic"
+						}
+					}			
+				}
+			}
+		}
+		
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = district_farming
+						value >= 4
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-farmer
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = district_farming
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large_farming
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-farmer"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-farmer-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-farmer"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-farmer
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large_farming
+					}				
+					remove_deposit = d_system_colony-large_farming
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Angler colony - restricted to Angler species and pc_ocean worlds, doesn't require farming districts
+decision_system_colony-angler = {
+	icon = decision_system_colony-angler
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 25
+		}
+	}
+
+	potential = {
+		owner = { is_anglers_empire = yes }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				is_planet_class = pc_ocean
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 4
+					}
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-angler
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large
+					submerged_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-angler"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-angler-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-angler"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-angler
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large
+					}				
+					remove_deposit = d_system_colony-large
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Generator colony
+decision_system_colony-technician = {
+	icon = decision_system_colony-technician
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 25
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = district_generator
+						value >= 4
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-technician
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = district_generator
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-technician"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-technician-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-technician"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-technician
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large_generator
+					}				
+					remove_deposit = d_system_colony-large_generator
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+##########################################################################################
+# Large specialized colonies - maximum of 1 option on the main colony and cost more influence
+
+# Research colony
+decision_system_colony-research = {
+	icon = decision_system_colony-research
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 50
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "specialized_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_specialized_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 4
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-researcher
+		set_planet_flag = "specialized_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-research"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-research-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-researcher"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-researcher
+		remove_planet_flag = "specialized_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large
+					}				
+					remove_deposit = d_system_colony-large
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Prison colony
+decision_system_colony-enforcer = {
+	icon = decision_system_colony-enforcer
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 50
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "specialized_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_specialized_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 4
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-enforcer
+		set_planet_flag = "specialized_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-enforcer"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-enforcer-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-enforcer"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-enforcer
+		remove_planet_flag = "specialized_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large
+					}				
+					remove_deposit = d_system_colony-large
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Military colony
+decision_system_colony-soldier = {
+	icon = decision_system_colony-soldier
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			minerals = 1000
+			influence = 50
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "specialized_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "large_specialized_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 4
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-soldier
+		set_planet_flag = "specialized_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 4
+						}
+					}				
+					add_deposit = d_system_colony-large
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-soldier"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-soldier-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-soldier"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-soldier
+		remove_planet_flag = "specialized_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-large
+					}				
+					remove_deposit = d_system_colony-large
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+##########################################################################################
+# Medium industrial colonies - no limit, but cost alloys instead of minerals
+
+# Metallurgist colony
+decision_system_colony-foundry = {
+	icon = decision_system_colony-foundry
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 500
+			influence = 25
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "medium_industrial_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 2
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-foundry
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 2
+						}
+					}				
+					add_deposit = d_system_colony-medium
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-foundry"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-foundry-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-foundry"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-foundry
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-medium
+					}				
+					remove_deposit = d_system_colony-medium
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Artisan colony
+decision_system_colony-artisan = {
+	icon = decision_system_colony-artisan
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 500
+			influence = 25
+		}
+	}
+
+	potential = {
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "medium_industrial_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 2
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-artisan
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 2
+						}
+					}				
+					add_deposit = d_system_colony-medium
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-artisan"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-artisan-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-artisan"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-artisan
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-medium
+					}				
+					remove_deposit = d_system_colony-medium
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+##########################################################################################
+# Small resource colonies - require a specific resource deposit on the uncollonized world. The number of jobs depends on the deposit type, but only one colony is possible for each resource type
+
+# Translucer colony
+decision_system_colony-crystal_miner_1 = {
+	icon = decision_system_colony-crystal_miner
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+			influence = 15
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "crystal_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				has_deposit = "d_crystalline_caverns"
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "small_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 1
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-crystal_miner_1
+		set_planet_flag = "crystal_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 1
+						}
+					}				
+					add_deposit = d_system_colony-small
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-crystal_miner"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-crystal_miner_1-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-crystal_miner_1"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-crystal_miner_1
+		remove_planet_flag = "crystal_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-small
+					}				
+					remove_deposit = d_system_colony-small
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+decision_system_colony-crystal_miner_2 = {
+	icon = decision_system_colony-crystal_miner
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+			influence = 15
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "crystal_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				OR = {
+					has_deposit = "d_crystal_forest"
+					has_deposit = "d_crystal_forest"
+				}
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "small_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 1
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-crystal_miner_2
+		set_planet_flag = "crystal_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 1
+						}
+					}				
+					add_deposit = d_system_colony-small
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-crystal_miner"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-crystal_miner_2-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-crystal_miner_2"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-crystal_miner_2
+		remove_planet_flag = "crystal_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-small
+					}				
+					remove_deposit = d_system_colony-small
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Mote Harvester colony
+decision_system_colony-mote_harvester_1 = {
+	icon = decision_system_colony-mote_harvester
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+			influence = 15
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "mote_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				has_deposit = "d_dust_caverns"
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "small_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 1
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-mote_harvester_1
+		set_planet_flag = "mote_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 1
+						}
+					}				
+					add_deposit = d_system_colony-small
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-mote_harvester"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-mote_harvester_1-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-mote_harvester_1"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-mote_harvester_1
+		remove_planet_flag = "mote_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-small
+					}				
+					remove_deposit = d_system_colony-small
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+decision_system_colony-mote_harvester_2 = {
+	icon = decision_system_colony-mote_harvester
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+			influence = 15
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "mote_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				has_deposit = "d_dust_desert"
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "small_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 1
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-mote_harvester_2
+		set_planet_flag = "mote_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 1
+						}
+					}				
+					add_deposit = d_system_colony-small
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-mote_harvester"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-mote_harvester_2-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-mote_harvester_2"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-mote_harvester_2
+		remove_planet_flag = "mote_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-small
+					}				
+					remove_deposit = d_system_colony-small
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+# Gas Extracting colony
+decision_system_colony-gas_extractor_1 = {
+	icon = decision_system_colony-gas_extractor
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+			influence = 15
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "gas_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				has_deposit = "d_bubbling_swamp"
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "small_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 1
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-gas_extractor_1
+		set_planet_flag = "gas_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 1
+						}
+					}				
+					add_deposit = d_system_colony-small
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-gas_extractor"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-gas_extractor_1-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-gas_extractor_1"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-gas_extractor_1
+		remove_planet_flag = "gas_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-small
+					}				
+					remove_deposit = d_system_colony-small
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+decision_system_colony-gas_extractor_2 = {
+	icon = decision_system_colony-gas_extractor
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 1080
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			alloys = 300
+			influence = 15
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = "gas_colony_built" }
+		solar_system = {			
+			any_system_planet = {
+				is_habitable = yes
+				NOT = { is_colony = yes }
+				OR = {
+					has_deposit = "d_fuming_bog"
+					has_deposit = "d_tar_sea"
+				}				
+			}			
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "small_resource_colony_requires_available_districts"
+			solar_system = {
+				any_system_planet = {
+					is_habitable = yes
+					NOT = { is_colony = yes }
+					num_free_districts = {
+						type = any
+						value >= 1
+					}					
+				}
+			}
+		}
+	}
+
+	effect = {
+		# Main Colony
+		add_deposit = d_system_colony-gas_extractor_2
+		set_planet_flag = "gas_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						num_free_districts = {
+							type = any
+							value >= 1
+						}
+					}				
+					add_deposit = d_system_colony-small
+					surface_colony_update = yes
+				}
+			}
+		}
+		custom_tooltip = "effect_system_colony-gas_extractor"		
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+# Remove above colony
+decision_system_colony-gas_extractor_2-remove = {
+	icon = decision_system_colony-remove
+	owned_planets_only = yes
+
+	prerequisites = {
+		"tech_colonization_1"
+	}
+
+	enactment_time = 180
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		has_deposit = "d_system_colony-gas_extractor_2"
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		# Main Colony
+		remove_deposit = d_system_colony-gas_extractor_2
+		remove_planet_flag = "gas_colony_built"
+		hidden_effect = {			
+			# System Colony
+			solar_system = {
+				random_system_planet = {
+					limit = {
+						is_habitable = yes
+						NOT = { is_colony = yes }
+						has_deposit = d_system_colony-small
+					}				
+					remove_deposit = d_system_colony-small
+				}
+			}
+		}
+		#custom_tooltip = "effect_system_colony-remove"		
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
 # Tomb world atmospheric restoration - Disabled, it was replaced in ATW Extended submod
 #decision_tomb_restoration = {
 #	icon = decision_tomb_restoration
