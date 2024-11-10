@@ -1662,13 +1662,21 @@ decision_biospheric_conversion-sparse = {
 
 	effect = {
 		remove_biosphere_modifier = yes
+		hidden_effect = {
+			if = {
+				limit = { has_modifier = "class_tomb" }
+				remove_modifier = class_tomb
+				add_modifier = {
+					modifier = "class_tomb_restored"
+					days = -1
+				}
+			}
+			correct_atmosphere_color = yes
+			surface_colony_update = yes
+		}
 		add_modifier = {
 			modifier = "biosphere-sparse"
 			days = -1
-		}
-		hidden_effect = {
-			correct_atmosphere_color = yes
-			surface_colony_update = yes
 		}
 	}
 
