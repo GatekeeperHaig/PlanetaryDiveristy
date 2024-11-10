@@ -274,3 +274,435 @@ pre_ftl_init_01 = {
 		class = "pc_ice_asteroid"
 	}
 }
+
+# Sol System (Nuclear Wasteland - Human survivors)
+earth_post_apocalyptic = {
+	name = "NAME_Sol"
+	class = "sc_g"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 290
+	}
+
+	usage = misc_system_init
+
+	usage_odds = {
+		base = 0
+		modifier = {
+			any_country = {
+				has_country_flag = human_1
+				is_human_species = yes
+			}
+			any_system = { has_star_flag = deneb_system }
+			NOR = {
+				any_system = { has_star_flag = sol }
+				has_star_flag = empire_cluster
+				any_country = {
+					has_origin = origin_broken_shackles
+					is_human_species = yes
+				}
+			}
+			num_ai_empires_setting >= 1
+			add = 66666
+		}
+	}
+
+	max_instances = 1
+
+	flags = { nuked_sol sol }
+
+	planet = {
+		name = "NAME_Sol"
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_molten"
+		orbit_distance = 40
+		orbit_angle = 15
+		size = 10
+		has_ring = no
+		init_effect = {
+			set_planet_entity = {
+				entity = molten_planet_mercury_entity
+				atmosphere_color = hsv { 0.8 0.1 0.2 }
+				atmosphere_intensity = 0.1
+				atmosphere_width = 1.0
+			}
+		}
+	}
+
+	planet = {
+		class = "pc_toxic"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 20
+		has_ring = no
+		init_effect = {
+			set_planet_entity = {
+				entity = toxic_planet_venus_entity
+				atmosphere_color = hsv { 0.854 0.072 0.7 }
+				atmosphere_intensity = 0.2
+				atmosphere_width = 1.0
+			}
+		}
+	}
+
+	planet = {
+		class = "pc_nuked"
+		orbit_distance = 25
+		orbit_angle = 120
+		size = 18
+		has_ring = no
+		#anomaly = "sol_wasteland_category"
+		flags = { nuked_earth planet_earth }
+
+		init_effect = {
+			save_global_event_target_as = sol_system_earth
+
+			if = {
+				limit = {
+					any_country = {
+						is_human_species = yes
+						has_origin = origin_broken_shackles
+					}
+				}
+				set_name = "NAME_Earth"
+			}
+			set_planet_flag = pre_ftl_default
+			prevent_anomaly = yes
+			random_country = {
+				limit = { has_country_flag = human_2 }
+				save_event_target_as = commonwealth
+				owner_species = {
+					save_event_target_as = human_species
+					set_species_homeworld = prevprev
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = {
+					civic = civic_increasing_urbanization
+					civic = civic_atmospheric_pollution
+				}
+				species = event_target:human_species
+				ethos = random
+				flag = {
+					icon = {
+						category = "pre_ftl"
+						file = "preftl_industrial_age.dds"
+					}
+					background= {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors={
+						"turquoise"
+						"green"
+						"null"
+						"null"
+					}
+				}
+				origin = "origin_default"
+				type = primitive
+				effect = {
+					save_event_target_as = npc_human_survivors
+				}
+			}
+			last_created_country = {
+				set_graphical_culture = industrial_01
+				random_list = {
+					25 = {
+						set_country_flag = industrial_age
+						set_pre_ftl_age = industrial_age
+						change_country_flag = {
+							icon = {
+								category = "pre_ftl"
+								file = "preftl_industrial_age.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "new_dawn.dds"
+							}
+							colors={
+								"beige"
+								"yellow"
+								"null"
+								"null"
+							}
+						}
+					}
+					25 = {
+						set_country_flag = machine_age
+						set_pre_ftl_age = machine_age
+						change_country_flag = {
+							icon = {
+								category = "pre_ftl"
+								file = "preftl_machine_age.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "new_dawn.dds"
+							}
+							colors={
+								"yellow"
+								"orange"
+								"null"
+								"null"
+							}
+						}
+					}
+					25 = {
+						set_country_flag = atomic_age
+						set_pre_ftl_age = atomic_age
+						change_country_flag = {
+							icon = {
+								category = "pre_ftl"
+								file = "preftl_atomic_age.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "new_dawn.dds"
+							}
+							colors={
+								"beige"
+								"brown"
+								"null"
+								"null"
+							}
+						}
+					}
+					25 = {
+						set_country_flag = early_space_age
+						set_pre_ftl_age = early_space_age
+						change_country_flag = {
+							icon = {
+								category = "pre_ftl"
+								file = "preftl_early_space_age.dds"
+							}
+							background= {
+								category = "backgrounds"
+								file = "new_dawn.dds"
+							}
+							colors={
+								"grey"
+								"dark_grey"
+								"null"
+								"null"
+							}
+						}
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:npc_human_survivors
+			}
+			generate_earth_deposits_and_blockers = yes
+			set_pre_ftl_origin = yes
+			setup_pre_ftl_planet = yes
+			pre_ftl_clean_up_effect = yes
+			owner = {
+				random_owned_pop = {
+					limit = { is_exact_same_species = prev }
+					create_nuked_species_mod = yes
+				}
+				change_dominant_species = { species = event_target:changing_species }
+			}
+		}
+
+		moon = {
+			class = "pc_barren_cold"
+			size = 5
+			orbit_distance = 12
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+		}
+	}
+
+	planet = {
+		class = "pc_barren"
+		orbit_distance = 25
+		orbit_angle = 60
+		size = 13
+		has_ring = no
+		entity = "barren_planet_mars_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 40
+		orbit_angle = -160
+		size = 35
+		has_ring = no
+		entity = "gas_giant_jupiter_entity"
+		change_orbit = 6
+
+		moon = {
+			class = "pc_molten"
+			size = 6
+			orbit_distance = 10
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 6
+			orbit_distance = 2.5
+			orbit_angle = 10
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 9
+			orbit_distance = 2.5
+			orbit_angle = 80
+			has_ring = no
+		}
+		moon = {
+			class = "pc_frozen"
+			size = 7
+			orbit_distance = 2.5
+			orbit_angle = -155
+			has_ring = no
+		}
+	}
+
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 25
+		orbit_angle = 170
+		size = 30
+		has_ring = yes
+		change_orbit = 7
+		entity = "gas_giant_05_entity"
+
+		moon = {
+			class = "pc_frozen"
+			size = 8
+			orbit_distance = 12
+			orbit_angle = 320
+			has_ring = no
+		}
+	}
+
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 25
+		orbit_angle = 125
+		size = 20
+		has_ring = no
+		init_effect = {
+			set_planet_entity = {
+				entity = gas_giant_uranus_entity
+				atmosphere_color = hsv { 0.548 0.519 0.9 }
+				atmosphere_intensity = 0.1
+				atmosphere_width = 1.0
+			}
+		}
+	}
+
+	planet = {
+		class = "pc_gas_giant"
+		orbit_distance = 25
+		orbit_angle = -195
+		size = 20
+		has_ring = no
+		init_effect = {
+			set_planet_entity = {
+				entity = gas_giant_neptune_entity
+				atmosphere_color = hsv { 0.626 0.782 0.9 }
+				atmosphere_intensity = 0.1
+				atmosphere_width = 1.0
+			}
+		}
+		change_orbit = 4
+
+		moon = {
+			class = "pc_frozen"
+			size = 6
+			orbit_distance = 7
+			orbit_angle = 115
+			has_ring = no
+		}
+	}
+
+	planet = {
+		class = "pc_asteroid"
+		orbit_distance = 30
+		orbit_angle = -210
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		class = "pc_ice_asteroid"
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 5
+		has_ring = no
+	}
+}

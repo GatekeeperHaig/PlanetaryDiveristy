@@ -348,6 +348,7 @@ event = {
 				}
 				if = {
 					limit = { is_planet_class = "pc_continental" has_planet_flag = "nuked_earth" }
+					set_planet_flag = "planet_earth"
 					change_pc = "pc_nuked"
 					add_modifier = { modifier = "class_tomb" days = -1 }
 					add_modifier = { modifier = "atmosphere-polluted" days = -1 }
@@ -1172,6 +1173,33 @@ event = {
 	immediate = {
 		if = {
 			limit = {
+				any_country = {
+					has_country_flag = "human_1"
+					capital_scope.solar_system = { has_star_flag = "no_CoM_please"}
+				}
+			}
+			set_global_flag = "CoM_disabled"
+		}
+		if = {
+			limit = {
+				any_country = {
+					has_country_flag = "human_2"
+					capital_scope.solar_system = { has_star_flag = "no_UNE_please"}
+				}
+			}
+			set_global_flag = "UNE_disabled"
+		}
+		if = {
+			limit = {
+				any_country = {
+					has_country_flag = "human_2"
+					has_origin = "origin_payback"
+				}
+			}
+			set_global_flag = "using_payback_origin"
+		}
+		if = {
+			limit = {
 				any_country = { #First check that UNE has spawned
 					has_country_flag = human_1
 					is_human_species = yes
@@ -1195,7 +1223,7 @@ event = {
 							hyperlane = yes
 							is_discovered = no
 						}
-						modifier = { factor = 0.00 has_star_flag = "no_CoM_please" }
+						modifier = { factor = 0.00 has_global_flag = "CoM_disabled" }
 						modifier = { factor = 0.00 any_country = { has_country_flag = "custom_une" } }
 						#add_extra_hyperlane_to_spawned_system_effect = yes
 					}
@@ -1329,7 +1357,8 @@ event = {
 			random_system = {
 				limit = { has_star_flag = "deneb_system" }
 				random_list = {
-					80 = {
+					100 = {
+						modifier = { factor = 0.00	has_global_flag = "UNE_disabled" }
 						random_system_planet = {
 							limit = { has_planet_flag = "planet_unity" }
 							change_pc = "pc_tropical"
@@ -1353,17 +1382,11 @@ event = {
 							initializer = "com_sol_system"
 							hyperlane = yes
 							is_discovered = no
-						}
-						modifier = {
-							factor = 0
-							any_country = {
-								has_country_flag = "custom_com"
-							}
-						}
+						}						
 						last_created_system = {
 							spawn_system = {
-								min_distance >= 15
-								max_distance <= 30
+								min_distance >= 10
+								max_distance <= 20
 								initializer = "com_sol_neighbor_t1_first_colony"
 								hyperlane = yes
 								is_discovered = no
@@ -1378,8 +1401,8 @@ event = {
 								}
 							}
 							spawn_system = {
-								min_distance >= 15
-								max_distance <= 30
+								min_distance >= 10
+								max_distance <= 20
 								initializer = "com_sol_neighbor_t1"
 								hyperlane = yes
 								is_discovered = no
@@ -1394,8 +1417,8 @@ event = {
 								}
 							}
 							spawn_system = {
-								min_distance >= 15
-								max_distance <= 30
+								min_distance >= 10
+								max_distance <= 20
 								initializer = "com_sol_neighbor_t2_second_colony"
 								hyperlane = yes
 								is_discovered = no
@@ -1418,14 +1441,9 @@ event = {
 							}
 						}
 					}
-					# 20% chance chance of spawning nuked Earth on Sol but higher with a custom CoM
-					20 = {
-						modifier = {
-							factor = 1000
-							any_country = {
-								has_country_flag = "custom_com"
-							}
-						}
+					# Spawn nuked Earth on Sol if using a no UNE initializer
+					0 = {
+						modifier = { add = 1000 has_global_flag = "UNE_disabled" }
 						random_system_planet = {
 							limit = { has_planet_flag = "planet_unity" }
 							change_pc = "pc_tropical"
@@ -1446,19 +1464,37 @@ event = {
 							max_jumps = 5
 							#min_distance >= 50
 							#max_distance <= 70
-							initializer = "special_init_04"
+							initializer = "special_init_04" # Nuked Earth
 							hyperlane = yes
-							is_discovered = no
+							is_discovered = yes
 						}
 						last_created_system = {
+							random_system_planet = {
+								limit = { has_planet_flag = "nuked_earth" has_global_flag = "using_payback_origin" }
+								while = {
+									count = 4
+									add_deposit = d_ship_debris_payback_blocker
+								}
+							}
 							spawn_system = {
-								min_distance >= 15
-								max_distance <= 30
-								initializer = "sol_neighbor_t1_no_guaranteed_colony" # Alpha Centauri (no guaranteed habitable)
+								min_distance >= 10
+								max_distance <= 20
+								initializer = "sol_neighbor_t1_nuked_colony" # Alpha Centauri with nuked colony
 								hyperlane = yes
-								is_discovered = no
+								is_discovered = yes
 							}
 							last_created_system = {
+								random_system_planet = {
+									limit = { has_planet_flag = "nuked_colony"}
+									roll_tomb = yes
+									if = {
+										limit = { has_global_flag = "using_payback_origin" }
+										while = {
+											count = 2
+											add_deposit = d_ship_debris_payback_blocker
+										}
+									}
+								}
 								if = {
 									limit = { NOT = { has_hyperlane_to = prev } }
 									add_hyperlane = {
@@ -1468,8 +1504,8 @@ event = {
 								}
 							}
 							spawn_system = {
-								min_distance >= 15
-								max_distance <= 30
+								min_distance >= 10
+								max_distance <= 20
 								initializer = "com_sol_neighbor_t1" # Sirius
 								hyperlane = yes
 								is_discovered = no
@@ -1484,13 +1520,24 @@ event = {
 								}
 							}
 							spawn_system = {
-								min_distance >= 15
-								max_distance <= 30
-								initializer = "sol_neighbor_t2" # Procyon
+								min_distance >= 10
+									max_distance <= 20
+								initializer = "sol_neighbor_t2_nuked_colony" # Procyon with nuked colony
 								hyperlane = yes
 								is_discovered = no
 							}
 							last_created_system = {
+								random_system_planet = {
+									limit = { has_planet_flag = "nuked_colony"}
+									roll_tomb = yes
+									if = {
+										limit = { has_global_flag = "using_payback_origin" }
+										while = {
+											count = 2
+											add_deposit = d_ship_debris_payback_blocker
+										}
+									}
+								}
 								if = {
 									limit = { NOT = { has_hyperlane_to = prev } }
 									add_hyperlane = {
@@ -1501,8 +1548,8 @@ event = {
 							}
 							last_created_system = {
 								spawn_system = {
-									min_distance >= 15
-									max_distance <= 30
+									min_distance >= 10
+									max_distance <= 20
 									initializer = "com_sol_neighbor_t2_second_colony" # Epsilon Eridani (guaranteed habitable)
 									hyperlane = yes
 									is_discovered = no

@@ -14,7 +14,6 @@ generate_earth_deposits_and_blockers = {
 		add_deposit = d_saharan_irrigation_project
 		add_deposit = d_pearl_river_agglomerate
 		add_deposit = d_great_pacific_garbage_patch
-		add_deposit = d_failing_infrastructure_earth
 		set_planet_flag = "deposits_corrected"
 	}
 	else = {
@@ -42,17 +41,32 @@ generate_earth_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			owner = { has_valid_civic = civic_machine_servitor }
+			owner = {
+				is_environmental_architects_empire = yes
+			}
 		}
-		add_deposit = d_hot_springs
-		add_deposit = d_strip_mine
-		add_deposit = d_unsupervised_settlement
+		add_random_natural_blocker_and_give_tech = yes
+
+		if = {
+			limit = {
+				owner = { has_valid_civic = civic_machine_servitor }
+			}
+			add_deposit = d_unsupervised_settlement
+		}
 	}
-	else_if = {
-		limit = {
-			NOT = { owner = { has_origin = origin_post_apocalyptic } }
+	else = {
+		add_deposit = d_failing_infrastructure_earth
+		if = {
+			limit = {
+				owner = { has_valid_civic = civic_machine_servitor }
+			}
+			add_deposit = d_hot_springs
+			add_deposit = d_strip_mine
+			add_deposit = d_unsupervised_settlement
 		}
-		add_deposit = d_decrepit_dwellings
+		else = {
+			add_deposit = d_decrepit_dwellings
+		}
 	}
 
 	if = {
@@ -192,9 +206,8 @@ nuke_pre_ftls_stone_age_effect = {
 			random_owned_pop = {
 				limit = { is_exact_same_species = prev }
 				create_nuked_species_mod = yes
-				species = { save_event_target_as = new_main_species }
 			}
-			change_dominant_species = { species = event_target:new_main_species }
+			change_dominant_species = { species = event_target:changing_species }
 			set_awareness = 0
 		}
 		change_pc = pc_nuked

@@ -4301,6 +4301,17 @@ atw_habitable_check = {
 	}
 	if = {
 		limit = {
+			is_planet_class = "pc_nuked"
+			has_modifier = "biosphere-sparse"
+			NOT = { has_modifier = "class_tomb_restored" }
+		}
+		remove_class_modifier = yes
+		add_modifier = {
+			modifier = "class_tomb_restored"
+		}
+	}
+	if = {
+		limit = {
 			is_planet_class = "pc_desert"
 			# Does not have one of the associated class modifiers:
 			NOR = {

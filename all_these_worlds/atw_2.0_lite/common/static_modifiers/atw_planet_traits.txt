@@ -146,6 +146,13 @@ atmosphere-wet_marginal = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_atmosphere_teal.dds"
 	icon_frame = 2
 }
+atmosphere-desolate = {
+	pop_environment_tolerance = -0.20
+	habitability_ceil_add = -0.55 #max 0.45
+	
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmosphere_brown.dds"
+	icon_frame = 3
+}
 atmosphere-sulfuric_acid = {
 	pop_environment_tolerance = -0.25
 	habitability_ceil_add = -0.70 #max 0.30
@@ -168,13 +175,6 @@ atmosphere-methane = {
 	icon_frame = 3
 }
 atmosphere-hothouse = {
-	pop_environment_tolerance = -0.25
-	habitability_ceil_add = -0.70 #max 0.30
-	
-	icon = "gfx/interface/icons/planet_modifiers/pm_atmosphere_brown.dds"
-	icon_frame = 3
-}
-atmosphere-desolate = {
 	pop_environment_tolerance = -0.25
 	habitability_ceil_add = -0.70 #max 0.30
 	
@@ -256,63 +256,67 @@ atmosphere-very_dense_deep_blue = {
 biosphere-barren = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-barren.dds"
 	icon_frame = 3
-	#planet_jobs_minerals_produces_mult = 0.15
-	#planet_jobs_food_produces_mult = -0.10
-	#planet_jobs_energy_produces_mult = -0.05
+	planet_jobs_minerals_produces_mult =  0.35
+	planet_jobs_energy_produces_mult = 0.15
+	planet_jobs_food_produces_mult = -0.50
 }
 biosphere-tenuous = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-tenuous.dds"
 	icon_frame = 2
-	#planet_jobs_minerals_produces_mult = 0.15
-	#planet_jobs_food_produces_mult = -0.10
-	#planet_jobs_energy_produces_mult = -0.05
+	planet_jobs_minerals_produces_mult =  0.15
+	planet_jobs_energy_produces_mult = 0.10
+	planet_jobs_food_produces_mult = -0.25
 }
 biosphere-sparse = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-sparse.dds"
 	icon_frame = 2
-	#planet_jobs_minerals_produces_mult = 0.05
-	#planet_jobs_food_produces_mult = 0.05
-	#planet_jobs_energy_produces_mult = -0.10
+	planet_jobs_minerals_produces_mult =  0.05
+	planet_jobs_energy_produces_mult = 0.10
+	planet_jobs_food_produces_mult = -0.15
 }
 biosphere-aquatic = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-aquatic.dds"
 	icon_frame = 1
-	#planet_jobs_minerals_produces_mult = -0.10
-	#planet_jobs_energy_produces_mult = 0.10
+	planet_jobs_minerals_produces_mult =  -0.50
+	planet_jobs_energy_produces_mult = 0.20
+	planet_jobs_food_produces_mult = 0.30
 }
 biosphere-ammonia = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-ammonia.dds"
 	icon_frame = 2
-	#planet_jobs_minerals_produces_mult = 0.20
 	pop_environment_tolerance = -0.20
+	planet_jobs_minerals_produces_mult =  0.25
+	planet_jobs_energy_produces_mult = 0.25
+	planet_jobs_food_produces_mult = -0.50
 }
 biosphere-diverse = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-diverse.dds"
 	icon_frame = 1
-	#planet_jobs_minerals_produces_mult = -0.10
-	#planet_jobs_food_produces_mult = 0.10
-	#planet_jobs_energy_produces_mult = 0.00
+	planet_jobs_minerals_produces_mult =  -0.15
+	planet_jobs_energy_produces_mult = -0.10
+	planet_jobs_food_produces_mult = 0.25
 }
 biosphere-dense = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-dense.dds"
 	icon_frame = 1
-	#planet_jobs_minerals_produces_mult = -0.10
-	#planet_jobs_food_produces_mult = -0.10
-	#planet_jobs_energy_produces_mult = 0.10
+	planet_jobs_minerals_produces_mult =  -0.25
+	planet_jobs_energy_produces_mult = 0.15
+	planet_jobs_food_produces_mult = 0.10
 }
 biosphere-seeded = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-seeded.dds"
 	icon_frame = 1
-	#planet_jobs_minerals_produces_mult = -0.30
-	#planet_jobs_food_produces_mult = 0.15
-	planet_jobs_society_research_produces_mult = 0.15
+	planet_jobs_minerals_produces_mult =  -0.50
+	planet_jobs_energy_produces_mult = 0.10
+	planet_jobs_food_produces_mult = 0.15
+	planet_jobs_society_research_produces_mult = 0.25
 }
 biosphere-engineered = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-engineered.dds"
 	icon_frame = 1
-	#planet_jobs_minerals_produces_mult = -0.30
-	#planet_jobs_food_produces_mult = 0.15
-	planet_jobs_society_research_produces_mult = 0.10
+	planet_jobs_minerals_produces_mult =  0.15
+	planet_jobs_energy_produces_mult = 0.15
+	planet_jobs_food_produces_mult = -0.30
 }
 biosphere-exotic = { # UNUSED
 	icon = "gfx/interface/icons/planet_modifiers/pm_biosphere-exotic.dds"
@@ -372,12 +376,13 @@ subterranean_terraformed = {
 	#planet_districts_cost_mult = 0.50
 	#planet_districts_energy_upkeep_mult = 1.00
 	pop_environment_tolerance = 0.25	
-	planet_district_industrial_build_speed_mult = -1.00
-	planet_district_generator_build_speed_mult = -1.00
-	planet_district_mining_build_speed_mult = -1.00
-	planet_district_farming_build_speed_mult = -1.00
+	#planet_district_industrial_build_speed_mult = -1.00
+	#planet_district_generator_build_speed_mult = -1.00
+	#planet_district_mining_build_speed_mult = -1.00
+	#planet_district_farming_build_speed_mult = -1.00
 	pop_happiness = -0.10
 	pop_growth_speed = -0.33
+	pop_housing_usage_mult = 0.33
 }
 
 ## EXTRA
