@@ -164,7 +164,11 @@ terraform_link = {
 	to = pc_machine
     resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
 	duration = @terraforming_duration_level_4
-	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	potential = {
+		exists = owner
+		has_ascension_perk = "ap_machine_worlds"
+		from = { has_modifier = hab_terraforming_candidate }
+	}
 	condition = { has_ascension_perk = ap_machine_worlds }
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
 	ai_weight = { weight = 5 }
@@ -174,7 +178,11 @@ terraform_link = {
 	to = pc_hive
     resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
 	duration = @terraforming_duration_level_4
-	potential = { from = { has_modifier = hab_terraforming_candidate } }
+	potential = {
+		exists = owner
+		has_ascension_perk = "ap_hive_worlds"
+		from = { has_modifier = hab_terraforming_candidate }
+	}
 	condition = { has_ascension_perk = ap_hive_worlds }
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony } }
 	ai_weight = { weight = 5 }

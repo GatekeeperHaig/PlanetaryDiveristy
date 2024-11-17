@@ -8,6 +8,10 @@
 @terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
 @terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
 @terraforming_duration_gaia = 3600
+@machineCost = 10000
+@machineTime = 7200
+@hiveCost = 10000
+@hiveTime = 7200
 
 ### Superhabitable
 terraform_link = {
@@ -59,6 +63,48 @@ terraform_link = {
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony reroll_deposits = yes } }
 	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_superhabitable CLASS_TO = pc_pd_dry_superhabitable } } }
 }
+terraform_link = {
+	from = pc_pd_domed_colony_superhabitable
+	to = pc_pd_machine_superhabitable
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { exists = owner has_ascension_perk = ap_machine_worlds from = { has_modifier = hab_terraforming_candidate } }
+	ai_weight = {
+		weight = 20
+		#It's a barren world!
+	}
+	effect = {
+		from = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pd_domed_colony
+			add_modifier = {
+				modifier = pd_machine_superhabitable
+				days = -1
+			}
+		}
+	}
+}
+terraform_link = {
+	from = pc_pd_domed_colony_superhabitable
+	to = pc_pd_hive_superhabitable
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { exists = owner has_ascension_perk = ap_hive_worlds from = { has_modifier = hab_terraforming_candidate } }
+	ai_weight = {
+		weight = 20
+		#It's a barren world!
+	}
+	effect = {
+		from = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pd_domed_colony
+			add_modifier = {
+				modifier = pd_hive_superhabitable
+				days = -1
+			}
+		}
+	}
+}
 ### Tidally Locked
 terraform_link = {
 	from = pc_pd_domed_colony_tidally_locked
@@ -108,6 +154,48 @@ terraform_link = {
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony reroll_deposits = yes } }
 	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_tidally_locked CLASS_TO = pc_pd_dry_tidally_locked } } }
 }
+terraform_link = {
+	from = pc_pd_domed_colony_tidally_locked
+	to = pc_pd_machine_tidally_locked
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { exists = owner has_ascension_perk = ap_machine_worlds from = { has_modifier = hab_terraforming_candidate } }
+	ai_weight = {
+		weight = 20
+		#It's a barren world!
+	}
+	effect = {
+		from = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pd_domed_colony
+			add_modifier = {
+				modifier = pd_machine_tidally_locked
+				days = -1
+			}
+		}
+	}
+}
+terraform_link = {
+	from = pc_pd_domed_colony_tidally_locked
+	to = pc_pd_hive_tidally_locked
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { exists = owner has_ascension_perk = ap_hive_worlds from = { has_modifier = hab_terraforming_candidate } }
+	ai_weight = {
+		weight = 20
+		#It's a barren world!
+	}
+	effect = {
+		from = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pd_domed_colony
+			add_modifier = {
+				modifier = pd_hive_tidally_locked
+				days = -1
+			}
+		}
+	}
+}
 ### Cave
 terraform_link = {
 	from = pc_pd_domed_colony_cave
@@ -156,4 +244,45 @@ terraform_link = {
 	condition = { has_technology = "tech_climate_restoration" }
 	effect = { from = { remove_modifier = hab_terraforming_candidate remove_modifier = pd_domed_colony reroll_deposits = yes } }
 	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_domed_colony_cave CLASS_TO = pc_pd_dry_cave } } }
+}
+terraform_link = {
+	from = pc_pd_domed_colony_cave
+	to = pc_pd_machine_cave
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { exists = owner has_ascension_perk = ap_machine_worlds from = { has_modifier = hab_terraforming_candidate } }
+	ai_weight = {
+		weight = 20
+		#It's a barren world!
+	}
+	effect = {
+		from = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pd_domed_colony
+			add_modifier = {
+				modifier = pd_machine_cave
+			}
+		}
+	}
+}
+terraform_link = {
+	from = pc_pd_domed_colony_cave
+	to = pc_pd_hive_cave
+	resources = { category = terraforming cost = { energy = @machineCost } }
+	duration = @machineTime
+	potential = { exists = owner has_ascension_perk = ap_hive_worlds from = { has_modifier = hab_terraforming_candidate } }
+	ai_weight = {
+		weight = 20
+		#It's a barren world!
+	}
+	effect = {
+		from = {
+			remove_modifier = hab_terraforming_candidate
+			remove_modifier = pd_domed_colony
+			add_modifier = {
+				modifier = pd_hive_cave
+				days = -1
+			}
+		}
+	}
 }
