@@ -407,7 +407,6 @@ terraform_update = {
 	# Marginal
 	if = {
 		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "subterranean_terraforming" } }
-		remove_biosphere_modifier = yes
 		if = {
 			limit = {
 				OR = {
@@ -415,13 +414,164 @@ terraform_update = {
 					has_modifier = "toxic_terraforming_candidate"
 				}
 			}
+			remove_biosphere_modifier = yes
 			roll_barren_terraformed = yes
 			remove_modifier = terraforming_candidate
 			remove_modifier = toxic_terraforming_candidate
 		}
+		else_if = {
+			limit = {
+				has_modifier = "class_elos"
+			}
+			set_planet_entity = {
+				picture = "biome_elos"
+				entity = "marginal_elos_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_alkali"
+			}
+			set_planet_entity = {
+				picture = "biome_alkali"
+				entity = "sub_marginal_alkali_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_hydrocarbonal"
+			}
+			set_planet_entity = {
+				picture = "biome_hydrocarbonal"
+				entity = "sub_marginal_hydrocarbonal_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_erimos"
+			}
+			set_planet_entity = {
+				picture = "biome_erimos"
+				entity = "marginal_erimos_barren_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_sulfuric"
+			}
+			set_planet_entity = {
+				picture = "biome_sulfur"
+				entity = "sub_marginal_sulfuric_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_ammoniagenian"
+			}
+			set_planet_entity = {
+				picture = "biome_ammoniagenian"
+				entity = "terrestrial_ammoniagenian_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_redux"
+			}
+			set_planet_entity = {
+				picture = "biome_redux"
+				entity = "sub_marginal_redux_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_stepikos"
+			}
+			set_planet_entity = {
+				picture = "biome_stepikos"
+				entity = "marginal_stepikos_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_almyros"
+			}
+			set_planet_entity = {
+				picture = "biome_almyros"
+				entity = "marginal_almyros_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_archean"
+			}
+			set_planet_entity = {
+				picture = "biome_archean"
+				entity = "primordial_archean_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_anthracean"
+			}
+			set_planet_entity = {
+				picture = "biome_anthracean"
+				entity = "primordial_anthracean_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_hadean"
+			}
+			set_planet_entity = {
+				picture = "biome_hadean"
+				entity = "primordial_hadean_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_agonos"
+			}
+			set_planet_entity = {
+				picture = "biome_agonos"
+				entity = "marginal_agonos_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_karstikos"
+			}
+			set_planet_entity = {
+				picture = "biome_karstikos"
+				entity = "marginal_karstikos_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_desolate"
+			}
+			set_planet_entity = {
+				picture = "biome_desolate"
+				entity = "sub_marginal_desolate_01_entity"
+			}
+		}
+		else_if = {
+			limit = {
+				has_modifier = "class_tomb_restored"
+				#has_modifier = "biosphere-sparse"
+			}
+			set_planet_entity = {
+				picture = "biome_radiotrophic"
+				entity = "tomb_planet_01_entity"
+				
+			}
+		}
+
 		else = {
+			remove_biosphere_modifier = yes
 			roll_tomb = yes
 		}
+
+		correct_atmosphere_color = yes
 		correct_habitable_deposits = yes
 	}
 }

@@ -866,7 +866,7 @@ correct_habitable_deposits = {
 		set_planet_flag = "deposits_corrected"
 	}
 	if = {
-		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_erimos" has_modifier = "class_barren_terraformed" } }
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_erimos" }
 		every_deposit = {
 			limit = { is_deposit_type = d_hot_springs }
 			prev = { remove_deposit = d_hot_springs }
@@ -1356,7 +1356,7 @@ correct_habitable_deposits = {
 		set_planet_flag = "deposits_corrected"
 	}
 	if = {
-		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } has_modifier = "class_desolate" }
+		limit = { is_planet_class = "pc_nuked" NOT = { has_planet_flag = "deposits_corrected" } OR = { has_modifier = "class_desolate" has_modifier = "class_barren_terraformed" } }
 		every_deposit = {
 			limit = { is_deposit_type = d_hot_springs }
 			prev = { remove_deposit = d_hot_springs }

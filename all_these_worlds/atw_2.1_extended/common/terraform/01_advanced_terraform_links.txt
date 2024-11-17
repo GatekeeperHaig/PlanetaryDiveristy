@@ -51,9 +51,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -107,9 +106,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -163,9 +161,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -219,9 +216,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -275,9 +271,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -331,9 +326,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -390,9 +384,9 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
+		from = { NOT = { has_modifier = "class_chloeroslykofos" } }
 	}
 
 	effect = {
@@ -446,9 +440,9 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
+		from = { NOT = { has_modifier = "class_chloeroslykofos" } }
 	}
 
 	effect = {
@@ -502,9 +496,9 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
+		from = { NOT = { has_modifier = "class_xiroslykofos" } }
 	}
 
 	effect = {
@@ -558,9 +552,9 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
+		from = { NOT = { has_modifier = "class_xiroslykofos" } }
 	}
 
 	effect = {
@@ -614,9 +608,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -670,9 +663,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -729,9 +721,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -785,9 +776,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -825,6 +815,69 @@ terraform_link = {
 	}
 }
 terraform_link = {
+	from = "pc_ocean"
+	to = "pc_ocean"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = @energy_climate_restoration
+			greenhouse_gases = @gases_temperate
+			water_ices = 0
+			seeds = @seeds_type_1
+		}
+	}
+
+	duration = @duration_average
+
+	potential = {
+		exists = owner
+		from = { has_modifier = "class_panpelagic" }
+	}
+	condition = {
+		has_technology = "tech_climate_restoration"
+	}
+
+	effect = {
+		from = {
+			if = {
+				limit = { has_modifier = "subterranean_terraformed" }
+				remove_modifier = "subterranean_terraformed"
+				remove_planet_flag = "subterranean_terraforming"
+			}
+			if = {
+				limit = { has_modifier = "submerged-sub_terrestrial" }
+				remove_modifier = "submerged-sub_terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-terrestrial" }
+				remove_modifier = "submerged-terrestrial"
+			}
+			if = {
+				limit = { has_modifier = "submerged-oceanic" }
+				remove_modifier = "submerged-oceanic"
+			}
+			if = {
+				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
+				submerged_colony_update = yes
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+		modifier = {
+			factor = 0
+			has_authority = auth_hive_mind
+		}
+		modifier = {
+			factor = 0
+			has_trait = "trait_aquatic"
+		}
+	}
+}
+terraform_link = {
 	from = "pc_desert"
 	to = "pc_ocean"
 
@@ -841,9 +894,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -897,9 +949,8 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
 	}
 
 	effect = {
@@ -953,9 +1004,9 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
+		from = { NOT = { has_modifier = "class_pagoslykofos" } }
 	}
 
 	effect = {
@@ -1009,9 +1060,9 @@ terraform_link = {
 
 	duration = @duration_average
 
-	potential = {
-		exists = owner
-		has_technology = tech_climate_restoration
+	condition = {
+		has_technology = "tech_climate_restoration"
+		from = { NOT = { has_modifier = "class_pagoslykofos" } }
 	}
 
 	effect = {

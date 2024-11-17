@@ -53,8 +53,10 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
-		NOT = { has_trait = "trait_aquatic" }
+		NOR = { has_trait = "trait_aquatic" has_trait = "trait_cave_dweller" }
+	}
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -113,7 +115,11 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_cave_dweller" }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -185,12 +191,13 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
-		NOT = { has_trait = "trait_aquatic" }
+		NOR = { has_trait = "trait_aquatic" has_trait = "trait_cave_dweller" }		
+	}
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 		from = { NOT = { has_modifier = "class_okeanosgaean" } }
 		from = { NOT = { has_modifier = "class_panpelagic" } }
 		from = { NOT = { has_modifier = "class_ammoniapelagic" } }
-		from = { NOT = { has_modifier = "class_pagoslykofos" } }
 	}
 
 	effect = {
@@ -249,8 +256,10 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
-		NOT = { has_trait = "trait_aquatic" }
+		NOR = { has_trait = "trait_aquatic" has_trait = "trait_cave_dweller" }
+	}
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -309,8 +318,10 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
-		NOT = { has_trait = "trait_aquatic" }
+		NOR = { has_trait = "trait_aquatic" has_trait = "trait_cave_dweller" }
+	}
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -369,7 +380,11 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_cave_dweller" }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -441,8 +456,10 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
-		NOT = { has_trait = "trait_aquatic" }
+		NOR = { has_trait = "trait_aquatic" has_trait = "trait_cave_dweller" }
+	}
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -501,7 +518,11 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_cave_dweller" }
+	}
+	
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 	}
 
 	effect = {
@@ -573,8 +594,11 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
-		NOT = { has_trait = "trait_aquatic" }
+		NOR = { has_trait = "trait_aquatic" has_trait = "trait_cave_dweller" }
+	}
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
+		from = { NOT = { has_modifier = "class_pagoslykofos" } }
 	}
 
 	effect = {
@@ -633,14 +657,26 @@ terraform_link = {
 
 	potential = {
 		exists = owner
-		has_technology = tech_terrestrial_sculpting
+		NOT = { has_trait = "trait_cave_dweller" }
+	}
+
+	condition = {
+		has_technology = "tech_terrestrial_sculpting"
 		from = {
 			OR = {
 				has_modifier = "class_tomb"
 				has_modifier = "class_tomb_restored"
-				has_modifier = "class_barren_terraformed"
+				has_modifier = "class_karstikos"
+				has_modifier = "class_protogenian"
+				has_modifier = "class_archean"
+				has_modifier = "class_redux"
+				has_modifier = "class_elos"
+				has_modifier = "class_almyros"
+				has_modifier = "class_erimos"
+				has_modifier = "class_stepikos"
+				#has_modifier = "class_barren_terraformed"
 			}
-		}			
+		}
 	}
 
 	effect = {
@@ -677,5 +713,25 @@ terraform_link = {
 			from = { has_planet_flag = "subterranean_terraforming" }
 			from = { habitability = { who = root.owner value <= 0.95 } }
 		}
+	}
+}
+
+terraform_link = {
+	from = "pc_continental"
+	to = "pc_gaia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			energy = 2000
+		}
+	}
+
+	duration = 1800
+
+	potential = {
+		has_technology = "tech_terrestrial_sculpting"
+		from = { has_modifier = previously_terraformed_planet }
 	}
 }

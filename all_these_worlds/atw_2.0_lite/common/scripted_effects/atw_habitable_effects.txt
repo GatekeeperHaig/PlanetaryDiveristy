@@ -1231,7 +1231,7 @@ roll_mukesgenian = {
 			0 = {	# Roll with Diverse biosphere
 				# Base modifier
 				modifier = { add = 0 has_planet_flag = "biosphere-dense" }
-				modifier = { add = 10 has_planet_flag = "biosphere-diverse" }
+				modifier = { add = 0 has_planet_flag = "biosphere-diverse" } # Changed my mind and disabled Diverse Mukesgenian
 				modifier = { add = 0 has_planet_flag = "biosphere-sparse" }
 				modifier = { add = 0 has_planet_flag = "biosphere-tenuous" }
 				modifier = { add = 0 has_planet_flag = "biosphere-barren" }
@@ -3174,12 +3174,13 @@ roll_aquatic_terraformed = {
 roll_primordial = {
 	# These planets are rare enough, they should have higher odds of conversion, unless there is already another type of habitable in the system
 	random_list = {
-		5 = {
+		2 = {
 			# Skip conversion and let the planet remain an uninhabitable class
 			remove_planet_flag = "primordial"
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Volcanic world instead
 			clear_deposits = yes
 			change_pc = "pc_barren"
@@ -3195,6 +3196,7 @@ roll_primordial = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Hadean class
 			add_modifier = { modifier = "class_hadean" days = -1 }
 			change_pc = pc_molten
@@ -3202,23 +3204,12 @@ roll_primordial = {
 			spawn_atmosphere-hadean = yes
 			correct_atmosphere_color = yes
 			add_modifier = { modifier = "biosphere-barren" days = -1 }
-			random_list = {
-				1 = {
-					set_planet_entity = {
-						picture = "orbit_hadean"
-						entity = "primordial_hadean_01_entity"
-						
-					}
-				}
-				0 = {
-					set_planet_entity = {
-						picture = "orbit_hadean"
-						entity = "primordial_hadean_02_entity"
-						
-					}
-				}
+			set_planet_entity = {
+				picture = "orbit_hadean"
+				entity = "primordial_hadean_01_entity"
+				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 2.00 has_ring = yes }
@@ -3230,14 +3221,23 @@ roll_primordial = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Anthracean class
 			add_modifier = { modifier = "class_anthracean" days = -1 }
-			change_pc = pc_toxic
+			change_pc = pc_barren
 			clear_deposits = yes
 			spawn_atmosphere-anthracean = yes
 			correct_atmosphere_color = yes
@@ -3247,7 +3247,7 @@ roll_primordial = {
 				entity = "primordial_anthracean_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 2.00 OR = { is_gas_giant_moon = yes planet_size < 18 } }
@@ -3259,11 +3259,20 @@ roll_primordial = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Archean class
 			add_modifier = { modifier = "class_archean" days = -1 }
 			change_pc = pc_toxic
@@ -3276,7 +3285,7 @@ roll_primordial = {
 				entity = "primordial_archean_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 2.00 OR = { has_moon = yes planet_size > 17 } }
@@ -3288,20 +3297,29 @@ roll_primordial = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 	}
 }
 
 roll_liquid_water = {
-	# Give a moderate chance to convert to a planet with liquid water unless there is already a habitable world in the system
+	# Higher chance of getting a marginal world if there is a standard habitable world, so the marginal may be used as a system colony
 	random_list = {
-		50 = {
+		30 = {
 			# Skip conversion and let the planet remain an uninhabitable class
 			remove_planet_flag = "liquid_water"
 			# We still need the flag habitable_converted to make sure the process does not repeat
 			set_planet_flag = "habitable_converted"
 			# Increase the odds significantly of skipping conversion if there is another habitable in the system already
-			modifier = { factor = 10.00 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 0.50 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 10.00 solar_system = { any_system_planet = { has_planet_flag = "marginal_converted" } } }
 			# Lower the odds of skipping if it is flagged as forced
 			modifier = { factor = 0.00 has_planet_flag = "forced" }
 		}
@@ -3309,9 +3327,10 @@ roll_liquid_water = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Agonos class
 			add_modifier = { modifier = "class_agonos" days = -1 }
-			change_pc = pc_toxic
+			change_pc = pc_barren
 			clear_deposits = yes
 			spawn_atmosphere-agonos = yes
 			correct_atmosphere_color = yes
@@ -3321,7 +3340,7 @@ roll_liquid_water = {
 				entity = "marginal_agonos_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 NOT = { orbits_hot_star = yes } }
@@ -3333,11 +3352,20 @@ roll_liquid_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Elos class
 			add_modifier = { modifier = "class_elos" days = -1 }
 			change_pc = pc_toxic
@@ -3350,7 +3378,7 @@ roll_liquid_water = {
 				entity = "marginal_elos_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 orbits_hot_star = yes }
@@ -3362,11 +3390,20 @@ roll_liquid_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Alkali class
 			add_modifier = { modifier = "class_alkali" days = -1 }
 			change_pc = pc_toxic
@@ -3379,7 +3416,7 @@ roll_liquid_water = {
 				entity = "sub_marginal_alkali_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 has_moon = no }
@@ -3391,11 +3428,20 @@ roll_liquid_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
-		10 = {
+		15 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Panpelagic class
 			add_modifier = { modifier = "class_panpelagic" days = -1 }
 			change_pc = pc_ocean
@@ -3408,11 +3454,11 @@ roll_liquid_water = {
 				entity = "water_panthalassic_planet_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "habitable_converted"
 			correct_habitable_deposits = yes
 			# Modifiers
-			modifier = { factor = 0.50 NOT = { solar_system = { any_system_planet = { is_planet_class = pc_ice_asteroid } } } }
+			modifier = { factor = 0.25 NOT = { solar_system = { any_system_planet = { is_planet_class = pc_ice_asteroid } } } }
 			# Extra modifier based on the habitable scale picked in the game settings
 			complex_trigger_modifier = {
 				trigger = check_galaxy_setup_value
@@ -3421,20 +3467,29 @@ roll_liquid_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 	}
 }
 
 roll_frozen_water = {
-	# Give a moderate chance to convert to a planet with frozen water unless there is already a habitable world in the system
+	# Higher chance of getting a marginal world if there is a standard habitable world, so the marginal may be used as a system colony
 	random_list = {
-		50 = {
+		30 = {
 			# Skip conversion and let the planet remain an uninhabitable class
 			remove_planet_flag = "frozen_water"
 			# We still need the flag habitable_converted to make sure the process does not repeat
 			set_planet_flag = "habitable_converted"
 			# Increase the odds significantly of skipping conversion if there is another habitable in the system already
-			modifier = { factor = 100.00 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 0.50 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 10.00 solar_system = { any_system_planet = { has_planet_flag = "marginal_converted" } } }
 			# Lower the odds of skipping if it is flagged as forced
 			modifier = { factor = 0.00 has_planet_flag = "forced" }
 		}
@@ -3442,6 +3497,7 @@ roll_frozen_water = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Stepikos class
 			add_modifier = { modifier = "class_stepikos" days = -1 }
 			change_pc = pc_toxic
@@ -3454,7 +3510,7 @@ roll_frozen_water = {
 				entity = "marginal_stepikos_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 is_moon = yes }
@@ -3466,11 +3522,20 @@ roll_frozen_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Hydrocarbonal class, not really frozen water, but it can spawn in the same system region
 			add_modifier = { modifier = "class_hydrocarbonal" days = -1 }
 			change_pc = pc_toxic
@@ -3483,7 +3548,7 @@ roll_frozen_water = {
 				entity = "sub_marginal_hydrocarbonal_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 has_moon = yes }
@@ -3495,20 +3560,29 @@ roll_frozen_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 	}
 }
 
 roll_limited_water = {
-	# Give a moderate chance to convert to a planet with limited water unless there is already a habitable world in the system
+	# Higher chance of getting a marginal world if there is a standard habitable world, so the marginal may be used as a system colony
 	random_list = {
-		50 = {
+		30 = {
 			# Skip conversion and let the planet remain an uninhabitable class
 			remove_planet_flag = "aquifers"
 			# We still need the flag habitable_converted to make sure the process does not repeat
 			set_planet_flag = "habitable_converted"
 			# Increase the odds significantly of skipping conversion if there is another habitable in the system already
-			modifier = { factor = 100.00 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 0.50 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 10.00 solar_system = { any_system_planet = { has_planet_flag = "marginal_converted" } } }
 			# Lower the odds of skipping if it is flagged as forced
 			modifier = { factor = 0.00 has_planet_flag = "forced" }
 		}
@@ -3516,6 +3590,7 @@ roll_limited_water = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Almyros class
 			add_modifier = { modifier = "class_almyros" days = -1 }
 			change_pc = pc_toxic
@@ -3528,7 +3603,7 @@ roll_limited_water = {
 				entity = "marginal_almyros_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 solar_system = { any_system_planet = { is_planet_class = pc_ice_asteroid } } }
@@ -3540,14 +3615,23 @@ roll_limited_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
-		15 = {
+		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Karstikos class
 			add_modifier = { modifier = "class_karstikos" days = -1 }
-			change_pc = pc_toxic
+			change_pc = pc_barren
 			clear_deposits = yes
 			spawn_atmosphere-karstikos = yes
 			correct_atmosphere_color = yes
@@ -3557,7 +3641,7 @@ roll_limited_water = {
 				entity = "marginal_karstikos_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 2.00 planet_size > 20 }
@@ -3571,11 +3655,20 @@ roll_limited_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Erimos class
 			add_modifier = { modifier = "class_erimos" days = -1 }
 			change_pc = pc_toxic
@@ -3588,7 +3681,7 @@ roll_limited_water = {
 				entity = "marginal_erimos_barren_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 orbits_cold_star = yes }
@@ -3600,11 +3693,20 @@ roll_limited_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Desolate class
 			add_modifier = { modifier = "class_desolate" days = -1 }
 			change_pc = pc_barren
@@ -3617,7 +3719,7 @@ roll_limited_water = {
 				entity = "sub_marginal_desolate_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 planet_size > 17 }
@@ -3629,11 +3731,20 @@ roll_limited_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Sulfuric class, not really limited water, but it can spawn in the same system region
 			add_modifier = { modifier = "class_sulfuric" days = -1 }
 			change_pc = pc_toxic
@@ -3646,10 +3757,11 @@ roll_limited_water = {
 				entity = "sub_marginal_sulfuric_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 NOT = { orbits_hot_star = yes } }
+			modifier = { factor = 2.00 NOT = { is_moon = yes } }
 			# Extra modifier based on the habitable scale picked in the game settings
 			complex_trigger_modifier = {
 				trigger = check_galaxy_setup_value
@@ -3658,20 +3770,29 @@ roll_limited_water = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 	}
 }
 
 roll_ammonia = {
-	# Give a moderate chance to convert to a planet with ammonia hydrosphere unless there is already a habitable world in the system
+	# Higher chance of getting a marginal world if there is a standard habitable world, so the marginal may be used as a system colony
 	random_list = {
-		50 = {
+		30 = {
 			# Skip conversion and let the planet remain an uninhabitable class
 			remove_planet_flag = "ammonia"
 			# We still need the flag habitable_converted to make sure the process does not repeat
 			set_planet_flag = "habitable_converted"
 			# Increase the odds significantly of skipping conversion if there is another habitable in the system already
-			modifier = { factor = 100.00 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 0.50 solar_system = { any_system_planet = { is_habitable = yes } } }
+			modifier = { factor = 10.00 solar_system = { any_system_planet = { has_planet_flag = "marginal_converted" } } }
 			# Lower the odds of skipping if it is flagged as forced
 			modifier = { factor = 0.00 has_planet_flag = "forced" }
 		}
@@ -3679,6 +3800,7 @@ roll_ammonia = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Ammoniagenian class			
 			add_modifier = { modifier = "class_ammoniagenian" days = -1 }
 			change_pc = pc_toxic
@@ -3691,7 +3813,7 @@ roll_ammonia = {
 				entity = "terrestrial_ammoniagenian_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
 			modifier = { factor = 0.50 is_moon = yes }
@@ -3703,11 +3825,20 @@ roll_ammonia = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
 		10 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll a Redux class			
 			add_modifier = { modifier = "class_redux" days = -1 }
 			change_pc = pc_toxic
@@ -3720,10 +3851,10 @@ roll_ammonia = {
 				entity = "sub_marginal_redux_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "marginal_converted"
 			# Modifiers
-			modifier = { factor = 0.50 has_moon = yes }
+			modifier = { factor = 0.50 NOT = { is_moon = yes } }
 			# Extra modifier based on the habitable scale picked in the game settings
 			complex_trigger_modifier = {
 				trigger = check_galaxy_setup_value
@@ -3732,11 +3863,20 @@ roll_ammonia = {
 				}
 				mode = factor
 			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
+			}
 		}
-		10 = {
+		15 = {
 			# Remove previously spawned modifiers
 			remove_atmosphere_modifier = yes
 			remove_class_modifier = yes
+			remove_uninhabitable_modifiers = yes
 			# Roll an Ammoniapelagic class
 			add_modifier = { modifier = "class_ammoniapelagic" days = -1 }
 			change_pc = pc_ocean
@@ -3749,11 +3889,11 @@ roll_ammonia = {
 				entity = "ammonia_panthalassic_planet_01_entity"
 				
 			}
-			
+			#add_modifier = { modifier = "terraforming_candidate" days = -1 }
 			set_planet_flag = "habitable_converted"
 			correct_habitable_deposits = yes
 			# Modifiers
-			modifier = { factor = 0.50 NOT = { is_gas_giant_moon = yes } }
+			modifier = { factor = 0.25 NOT = { is_gas_giant_moon = yes } }
 			# Extra modifier based on the habitable scale picked in the game settings
 			complex_trigger_modifier = {
 				trigger = check_galaxy_setup_value
@@ -3761,6 +3901,14 @@ roll_ammonia = {
 					setting = habitable_worlds_scale
 				}
 				mode = factor
+			}
+			modifier = {
+				factor = 0.00
+				OR = {
+					has_modifier = "terraforming_candidate"
+					has_modifier = "toxic_terraforming_candidate"
+					has_modifier = "frozen_terraforming_candidate"
+				}
 			}
 		}
 	}
@@ -4138,6 +4286,7 @@ atw_habitable_check = {
 				has_modifier = "class_hydrocarbonal"
 				has_modifier = "class_alkali"
 				has_modifier = "class_sulfuric"
+				has_modifier = "class_ammoniagenian"
 				has_modifier = "class_redux"
 				has_modifier = "class_tomb"
 				has_modifier = "class_tomb_restored"
@@ -4149,6 +4298,17 @@ atw_habitable_check = {
 		# Roll the default planet class
 		roll_tomb = yes
 		reroll_planet = yes
+	}
+	if = {
+		limit = {
+			is_planet_class = "pc_nuked"
+			has_modifier = "biosphere-sparse"
+			NOT = { has_modifier = "class_tomb_restored" }
+		}
+		remove_class_modifier = yes
+		add_modifier = {
+			modifier = "class_tomb_restored"
+		}
 	}
 	if = {
 		limit = {
@@ -4241,8 +4401,9 @@ atw_habitable_check = {
 				has_modifier = "class_archipelagic"
 				has_modifier = "class_megalopelagic"
 				has_modifier = "class_panpelagic"
+				has_modifier = "class_ammoniapelagic"
 				has_modifier = "class_okeanosgaean"
-				has_modifier = "class_aquatic_terraformed"
+				has_modifier = "class_aquatic_terraformed"				
 			}
 		}
 		# Remove any existing Biosphere modifier
@@ -4274,7 +4435,6 @@ atw_habitable_check = {
 				has_modifier = "class_cryogenian"
 				has_modifier = "class_pagosorimos"
 				has_modifier = "class_cryomegagi"
-				has_modifier = "class_ammoniagenian"
 			}
 		}
 		# Remove any existing Biosphere modifier
@@ -4296,11 +4456,56 @@ atw_habitable_check = {
 		# Remove any existing Biosphere modifier
 		remove_biosphere_modifier = yes
 		# Roll the default planet class
-		roll_pagospelagic = yes
+		roll_cryopelagic = yes
 	}
 }
 
 ## AUXILIAR EFFECTS
+
+remove_uninhabitable_modifiers = { # And deposits and prevent anomalies as well - Used when converting an uninhabitable into a marginal
+	clear_deposits = yes
+	prevent_anomaly = yes
+	if = {
+		limit = { has_modifier = ringed_planet }
+		remove_modifier = ringed_planet
+	}
+	if = {
+		limit = { has_modifier = scorched_planetoid }
+		remove_modifier = scorched_planetoid
+	}
+	if = {
+		limit = { has_modifier = stable_dual_moon_system }
+		remove_modifier = stable_dual_moon_system
+	}
+	if = {
+		limit = { has_modifier = volcanic_outgassing }
+		remove_modifier = volcanic_outgassing
+	}
+	if = {
+		limit = { has_modifier = geological_activity }
+		remove_modifier = geological_activity
+	}
+	if = {
+		limit = { has_modifier = shallow_water_world }
+		remove_modifier = shallow_water_world
+	}
+	if = {
+		limit = { has_modifier = shallow_ammonia_world }
+		remove_modifier = shallow_ammonia_world
+	}
+	if = {
+		limit = { has_modifier = chthonian_planet }
+		remove_modifier = chthonian_planet
+	}
+	if = {
+		limit = { has_modifier = carbon_world }
+		remove_modifier = carbon_world
+	}
+	if = {
+		limit = { has_modifier = asteroid_belt }
+		remove_modifier = asteroid_belt
+	}
+}
 
 remove_atmosphere_modifier = {
 	if = {
@@ -7518,7 +7723,7 @@ spawn_biosphere = {
 			modifier = { add = 10 has_modifier = "class_retinalgenian" }
 			modifier = { add = 10 has_modifier = "class_thermogenian" }
 			modifier = { add = 10 has_modifier = "class_cryogenian" }
-			modifier = { add = 10 has_modifier = "class_mukesgenian" }
+			modifier = { add = 0 has_modifier = "class_mukesgenian" }
 			modifier = { add = 10 has_modifier = "class_cryotopio" }
 			modifier = { add = 10 has_modifier = "class_tropikostopio" }
 			modifier = { add = 0 has_modifier = "class_thermotopio" }
@@ -7658,5 +7863,128 @@ spawn_biosphere = {
 			#add_modifier = { modifier = "biosphere-barren" days = -1 }
 			set_planet_flag = "biosphere-barren"
 		}
+	}
+}
+
+update_marginal_portrait = {
+	if = {
+		limit = { has_modifier = "class_hadean" }
+		set_planet_entity = {
+				picture = "orbit_hadean"
+				entity = "primordial_hadean_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_anthracean" }
+		set_planet_entity = {
+				picture = "orbit_anthracean"
+				entity = "primordial_anthracean_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_agonos" }
+		set_planet_entity = {
+				picture = "orbit_agonos"
+				entity = "marginal_agonos_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_hydrocarbonal" }
+		set_planet_entity = {
+				picture = "orbit_hydrocarbonal"
+				entity = "sub_marginal_hydrocarbonal_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_karstikos" }
+		set_planet_entity = {
+				picture = "orbit_karstikos"
+				entity = "marginal_karstikos_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_desolate" }
+		set_planet_entity = {
+				picture = "orbit_desolate"
+				entity = "sub_marginal_desolate_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_archean" }
+		set_planet_entity = {
+				picture = "orbit_archean"
+				entity = "primordial_archean_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_elos" }
+		set_planet_entity = {
+				picture = "orbit_elos"
+				entity = "marginal_elos_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_alkali" }
+		set_planet_entity = {
+				picture = "orbit_alkali"
+				entity = "sub_marginal_alkali_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_stepikos" }
+		set_planet_entity = {
+				picture = "orbit_stepikos"
+				entity = "marginal_stepikos_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_almyros" }
+		set_planet_entity = {
+				picture = "orbit_almyros"
+				entity = "marginal_almyros_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_erimos" }
+		set_planet_entity = {
+				picture = "orbit_erimos"
+				entity = "marginal_erimos_barren_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_sulfuric" }
+		set_planet_entity = {
+				picture = "orbit_sulfuric"
+				entity = "sub_marginal_sulfuric_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_ammoniagenian" }
+		set_planet_entity = {
+				picture = "orbit_ammoniagenian"
+				entity = "terrestrial_ammoniagenian_01_entity"
+				
+			}
+	}
+	if = {
+		limit = { has_modifier = "class_redux" }
+		set_planet_entity = {
+				picture = "orbit_redux"
+				entity = "sub_marginal_redux_01_entity"
+				
+			}
 	}
 }

@@ -686,40 +686,40 @@ terraform_link = {
 ## Next come the uninhabitables, which now only terraform into the terraformed classes, except for the submerged Panthalassic
 ## We can also have an earlier option for a barren habitable with Atmospheric Manipulation
 
-terraform_link = {
-	from = "pc_barren"
-	to = "pc_nuked"
-
-	resources = {
-		category = terraforming
-
-		cost = {
-			energy = @energy_atmospheric_manipulation
-			greenhouse_gases = @gases_uninhabitable
-			water_ices = @ices_1_step
-			seeds = 0
-		}
-	}
-
-	duration = @duration_simple
-
-	potential = {
-		exists = owner
-		from = { has_modifier = terraforming_candidate }
-	}
-
-	condition = {
-		has_technology = "tech_atmospheric_manipulation"
-	}
-
-	effect = {
-		#from = { remove_modifier = terraforming_candidate }
-	}
-
-	ai_weight = {
-		weight = 5
-	}
-}
+#terraform_link = {
+#	from = "pc_barren"
+#	to = "pc_nuked"
+#
+#	resources = {
+#		category = terraforming
+#
+#		cost = {
+#			energy = @energy_atmospheric_manipulation
+#			greenhouse_gases = @gases_uninhabitable
+#			water_ices = @ices_1_step
+#			seeds = 0
+#		}
+#	}
+#
+#	duration = @duration_simple
+#
+#	potential = {
+#		exists = owner
+#		from = { has_modifier = terraforming_candidate }
+#	}
+#
+#	condition = {
+#		has_technology = "tech_atmospheric_manipulation"
+#	}
+#
+#	effect = {
+#		#from = { remove_modifier = terraforming_candidate }
+#	}
+#
+#	ai_weight = {
+#		weight = 5
+#	}
+#}
 terraform_link = {
 	from = "pc_barren"
 	to = "pc_tropical"
@@ -851,10 +851,12 @@ terraform_link = {
 	potential = {
 		exists = owner
 		from = { has_modifier = terraforming_candidate }
+		NOT = { from = { has_planet_flag = "planet_mars" } }
 	}
 
 	condition = {
 		has_technology = "tech_climate_restoration"
+		
 	}
 
 	effect = {
@@ -888,10 +890,12 @@ terraform_link = {
 	potential = {
 		exists = owner
 		from = { has_modifier = terraforming_candidate }
+		NOT = { from = { has_planet_flag = "planet_mars" } }
 	}
 
 	condition = {
 		has_technology = "tech_climate_restoration"
+		
 	}
 
 	effect = {
@@ -925,10 +929,12 @@ terraform_link = {
 	potential = {
 		exists = owner
 		from = { has_modifier = terraforming_candidate }
+		NOT = { from = { has_planet_flag = "planet_mars" } }
 	}
 
 	condition = {
 		has_technology = "tech_climate_restoration"
+		
 	}
 
 	effect = {
@@ -1349,8 +1355,8 @@ terraform_link = {
 	effect = {
 		from = {
 			if = {
-				limit = { has_modifier = "terraforming_candidate" }
-				remove_modifier = "terraforming_candidate"
+				limit = { has_modifier = "frozen_terraforming_candidate" }
+				remove_modifier = "frozen_terraforming_candidate"
 			}
 			if = {
 				limit = { has_modifier = "subterranean_terraformed" }
@@ -1373,7 +1379,7 @@ terraform_link = {
 				limit = { prev = { has_trait = "trait_aquatic" } is_colony = yes }
 				submerged_colony_update = yes
 			}
-			set_planet_flag = "uninhabitable_terraforming"
+			set_planet_flag = "frozen_terraforming"
 		}
 	}
 
