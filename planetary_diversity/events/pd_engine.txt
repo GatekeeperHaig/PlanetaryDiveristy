@@ -100,6 +100,9 @@ country_event = {
 				25 = {
 					pd_algae_world_effect = yes
 				}
+				25 = {
+					pd_columnar_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -721,6 +724,19 @@ country_event = {
 			}
 			change_pc = pc_ocean
 			pd_algae_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_columnar
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_ocean
+			pd_columnar_world_effect = yes
 			clear_deposits = yes
 			remove_all_districts = yes
 			remove_all_buildings = yes
@@ -1984,6 +2000,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.columnar
+		hidden_effect = {
+			from = {
+				pd_columnar_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3034,6 +3061,9 @@ planet_event = {
 				}
 				25 = {
 					pd_algae_world_effect = yes
+				}
+				25 = {
+					pd_columnar_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -5996,6 +6026,7 @@ country_event = {
 				has_trait = trait_pc_pd_fog_preference
 				has_trait = trait_pc_pd_kelp_preference
 				has_trait = trait_pc_pd_algae_preference
+				has_trait = trait_pc_pd_columnar_preference
 				has_trait = trait_pc_pd_reef_preference
 				has_trait = trait_pc_pd_archipelago_preference
 				has_trait = trait_pc_pd_atoll_preference
@@ -6487,6 +6518,9 @@ country_event = {
 					}
 					25 = {
 						pd_algae_world_effect = yes
+					}
+					25 = {
+						pd_columnar_world_effect = yes
 					}
 				}
 			}

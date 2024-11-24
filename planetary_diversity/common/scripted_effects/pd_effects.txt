@@ -101,6 +101,10 @@ remove_pd_ocean_modifier = {
 		remove_modifier = pd_algae
 	}
 	if = {
+		limit = { has_modifier = pd_columnar }
+		remove_modifier = pd_columnars
+	}
+	if = {
 		limit = { has_modifier = pd_reef }
 		remove_modifier = pd_reef
 	}
@@ -803,6 +807,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_algae_preference
+			add_trait = trait_pc_ocean_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_columnar_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_columnar_preference
 			add_trait = trait_pc_ocean_preference
 		}
 	}
