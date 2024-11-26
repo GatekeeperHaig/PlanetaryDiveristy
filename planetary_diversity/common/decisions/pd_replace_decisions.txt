@@ -169,3 +169,60 @@ decision_tidal_lock_planet = {
 		weight = 0
 	}
 }
+
+decision_cultivated_worldscaping = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_cultivated_worldscaping
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 2000
+			influence = 100
+		}
+	}
+
+	enactment_time = 360
+
+	potential = {
+		exists = owner
+		owner = {
+			is_environmental_architects_empire = yes
+		}
+		habitable_planet_not_urban = yes
+		NOR = {
+			has_modifier = cultivated_worldscaping_modifier
+			has_modifier = mastery_of_nature
+			pd_is_planet_class_hive = yes
+			pd_is_planet_class_machine = yes
+			pd_aw_is_superproject_class = yes
+		}
+	}
+
+	allow = {
+		hidden_trigger = {
+			check_variable_arithmetic = {
+				which = value:natural_blocker_count
+				value = 0
+			}
+		}
+		custom_tooltip = {
+			fail_text = "decision_cultivated_worldscaping_natural_blockers_fail_tt"
+			check_variable_arithmetic = {
+				which = value:natural_blocker_count
+				value = 0
+			}
+		}
+	}
+
+	effect = {
+		add_modifier = {
+			modifier = cultivated_worldscaping_modifier
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
