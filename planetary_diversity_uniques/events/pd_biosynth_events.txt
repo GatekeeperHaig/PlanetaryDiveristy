@@ -1,82 +1,37 @@
-# namespace = pdtechnoorganic
+namespace = pdbiosynth
 
-# #EnterSystem
-# ship_event = {
-# 	id = pdtechnoorganic.10
-# 	title = pdtechnoorganic.10.name
-# 	desc = pdtechnoorganic.10.desc
-# 	picture = GFX_evt_technoorganic
-# 	location = ROOT
-# 	show_sound = event_ship_bridge
+#This event fires when you first survey the Biosynthic world
+ship_event = {
+	id = pdbiosynth.100
+	title = pdbiosynth.100.name
+	desc = pdbiosynth.100.desc
+	picture = GFX_evt_pd_biosynth
+	location = ROOT
+	show_sound = event_ship_bridge
 
-# 	is_triggered_only = yes
+	is_triggered_only = yes
 
-# 	trigger = {
-# 		from = {
-# 			has_star_flag = technoorganic_system
-# 		}
-# 		owner = {
-# 			NOT = {
-# 				has_country_flag = technoorganic_encounter
-# 			}
-# 			OR = {
-# 				is_country_type = default
-# 				is_country_type = fallen_empire
-# 				is_country_type = awakened_fallen_empire
-#             }
-# 			NOT = { has_authority = auth_machine_intelligence }
-# 		}
-# 	}
+	trigger = {
+		from = {
+			has_planet_flag = pd_biosynth_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_biosynth_planet
+			}
+		}
+	}
 
-# 	immediate = {
-# 		owner = {
-# 			set_country_flag = technoorganic_encounter
-# 		}
-# 	}
+	immediate = {
+		owner = {
+			set_country_flag = found_biosynth_planet
+		}
+	}
 
-# 	option = {
-# 		name = pdtechnoorganic.10.a
-# 	}
-# }
-
-# #SurveyPlanet
-# ship_event = {
-# 	id = pdtechnoorganic.20
-# 	title = pdtechnoorganic.20.name
-# 	desc = pdtechnoorganic.20.desc
-# 	picture = GFX_evt_technoorganic2
-# 	location = ROOT
-# 	show_sound = event_ship_bridge
-
-# 	is_triggered_only = yes
-
-# 	trigger = {
-# 		from = {
-# 			has_planet_flag = technoorganic_planet
-# 		}
-# 		owner = {
-# 			NOT = {
-# 				has_country_flag = found_technoorganic_planet
-# 			}
-# 			OR = {
-# 				is_country_type = default
-# 				is_country_type = fallen_empire
-# 				is_country_type = awakened_fallen_empire
-# 			}
-# 		}
-# 	}
-
-# 	immediate = {
-# 		owner = {
-# 			set_country_flag = found_technoorganic_planet
-# 		}
-# 	}
-
-# 	option = {
-# 		name = pdtechnoorganic.20.a
-# 		owner = { add_research_option = tech_mine_living_metal }
-# 	}
-# }
+	option = {
+		name = pdbiosynth.100.a
+	}
+}
 
 # #EventStart
 # planet_event = {
