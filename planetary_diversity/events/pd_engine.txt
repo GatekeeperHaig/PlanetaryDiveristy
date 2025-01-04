@@ -450,6 +450,9 @@ country_event = {
 				25 = {
 					pd_cryovolcano_world_effect = yes
 				}
+				25 = {
+					pd_treeline_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -1671,6 +1674,19 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = {
+				is_planet_class = pc_pd_treeline
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_tundra
+			pd_treeline_world_effect = yes
+			clear_deposits = yes
+			remove_all_districts = yes
+			remove_all_buildings = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
 				is_planet_class = pc_pd_cryoflora
 				has_pd_modifier = no
 				is_capital = yes
@@ -2835,6 +2851,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_tundra }
+		}
+		name = pdengine.21.treeline
+		hidden_effect = {
+			from = {
+				pd_treeline_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tundra }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3431,6 +3458,9 @@ planet_event = {
 				}
 				25 = {
 					pd_cryovolcano_world_effect = yes
+				}
+				25 = {
+					pd_treeline_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -6120,6 +6150,7 @@ country_event = {
 				has_trait = trait_pc_pd_basalt_preference
 				has_trait = trait_pc_pd_tuya_preference
 				has_trait = trait_pc_pd_cryovolcano_preference
+				has_trait = trait_pc_pd_treeline_preference
 				has_trait = trait_pc_pd_cryoflora_preference
 				has_trait = trait_pc_pd_lichen_preference
 			}
@@ -6826,6 +6857,9 @@ country_event = {
 					}
 					25 = {
 						pd_cryovolcano_world_effect = yes
+					}
+					25 = {
+						pd_treeline_world_effect = yes
 					}
 				}
 			}
