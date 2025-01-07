@@ -81,6 +81,13 @@ decision_remove_solar_system_network_hub = {
 	potential = {
 		exists = owner
 		has_deposit = d_pd_solar_system_network_hub
+		solar_system = {
+			any_system_colony = {
+				NOT = { is_same_value = root }
+				has_deposit = d_pd_solar_system_network_hub
+			}
+
+		}
 	}
 
 	effect = {
@@ -127,5 +134,1013 @@ decision_change_moon_base = {
 
 	ai_weight = {
         weight = 0
+  	}
+}
+
+# Build Moonbase
+decision_build_pd_moon_base = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				num_moons = 1
+			}
+			minerals = 1000
+		}
+		cost = {
+			trigger = {
+				num_moons = 2
+			}
+			minerals = 2000
+		}
+		cost = {
+			trigger = {
+				num_moons = 3
+			}
+			minerals = 3000
+		}
+		cost = {
+			trigger = {
+				num_moons = 4
+			}
+			minerals = 4000
+		}
+		cost = {
+			trigger = {
+				num_moons = 5
+			}
+			minerals = 5000
+		}
+	}
+
+	allow = {
+		any_moon = {
+			has_modifier = pd_domed_moonbase_site_1
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		any_moon = {
+			has_modifier = pd_domed_moonbase_site_1
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		every_moon = {
+			limit = {
+				has_modifier = pd_domed_moonbase_site_1
+			}
+			custom_tooltip = MAKE_MOON_BASES
+			hidden_effect = {
+				planet_event = {
+					id = pddomebases.50
+				}
+				pd_create_outpost_visual_effect = yes
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Moonbase (Moon Colony)
+decision_build_pd_moon_base_moon_colony = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			trigger = {
+				orbit = {
+					num_moons = 2
+				}
+			}
+			minerals = 1000
+		}
+		cost = {
+			trigger = {
+				orbit = {
+					num_moons = 3
+				}
+			}
+			minerals = 2000
+		}
+		cost = {
+			trigger = {
+				orbit = {
+					num_moons = 4
+				}
+			}
+			minerals = 3000
+		}
+		cost = {
+			trigger = {
+				orbit = {
+					num_moons = 5
+				}
+			}
+			minerals = 4000
+		}
+		cost = {
+			trigger = {
+				orbit = {
+					num_moons = 6
+				}
+			}
+			minerals = 5000
+		}
+	}
+
+	allow = {
+		is_moon = yes
+		orbit = {
+			any_moon = {
+				has_modifier = pd_domed_moonbase_site_1
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		is_moon = yes
+		orbit = {
+			any_moon = {
+				has_modifier = pd_domed_moonbase_site_1
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		orbit = {
+			every_moon = {
+				limit = {
+					has_modifier = pd_domed_moonbase_site_1
+				}
+				custom_tooltip = MAKE_MOON_BASES
+				hidden_effect = {
+					planet_event = {
+						id = pddomebases.50
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Mining Base 1
+decision_build_pd_mining_base = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_mining_site_1
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_mining_site_1
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_mining_site_1
+				}
+				custom_tooltip = MAKE_MINIG_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_mining_site_1
+					add_modifier = {
+						modifier = pd_domed_base_mining
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Mining Base 2
+decision_build_pd_mining_base_2 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_mining_site_2
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_mining_site_2
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_mining_site_2
+				}
+				custom_tooltip = MAKE_MINIG_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_mining_site_2
+					add_modifier = {
+						modifier = pd_domed_base_mining
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Mining Base 3
+decision_build_pd_mining_base_3 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_mining_site_3
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_mining_site_3
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_mining_site_3
+				}
+				custom_tooltip = MAKE_MINIG_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_mining_site_3
+					add_modifier = {
+						modifier = pd_domed_base_mining
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Food Base 1
+decision_build_pd_food_base = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_food_site_1
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_food_site_1
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_food_site_1
+				}
+				custom_tooltip = MAKE_FOOD_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_food_site_1
+					add_modifier = {
+						modifier = pd_domed_base_food
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Food Base 2
+decision_build_pd_food_base_2 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_food_site_2
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_food_site_2
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_food_site_2
+				}
+				custom_tooltip = MAKE_FOOD_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_food_site_2
+					add_modifier = {
+						modifier = pd_domed_base_food
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Food Base 3
+decision_build_pd_food_base_3 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_food_site_3
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_food_site_3
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_food_site_3
+				}
+				custom_tooltip = MAKE_FOOD_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_food_site_3
+					add_modifier = {
+						modifier = pd_domed_base_food
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Energy Base 1
+decision_build_pd_energy_base = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_energy_site_1
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_energy_site_1
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_energy_site_1
+				}
+				custom_tooltip = MAKE_ENERGY_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_energy_site_1
+					add_modifier = {
+						modifier = pd_domed_base_energy
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Energy Bases 2
+decision_build_pd_energy_base_2 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_energy_site_2
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_energy_site_2
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_energy_site_2
+				}
+				custom_tooltip = MAKE_ENERGY_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_energy_site_2
+					add_modifier = {
+						modifier = pd_domed_base_energy
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Energy Base 3
+decision_build_pd_energy_base_3 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_energy_site_3
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_energy_site_3
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_energy_site_3
+				}
+				custom_tooltip = MAKE_ENERGY_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_energy_site_3
+					add_modifier = {
+						modifier = pd_domed_base_energy
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Research Base 1
+decision_build_pd_research_base = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_research_site_1
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_research_site_1
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_research_site_1
+				}
+				custom_tooltip = MAKE_RESEARCH_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_research_site_1
+					add_modifier = {
+						modifier = pd_domed_base_research
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Research Base 2
+decision_build_pd_research_base_2 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_research_site_2
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_research_site_2
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_research_site_2
+				}
+				custom_tooltip = MAKE_RESEARCH_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_research_site_2
+					add_modifier = {
+						modifier = pd_domed_base_research
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
+  	}
+}
+
+# Build Research Base 3
+decision_build_pd_research_base_3 = {
+	icon = decision_build_moonbase
+	owned_planets_only = yes
+
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+		}
+	}
+
+	allow = {
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_research_site_3
+			}
+		}
+		owner = {
+			has_technology = tech_pd_domed_colonies
+		}
+	}
+
+	potential = {
+		exists = owner
+		solar_system = {
+			any_system_planet = {
+				has_modifier = pd_domed_research_site_3
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_deposit = d_pd_solar_system_network_hub
+				}
+			}
+			add_deposit = d_pd_solar_system_network_hub
+			hidden_effect = {
+				set_planet_flag = pd_solar_system_network_hub
+			}
+		}
+		solar_system = {
+			random_system_planet = {
+				limit = {
+					has_modifier = pd_domed_research_site_3
+				}
+				custom_tooltip = MAKE_RESEARCH_BASES
+				hidden_effect = {
+					remove_modifier = pd_domed_research_site_3
+					add_modifier = {
+						modifier = pd_domed_base_research
+						days = -1
+					}
+					pd_create_outpost_visual_effect = yes
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+        weight = 100
   	}
 }

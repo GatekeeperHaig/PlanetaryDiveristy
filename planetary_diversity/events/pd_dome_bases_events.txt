@@ -9,6 +9,13 @@ country_event = {
 
 	immediate = {
 		every_galaxy_planet = {
+			limit = {
+				NOT = {
+					solar_system = {
+						has_star_flag = pd_orbital_base_spawned
+					}
+				}
+			}
 			#Moons of Habitable Worlds
 			if = {
 				limit = {
@@ -27,7 +34,7 @@ country_event = {
 							is_planet_class = pc_molten
 						}
 						NOT = {
-							has_modifier = pd_domed_moonbase_site
+							has_modifier = pd_domed_moonbase_site_1
 						}
 					}
 				}
@@ -41,11 +48,11 @@ country_event = {
 							is_planet_class = pc_molten
 						}
 						NOT = {
-							has_modifier = pd_domed_moonbase_site
+							has_modifier = pd_domed_moonbase_site_1
 						}
 					}
 					add_modifier = {
-						modifier = pd_domed_moonbase_site
+						modifier = pd_domed_moonbase_site_1
 						days = -1
 					}
 					remove_modifier = carbon_world
@@ -89,8 +96,12 @@ country_event = {
 							is_terraforming_candidate = yes
 						}
 					}
-					NOT = {
-						has_modifier = pd_domed_moonbase_site
+					NOR = {
+						has_modifier = pd_domed_moonbase_site_1
+						has_modifier = pd_domed_moonbase_site_2
+						has_modifier = pd_domed_moonbase_site_3
+						has_modifier = pd_domed_moonbase_site_4
+						has_modifier = pd_domed_moonbase_site_5
 					}
 				}
 				every_moon = {
@@ -109,7 +120,7 @@ country_event = {
 						}
 					}
 					add_modifier = {
-						modifier = pd_domed_moonbase_site
+						modifier = pd_domed_moonbase_site_1
 						days = -1
 					}
 					remove_modifier = carbon_world
@@ -159,7 +170,7 @@ country_event = {
 					check_variable = {
 						which = num_pd_domed_modifiers
 						###This is how many domed bases are allowed per system, not counting moons
-						value < 2
+						value < 3
 					}
 					NAND = {
 						has_star_flag = pd_no_valid_domed_bases_mining
@@ -187,9 +198,11 @@ country_event = {
 									}
 									NOR = {
 										has_deposit = d_dark_matter_deposit_1
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_mining_site
+										has_modifier = pd_domed_mining_site_1
+										has_modifier = pd_domed_mining_site_2
+										has_modifier = pd_domed_mining_site_3
 									}
 								}
 							}
@@ -205,15 +218,68 @@ country_event = {
 									}
 									NOR = {
 										has_deposit = d_dark_matter_deposit_1
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_mining_site
+										has_modifier = pd_domed_mining_site_1
+										has_modifier = pd_domed_mining_site_2
+										has_modifier = pd_domed_mining_site_3
 									}
 								}
-								add_modifier = {
-									modifier = pd_domed_mining_site
-									days = -1
-								}
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_mining_site_2
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_mining_site_2
+											has_modifier = pd_domed_mining_site_1
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_mining_site_3
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_mining_site_1
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_mining_site_1
+											has_modifier = pd_domed_mining_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_mining_site_2
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                NOR = {
+                                                    has_modifier = pd_domed_mining_site_1
+                                                    has_modifier = pd_domed_mining_site_2
+                                                    has_modifier = pd_domed_mining_site_3
+                                                }
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_mining_site_2
+											has_modifier = pd_domed_mining_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_mining_site_1
+                                        days = -1
+                                    }
+                                }
 								solar_system = {
 									change_variable = {
 										which = num_pd_domed_modifiers
@@ -241,9 +307,9 @@ country_event = {
 									}
 									NOR = {
 										has_deposit = d_dark_matter_deposit_1
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_energy_site
+										has_modifier = pd_domed_energy_site_1
 									}
 								}
 							}
@@ -256,15 +322,66 @@ country_event = {
 									}
 									NOR = {
 										has_deposit = d_dark_matter_deposit_1
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_energy_site
+										has_modifier = pd_domed_energy_site_1
 									}
 								}
-								add_modifier = {
-									modifier = pd_domed_energy_site
-									days = -1
-								}
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_energy_site_2
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_energy_site_2
+											has_modifier = pd_domed_energy_site_1
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_energy_site_3
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_energy_site_1
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_energy_site_1
+											has_modifier = pd_domed_energy_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_energy_site_2
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                NOR = {
+                                                    has_modifier = pd_domed_energy_site_1
+                                                    has_modifier = pd_domed_energy_site_2
+                                                    has_modifier = pd_domed_energy_site_3
+                                                }
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_energy_site_2
+											has_modifier = pd_domed_energy_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_energy_site_1
+                                        days = -1
+                                    }
+                                }
 								solar_system = {
 									change_variable = {
 										which = num_pd_domed_modifiers
@@ -321,9 +438,9 @@ country_event = {
 										has_deposit = d_physics_9
 										has_deposit = d_physics_10
 										is_planet_class = pc_shattered
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_food_site
+										has_modifier = pd_domed_food_site_1
 									}
 								}
 							}
@@ -365,13 +482,68 @@ country_event = {
 										has_deposit = d_physics_9
 										has_deposit = d_physics_10
 										is_planet_class = pc_shattered
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_food_site
+										has_modifier = pd_domed_food_site_1
 									}
 								}
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_food_site_2
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_food_site_2
+											has_modifier = pd_domed_food_site_1
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_food_site_3
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_food_site_1
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_food_site_1
+											has_modifier = pd_domed_food_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_food_site_2
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                NOR = {
+                                                    has_modifier = pd_domed_food_site_1
+                                                    has_modifier = pd_domed_food_site_2
+                                                    has_modifier = pd_domed_food_site_3
+                                                }
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_food_site_2
+											has_modifier = pd_domed_food_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_food_site_1
+                                        days = -1
+                                    }
+                                }
 								add_modifier = {
-									modifier = pd_domed_food_site
+									modifier = pd_domed_food_site_1
 									days = -1
 								}
 								solar_system = {
@@ -436,9 +608,9 @@ country_event = {
 									NOR = {
 										has_deposit = d_dark_matter_deposit_1
 										is_planet_class = pc_shattered
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_research_site
+										has_modifier = pd_domed_research_site_1
 									}
 								}
 							}
@@ -486,15 +658,66 @@ country_event = {
 									NOR = {
 										has_deposit = d_dark_matter_deposit_1
 										is_planet_class = pc_shattered
-										has_modifier = pd_domed_moonbase_site
+										has_modifier = pd_domed_moonbase_site_1
 										is_terraforming_candidate = yes
-										has_modifier = pd_domed_research_site
+										has_modifier = pd_domed_research_site_1
 									}
 								}
-								add_modifier = {
-									modifier = pd_domed_research_site
-									days = -1
-								}
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_research_site_2
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_research_site_2
+											has_modifier = pd_domed_research_site_1
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_research_site_3
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                has_modifier = pd_domed_research_site_1
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_research_site_1
+											has_modifier = pd_domed_research_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_research_site_2
+                                        days = -1
+                                    }
+                                }
+								if = {
+                                    limit = {
+                                        PREV = {
+                                            any_system_planet = {
+                                                NOR = {
+                                                    has_modifier = pd_domed_research_site_1
+                                                    has_modifier = pd_domed_research_site_2
+                                                    has_modifier = pd_domed_research_site_3
+                                                }
+                                            }
+                                        }
+										NOR = {
+											has_modifier = pd_domed_research_site_2
+											has_modifier = pd_domed_research_site_3
+										}
+                                    }
+                                    add_modifier = {
+                                        modifier = pd_domed_research_site_1
+                                        days = -1
+                                    }
+                                }
 								solar_system = {
 									change_variable = {
 										which = num_pd_domed_modifiers
@@ -518,6 +741,7 @@ country_event = {
 			remove_star_flag = pd_no_valid_domed_bases_energy
 			remove_star_flag = pd_no_valid_domed_bases_food
 			remove_star_flag = pd_no_valid_domed_bases_research
+			set_star_flag = pd_orbital_base_spawned
 		}
 	}
 }
@@ -533,7 +757,7 @@ planet_event = {
 		if = {
 			limit = {
 				OR = {
-					has_modifier = pd_domed_moonbase_site
+					has_modifier = pd_domed_moonbase_site_1
 					has_modifier = pd_moon_base_trade
 					has_modifier = pd_moon_base_military
 					has_modifier = pd_moon_base_factory
@@ -550,9 +774,9 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				has_modifier = pd_domed_research_site
+				has_modifier = pd_domed_research_site_1
 			}
-			remove_modifier = pd_domed_research_site
+			remove_modifier = pd_domed_research_site_1
 			add_modifier = {
 				modifier = pd_domed_base_research
 				days = -1
@@ -560,9 +784,9 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				has_modifier = pd_domed_mining_site
+				has_modifier = pd_domed_mining_site_1
 			}
-			remove_modifier = pd_domed_mining_site
+			remove_modifier = pd_domed_mining_site_1
 			add_modifier = {
 				modifier = pd_domed_base_mining
 				days = -1
@@ -570,9 +794,9 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				has_modifier = pd_domed_food_site
+				has_modifier = pd_domed_food_site_1
 			}
-			remove_modifier = pd_domed_food_site
+			remove_modifier = pd_domed_food_site_1
 			add_modifier = {
 				modifier = pd_domed_base_food
 				days = -1
@@ -580,9 +804,9 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				has_modifier = pd_domed_energy_site
+				has_modifier = pd_domed_energy_site_1
 			}
-			remove_modifier = pd_domed_energy_site
+			remove_modifier = pd_domed_energy_site_1
 			add_modifier = {
 				modifier = pd_domed_base_energy
 				days = -1
@@ -621,7 +845,7 @@ country_event = {
 		custom_tooltip = pddomebases.100.trade.tt
 		hidden_effect = {
 			from = {
-				remove_modifier = pd_domed_moonbase_site
+				remove_modifier = pd_domed_moonbase_site_1
 				add_modifier = {
 					modifier = pd_moon_base_trade
 					days = -1
@@ -636,7 +860,7 @@ country_event = {
 		custom_tooltip = pddomebases.100.military.tt
 		hidden_effect = {
 			from = {
-				remove_modifier = pd_domed_moonbase_site
+				remove_modifier = pd_domed_moonbase_site_1
 				add_modifier = {
 					modifier = pd_moon_base_military
 					days = -1
@@ -654,7 +878,7 @@ country_event = {
 		custom_tooltip = pddomebases.100.factory.tt
 		hidden_effect = {
 			from = {
-				remove_modifier = pd_domed_moonbase_site
+				remove_modifier = pd_domed_moonbase_site_1
 				add_modifier = {
 					modifier = pd_moon_base_factory
 					days = -1
@@ -669,7 +893,7 @@ country_event = {
 		custom_tooltip = pddomebases.100.foundry.tt
 		hidden_effect = {
 			from = {
-				remove_modifier = pd_domed_moonbase_site
+				remove_modifier = pd_domed_moonbase_site_1
 				add_modifier = {
 					modifier = pd_moon_base_foundry
 					days = -1
@@ -688,7 +912,7 @@ country_event = {
 		custom_tooltip = pddomebases.100.admin.tt
 		hidden_effect = {
 			from = {
-				remove_modifier = pd_domed_moonbase_site
+				remove_modifier = pd_domed_moonbase_site_1
 				add_modifier = {
 					modifier = pd_moon_base_admin
 					days = -1
@@ -707,7 +931,7 @@ country_event = {
 		custom_tooltip = pddomebases.100.priest.tt
 		hidden_effect = {
 			from = {
-				remove_modifier = pd_domed_moonbase_site
+				remove_modifier = pd_domed_moonbase_site_1
 				add_modifier = {
 					modifier = pd_moon_base_priest
 					days = -1
@@ -788,7 +1012,7 @@ country_event = {
 		}
 		every_planet_within_border = {
 			limit = {
-				has_modifier = pd_domed_moonbase_site
+				has_modifier = pd_domed_moonbase_site_1
 			}
 			planet_event = {
 				id = pddomebases.50

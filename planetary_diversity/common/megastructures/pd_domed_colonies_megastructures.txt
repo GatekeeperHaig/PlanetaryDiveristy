@@ -206,264 +206,264 @@ pd_domed_colony_0 = {
 	}
 }
 
-pd_domed_base_0 = {
-	entity = ""
-	construction_entity = ""
-	portrait = "GFX_megastructure_construction_background"
-	place_entity_on_planet_plane = yes
-	show_galactic_map_icon = no
-	show_in_outliner = no
-	#hide_name = yes
-	build_time = 900
-	resources = {
-		category = megastructures
-		cost = {
-			alloys = 500
-		}
-	}
-	construction_blocks_and_blocked_by = none
+# pd_domed_base_0 = {
+# 	entity = ""
+# 	construction_entity = ""
+# 	portrait = "GFX_megastructure_construction_background"
+# 	place_entity_on_planet_plane = yes
+# 	show_galactic_map_icon = no
+# 	show_in_outliner = no
+# 	#hide_name = yes
+# 	build_time = 900
+# 	resources = {
+# 		category = megastructures
+# 		cost = {
+# 			alloys = 500
+# 		}
+# 	}
+# 	construction_blocks_and_blocked_by = none
 
-	potential = {
-		has_technology = tech_pd_domed_colonies
-	}
+# 	potential = {
+# 		has_technology = tech_pd_domed_colonies
+# 	}
 
-	possible = {
-		exists = starbase
-		custom_tooltip = {
-			fail_text = "requires_inside_border"
-			is_inside_border = from
-		}
-	}
+# 	possible = {
+# 		exists = starbase
+# 		custom_tooltip = {
+# 			fail_text = "requires_inside_border"
+# 			is_inside_border = from
+# 		}
+# 	}
 
-	placement_rules = {
-		planet_possible = {
-			custom_tooltip = {
-				fail_text = "requires_surveyed_planet"
-				is_surveyed = {			# prevent leaking habitability information
-					who = prev.from
-					status = yes
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_anomaly"
-				NOT = { has_anomaly = yes }
-			}
-			custom_tooltip = {
-				fail_text = "requires_no_existing_megastructure"
-				#can_build_megastructure_on_planet = yes
-				NOR = {
-					has_planet_flag = megastructure
-					# has_planet_flag = has_megastructure
-					# solar_system = {
-					# 	has_star_flag = ring_world_built
-					# }
-					is_planet_class = pc_ringworld_habitable
-					is_planet_class = pc_ringworld_habitable_damaged
-					is_planet_class = pc_ringworld_tech
-					is_planet_class = pc_ringworld_tech_damaged
-					is_planet_class = pc_ringworld_seam
-					is_planet_class = pc_ringworld_seam_damaged
-					is_planet_class = pc_habitat
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_pd_colony"
-				solar_system = {
-					any_system_planet = {
-						NOT = {
-							is_artificial = yes
-						}
-						is_colony = yes
-					}
-				}
-			}
-			custom_tooltip = {
-				fail_text = "requires_pd_moon_base_site"
-				OR = {
-					has_modifier = pd_domed_moonbase_site
-					has_modifier = pd_domed_mining_site
-					has_modifier = pd_domed_food_site
-					has_modifier = pd_domed_energy_site
-					has_modifier = pd_domed_research_site
-				}
-			}
-		}
-	}
+# 	placement_rules = {
+# 		planet_possible = {
+# 			custom_tooltip = {
+# 				fail_text = "requires_surveyed_planet"
+# 				is_surveyed = {			# prevent leaking habitability information
+# 					who = prev.from
+# 					status = yes
+# 				}
+# 			}
+# 			custom_tooltip = {
+# 				fail_text = "requires_no_anomaly"
+# 				NOT = { has_anomaly = yes }
+# 			}
+# 			custom_tooltip = {
+# 				fail_text = "requires_no_existing_megastructure"
+# 				#can_build_megastructure_on_planet = yes
+# 				NOR = {
+# 					has_planet_flag = megastructure
+# 					# has_planet_flag = has_megastructure
+# 					# solar_system = {
+# 					# 	has_star_flag = ring_world_built
+# 					# }
+# 					is_planet_class = pc_ringworld_habitable
+# 					is_planet_class = pc_ringworld_habitable_damaged
+# 					is_planet_class = pc_ringworld_tech
+# 					is_planet_class = pc_ringworld_tech_damaged
+# 					is_planet_class = pc_ringworld_seam
+# 					is_planet_class = pc_ringworld_seam_damaged
+# 					is_planet_class = pc_habitat
+# 				}
+# 			}
+# 			custom_tooltip = {
+# 				fail_text = "requires_pd_colony"
+# 				solar_system = {
+# 					any_system_planet = {
+# 						NOT = {
+# 							is_artificial = yes
+# 						}
+# 						is_colony = yes
+# 					}
+# 				}
+# 			}
+# 			custom_tooltip = {
+# 				fail_text = "requires_pd_moon_base_site"
+# 				OR = {
+# 					has_modifier = pd_domed_moonbase_site_1
+# 					has_modifier = pd_domed_mining_site_1
+# 					has_modifier = pd_domed_food_site_1
+# 					has_modifier = pd_domed_energy_site_1
+# 					has_modifier = pd_domed_research_site_1
+# 				}
+# 			}
+# 		}
+# 	}
 
-	# root = system
-	# from = country
-	ai_weight = {
-		factor = 1
-	}
+# 	# root = system
+# 	# from = country
+# 	ai_weight = {
+# 		factor = 1
+# 	}
 
-	on_build_start = {}
-	on_build_cancel = {}
+# 	on_build_start = {}
+# 	on_build_cancel = {}
 
-	on_build_complete = {
-		fromfrom.planet = {
-			if = {
-				limit = { has_orbital_station = yes }
-				orbital_station = {
-					dismantle = yes
-				}
-			}
-			clear_deposits = yes
-			clear_blockers = yes
-			if = {
-				limit = {
-					is_planet_class = pc_barren_cold
-					has_planet_flag = pdluna
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_barren_cold_luna
-					entity = pd_moon_base_planet_luna_entity
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_barren_cold
-					NOT = { has_planet_flag = pdluna }
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_barren_cold
-					entity = pd_moon_base_cold_barren_planet_01_entity
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_barren
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_barren
-					entity = pd_moon_base_barren_planet_01_entity
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_frozen
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_frozen
-					entity = pd_moon_base_frozen_planet_01_entity
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_molten
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_molten
-					entity = pd_moon_base_molten_planet_01_entity
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_toxic
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_toxic
-					entity = pd_moon_base_toxic_planet_01_entity
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_gas_giant
-				}
-				set_planet_entity = {
-					picture = pc_pd_domed_gas_giant
-				}
-			}
-			planet_event = {
-				id = pddomebases.50
-			}
-		}
-		remove_megastructure = fromfrom
-		if = {
-			limit = {
-				NOT = {
-					any_system_colony = {
-						is_artificial = no
-						has_deposit = d_pd_solar_system_network_hub
-					}
-				}
-			}
-			if = {
-				limit = {
-					any_system_colony = {
-						is_artificial = no
-						has_fully_upgraded_capital = yes
-						has_major_upgraded_capital = no
-						has_upgraded_capital = no
-					}
-				}
-				random_system_colony = {
-					limit = {
-						is_artificial = no
-						has_fully_upgraded_capital = yes
-						has_major_upgraded_capital = no
-						has_upgraded_capital = no
-					}
-					add_deposit = d_pd_solar_system_network_hub
-					hidden_effect = {
-						set_planet_flag = pd_solar_system_network_hub
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					any_system_colony = {
-						is_artificial = no
-						has_fully_upgraded_capital = no
-						has_major_upgraded_capital = yes
-						has_upgraded_capital = no
-					}
-				}
-				random_system_colony = {
-					limit = {
-						is_artificial = no
-						has_fully_upgraded_capital = no
-						has_major_upgraded_capital = yes
-						has_upgraded_capital = no
-					}
-					add_deposit = d_pd_solar_system_network_hub
-					hidden_effect = {
-						set_planet_flag = pd_solar_system_network_hub
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					any_system_colony = {
-						is_artificial = no
-						has_fully_upgraded_capital = no
-						has_major_upgraded_capital = no
-						has_upgraded_capital = yes
-					}
-				}
-				random_system_colony = {
-					limit = {
-						is_artificial = no
-						has_fully_upgraded_capital = no
-						has_major_upgraded_capital = no
-						has_upgraded_capital = yes
-					}
-					add_deposit = d_pd_solar_system_network_hub
-					hidden_effect = {
-						set_planet_flag = pd_solar_system_network_hub
-					}
-				}
-			}
-			else = {
-				random_system_colony = {
-					limit = {
-						is_artificial = no
-					}
-					add_deposit = d_pd_solar_system_network_hub
-					hidden_effect = {
-						set_planet_flag = pd_solar_system_network_hub
-					}
-				}
-			}
-		}
-	}
-}
+# 	on_build_complete = {
+# 		fromfrom.planet = {
+# 			if = {
+# 				limit = { has_orbital_station = yes }
+# 				orbital_station = {
+# 					dismantle = yes
+# 				}
+# 			}
+# 			clear_deposits = yes
+# 			clear_blockers = yes
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_barren_cold
+# 					has_planet_flag = pdluna
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_barren_cold_luna
+# 					entity = pd_moon_base_planet_luna_entity
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_barren_cold
+# 					NOT = { has_planet_flag = pdluna }
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_barren_cold
+# 					entity = pd_moon_base_cold_barren_planet_01_entity
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_barren
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_barren
+# 					entity = pd_moon_base_barren_planet_01_entity
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_frozen
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_frozen
+# 					entity = pd_moon_base_frozen_planet_01_entity
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_molten
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_molten
+# 					entity = pd_moon_base_molten_planet_01_entity
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_toxic
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_toxic
+# 					entity = pd_moon_base_toxic_planet_01_entity
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					is_planet_class = pc_gas_giant
+# 				}
+# 				set_planet_entity = {
+# 					picture = pc_pd_domed_gas_giant
+# 				}
+# 			}
+# 			planet_event = {
+# 				id = pddomebases.50
+# 			}
+# 		}
+# 		remove_megastructure = fromfrom
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					any_system_colony = {
+# 						is_artificial = no
+# 						has_deposit = d_pd_solar_system_network_hub
+# 					}
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					any_system_colony = {
+# 						is_artificial = no
+# 						has_fully_upgraded_capital = yes
+# 						has_major_upgraded_capital = no
+# 						has_upgraded_capital = no
+# 					}
+# 				}
+# 				random_system_colony = {
+# 					limit = {
+# 						is_artificial = no
+# 						has_fully_upgraded_capital = yes
+# 						has_major_upgraded_capital = no
+# 						has_upgraded_capital = no
+# 					}
+# 					add_deposit = d_pd_solar_system_network_hub
+# 					hidden_effect = {
+# 						set_planet_flag = pd_solar_system_network_hub
+# 					}
+# 				}
+# 			}
+# 			else_if = {
+# 				limit = {
+# 					any_system_colony = {
+# 						is_artificial = no
+# 						has_fully_upgraded_capital = no
+# 						has_major_upgraded_capital = yes
+# 						has_upgraded_capital = no
+# 					}
+# 				}
+# 				random_system_colony = {
+# 					limit = {
+# 						is_artificial = no
+# 						has_fully_upgraded_capital = no
+# 						has_major_upgraded_capital = yes
+# 						has_upgraded_capital = no
+# 					}
+# 					add_deposit = d_pd_solar_system_network_hub
+# 					hidden_effect = {
+# 						set_planet_flag = pd_solar_system_network_hub
+# 					}
+# 				}
+# 			}
+# 			else_if = {
+# 				limit = {
+# 					any_system_colony = {
+# 						is_artificial = no
+# 						has_fully_upgraded_capital = no
+# 						has_major_upgraded_capital = no
+# 						has_upgraded_capital = yes
+# 					}
+# 				}
+# 				random_system_colony = {
+# 					limit = {
+# 						is_artificial = no
+# 						has_fully_upgraded_capital = no
+# 						has_major_upgraded_capital = no
+# 						has_upgraded_capital = yes
+# 					}
+# 					add_deposit = d_pd_solar_system_network_hub
+# 					hidden_effect = {
+# 						set_planet_flag = pd_solar_system_network_hub
+# 					}
+# 				}
+# 			}
+# 			else = {
+# 				random_system_colony = {
+# 					limit = {
+# 						is_artificial = no
+# 					}
+# 					add_deposit = d_pd_solar_system_network_hub
+# 					hidden_effect = {
+# 						set_planet_flag = pd_solar_system_network_hub
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
