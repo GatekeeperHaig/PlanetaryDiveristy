@@ -93,3 +93,792 @@ pd_generate_pd_domed_habitat_deposits = {
 		}
 	}
 }
+
+#Removes PD Modifiers
+pd_create_outpost_visual_effect = {
+	if = {
+		limit = { has_orbital_station = yes }
+		orbital_station = {
+			dismantle = yes
+		}
+	}
+	clear_deposits = yes
+	clear_blockers = yes
+	if = {
+		limit = {
+			is_planet_class = pc_barren_cold
+			has_planet_flag = pdluna
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_barren_cold_luna
+			entity = pd_moon_base_planet_luna_entity
+		}
+	}
+	if = {
+		limit = {
+			is_planet_class = pc_barren_cold
+			NOT = { has_planet_flag = pdluna }
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_barren_cold
+			entity = pd_moon_base_cold_barren_planet_01_entity
+		}
+	}
+	if = {
+		limit = {
+			is_planet_class = pc_barren
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_barren
+			entity = pd_moon_base_barren_planet_01_entity
+		}
+	}
+	if = {
+		limit = {
+			is_planet_class = pc_frozen
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_frozen
+			entity = pd_moon_base_frozen_planet_01_entity
+		}
+	}
+	if = {
+		limit = {
+			is_planet_class = pc_molten
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_molten
+			entity = pd_moon_base_molten_planet_01_entity
+		}
+	}
+	if = {
+		limit = {
+			is_planet_class = pc_toxic
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_toxic
+			entity = pd_moon_base_toxic_planet_01_entity
+		}
+	}
+	if = {
+		limit = {
+			is_planet_class = pc_gas_giant
+		}
+		set_planet_entity = {
+			picture = pc_pd_domed_gas_giant
+		}
+	}
+}
+
+#Create Moon Base Modifiers
+#This = Planet
+pd_create_moon_base_modifiers = {
+	#Moons of Habitable Worlds
+	if = {
+		limit = {
+			has_moon = yes
+			OR = {
+				is_colonizable = yes
+				is_colony = yes
+				is_terraforming_candidate = yes
+			}
+			any_moon = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_toxic
+					is_planet_class = pc_frozen
+					is_planet_class = pc_molten
+				}
+				NOT = {
+					has_modifier = pd_domed_moonbase_site_1
+				}
+			}
+		}
+		every_moon = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_toxic
+					is_planet_class = pc_frozen
+					is_planet_class = pc_molten
+				}
+				NOT = {
+					has_modifier = pd_domed_moonbase_site_1
+				}
+			}
+			add_modifier = {
+				modifier = pd_domed_moonbase_site_1
+				days = -1
+			}
+			remove_modifier = carbon_world
+			remove_modifier = chthonian_planet
+			if = {
+				limit = {
+					has_deposit = d_dark_matter_deposit_1
+				}
+				solar_system = {
+					random_system_planet = {
+						limit = {
+							is_capital = no
+							is_colonizable = no
+							has_deposit = no
+							is_terraforming_candidate = no
+							pd_has_domed_base_modifier = no
+							pd_has_domed_moon_base_modifier = no
+						}
+						add_deposit = d_dark_matter_deposit_1
+					}
+				}
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			clear_deposits = yes
+		}
+	}
+	#Moons of Gas Giants with Habitable Worlds
+	if = {
+		limit = {
+			is_moon = no
+			has_moon = yes
+			any_moon = {
+				OR = {
+					is_colonizable = yes
+					is_colony = yes
+					is_terraforming_candidate = yes
+				}
+			}
+			NOR = {
+				has_modifier = pd_domed_moonbase_site_1
+				has_modifier = pd_domed_moonbase_site_2
+				has_modifier = pd_domed_moonbase_site_3
+				has_modifier = pd_domed_moonbase_site_4
+				has_modifier = pd_domed_moonbase_site_5
+			}
+		}
+		every_moon = {
+			limit = {
+				OR = {
+					is_planet_class = pc_barren
+					is_planet_class = pc_barren_cold
+					is_planet_class = pc_toxic
+					is_planet_class = pc_frozen
+					is_planet_class = pc_molten
+				}
+				NOR = {
+					is_colonizable = yes
+					is_colony = yes
+					is_terraforming_candidate = yes
+				}
+			}
+			add_modifier = {
+				modifier = pd_domed_moonbase_site_1
+				days = -1
+			}
+			remove_modifier = carbon_world
+			remove_modifier = chthonian_planet
+			if = {
+				limit = {
+					has_deposit = d_dark_matter_deposit_1
+				}
+				solar_system = {
+					random_system_planet = {
+						limit = {
+							is_capital = no
+							is_colonizable = no
+							has_deposit = no
+							is_terraforming_candidate = no
+							pd_has_domed_base_modifier = no
+							pd_has_domed_moon_base_modifier = no
+						}
+						add_deposit = d_dark_matter_deposit_1
+					}
+				}
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			clear_deposits = yes
+		}
+	}
+}
+
+#Create Planetary Outpost Modifiers
+#This = System
+pd_create_planetary_outpost_modifiers = {
+	while = {
+		limit = {
+			check_variable = {
+				which = num_pd_domed_modifiers
+				###This is how many domed bases are allowed per system, not counting moons
+				value < 3
+			}
+			NAND = {
+				has_star_flag = pd_no_valid_domed_bases_mining
+				has_star_flag = pd_no_valid_domed_bases_energy
+				has_star_flag = pd_no_valid_domed_bases_food
+				has_star_flag = pd_no_valid_domed_bases_research
+			}
+		}
+		random_list = {
+			25 = {
+				modifier = {
+					factor = 0
+					has_star_flag = pd_no_valid_domed_bases_mining
+				}
+				if = {
+					limit = {
+						any_system_planet = {
+							has_orbital_mining_deposit = yes
+							OR = {
+								is_planet_class = pc_molten
+								is_planet_class = pc_toxic
+								is_planet_class = pc_frozen
+								is_planet_class = pc_barren
+								is_planet_class = pc_barren_cold
+							}
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_mining_site_1
+								has_modifier = pd_domed_mining_site_2
+								has_modifier = pd_domed_mining_site_3
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							has_orbital_mining_deposit = yes
+							OR = {
+								is_planet_class = pc_molten
+								is_planet_class = pc_toxic
+								is_planet_class = pc_frozen
+								is_planet_class = pc_barren
+								is_planet_class = pc_barren_cold
+							}
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_mining_site_1
+								has_modifier = pd_domed_mining_site_2
+								has_modifier = pd_domed_mining_site_3
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_mining_site_2
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_mining_site_2
+									has_modifier = pd_domed_mining_site_1
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_mining_site_3
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_mining_site_1
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_mining_site_1
+									has_modifier = pd_domed_mining_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_mining_site_2
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										NOR = {
+											has_modifier = pd_domed_mining_site_1
+											has_modifier = pd_domed_mining_site_2
+											has_modifier = pd_domed_mining_site_3
+										}
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_mining_site_2
+									has_modifier = pd_domed_mining_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_mining_site_1
+								days = -1
+							}
+						}
+						solar_system = {
+							change_variable = {
+								which = num_pd_domed_modifiers
+								value = 1
+							}
+						}
+					}
+				}
+				else = {
+					set_star_flag = pd_no_valid_domed_bases_mining
+				}
+			}
+			25 = {
+				modifier = {
+					factor = 0
+					has_star_flag = pd_no_valid_domed_bases_energy
+				}
+				if = {
+					limit = {
+						any_system_planet = {
+							has_orbital_energy_deposit = yes
+							OR = {
+								is_planet_class = pc_molten
+								is_planet_class = pc_gas_giant
+							}
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_energy_site_1
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							has_orbital_energy_deposit = yes
+							OR = {
+								is_planet_class = pc_molten
+								is_planet_class = pc_gas_giant
+							}
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_energy_site_1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_energy_site_2
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_energy_site_2
+									has_modifier = pd_domed_energy_site_1
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_energy_site_3
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_energy_site_1
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_energy_site_1
+									has_modifier = pd_domed_energy_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_energy_site_2
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										NOR = {
+											has_modifier = pd_domed_energy_site_1
+											has_modifier = pd_domed_energy_site_2
+											has_modifier = pd_domed_energy_site_3
+										}
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_energy_site_2
+									has_modifier = pd_domed_energy_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_energy_site_1
+								days = -1
+							}
+						}
+						solar_system = {
+							change_variable = {
+								which = num_pd_domed_modifiers
+								value = 1
+							}
+						}
+					}
+				}
+				else = {
+					set_star_flag = pd_no_valid_domed_bases_energy
+				}
+			}
+			25 = {
+				modifier = {
+					factor = 0
+					has_star_flag = pd_no_valid_domed_bases_food
+				}
+				if = {
+					limit = {
+						any_system_planet = {
+							is_planet_class = pc_frozen
+							has_orbital_energy_deposit = no
+							has_orbital_mining_deposit = no
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								has_deposit = d_engineering_1
+								has_deposit = d_engineering_2
+								has_deposit = d_engineering_3
+								has_deposit = d_engineering_4
+								has_deposit = d_engineering_5
+								has_deposit = d_engineering_6
+								has_deposit = d_engineering_7
+								has_deposit = d_engineering_8
+								has_deposit = d_engineering_9
+								has_deposit = d_society_10
+								has_deposit = d_society_1
+								has_deposit = d_society_2
+								has_deposit = d_society_3
+								has_deposit = d_society_4
+								has_deposit = d_society_5
+								has_deposit = d_society_6
+								has_deposit = d_society_7
+								has_deposit = d_society_8
+								has_deposit = d_society_9
+								has_deposit = d_society_10
+								has_deposit = d_physics_1
+								has_deposit = d_physics_2
+								has_deposit = d_physics_3
+								has_deposit = d_physics_4
+								has_deposit = d_physics_5
+								has_deposit = d_physics_6
+								has_deposit = d_physics_7
+								has_deposit = d_physics_8
+								has_deposit = d_physics_9
+								has_deposit = d_physics_10
+								is_planet_class = pc_shattered
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_food_site_1
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							is_planet_class = pc_frozen
+							has_orbital_energy_deposit = no
+							has_orbital_mining_deposit = no
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								has_deposit = d_engineering_1
+								has_deposit = d_engineering_2
+								has_deposit = d_engineering_3
+								has_deposit = d_engineering_4
+								has_deposit = d_engineering_5
+								has_deposit = d_engineering_6
+								has_deposit = d_engineering_7
+								has_deposit = d_engineering_8
+								has_deposit = d_engineering_9
+								has_deposit = d_society_10
+								has_deposit = d_society_1
+								has_deposit = d_society_2
+								has_deposit = d_society_3
+								has_deposit = d_society_4
+								has_deposit = d_society_5
+								has_deposit = d_society_6
+								has_deposit = d_society_7
+								has_deposit = d_society_8
+								has_deposit = d_society_9
+								has_deposit = d_society_10
+								has_deposit = d_physics_1
+								has_deposit = d_physics_2
+								has_deposit = d_physics_3
+								has_deposit = d_physics_4
+								has_deposit = d_physics_5
+								has_deposit = d_physics_6
+								has_deposit = d_physics_7
+								has_deposit = d_physics_8
+								has_deposit = d_physics_9
+								has_deposit = d_physics_10
+								is_planet_class = pc_shattered
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_food_site_1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_food_site_2
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_food_site_2
+									has_modifier = pd_domed_food_site_1
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_food_site_3
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_food_site_1
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_food_site_1
+									has_modifier = pd_domed_food_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_food_site_2
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										NOR = {
+											has_modifier = pd_domed_food_site_1
+											has_modifier = pd_domed_food_site_2
+											has_modifier = pd_domed_food_site_3
+										}
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_food_site_2
+									has_modifier = pd_domed_food_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_food_site_1
+								days = -1
+							}
+						}
+						add_modifier = {
+							modifier = pd_domed_food_site_1
+							days = -1
+						}
+						solar_system = {
+							change_variable = {
+								which = num_pd_domed_modifiers
+								value = 1
+							}
+						}
+					}
+				}
+				else = {
+					set_star_flag = pd_no_valid_domed_bases_food
+				}
+			}
+			25 = {
+				modifier = {
+					factor = 0
+					has_star_flag = pd_no_valid_domed_bases_research
+				}
+				if = {
+					limit = {
+						any_system_planet = {
+							OR = {
+								is_planet_class = pc_toxic
+								is_planet_class = pc_frozen
+								is_planet_class = pc_gas_giant
+							}
+							has_orbital_energy_deposit = no
+							has_orbital_mining_deposit = no
+							OR = {
+								has_deposit = d_engineering_1
+								has_deposit = d_engineering_2
+								has_deposit = d_engineering_3
+								has_deposit = d_engineering_4
+								has_deposit = d_engineering_5
+								has_deposit = d_engineering_6
+								has_deposit = d_engineering_7
+								has_deposit = d_engineering_8
+								has_deposit = d_engineering_9
+								has_deposit = d_society_10
+								has_deposit = d_society_1
+								has_deposit = d_society_2
+								has_deposit = d_society_3
+								has_deposit = d_society_4
+								has_deposit = d_society_5
+								has_deposit = d_society_6
+								has_deposit = d_society_7
+								has_deposit = d_society_8
+								has_deposit = d_society_9
+								has_deposit = d_society_10
+								has_deposit = d_physics_1
+								has_deposit = d_physics_2
+								has_deposit = d_physics_3
+								has_deposit = d_physics_4
+								has_deposit = d_physics_5
+								has_deposit = d_physics_6
+								has_deposit = d_physics_7
+								has_deposit = d_physics_8
+								has_deposit = d_physics_9
+								has_deposit = d_physics_10
+							}
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								is_planet_class = pc_shattered
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_research_site_1
+							}
+						}
+					}
+					random_system_planet = {
+						limit = {
+							OR = {
+								is_planet_class = pc_toxic
+								is_planet_class = pc_frozen
+								is_planet_class = pc_gas_giant
+							}
+							has_orbital_energy_deposit = no
+							has_orbital_mining_deposit = no
+							OR = {
+								has_deposit = d_engineering_1
+								has_deposit = d_engineering_2
+								has_deposit = d_engineering_3
+								has_deposit = d_engineering_4
+								has_deposit = d_engineering_5
+								has_deposit = d_engineering_6
+								has_deposit = d_engineering_7
+								has_deposit = d_engineering_8
+								has_deposit = d_engineering_9
+								has_deposit = d_society_10
+								has_deposit = d_society_1
+								has_deposit = d_society_2
+								has_deposit = d_society_3
+								has_deposit = d_society_4
+								has_deposit = d_society_5
+								has_deposit = d_society_6
+								has_deposit = d_society_7
+								has_deposit = d_society_8
+								has_deposit = d_society_9
+								has_deposit = d_society_10
+								has_deposit = d_physics_1
+								has_deposit = d_physics_2
+								has_deposit = d_physics_3
+								has_deposit = d_physics_4
+								has_deposit = d_physics_5
+								has_deposit = d_physics_6
+								has_deposit = d_physics_7
+								has_deposit = d_physics_8
+								has_deposit = d_physics_9
+								has_deposit = d_physics_10
+							}
+							NOR = {
+								has_deposit = d_dark_matter_deposit_1
+								is_planet_class = pc_shattered
+								has_modifier = pd_domed_moonbase_site_1
+								is_terraforming_candidate = yes
+								has_modifier = pd_domed_research_site_1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_research_site_2
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_research_site_2
+									has_modifier = pd_domed_research_site_1
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_research_site_3
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										has_modifier = pd_domed_research_site_1
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_research_site_1
+									has_modifier = pd_domed_research_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_research_site_2
+								days = -1
+							}
+						}
+						if = {
+							limit = {
+								PREV = {
+									any_system_planet = {
+										NOR = {
+											has_modifier = pd_domed_research_site_1
+											has_modifier = pd_domed_research_site_2
+											has_modifier = pd_domed_research_site_3
+										}
+									}
+								}
+								NOR = {
+									has_modifier = pd_domed_research_site_2
+									has_modifier = pd_domed_research_site_3
+								}
+							}
+							add_modifier = {
+								modifier = pd_domed_research_site_1
+								days = -1
+							}
+						}
+						solar_system = {
+							change_variable = {
+								which = num_pd_domed_modifiers
+								value = 1
+							}
+						}
+					}
+				}
+				else = {
+					set_star_flag = pd_no_valid_domed_bases_research
+				}
+			}
+		}
+	}
+}

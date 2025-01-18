@@ -234,3 +234,50 @@ decision_pd_add_acean_superorganism_larva = {
         weight = 10
   	}
 }
+
+# Biosynth Decisions
+decision_pd_add_biosynth_canal_system = {
+	icon = decision_pd_add_biosynth_canal_system
+	owned_planets_only = yes
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			sr_living_metal = 2500
+			influence = 50
+		}
+	}
+
+	allow = {
+		owner = {
+			has_technology = tech_biosynth_canals
+		}
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_city
+			has_deposit = d_pd_biosyth_canal
+			has_modifier = pd_biosynth
+		}
+	}
+
+	potential = {
+		owner = {
+			has_technology = tech_biosynth_canals
+		}
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_city
+			has_deposit = d_pd_biosyth_canal
+			has_modifier = pd_biosynth
+		}
+	}
+
+	effect = {
+		add_deposit = d_pd_biosyth_canal
+	}
+
+	ai_weight = {
+        weight = 5
+  	}
+}

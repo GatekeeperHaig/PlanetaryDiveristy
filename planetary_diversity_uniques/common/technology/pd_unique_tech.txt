@@ -22,10 +22,6 @@ tech_eludium_research = {
 			add = 10
 			pd_can_have_floating_tech = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
-		}
 	}
 
 	prereqfor_desc = {
@@ -37,10 +33,6 @@ tech_eludium_research = {
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
-		}
 	}
 }
 
@@ -66,10 +58,6 @@ tech_eludium_floating_islands = {
 			add = 10
 			pd_can_have_floating_tech = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
-		}
 	}
 
 	prereqfor_desc = {
@@ -81,10 +69,6 @@ tech_eludium_floating_islands = {
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
-		}
 	}
 }
 
@@ -111,18 +95,10 @@ tech_eludium_floating_resort = {
 			is_regular_empire = yes
 			pd_can_have_floating_tech = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
-		}
 	}
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
-		}
 	}
 }
 
@@ -149,18 +125,10 @@ tech_eludium_floating_overseer = {
 			is_gestalt = yes
 			pd_can_have_floating_tech = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
-		}
 	}
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
-		}
 	}
 }
 
@@ -186,10 +154,6 @@ tech_acean_research = {
 			add = 10
 			pd_can_have_crystal_tech = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
-		}
 	}
 
 	prereqfor_desc = {
@@ -201,10 +165,6 @@ tech_acean_research = {
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
-		}
 	}
 }
 
@@ -231,10 +191,6 @@ tech_acean_superorganism_larva = {
 			pd_can_have_crystal_tech = yes
 			is_regular_empire = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
-		}
 	}
 
 	prereqfor_desc = {
@@ -246,10 +202,6 @@ tech_acean_superorganism_larva = {
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
-		}
 	}
 }
 
@@ -276,18 +228,10 @@ tech_acean_medical_center = {
 			pd_can_have_crystal_tech = yes
 			is_hive_empire = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
-		}
 	}
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
-		}
 	}
 }
 
@@ -314,18 +258,10 @@ tech_acean_gestation_pools = {
 			add = 10
 			pd_can_have_crystal_tech = yes
 		}
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
-		}
 	}
 
 	ai_weight = {
 		factor = 5 #important resource
-		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_biology }
-		}
 	}
 }
 
@@ -362,17 +298,106 @@ tech_acean_resonators = {
 			add = 10
 			pd_can_have_crystal_tech = yes
 		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
+	}
+}
+
+#Biosynth World
+tech_biosynth_canals = {
+	icon = tech_biosynth_canals
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { biology }
+	prerequisites = { "tech_mine_living_metal" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_biosynth_tech = yes
+	}
+
+	prereqfor_desc = {
+		custom = {
+			title = "tech_biosynth_canals_tt_desc"
+			desc = "tech_biosynth_canals_desc"
+		}
+	}
+
+	weight_modifier = {
+		base = 0
 		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+			add = 10
+			pd_can_have_biosynth_tech = yes
+		}
+		modifier = {
+			factor = 0.01
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+				is_individual_machine = yes
+				has_origin = origin_synthetic_fertility
+			}
+			NOR = {
+				has_country_flag = non_lithoid_subspecies
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+				any_owned_planet = {
+					OR = {
+						num_districts = { type = district_farming value > 0 }
+						num_districts = { type = district_rw_farming value > 0 }
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+				AND = {
+					is_individual_machine = yes
+					NOT = { has_country_flag = non_lithoid_subspecies }
+				}
+			}
 		}
 	}
 
 	ai_weight = {
 		factor = 5 #important resource
+	}
+}
+
+tech_biosynth_cauldron = {
+	icon = tech_biosynth_cauldron
+	cost = @tier3cost3
+	area = engineering
+	tier = 3
+	category = { materials }
+	prerequisites = { "tech_mine_living_metal" }
+	weight = @tier3weight3
+	is_rare = yes
+	is_reverse_engineerable = no
+	start_tech = no
+
+	potential = {
+		pd_can_have_biosynth_tech = yes
+	}
+
+	weight_modifier = {
+		base = 0
 		modifier = {
-			factor = 1.25
-			has_trait_in_council = { TRAIT = leader_trait_expertise_industry }
+			add = 10
+			pd_can_have_biosynth_tech = yes
 		}
+	}
+
+	ai_weight = {
+		factor = 5 #important resource
 	}
 }
