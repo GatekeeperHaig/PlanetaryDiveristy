@@ -8,7 +8,7 @@
 
 @EdictDuration = -1
 
-#Eludium
+#Eludium - Floating World
 eludium_research = {
 	length = @EdictDuration
 	icon = "GFX_edict_type_time"
@@ -54,7 +54,6 @@ eludium_energy = {
 
 	modifier = {
 		planet_technician_produces_mult = 0.25
-
 	}
 
 	ai_weight = {
@@ -175,6 +174,100 @@ acean_shield_resonance = {
 	modifier = {
 		ship_shield_hardening_add = 0.2
 		ship_shield_regen_add_static = 5
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+
+#Living Metal - Biosynth World
+pd_living_metal_robot_assembly = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_biosynth_edicts
+		any_owned_pop = {
+			is_mechanical_species = yes
+		}
+	}
+
+	modifier = {
+		planet_pop_assembly_mult = 0.25
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+pd_living_metal_engineering = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_biosynth_edicts
+		any_owned_pop = {
+			is_mechanical_species = yes
+		}
+	}
+
+	modifier = {
+		country_engineering_tech_research_speed = 0.1
+		planet_researchers_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+pd_living_metal_ship_repair = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_biosynth_edicts
+		any_owned_pop = {
+			is_mechanical_species = yes
+		}
+	}
+
+	modifier = {
+		ship_repair_hull_mult = 0.1
+		ship_repair_armor_mult = 0.1
 	}
 
 	ai_weight = {
