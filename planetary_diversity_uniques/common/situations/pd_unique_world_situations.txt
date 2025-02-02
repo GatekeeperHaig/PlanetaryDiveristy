@@ -1,0 +1,86 @@
+situation_pd_biosynth_world = {
+	picture = GFX_evt_pd_biosynth
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+	complete_icon = GFX_situation_outcome_unknown
+	on_progress_complete = {
+		custom_tooltip = situation_unknown_outcome_approach
+		hidden_effect = {
+			situation_event = { id = pdbiosynth.230 }
+		}
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 200
+			custom_tooltip = situation_pd_biosynth_stage_effects
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 400
+			on_first_enter = {
+				situation_event = { id = pdbiosynth.210 }
+			}
+			custom_tooltip = situation_pd_biosynth_stage_effects
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 800
+			on_first_enter = {
+				situation_event = { id = pdbiosynth.220 }
+			}
+			custom_tooltip = situation_pd_biosynth_stage_effects
+		}
+	}
+	approach = {
+		name = situation_pd_biosynth_world_do_nothing
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			always = yes
+		}
+		allow = {
+			always = yes
+		}
+		on_select = {
+			custom_tooltip = approach_outcome_tooltip
+		}
+		default = yes
+	}
+	approach = {
+		name = situation_pd_biosynth_world_extra_funding
+		icon = GFX_situation_approach_energy_credits
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			always = yes
+		}
+		allow = {
+			always = yes
+		}
+		on_select = {
+			custom_tooltip = approach_outcome_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 10
+			}
+		}
+	}
+	monthly_progress = {
+		base = 1
+		modifier = {
+			desc = string_current_approach
+			add = 2
+			current_situation_approach = situation_pd_biosynth_world_extra_funding
+		}
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}

@@ -288,7 +288,7 @@ d_pd_planet_wide_canal_system = {
 
 	planet_modifier = {
 		district_farming_max = 20
-		planet_farmers_engineering_research_produces_add = 4
+		planet_farmers_engineering_research_produces_add = 3
 		planet_max_districts_mult = -0.4
 	}
 
@@ -306,7 +306,63 @@ d_pd_biosyth_canal = {
 
 	planet_modifier = {
 		district_farming_max = 10
-		planet_farmers_engineering_research_produces_add = 2
+		planet_farmers_engineering_research_produces_add = 1.5
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_pd_underground_cauldrons = {
+	icon = d_ancient_vault
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = no
+
+	#Regular Empire - Saved
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				has_country_flag = saved_unit_04s_children
+			}
+		}
+		modifier = {
+			job_pd_biosynth_engineer_per_pop = 0.05
+		}
+	}
+
+	#Gestalt - Saved
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				has_country_flag = saved_unit_04s_children
+			}
+		}
+		modifier = {
+			job_pd_biosynth_engineer_drone_per_pop = 0.05
+		}
+	}
+
+	#All Empries - Killed
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				has_country_flag = killed_unit_04s_children
+			}
+		}
+		modifier = {
+			planet_metallurgists_alloys_produces_add = 2
+			planet_metallurgists_sr_living_metal_produces_add = 0.25
+			planet_pop_assembly_mult = 0.25
+		}
 	}
 
 	drop_weight = {
