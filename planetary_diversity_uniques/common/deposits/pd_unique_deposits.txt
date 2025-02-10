@@ -286,10 +286,27 @@ d_pd_planet_wide_canal_system = {
 
 	use_weights_for_terraforming_swap_types = no
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { has_country_flag = killed_unit_04s_children }
+			}
+		}
 		district_farming_max = 20
 		planet_farmers_engineering_research_produces_add = 3
-		planet_max_districts_mult = -0.4
+		planet_max_districts_mult = -0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_country_flag = killed_unit_04s_children
+			}
+		}
+		district_farming_max = 20
+		planet_farmers_engineering_research_produces_add = 3
 	}
 
 	drop_weight = {
@@ -297,7 +314,7 @@ d_pd_planet_wide_canal_system = {
 	}
 }
 
-d_pd_biosyth_canal = {
+d_pd_biosynth_canal = {
 	icon = d_pd_planet_wide_canal_system
 	is_for_colonizable = yes
 	category = deposit_cat_rare
@@ -354,11 +371,11 @@ d_pd_underground_cauldrons = {
 		potential = {
 			exists = owner
 			owner = {
-				is_gestalt = yes
 				has_country_flag = killed_unit_04s_children
 			}
 		}
 		modifier = {
+			district_mining_max = 10
 			planet_metallurgists_alloys_produces_add = 2
 			planet_metallurgists_sr_living_metal_produces_add = 0.25
 			planet_pop_assembly_mult = 0.25

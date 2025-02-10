@@ -506,7 +506,7 @@ country_event = {
 		custom_tooltip = pdbiosynth.330.d.tooltip
 		hidden_effect = {
 			country_event = {
-				id = pdbiosynth.370s
+				id = pdbiosynth.370
 			}
 			set_country_flag = killed_unit_04s_children
 		}
@@ -545,7 +545,7 @@ country_event = {
 			add_trait = leader_trait_environmental_engineer_2
 			add_trait = leader_trait_homesteader_2
 			add_trait = leader_trait_destructive
-			#set_age = 64475
+			#set_age = 644075
 		}
 	}
 
@@ -599,6 +599,91 @@ country_event = {
 		name = pdbiosynth.350.a
 		give_technology = {
 			tech = tech_biosynth_trait
+		}
+	}
+}
+
+country_event = {
+	id = pdbiosynth.360
+	title = pdbiosynth.300.name
+	desc = pdbiosynth.360.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = ai_crisis_unit_04
+	}
+
+	option = {
+		name = pdbiosynth.360.a
+		custom_tooltip = pdbiosynth.360.a.tooltip
+	}
+}
+
+country_event = {
+	id = pdbiosynth.370
+	title = pdbiosynth.370.name
+	diplomatic_title = NAME_Unit_04
+	desc = pdbiosynth.370.desc
+	picture = GFX_conversation_bg_unit_04_evil
+	show_sound = par_portrait_12
+
+	is_triggered_only = yes
+
+	event_window_type = leader_recruit
+
+	immediate = {
+		ethic_leader_creator = {
+			SPECIES_CLASS = AI
+			LEADER_PORTRAIT = unit_04_evil
+			CLASS = commander
+			NAME = NAME_Unit_04
+			LEVEL = 4
+			GENDER = indeterminable
+			IMMORTAL_SPECIES = yes
+			IMMORTAL = yes
+			ETHIC = militarist
+			DESC = unit_04_evil_desc
+			CATCH_PHRASE = unit_04_evil_catch_phrase
+		}
+		last_created_leader = {
+			add_trait = subclass_commander_governor
+			add_trait = leader_trait_unit_04_evil
+			add_trait = leader_trait_environmental_engineer_2
+			add_trait = leader_trait_space_miner_2
+			add_trait = leader_trait_sadistic
+			#set_age = 644075
+		}
+	}
+
+	picture_event_data = {
+		portrait = event_target:ethic_leader
+		room = ethic_spaceship_room
+	}
+
+	option = {
+		name = pdbiosynth.370.a
+		allow = {
+			always = no
+		}
+	}
+
+	option = {
+		tag = dismiss_leader
+		name = pdbiosynth.370.dismiss
+		custom_tooltip = pdbiosynth.370.hire.tooltip
+		allow = {
+			always = no
+		}
+	}
+	option = {
+		name = pdbiosynth.370.hire
+		custom_tooltip = pdbiosynth.370.hire.tooltip
+		tag = hire_leader
+		hidden_effect = {
+			ethic_leader_hire_effect = {
+				GLOBAL_EVENT_TARGET = unit_04_evil
+			}
 		}
 	}
 }
