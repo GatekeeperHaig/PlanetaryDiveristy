@@ -1,0 +1,87 @@
+namespace = colony
+
+#Nemma World
+planet_event = {
+	id = colony.9000
+	title = "colony.9000.name"
+	desc = "colony.9000.desc"
+	picture = GFX_evt_pd_nemma
+	show_sound = event_alien_nature
+	location = ROOT
+	trackable = yes
+	event_chain = nemma_world_chain
+
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+	}
+
+	trigger = {
+		num_pops > 0
+		OR = {
+			is_planet_class = pc_continental
+			is_planet_class = pc_ocean
+		}
+		NOR = {
+			any_country = { has_country_flag = turtle_world_spawned }
+			has_planet_flag = colony_event
+		}
+	}
+
+	immediate = {
+		set_planet_flag = turtle_world_colony
+		set_planet_flag = colony_event
+		set_planet_entity = {
+			picture = pc_pd_nemma
+		}
+		remove_pd_modifier = yes
+		add_modifier = {
+			modifier = pd_nemma
+		}
+		owner = {
+			set_country_flag = turtle_world_spawned
+			begin_event_chain = {
+				event_chain = nemma_world_chain
+				target = this
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				owner = { NOT = { species_portrait = rep14 } }
+			}
+			text = "colony.9000.a"
+		}
+		name = {
+			trigger = {
+				owner = { species_portrait = rep14 }
+			}
+			text = "colony.9000.a.turtle"
+		}
+		owner = {
+			tooltip = {
+				begin_event_chain = {
+					event_chain = nemma_world_chain
+					target = this
+				}
+			}
+		}
+		add_modifier = {
+			modifier = "turtle_world_modifier"
+			days = -1
+		}
+		hidden_effect = {
+			planet_event = {
+				id = colony.9005 days = 700 random = 30
+			}
+		}
+	}
+}
