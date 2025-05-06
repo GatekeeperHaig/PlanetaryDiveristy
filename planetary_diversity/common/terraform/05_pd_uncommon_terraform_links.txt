@@ -12,6 +12,8 @@
 @machineTime = 7200
 @hiveCost = 10000
 @hiveTime = 7200
+@wildernessCost = 500
+@wildernessTime = 1080
 
 ### Superhabitable
 #Barrens
@@ -55,6 +57,87 @@ terraform_link = {
 	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_barren_superhabitable CLASS_TO = pc_pd_dry_superhabitable } } }
 }
 #Regular
+terraform_link = {
+	from = "pc_pd_wet_superhabitable"
+	to = "pc_pd_wet_superhabitable"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
+	from = "pc_pd_dry_superhabitable"
+	to = "pc_pd_dry_superhabitable"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
+	from = "pc_pd_cold_superhabitable"
+	to = "pc_pd_cold_superhabitable"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
 terraform_link = {
 	from = pc_pd_wet_superhabitable
 	to = pc_pd_dry_superhabitable
@@ -174,6 +257,87 @@ terraform_link = {
 }
 #Regular
 terraform_link = {
+	from = "pc_pd_wet_tidally_locked"
+	to = "pc_pd_wet_tidally_locked"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
+	from = "pc_pd_dry_tidally_locked"
+	to = "pc_pd_dry_tidally_locked"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
+	from = "pc_pd_cold_tidally_locked"
+	to = "pc_pd_cold_tidally_locked"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
 	from = pc_pd_wet_tidally_locked
 	to = pc_pd_dry_tidally_locked
     resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
@@ -289,6 +453,87 @@ terraform_link = {
 	ai_weight = { weight = 0 modifier = { weight = 2 should_terraform_trigger = { CLASS_FROM = pc_pd_barren_cave CLASS_TO = pc_pd_dry_cave } } }
 }
 #Regular
+terraform_link = {
+	from = "pc_pd_wet_cave"
+	to = "pc_pd_wet_cave"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
+	from = "pc_pd_dry_cave"
+	to = "pc_pd_dry_cave"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
+	from = "pc_pd_cold_cave"
+	to = "pc_pd_cold_cave"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
 terraform_link = {
 	from = pc_pd_wet_cave
 	to = pc_pd_dry_cave

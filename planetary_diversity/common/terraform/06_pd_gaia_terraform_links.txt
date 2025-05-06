@@ -3,8 +3,37 @@
 @machineTime = 7200
 @hiveCost = 10000
 @hiveTime = 7200
+@wildernessCost = 500
+@wildernessTime = 1080
 
 #From Wet Gaia
+terraform_link = {
+	from = "pc_pd_wet_gaia"
+	to = "pc_pd_wet_gaia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
 terraform_link = {
 	from = pc_pd_wet_gaia
 	to = pc_pd_dry_gaia
@@ -15,6 +44,10 @@ terraform_link = {
 		cost = {
 			energy = @basicTypeCost
 		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
 	}
 
 	duration = 1800
@@ -34,6 +67,10 @@ terraform_link = {
 		cost = {
 			energy = @basicTypeCost
 		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
 	}
 
 	duration = 1800
@@ -132,6 +169,33 @@ terraform_link = {
 
 #From Cold Gaia
 terraform_link = {
+	from = "pc_pd_cold_gaia"
+	to = "pc_pd_cold_gaia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
 	from = pc_pd_cold_gaia
 	to = pc_pd_wet_gaia
 
@@ -141,6 +205,10 @@ terraform_link = {
 		cost = {
 			energy = @basicTypeCost
 		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
 	}
 
 	duration = 1800
@@ -160,6 +228,10 @@ terraform_link = {
 		cost = {
 			energy = @basicTypeCost
 		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
 	}
 
 	duration = 1800
@@ -258,6 +330,33 @@ terraform_link = {
 
 #From Dry Gaia
 terraform_link = {
+	from = "pc_pd_dry_gaia"
+	to = "pc_pd_dry_gaia"
+
+	resources = {
+		category = terraforming
+
+		cost = {
+			biomass = @wildernessCost
+		}
+	}
+
+	duration = @wildernessTime
+
+	potential = {
+		has_origin = origin_wilderness
+		from = { is_colony = no }
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass_special
+	}
+}
+terraform_link = {
 	from = pc_pd_dry_gaia
 	to = pc_pd_cold_gaia
 
@@ -267,6 +366,10 @@ terraform_link = {
 		cost = {
 			energy = @basicTypeCost
 		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
 	}
 
 	duration = 1800
@@ -286,6 +389,10 @@ terraform_link = {
 		cost = {
 			energy = @basicTypeCost
 		}
+	}
+
+	inline_script = {
+		script = terraform/wilderness_biomass
 	}
 
 	duration = 1800

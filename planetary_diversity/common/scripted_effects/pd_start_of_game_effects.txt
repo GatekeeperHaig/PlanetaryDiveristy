@@ -695,6 +695,7 @@ generate_pd_regular_planet = {
 	generate_start_buildings_and_districts = yes
 	generate_home_planet_final_pass = yes
 	check_planet_employment = yes
+	pd_final_check = yes
 }
 
 generate_pd_uncommon_planet = {
@@ -704,4 +705,28 @@ generate_pd_uncommon_planet = {
 	generate_start_buildings_and_districts = yes
 	generate_home_planet_final_pass = yes
 	check_planet_employment = yes
+	pd_final_check = yes
+}
+
+pd_final_check = {
+	if = {
+		limit = {
+			owner = {
+				has_origin = origin_starlit_citadel
+			}
+		}
+		add_building = building_citadel_uplink
+		add_deposit = d_bioship_remains
+		add_deposit = d_invasion_site
+		add_deposit = d_invasion_site
+		every_deposit = {
+			limit = {
+				OR = {
+					is_deposit_type = d_decrepit_dwellings
+					is_deposit_type = d_failing_infrastructure
+				}
+			}
+			remove_deposit = yes
+		}
+	}
 }
