@@ -23,6 +23,7 @@ trait_hive_mind = {
 	species_possible_merge_add = {
 		always = no
 	}
+	tags = { organic leader special }
 
 	modifier = {}
 
@@ -54,6 +55,7 @@ trait_machine_unit = {
 
 	icon = "gfx/interface/icons/traits/trait_machine_unit.dds"
 	allowed_archetypes = { MACHINE ROBOT }
+	tags = { machine positive habitability leader special }
 
 	immortal_leaders = no
 
@@ -111,6 +113,7 @@ trait_mechanical = {
 	immortal_leaders = no
 
 	allowed_archetypes = { ROBOT MACHINE}
+	tags = { machine positive leader special }
 
 	leader_age_min = 1
 	leader_age_max = 10
@@ -135,8 +138,7 @@ trait_mechanical = {
 
 trait_syncretic_proles = {
 	cost = 1
-	potential_crossbreeding_chance = 0.33
-	opposites = { "trait_intelligent" "trait_erudite" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" "trait_machine_unit" }
+	opposites = { "trait_intelligent" "trait_erudite" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" "trait_machine_unit" "trait_talented" "trait_quick_learners" "trait_slow_learners" "trait_enduring" "trait_venerable" "trait_fleeting" "trait_fleeting_lithoid" "trait_humanoid_jinxed" "trait_decadent" "trait_elevated_synapses" "trait_gene_mentorship" "trait_artificial_intelligence" }
 	initial = no
 	randomized = no
 	species_potential_add = {
@@ -154,11 +156,12 @@ trait_syncretic_proles = {
 	icon = "gfx/interface/icons/traits/trait_primitive.dds"
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive happiness production blocks_leaders special }
 
-	custom_tooltip = TRAIT_SYNCRETIC_PROLES_EFFECT
+	custom_tooltip_with_modifiers = TRAIT_SYNCRETIC_PROLES_EFFECT
 	modifier = {
 		pop_happiness = 0.10
-		planet_jobs_produces_mult = 0.10
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.10
 	}
 	slave_cost = {
 		energy = 500
@@ -167,7 +170,6 @@ trait_syncretic_proles = {
 
 trait_lithoid = {
 	cost = 0
-	potential_crossbreeding_chance = 0
 
 	sorting_priority = 20
 
@@ -188,6 +190,7 @@ trait_lithoid = {
 	leader_age_max = 38
 
 	allowed_archetypes = { LITHOID }
+	tags = { organic positive habitability leader army lithoid special }
 	ai_weight = {
 		weight = 0
 	}
@@ -196,8 +199,8 @@ trait_lithoid = {
 
 	custom_tooltip = TRAIT_LITHOID_EFFECT
 	modifier = {
-		pop_growth_speed = -0.25
-		planet_pop_assembly_organic_mult = -0.25
+		logistic_growth_mult = -0.25
+		#planet_pop_assembly_organic_mult = -0.25	# TODO AUG-52341
 		pop_environment_tolerance = 0.5
 		army_health = 0.5
 		leader_lifespan_add = 50
@@ -232,6 +235,14 @@ trait_aquatic = {
 
 	inline_script = "traits/pd_aquatic_allowed_planet_classes"
 
+
+	allowed_planet_classes_override = {
+		hidden_trigger = {
+			can_add_auto_preference_traits = yes
+			can_add_or_remove_phenotype_traits = yes
+		}
+	}
+
 	species_possible_remove = {
 		if = {
 			limit = {
@@ -261,6 +272,7 @@ trait_aquatic = {
 	initial = yes
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive production habitability drawbacks special }
 
 	ai_weight = {
 		weight = 1
@@ -271,7 +283,7 @@ trait_aquatic = {
 	}
 
 	custom_tooltip_with_modifiers = trait_aquatic_tooltip
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -283,11 +295,9 @@ trait_aquatic = {
 			}
 		}
 		pop_housing_usage_mult = -0.1
-		planet_jobs_food_produces_mult = 0.1
-		planet_jobs_minerals_produces_mult = 0.1
-		planet_jobs_energy_produces_mult = 0.1
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.1
 	}
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -301,11 +311,9 @@ trait_aquatic = {
 			}
 		}
 		pop_housing_usage_mult = -0.05
-		planet_jobs_food_produces_mult = 0.05
-		planet_jobs_minerals_produces_mult = 0.05
-		planet_jobs_energy_produces_mult = 0.05
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.05
 	}
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -317,9 +325,9 @@ trait_aquatic = {
 				is_ideal = no
 			}
 		}
-		pop_housing_usage_mult = 0.3
+		pop_housing_usage_mult = 0.15
 	}
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -333,7 +341,7 @@ trait_aquatic = {
 				}
 			}
 		}
-		pop_housing_usage_mult = 0.15
+		pop_housing_usage_mult = 0.1
 	}
 	# To make it be able to evaluate habitability of planet it has not settled yet. Only applies to this species
 	triggered_planet_growth_habitability_modifier = {
@@ -428,6 +436,7 @@ trait_robot_aquatic = {
 	initial = yes
 
 	allowed_archetypes = { MACHINE ROBOT }
+	tags = { machine positive production drawbacks special }
 
 	ai_weight = {
 		weight = 1
@@ -438,7 +447,7 @@ trait_robot_aquatic = {
 	}
 
 	custom_tooltip_with_modifiers = trait_robot_aquatic_tooltip
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -450,11 +459,9 @@ trait_robot_aquatic = {
 			}
 		}
 		pop_housing_usage_mult = -0.1
-		planet_jobs_food_produces_mult = 0.1
-		planet_jobs_minerals_produces_mult = 0.1
-		planet_jobs_energy_produces_mult = 0.1
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.1
 	}
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -468,11 +475,9 @@ trait_robot_aquatic = {
 			}
 		}
 		pop_housing_usage_mult = -0.05
-		planet_jobs_food_produces_mult = 0.05
-		planet_jobs_minerals_produces_mult = 0.05
-		planet_jobs_energy_produces_mult = 0.05
+		worker_and_simple_drone_cat_bonus_workforce_mult = 0.05
 	}
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -484,9 +489,9 @@ trait_robot_aquatic = {
 				is_ideal = no
 			}
 		}
-		pop_housing_usage_mult = 0.3
+		pop_housing_usage_mult = 0.15
 	}
-	triggered_pop_modifier = {
+	triggered_pop_group_modifier = {
 		potential = {
 			exists = planet
 			planet = {
@@ -500,7 +505,7 @@ trait_robot_aquatic = {
 				}
 			}
 		}
-		pop_housing_usage_mult = 0.15
+		pop_housing_usage_mult = 0.1
 	}
 	# To make it be able to evaluate habitability of planet it has not settled yet. Only applies to this species
 	triggered_planet_growth_habitability_modifier = {
@@ -564,8 +569,7 @@ trait_robot_aquatic = {
 
 trait_necrophage = {
 	cost = 0
-	potential_crossbreeding_chance = 0
-	opposites = { "trait_plantoid_budding" "trait_lithoid_budding" "trait_advanced_budding" "trait_tiyanki" }
+	opposites = { "trait_plantoid_budding" "trait_lithoid_budding" "trait_tiyanki" }
 	sorting_priority = 20
 
 	initial = no
@@ -582,6 +586,7 @@ trait_necrophage = {
 	immortal_leaders = no
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive production leader drawbacks special }
 	ai_weight = {
 		weight = 0
 	}
@@ -590,14 +595,14 @@ trait_necrophage = {
 
 	modifier = {
 		leader_lifespan_add = 80
-		pop_growth_speed = -0.75
-		planet_pop_assembly_organic_mult = -0.5
+		logistic_growth_mult = -0.75
+		#planet_pop_assembly_organic_mult = -0.5	# TODO AUG-52341
 		planet_pops_organics_food_upkeep_mult = -0.5
 		planet_pops_organics_minerals_upkeep_mult = -0.5
 		planet_pops_organics_energy_upkeep_mult = -0.5
-		planet_jobs_ruler_produces_mult = 0.05
-		planet_jobs_specialist_only_produces_mult = 0.05
-		planet_jobs_worker_only_produces_mult = -0.1
+		pop_cat_ruler_bonus_workforce_mult = 0.05
+		pop_cat_specialist_bonus_workforce_mult = 0.05
+		pop_cat_worker_bonus_workforce_mult = -0.1
 	}
 
 	custom_tooltip_with_modifiers = trait_necrophage_gestalt_tooltip
@@ -605,21 +610,32 @@ trait_necrophage = {
 
 trait_clone_soldier_infertile = {
 	cost = 0
-	potential_crossbreeding_chance = 0
-	opposites = { "trait_slow_breeders" "trait_rapid_breeders" "trait_plantoid_budding" "trait_lithoid_budding" "trait_advanced_budding" "trait_vat_grown" "trait_tiyanki" "trait_humanoid_psychological_infertility" "trait_humanoid_existential_iteroparity" }
+	opposites = { "trait_fertile" "trait_slow_breeders" "trait_rapid_breeders" "trait_clone_soldier_infertile_full_potential" "trait_clone_soldier_fertile" "trait_plantoid_budding" "trait_lithoid_budding" "trait_tiyanki" "trait_humanoid_psychological_infertility" "trait_humanoid_existential_iteroparity" "trait_egg_laying" }
 	sorting_priority = 20
 
 	initial = no
 	randomized = no
 	improves_leaders = yes
 	species_potential_add = {
-		always = no
+		can_add_cloning_traits = yes
+		hidden_trigger = {
+			exists = from
+			from = {
+				has_country_flag = clone_army_full_potential
+			}
+		}
 	}
 	species_possible_remove = {
 		always = no
 	}
 	species_possible_merge_add = {
-		always = no
+		can_add_cloning_traits = yes
+		hidden_trigger = {
+			exists = from
+			from = {
+				has_country_flag = clone_army_full_potential
+			}
+		}
 	}
 	immortal_leaders = no
 	infertile = yes
@@ -628,13 +644,13 @@ trait_clone_soldier_infertile = {
 	leader_age_max = 20
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive army ethic_attraction drawbacks special }
 	ai_weight = {
 		weight = 0
 	}
 
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_clone_soldier.dds"
 
-	custom_tooltip_with_modifiers = genelock_trait_tooltip
 	modifier = {
 		# Pop modifiers
 		pop_government_ethic_attraction = 0.50
@@ -647,8 +663,7 @@ trait_clone_soldier_infertile = {
 
 trait_clone_soldier_infertile_full_potential = {
 	cost = 0
-	potential_crossbreeding_chance = 0
-	opposites = { "trait_slow_breeders" "trait_rapid_breeders" "trait_plantoid_budding" "trait_lithoid_budding" "trait_advanced_budding" "trait_vat_grown" "trait_tiyanki" "trait_humanoid_psychological_infertility" "trait_humanoid_existential_iteroparity" }
+	opposites = { "trait_fertile" "trait_slow_breeders" "trait_rapid_breeders" "trait_clone_soldier_infertile" "trait_clone_soldier_fertile" "trait_plantoid_budding" "trait_lithoid_budding" "trait_tiyanki" "trait_humanoid_psychological_infertility" "trait_humanoid_existential_iteroparity" "trait_egg_laying" }
 	sorting_priority = 20
 
 	initial = no
@@ -670,19 +685,19 @@ trait_clone_soldier_infertile_full_potential = {
 	leader_age_max = 20
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive army ethic_attraction production drawbacks special }
 	ai_weight = {
 		weight = 0
 	}
 
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_clone_soldier_ascendant.dds"
 
-	custom_tooltip_with_modifiers = genelock_trait_tooltip
 	modifier = {
 		# Pop modifiers
 		pop_government_ethic_attraction = 0.50
 		pop_environment_tolerance = 0.20
-		planet_jobs_ruler_produces_mult = 0.4
-		planet_jobs_specialist_produces_mult = 0.25
+		pop_cat_ruler_bonus_workforce_mult = 0.4
+		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.25
 
 		# Leader modifiers
 		army_damage_mult = 0.75
@@ -695,7 +710,7 @@ trait_clone_soldier_infertile_full_potential = {
 
 trait_clone_soldier_fertile = {
 	cost = 0
-	opposites = { "trait_vat_grown" }
+	opposites = { "trait_vat_grown" "trait_clone_soldier_infertile" "trait_clone_soldier_infertile_full_potential" }
 	sorting_priority = 20
 
 	initial = no
@@ -714,6 +729,7 @@ trait_clone_soldier_fertile = {
 	infertile = no
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive army ethic_attraction special }
 	ai_weight = {
 		weight = 0
 	}
@@ -734,8 +750,7 @@ trait_clone_soldier_fertile = {
 
 trait_cave_dweller = {
 	cost = 0
-	potential_crossbreeding_chance = 0
-	opposites = { "trait_plantoid_phototrophic" "trait_aquatic" "trait_advanced_phototrophic" }
+	opposites = { "trait_plantoid_phototrophic" "trait_aquatic"  }
 	sorting_priority = 20
 
 	initial = no
@@ -753,6 +768,7 @@ trait_cave_dweller = {
 	}
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive habitability mineral production interesting special }
 	ai_weight = {
 		weight = 0
 	}
@@ -761,20 +777,17 @@ trait_cave_dweller = {
 	custom_tooltip_with_modifiers = trait_cave_dweller_tooltip
 	modifier = {
 		habitability_floor_add = 0.5
-		planet_jobs_minerals_produces_mult = 0.15
+		miner_jobs_bonus_workforce_mult = 0.15
 		species_empire_size_mult = 0.10
 	}
 	triggered_planet_growth_habitability_modifier = {
 		potential = {
-			exists = planet
-			planet = {
-				exists = growing_species
-				growing_species = {
-					is_archetype = BIOLOGICAL
-				}
+			exists = from
+			from = {
+				is_archetype = BIOLOGICAL
 			}
 		}
-		pop_growth_speed = -0.20
+		logistic_growth_mult = -0.20
 	}
 	slave_cost = {
 		energy = 500
@@ -793,7 +806,6 @@ trait_cave_dweller = {
 
 trait_robot_cave_dweller = {
 	cost = 0
-	potential_crossbreeding_chance = 0
 	opposites = { "trait_robot_aquatic" }
 	sorting_priority = 20
 
@@ -811,6 +823,7 @@ trait_robot_cave_dweller = {
 	}
 
 	allowed_archetypes = { MACHINE ROBOT }
+	tags = { machine positive habitability mineral production special }
 	ai_weight = {
 		weight = 0
 	}
@@ -819,7 +832,7 @@ trait_robot_cave_dweller = {
 	custom_tooltip_with_modifiers = trait_robot_cave_dweller_tooltip
 	modifier = {
 		habitability_floor_add = 0.5
-		planet_jobs_minerals_produces_mult = 0.15
+		miner_jobs_bonus_workforce_mult = 0.15
 		species_empire_size_mult = 0.10
 	}
 	triggered_planet_growth_habitability_modifier = {
@@ -842,7 +855,6 @@ trait_robot_cave_dweller = {
 
 trait_perfected_genes = {
 	cost = 0
-	potential_crossbreeding_chance = 0
 	opposites = { trait_fleeting trait_weak }
 	sorting_priority = 20
 
@@ -859,6 +871,7 @@ trait_perfected_genes = {
 	}
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
+	tags = { organic positive leader drawbacks special }
 	ai_weight = {
 		weight = 0
 	}

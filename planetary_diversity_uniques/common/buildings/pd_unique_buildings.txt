@@ -8,6 +8,11 @@ building_pd_eludium_floating_resort = {
 
 	category = amenity
 
+	building_sets = {
+		urban
+		trade
+	}
+
 	potential = {
 		NOR = {
 			has_modifier = slave_colony
@@ -48,7 +53,7 @@ building_pd_eludium_floating_resort = {
 	planet_modifier = {
 		job_resort_worker_add = 3
 		job_entertainer_add = 3
-		trade_value_mult = 0.25
+		planet_jobs_trade_produces_mult = 0.25
 	}
 
 	prerequisites = {
@@ -73,6 +78,11 @@ building_pd_eludium_floating_overseer = {
 	base_cap_amount = 1
 
 	category = amenity
+
+	building_sets = {
+		urban
+		trade
+	}
 
 	potential = {
 		NOT = {	has_modifier = pd_floating }
@@ -114,7 +124,7 @@ building_pd_eludium_floating_overseer = {
 			owner = { is_hive_empire = yes }
 		}
 		modifier = {
-			job_synapse_drone_add = 3
+			job_coordinator_add = 300
 		}
 	}
 
@@ -124,7 +134,7 @@ building_pd_eludium_floating_overseer = {
 			owner = { is_machine_empire = yes }
 		}
 		modifier = {
-			job_coordinator_add = 3
+			job_coordinator_add = 300
 		}
 	}
 	prerequisites = {
@@ -164,6 +174,12 @@ building_pd_acean_medical_center = {
 
 	category = amenity
 
+	building_sets = {
+		urban
+		research
+		society
+	}
+
 	allow = {
 		has_upgraded_capital = yes
 		NOT = {	has_modifier = pd_crystal }
@@ -196,7 +212,7 @@ building_pd_acean_medical_center = {
 	}
 
 	planet_modifier = {
-		job_head_researcher_add = 1
+		job_head_researcher_add = 100
 		job_healthcare_add = 4
 	}
 
@@ -222,6 +238,12 @@ building_pd_acean_gestation_chamber = {
 	base_buildtime = 720
 	base_cap_amount = 1
 	icon = building_pd_acean_medical_center
+
+	building_sets = {
+		urban
+		research
+		society
+	}
 
 	category = pop_assembly
 
@@ -348,6 +370,14 @@ building_pd_biosynth_cauldron = {
 
 	category = manufacturing
 
+	building_sets = {
+		government
+		urban
+		research
+		society
+		engineering
+	}
+
 	potential = {
 		NOR = {
 			has_modifier = slave_colony
@@ -427,9 +457,6 @@ building_pd_biosynth_cauldron = {
 				has_designation = col_ecu_foundry
 				has_designation = col_mac_foundry
 				has_designation = col_hiv_foundry
-				#Reginery
-				has_designation = col_refinery
-				has_designation = col_habitat_refinery
 			}
 		}
 		modifier = {
@@ -481,21 +508,6 @@ building_pd_biosynth_cauldron = {
 		}
 		modifier = {
 			planet_artisans_consumer_goods_produces_add = 4
-		}
-	}
-	#Refinery World - SRs
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			OR = {
-				has_designation = col_refinery
-				has_designation = col_habitat_refinery
-			}
-		}
-		modifier = {
-			planet_refiners_produces_mult = 1
-			planet_translucers_produces_mult = 1
-			planet_chemists_produces_mult = 1
 		}
 	}
 

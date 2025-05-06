@@ -1691,7 +1691,7 @@ decision_pd_aw_lithoid_change_frequency = {
 
 ###Planetary Superprojects
 @pd_planetary_superproject_time = 3600
-#Core Tap
+# #Core Tap
 decision_pd_aw_core_tap = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_core_tap
@@ -1717,20 +1717,23 @@ decision_pd_aw_core_tap = {
 	allow = {
 		if = {
 			limit = { owner = { is_ai = no } }
+			OR = {
+				num_districts = { type = district_generator value >= 3 }
+				num_districts = { type = district_generator_uncapped value >= 3 }
+			}
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_farming_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
 			custom_tooltip = {
 				fail_text = decision_pd_megacoretap_requirements
-				num_districts = { type = district_farming value < 1 }
-				num_districts = { type = district_mining value < 1 }
-				num_districts = { type = district_industrial value < 1 }
-				num_districts = { type = district_farming_uncapped value < 1 }
-				num_districts = { type = district_mining_uncapped value < 1 }
 			}
 		}
-		num_uncleared_blockers < 1
 		custom_tooltip = {
 			fail_text = decision_cant_be_building_anything
-			has_building_construction = no
+			num_uncleared_blockers < 1
 		}
+		has_building_construction = no
 	}
 
 	resources = {
@@ -1769,7 +1772,7 @@ decision_pd_aw_core_tap = {
 		weight = 10
 	}
 }
-#Agriworld
+# #Agriworld
 decision_pd_aw_agriworld = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_agriworld
@@ -1795,13 +1798,16 @@ decision_pd_aw_agriworld = {
 	allow = {
 		if = {
 			limit = { owner = { is_ai = no } }
+			OR = {
+				num_districts = { type = district_farming value >= 3 }
+				num_districts = { type = district_farming_uncapped value >= 3 }
+			}
+			num_districts = { type = district_generator value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator_uncapped value < 1 }
+			num_districts = { type = district_mining_uncapped value < 1 }
 			custom_tooltip = {
 				fail_text = decision_pd_agriworld_requirements
-				num_districts = { type = district_generator value < 1 }
-				num_districts = { type = district_mining value < 1 }
-				num_districts = { type = district_industrial value < 1 }
-				num_districts = { type = district_generator_uncapped value < 1 }
-				num_districts = { type = district_mining_uncapped value < 1 }
 			}
 		}
 		num_uncleared_blockers < 1
@@ -1847,7 +1853,7 @@ decision_pd_aw_agriworld = {
 		weight = 10
 	}
 }
-#Stripmine
+# #Stripmine
 decision_pd_aw_stripmine = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_stripmine
@@ -1875,18 +1881,21 @@ decision_pd_aw_stripmine = {
 			limit = { owner = { is_ai = no } }
 			custom_tooltip = {
 				fail_text = decision_pd_stripmine_requirements
+				OR = {
+					num_districts = { type = district_mining value >= 3 }
+					num_districts = { type = district_mining_uncapped value >= 3 }
+				}
 				num_districts = { type = district_generator value < 1 }
 				num_districts = { type = district_farming value < 1 }
-				num_districts = { type = district_industrial value < 1 }
 				num_districts = { type = district_farming_uncapped value < 1 }
 				num_districts = { type = district_generator_uncapped value < 1 }
 			}
 		}
-		num_uncleared_blockers < 1
 		custom_tooltip = {
 			fail_text = decision_cant_be_building_anything
 			has_building_construction = no
 		}
+		num_uncleared_blockers < 1
 	}
 
 	resources = {

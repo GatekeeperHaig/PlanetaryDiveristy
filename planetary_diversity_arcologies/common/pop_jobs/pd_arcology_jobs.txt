@@ -1,9 +1,13 @@
 #Naval Admin Jobs
 pd_naval_admin = {
 	category = specialist
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stronghold
-	clothes_texture_index = 4
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_navel_command
+		}
+	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -46,8 +50,8 @@ pd_naval_admin = {
 		mult = value:bellicose_naval_cap
 	}
 
-	pop_modifier = {
-		pop_defense_armies_add = 1
+	planet_modifier = {
+		planet_defense_armies_add = 1
 	}
 
 	resources = {
@@ -77,19 +81,19 @@ pd_naval_admin = {
 			factor = 0.1
 			can_take_servant_job = yes
 		}
-		modifier = {
-			factor = 1.5
-			has_job = pd_naval_admin
-		}
 	}
 }
 
 #Naval Admin - Gestalt
 pd_naval_admin_gestalt = {
 	category = complex_drone
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_stronghold
-	clothes_texture_index = 4
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_navel_command
+		}
+	}
 
 	country_modifier = {
 		country_naval_cap_add = 6
@@ -118,8 +122,8 @@ pd_naval_admin_gestalt = {
 		}
 	}
 
-	pop_modifier = {
-		pop_defense_armies_add = 1
+	planet_modifier = {
+		planet_defense_armies_add = 1
 	}
 
 	possible_pre_triggers = {
@@ -173,7 +177,7 @@ pd_naval_admin_gestalt = {
 		}
 		modifier = {
 			factor = 0
-			planet = { num_pops < 12 }
+			planet = { pop_amount < 12 }
 			owner = { is_ai = yes }
 		}
 		modifier = {
@@ -190,9 +194,12 @@ pd_naval_admin_gestalt = {
 #Rogue Servitor Politician
 pd_capital_bio_politician = {
 	category = bio_trophy
-	#is_capped_by_modifier = yes
-	clothes_texture_index = 4
-	building_icon = building_senate_building
+
+	swappable_data = {
+		default = {
+			building_icon = building_senate_building
+		}
+	}
 
 	possible_pre_triggers = {
 		is_sapient = yes
@@ -205,9 +212,6 @@ pd_capital_bio_politician = {
 	resources = {
 		category = planet_bio_trophies
 		produces = {
-			trigger = {
-				happiness >= 0.5
-			}
 			unity = 3
 		}
 		upkeep = {
@@ -217,15 +221,9 @@ pd_capital_bio_politician = {
 	}
 
 	triggered_planet_modifier = {
-		potential = {
-			happiness >= 0.5
-		}
 		modifier = {
 			planet_jobs_complex_and_simple_drone_produces_mult = 0.025
 		}
-	}
-	triggered_pop_modifier = {
-		pop_housing_usage_add = -1.5
 	}
 
 	weight = {
@@ -249,10 +247,14 @@ pd_capital_bio_politician = {
 #Rangers - Gestalt
 pd_robo_ranger = {
 	category = simple_drone
-	condition_string = DRONE_JOB_TRIGGER
-	building_icon = holding_park_ranger_lodge
-	clothes_texture_index = 1
-	icon = ranger
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = holding_park_ranger_lodge
+			icon = ranger
+		}
+	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -277,18 +279,6 @@ pd_robo_ranger = {
 		}
 		planet_amenities_add = 3
 		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
-	}
-
-	weight = {
-		weight = @simple_drone_job_weight
-		mult = value:job_weights_research_modifier|JOB|brain_drone|
-		modifier = {
-			factor = 0.9
-			exists = owner
-			years_passed < 1
-			owner = { has_valid_civic = civic_machine_assimilator }
-			has_trait = trait_cybernetic
-		}
 	}
 
 	inline_script = "jobs/automodding_priority_research"

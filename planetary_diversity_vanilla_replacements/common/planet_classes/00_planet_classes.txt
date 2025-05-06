@@ -3,6 +3,8 @@
 # Effects are set in particle effect for each star
 # New planets also need planet tiles (game\gfx\interface\icons\tile_backgrounds)
 # New planets need surface background (game\gfx\portraits\environments)
+
+# TODO_CD: needs change as max buildings modifier is now obsolete
 # All planet classes generates their own max_buildings_add modifiers that can be used to increase only that specific planet class' building slots
 
 ### EXAMPLE:
@@ -22,7 +24,6 @@
 #	max_distance_from_sun = 80
 #	spawn_odds = 10
 #
-#	building_set = ""  # If assigned only buildings with a matching building set will be possible to build
 #
 #	extra_orbit_size = 0
 #	extra_planet_count = 0
@@ -58,6 +59,10 @@ pc_desert = {
 
 	climate = "dry"
 	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
 
 	entity_scale = @planet_standard_scale
 
@@ -97,6 +102,10 @@ pc_arid = {
 	climate = "dry"
 	initial = yes
 
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
 	atmosphere_color		= hsv { 0.50 0.3 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -131,6 +140,10 @@ pc_savannah = {
 	climate = "dry"
 	initial = yes
 
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
 	atmosphere_color		= hsv { 0.50 0.3 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -157,6 +170,7 @@ pc_savannah = {
 	carry_cap_per_free_district = @carry_cap_normal
 }
 
+# Temperate
 pc_tropical = {
 	entity = "tropical_planet"
 	entity_scale = @planet_standard_scale
@@ -164,6 +178,10 @@ pc_tropical = {
 
 	climate = "wet"
 	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
 
 	atmosphere_color		= hsv { 0.58	0.3 0.7 }
 	atmosphere_intensity	= 1.0
@@ -198,6 +216,10 @@ pc_continental = {
 
 	climate = "wet"
 	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
 
 	atmosphere_color		= hsv { 0.59 0.45 0.95 }
 	atmosphere_intensity	= 1.0
@@ -234,6 +256,10 @@ pc_ocean = {
 	climate = "wet"
 	initial = yes
 
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
 	atmosphere_color		= hsv { 0.58 0.5 0.9 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -269,6 +295,10 @@ pc_tundra = {
 	climate = "cold"
 	initial = yes
 
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
 	atmosphere_color		= hsv { 0.58 0.3 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -303,6 +333,10 @@ pc_arctic = {
 	climate = "cold"
 	initial = yes
 
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
 	atmosphere_color		= hsv { 0.48 0.15 0.8 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -336,6 +370,10 @@ pc_alpine = {
 
 	climate = "cold"
 	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
 
 	atmosphere_color		= hsv { 0.48 0.15 0.8 }
 	atmosphere_intensity	= 1.0
@@ -588,6 +626,10 @@ pc_nuked = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_nuked
 
+	auto_trait_prio = {
+		trait_auto_pc_nuked_preference
+	}
+
 	atmosphere_color		= hsv { 0.6 0.4 0.5 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.85
@@ -632,9 +674,8 @@ pc_hive = {
 
 	modifier = {
 		planet_jobs_produces_mult = 0.10
-		planet_max_buildings_add = 12
-		job_spawning_drone_add = 1
 		planet_resettlement_unemployed_destination_mult = 0.5
+		pop_environment_tolerance = 1.0
 	}
 
 	spawn_odds = 0
@@ -654,6 +695,8 @@ pc_hive = {
 	show_city = no
 
 	carry_cap_per_free_district = @carry_cap_high
+
+	planet_custom_label_offset = 0.3
 }
 
 pc_machine = {
@@ -676,8 +719,6 @@ pc_machine = {
 		planet_jobs_produces_mult = 0.10
 		pop_housing_usage_mult = -0.10
 		pop_environment_tolerance = 0.0
-		planet_max_buildings_add = 12
-		job_replicator_add = 1
 		planet_resettlement_unemployed_destination_mult = 0.5
 	}
 
@@ -840,6 +881,10 @@ pc_gaia = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_gaia
 
+	auto_trait_prio = {
+		trait_auto_pc_gaia_preference
+	}
+
 	atmosphere_color		= hsv { 0.58	0.3 0.7 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -850,6 +895,7 @@ pc_gaia = {
 		planet_jobs_produces_mult = 0.10
 		pop_happiness = 0.10
 		planet_resettlement_unemployed_destination_mult = 0.5
+		pop_environment_tolerance = 1.0
 	}
 
 	min_distance_from_sun = 60
@@ -1251,9 +1297,13 @@ pc_ringworld_habitable = {
 	is_artificial_planet = yes
 	uses_alternative_skies_for_moons = yes
 
+	auto_trait_prio = {
+		trait_auto_pc_ringworld_habitable_preference
+	}
+
 	modifier = {
-		planet_max_buildings_add = 12
 		planet_resettlement_unemployed_destination_mult = 0.5
+		pop_environment_tolerance = 1.0
 	}
 
 	carry_cap_per_free_district = @carry_cap_high
@@ -1407,6 +1457,10 @@ pc_shattered_ring_habitable = {
 
 	is_artificial_planet = yes
 
+	auto_trait_prio = {
+		trait_auto_pc_ringworld_habitable_preference
+	}
+
 	carry_cap_per_free_district = @carry_cap_normal
 
 	modifier = {
@@ -1423,6 +1477,9 @@ pc_habitat = {
 	fixed_entity_scale = yes
 	place_entity_on_planet_plane = no
 	entity_face_object = no #disable rotation towards sun or planet we orbit around
+	auto_trait_prio = {
+		trait_auto_pc_habitat_preference
+	}
 	atmosphere_color		= hsv { 0.0 0.0 1.0 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
@@ -1435,6 +1492,7 @@ pc_habitat = {
 	moon_size = 1
 	colonizable = yes
 	district_set = habitat
+	starting_district = district_hab_housing
 #	ideal = yes
 	starting_planet = no
 	orbit_lines = no
@@ -1458,7 +1516,7 @@ pc_cosmogenesis_world = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	place_entity_on_planet_plane = no
+	place_entity_on_planet_plane = yes
 	entity_face_object = no #disable rotation towards sun or planet we orbit around
 	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
 	atmosphere_intensity	= 1.0
@@ -1472,7 +1530,7 @@ pc_cosmogenesis_world = {
 	moon_size = 1
 	colonizable = yes
 	district_set = cosmogenesis_world
-	building_set = cosmogenesis_world
+	starting_district = district_cosmogenesis_goverment
 	#holdings = no
 	#ideal = yes
 	starting_planet = no
@@ -1483,13 +1541,18 @@ pc_cosmogenesis_world = {
 	default_planet_selection = yes
 	inherit_country_building_modifiers = no
 
+	auto_trait_prio = {
+		trait_auto_pc_cosmogenesis_world_preference
+	}
+
 	modifier = {
 		pop_environment_tolerance = 0.85
-		pop_growth_speed = -1.0
+		logistic_growth_mult = -1
 		planet_crime_mult = -1
 	}
 
 	carry_cap_per_free_district = @carry_cap_low
+	can_be_invaded = no
 }
 
 ##########################
@@ -1581,7 +1644,7 @@ pc_toxoid_star = {
 
 	colonizable = no
 
-	planet_custom_label_offset = 100
+	planet_custom_label_offset = 0.03
 }
 
 ###############

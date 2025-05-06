@@ -2,7 +2,7 @@
 pd_aw_tree_of_life_bloomed = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_megaflora_hive_bloomed.dds"
 	icon_frame = 1
-	planet_max_buildings_add = 12
+	planet_max_buildings_add = 1002
 	planet_resettlement_unemployed_destination_mult = 0.5
 	planet_orbital_bombardment_damage = -1
 	planet_structures_cost_mult = 0.5
@@ -20,7 +20,7 @@ pd_aw_tree_of_life_home = {
 pd_aw_tree_of_life_growing = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_megaflora_hive_bloomed.dds"
 	icon_frame = 2
-	planet_jobs_produces_mult = -0.25
+	pop_bonus_workforce_mult = -0.25
 	planet_structures_cost_mult = 0.5
 }
 
@@ -36,7 +36,7 @@ pd_aw_no_lifetree = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_bleak.dds"
 	icon_frame = 3
 	planet_building_build_speed_mult = -0.5
-	planet_jobs_produces_mult = -0.25
+	pop_bonus_workforce_mult = -0.25
 	planet_jobs_upkeep_mult = 0.10
 	planet_stability_add = -5
 }
@@ -46,7 +46,7 @@ pd_no_lifetree_arcology = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_bleak.dds"
 	icon_frame = 2
 	planet_building_build_speed_mult = -0.25
-	planet_jobs_produces_mult = -0.1
+	pop_bonus_workforce_mult = -0.1
 	planet_jobs_upkeep_mult = 0.10
 	planet_stability_add = -5
 }
@@ -55,28 +55,22 @@ pd_no_lifetree_arcology = {
 pd_aw_wasteland_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_wasteland.dds"
 	icon_frame = 1
-	show_only_custom_tooltip = no
-	custom_tooltip = pd_aw_wasteland_planet_tooltip
-	habitability_ceil_add = -0.4
+	pop_bonus_workforce_mult = 0.1
 	planet_jobs_alloys_produces_mult = 1.0
 	planet_jobs_consumer_goods_produces_mult = 1.0
-	planet_refiners_produces_mult = 0.5
-	planet_translucers_produces_mult = 0.5
-	planet_chemists_produces_mult = 0.5
+	habitability_ceil_add = -0.4
+	planet_farmers_food_produces_mult = -2
 }
 
 #Wasteland for Regular PD
 pd_wasteland_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_wasteland.dds"
 	icon_frame = 1
-	show_only_custom_tooltip = no
-	custom_tooltip = pd_aw_wasteland_planet_tooltip
-	habitability_ceil_add = -0.4
+	pop_bonus_workforce_mult = 0.10
 	planet_jobs_alloys_produces_mult = 1.0
 	planet_jobs_consumer_goods_produces_mult = 1.0
-	planet_refiners_produces_mult = 0.5
-	planet_translucers_produces_mult = 0.5
-	planet_chemists_produces_mult = 0.5
+	habitability_ceil_add = -0.4
+	planet_farmers_food_produces_mult = -2
 }
 
 #Shroud
@@ -84,22 +78,22 @@ pd_aw_shroud_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_shroud.dds"
 	icon_frame = 1
 	custom_tooltip = pd_aw_shroud_planet_tooltip
-	planet_psionic_jobs_produces_mult = 0.2
+	planet_jobs_only_psionic_worker_produces_mult = 0.2
 	pop_environment_tolerance = -0.5
 	biological_pop_happiness = -0.25
 	lithoid_pop_happiness = -0.25
-	pop_growth_speed = -0.25
+	logistic_growth_mult = -0.25
 }
 
 pd_shroud_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_shroud.dds"
 	icon_frame = 1
 	custom_tooltip = pd_aw_shroud_planet_tooltip
-	planet_psionic_jobs_produces_mult = 0.2
+	planet_jobs_only_psionic_worker_produces_mult = 0.2
 	pop_environment_tolerance = -0.5
 	biological_pop_happiness = -0.25
 	lithoid_pop_happiness = -0.25
-	pop_growth_speed = -0.25
+	logistic_growth_mult = -0.25
 }
 
 #Flooded Deposits
@@ -109,8 +103,8 @@ ocean_paradise_2 = {
 	#planet_max_districts_mult = 0.20 #Saving for balance testing
 	planet_max_districts_add = 3
 	pop_happiness = 0.15
-	pop_growth_speed = 0.1
-	planet_jobs_produces_mult = 0.05
+	logistic_growth_mult = 0.1
+	pop_bonus_workforce_mult = 0.05
 }
 
 ocean_paradise_hive_2 = {
@@ -118,40 +112,42 @@ ocean_paradise_hive_2 = {
 	icon_frame = 1
 	#planet_max_districts_mult = 0.20 #Saving for balance testing
 	planet_max_districts_add = 3
-	planet_stability_add = 10
-	pop_growth_speed = 0.1
-	planet_jobs_produces_mult = 0.05
+	planet_stability_add = 1000
+	logistic_growth_mult = 0.1
+	pop_bonus_workforce_mult = 0.05
 }
 
 #Necro
 pd_aw_necro_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_necro.dds"
 	icon_frame = 1
-	custom_tooltip = pd_aw_necro_planet_tooltip
-	planet_administrators_unity_produces_add = 1
-	planet_priests_unity_produces_add = 1
+	#custom_tooltip = pd_aw_necro_planet_tooltip
+	planet_bureaucrats_unity_produces_add = 1
 	planet_orbital_bombardment_damage = -0.25
-	pop_growth_speed_reduction = 0.10
+	logistic_growth_mult = 0.10
+	pop_bonus_workforce_mult = 0.1
+	planet_farmers_food_produces_mult = -0.5
 }
 
 pd_necro_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_necro.dds"
 	icon_frame = 1
-	custom_tooltip = pd_aw_necro_planet_tooltip
-	planet_administrators_unity_produces_add = 1
-	planet_priests_unity_produces_add = 1
+	#custom_tooltip = pd_aw_necro_planet_tooltip
+	planet_bureaucrats_unity_produces_add = 1
 	planet_orbital_bombardment_damage = -0.25
-	pop_growth_speed_reduction = 0.10
+	logistic_growth_mult = 0.10
+	pop_bonus_workforce_mult = 0.1
+	planet_farmers_food_produces_mult = -0.5
 }
 
 pd_aw_necro_city_planet = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_necro.dds"
 	icon_frame = 1
 	custom_tooltip = pd_aw_necro_city_planet_tooltip
-	planet_administrators_unity_produces_add = 1
-	planet_priests_unity_produces_add = 01
+	planet_bureaucrats_unity_produces_add = 1
 	planet_orbital_bombardment_damage = -0.25
-	pop_growth_speed_reduction = 0.10
+	logistic_growth_mult = 0.10
+	pop_bonus_workforce_mult = 0.1
 }
 
 #Lithoidtrophic
@@ -159,11 +155,11 @@ pd_aw_necro_city_planet = {
 pd_aw_lithoid_planet_cyan = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_lithoid_cyan.dds"
 	icon_frame = 1
-	planet_jobs_unity_produces_mult = 0.25
-	LITHOID_pop_growth_speed = 0.25
+	planet_bureaucrats_unity_produces_add = 1
+	LITHOID_logistic_growth_mult = 0.25
 	LITHOID_POP_HAPPINESS = 0.25
 	BIOLOGICAL_POP_HAPPINESS = -0.5
-	BIOLOGICAL_pop_growth_speed_reduction = 0.5
+	BIOLOGICAL_logistic_growth_mult = -0.5
 }
 
 #Red
@@ -172,9 +168,9 @@ pd_aw_lithoid_planet_red = {
 	icon_frame = 1
 	planet_miners_minerals_produces_add = 2
 	LITHOID_POP_HAPPINESS = 0.25
-	LITHOID_pop_growth_speed = 0.1
+	LITHOID_logistic_growth_mult = 0.1
 	BIOLOGICAL_POP_HAPPINESS = -0.5
-	BIOLOGICAL_pop_growth_speed_reduction = 0.5
+	BIOLOGICAL_logistic_growth_mult = -0.5
 }
 
 #Yellow
@@ -183,9 +179,9 @@ pd_aw_lithoid_planet_yellow = {
 	icon_frame = 1
 	planet_technician_energy_produces_add = 2
 	LITHOID_POP_HAPPINESS = 0.25
-	LITHOID_pop_growth_speed = 0.1
+	LITHOID_logistic_growth_mult = 0.1
 	BIOLOGICAL_POP_HAPPINESS = -0.5
-	BIOLOGICAL_pop_growth_speed_reduction = 0.5
+	BIOLOGICAL_logistic_growth_mult = -0.5
 }
 
 #Superprojects
@@ -193,20 +189,32 @@ pd_aw_lithoid_planet_yellow = {
 pd_aw_core_tap = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_core_tap.dds"
 	icon_frame = 1
+	custom_tooltip = pd_aw_core_tap_tooltip
+	show_only_custom_tooltip = no
 	planet_technician_energy_produces_add = 3
+	district_mining_max = -15
+	district_farming_max = -15
 }
 
 #Agriworld
 pd_aw_agriworld = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_agriworld.dds"
 	icon_frame = 1
+	custom_tooltip = pd_aw_agriworld_tooltip
+	show_only_custom_tooltip = no
 	planet_farmers_food_produces_add = 3
+	district_generator_max = -15
+	district_mining_max = -15
 }
 
 #Stripmine
 pd_aw_stripmine = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_pd_aw_stripmine.dds"
 	icon_frame = 1
+	custom_tooltip = pd_aw_stripmine_tooltip
+	show_only_custom_tooltip = no
 	planet_miners_minerals_produces_add = 3
+	district_generator_max = -15
+	district_farming_max = -15
 }
 

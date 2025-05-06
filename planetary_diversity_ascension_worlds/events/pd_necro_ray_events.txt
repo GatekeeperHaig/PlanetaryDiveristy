@@ -184,7 +184,7 @@ planet_event = {
 			}
 		}
 
-		every_owned_pop = {
+		every_owned_pop_group = {
 			limit = {
 				OR = {
 					has_trait = trait_hive_mind
@@ -192,15 +192,15 @@ planet_event = {
 					has_trait = trait_machine_unit
 				}
 			}
-			kill_pop = yes
+			kill_all_pop = yes
 		}
-		every_owned_pop = {
+		every_owned_pop_group = {
 			limit = {
 				has_modifier = pop_recently_conquered
 			}
 			remove_modifier = pop_recently_conquered
 		}
-		every_owned_pop = {
+		every_owned_pop_group = {
 			limit = {
 				NOR = {
 					has_trait = trait_hive_mind
@@ -218,7 +218,7 @@ planet_event = {
 		}
 		if = {
 			limit = { #were there any Aquatic pops? If so, the ownership needs to be flipped
-				any_owned_pop = {
+				any_owned_pop_group = {
 					is_scope_valid = yes
 					exists = this
 				}

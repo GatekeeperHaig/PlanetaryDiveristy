@@ -1,10 +1,14 @@
-
-
 building_coordinated_fulfillment_center_1 = {
 	base_buildtime = @b1_time
 	base_cap_amount = 1
 
 	category = manufacturing
+
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
 
 	potential = {
 		exists = owner
@@ -12,14 +16,8 @@ building_coordinated_fulfillment_center_1 = {
 		NOR = {
 			has_modifier = resort_colony
 			has_modifier = slave_colony
+			pd_aw_is_wasteland_planet = yes
 		}
-		OR = {
-			owner = {
-				is_ai = no
-			}
-			has_any_industry_district = yes
-		}
-		pd_aw_is_wasteland_planet = no
 	}
 
 	destroy_trigger = {
@@ -28,12 +26,6 @@ building_coordinated_fulfillment_center_1 = {
 			owner = { is_relentless_industrialist_empire = no }
 			has_modifier = resort_colony
 			has_modifier = slave_colony
-			AND = {
-				owner = {
-					is_ai = yes
-				}
-				has_any_industry_district = no
-			}
 			pd_aw_is_wasteland_planet = yes
 		}
 	}
@@ -70,6 +62,7 @@ building_coordinated_fulfillment_center_1 = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
 		}
 		modifier = {
@@ -80,15 +73,17 @@ building_coordinated_fulfillment_center_1 = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { is_synthetic_empire = no }
 		}
 		modifier = {
-			pop_growth_speed_reduction = 0.15
+			logistic_growth_mult = -0.15
 		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
 				is_synthetic_empire = no
 				NAND = {
@@ -98,12 +93,13 @@ building_coordinated_fulfillment_center_1 = {
 			}
 		}
 		modifier = {
-			pop_growth_speed_reduction = 0.05
+			logistic_growth_mult = -0.05
 		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { is_synthetic_empire = yes }
 		}
 		modifier = {
@@ -113,6 +109,7 @@ building_coordinated_fulfillment_center_1 = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
 				owner = { is_synthetic_empire = yes }
 				NAND = {
@@ -174,18 +171,18 @@ building_coordinated_fulfillment_center_2 = {
 
 	category = manufacturing
 
+	building_sets = {
+		industrial
+		factory
+		foundry
+	}
+
 	destroy_trigger = {
 		exists = owner
 		OR = {
 			owner = { is_relentless_industrialist_empire = no }
 			has_modifier = resort_colony
 			has_modifier = slave_colony
-			AND = {
-				owner = {
-					is_ai = yes
-				}
-				has_any_industry_district = no
-			}
 			pd_aw_is_wasteland_planet = yes
 		}
 	}
@@ -214,6 +211,7 @@ building_coordinated_fulfillment_center_2 = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
 		}
 		modifier = {
@@ -224,15 +222,17 @@ building_coordinated_fulfillment_center_2 = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { is_synthetic_empire = no }
 		}
 		modifier = {
-			pop_growth_speed_reduction = 0.25
+			logistic_growth_mult = -0.25
 		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
 				is_synthetic_empire = no
 				NAND = {
@@ -242,12 +242,13 @@ building_coordinated_fulfillment_center_2 = {
 			}
 		}
 		modifier = {
-			pop_growth_speed_reduction = 0.15
+			logistic_growth_mult = -0.15
 		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { is_synthetic_empire = yes }
 		}
 		modifier = {
@@ -257,6 +258,7 @@ building_coordinated_fulfillment_center_2 = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
 				owner = { is_synthetic_empire = yes }
 				NAND = {
