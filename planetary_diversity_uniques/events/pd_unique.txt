@@ -66,3 +66,44 @@ country_event = {
 		}
 	}
 }
+
+#This event makes sure Unique Worlds Keep their Art after Wilderness Terraforming Colonization
+planet_event = {
+	id = pdunique.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_pd_unique_modifier = yes
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_modifier = pd_floating
+			}
+			set_planet_entity = {
+				picture = pc_pd_floating
+				entity = pd_floating_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_modifier = pd_crystal
+			}
+			set_planet_entity = {
+				picture = pc_pd_crystal
+				entity = pd_crystal_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_modifier = pd_biosynth
+			}
+			set_planet_entity = {
+				picture = pc_pd_biosynth
+				entity = pd_biosynth_planet_01_entity
+			}
+		}
+	}
+}

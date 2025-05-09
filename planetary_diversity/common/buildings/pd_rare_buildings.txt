@@ -3,6 +3,8 @@
 #Continetal
 #Megaflora Buildings
 building_megalfora_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = resource
@@ -15,8 +17,6 @@ building_megalfora_mine = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_megaflora
-		NOT = { has_building = building_megalfora_mine }
-		NOT = { has_building_construction = building_megalfora_mine }
 		NOT = { has_building = building_megalfora_lab }
 		NOT = { has_building_construction = building_megalfora_lab }
 		NOT = { has_building = building_megalfora_grid }
@@ -48,6 +48,8 @@ building_megalfora_mine = {
 	}
 }
 building_megalfora_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -58,8 +60,6 @@ building_megalfora_lab = {
 		has_modifier = pd_megaflora
 		NOT = { has_building = building_megalfora_mine }
 		NOT = { has_building_construction = building_megalfora_mine }
-		NOT = { has_building = building_megalfora_lab }
-		NOT = { has_building_construction = building_megalfora_lab }
 		NOT = { has_building = building_megalfora_grid }
 		NOT = { has_building_construction = building_megalfora_grid }
 	}
@@ -128,6 +128,8 @@ building_megalfora_lab = {
 	}
 }
 building_megalfora_grid = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = resource
@@ -144,8 +146,6 @@ building_megalfora_grid = {
 		NOT = { has_building_construction = building_megalfora_mine }
 		NOT = { has_building = building_megalfora_lab }
 		NOT = { has_building_construction = building_megalfora_lab }
-		NOT = { has_building = building_megalfora_grid }
-		NOT = { has_building_construction = building_megalfora_grid }
 		OR = {
 			owner = {
 				is_ai = no
@@ -177,6 +177,8 @@ building_megalfora_grid = {
 
 #Petrified Buildings
 building_petrified_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -189,8 +191,6 @@ building_petrified_mine = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_petrified
-		NOT = { has_building = building_petrified_mine }
-		NOT = { has_building_construction = building_petrified_mine }
 		NOT = { has_building = building_petrified_guild }
 		NOT = { has_building_construction = building_petrified_guild }
 		NOT = { has_building = building_petrified_lab }
@@ -222,6 +222,8 @@ building_petrified_mine = {
 	}
 }
 building_petrified_guild = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -237,8 +239,6 @@ building_petrified_guild = {
 		has_modifier = pd_petrified
 		NOT = { has_building = building_petrified_mine }
 		NOT = { has_building_construction = building_petrified_mine }
-		NOT = { has_building = building_petrified_guild }
-		NOT = { has_building_construction = building_petrified_guild }
 		NOT = { has_building = building_petrified_lab }
 		NOT = { has_building_construction = building_petrified_lab }
 	}
@@ -252,6 +252,8 @@ building_petrified_guild = {
 	}
 }
 building_petrified_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -264,8 +266,6 @@ building_petrified_lab = {
 		NOT = { has_building_construction = building_petrified_mine }
 		NOT = { has_building = building_petrified_guild }
 		NOT = { has_building_construction = building_petrified_guild }
-		NOT = { has_building = building_petrified_lab }
-		NOT = { has_building_construction = building_petrified_lab }
 	}
 
 	building_sets = {
@@ -335,6 +335,8 @@ building_petrified_lab = {
 #Ocean
 #Reef Buildings
 building_reef_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -343,8 +345,6 @@ building_reef_lab = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_reef
-		NOT = { has_building = building_reef_lab }
-		NOT = { has_building_construction = building_reef_lab }
 		NOT = { has_building = building_reef_guild }
 		NOT = { has_building_construction = building_reef_guild }
 		NOT = { has_building = building_reef_mine }
@@ -413,24 +413,31 @@ building_reef_lab = {
 	}
 }
 building_reef_guild = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
+	category = manufacturing
 
 	building_sets = {
 		industrial
 		factory
 	}
 
-	category = manufacturing
-
 	potential = {
 		exists = owner
-		owner = { is_gestalt = no }
-		NOT = { has_modifier = resort_colony }
+		owner = {
+			OR = {
+				country_uses_consumer_goods = yes
+				has_origin = origin_fear_of_the_dark
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+		}
 		has_modifier = pd_reef
 		NOT = { has_building = building_reef_lab }
 		NOT = { has_building_construction = building_reef_lab }
-		NOT = { has_building = building_reef_guild }
-		NOT = { has_building_construction = building_reef_guild }
 		NOT = { has_building = building_reef_mine }
 		NOT = { has_building_construction = building_reef_mine }
 	}
@@ -442,6 +449,8 @@ building_reef_guild = {
 	}
 }
 building_reef_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -458,8 +467,6 @@ building_reef_mine = {
 		NOT = { has_building_construction = building_reef_lab }
 		NOT = { has_building = building_reef_guild }
 		NOT = { has_building_construction = building_reef_guild }
-		NOT = { has_building = building_reef_mine }
-		NOT = { has_building_construction = building_reef_mine }
 		OR = {
 			owner = {
 				is_ai = no
@@ -489,6 +496,8 @@ building_reef_mine = {
 
 #Archipelago Buildings
 building_archipelago_foundry = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = manufacturing
@@ -502,8 +511,6 @@ building_archipelago_foundry = {
 		NOT = { has_modifier = resort_colony }
 		owner = { NOT = { is_catalytic_empire = yes } }
 		has_modifier = pd_archipelago
-		NOT = { has_building = building_archipelago_foundry }
-		NOT = { has_building_construction = building_archipelago_foundry }
 		NOT = { has_building = building_archipelago_farm }
 		NOT = { has_building_construction = building_archipelago_farm }
 		NOT = { has_building = building_archipelago_resort }
@@ -517,6 +524,8 @@ building_archipelago_foundry = {
 	}
 }
 building_archipelago_farm = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -534,8 +543,6 @@ building_archipelago_farm = {
 		has_modifier = pd_archipelago
 		NOT = { has_building = building_archipelago_foundry }
 		NOT = { has_building_construction = building_archipelago_foundry }
-		NOT = { has_building = building_archipelago_farm }
-		NOT = { has_building_construction = building_archipelago_farm }
 		NOT = { has_building = building_archipelago_resort }
 		NOT = { has_building_construction = building_archipelago_resort }
 		OR = {
@@ -572,6 +579,8 @@ building_archipelago_farm = {
 	}
 }
 building_archipelago_resort = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -588,8 +597,6 @@ building_archipelago_resort = {
 		NOT = { has_building_construction = building_archipelago_foundry }
 		NOT = { has_building = building_archipelago_farm }
 		NOT = { has_building_construction = building_archipelago_farm }
-		NOT = { has_building = building_archipelago_resort }
-		NOT = { has_building_construction = building_archipelago_resort }
 	}
 
 	inline_script = "buildings/pd_rare_resort_building"
@@ -602,6 +609,8 @@ building_archipelago_resort = {
 #Tropical
 #Biolumen Buildings
 building_biolumen_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -610,8 +619,6 @@ building_biolumen_lab = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_biolumen
-		NOT = { has_building = building_biolumen_lab }
-		NOT = { has_building_construction = building_biolumen_lab }
 		NOT = { has_building = building_biolumen_resort }
 		NOT = { has_building_construction = building_biolumen_resort }
 		NOT = { has_building = building_biolumen_farm }
@@ -681,6 +688,8 @@ building_biolumen_lab = {
 	}
 }
 building_biolumen_resort = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -695,8 +704,6 @@ building_biolumen_resort = {
 		has_modifier = pd_biolumen
 		NOT = { has_building = building_biolumen_lab }
 		NOT = { has_building_construction = building_biolumen_lab }
-		NOT = { has_building = building_biolumen_resort }
-		NOT = { has_building_construction = building_biolumen_resort }
 		NOT = { has_building = building_biolumen_farm }
 		NOT = { has_building_construction = building_biolumen_farm }
 	}
@@ -710,6 +717,8 @@ building_biolumen_resort = {
 	}
 }
 building_biolumen_farm = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -729,8 +738,6 @@ building_biolumen_farm = {
 		NOT = { has_building_construction = building_biolumen_lab }
 		NOT = { has_building = building_biolumen_resort }
 		NOT = { has_building_construction = building_biolumen_resort }
-		NOT = { has_building = building_biolumen_farm }
-		NOT = { has_building_construction = building_biolumen_farm }
 		OR = {
 			owner = {
 				is_ai = no
@@ -767,6 +774,8 @@ building_biolumen_farm = {
 
 #Geothermal Buildings
 building_geothermal_grid = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = resource
@@ -779,8 +788,6 @@ building_geothermal_grid = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_geothermal
-		NOT = { has_building = building_geothermal_grid }
-		NOT = { has_building_construction = building_geothermal_grid }
 		NOT = { has_building = building_geothermal_foundry }
 		NOT = { has_building_construction = building_geothermal_foundry }
 		NOT = { has_building = building_geothermal_lab }
@@ -814,6 +821,8 @@ building_geothermal_grid = {
 	}
 }
 building_geothermal_foundry = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -829,8 +838,6 @@ building_geothermal_foundry = {
 		has_modifier = pd_geothermal
 		NOT = { has_building = building_geothermal_grid }
 		NOT = { has_building_construction = building_geothermal_grid }
-		NOT = { has_building = building_geothermal_foundry }
-		NOT = { has_building_construction = building_geothermal_foundry }
 		NOT = { has_building = building_geothermal_lab }
 		NOT = { has_building_construction = building_geothermal_lab }
 	}
@@ -844,6 +851,8 @@ building_geothermal_foundry = {
 	}
 }
 building_geothermal_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -861,8 +870,6 @@ building_geothermal_lab = {
 		NOT = { has_building_construction = building_geothermal_grid }
 		NOT = { has_building = building_geothermal_foundry }
 		NOT = { has_building_construction = building_geothermal_foundry }
-		NOT = { has_building = building_geothermal_lab }
-		NOT = { has_building_construction = building_geothermal_lab }
 	}
 
 	allow = {
@@ -926,6 +933,8 @@ building_geothermal_lab = {
 #Desert
 #Salt Buildings
 building_salt_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -941,8 +950,6 @@ building_salt_lab = {
 		has_modifier = pd_salt
 		NOT = { has_building = building_salt_mine }
 		NOT = { has_building_construction = building_salt_mine }
-		NOT = { has_building = building_salt_lab }
-		NOT = { has_building_construction = building_salt_lab }
 		NOT = { has_building = building_salt_foundry }
 		NOT = { has_building_construction = building_salt_foundry }
 	}
@@ -1003,6 +1010,8 @@ building_salt_lab = {
 	}
 }
 building_salt_foundry = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1020,8 +1029,6 @@ building_salt_foundry = {
 		NOT = { has_building_construction = building_salt_mine }
 		NOT = { has_building = building_salt_lab }
 		NOT = { has_building_construction = building_salt_lab }
-		NOT = { has_building = building_salt_foundry }
-		NOT = { has_building_construction = building_salt_foundry }
 	}
 
 	inline_script = "buildings/pd_rare_foundry_building"
@@ -1031,6 +1038,8 @@ building_salt_foundry = {
 	}
 }
 building_salt_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1043,8 +1052,6 @@ building_salt_mine = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_salt
-		NOT = { has_building = building_salt_mine }
-		NOT = { has_building_construction = building_salt_mine }
 		NOT = { has_building = building_salt_lab }
 		NOT = { has_building_construction = building_salt_lab }
 		NOT = { has_building = building_salt_foundry }
@@ -1078,6 +1085,8 @@ building_salt_mine = {
 
 #Aquifer Buildings
 building_aquifer_farm = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1093,8 +1102,6 @@ building_aquifer_farm = {
 		}
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_aquifer
-		NOT = { has_building = building_aquifer_farm }
-		NOT = { has_building_construction = building_aquifer_farm }
 		NOT = { has_building = building_aquifer_lab }
 		NOT = { has_building_construction = building_aquifer_lab }
 		NOT = { has_building = building_aquifer_resort }
@@ -1133,6 +1140,8 @@ building_aquifer_farm = {
 	}
 }
 building_aquifer_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1148,8 +1157,6 @@ building_aquifer_lab = {
 		has_modifier = pd_aquifer
 		NOT = { has_building = building_aquifer_farm }
 		NOT = { has_building_construction = building_aquifer_farm }
-		NOT = { has_building = building_aquifer_lab }
-		NOT = { has_building_construction = building_aquifer_lab }
 		NOT = { has_building = building_aquifer_resort }
 		NOT = { has_building_construction = building_aquifer_resort }
 	}
@@ -1210,6 +1217,8 @@ building_aquifer_lab = {
 	}
 }
 building_aquifer_resort = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1226,8 +1235,6 @@ building_aquifer_resort = {
 		NOT = { has_building_construction = building_aquifer_farm }
 		NOT = { has_building = building_aquifer_lab }
 		NOT = { has_building_construction = building_aquifer_lab }
-		NOT = { has_building = building_aquifer_resort }
-		NOT = { has_building_construction = building_aquifer_resort }
 	}
 
 	inline_script = "buildings/pd_rare_resort_building"
@@ -1240,6 +1247,8 @@ building_aquifer_resort = {
 #Arid
 #Primal Buildings
 building_primal_foundry = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1253,8 +1262,6 @@ building_primal_foundry = {
 		NOT = { has_modifier = resort_colony }
 		owner = { NOT = { is_catalytic_empire = yes } }
 		has_modifier = pd_primal
-		NOT = { has_building = building_primal_foundry }
-		NOT = { has_building_construction = building_primal_foundry }
 		NOT = { has_building = building_primal_grid }
 		NOT = { has_building_construction = building_primal_grid }
 		NOT = { has_building = building_primal_mine }
@@ -1270,6 +1277,8 @@ building_primal_foundry = {
 	}
 }
 building_primal_grid = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1284,8 +1293,6 @@ building_primal_grid = {
 		has_modifier = pd_primal
 		NOT = { has_building = building_primal_foundry }
 		NOT = { has_building_construction = building_primal_foundry }
-		NOT = { has_building = building_primal_grid }
-		NOT = { has_building_construction = building_primal_grid }
 		NOT = { has_building = building_primal_mine }
 		NOT = { has_building_construction = building_primal_mine }
 		OR = {
@@ -1317,6 +1324,8 @@ building_primal_grid = {
 	}
 }
 building_primal_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1333,8 +1342,6 @@ building_primal_mine = {
 		NOT = { has_building_construction = building_primal_foundry }
 		NOT = { has_building = building_primal_grid }
 		NOT = { has_building_construction = building_primal_grid }
-		NOT = { has_building = building_primal_mine }
-		NOT = { has_building_construction = building_primal_mine }
 		OR = {
 			owner = {
 				is_ai = no
@@ -1364,6 +1371,8 @@ building_primal_mine = {
 
 #Coral Buildings
 building_coral_resort = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1376,8 +1385,6 @@ building_coral_resort = {
 	potential = {
 		owner = { is_gestalt = no }
 		has_modifier = pd_coral
-		NOT = { has_building = building_coral_resort }
-		NOT = { has_building_construction = building_coral_resort }
 		NOT = { has_building = building_coral_lab }
 		NOT = { has_building_construction = building_coral_lab }
 		NOT = { has_building = building_coral_guild }
@@ -1393,6 +1400,8 @@ building_coral_resort = {
 	}
 }
 building_coral_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -1403,8 +1412,6 @@ building_coral_lab = {
 		has_modifier = pd_coral
 		NOT = { has_building = building_coral_resort }
 		NOT = { has_building_construction = building_coral_resort }
-		NOT = { has_building = building_coral_lab }
-		NOT = { has_building_construction = building_coral_lab }
 		NOT = { has_building = building_coral_guild }
 		NOT = { has_building_construction = building_coral_guild }
 	}
@@ -1469,6 +1476,8 @@ building_coral_lab = {
 	}
 }
 building_coral_guild = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1487,8 +1496,6 @@ building_coral_guild = {
 		NOT = { has_building_construction = building_coral_resort }
 		NOT = { has_building = building_coral_lab }
 		NOT = { has_building_construction = building_coral_lab }
-		NOT = { has_building = building_coral_guild }
-		NOT = { has_building_construction = building_coral_guild }
 	}
 
 	inline_script = "buildings/pd_rare_consumer_goods_building"
@@ -1503,6 +1510,8 @@ building_coral_guild = {
 #Savannah
 #Supercon Buildings
 building_supercon_farm = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1518,8 +1527,6 @@ building_supercon_farm = {
 		}
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_supercontinent
-		NOT = { has_building = building_supercon_farm }
-		NOT = { has_building_construction = building_supercon_farm }
 		NOT = { has_building = building_supercon_lab }
 		NOT = { has_building_construction = building_supercon_lab }
 		NOT = { has_building = building_supercon_grid }
@@ -1558,6 +1565,8 @@ building_supercon_farm = {
 	}
 }
 building_supercon_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -1568,8 +1577,6 @@ building_supercon_lab = {
 		has_modifier = pd_supercontinent
 		NOT = { has_building = building_supercon_farm }
 		NOT = { has_building_construction = building_supercon_farm }
-		NOT = { has_building = building_supercon_lab }
-		NOT = { has_building_construction = building_supercon_lab }
 		NOT = { has_building = building_supercon_grid }
 		NOT = { has_building_construction = building_supercon_grid }
 	}
@@ -1638,6 +1645,8 @@ building_supercon_lab = {
 	}
 }
 building_supercon_grid = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1654,8 +1663,6 @@ building_supercon_grid = {
 		NOT = { has_building_construction = building_supercon_farm }
 		NOT = { has_building = building_supercon_lab }
 		NOT = { has_building_construction = building_supercon_lab }
-		NOT = { has_building = building_supercon_grid }
-		NOT = { has_building_construction = building_supercon_grid }
 		OR = {
 			owner = {
 				is_ai = no
@@ -1687,6 +1694,8 @@ building_supercon_grid = {
 
 #Sinkhole Buildings
 building_pd_sinkhole_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -1695,8 +1704,6 @@ building_pd_sinkhole_lab = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_sinkhole
-		NOT = { has_building = building_pd_sinkhole_lab }
-		NOT = { has_building_construction = building_pd_sinkhole_lab }
 		NOT = { has_building = building_pd_sinkhole_mine }
 		NOT = { has_building_construction = building_pd_sinkhole_mine }
 		NOT = { has_building = building_pd_sinkhole_guild }
@@ -1767,6 +1774,8 @@ building_pd_sinkhole_lab = {
 	}
 }
 building_pd_sinkhole_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1781,8 +1790,6 @@ building_pd_sinkhole_mine = {
 		has_modifier = pd_sinkhole
 		NOT = { has_building = building_pd_sinkhole_lab }
 		NOT = { has_building_construction = building_pd_sinkhole_lab }
-		NOT = { has_building = building_pd_sinkhole_mine }
-		NOT = { has_building_construction = building_pd_sinkhole_mine }
 		NOT = { has_building = building_pd_sinkhole_guild }
 		NOT = { has_building_construction = building_pd_sinkhole_guild }
 		OR = {
@@ -1812,6 +1819,8 @@ building_pd_sinkhole_mine = {
 	}
 }
 building_pd_sinkhole_guild = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1830,8 +1839,6 @@ building_pd_sinkhole_guild = {
 		NOT = { has_building_construction = building_pd_sinkhole_lab }
 		NOT = { has_building = building_pd_sinkhole_mine }
 		NOT = { has_building_construction = building_pd_sinkhole_mine }
-		NOT = { has_building = building_pd_sinkhole_guild }
-		NOT = { has_building_construction = building_pd_sinkhole_guild }
 	}
 
 	inline_script = "buildings/pd_rare_consumer_goods_building"
@@ -1846,6 +1853,8 @@ building_pd_sinkhole_guild = {
 #Arctic
 #Storm Buildings
 building_storm_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -1854,8 +1863,6 @@ building_storm_lab = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_storm
-		NOT = { has_building = building_storm_lab }
-		NOT = { has_building_construction = building_storm_lab }
 		NOT = { has_building = building_storm_grid }
 		NOT = { has_building_construction = building_storm_grid }
 		NOT = { has_building = building_storm_mine }
@@ -1926,6 +1933,8 @@ building_storm_lab = {
 	}
 }
 building_storm_grid = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1940,8 +1949,6 @@ building_storm_grid = {
 		has_modifier = pd_storm
 		NOT = { has_building = building_storm_lab }
 		NOT = { has_building_construction = building_storm_lab }
-		NOT = { has_building = building_storm_grid }
-		NOT = { has_building_construction = building_storm_grid }
 		NOT = { has_building = building_storm_mine }
 		NOT = { has_building_construction = building_storm_mine }
 		OR = {
@@ -1973,6 +1980,8 @@ building_storm_grid = {
 	}
 }
 building_storm_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -1989,8 +1998,6 @@ building_storm_mine = {
 		NOT = { has_building_construction = building_storm_lab }
 		NOT = { has_building = building_storm_grid }
 		NOT = { has_building_construction = building_storm_grid }
-		NOT = { has_building = building_storm_mine }
-		NOT = { has_building_construction = building_storm_mine }
 		OR = {
 			owner = {
 				is_ai = no
@@ -2018,9 +2025,10 @@ building_storm_mine = {
 	}
 }
 
-
 #Iceberg Buildings
 building_iceberg_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -2029,8 +2037,6 @@ building_iceberg_lab = {
 		exists = owner
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_iceberg
-		NOT = { has_building = building_iceberg_lab }
-		NOT = { has_building_construction = building_iceberg_lab }
 		NOT = { has_building = building_iceberg_farm }
 		NOT = { has_building_construction = building_iceberg_farm }
 		NOT = { has_building = building_iceberg_foundry }
@@ -2101,6 +2107,8 @@ building_iceberg_lab = {
 	}
 }
 building_iceberg_farm = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2118,8 +2126,6 @@ building_iceberg_farm = {
 		has_modifier = pd_iceberg
 		NOT = { has_building = building_iceberg_lab }
 		NOT = { has_building_construction = building_iceberg_lab }
-		NOT = { has_building = building_iceberg_farm }
-		NOT = { has_building_construction = building_iceberg_farm }
 		NOT = { has_building = building_iceberg_foundry }
 		NOT = { has_building_construction = building_iceberg_foundry }
 		OR = {
@@ -2156,6 +2162,8 @@ building_iceberg_farm = {
 	}
 }
 building_iceberg_foundry = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2173,8 +2181,6 @@ building_iceberg_foundry = {
 		NOT = { has_building_construction = building_iceberg_lab }
 		NOT = { has_building = building_iceberg_farm }
 		NOT = { has_building_construction = building_iceberg_farm }
-		NOT = { has_building = building_iceberg_foundry }
-		NOT = { has_building_construction = building_iceberg_foundry }
 	}
 
 	inline_script = "buildings/pd_rare_foundry_building"
@@ -2189,6 +2195,8 @@ building_iceberg_foundry = {
 #Tundra
 #Cryoflora Buildings
 building_cryo_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -2280,6 +2288,8 @@ building_cryo_lab = {
 	}
 }
 building_cryo_guild = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2310,6 +2320,8 @@ building_cryo_guild = {
 	}
 }
 building_cryo_resort = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2342,6 +2354,8 @@ building_cryo_resort = {
 
 #Lichen Buildings
 building_lichen_farm = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2357,8 +2371,6 @@ building_lichen_farm = {
 		}
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_lichen
-		NOT = { has_building = building_lichen_farm }
-		NOT = { has_building_construction = building_lichen_farm }
 		NOT = { has_building = building_lichen_grid }
 		NOT = { has_building_construction = building_lichen_grid }
 		NOT = { has_building = building_lichen_lab }
@@ -2397,6 +2409,8 @@ building_lichen_farm = {
 	}
 }
 building_lichen_grid = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2411,8 +2425,6 @@ building_lichen_grid = {
 		has_modifier = pd_lichen
 		NOT = { has_building = building_lichen_farm }
 		NOT = { has_building_construction = building_lichen_farm }
-		NOT = { has_building = building_lichen_grid }
-		NOT = { has_building_construction = building_lichen_grid }
 		NOT = { has_building = building_lichen_lab }
 		NOT = { has_building_construction = building_lichen_lab }
 		OR = {
@@ -2444,6 +2456,8 @@ building_lichen_grid = {
 	}
 }
 building_lichen_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -2456,8 +2470,6 @@ building_lichen_lab = {
 		NOT = { has_building_construction = building_lichen_farm }
 		NOT = { has_building = building_lichen_grid }
 		NOT = { has_building_construction = building_lichen_grid }
-		NOT = { has_building = building_lichen_lab }
-		NOT = { has_building_construction = building_lichen_lab }
 	}
 
 	building_sets = {
@@ -2526,6 +2538,8 @@ building_lichen_lab = {
 #Alpine
 #Glacio Buildings
 building_glacio_foundry = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2539,8 +2553,6 @@ building_glacio_foundry = {
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_glaciovolcanic
 		owner = { NOT = { is_catalytic_empire = yes } }
-		NOT = { has_building = building_glacio_foundry }
-		NOT = { has_building_construction = building_glacio_foundry }
 		NOT = { has_building = building_glacio_resort }
 		NOT = { has_building_construction = building_glacio_resort }
 		NOT = { has_building = building_glacio_mine }
@@ -2555,6 +2567,8 @@ building_glacio_foundry = {
 	}
 }
 building_glacio_resort = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2569,8 +2583,6 @@ building_glacio_resort = {
 		has_modifier = pd_glaciovolcanic
 		NOT = { has_building = building_glacio_foundry }
 		NOT = { has_building_construction = building_glacio_foundry }
-		NOT = { has_building = building_glacio_resort }
-		NOT = { has_building_construction = building_glacio_resort }
 		NOT = { has_building = building_glacio_mine }
 		NOT = { has_building_construction = building_glacio_mine }
 	}
@@ -2584,6 +2596,8 @@ building_glacio_resort = {
 	}
 }
 building_glacio_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2599,8 +2613,6 @@ building_glacio_mine = {
 		NOT = { has_building_construction = building_glacio_foundry }
 		NOT = { has_building = building_glacio_resort }
 		NOT = { has_building_construction = building_glacio_resort }
-		NOT = { has_building = building_glacio_mine }
-		NOT = { has_building_construction = building_glacio_mine }
 		OR = {
 			owner = {
 				is_ai = no
@@ -2630,6 +2642,8 @@ building_glacio_mine = {
 
 #Lanthanide Buildings
 building_lanthanide_mine = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2641,8 +2655,6 @@ building_lanthanide_mine = {
 	potential = {
 		NOT = { has_modifier = resort_colony }
 		has_modifier = pd_lanthanide
-		NOT = { has_building = building_lanthanide_mine }
-		NOT = { has_building_construction = building_lanthanide_mine }
 		NOT = { has_building = building_lanthanide_guild }
 		NOT = { has_building_construction = building_lanthanide_guild }
 		NOT = { has_building = building_lanthanide_lab }
@@ -2674,6 +2686,8 @@ building_lanthanide_mine = {
 	}
 }
 building_lanthanide_guild = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	building_sets = {
@@ -2689,8 +2703,6 @@ building_lanthanide_guild = {
 		has_modifier = pd_lanthanide
 		NOT = { has_building = building_lanthanide_mine }
 		NOT = { has_building_construction = building_lanthanide_mine }
-		NOT = { has_building = building_lanthanide_guild }
-		NOT = { has_building_construction = building_lanthanide_guild }
 		NOT = { has_building = building_lanthanide_lab }
 		NOT = { has_building_construction = building_lanthanide_lab }
 	}
@@ -2704,6 +2716,8 @@ building_lanthanide_guild = {
 	}
 }
 building_lanthanide_lab = {
+	can_build = yes
+	base_cap_amount = 1
 	base_buildtime = 600
 
 	category = research
@@ -2716,8 +2730,6 @@ building_lanthanide_lab = {
 		NOT = { has_building_construction = building_lanthanide_mine }
 		NOT = { has_building = building_lanthanide_guild }
 		NOT = { has_building_construction = building_lanthanide_guild }
-		NOT = { has_building = building_lanthanide_lab }
-		NOT = { has_building_construction = building_lanthanide_lab }
 	}
 
 	building_sets = {

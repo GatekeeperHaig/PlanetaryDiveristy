@@ -14,6 +14,11 @@
 @hiveTime = 7200
 @wildernessCost = 500
 @wildernessTime = 1080
+@basicTypeCost = 2000
+@basicBiomassCost = 1000
+@gaiaCost = 7500
+@gaiaTime = 3600
+@gaiaBiomassCost = 3500
 
 ### Superhabitable
 #Barrens
@@ -141,7 +146,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_superhabitable
 	to = pc_pd_dry_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -149,7 +161,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_superhabitable
 	to = pc_pd_cold_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -157,7 +176,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_superhabitable
 	to = pc_pd_wet_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -165,7 +191,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_superhabitable
 	to = pc_pd_cold_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -173,7 +206,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_superhabitable
 	to = pc_pd_dry_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -181,7 +221,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_superhabitable
 	to = pc_pd_wet_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -189,7 +236,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_superhabitable
 	to = pc_pd_gaia_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -198,7 +253,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_superhabitable
 	to = pc_pd_gaia_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -207,7 +270,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_superhabitable
 	to = pc_pd_gaia_superhabitable
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -340,7 +411,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_tidally_locked
 	to = pc_pd_dry_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -348,7 +426,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_tidally_locked
 	to = pc_pd_cold_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -356,7 +441,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_tidally_locked
 	to = pc_pd_wet_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -364,7 +456,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_tidally_locked
 	to = pc_pd_cold_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -372,7 +471,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_tidally_locked
 	to = pc_pd_dry_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -380,7 +486,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_tidally_locked
 	to = pc_pd_wet_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -388,7 +501,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_tidally_locked
 	to = pc_pd_gaia_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -397,7 +518,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_tidally_locked
 	to = pc_pd_gaia_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -406,7 +535,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_tidally_locked
 	to = pc_pd_gaia_tidally_locked
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -537,7 +674,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_cave
 	to = pc_pd_dry_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -545,7 +689,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_cave
 	to = pc_pd_cold_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -553,7 +704,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_cave
 	to = pc_pd_wet_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -561,7 +719,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_cave
 	to = pc_pd_cold_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -569,7 +734,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_cave
 	to = pc_pd_dry_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -577,7 +749,14 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_cave
 	to = pc_pd_wet_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @basicTypeCost
+			BIOMASS_COST = @basicBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	condition = { has_technology = tech_terrestrial_sculpting }
 	ai_weight = { weight = 2 modifier = { factor = 0 resource_stockpile_compare = { resource = energy value < 40000 } } modifier = { factor = 0	OR = { is_mechanical_empire = yes is_cyborg_empire = yes has_authority = auth_machine_intelligence } } }
@@ -585,7 +764,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_dry_cave
 	to = pc_pd_gaia_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -594,7 +781,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_wet_cave
 	to = pc_pd_gaia_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
@@ -603,7 +798,15 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_cold_cave
 	to = pc_pd_gaia_cave
-    resources = { category = terraforming cost = { energy = @terraforming_cost_gaia } }
+	resources = {
+		category = terraforming
+
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @gaiaCost
+			BIOMASS_COST = @gaiaBiomassCost
+		}
+	}
 	duration = @terraforming_duration_gaia
 	potential = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
 	condition = { has_ascension_perk = ap_world_shaper NOT = { from = { OR = { has_modifier = engineered_environment_gaia has_modifier = pd_uncommon_gaia_world } } } }
