@@ -1,0 +1,70 @@
+# See traditions/README.txt for format
+
+ap_world_shaper = {
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_technology_tech_climate_restoration"
+			has_technology = tech_climate_restoration
+		}
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
+	}
+
+	modifier = {
+		terraforming_cost_mult = -0.25
+	}
+
+	on_enabled = {
+		custom_tooltip = "allow_gaia"
+	}
+
+	potential = {
+		NOT = {
+			has_ascension_perk = ap_world_shaper
+		}
+		#PD Lets Hives Make Gaia Worlds
+		# OR = {
+		# 	is_hive_empire = no
+		# 	is_wilderness_empire = yes
+		# }
+		OR = {
+			is_machine_empire = no
+			has_valid_civic = civic_machine_servitor
+			has_valid_civic = civic_machine_assimilator
+		}
+	}
+
+	ai_weight = {
+		factor = 5
+		modifier = {
+			factor = 0
+			OR = {
+				is_void_dweller_empire = yes
+				has_origin = origin_shattered_ring
+				has_trait = trait_aquatic
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				has_ethic = ethic_pacifist
+				has_ethic = ethic_xenophobe
+			}
+		}
+		modifier = {
+			factor = 3
+			OR = {
+				has_ethic = ethic_fanatic_pacifist
+				has_ethic = ethic_fanatic_xenophobe
+				is_wilderness_empire = yes
+			}
+		}
+		modifier = { #only way to get more nice planets
+			factor = 100
+			has_origin = origin_life_seeded
+		}
+	}
+}
