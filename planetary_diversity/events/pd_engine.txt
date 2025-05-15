@@ -5558,7 +5558,7 @@ country_event = {
 		}
 	}
 }
-#This event makes sure Earth, Venus and Mars get the correct special entities
+#This event makes sure Earth, Venus, Mars & Unity get the correct special entities
 planet_event = {
 	id = pdengine.72
 	hide_window = yes
@@ -5741,6 +5741,18 @@ planet_event = {
 				entity = "ocean_planet_sea_of_conciousness_entity"
 			}
 		}
+		if = {
+			limit = {
+				has_planet_flag = planet_unity
+				OR = {
+					is_planet_class = pc_continental
+					is_planet_class = pc_gaia
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_unity
+			}
+		}
 	}
 }
 #This event makes sure Earth gets the special entities on game start
@@ -5796,6 +5808,18 @@ country_event = {
 				set_planet_entity = {
 					picture = pc_continental_earth
 					entity = continental_planet_earth_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_unity
+					OR = {
+						is_planet_class = pc_continental
+						is_planet_class = pc_gaia
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_unity
 				}
 			}
 		}

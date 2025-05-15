@@ -5,7 +5,7 @@ trait_auto_mod_biological = {
 	category = normal
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
-tags = { organic automod positive }
+	tags = { organic automod positive }
 	initial = no
 	randomized = no
 	species_potential_add = {
@@ -190,8 +190,6 @@ trait_thrifty = {
 	category = normal
 	species_possible_add = {
 		can_add_genetic_traits = yes
-		owner_is_machine_intelligence = no
-		owner_is_hive_empire = no
 	}
 	species_possible_remove = {
 		OR = {
@@ -606,7 +604,6 @@ trait_unruly = {
 trait_very_strong = {
 	cost = 3
 	category = normal
-	custom_tooltip_with_modifiers = trait_very_strong_tt
 	species_possible_add = {
 		can_add_genetic_traits = yes
 	}
@@ -652,7 +649,6 @@ trait_very_strong = {
 trait_strong = {
 	cost = 1
 	category = normal
-	custom_tooltip_with_modifiers = trait_strong_tt
 	species_possible_add = {
 		can_add_genetic_traits = yes
 	}
@@ -696,7 +692,6 @@ trait_strong = {
 trait_weak = {
 	cost = -1
 	category = normal
-	custom_tooltip_with_modifiers = trait_weak_tt
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
@@ -799,7 +794,7 @@ trait_solitary = {
 	tags = { organic negative housing }
 
 	modifier = {
-		pop_housing_usage_mult = 0.05
+		pop_housing_usage_mult = 0.1
 	}
 
 	ai_weight = {
@@ -1664,8 +1659,8 @@ trait_social_pheromones = { #red
 	tags = { organic positive housing amenities pop_growth interesting special }
 
 	modifier = {
-		pop_housing_usage_mult = -0.10
-		pop_amenities_usage_mult = -0.05
+		pop_housing_usage_mult = -0.15
+		pop_amenities_usage_mult = -0.10
 		logistic_growth_mult = 0.05
 	}
 	slave_cost = {
@@ -1936,7 +1931,10 @@ trait_void_dweller_2 = {
 	species_potential_add = {
 		exists = from
 		from = {
-			has_origin = origin_void_machines
+			OR = {
+				has_origin = origin_void_machines
+				has_origin = origin_void_dwellers
+			}
 		}
 	}
 	species_possible_add = {
@@ -2189,11 +2187,11 @@ trait_plantoid_budding = {
 			}
 		}
 	}
-	portrait_override = { aqu7 }
+	portrait_override = { aqu7 nec3 }
 	tags = { organic positive plantoid fungoid pop_growth species }
 	custom_tooltip = TRAIT_PLANTOID_BUDDING_EFFECT
 
-	triggered_planet_pop_group_modifier = {
+	triggered_planet_pop_group_modifier_for_species = {
 		potential = {
 			has_budding_trait = yes
 		}
@@ -2290,7 +2288,7 @@ trait_lithoid_budding = {
 	tags = { organic positive lithoid pop_growth species }
 	custom_tooltip = TRAIT_LITHOID_BUDDING_EFFECT
 
-	triggered_planet_pop_group_modifier = {
+	triggered_planet_pop_group_modifier_for_species = {
 		potential = {
 			has_budding_trait = yes
 		}
