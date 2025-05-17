@@ -1,0 +1,283 @@
+### Regular Empires
+# Planets
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_bureaucrat_add = $AMOUNT$
+}
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_regular_empire = yes
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = 0.5
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		is_planet_class = pc_habitat
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_active_tradition = tr_virtuality_4
+		}
+		is_planet_class = pc_habitat
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_virtual_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		OR = {
+			is_planet_class = pc_city
+			pd_is_planet_class_hive_all = yes
+			pd_is_planet_class_machine_all = yes
+		}
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = 3
+}
+
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_regular_empire = yes
+		}
+		OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = 1.5
+}
+
+# Ringworlds
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = 5
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_regular_empire = yes
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_bureaucrat_add = $AMOUNT$
+	mult = 2.5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+	text = job_bureaucrat_effect_desc
+}
+
+
+### Gestalt Empires
+# Planets
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_hive_all = yes
+			pd_is_planet_class_machine_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_coordinator_add = $AMOUNT$
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_gestalt = yes
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = 0.5
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		is_planet_class = pc_habitat
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			has_active_tradition = tr_virtuality_4
+		}
+		is_planet_class = pc_habitat
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_virtual_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		OR = {
+			is_planet_class = pc_city
+			pd_is_planet_class_hive_all = yes
+			pd_is_planet_class_machine_all = yes
+		}
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = 3
+}
+
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_gestalt = yes
+		}
+		OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = 1.5
+}
+
+# Ringworlds
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = 5
+}
+
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			has_active_tradition = tr_virtuality_4
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_coordinator_add = $AMOUNT$
+	mult = 2.5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			is_wilderness_empire = no
+		}
+	}
+	text = job_coordinator_effect_desc
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_wilderness_empire = yes
+		}
+	}
+	text = job_choirsymbiont_effect_desc
+}

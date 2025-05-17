@@ -1,0 +1,447 @@
+### REGULAR EMPIRES
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = 0.5
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		is_planet_class = pc_habitat
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_active_tradition = tr_virtuality_4
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		is_planet_class = pc_habitat
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = owner.value:hab_void_dweller_virtual_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+        OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = 3
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = 1.5
+}
+
+# Ringworlds
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = 5
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = 2.5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			NOT = {
+				has_country_flag = fallen_empire_1
+			}
+		}
+	}
+	text = job_physicist_effect_desc
+}
+
+### GESTALT EMPIRES
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_gestalt = yes
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+	mult = 0.5
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_gestalt = yes }
+		is_planet_class = pc_habitat
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			has_active_tradition = tr_virtuality_4
+		}
+		is_planet_class = pc_habitat
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+	mult = owner.value:hab_void_dweller_virtual_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+        OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+	mult = 3
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			is_gestalt = yes
+		}
+		OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+	mult = 1.5
+}
+
+# Ringworlds
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_calculator_physicist_add = $LARGE_AMOUNT$
+	mult = 5
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			has_active_tradition = tr_virtuality_4
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_physicist_add = $LARGE_AMOUNT$
+	mult = 2.5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			is_wilderness_empire = no
+		}
+	}
+	text = job_brain_drone_physicist_effect_desc
+}
+
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			is_wilderness_empire = yes
+		}
+	}
+	text = job_evosymbiont_physicist_effect_desc
+}
+
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	text = job_calculator_physicist_effect_desc
+}
+
+### MATERIALIST FE
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = fallen_empire_1
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			has_country_flag = fallen_empire_1
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = 0.5
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = fallen_empire_1
+		}
+		is_planet_class = pc_habitat
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_active_tradition = tr_virtuality_4
+			has_country_flag = fallen_empire_1
+		}
+		is_planet_class = pc_habitat
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = owner.value:hab_void_dweller_virtual_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = fallen_empire_1
+		}
+        OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = 3
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			has_country_flag = fallen_empire_1
+		}
+		OR = {
+            is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+        }
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = 1.5
+}
+
+# Ringworlds
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_country_flag = fallen_empire_1
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = 5
+}
+
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_active_tradition = tr_virtuality_4
+			has_country_flag = fallen_empire_1
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_fe_archivist_add = $LARGE_AMOUNT$
+	mult = 2.5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			has_country_flag = fallen_empire_1
+		}
+	}
+	text = job_fe_archivist_desc
+}

@@ -1,6 +1,5 @@
-#This effect add deposits at game start to planet classes added by PD
-
-generate_pd_start_deposits_and_blockers = {
+# This is called after game start
+generate_start_deposits_and_blockers = {
 	optimize_memory
 	clear_deposits = yes
 
@@ -118,7 +117,7 @@ generate_pd_start_deposits_and_blockers = {
 	else_if = {
 		limit = {
 			owner = {
-				is_gestalt = yes
+				is_hive_empire = yes
 			}
 		}
 
@@ -198,18 +197,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_wet_tidally_locked
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_wet_tidally_locked
-				}
-			}
-			add_modifier = {
-				modifier = pd_wet_tidally_locked
-				days = -1
+			OR = {
+				pd_is_continental = yes
+				is_planet_class = pc_pd_wet_tidally_locked
 			}
 		}
 
@@ -250,18 +240,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_wet_superhabitable
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_wet_superhabitable
-				}
-			}
-			add_modifier = {
-				modifier = pd_wet_superhabitable
-				days = -1
+			OR = {
+				pd_is_tropical = yes
+				is_planet_class = pc_pd_wet_superhabitable
 			}
 		}
 
@@ -301,18 +282,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_wet_cave
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_wet_cave
-				}
-			}
-			add_modifier = {
-				modifier = pd_wet_cave
-				days = -1
+			OR = {
+				pd_is_ocean = yes
+				is_planet_class = pc_pd_wet_cave
 			}
 		}
 
@@ -353,18 +325,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_cold_tidally_locked
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_cold_tidally_locked
-				}
-			}
-			add_modifier = {
-				modifier = pd_cold_tidally_locked
-				days = -1
+			OR = {
+				pd_is_arctic = yes
+				is_planet_class = pc_pd_cold_tidally_locked
 			}
 		}
 
@@ -405,18 +368,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_cold_superhabitable
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_cold_superhabitable
-				}
-			}
-			add_modifier = {
-				modifier = pd_cold_superhabitable
-				days = -1
+			OR = {
+				pd_is_tundra = yes
+				is_planet_class = pc_pd_cold_superhabitable
 			}
 		}
 
@@ -457,18 +411,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_cold_cave
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_cold_cave
-				}
-			}
-			add_modifier = {
-				modifier = pd_cold_cave
-				days = -1
+			OR = {
+				pd_is_alpine = yes
+				is_planet_class = pc_pd_cold_cave
 			}
 		}
 
@@ -509,18 +454,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_dry_cave
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_dry_cave
-				}
-			}
-			add_modifier = {
-				modifier = pd_dry_cave
-				days = -1
+			OR = {
+				pd_is_desert = yes
+				is_planet_class = pc_pd_dry_cave
 			}
 		}
 
@@ -562,18 +498,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_dry_superhabitable
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_dry_superhabitable
-				}
-			}
-			add_modifier = {
-				modifier = pd_dry_superhabitable
-				days = -1
+			OR = {
+				pd_is_arid = yes
+				is_planet_class = pc_pd_dry_superhabitable
 			}
 		}
 
@@ -614,18 +541,9 @@ generate_pd_start_deposits_and_blockers = {
 
 	if = {
 		limit = {
-			is_planet_class = pc_pd_dry_tidally_locked
-		}
-
-		if = {
-			limit = {
-				NOT = {
-					has_modifier = pd_dry_tidally_locked
-				}
-			}
-			add_modifier = {
-				modifier = pd_dry_tidally_locked
-				days = -1
+			OR = {
+				pd_is_savannah = yes
+				is_planet_class = pc_pd_dry_tidally_locked
 			}
 		}
 
@@ -664,6 +582,55 @@ generate_pd_start_deposits_and_blockers = {
 		}
 	}
 
+	if = {
+		limit = {
+			is_planet_class = pc_relic
+			owner = {
+				OR = {
+					has_origin = origin_remnants
+					has_origin = origin_slavers
+				}
+			}
+		}
+
+		set_planet_size = 22
+
+		# 6 blockers
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { owner = { is_machine_empire = yes } }
+			add_deposit = d_searing_desert
+		}
+		if = {
+			limit = { owner = { has_valid_civic = civic_machine_servitor } }
+			add_deposit = d_arid_highlands
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { owner = { is_machine_empire = no } }
+			add_deposit = d_bountiful_plains
+			add_deposit = d_black_soil
+		}
+	}
+
 	# Ocean Paradise Origin
 
 	if = {
@@ -685,54 +652,5 @@ generate_pd_start_deposits_and_blockers = {
 			owner = { is_wilderness_empire = yes }
 		}
 		create_wilderness_planet = yes
-	}
-}
-
-generate_pd_regular_planet = {
-	#No longer needed, but keeping just in case one day.
-}
-
-generate_pd_uncommon_planet = {
-	#No longer needed, but keeping just in case one day.
-}
-
-pd_final_check = {
-	if = {
-		limit = {
-			owner = {
-				has_origin = origin_starlit_citadel
-			}
-		}
-		add_building = building_citadel_uplink
-		add_deposit = d_bioship_remains
-		add_deposit = d_invasion_site
-		add_deposit = d_invasion_site
-		every_deposit = {
-			limit = {
-				OR = {
-					is_deposit_type = d_decrepit_dwellings
-					is_deposit_type = d_failing_infrastructure
-				}
-			}
-			remove_deposit = yes
-		}
-	}
-}
-
-pd_planet_toxic_habitat_check = {
-	solar_system = {
-		random_system_planet = {
-			limit = { has_planet_flag = toxic_knights_habitat }
-			every_owned_pop_group = {
-				kill_all_pop = yes
-			}
-			clear_deposits = yes
-			remove_all_districts = yes
-			remove_all_buildings = yes
-			remove_zone = {
-				district = district_hab_housing
-				zone = zone_habitat_knights
-			}
-		}
 	}
 }

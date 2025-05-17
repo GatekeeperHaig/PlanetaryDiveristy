@@ -1,0 +1,157 @@
+### Regular Empires
+# Planets
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_foundry_add = $AMOUNT$
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		is_planet_class = pc_habitat
+	}
+	job_foundry_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		OR = {
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+		}
+	}
+	job_foundry_add = $AMOUNT$
+	mult = 3
+}
+
+# Ringworld
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_foundry_add = $AMOUNT$
+	mult = 5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+	}
+	text = job_foundry_effect_desc
+}
+
+### Gestalt Empires
+# Planets
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_fabricator_add = $AMOUNT$
+}
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		is_planet_class = pc_habitat
+	}
+	job_fabricator_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		OR = {
+			is_planet_class = pc_city
+			pd_is_planet_class_machine_all = yes
+			pd_is_planet_class_hive_all = yes
+		}
+	}
+	job_fabricator_add = $AMOUNT$
+	mult = 3
+}
+
+# Ringworld
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_fabricator_add = $AMOUNT$
+	mult = 5
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = yes
+			is_wilderness_empire = no
+		}
+	}
+	text = job_fabricator_effect_desc
+}
+
+# Description
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			is_wilderness_empire = yes
+		}
+	}
+	text = job_forgesymbiont_effect_desc
+}
