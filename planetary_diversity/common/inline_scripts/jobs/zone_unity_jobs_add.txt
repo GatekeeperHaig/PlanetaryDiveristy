@@ -141,6 +141,9 @@ triggered_district_planet_modifier = {
 		exists = owner
 		owner = {
 			is_gestalt = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		NOR = {
 			is_planet_class = pc_habitat
@@ -159,6 +162,9 @@ triggered_planet_modifier = {
 		owner = {
 			has_active_tradition = tr_virtuality_4
 			is_gestalt = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		NOR = {
 			is_planet_class = pc_habitat
@@ -178,6 +184,9 @@ triggered_district_planet_modifier = {
 		exists = owner
 		owner = {
 			is_gestalt = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		is_planet_class = pc_habitat
 	}
@@ -191,6 +200,9 @@ triggered_district_planet_modifier = {
 		owner = {
 			is_gestalt = yes
 			has_active_tradition = tr_virtuality_4
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		is_planet_class = pc_habitat
 	}
@@ -204,6 +216,9 @@ triggered_district_planet_modifier = {
 		exists = owner
 		owner = {
 			is_gestalt = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		OR = {
 			is_planet_class = pc_city
@@ -221,6 +236,9 @@ triggered_planet_modifier = {
 		owner = {
 			has_active_tradition = tr_virtuality_4
 			is_gestalt = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		OR = {
             is_planet_class = pc_city
@@ -238,6 +256,9 @@ triggered_district_planet_modifier = {
 		exists = owner
 		owner = {
 			is_gestalt = yes
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		is_planet_class = pc_ringworld_habitable
 	}
@@ -252,11 +273,78 @@ triggered_district_planet_modifier = {
 		owner = {
 			is_gestalt = yes
 			has_active_tradition = tr_virtuality_4
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 		is_planet_class = pc_ringworld_habitable
 	}
 	job_coordinator_add = $AMOUNT$
 	mult = 2.5
+}
+
+# Planets
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_machine_servitor
+		}
+		NOR = {
+			is_planet_class = pc_habitat
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+			is_planet_class = pc_ringworld_habitable
+		}
+	}
+	job_bio_trophy_add = $AMOUNT$
+	mult = 5
+}
+
+
+# Habitats
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_machine_servitor
+		}
+		is_planet_class = pc_habitat
+	}
+	job_bio_trophy_add = $AMOUNT$
+	mult = owner.value:hab_void_dweller_jobs_mult|MULT|5|
+}
+
+# Ecus
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_machine_servitor
+		}
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_hive
+			is_planet_class = pc_machine
+		}
+	}
+	job_bio_trophy_add = $AMOUNT$
+	mult = 15
+}
+
+
+# Ringworlds
+triggered_district_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_machine_servitor
+		}
+		is_planet_class = pc_ringworld_habitable
+	}
+	job_bio_trophy_add = $AMOUNT$
+	mult = 25
 }
 
 # Description
@@ -266,9 +354,22 @@ triggered_desc = {
 		owner = {
 			is_gestalt = yes
 			is_wilderness_empire = no
+			NOT = {
+				has_valid_civic = civic_machine_servitor
+			}
 		}
 	}
 	text = job_coordinator_effect_desc
+}
+
+triggered_desc = {
+	trigger = {
+		exists = owner
+		owner = {
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+	text = job_bio_trophy_effect_desc
 }
 
 # Description

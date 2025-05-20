@@ -1,0 +1,32 @@
+# Anglers Initial Setup
+# Flags Sets:
+#	* Uncapped Farming Districts
+# Zones Added:
+#	* Aquaculture Specialization
+
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			is_anglers_empire = yes
+		}
+		pd_is_ocean = yes
+	}
+	set_planet_flag = uncapped_farming
+
+	add_district_and_planet_size_if_needed_effect_amount = {
+		amount = 1
+		district = district_farming_uncapped
+	}
+	add_zone = {
+		district = district_farming_uncapped
+		zone = zone_anglers
+	}
+
+	# We`ve created a farming district, so reduce the count by 1
+	change_variable = {
+		which = farming_districts
+		value = -1
+	}
+}

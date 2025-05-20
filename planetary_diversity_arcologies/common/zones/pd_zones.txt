@@ -1,0 +1,49 @@
+zone_pd_preserve = {
+	icon = GFX_job_ranger
+	base_buildtime = @zone_buildtime
+	potential = { # planet scope
+		hidden_trigger = { exists = owner }
+		is_planet_class = pc_city
+		has_modifier = pd_garden_arcology
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_wilderness_empire = no
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	max_buildings = 3
+
+	included_building_sets = {
+		entertainment
+		resort
+		unity
+		society
+		zoo
+	}
+
+	# planet_modifier = {
+	# }
+
+	# triggered_district_planet_modifier = {
+	# 	potential = {
+	# 		always = yes
+	# 	}
+	# }
+
+	triggered_desc = {
+		trigger = {
+			always = yes
+		}
+		text = zone_pd_preserve_desc
+	}
+}

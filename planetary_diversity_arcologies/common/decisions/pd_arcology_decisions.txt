@@ -57,7 +57,7 @@ decision_pd_garden_arcology_project = {
 
 	effect = {
 		# Make city-planet
-		custom_tooltip = decision_arcology_project_effects
+		custom_tooltip = decision_garden_arcology_project_effects
 		if = {
 			limit = {
 				owner = { has_civic = civic_machine_servitor }
@@ -75,15 +75,10 @@ decision_pd_garden_arcology_project = {
 		}
 		hidden_effect = {
 			clear_deposits = yes
-			set_planet_flag = factory_planet
 			change_pc = pc_city
 			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_housing
+				DISTRICT = district_pd_garden_arcology_housing
 				VARIABLE = num_housing_districts
-			}
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_arms_industry
-				VARIABLE = num_industrial_districts
 			}
 			set_ecu_industrial_districts_effect = yes
 			generate_pd_arcology_portrait_effect = yes
@@ -103,6 +98,15 @@ decision_pd_garden_arcology_project = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+		}
+		while = {
+			count = 5
+			add_district = district_pd_garden_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_garden_arcology_urban_1
+			zone = zone_pd_preserve
+			zone_slot = 0
 		}
 	}
 

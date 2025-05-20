@@ -1,0 +1,61 @@
+# Planet District Zones
+slot_pd_garden_arc_01 = {
+	include = {
+		zone_urban
+		zone_unity
+		zone_unity_spiritualist
+		zone_research
+		zone_research_physics
+		zone_research_engineering
+		zone_research_society
+		zone_research_unity
+		zone_trade
+	}
+
+	unlock = { # planet scope
+		always = yes
+	}
+}
+
+slot_pd_garden_arc_02 = {
+	include = {
+		zone_urban
+		zone_unity
+		zone_unity_spiritualist
+		zone_research
+		zone_research_physics
+		zone_research_engineering
+		zone_research_society
+		zone_research_unity
+		zone_trade
+	}
+
+	unlock = { # planet scope
+		custom_tooltip = {
+			fail_text = zone_city_02_prereq
+			OR = {
+				is_capital = yes
+				AND = {
+					is_capital = no
+					exists = owner
+					owner = {
+						has_tech_or_functional_civic = {
+							TECH = tech_colonial_centralization
+						}
+					}
+					has_upgraded_capital = yes
+				}
+			}
+		}
+	}
+}
+
+slot_pd_garden_arc_preserve = {
+	include = {
+		zone_pd_preserve
+	}
+
+	unlock = { # planet scope
+		always = yes
+	}
+}
