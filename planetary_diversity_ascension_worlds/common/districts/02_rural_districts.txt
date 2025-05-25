@@ -23,10 +23,17 @@ district_generator = {
 
 	potential = {
 		uses_district_set = standard
-		exists = owner
-		owner = { is_wilderness_empire = no }
-		NOT = { has_modifier = resort_colony }
-		NOT = { has_modifier = pd_aw_core_tap }
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = pd_aw_core_tap
+		}
 	}
 
 	conversion_ratio = 1
@@ -34,6 +41,8 @@ district_generator = {
 		district_generator_uncapped
 		district_photosynthesis_fields
 		district_photosynthesis_fields_uncapped
+		district_nexus_1
+		district_hive_1
 	}
 
 	resources = {
@@ -117,8 +126,13 @@ district_generator_uncapped = {
 			has_modifier = pd_aw_core_tap
 			uses_district_set = shattered_ring_world
 		}
-		exists = owner
-		owner = { is_wilderness_empire = no }
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
 		NOT = { has_modifier = resort_colony }
 	}
 
@@ -130,6 +144,8 @@ district_generator_uncapped = {
 		district_rw_urban_1
 		district_photosynthesis_fields
 		district_photosynthesis_fields_uncapped
+		district_nexus_1
+		district_hive_1
 	}
 
 	resources = {
@@ -215,10 +231,17 @@ district_mining = {
 			exists = owner
 			owner = { is_subterranean_empire = yes }
 		}
-		exists = owner
-		owner = { is_wilderness_empire = no }
-		NOT = { has_modifier = resort_colony }
-		NOT = { has_modifier = pd_aw_stripmine }
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = pd_aw_stripmine
+		}
 	}
 
 	conversion_ratio = 1
@@ -226,6 +249,8 @@ district_mining = {
 		district_mining_uncapped
 		district_hollow_mountains
 		district_hollow_mountains_uncapped
+		district_nexus_2
+		district_hive_2
 	}
 
 	resources = {
@@ -332,6 +357,8 @@ district_mining_uncapped = {
 
 	potential = {
 		OR = {
+			#uses_district_set = hive_world
+			#uses_district_set = machine_world
 			uses_district_set = shattered_ring_world
 			has_modifier = pd_aw_stripmine
 			AND = {
@@ -340,8 +367,13 @@ district_mining_uncapped = {
 				uses_district_set = standard
 			}
 		}
-		exists = owner
-		owner = { is_wilderness_empire = no }
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
 		NOT = { has_modifier = resort_colony }
 	}
 
@@ -351,6 +383,8 @@ district_mining_uncapped = {
 		district_rw_urban_2
 		district_hollow_mountains
 		district_hollow_mountains_uncapped
+		district_nexus_2
+		district_hive_2
 	}
 
 	resources = {
@@ -398,7 +432,7 @@ district_mining_uncapped = {
 			exists = owner
 		}
 		modifier = {
-			planet_housing_add = 100
+			planet_housing_add = 1
 		}
 		mult = owner.value:scripted_modifier_add|MODIFIER|mining_district_housing_add|
 	}
@@ -453,10 +487,17 @@ district_farming = {
 				}
 			}
 		}
-		exists = owner
-		owner = { is_wilderness_empire = no }
-		NOT = { has_modifier = resort_colony }
-		NOT = { has_modifier = pd_aw_agriworld }
+		OR = {
+			NOT = { exists = owner }
+			AND = {
+				exists = owner
+				owner = { is_wilderness_empire = no }
+			}
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = pd_aw_agriworld
+		}
 	}
 
 	conversion_ratio = 1
@@ -464,6 +505,8 @@ district_farming = {
 		district_farming_uncapped
 		district_orchard_forests
 		district_orchard_forests_uncapped
+		district_nexus_3
+		district_hive_3
 	}
 
 	resources = {
@@ -613,6 +656,8 @@ district_farming_uncapped = {
 		district_rw_urban_3
 		district_orchard_forests
 		district_orchard_forests_uncapped
+		district_nexus_3
+		district_hive_3
 	}
 
 	resources = {
