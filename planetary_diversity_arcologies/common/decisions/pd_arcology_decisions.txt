@@ -58,29 +58,19 @@ decision_pd_garden_arcology_project = {
 	effect = {
 		# Make city-planet
 		custom_tooltip = decision_garden_arcology_project_effects
-		if = {
-			limit = {
-				owner = { has_civic = civic_machine_servitor }
-			}
-			add_modifier = {
-				modifier = pd_garden_arcology_rs
-				days = -1
-			}
-		}
-		else = {
-			add_modifier = {
-				modifier = pd_garden_arcology
-				days = -1
-			}
+		add_modifier = {
+			modifier = pd_garden_arcology
+			days = -1
 		}
 		hidden_effect = {
 			clear_deposits = yes
 			change_pc = pc_city
+			set_ecu_industrial_districts_effect = yes
+			validate_planet_buildings_and_districts = yes
 			relic_world_conversion_effect = {
 				DISTRICT = district_pd_garden_arcology_housing
 				VARIABLE = num_housing_districts
 			}
-			set_ecu_industrial_districts_effect = yes
 			generate_pd_arcology_portrait_effect = yes
 			planet_event = { id = action.68 }
 			owner = {
@@ -98,9 +88,10 @@ decision_pd_garden_arcology_project = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+			validate_planet_buildings_and_districts = yes
 		}
 		while = {
-			count = 5
+			count = 1
 			add_district = district_pd_garden_arcology_urban_1
 		}
 		add_zone = {
@@ -154,53 +145,34 @@ decision_pd_garden_arcology_project_relic = {
 
 	allow = {
 		num_uncleared_blockers < 1
+		custom_tooltip = {
+			fail_text = legendary_leader_decision_arcology_project
+			NOT = { has_planet_flag = legendary_leader_planet }
+		}
 		owner = { has_technology = tech_housing_2 }
 	}
 
 	effect = {
 		# Make city-planet
-		#custom_tooltip = decision_pd_garden_arcology_project_effects
+		# Make city-planet
+		custom_tooltip = decision_garden_arcology_project_effects
+		add_modifier = {
+			modifier = pd_garden_arcology
+			days = -1
+		}
 		hidden_effect = {
 			clear_deposits = yes
-			set_planet_flag = factory_planet
 			change_pc = pc_city
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_housing
-				VARIABLE = num_housing_districts
-			}
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_arms_industry
-				VARIABLE = num_industrial_districts
-			}
 			set_ecu_industrial_districts_effect = yes
-			if = {
-				limit = {
-					owner = { has_civic = civic_machine_servitor }
-				}
-				add_modifier = {
-					modifier = pd_garden_arcology_rs
-					days = -1
-				}
-			}
-			else = {
-				add_modifier = {
-					modifier = pd_garden_arcology
-					days = -1
-				}
+			validate_planet_buildings_and_districts = yes
+			relic_world_conversion_effect = {
+				DISTRICT = district_pd_garden_arcology_housing
+				VARIABLE = num_housing_districts
 			}
 			generate_pd_arcology_portrait_effect = yes
 			planet_event = { id = action.68 }
 			add_deposit = d_former_relic_world
 			planet_event = { id = mega.201 }
-			while = {
-				count = 4
-				solar_system = {
-					random_system_ambient_object = {
-						limit = { has_ambient_object_flag = relic_world_debris }
-						destroy_ambient_object = this
-					}
-				}
-			}
 			if = {
 				limit = {
 					OR = {
@@ -212,6 +184,25 @@ decision_pd_garden_arcology_project_relic = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+			while = {
+				count = 4
+				solar_system = {
+					random_system_ambient_object = {
+						limit = { has_ambient_object_flag = relic_world_debris }
+						destroy_ambient_object = this
+					}
+				}
+			}
+			validate_planet_buildings_and_districts = yes
+		}
+		while = {
+			count = 1
+			add_district = district_pd_garden_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_garden_arcology_urban_1
+			zone = zone_pd_preserve
+			zone_slot = 0
 		}
 	}
 
@@ -274,34 +265,19 @@ decision_pd_fortress_arcology_project = {
 
 	effect = {
 		# Make city-planet
-		custom_tooltip = decision_pd_miltary_arcology_project_effects
+		custom_tooltip = decision_miltary_arcology_project_effects
+		add_modifier = {
+			modifier = pd_fortress_arcology
+			days = -1
+		}
 		hidden_effect = {
 			clear_deposits = yes
-			set_planet_flag = foundry_planet
 			change_pc = pc_city
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_housing
-				VARIABLE = num_housing_districts
-			}
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_arms_industry
-				VARIABLE = num_industrial_districts
-			}
 			set_ecu_industrial_districts_effect = yes
-			if = {
-				limit = {
-					owner = { has_civic = civic_machine_servitor }
-				}
-				add_modifier = {
-					modifier = pd_fortress_arcology_rs
-					days = -1
-				}
-			}
-			else = {
-				add_modifier = {
-					modifier = pd_fortress_arcology
-					days = -1
-				}
+			validate_planet_buildings_and_districts = yes
+			relic_world_conversion_effect = {
+				DISTRICT = district_pd_fortress_arcology_housing
+				VARIABLE = num_housing_districts
 			}
 			generate_pd_arcology_portrait_effect = yes
 			planet_event = { id = action.68 }
@@ -321,18 +297,19 @@ decision_pd_fortress_arcology_project = {
 				}
 			}
 		}
+		while = {
+			count = 1
+			add_district = district_pd_fortress_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_fortress_arcology_urban_1
+			zone = zone_pd_command_nexus
+			zone_slot = 0
+		}
 	}
 
 	ai_weight = {
 		weight = 1
-		modifier = {
-			factor = 100
-			exists = owner
-			OR = {
-				pop_amount >= 70
-				is_capital = yes
-			}
-		}
 	}
 }
 # Fortress Arcology Project (Relic Worlds)
@@ -372,34 +349,19 @@ decision_pd_fortress_arcology_project_relic = {
 
 	effect = {
 		# Make city-planet
-		custom_tooltip = decision_pd_miltary_arcology_project_effects
+		custom_tooltip = decision_miltary_arcology_project_effects
+		add_modifier = {
+			modifier = pd_fortress_arcology
+			days = -1
+		}
 		hidden_effect = {
 			clear_deposits = yes
-			set_planet_flag = foundry_planet
 			change_pc = pc_city
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_housing
-				VARIABLE = num_housing_districts
-			}
-			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_arms_industry
-				VARIABLE = num_industrial_districts
-			}
 			set_ecu_industrial_districts_effect = yes
-			if = {
-				limit = {
-					owner = { has_civic = civic_machine_servitor }
-				}
-				add_modifier = {
-					modifier = pd_fortress_arcology_rs
-					days = -1
-				}
-			}
-			else = {
-				add_modifier = {
-					modifier = pd_fortress_arcology
-					days = -1
-				}
+			validate_planet_buildings_and_districts = yes
+			relic_world_conversion_effect = {
+				DISTRICT = district_pd_fortress_arcology_housing
+				VARIABLE = num_housing_districts
 			}
 			generate_pd_arcology_portrait_effect = yes
 			planet_event = { id = action.68 }
@@ -426,6 +388,15 @@ decision_pd_fortress_arcology_project_relic = {
 				}
 			}
 		}
+		while = {
+			count = 1
+			add_district = district_pd_fortress_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_fortress_arcology_urban_1
+			zone = zone_pd_command_nexus
+			zone_slot = 0
+		}
 	}
 
 	ai_weight = {
@@ -434,9 +405,9 @@ decision_pd_fortress_arcology_project_relic = {
 }
 
 # Commercial Arcology Project
-decision_pd_commerical_arcology_project = {
+decision_pd_commercial_arcology_project = {
 	owned_planets_only = yes
-	icon = decision_pd_commerical_arcology_project
+	icon = decision_pd_commercial_arcology_project
 
 	enactment_time = 3600
 	resources = {
@@ -470,7 +441,7 @@ decision_pd_commerical_arcology_project = {
 
 	allow = {
 		custom_tooltip = {
-			fail_text = decision_arcology_project_requirements
+			fail_text = decision_garden_arcology_project_effects
 			free_district_slots < 1
 			num_districts = { type = district_farming value < 1 }
 			num_districts = { type = district_mining value < 1 }
@@ -488,17 +459,19 @@ decision_pd_commerical_arcology_project = {
 
 	effect = {
 		# Make city-planet
-		custom_tooltip = decision_pd_commerical_arcology_project_effects
+		custom_tooltip = decision_commercial_arcology_project_effects
+		add_modifier = {
+			modifier = pd_commercial_arcology
+			days = -1
+		}
 		hidden_effect = {
 			clear_deposits = yes
 			change_pc = pc_city
+			set_ecu_industrial_districts_effect = yes
+			validate_planet_buildings_and_districts = yes
 			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_housing
+				DISTRICT = district_pd_commercial_arcology_housing
 				VARIABLE = num_housing_districts
-			}
-			add_modifier = {
-				modifier = pd_commerical_arcology
-				days = -1
 			}
 			generate_pd_arcology_portrait_effect = yes
 			planet_event = { id = action.68 }
@@ -518,24 +491,25 @@ decision_pd_commerical_arcology_project = {
 				}
 			}
 		}
+		while = {
+			count = 1
+			add_district = district_pd_commercial_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_commercial_arcology_urban_1
+			zone = zone_pd_trade_market
+			zone_slot = 0
+		}
 	}
 
 	ai_weight = {
-		weight = 1
-		modifier = {
-			factor = 100
-			exists = owner
-			OR = {
-				pop_amount >= 70
-				is_capital = yes
-			}
-		}
+		weight = 100
 	}
 }
 # Commercial Arcology Project (Relic Worlds)
-decision_pd_commerical_arcology_project_relic = {
+decision_pd_commercial_arcology_project_relic = {
 	owned_planets_only = yes
-	icon = decision_pd_commerical_arcology_project
+	icon = decision_pd_commercial_arcology_project
 
 	enactment_time = 3600
 	resources = {
@@ -570,17 +544,19 @@ decision_pd_commerical_arcology_project_relic = {
 
 	effect = {
 		# Make city-planet
-		custom_tooltip = decision_pd_commerical_arcology_project_effects
+		custom_tooltip = decision_pd_commercial_arcology_project_effects
+		add_modifier = {
+			modifier = pd_commercial_arcology
+			days = -1
+		}
 		hidden_effect = {
 			clear_deposits = yes
 			change_pc = pc_city
+			set_ecu_industrial_districts_effect = yes
+			validate_planet_buildings_and_districts = yes
 			relic_world_conversion_effect = {
-				DISTRICT = district_arcology_housing
+				DISTRICT = district_pd_commercial_arcology_housing
 				VARIABLE = num_housing_districts
-			}
-			add_modifier = {
-				modifier = pd_commerical_arcology
-				days = -1
 			}
 			generate_pd_arcology_portrait_effect = yes
 			planet_event = { id = action.68 }
@@ -606,6 +582,15 @@ decision_pd_commerical_arcology_project_relic = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+		}
+		while = {
+			count = 1
+			add_district = district_pd_commercial_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_commercial_arcology_urban_1
+			zone = zone_pd_trade_market
+			zone_slot = 0
 		}
 	}
 

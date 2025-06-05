@@ -21,7 +21,9 @@ zone_pd_preserve = {
 		}
 	}
 
-	max_buildings = 3
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
 
 	included_building_sets = {
 		entertainment
@@ -31,19 +33,147 @@ zone_pd_preserve = {
 		zoo
 	}
 
-	# planet_modifier = {
-	# }
-
-	# triggered_district_planet_modifier = {
-	# 	potential = {
-	# 		always = yes
-	# 	}
-	# }
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_pd_park_ranger_add = @special_district_jobs
+		}
+	}
 
 	triggered_desc = {
 		trigger = {
-			always = yes
+			exists = owner
+			owner = { is_regular_empire = yes }
 		}
-		text = zone_pd_preserve_desc
+		text = job_pd_park_ranger_effect_desc
+	}
+}
+
+zone_pd_command_nexus = {
+	icon = GFX_job_naval_admin
+	base_buildtime = @zone_buildtime
+	potential = { # planet scope
+		hidden_trigger = { exists = owner }
+		is_planet_class = pc_city
+		has_modifier = pd_garden_arcology
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_wilderness_empire = no
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	included_building_sets = {
+		fortress
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_pd_naval_admin_add = @special_district_jobs
+		}
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		modifier = {
+			pd_naval_admin_gestalt = @special_district_jobs
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_pd_naval_admin_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_pd_naval_admin_gestalt_effect_desc
+	}
+}
+
+zone_pd_trade_market = {
+	icon = GFX_job_trader
+	base_buildtime = @zone_buildtime
+	potential = { # planet scope
+		hidden_trigger = { exists = owner }
+		is_planet_class = pc_city
+		has_modifier = pd_garden_arcology
+	}
+
+	unlock = { # planet scope
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_wilderness_empire = no
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	included_building_sets = {
+		trade
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_trader_add = @special_district_jobs
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_trader_effect_desc
 	}
 }
