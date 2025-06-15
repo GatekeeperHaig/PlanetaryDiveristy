@@ -1,0 +1,119 @@
+
+
+#Hive World Zones
+zone_pd_hive_spawning = {
+	icon = GFX_job_overlord_breeder
+	base_buildtime = @zone_buildtime
+	potential = { # planet scope
+		pd_is_planet_class_hive = yes
+		owner = {
+			is_hive_empire = yes
+			has_ascension_perk = ap_hive_worlds
+		}
+	}
+
+	unlock = { # planet scope
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			has_ascension_perk = ap_hive_worlds
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	included_building_sets = {
+		urban
+		automation
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_spawning_drone_add = $AMOUNT$
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 12
+
+	zone_sets = {
+		urban
+	}
+
+	inline_script = {
+		script = zones/shared_city_non_urban_zone_modifiers
+	}
+}
+
+#Machine World Zones
+zone_pd_machine_replication = {
+	#TODO_CD Needs Icon
+	#icon = GFX_resource_energy_large
+	base_buildtime = @zone_buildtime
+	potential = { # planet scope
+		pd_is_planet_class_machine = yes
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			has_ascension_perk = ap_machine_worlds
+		}
+	}
+
+	unlock = { # planet scope
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			has_ascension_perk = ap_machine_worlds
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	zone_sets = {
+		urban
+	}
+
+	included_building_sets = {
+		urban
+		automation
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_replicator_add = 50
+	}
+
+	triggered_district_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_individual_machine = yes }
+		}
+		job_roboticist_add = 50
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	inline_script = {
+		script = zones/shared_city_non_urban_zone_modifiers
+	}
+}

@@ -1,3 +1,4 @@
+#Garden Arc
 zone_pd_preserve = {
 	icon = GFX_job_ranger
 	base_buildtime = @zone_buildtime
@@ -23,6 +24,10 @@ zone_pd_preserve = {
 
 	planet_modifier = {
 		zone_building_slots_add = 3
+	}
+
+	zone_sets = {
+		urban
 	}
 
 	included_building_sets = {
@@ -54,13 +59,20 @@ zone_pd_preserve = {
 	}
 }
 
+#Fortess Arc
 zone_pd_command_nexus = {
 	icon = GFX_job_naval_admin
 	base_buildtime = @zone_buildtime
 	potential = { # planet scope
 		hidden_trigger = { exists = owner }
-		is_planet_class = pc_city
-		has_modifier = pd_garden_arcology
+		OR = {
+			AND = {
+				has_modifier = pd_fortress_arcology
+				is_planet_class = pc_city
+			}
+			is_planet_class = pc_pd_hive
+			is_planet_class = pc_pd_machine
+		}
 	}
 
 	unlock = { # planet scope
@@ -79,6 +91,10 @@ zone_pd_command_nexus = {
 
 	planet_modifier = {
 		zone_building_slots_add = 3
+	}
+
+	zone_sets = {
+		urban
 	}
 
 	included_building_sets = {
@@ -105,7 +121,7 @@ zone_pd_command_nexus = {
 			}
 		}
 		modifier = {
-			pd_naval_admin_gestalt = @special_district_jobs
+			job_pd_naval_admin_gestalt_add = @special_district_jobs
 		}
 	}
 
@@ -126,13 +142,14 @@ zone_pd_command_nexus = {
 	}
 }
 
+#Commerical Arc
 zone_pd_trade_market = {
 	icon = GFX_job_trader
 	base_buildtime = @zone_buildtime
 	potential = { # planet scope
 		hidden_trigger = { exists = owner }
 		is_planet_class = pc_city
-		has_modifier = pd_garden_arcology
+		has_modifier = pd_commercial_arcology
 	}
 
 	unlock = { # planet scope
@@ -151,6 +168,10 @@ zone_pd_trade_market = {
 
 	planet_modifier = {
 		zone_building_slots_add = 3
+	}
+
+	zone_sets = {
+		urban
 	}
 
 	included_building_sets = {

@@ -278,19 +278,18 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "terraforming_in_progress"
-			size = { width = 174 height = 49}
-			position = { x = 370 y = 15 }
+			position = { x = 667 y = 50 }
+			size = { width = 175 height = 50 }
 
 			background = {
-				name = "terraforming_bg"
+				name = "bg"
 				spriteType = "GFX_dark_area_cut"
-				alpha = 2
-				alwaysTransparent = yes
+				alpha = 1.8
 			}
 
 			iconType = {
 				name = "terraform_current_planet"
-				position = { x = 2 y = 10 }
+				position = { x = 5 y = 10 }
 				spriteType = "GFX_planet_type"
 				frame = 1
 				scale = 0.9
@@ -300,7 +299,6 @@ guiTypes = {
 			iconType = {
 				name = "terraform_finished_planet"
 				position = { x = 138 y = 10 }
-
 				spriteType = "GFX_planet_type"
 				frame = 1
 				scale = 0.9
@@ -310,14 +308,14 @@ guiTypes = {
 			iconType = {
 				name = "terraform_progress"
 				spriteType = "GFX_terraform_progressbar"
-				position = { x = 37 y = 28 }
+				position = { x = 38 y = 30 }
 			}
 
 			instantTextBoxType={
 				name = "terraforming_text"
 				font = "cg_16b"
 				text = "TERRAFORMING_TEXT"
-				position = { x = 30 y = 6 }
+				position = { x = 32 y = 10 }
 				maxWidth = 110
 				maxHeight = 20
 				fixedSize = yes
@@ -378,18 +376,18 @@ guiTypes = {
 		# Planet Devastation
 		containerWindowType = {
 			name = "planet_devastation"
-			size = { width = 150 height = 35 }
-			position = { x = 692 y = 50 }
+			size = { width = 175 height = 35 }
+			position = { x = 667 y = 105 }
 
 			background = {
 				name = "background"
 				spriteType = "GFX_dark_area_cut"
-				alpha = 2
+				alpha = 1.8
 			}
 
 			iconType = {
 				name = "devastation_icon"
-				position = { x = 120 y = 3 }
+				position = { x = 140 y = 3 }
 				spriteType = "GFX_planet_devastation"
 				alwaysTransparent = yes
 			}
@@ -432,6 +430,51 @@ guiTypes = {
 		# 		spriteType = "GFX_species_tiles_dark_area"
 		# 	}
 		# }
+
+
+		containerWindowType = {
+			name = "planet_habitability_container"
+			position = { x = 667 y = 50 }
+			size = { width = 175 height = 50 }
+
+			background = {
+				name = "bg"
+				spriteType = "GFX_dark_area_cut"
+				alpha = 1.8
+			}
+
+			instantTextBoxType = {
+				name = "planet_class_text"
+				position = { x = -170 y = 7 }
+				font = "cg_16b"
+				text = "Type World"
+				maxWidth = 115
+				truncate = yes
+				multiline = no
+				format = right
+				orientation = UPPER_RIGHT
+			}
+
+			instantTextBoxType = {
+				name = "habitability"
+				position = { x = -185 y = 27 }
+				font = "cg_16b"
+				text = "Habitability: XXX%"
+				maxWidth = 130
+				fixedSize = yes
+				format = right
+				orientation = UPPER_RIGHT
+			}
+
+			iconType = {
+				name = "planet_class_icon"
+				position = { x = -40 y = 7 }
+				spriteType = "GFX_planet_type"
+				frame = 8
+				scale = 1
+				orientation = UPPER_RIGHT
+			}
+		}
 
 		#<------------------------------- Planet Info Panel --------------------------->
 		# Actions & Planet Info
@@ -807,7 +850,7 @@ guiTypes = {
 								font = "cg_16b"
 								text = ""
 								position = { x = 87 y = 10 }
-								maxWidth = 160
+								maxWidth = 130
 								maxHeight = 20
 								fixedSize = yes
 								format = left
@@ -1321,7 +1364,7 @@ guiTypes = {
 				}
 
 				iconType = {
-					name = "planet_class_icon"
+					name = "management_planet_class_icon"
 					position = { x = 190 y = 45 }
 					spriteType = "GFX_planet_type"
 					frame = 8
@@ -1359,33 +1402,33 @@ guiTypes = {
 					text_color_code = "E"
 				}
 
-				instantTextBoxType={
-					name = "planet_class_text"
+				instantTextBoxType = {
+					name = "management_planet_class_text"
 					font = "cg_16b"
-					text = "Gaia World"
+					text = "Type World"
 					position = { x = 10 y = 32 }
 					text_color_code = "E"
 				}
 
-				instantTextBoxType={
-					name = "habitability"
+				instantTextBoxType = {
+					name = "management_habitability"
 					font = "cg_16b"
-					text = "Habitability: 100%"
+					text = "Habitability: XXX%"
 					position = { x = 10 y = 48 }
 				}
 
-				instantTextBoxType={
+				instantTextBoxType = {
 					name = "colonization_date"
 					font = "cg_16b"
 					position = { x = 10 y = 64 }
-					text = "Colonized: 01.01.2200"
+					text = "Colonized: 01.01.22XX"
 				}
 
-				instantTextBoxType={
+				instantTextBoxType =  {
 					name = "planet_size"
 					font = "cg_16b"
 					position = { x = 10 y = 80 }
-					text = "Size: 22"
+					text = "Size: XX"
 				}
 			}
 
@@ -2941,21 +2984,16 @@ guiTypes = {
 
 					containerWindowType = {
 						name = "building_icon"
-						size = { width = 78 height = 79	}
-						position = { x = 0 y = 22 }
+						size = { width = 78 height = 78	}
+						position = { x = 0 y = 18 }
 						clipping = yes
 
 						iconType = {
 							name = "building_bg"
-							position = { x=1 y=2 }
+							position = { x = 1 y = 4 }
 							spriteType = "GFX_building_bg"
 							alwaysTransparent = yes
 							scale = 0.87
-						}
-
-						background = {
-							name = "icon_background"
-							spriteType = "GFX_tiles_frame"
 						}
 
 						iconType = {
@@ -2972,6 +3010,18 @@ guiTypes = {
 							alwaysTransparent = yes
 						}
 					}
+
+					containerWindowType = {
+						name = "building_frame"
+						size = { width = 78 height = 76 }
+						position = { x = 0 y = 21 }
+
+						background = {
+							name = "building_frame"
+							spriteType = "GFX_tiles_frame_extra_light"
+						}
+					}
+
 
 					containerWindowType = {
 						name = "building_name"
@@ -3057,32 +3107,6 @@ guiTypes = {
 					format = CENTER
 				}
 
-				buttonType = {
-					name = "replace_district"
-					position = { x = 4 y = 140 }
-					spriteType = "GFX_button_116_24"
-					buttonFont = "cg_16b"
-					text = "REPLACE"
-					font = "cg_16b"
-					orientation = UPPER_LEFT
-					oversound = mouse_over
-					navLeft = "change"
-					shortcut = "P"
-				}
-
-				buttonType = {
-					name = "destroy_district"
-					position = { x = 158 y = 140 }
-					spriteType = "GFX_button_116_24"
-					buttonFont = "cg_16b"
-					text = "DOWNGRADE"
-					font = "cg_16b"
-					orientation = UPPER_LEFT
-					oversound = mouse_over
-					navLeft = "change"
-					shortcut = "del"
-				}
-
 				containerWindowType = {
 					name = "district_info"
 					size = { width = 272 height = 101 }
@@ -3156,9 +3180,62 @@ guiTypes = {
 					}
 				}
 
+				buttonType = {
+					name = "build_district"
+					position = { x = 3 y = 140 }
+					spriteType = "GFX_button_116_24"
+					buttonFont = "cg_16b"
+					text = "BUILD"
+					font = "cg_16b"
+					orientation = UPPER_LEFT
+					oversound = mouse_over
+					navLeft = "change"
+					clicksound = "ui_queuing_district"
+					shortcut = "b"
+				}
+
+				buttonType = {
+					name = "destroy_district"
+					position = { x = 159 y = 140 }
+					spriteType = "GFX_button_116_24"
+					buttonFont = "cg_16b"
+					text = "DOWNGRADE"
+					font = "cg_16b"
+					orientation = UPPER_LEFT
+					oversound = mouse_over
+					navLeft = "change"
+					shortcut = "del"
+				}
+
+				buttonType = {
+					name = "replace_district"
+					position = { x = 3 y = 173 }
+					spriteType = "GFX_button_116_24"
+					buttonFont = "cg_16b"
+					text = "REPLACE"
+					font = "cg_16b"
+					orientation = UPPER_LEFT
+					oversound = mouse_over
+					navLeft = "change"
+					shortcut = "P"
+				}
+
+				buttonType = {
+					name = "quick_clear_blocker"
+					position = { x = 159 y = 173 }
+					spriteType = "GFX_button_116_24"
+					buttonFont = "cg_16b"
+					text = "CLEAR_BLOCKER"
+					font = "cg_16b"
+					orientation = UPPER_LEFT
+					oversound = mouse_over
+					navLeft = "change"
+					clicksound = "ui_demolish_building_district"
+				}
+
 				smoothListboxType = {
 					name = "zones_list"
-					position = { x = 10 y = 193 }
+					position = { x = 10 y = 226 }
 					background = ""
 					size = { x = 282 y = 431 }
 					scrollbarType = "standardlistbox_slider"
@@ -3516,7 +3593,7 @@ guiTypes = {
 
 				containerWindowType = {
 					name = "terraforming_ongoing_window"
-					position = { x=5 y=50 }
+					position = { x = 20 y = 50 }
 					moveable = no
 					size = { width = 270 height = 98 }
 
@@ -3932,7 +4009,7 @@ guiTypes = {
 
 		background = {
 			name = "rectangle"
-			quadTextureSprite = "GFX_district_box_icon_rectangle"
+			spriteType = "GFX_district_box_icon_rectangle"
 			alwaysTransparent = yes
 		}
 	}
