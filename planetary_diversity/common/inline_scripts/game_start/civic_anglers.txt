@@ -10,6 +10,7 @@ if = {
 		exists = owner
 		owner = {
 			is_anglers_empire = yes
+			NOT = { has_origin = origin_broken_shackles }
 		}
 		pd_is_ocean = yes
 	}
@@ -29,4 +30,16 @@ if = {
 		which = farming_districts
 		value = -1
 	}
+}
+else_if = {
+	limit = {
+		exists = owner
+		owner = {
+			is_anglers_empire = yes
+			has_origin = origin_broken_shackles
+		}
+		is_planet_class = pc_ocean
+	}
+	set_planet_flag = uncapped_farming
+	set_planet_flag = angler_shackles
 }
