@@ -239,6 +239,7 @@ generate_pd_arcology_portrait_effect = {
 		}
 		if = {
 			limit = {
+				NOT = {	has_planet_flag = planet_earth }
 				is_planet_class = pc_city
 				has_modifier = pd_garden_arcology
 			}
@@ -246,6 +247,17 @@ generate_pd_arcology_portrait_effect = {
 				picture = pc_pd_garden_palace
 				entity = "pd_garden_city_planet_entity"
 				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_palace
+				entity = pd_garden_city_planet_earth_01_entity
 			}
 		}
 		if = {
