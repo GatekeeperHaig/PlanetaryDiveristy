@@ -828,7 +828,7 @@ trait_charismatic = {
 	}
 	tags = { organic positive pop_output amenities }
 	modifier = {
-		entertainer_jobs_bonus_workforce_mult = 0.20
+		influential_jobs_bonus_workforce_mult = 0.20
 	}
 	slave_cost = {
 		energy = 500
@@ -846,7 +846,7 @@ trait_repugnant = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative pop_output amenities }
 	modifier = {
-		entertainer_jobs_bonus_workforce_mult = -0.20
+		influential_jobs_bonus_workforce_mult = -0.20
 	}
 
 	ai_weight = {
@@ -1428,6 +1428,7 @@ trait_psionic = {
 		}
 		modifier = {
 			subtract = 1.5
+			exists = from.owner
 			from.owner = { has_ascension_perk = ap_the_flesh_is_weak }
 		}
 	}
@@ -1595,6 +1596,7 @@ trait_bioadaptability = { #green
 		base = 1
 		modifier = {
 			mult = 0
+			exists = owner
 			owner = { has_country_flag = modification_green }
 		}
 	}
@@ -1636,6 +1638,7 @@ trait_social_pheromones = { #red
 		base = 1
 		modifier = {
 			mult = 0
+			exists = owner
 			owner = { has_country_flag = modification_red }
 		}
 	}
@@ -1674,6 +1677,7 @@ trait_limited_regeneration = { #blue
 		base = 1
 		modifier = {
 			mult = 0
+			exists = owner
 			owner = { has_country_flag = modification_blue }
 		}
 	}
@@ -2192,6 +2196,7 @@ trait_plantoid_budding = {
 		potential = {
 			has_budding_trait = yes
 		}
+		divide_over_pop_groups = no
 		bonus_pop_growth = @plantoid_budding_rate
 	}
 
@@ -2288,9 +2293,21 @@ trait_lithoid_budding = {
 	triggered_planet_pop_group_modifier_for_species = {
 		potential = {
 			has_budding_trait = yes
+			exists = planet
+			NOT = { planet = { has_deposit = d_lithoid_crater } }
 		}
+		divide_over_pop_groups = no
 		bonus_pop_growth = @plantoid_budding_rate
 	}
+	triggered_planet_pop_group_modifier_for_species = {
+		potential = {
+			has_budding_trait = yes
+			exists = planet
+			planet = { has_deposit = d_lithoid_crater }
+		}
+		bonus_pop_growth = @lithoid_crater_budding_rate
+	}
+
 
 	slave_cost = {
 		energy = 2000
@@ -2318,6 +2335,7 @@ trait_zombie = {
 	tags = { organic negative upkeep pop_output blocks_leaders }
 	modifier = {
 		pop_bonus_workforce_mult = -0.25
+		civilian_and_maintenance_drone_cat_bonus_workforce_mult = -0.50
 		planet_pops_upkeep_mult = -1
 	}
 

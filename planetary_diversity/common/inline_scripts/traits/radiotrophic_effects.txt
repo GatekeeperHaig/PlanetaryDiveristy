@@ -4,6 +4,13 @@ modifier = {
 triggered_planet_growth_habitability_modifier = {
 	potential = {
 		exists = planet
+		planet = { has_deposit = d_lithoid_crater }
+	}
+	pc_nuked_habitability = 0.05
+}
+triggered_planet_growth_habitability_modifier = {
+	potential = {
+		exists = planet
 		planet = {
 			OR = {
 				is_planet_class = pc_nuked
@@ -13,7 +20,8 @@ triggered_planet_growth_habitability_modifier = {
 			}
 		}
 	}
-	logistic_growth_mult = 0.10
+	logistic_growth_mult = 0.1
+	mult = value:lithoid_trait_mult
 }
 triggered_pop_group_modifier = {
 	potential = {
@@ -21,6 +29,7 @@ triggered_pop_group_modifier = {
 		planet = { has_modifier = wasteland_radiation }
 	}
 	pop_happiness = 0.1
+	mult = value:lithoid_trait_mult
 }
 slave_cost = {
 	energy = 1500
@@ -29,5 +38,12 @@ assembly_score = {
 	modifier = {
 		add = 1
 		from = { is_planet_class = pc_nuked }
+	}
+	modifier = {
+		add = 0.05
+		from = {
+			is_planet_class = pc_nuked
+			has_deposit = d_lithoid_crater
+		}
 	}
 }
