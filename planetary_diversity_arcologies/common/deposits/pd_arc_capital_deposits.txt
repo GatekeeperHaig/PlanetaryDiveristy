@@ -166,10 +166,24 @@ d_pd_headquarters_building = {
 			exists = owner
 			owner = {
 				is_regular_empire = yes
+				is_worker_coop_empire = no
 			}
 		}
 		modifier = {
 			job_politician_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_worker_coop_empire = yes
+			}
+		}
+		modifier = {
+			job_bureaucrat_add = 400
 		}
 	}
 
@@ -225,15 +239,6 @@ d_pd_confluence_spire_building = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_origin = origin_progenitor_hive }
-		}
-		job_offspring_drone_add = 100
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			NOT = { owner = { has_origin = origin_progenitor_hive } }
 		}
 		job_spawning_drone_add = 100
 	}
