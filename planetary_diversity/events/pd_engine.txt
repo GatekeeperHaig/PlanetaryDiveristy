@@ -106,6 +106,9 @@ country_event = {
 				25 = {
 					pd_columnar_world_effect = yes
 				}
+				25 = {
+					pd_tidepool_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -155,6 +158,9 @@ country_event = {
 				}
 				25 = {
 					pd_lilypad_world_effect = yes
+				}
+				25 = {
+					pd_obsidian_world_effect = yes
 				}
 				15 = {
 					modifier = {
@@ -355,6 +361,9 @@ country_event = {
 				}
 				25 = {
 					pd_ice_dunes_world_effect = yes
+				}
+				25 = {
+					pd_ferrospring_world_effect = yes
 				}
 				15 = {
 					modifier = {
@@ -717,6 +726,16 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = {
+				is_planet_class = pc_pd_tidepool
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_ocean
+			pd_tidepool_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
 				is_planet_class = pc_pd_reef
 				has_pd_modifier = no
 				is_capital = yes
@@ -818,6 +837,16 @@ country_event = {
 			}
 			change_pc = pc_tropical
 			pd_lilypad_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_obsidian
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_tropical
+			pd_obsidian_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -1248,6 +1277,16 @@ country_event = {
 			}
 			change_pc = pc_arctic
 			pd_ice_dunes_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ferrospring
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_arctic
+			pd_ferrospring_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -1839,6 +1878,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.tidepool
+		hidden_effect = {
+			from = {
+				pd_tidepool_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -1950,6 +2000,17 @@ country_event = {
 		hidden_effect = {
 			from = {
 				pd_lilypad_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_tropical }
+		}
+		name = pdengine.21.obsidian
+		hidden_effect = {
+			from = {
+				pd_obsidian_world_effect = yes
 			}
 		}
 	}
@@ -2418,6 +2479,17 @@ country_event = {
 		hidden_effect = {
 			from = {
 				pd_ice_dunes_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.ferrospring
+		hidden_effect = {
+			from = {
+				pd_ferrospring_world_effect = yes
 			}
 		}
 	}
@@ -2929,6 +3001,9 @@ planet_event = {
 				25 = {
 					pd_columnar_world_effect = yes
 				}
+				25 = {
+					pd_tidepool_world_effect = yes
+				}
 				0 = {
 					modifier = {
 						add = 25
@@ -2977,6 +3052,9 @@ planet_event = {
 				}
 				25 = {
 					pd_lilypad_world_effect = yes
+				}
+				25 = {
+					pd_obsidian_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -3173,6 +3251,9 @@ planet_event = {
 				}
 				25 = {
 					pd_ice_dunes_world_effect = yes
+				}
+				25 = {
+					pd_ferrospring_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -5969,6 +6050,7 @@ country_event = {
 				has_trait = trait_pc_pd_kelp_preference
 				has_trait = trait_pc_pd_algae_preference
 				has_trait = trait_pc_pd_columnar_preference
+				has_trait = trait_pc_pd_tidepool_preference
 				has_trait = trait_pc_pd_reef_preference
 				has_trait = trait_pc_pd_archipelago_preference
 				has_trait = trait_pc_pd_atoll_preference
@@ -5978,6 +6060,7 @@ country_event = {
 				has_trait = trait_pc_pd_fungal_preference
 				has_trait = trait_pc_pd_aerial_preference
 				has_trait = trait_pc_pd_lilypad_preference
+				has_trait = trait_pc_pd_obsidian_preference
 				has_trait = trait_pc_pd_geothermal_preference
 				has_trait = trait_pc_pd_biolumen_preference
 			}
@@ -6015,6 +6098,7 @@ country_event = {
 				has_trait = trait_pc_pd_ice_spike_preference
 				has_trait = trait_pc_pd_crevasse_preference
 				has_trait = trait_pc_pd_ice_dunes_preference
+				has_trait = trait_pc_pd_ferrospring_preference
 				has_trait = trait_pc_pd_storm_preference
 				has_trait = trait_pc_pd_iceberg_preference
 				has_trait = trait_pc_pd_boreal_preference
@@ -6470,6 +6554,9 @@ country_event = {
 					25 = {
 						pd_columnar_world_effect = yes
 					}
+					25 = {
+						pd_tidepool_world_effect = yes
+					}
 				}
 			}
 			if = {
@@ -6506,6 +6593,9 @@ country_event = {
 					}
 					25 = {
 						pd_lilypad_world_effect = yes
+					}
+					25 = {
+						pd_obsidian_world_effect = yes
 					}
 				}
 			}
@@ -6663,6 +6753,9 @@ country_event = {
 					}
 					25 = {
 						pd_ice_dunes_world_effect = yes
+					}
+					25 = {
+						pd_ferrospring_world_effect = yes
 					}
 				}
 			}
@@ -6960,6 +7053,7 @@ planet_event = {
 			has_modifier = pd_kelp
 			has_modifier = pd_algae
 			has_modifier = pd_columnar
+			has_modifier = pd_tidepool
 			has_modifier = pd_reef
 			has_modifier = pd_archipelago
 			has_modifier = pd_atoll
@@ -6969,6 +7063,7 @@ planet_event = {
 			has_modifier = pd_fungal
 			has_modifier = pd_aerial
 			has_modifier = pd_lilypad
+			has_modifier = pd_obsidian
 			has_modifier = pd_geothermal
 			has_modifier = pd_biolumen
 			has_modifier = pd_dune
@@ -7006,6 +7101,7 @@ planet_event = {
 			has_modifier = pd_ice_spike
 			has_modifier = pd_crevasse
 			has_modifier = pd_ice_dunes
+			has_modifier = pd_ferrospring
 			has_modifier = pd_storm
 			has_modifier = pd_iceberg
 			has_modifier = pd_boreal
@@ -7216,6 +7312,16 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_ocean
+				has_modifier = pd_tidepool
+			}
+			set_planet_entity = {
+				picture = pc_pd_tidepool
+				entity = "tidepool_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_ocean
 				has_modifier = pd_reef
 			}
 			set_planet_entity = {
@@ -7302,6 +7408,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_lilypad
 				entity = "lilypad_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_tropical
+				has_modifier = pd_obsidian
+			}
+			set_planet_entity = {
+				picture = pc_pd_obsidian
+				entity = "obsidian_planet_01_entity"
 			}
 		}
 		if = {
@@ -7676,6 +7792,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_ice_dunes
 				entity = "ice_dunes_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_arctic
+				has_modifier = pd_ferrospring
+			}
+			set_planet_entity = {
+				picture = pc_pd_ferrospring
+				entity = "ferrospring_planet_01_entity"
 			}
 		}
 		if = {
