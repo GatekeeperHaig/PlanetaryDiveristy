@@ -300,6 +300,10 @@ remove_pd_savannah_modifier = {
 		remove_modifier = pd_calcite
 	}
 	if = {
+		limit = { has_modifier = pd_monsoon }
+		remove_modifier = pd_monsoon
+	}
+	if = {
 		limit = { has_modifier = pd_supercontinent }
 		remove_modifier = pd_supercontinent
 	}
@@ -1411,6 +1415,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_calcite_preference
+			add_trait = trait_pc_savannah_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_monsoon_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_monsoon_preference
 			add_trait = trait_pc_savannah_preference
 		}
 	}

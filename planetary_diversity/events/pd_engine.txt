@@ -312,6 +312,9 @@ country_event = {
 				25 = {
 					pd_calcite_world_effect = yes
 				}
+				25 = {
+					pd_monsoon_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -1172,6 +1175,16 @@ country_event = {
 			}
 			change_pc = pc_savannah
 			pd_calcite_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_monsoon
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_savannah
+			pd_monsoon_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -2368,6 +2381,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.monsoon
+		hidden_effect = {
+			from = {
+				pd_monsoon_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3202,6 +3226,9 @@ planet_event = {
 				}
 				25 = {
 					pd_calcite_world_effect = yes
+				}
+				25 = {
+					pd_monsoon_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -6000,6 +6027,7 @@ country_event = {
 				has_trait = trait_pc_pd_sandstone_preference
 				has_trait = trait_pc_pd_turquoise_preference
 				has_trait = trait_pc_pd_calcite_preference
+				has_trait = trait_pc_pd_monsoon_preference
 				has_trait = trait_pc_pd_supercontinent_preference
 				has_trait = trait_pc_pd_sinkhole_preference
 			}
@@ -6717,6 +6745,9 @@ country_event = {
 					25 = {
 						pd_calcite_world_effect = yes
 					}
+					25 = {
+						pd_monsoon_world_effect = yes
+					}
 				}
 			}
 			if = {
@@ -7092,6 +7123,7 @@ planet_event = {
 			has_modifier = pd_sandstone
 			has_modifier = pd_turquoise
 			has_modifier = pd_calcite
+			has_modifier = pd_monsoon
 			has_modifier = pd_supercontinent
 			has_modifier = pd_sinkhole
 			has_modifier = pd_cold_desert
@@ -7701,6 +7733,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_calcite
 				entity = "calcite_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_savannah
+				has_modifier = pd_monsoon
+			}
+			set_planet_entity = {
+				picture = pc_pd_monsoon
+				entity = "monsoon_planet_01_entity"
 			}
 		}
 		if = {
