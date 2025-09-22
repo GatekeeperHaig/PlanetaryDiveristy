@@ -39,9 +39,6 @@ country_event = {
 					pd_forest_world_effect = yes
 				}
 				25 = {
-					pd_temperate_world_effect = yes
-				}
-				25 = {
 					pd_sakura_world_effect = yes
 				}
 				25 = {
@@ -566,16 +563,6 @@ country_event = {
 			}
 			change_pc = pc_continental
 			pd_mushroom_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_temperate
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_temperate_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -1115,16 +1102,6 @@ country_event = {
 			}
 			change_pc = pc_savannah
 			pd_prairie_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_veld
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_veld_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -1724,17 +1701,6 @@ country_event = {
 		hidden_effect = {
 			from = {
 				pd_mushroom_world_effect = yes
-			}
-		}
-	}
-	option = {
-		trigger = {
-			from = { is_planet_class = pc_continental }
-		}
-		name = pdengine.21.temperate
-		hidden_effect = {
-			from = {
-				pd_temperate_world_effect = yes
 			}
 		}
 	}
@@ -2957,9 +2923,6 @@ planet_event = {
 				}
 				25 = {
 					pd_forest_world_effect = yes
-				}
-				25 = {
-					pd_temperate_world_effect = yes
 				}
 				25 = {
 					pd_sakura_world_effect = yes
@@ -6021,7 +5984,6 @@ country_event = {
 				has_trait = trait_pc_pd_primal_preference
 				has_trait = trait_pc_pd_steppe_preference
 				has_trait = trait_pc_pd_prairie_preference
-				has_trait = trait_pc_pd_veld_preference
 				has_trait = trait_pc_pd_semi_arid_preference
 				has_trait = trait_pc_pd_aspen_preference
 				has_trait = trait_pc_pd_sandstone_preference
@@ -6063,7 +6025,6 @@ country_event = {
 				has_trait = trait_pc_pd_tepid_preference
 				has_trait = trait_pc_pd_retinal_preference
 				has_trait = trait_pc_pd_lake_preference
-				has_trait = trait_pc_pd_temperate_preference
 				has_trait = trait_pc_pd_sakura_preference
 				has_trait = trait_pc_pd_moss_preference
 				has_trait = trait_pc_pd_marsh_preference
@@ -6517,9 +6478,6 @@ country_event = {
 					}
 					25 = {
 						pd_forest_world_effect = yes
-					}
-					25 = {
-						pd_temperate_world_effect = yes
 					}
 					25 = {
 						pd_sakura_world_effect = yes
@@ -7068,7 +7026,6 @@ planet_event = {
 		OR = {
 			has_modifier = pd_retinal
 			has_modifier = pd_lake
-			has_modifier = pd_temperate
 			has_modifier = pd_tepid
 			has_modifier = pd_mushroom
 			has_modifier = pd_forest
@@ -7117,7 +7074,6 @@ planet_event = {
 			has_modifier = pd_primal
 			has_modifier = pd_steppe
 			has_modifier = pd_prairie
-			has_modifier = pd_veld
 			has_modifier = pd_semi_arid
 			has_modifier = pd_aspen
 			has_modifier = pd_sandstone
@@ -7198,16 +7154,6 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_mushroom
 				entity = "mushroom_planet_01_entity"
-			}
-		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_temperate
-			}
-			set_planet_entity = {
-				picture = pc_pd_temperate
-				entity = "temperate_planet_01_entity"
 			}
 		}
 		if = {
@@ -7673,16 +7619,6 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_prairie
 				entity = "prairie_planet_01_entity"
-			}
-		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_veld
-			}
-			set_planet_entity = {
-				picture = pc_pd_veld
-				entity = "veld_planet_01_entity"
 			}
 		}
 		if = {

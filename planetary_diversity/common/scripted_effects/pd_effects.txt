@@ -52,10 +52,6 @@ remove_pd_continental_modifier = {
 		remove_modifier = pd_forest
 	}
 	if = {
-		limit = { has_modifier = pd_temperate }
-		remove_modifier = pd_temperate
-	}
-	if = {
 		limit = { has_modifier = pd_sakura }
 		remove_modifier = pd_sakura
 	}
@@ -274,10 +270,6 @@ remove_pd_savannah_modifier = {
 	if = {
 		limit = { has_modifier = pd_prairie }
 		remove_modifier = pd_prairie
-	}
-	if = {
-		limit = { has_modifier = pd_veld }
-		remove_modifier = pd_veld
 	}
 	if = {
 		limit = { has_modifier = pd_semi_arid }
@@ -708,19 +700,6 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_mushroom_preference
-			add_trait = trait_pc_continental_preference
-		}
-	}
-	every_galaxy_species = {
-		limit = {
-			has_trait = trait_pc_pd_temperate_preference
-			NOR = {
-				has_trait = trait_machine_unit
-				has_trait = trait_mechanical
-			}
-		}
-		change_species_characteristics = {
-			remove_trait = trait_pc_pd_temperate_preference
 			add_trait = trait_pc_continental_preference
 		}
 	}
@@ -1337,19 +1316,6 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_prairie_preference
-			add_trait = trait_pc_savannah_preference
-		}
-	}
-	every_galaxy_species = {
-		limit = {
-			has_trait = trait_pc_pd_veld_preference
-			NOR = {
-				has_trait = trait_machine_unit
-				has_trait = trait_mechanical
-			}
-		}
-		change_species_characteristics = {
-			remove_trait = trait_pc_pd_veld_preference
 			add_trait = trait_pc_savannah_preference
 		}
 	}

@@ -65,6 +65,15 @@ trait_machine_unit = {
 		habitability_floor_add = 0.5
 	}
 
+	resources = {
+		category = planet_pops
+		# Energy Upkeep
+		upkeep = {
+			trigger = { is_being_purged = no }
+			energy = @living_standard_energy_normal
+		}
+	}
+
 	triggered_planet_growth_habitability_modifier = {
 		potential = {
 			exists = owner
@@ -125,6 +134,15 @@ trait_mechanical = {
 		habitability_floor_add = 0.5
 	}
 
+	resources = {
+		category = planet_pops
+		# Energy Upkeep
+		upkeep = {
+			trigger = { is_being_purged = no }
+			energy = @living_standard_energy_normal
+		}
+	}
+
 	triggered_planet_growth_habitability_modifier = {
 		potential = {
 			exists = owner
@@ -168,6 +186,56 @@ trait_syncretic_proles = {
 	}
 }
 
+trait_organic = {
+	cost = 0
+
+	sorting_priority = 20
+
+	initial = yes
+	randomized = no
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	immortal_leaders = no
+
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT }
+	tags = { organic positive special }
+	ai_weight = {
+		weight = 0
+	}
+
+	resources = {
+		category = planet_pops
+		# Food Upkeep
+		upkeep = {
+			trigger = {
+				is_phototrophic = no
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+			}
+			food = @living_standard_food_normal
+		}
+		upkeep = {
+			trigger = {
+				is_phototrophic = yes
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+			}
+			food = @living_standard_phototrophic_normal
+		}
+	}
+
+	icon = "gfx/interface/icons/traits/trait_organic.dds"
+
+	custom_tooltip_with_modifiers = TRAIT_ORGANIC_EFFECT
+}
+
 trait_lithoid = {
 	cost = 0
 
@@ -189,13 +257,35 @@ trait_lithoid = {
 	leader_age_min = 27
 	leader_age_max = 38
 
-	allowed_archetypes = { LITHOID }
+	allowed_archetypes = { LITHOID PRESAPIENT }
 	tags = { organic positive habitability leader army lithoid special }
 	ai_weight = {
 		weight = 0
 	}
 
 	icon = "gfx/interface/icons/traits/trait_lithoid.dds"
+
+	resources = {
+		category = planet_pops
+		# Mineral Upkeep
+		upkeep = {
+			trigger = {
+				is_phototrophic = no
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+			}
+			minerals = @living_standard_food_normal
+		}
+
+		upkeep = {
+			trigger = {
+				is_phototrophic = yes
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+			}
+			minerals = @living_standard_phototrophic_normal
+		}
+	}
 
 	custom_tooltip_with_modifiers = TRAIT_LITHOID_EFFECT
 	modifier = {
@@ -592,7 +682,7 @@ trait_necrophage = {
 
 	modifier = {
 		leader_lifespan_add = 80
-		logistic_growth_mult = -0.75
+		logistic_growth_mult = -0.5
 		bonus_pop_growth_mult = -0.5
 		planet_pops_organics_food_upkeep_mult = -0.5
 		planet_pops_organics_minerals_upkeep_mult = -0.5
@@ -846,6 +936,38 @@ trait_robot_cave_dweller = {
 			add = 0.5
 			from = { has_rural_designation = yes }
 		}
+	}
+}
+
+trait_shroud_forged = {
+	cost = 0
+	sorting_priority = 20
+
+	initial = no
+	randomized = no
+
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+
+	allowed_archetypes = { ROBOT }
+
+	custom_tooltip_with_modifiers = trait_shroud_forged_tooltip
+	modifier = {
+		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.1
+	}
+
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+		}
+		planet_crime_no_happiness_add = 1
 	}
 }
 
