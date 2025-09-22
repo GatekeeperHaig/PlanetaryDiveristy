@@ -6,6 +6,7 @@ district_city = {
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
 	default_starting_district = yes
+	overlay_icon = GFX_district_government
 
 	zone_slots = {
 		slot_city_government
@@ -163,6 +164,16 @@ district_city = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_production_overseer_add = 100
+		}
+	}
+
 	inline_script = {
 		script = districts/district_triggered_name_urban
 	}
@@ -180,6 +191,7 @@ district_crashed_slaver_ship = {
 	is_capped_by_modifier = yes
 	can_demolish = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_government
 
 	zone_slots = {
 		slot_city_government
@@ -295,31 +307,38 @@ district_crashed_slaver_ship = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_country_flag = origin_broken_shackles_crashed_slaver_ship_depleted }
+			owner = {
+				has_country_flag = origin_broken_shackles_crashed_slaver_ship_depleted
+				is_tankbound_empire = no
+			}
 		}
 		modifier = {
 			job_clerk_add = 100
 		}
 	}
 
-	triggered_desc = {
-		trigger = {
+	triggered_planet_modifier = {
+		potential = {
 			exists = owner
 			owner = {
-				NOT = { has_country_flag = origin_broken_shackles_crashed_slaver_ship_depleted }
+				is_tankbound_empire = yes
 			}
 		}
-		text = job_broken_shackles_scavenger_effect_desc
+		modifier = {
+			job_production_overseer_add = 100
+		}
 	}
-
-	triggered_desc = {
-		trigger = {
+	triggered_planet_modifier = {
+		potential = {
 			exists = owner
 			owner = {
 				has_country_flag = origin_broken_shackles_crashed_slaver_ship_depleted
+				is_tankbound_empire = yes
 			}
 		}
-		text = job_clerk_effect_desc
+		modifier = {
+			job_production_overseer_add = 100
+		}
 	}
 }
 
@@ -327,6 +346,7 @@ district_resort = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_trade
 
 	zone_slots = {
 		slot_city_government
@@ -466,12 +486,14 @@ district_resort = {
 		}
 	}
 
-	triggered_desc = {
-		trigger = {
+	triggered_planet_modifier = {
+		potential = {
 			exists = owner
-			owner = { is_regular_empire = yes }
+			owner = { is_tankbound_empire = yes }
 		}
-		text = job_resort_worker_effect_desc
+		modifier = {
+			job_production_overseer_add = 100
+		}
 	}
 
 	triggered_name = {
@@ -488,6 +510,7 @@ district_resort_1 = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_amenities
 
 	zone_slots = {
 		slot_resort_attraction_01
@@ -566,6 +589,7 @@ district_resort_2 = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_amenities
 
 	zone_slots = {
 		slot_resort_attraction_01
@@ -644,6 +668,7 @@ district_resort_3 = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_amenities
 
 	zone_slots = {
 		slot_resort_attraction_01
@@ -722,6 +747,7 @@ district_prison = {
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
 	icon = district_city
+	overlay_icon = GFX_district_government
 
 	zone_slots = {
 		slot_city_government
@@ -828,23 +854,14 @@ district_prison = {
 		}
 	}
 
-	triggered_desc = {
-		trigger = {
+	triggered_planet_modifier = {
+		potential = {
 			exists = owner
-			owner = {
-				is_regular_empire = yes
-				NOT = { has_valid_civic = civic_civil_education }
-			}
+			owner = { is_tankbound_empire = yes }
 		}
-		text = job_enforcer_effect_desc
-	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { has_valid_civic = civic_civil_education }
+		modifier = {
+			job_production_overseer_add = 100
 		}
-		text = job_educator_effect_desc
 	}
 }
 
@@ -853,6 +870,7 @@ district_slave = {
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
 	icon = district_city
+	overlay_icon = GFX_district_government
 
 	zone_slots = {
 		slot_city_government
@@ -959,12 +977,14 @@ district_slave = {
 		}
 	}
 
-	triggered_desc = {
-		trigger = {
+	triggered_planet_modifier = {
+		potential = {
 			exists = owner
-			owner = { is_regular_empire = yes }
+			owner = { is_tankbound_empire = yes }
 		}
-		text = job_slave_overseer_effect_desc
+		modifier = {
+			job_production_overseer_add = 100
+		}
 	}
 }
 
@@ -972,6 +992,7 @@ district_hive = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_government
 
 	zone_slots = {
 		slot_city_government
@@ -1079,6 +1100,16 @@ district_hive = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_production_overseer_add = 100
+		}
+	}
+
 	inline_script = {
 		script = districts/district_triggered_name_hive
 	}
@@ -1097,6 +1128,7 @@ district_hive_1 = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_housing
 
 	zone_slots = {
 		slot_hive
@@ -1181,6 +1213,7 @@ district_hive_2 = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_housing
 
 	zone_slots = {
 		slot_hive
@@ -1265,6 +1298,7 @@ district_hive_3 = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_housing
 
 	zone_slots = {
 		slot_hive
@@ -1348,6 +1382,7 @@ district_nexus = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_government
 
 	zone_slots = {
 		slot_city_government
@@ -1454,11 +1489,14 @@ district_nexus = {
 		}
 	}
 
-	triggered_desc = {
-		trigger = {
-			has_modifier = gestation_colony
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
 		}
-		text = job_gestation_drone_effect_desc
+		modifier = {
+			job_production_overseer_add = 100
+		}
 	}
 
 	inline_script = {
@@ -1479,6 +1517,7 @@ district_nexus_1 = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_housing
 
 	zone_slots = {
 		slot_nexus
@@ -1559,6 +1598,7 @@ district_nexus_2 = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_housing
 
 	zone_slots = {
 		slot_nexus
@@ -1639,6 +1679,7 @@ district_nexus_3 = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
 	exempt_from_ai_planet_specialization = yes
+	overlay_icon = GFX_district_housing
 
 	zone_slots = {
 		slot_nexus
@@ -1718,6 +1759,7 @@ district_prison_industrial = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
 	icon = district_industrial
+	overlay_icon = GFX_district_mixed_industry
 
 	zone_slots = {
 		slot_city_government
@@ -1761,16 +1803,6 @@ district_prison_industrial = {
 		upkeep = {
 			energy = 2
 		}
-
-		upkeep = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_edict = industrial_maintenance
-				}
-			}
-			energy = 2
-		}
 	}
 
 	planet_modifier = {
@@ -1791,6 +1823,7 @@ district_prison_industrial = {
 district_battle_thrall = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
+	overlay_icon = GFX_district_fortress
 
 	zone_slots = {
 		slot_city_government
@@ -1827,16 +1860,6 @@ district_battle_thrall = {
 		upkeep = {
 			energy = 2
 		}
-
-		upkeep = {
-			trigger = {
-				exists = owner
-				owner = {
-					has_edict = industrial_maintenance
-				}
-			}
-			energy = 2
-		}
 	}
 
 	planet_modifier = {
@@ -1855,19 +1878,12 @@ district_battle_thrall = {
 			job_battle_thrall_add = @base_district_jobs
 		}
 	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_battle_thrall_effect_desc
-	}
 }
 
 district_srw_commercial = {
 	base_buildtime = 240
 	is_capped_by_modifier = no
+	overlay_icon = GFX_district_trade
 
 	min_for_deposits_on_planet = 3
 	max_for_deposits_on_planet = 15
@@ -1954,31 +1970,5 @@ district_srw_commercial = {
 		modifier = {
 			job_trader_add = 100
 		}
-	}
-
-	triggered_desc = {
-		text = job_trader_effect_desc
-	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				is_crafter_empire = no
-			}
-		}
-		text = job_artisan_effect_desc
-	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				is_regular_empire = yes
-				is_crafter_empire = yes
-			}
-		}
-		text = job_artificer_effect_desc
 	}
 }

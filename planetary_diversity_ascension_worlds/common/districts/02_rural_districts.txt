@@ -1,10 +1,11 @@
 @base_cost = 300
 @city_cost = 500
+@rural_district_ai_coefficient = 0.75
 
 district_generator = {
 	expansion_planner = yes
-
 	base_buildtime = 240
+	overlay_icon = GFX_district_energy
 
 	min_for_deposits_on_planet = 3
 	max_for_deposits_on_planet = 15
@@ -75,7 +76,6 @@ district_generator = {
 			planet_housing_add = 300
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -83,6 +83,16 @@ district_generator = {
 		}
 		modifier = {
 			planet_housing_add = 100
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_technician_automated_workforce_mult = 1.0
 		}
 	}
 
@@ -98,7 +108,7 @@ district_generator = {
 		tech_power_plant_1
 	}
 
-	ai_weight_coefficient = 0.8
+	ai_weight_coefficient = @rural_district_ai_coefficient
 }
 
 district_generator_uncapped = {
@@ -141,9 +151,6 @@ district_generator_uncapped = {
 	conversion_ratio = 1
 	convert_to = {
 		district_generator
-		district_rw_generator
-		district_srw_commercial
-		district_rw_urban_1
 		district_photosynthesis_fields
 		district_photosynthesis_fields_uncapped
 		district_nexus_1
@@ -191,6 +198,16 @@ district_generator_uncapped = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_technician_automated_workforce_mult = 1.0
+		}
+	}
+
 	inline_script = {
 		script = districts/district_triggered_name_generator
 	}
@@ -199,12 +216,12 @@ district_generator_uncapped = {
 		script = districts/district_triggered_flavor_desc_generator
 	}
 
-	ai_weight_coefficient = 0.8
+	ai_weight_coefficient = @rural_district_ai_coefficient
 }
 
 district_mining = {
+	overlay_icon = GFX_district_minerals
 	expansion_planner = yes
-
 	base_buildtime = 240
 
 	min_for_deposits_on_planet = 1
@@ -287,7 +304,6 @@ district_mining = {
 			planet_housing_add = 300
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			has_modifier = metal_planet
@@ -296,7 +312,6 @@ district_mining = {
 			planet_housing_add = 500
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -304,6 +319,16 @@ district_mining = {
 		}
 		modifier = {
 			planet_housing_add = 100
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_miner_automated_workforce_mult = 1.0
 		}
 	}
 
@@ -319,12 +344,13 @@ district_mining = {
 		tech_mechanized_mining
 	}
 
-	ai_weight_coefficient = 0.8
+	ai_weight_coefficient = @rural_district_ai_coefficient
 }
 
 district_mining_uncapped = {
 	base_buildtime = 240
 	icon = district_mining
+	overlay_icon = GFX_district_minerals
 	is_capped_by_modifier = no
 
 	zone_slots = {
@@ -348,8 +374,6 @@ district_mining_uncapped = {
 
 	show_on_uncolonized = {
 		OR = {
-			#uses_district_set = hive_world
-			#uses_district_set = machine_world
 			uses_district_set = shattered_ring_world
 			has_modifier = pd_aw_stripmine
 			AND = {
@@ -365,8 +389,6 @@ district_mining_uncapped = {
 
 	potential = {
 		OR = {
-			#uses_district_set = hive_world
-			#uses_district_set = machine_world
 			uses_district_set = shattered_ring_world
 			has_modifier = pd_aw_stripmine
 			AND = {
@@ -388,7 +410,6 @@ district_mining_uncapped = {
 	conversion_ratio = 1
 	convert_to = {
 		district_mining
-		district_rw_urban_2
 		district_hollow_mountains
 		district_hollow_mountains_uncapped
 		district_nexus_2
@@ -445,6 +466,16 @@ district_mining_uncapped = {
 		mult = owner.value:scripted_modifier_add|MODIFIER|mining_district_housing_add|
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_miner_automated_workforce_mult = 1.0
+		}
+	}
+
 	inline_script = {
 		script = districts/district_triggered_name_mining
 	}
@@ -456,10 +487,11 @@ district_mining_uncapped = {
 	prerequisites = {
 	}
 
-	ai_weight_coefficient = 0.8
+	ai_weight_coefficient = @rural_district_ai_coefficient
 }
 
 district_farming = {
+	overlay_icon = GFX_district_food
 	expansion_planner = yes
 	base_buildtime = 240
 
@@ -515,7 +547,6 @@ district_farming = {
 		district_farming_uncapped
 		district_orchard_forests
 		district_orchard_forests_uncapped
-		district_nexus_3
 		district_hive_3
 	}
 
@@ -575,7 +606,6 @@ district_farming = {
 			planet_housing_add = 400
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -599,6 +629,16 @@ district_farming = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_farmer_automated_workforce_mult = 1.0
+		}
+	}
+
 	inline_script = {
 		script = districts/district_triggered_name_farming
 	}
@@ -619,12 +659,13 @@ district_farming = {
 		}
 	}
 
-	ai_weight_coefficient = 0.8
+	ai_weight_coefficient = @rural_district_ai_coefficient
 }
 
 district_farming_uncapped = {
 	base_buildtime = 240
 	icon = district_farming
+	overlay_icon = GFX_district_food
 	is_capped_by_modifier = no
 
 	zone_slots = {
@@ -633,7 +674,6 @@ district_farming_uncapped = {
 
 	show_on_uncolonized = {
 		OR = {
-			#uses_district_set = hive_world
 			uses_district_set = shattered_ring_world
 			has_modifier = pd_aw_agriworld
 		}
@@ -642,7 +682,6 @@ district_farming_uncapped = {
 
 	potential = {
 		OR = {
-			#uses_district_set = hive_world
 			uses_district_set = shattered_ring_world
 			has_modifier = pd_aw_agriworld
 			AND = {
@@ -665,10 +704,8 @@ district_farming_uncapped = {
 	convert_to = {
 		district_farming
 		district_rw_farming
-		district_rw_urban_3
 		district_orchard_forests
 		district_orchard_forests_uncapped
-		district_nexus_3
 		district_hive_3
 	}
 
@@ -720,7 +757,6 @@ district_farming_uncapped = {
 			planet_housing_add = 400
 		}
 	}
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -744,6 +780,16 @@ district_farming_uncapped = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_tankbound_empire = yes }
+		}
+		modifier = {
+			job_farmer_automated_workforce_mult = 1.0
+		}
+	}
+
 	inline_script = {
 		script = districts/district_triggered_name_farming
 	}
@@ -760,5 +806,5 @@ district_farming_uncapped = {
 		}
 	}
 
-	ai_weight_coefficient = 0.8
+	ai_weight_coefficient = @rural_district_ai_coefficient
 }
