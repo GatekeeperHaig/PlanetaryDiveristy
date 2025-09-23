@@ -1,0 +1,149 @@
+
+pd_aw_cant_terraform = {
+	NOR = {
+		pd_aw_is_megaflora_deposit = yes
+		pd_aw_is_wasteland_planet = yes
+		pd_unique_cant_terraform = yes
+	}
+}
+
+pd_aw_is_megaflora_planet = {
+	OR = {
+		has_modifier = pd_aw_tree_of_life_home
+		has_modifier = pd_aw_tree_of_life_bloomed
+	}
+}
+
+pd_aw_is_megaflora_deposit = {
+	OR = {
+		has_deposit = d_pd_aw_tree_of_life_home
+		has_deposit = d_pd_aw_tree_of_life_bloomed
+		has_deposit = d_pd_aw_tree_of_life_colony
+		has_deposit = d_pd_tree_of_life_habitat
+		has_deposit = d_pd_tree_of_life_ringarc
+	}
+}
+
+pd_aw_is_tree_of_life = {
+	has_origin = origin_pd_aw_tree_of_life
+}
+
+pd_is_aw_world = {
+	OR = {
+		pd_is_flooded_planet = yes
+		pd_aw_is_wasteland_planet = yes
+		pd_aw_is_shroud_planet = yes
+		pd_aw_is_necro_planet = yes
+		pd_aw_is_lithoid_planet = yes
+	}
+}
+
+pd_aw_is_wasteland_planet = {
+	OR = {
+		has_modifier = pd_aw_wasteland_planet
+		has_modifier = pd_wasteland_planet
+	}
+}
+
+pd_aw_is_shroud_planet = {
+OR = {
+		has_modifier = pd_aw_shroud_planet
+		has_modifier = pd_shroud_planet
+	}
+}
+
+pd_aw_is_necro_planet = {
+	OR = {
+		has_modifier = pd_aw_necro_planet
+		has_modifier = pd_aw_necro_city_planet
+		has_modifier = pd_necro_planet
+	}
+}
+
+pd_is_necro_empire = {
+	OR = {
+		has_civic = civic_memorialist
+		has_civic = civic_death_cult
+		has_civic = civic_death_cult_corporate
+		has_civic = civic_permanent_employment
+		has_civic = civic_reanimated_armies
+		has_civic = civic_hive_cordyceptic_drones
+		has_civic = civic_hive_memorialist
+		has_civic = civic_machine_memorialist
+		has_origin = origin_necrophage
+		has_ascension_perk = ap_mechromancy
+	}
+}
+
+pd_is_flooded_planet = {
+	OR = {
+		has_modifier = flooded_habitat
+		has_modifier = ocean_paradise
+		has_modifier = ocean_paradise_2
+		has_modifier = ocean_paradise_hive
+		has_modifier = ocean_paradise_hive_2
+	}
+}
+
+pd_aw_is_lithoid_planet = {
+	OR = {
+		has_modifier = pd_aw_lithoid_planet_cyan
+		has_modifier = pd_aw_lithoid_planet_red
+		has_modifier = pd_aw_lithoid_planet_yellow
+	}
+}
+
+pd_aw_is_superproject_class = {
+	OR = {
+		is_planet_class = pc_pd_core_tap
+		is_planet_class = pc_pd_stripmine
+		is_planet_class = pc_pd_agriworld
+	}
+}
+
+has_pd_necro_ap = {
+	has_ascension_perk = ap_pd_necro_worlds
+}
+
+pd_can_terraform_planet = {
+	custom_tooltip = {
+		fail_text = "pd_planet_no_terraform"
+		exists = root
+		this = {
+			OR = {
+				pd_aw_cant_terraform = yes
+				AND = {
+					pd_aw_is_necro_planet = yes
+					NOT = {	is_planet_class = pc_hive }
+				}
+			}
+		}
+	}
+}
+
+pd_can_take_ap_pd_wasteland_worlds = {
+	OR = {
+		has_civic = civic_relentless_industrialists
+		has_civic = civic_corporate_relentless_industrialists
+		has_civic = civic_toxic_baths
+		has_civic = civic_hive_toxic_baths
+		has_civic = civic_machine_toxic_baths
+		has_civic = civic_corporate_toxic_baths
+		has_origin = origin_overtuned
+	}
+  }
+
+  pd_is_valid_for_shroud_planet = {
+	OR = {
+		habitable_planet_not_urban = yes
+		is_planet_class = pc_ringworld_habitable
+		is_planet_class = pc_habitat
+		is_planet_class = pc_city
+		is_planet_class = pc_relic
+		is_planet_class = pc_nuked
+	}
+  }
+
+  pd_can_shroud_planets = {
+	has_tradition = tr_psionics_finish
+  }

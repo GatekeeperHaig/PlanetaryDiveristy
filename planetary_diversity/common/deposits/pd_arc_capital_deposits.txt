@@ -1,0 +1,365 @@
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+#Demo/Olig
+d_pd_senate_building = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_senate_building
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_politician_add = 200
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_politician_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					is_democratic_authority = yes
+					has_authority = auth_oligarchic
+				}
+
+			}
+		}
+		job_enforcer_add = 400
+		job_bureaucrat_add = 400
+		pop_government_ethic_attraction = 1
+		planet_stability_add = 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	potential = {
+		is_planet_class = pc_city
+		is_capital = yes
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Dic/Imp
+d_pd_palace_building = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_palace_building
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_politician_add = 200
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_politician_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					is_dictatorial_authority = yes
+					is_imperial_authority = yes
+				}
+
+			}
+		}
+		job_enforcer_add = 400
+		job_bureaucrat_add = 400
+		pop_government_ethic_attraction = 1
+		planet_stability_add = 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	potential = {
+		is_planet_class = pc_city
+		is_capital = yes
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Corp
+d_pd_headquarters_building = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_headquarters_building
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_politician_add = 200
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_worker_coop_empire = no
+			}
+		}
+		modifier = {
+			job_politician_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_worker_coop_empire = yes
+			}
+		}
+		modifier = {
+			job_bureaucrat_add = 400
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_authority = auth_corporate
+			}
+		}
+		job_enforcer_add = 400
+		job_bureaucrat_add = 400
+		pop_government_ethic_attraction = 1
+		planet_stability_add = 10
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	potential = {
+		is_planet_class = pc_city
+		is_capital = yes
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Hive
+d_pd_confluence_spire_building = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_confluence_spire_building
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_coordinator_add = 200
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		job_spawning_drone_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_coordinator_add = 400
+		job_logistics_drone_add = 400
+		job_patrol_drone_add = 400
+		planet_stability_add = 20
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_pd_hive
+		}
+		is_capital = yes
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+#Machine
+d_pd_machine_centralized_processing = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_machine_centralized_processing
+
+	use_weights_for_terraforming_swap_types = no
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_evaluator_add = 200
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+			is_planet_class = pc_ringworld_habitable
+		}
+		job_pd_capital_bio_politician_add = 200
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			is_planet_class = pc_habitat
+		}
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		job_replicator_add = 100
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				NOT = { has_valid_civic = civic_machine_servitor }
+			}
+		}
+		job_evaluator_add = 400
+		job_logistics_drone_add = 400
+		job_patrol_drone_add = 400
+		planet_stability_add = 20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		job_pd_capital_bio_politician_add = 400
+		job_logistics_drone_add = 400
+		job_patrol_drone_add = 400
+		planet_stability_add = 20
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_machine
+			is_planet_class = pc_pd_machine
+		}
+		is_capital = yes
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

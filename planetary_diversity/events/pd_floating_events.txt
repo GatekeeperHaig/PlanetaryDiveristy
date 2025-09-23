@@ -1,0 +1,126 @@
+namespace = pdfloating
+
+#This event fires when you first survey the floating world
+ship_event = {
+	id = pdfloating.100
+	title = pdfloating.100.name
+	desc = pdfloating.100.desc
+	picture = GFX_evt_pd_floating
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_floating_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_floating_planet
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_floating_planet
+		}
+	}
+
+	option = {
+		name = pdfloating.100.a
+	}
+}
+
+#This event remove the floating island ambient object if the planet loses the deposit
+planet_event = {
+	id = pdfloating.200
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		solar_system = {
+			any_system_ambient_object = {
+				has_ambient_object_flag = pd_floating_islands
+			}
+		}
+		NOT = {
+			has_deposit = d_pd_artifical_floating_islands
+		}
+	}
+
+	immediate = {
+		solar_system = {
+			every_system_ambient_object = {
+				limit = {
+					OR = {
+						is_ambient_object_type = pd_floating_islands_wet_object
+						is_ambient_object_type = pd_floating_islands_dry_object
+						is_ambient_object_type = pd_floating_islands_cold_object
+					}
+				}
+				destroy_ambient_object = this
+			}
+			every_system_planet = {
+				limit = {
+					has_deposit = d_pd_artifical_floating_islands
+				}
+				pd_create_artifical_floating_islands_effect = yes
+			}
+		}
+	}
+}
+
+#This event changes the floating island ambient object if the planet class changes climate category
+planet_event = {
+	id = pdfloating.210
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_deposit = d_pd_artifical_floating_islands
+	}
+
+	immediate = {
+		solar_system = {
+			every_system_ambient_object = {
+				limit = {
+					OR = {
+						is_ambient_object_type = pd_floating_islands_wet_object
+						is_ambient_object_type = pd_floating_islands_dry_object
+						is_ambient_object_type = pd_floating_islands_cold_object
+					}
+				}
+				destroy_ambient_object = this
+			}
+			every_system_planet = {
+				limit = {
+					has_deposit = d_pd_artifical_floating_islands
+				}
+				pd_create_artifical_floating_islands_effect = yes
+			}
+		}
+	}
+}
+
+#This event is for the Origin, it add the planet modifiers
+country_event = {
+	id = pdfloating.300
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_floating_world
+	}
+
+	immediate = {
+		capital_scope = {
+			add_deposit = d_pd_eludium_islands
+			add_deposit = d_pd_eludium_islands
+		}
+	}
+}

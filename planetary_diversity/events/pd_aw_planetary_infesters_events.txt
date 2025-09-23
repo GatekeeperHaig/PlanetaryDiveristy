@@ -1,0 +1,115 @@
+namespace = pdawplanetaryinfesters
+
+# PD Planetary Infesters
+# This event gives the Origin it's deposits, districts and modifiers at game start
+country_event = {
+	id = pdawplanetaryinfesters.10
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_country_type = default
+		has_valid_civic = civic_hive_pd_planetary_infesters
+	}
+	immediate = {
+		capital_scope = {
+			change_pc = pc_hive
+			validate_planet_buildings_and_districts = yes
+			add_building = building_pd_aw_planet_infester_3
+			add_zone = {
+				district = district_hive_1
+				zone = zone_energy_hive
+				zone_slot = 0
+			}
+			add_zone = {
+				district = district_hive_2
+				zone = zone_minerals_hive
+				zone_slot = 0
+			}
+			add_zone = {
+				district = district_hive_3
+				zone = zone_food_hive
+				zone_slot = 0
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_hive
+				has_planet_flag = prescripted_ideal
+			}
+			change_pc = pc_arid
+			reroll_planet = yes
+		}
+	}
+}
+
+# First Stage
+planet_event = {
+	id = pdawplanetaryinfesters.100
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		last_building_changed = building_pd_aw_planet_infester_1
+		habitable_planet_not_urban = yes
+	}
+
+	immediate = {
+		# Changes Entity
+		planet = {
+			set_planet_entity = {
+				entity = "pd_infested_stage_1_planet_01_entity"
+			}
+		}
+	}
+}
+
+# Second Stage
+planet_event = {
+	id = pdawplanetaryinfesters.110
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		last_building_changed = building_pd_aw_planet_infester_2
+		habitable_planet_not_urban = yes
+	}
+
+	immediate = {
+		# Changes Entity
+		planet = {
+			set_planet_entity = {
+				entity = "pd_infested_stage_2_planet_01_entity"
+			}
+		}
+	}
+}
+
+# Final Stage
+planet_event = {
+	id = pdawplanetaryinfesters.120
+	is_triggered_only = yes
+	title = "pdawplanetaryinfesters.120.name"
+	desc = "pdawplanetaryinfesters.120.desc"
+	picture = GFX_evt_hive_mind
+	show_sound = event_alien_nature
+	location = root
+
+	trigger = {
+		last_building_changed = building_pd_aw_planet_infester_3
+		habitable_planet_not_urban = yes
+	}
+
+	immediate = {
+		change_pc = pc_hive
+	}
+
+	option = {
+		name = pdawplanetaryinfesters.120.a
+	}
+
+	after = {
+		tooltip = {
+			change_pc = pc_hive
+		}
+	}
+}

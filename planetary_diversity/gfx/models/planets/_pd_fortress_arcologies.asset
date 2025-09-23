@@ -1,0 +1,395 @@
+###Fortress Arcologies
+#Fortress Arcology Clouds
+entity = {
+	name = "pd_fortress_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_milarc_01_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+		}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_milarc_shadow_01_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+#Fortress Arcology Shields
+entity = {
+	name = "pd_planet_shield_effect_entity"
+	pdxmesh = "planet_shield_effect_mesh"
+	#planet_shield_effect_mesh
+	#pd_fortress_planet_shield_effect_mesh
+
+	#get_state_from_parent = no
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		start_event = { node = root particle = "planet_shield_effect" keep_particle = yes trigger_once = yes }
+	}
+
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+		bloom_factor = 1.2
+		uv_animation_speed 		= 2
+		uv_animation_direction 	= { 0.0 -0.02 }
+	}
+
+	locator = { name = "root" position = { 0 0 0 } }
+
+	scale = 1.03
+}
+####### Fortress City Planets #######
+#Default
+entity = {
+    name = "pd_fortress_city_planet_01_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "city_planet_01_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Arthropoid
+entity = {
+    name = "arthropoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "arthropoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Avian
+entity = {
+    name = "avian_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "avian_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Fungoid
+entity = {
+    name = "fungoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "fungoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Humanoid
+entity = {
+    name = "humanoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "humanoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Mammalian
+entity = {
+    name = "mammalian_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "mammalian_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Molluscoid
+entity = {
+    name = "molluscoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "molluscoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Plantoid
+entity = {
+    name = "plantoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "plantoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Reptilian
+entity = {
+    name = "reptilian_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "reptilian_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Lithoid
+entity = {
+    name = "lithoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "lithoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Necroid
+entity = {
+    name = "necroid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "necroid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Nemesis/Imperial
+entity = {
+    name = "nemesis_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "nemesis_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Aquatic
+entity = {
+    name = "aquatic_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "aquatic_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Toxoids
+entity = {
+    name = "toxoid_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "toxoid_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Cybernetics
+entity = {
+    name = "cybernetics_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "cybernetics_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		emissive_recolor_crunch = 3.0
+	}
+    scale = 1.0
+}
+#Synthetics
+entity = {
+    name = "synthetics_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "synthetics_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Biogensis_01
+entity = {
+    name = "biogenesis_01_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "biogenesis_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}
+#Biogensis_02
+entity = {
+    name = "biogenesis_02_pd_fortress_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "biogenesis_02_city_planet_mesh" }
+	attach = { "planetloc" = "pd_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}

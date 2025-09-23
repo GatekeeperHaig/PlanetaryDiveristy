@@ -1,0 +1,364 @@
+pc_aquatic = {
+	entity = "aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_ocean
+	climate = "wet"
+	atmosphere_color 		= hsv { 0.58 0.5 0.9 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	uses_alternative_skies_for_moons = yes
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+	starting_planet = no
+}
+
+pc_aquatic_hot = {
+	entity = "ocean_paradise_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_ocean
+	climate = "wet"
+	atmosphere_color 		= hsv { 0.58 0.5 0.9 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic_hot.dds"
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	uses_alternative_skies_for_moons = yes
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_normal
+	starting_planet = no
+}
+
+#City Worlds
+pc_pd_aquatic_city = {
+	entity = "aquaticcity_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_city
+
+	climate = "wet"
+
+	atmosphere_color 		= hsv { 0.58 0.5 0.9 }		#DONE
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	modifier = { pop_environment_tolerance = 1.0 pop_bonus_workforce_mult = 0.20 logistic_growth_mult = 0.25 planet_max_buildings_add = 36 }
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	fixed_city_level = 6
+
+	colonizable = yes
+	starting_planet = no
+	#ideal = yes
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+
+pc_pd_aquatic_relic = {
+	entity = "pd_aquatic_relic_world"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_nuked
+
+	climate = "dry"
+
+	atmosphere_color		= hsv { 0.6 0.5 0.5 }
+	atmosphere_intensity	= 1.2
+	atmosphere_width		= 0.85
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 60
+	max_distance_from_sun = 110
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	starting_planet = no
+	colonizable = yes
+	district_set = standard
+	ideal = no
+	show_city = no
+	uses_alternative_skies_for_moons = no
+
+	modifier = {
+		pop_environment_tolerance = 0.80
+	}
+
+	carry_cap_per_free_district = @carry_cap_normal
+}
+
+pc_pd_aquatic_hive = {
+	entity = "pd_aquatic_infested_planet"
+	picture = pc_infested
+	entity_scale = @planet_standard_scale
+
+	icon = GFX_planet_type_hive
+
+	atmosphere_color		= hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	modifier = {
+		pop_bonus_workforce_mult = 0.10
+		job_spawning_drone_add = 100
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = hive_world
+	ideal = yes
+	starting_planet = no
+	show_city = no
+	uses_alternative_skies_for_moons = no
+
+	carry_cap_per_free_district = @carry_cap_high
+}
+
+pc_pd_aquatic_machine = {
+	entity = "pd_aquatic_machine_planet"
+	entity_scale = @planet_standard_scale
+	picture = pc_ai
+
+	icon = GFX_planet_type_machine
+
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	modifier = {
+		pop_bonus_workforce_mult = 0.10
+		pop_housing_usage_mult = -0.10
+		pop_environment_tolerance = 0.0
+		planet_max_buildings_add = 1002
+		job_replicator_add = 100
+		planet_resettlement_unemployed_destination_mult = 0.5
+	}
+
+	spawn_odds = 0
+	extra_orbit_size = 1
+	extra_planet_count = 2
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = machine_world
+	starting_planet = no
+	show_city = no
+	uses_alternative_skies_for_moons = no
+
+	carry_cap_per_free_district = @carry_cap_low
+}
+#Arcs
+pc_pd_city_headquarters_aquatic = {
+	entity = "pd_capital_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pd_city_palace_aquatic = {
+	entity = "pd_capital_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pd_city_senate_aquatic = {
+	entity = "pd_capital_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pd_commercial_city_aquatic = {
+	entity = "pd_commercial_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pd_garden_city_aquatic = {
+	entity = "pd_garden_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pd_city_machine_capital_aquatic = {
+	entity = "pd_garden_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}
+pc_pd_garden_city_machine_capital_aquatic = {
+	entity = "pd_garden_city_aquatic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_aquatic.dds"
+	min_distance_from_sun = 60
+	max_distance_from_sun = 95
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.2
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	colonizable = yes
+	starting_planet = no
+	uses_alternative_skies_for_moons = no
+	district_set = standard
+	carry_cap_per_free_district = @carry_cap_high
+}

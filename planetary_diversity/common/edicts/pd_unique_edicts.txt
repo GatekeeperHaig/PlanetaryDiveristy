@@ -1,0 +1,274 @@
+##########################################################################
+# PD Edicts
+##########################################################################
+
+@Edict1Cost = 100
+@Edict2Cost = 200
+@Edict3Cost = 300
+
+@EdictDuration = -1
+
+#Eludium - Floating World
+eludium_research = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_eludium = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_eludium_research
+	}
+
+	modifier = {
+		country_physics_tech_research_speed = 0.1
+		planet_researchers_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+eludium_energy = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_eludium = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_eludium_research
+	}
+
+	modifier = {
+		planet_technician_produces_mult = 0.25
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+eludium_weapons = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_eludium = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_eludium_research
+	}
+
+	modifier = {
+		weapon_type_energy_weapon_damage_mult = 0.2
+		weapon_type_energy_weapon_fire_rate_mult = 0.2
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+
+#Acean - Crystal World
+acean_pop_growth = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_acean_research
+		any_owned_pop_group = {
+			NOT = {
+				is_mechanical_species = yes
+			}
+		}
+	}
+
+	modifier = {
+		biological_pop_happiness = 0.05
+		BIOLOGICAL_logistic_growth_mult = 0.1
+		lithoid_pop_happiness = 0.10
+		LITHOID_logistic_growth_mult = 0.20
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+acean_minerals = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_acean_research
+	}
+
+	modifier = {
+		planet_miners_produces_mult = 0.25
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+acean_shield_resonance = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_acean_research
+	}
+
+	modifier = {
+		ship_shield_hardening_add = 0.2
+		ship_shield_regen_add_static = 5
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+
+#Living Metal - Biosynth World
+pd_living_metal_robot_assembly = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_biosynth_edicts
+		any_owned_pop_group = {
+			is_mechanical_species = yes
+		}
+	}
+
+	modifier = {
+		planet_pop_assembly_mult = 0.25
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+pd_living_metal_engineering = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_biosynth_edicts
+	}
+
+	modifier = {
+		country_engineering_tech_research_speed = 0.1
+		planet_researchers_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}
+pd_living_metal_ship_repair = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		upkeep = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_technology = tech_biosynth_edicts
+	}
+
+	modifier = {
+		ship_repair_hull_mult = 0.1
+		ship_repair_armor_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = sr_eludium value < 500 }
+		}
+	}
+}

@@ -1,0 +1,259 @@
+namespace = pdcrystal
+
+#This event fires when you first survey the crystal world
+ship_event = {
+	id = pdcrystal.100
+	title = pdcrystal.100.name
+	desc = pdcrystal.100.desc
+	picture = GFX_evt_pd_crystal
+	location = ROOT
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_planet_flag = pd_crystal_planet
+		}
+		owner = {
+			NOT = {
+				has_country_flag = found_crystal_planet
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = found_crystal_planet
+		}
+	}
+
+	option = {
+		name = pdcrystal.100.a
+	}
+}
+
+#Fire Arcology Site
+planet_event = {
+	id = pdcrystal.200
+	title = pdcrystal.200.name
+	desc = pdcrystal.200.desc
+	picture = GFX_evt_pd_crystal
+	location = from
+	show_sound = event_mystic_reveal
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = pd_crystal_planet
+	}
+
+	option = {
+		name = pdcrystal.200.a
+		create_archaeological_site = pdcrystal_site
+	}
+}
+
+#Crystal Arc Event
+fleet_event = {
+	id = pdcrystal.250
+	title = "pdcrystal.250.name"
+	desc = pdcrystal.250.desc
+	picture = GFX_evt_pd_crystal
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrystal.250.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+		from.planet = {
+			add_deposit = d_pd_khel_ruins
+		}
+	}
+}
+
+fleet_event = {
+	id = pdcrystal.251
+	title = "pdcrystal.250.name"
+	desc = pdcrystal.251.desc
+	picture = GFX_evt_pd_crystal
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ancrel.251.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = pdcrystal.252
+	title = "pdcrystal.250.name"
+	desc = pdcrystal.252.desc
+	picture = GFX_evt_pd_crystal
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrystal.252.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier2researchreward
+     			min = @tier2researchmin
+     			max = @tier2researchmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = pdcrystal.253
+	title = "pdcrystal.250.name"
+	desc = pdcrystal.253.desc
+	picture = GFX_evt_pd_crystal
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = pdcrystal.253.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = pdcrystal.254
+	title = "pdcrystal.250.name"
+	desc = pdcrystal.254.desc
+	picture = GFX_evt_pd_crystal
+	show_sound = event_mystic_reveal
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = pdcrystal.254.a
+		owner = {
+			add_monthly_resource_mult = {
+     			resource = society_research
+     			value = @tier3researchreward
+     			min = @tier3researchmin
+     			max = @tier3researchmax
+			}
+		}
+		hidden_effect = {
+			from.planet = {
+				planet_event = { id = pdcrystal.300 days = 14 }
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = pdcrystal.300
+	title = pdcrystal.300.name
+	desc = pdcrystal.300.desc
+	picture = GFX_evt_pd_crystal
+	location = from
+	show_sound = event_mystic_reveal
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = pd_crystal_planet
+	}
+
+	option = {
+		name = pdcrystal.300.a
+		custom_tooltip = pdcrystal.300.a.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalleaveitalone
+		}
+	}
+
+	option = {
+		name = pdcrystal.300.b
+		custom_tooltip = pdcrystal.300.b.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalkillit
+		}
+		remove_modifier = pd_crystal
+		add_modifier = {
+			modifier = pd_dead_crystal
+		}
+	}
+
+	option = {
+		name = pdcrystal.300.c
+		custom_tooltip = pdcrystal.300.c.tooltip
+		hidden_effect = {
+			set_planet_flag = pdcrystalhealit
+		}
+		remove_modifier = pd_crystal
+		add_modifier = {
+			modifier = pd_living_crystal
+		}
+	}
+}
+
+#This event is for the Origin, it changes the planet class from the dummy class at game start
+country_event = {
+	id = pdcrystal.400
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_crystal_world
+	}
+
+	immediate = {
+		capital_scope = {
+			add_deposit = d_pd_acean_pillars
+		}
+	}
+}

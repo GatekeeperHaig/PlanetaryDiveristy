@@ -1,0 +1,163 @@
+namespace = pdfloodedplanets
+
+# PD Flooded Planets - Requires Aquatics
+# This event fires on game start to give aquatic players the underwater view
+country_event = {
+	id = pdfloodedplanets.100
+	hide_window = yes
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			OR  = {
+				has_origin = origin_ocean_paradise
+				has_origin = origin_ocean_machines
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			set_planet_entity = {
+				picture = pc_aquatic
+				entity = ocean_paradise_planet_01_entity
+			}
+		}
+	}
+}
+
+# This event fires when certain planets get terraformed and makes sure that if they have the flooded planet modifier the planet view stays flooded
+planet_event = {
+	id = pdfloodedplanets.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		pd_is_flooded_planet = yes
+		pd_aw_is_shroud_planet = no
+	}
+
+	immediate = {
+		switch = {
+			trigger = is_planet_class
+			pc_city = {
+				planet_event = { id = pdfloodedplanets.201 days = 1 }
+			}
+			pc_relic = {
+				set_planet_entity = {
+					picture = pc_pd_aquatic_relic
+					entity = pd_aquatic_relic_world_01_entity
+				}
+			}
+			pc_hive = {
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive
+					entity = pd_aquatic_infested_planet_01_entity
+				}
+			}
+			pc_machine = {
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+			pc_gaia = {
+				set_planet_entity = {
+					picture = pc_aquatic_hot
+					entity = ocean_paradise_planet_01_entity
+				}
+			}
+			pc_ocean = {
+				set_planet_entity = {
+					picture = pc_aquatic
+					entity = aquatic_planet_01_entity
+				}
+			}
+			pc_continental = {
+				remove_modifier = flooded_habitat
+			}
+			pc_tropical = {
+				remove_modifier = flooded_habitat
+			}
+			pc_arctic = {
+				remove_modifier = flooded_habitat
+			}
+			pc_alpine = {
+				remove_modifier = flooded_habitat
+			}
+			pc_tundra = {
+				remove_modifier = flooded_habitat
+			}
+			pc_desert = {
+				remove_modifier = flooded_habitat
+			}
+			pc_savannah = {
+				remove_modifier = flooded_habitat
+			}
+			pc_arid = {
+				remove_modifier = flooded_habitat
+			}
+		}
+	}
+}
+
+# This event changes arcologies after the change effect has hapepens
+planet_event = {
+	id = pdfloodedplanets.201
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_global_flag = planetarydiversitymorearcologies
+				pd_is_pd_arcology = no
+			}
+			set_planet_entity = {
+				picture = pc_pd_aquatic_city
+				entity = aquaticcity_planet_01_entity
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_global_flag = planetarydiversitymorearcologies }
+			}
+			set_planet_entity = {
+				picture = pc_pd_aquatic_city
+				entity = aquaticcity_planet_01_entity
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = pdfloodedplanets.300
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_modifier = ocean_paradise_2
+			has_modifier = ocean_paradise_hive_2
+		}
+		NOR = {
+			is_planet_class = pc_ocean
+			is_planet_class = pc_gaia
+			is_planet_class = pc_relic
+			is_planet_class = pc_city
+			pd_is_pd_hive_world = yes
+			pd_is_wet_gaia_class = yes
+		}
+		#should never be possible, but just in case
+	}
+
+	immediate = {
+		if = {
+			limit = { has_modifier = ocean_paradise_2 }
+			remove_modifier = ocean_paradise_2
+		}
+		else = { remove_modifier = ocean_paradise_hive_2 }
+	}
+}

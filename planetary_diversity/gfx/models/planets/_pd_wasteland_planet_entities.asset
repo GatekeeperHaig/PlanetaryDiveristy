@@ -1,0 +1,32 @@
+#Wasteland
+entity = {
+    name = "pd_wasteland_planet_01_entity"
+    pdxmesh = "planet_clouded_mesh"
+     
+    meshsettings = {
+    name = "planet_geosphereShape"	
+    shader = "PdxMeshPlanetEmissive"
+    texture_diffuse = "pd_wasteland_world_01_diffuse.dds"
+	texture_normal = "pd_wasteland_world_01_normal.dds"
+	texture_specular = "pd_wasteland_world_01_specular.dds"
+    }
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "clouds_yellow_smog_01_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "clouds_smog_shadow_01_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}	
+}

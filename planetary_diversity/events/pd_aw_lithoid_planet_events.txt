@@ -1,0 +1,60 @@
+namespace = pdawlithoidplanets
+
+# PD Lithoid Planets - Requires Lithoids
+# This event fires after the decision to choose the color of the lithoid world
+planet_event = {
+	id = pdawlithoidplanets.100
+	title = "pdawlithoidplanets.100.name"
+	desc = "pdawlithoidplanets.100.desc"
+	picture = GFX_evt_shattered_planet
+	show_sound = event_ship_bridge
+	location = this
+	is_triggered_only = yes
+
+	option = {
+		name = pdawlithoidplanets.100.cyan
+		add_modifier = {
+			modifier = pd_aw_lithoid_planet_cyan
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdawlithoidplanets.100.red
+		add_modifier = {
+			modifier = pd_aw_lithoid_planet_red
+			days = -1
+		}
+	}
+
+	option = {
+		name = pdawlithoidplanets.100.yellow
+		add_modifier = {
+			modifier = pd_aw_lithoid_planet_yellow
+			days = -1
+		}
+	}
+
+	after = {
+		pd_aw_create_lithoid_world_effect = yes
+	}
+}
+
+planet_event = {
+	id = pdawlithoidplanets.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		pd_aw_is_lithoid_planet = yes
+		OR = {
+			habitable_planet_not_urban = yes
+			is_planet_class = pc_hive
+			is_planet_class = pc_nuked
+		}
+	}
+
+	immediate = {
+		pd_aw_create_lithoid_world_effect = yes
+	}
+}

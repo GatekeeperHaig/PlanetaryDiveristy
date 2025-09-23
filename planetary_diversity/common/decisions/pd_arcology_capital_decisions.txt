@@ -1,0 +1,315 @@
+##########################################################################
+# Decisions
+##########################################################################
+
+# Senate Capital
+decision_pd_arcology_senate = {
+	owned_planets_only = yes
+	icon = decision_pd_arcology_senate
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_ringworld_habitable
+			AND = {
+				is_planet_class = pc_habitat
+				owner = {
+					has_origin = origin_void_dwellers
+				}
+			}
+		}
+		is_capital = yes
+		exists = owner
+		owner = {
+			has_technology = tech_housing_2
+			OR = {
+				is_democratic_authority = yes
+				has_authority = auth_oligarchic
+			}
+		}
+		NOT = {	has_deposit = d_pd_senate_building }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_arcology_senate_effects
+		hidden_effect = {
+			add_deposit = d_pd_senate_building
+			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}
+
+# Palace Capital
+decision_pd_arcology_palace = {
+	owned_planets_only = yes
+	icon = decision_pd_arcology_palace
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_ringworld_habitable
+			AND = {
+				is_planet_class = pc_habitat
+				owner = {
+					has_origin = origin_void_dwellers
+				}
+			}
+		}
+		is_capital = yes
+		exists = owner
+		owner = {
+			has_technology = tech_housing_2
+			OR = {
+				is_dictatorial_authority = yes
+				is_imperial_authority = yes
+			}
+		}
+		NOT = {	has_deposit = d_pd_palace_building }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_arcology_palace_effects
+		hidden_effect = {
+			add_deposit = d_pd_palace_building
+			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}
+
+# Headquarters Capital
+decision_pd_arcology_headquarters = {
+	owned_planets_only = yes
+	icon = decision_pd_arcology_headquarters
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_ringworld_habitable
+			AND = {
+				is_planet_class = pc_habitat
+				owner = {
+					has_origin = origin_void_dwellers
+				}
+			}
+		}
+		is_capital = yes
+		exists = owner
+		owner = {
+			has_technology = tech_housing_2
+			has_authority = auth_corporate
+		}
+		NOT = {	has_deposit = d_pd_headquarters_building }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_arcology_headquarters_effects
+		hidden_effect = {
+			add_deposit = d_pd_headquarters_building
+			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}
+
+# Hive Confluence Spire Capital
+decision_pd_hive_confluence_spire = {
+	owned_planets_only = yes
+	icon = decision_pd_hive_confluence_spire
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_hive
+			is_planet_class = pc_pd_hive
+			is_planet_class = pc_ringworld_habitable
+			AND = {
+				is_planet_class = pc_habitat
+				owner = {
+					has_civic = civic_void_hive
+				}
+			}
+			is_pd_uncommon_hive = yes
+			is_pd_uncommon_hive_arc = yes
+		}
+		is_capital = yes
+		exists = owner
+		owner = {
+			has_technology = tech_housing_2
+			is_gestalt = yes
+		}
+		NOT = {	has_deposit = d_pd_confluence_spire_building }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_hive_confluence_spire_effects
+		hidden_effect = {
+			add_deposit = d_pd_confluence_spire_building
+			generate_pd_hive_arc_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}
+
+# Machine Centralized Processing Capital
+decision_pd_machine_centralized_processing = {
+	owned_planets_only = yes
+	icon = decision_machine_centralized_processing
+
+	enactment_time = 1800
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+			minerals = 3000
+		}
+	}
+
+	potential = {
+		is_capital = yes
+		exists = owner
+		OR = {
+			is_planet_class = pc_machine
+			is_planet_class = pc_pd_machine
+			is_planet_class = pc_ringworld_habitable
+			AND = {
+				is_planet_class = pc_city
+				owner = {
+					has_civic = civic_machine_servitor
+				}
+			}
+			is_pd_uncommon_machine = yes
+			is_pd_uncommon_machine_arc = yes
+		}
+		owner = {
+			has_technology = tech_housing_2
+			is_gestalt = yes
+		}
+		NOT = {	has_deposit = d_pd_machine_centralized_processing }
+	}
+
+	allow = {
+		free_district_slots >= 3
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_pd_machine_centralized_processing_effects
+		hidden_effect = {
+			add_deposit = d_pd_machine_centralized_processing
+			generate_pd_machine_arc_portrait_effect = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			is_capital = yes
+		}
+	}
+}

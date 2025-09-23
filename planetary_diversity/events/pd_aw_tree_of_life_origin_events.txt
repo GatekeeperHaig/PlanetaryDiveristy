@@ -1,0 +1,466 @@
+namespace = pdtreeoflifeaw
+
+# PD MegafloraTree Of Life
+# This event gives the Origin it's deposits, districts and modifiers at game start
+country_event = {
+	id = pdtreeoflifeaw.10
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_megaflora_hive
+				is_homeworld = yes
+			}
+			generate_pd_aw_start_deposits_and_blockers = yes
+			change_pc = pc_continental
+			set_planet_entity = {
+				picture = pc_pd_megaflora_hive
+				entity = megafloratol_planet_01_entity
+			}
+		}
+		IF = {
+			limit = {
+				has_origin = origin_pd_aw_tree_of_life
+			}
+			set_graphical_culture = pd_tree_of_life_01
+			set_city_graphical_culture = pd_tree_of_life_01
+		}
+	}
+}
+
+# This event starts the process to turn planets
+@megafloraspeed_gaia = 3600 #10 years
+@megafloraspeed_habitat = 1800 #5 years
+@megafloraspeed_ringarc = 7200 #20 years
+@megafloraspeed_wet = 7200 #20 years
+@megafloraspeed_drycold = 12600 #35 years
+@megafloraspeed_nuked = 18000 #50 years
+planet_event = {
+	id = pdtreeoflifeaw.20
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			pd_aw_is_tree_of_life = yes
+		}
+		NOT = { has_planet_flag = pd_unique_world }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_deposit = d_pd_aw_tree_of_life_home
+					has_deposit = d_pd_aw_tree_of_life_bloomed
+					has_deposit = d_pd_aw_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_city
+					is_planet_class = pc_relic
+					is_planet_class = pc_nuked
+					habitable_planet_not_urban = yes
+				}
+			}
+			add_deposit = d_pd_aw_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					planet_event = {
+						id = pdtreeoflifeaw.21
+						days = @megafloraspeed_habitat
+					}
+					add_modifier = { modifier = pd_aw_tree_of_life_growing days = @megafloraspeed_habitat }
+				}
+				pc_ringworld_habitable = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_ringarc }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_ringarc
+					}
+				}
+				pc_gaia = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_gaia }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_gaia
+					}
+				}
+				pc_continental = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_wet
+					}
+				}
+				pc_tropical = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_wet
+					}
+				}
+				pc_ocean = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_wet
+					}
+				}
+				pc_ocean = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_wet }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_wet
+					}
+				}
+				pc_desert = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_arid = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_savannah = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_arctic = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_tundra = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_alpine = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_drycold }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_drycold
+					}
+				}
+				pc_nuked = {
+					planet_event = { id = pdtreeoflifeaw.21 days = @megafloraspeed_nuked }
+					add_modifier = {
+						modifier = pd_aw_tree_of_life_growing
+						days = @megafloraspeed_nuked
+					}
+				}
+			}
+			remove_modifier = pd_aw_no_lifetree #as the planet transfer events fire before this
+			IF = {
+				limit = {
+					is_planet_class = pc_city
+				}
+				add_modifier = {
+					modifier = pd_no_lifetree_arcology
+					days = -1
+				}
+				set_planet_entity = {
+					picture = pc_pd_megaflora_city
+				}
+				remove_deposit = d_pd_aw_tree_of_life_colony
+			}
+			IF = {
+				limit = {
+					is_planet_class = pc_relic
+				}
+				add_modifier = {
+					modifier = pd_no_lifetree_arcology
+					days = -1
+				}
+				remove_deposit = d_pd_aw_tree_of_life_colony
+			}
+		}
+	}
+}
+
+#This event fires after the tree has fully grown
+planet_event = {
+	id = pdtreeoflifeaw.21
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			pd_aw_is_tree_of_life = yes
+		}
+	}
+
+	immediate = {
+		remove_deposit = d_pd_aw_tree_of_life_colony
+		remove_modifier = pd_aw_tree_of_life_growing
+		switch = {
+			trigger = is_planet_class
+			pc_habitat = {
+				add_deposit = d_pd_tree_of_life_habitat
+				set_planet_entity = {
+					picture = pc_pd_megaflora_hive_habitat
+				}
+			}
+			pc_ringworld_habitable = {
+				add_deposit = d_pd_tree_of_life_ringarc
+				set_planet_entity = {
+					picture = pc_pd_megaflora_hive_ringworld
+					entity = plantoid_01_megaflora_hive_ringworld_habitable_01_entity
+				}
+			}
+			pc_city = {
+				add_deposit = d_pd_tree_of_life_ringarc
+			}
+			default = {
+				add_deposit = d_pd_aw_tree_of_life_home
+				if = {
+					limit = {
+						is_starting_planet_type = yes
+					}
+					change_pc = pc_continental
+					remove_pd_modifiers_and_add_continetal = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_megaflora_hive
+					entity = megafloratol_planet_01_entity
+				}
+				add_modifier = {
+					modifier = pd_aw_tree_of_life_home
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+#This event fires if the planet changes hands or is damaged, killing the tree
+#silently kill tree
+planet_event = {
+	id = pdtreeoflifeaw.25
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		AND = {
+			owner = {
+				NOT = {
+					has_origin = origin_pd_aw_tree_of_life
+				}
+			}
+			pd_aw_is_megaflora_deposit = yes
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					has_deposit = d_pd_aw_tree_of_life_home
+					has_deposit = d_pd_aw_tree_of_life_bloomed
+					has_deposit = d_pd_aw_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			remove_modifier = pd_aw_tree_of_life_growing
+			remove_deposit = d_pd_aw_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					remove_deposit = d_pd_tree_of_life_habitat
+					set_planet_entity = {
+						picture = pc_habitat
+					}
+				}
+				pc_ringworld_habitable = {
+					remove_deposit = d_pd_tree_of_life_ringarc
+					set_planet_entity = {
+						picture = pc_ringworld_habitable
+						entity = "ringworld_habitable_entity_01_entity"
+						graphical_culture = owner
+					}
+				}
+				pc_city = {
+					remove_deposit = d_pd_tree_of_life_ringarc
+				 	add_deposit = d_pd_tree_of_life_ringarc
+				}
+				default = {
+					remove_deposit = d_pd_aw_tree_of_life_home
+					remove_deposit = d_pd_aw_tree_of_life_bloomed
+					remove_modifier = pd_aw_tree_of_life_home
+					remove_modifier = pd_aw_tree_of_life_bloomed
+					change_pc = pc_continental
+				}
+			}
+		}
+		add_modifier = {
+			modifier = pd_aw_no_lifetree
+			days = -1
+		}
+	}
+}
+
+#This event fires if the Tree dies, but this tells the player
+planet_event = {
+	id = pdtreeoflifeaw.40
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		planet_devastation >= 50
+		pd_aw_is_megaflora_deposit = yes
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					has_deposit = d_pd_aw_tree_of_life_home
+					has_deposit = d_pd_aw_tree_of_life_bloomed
+					has_deposit = d_pd_aw_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			remove_modifier = pd_aw_tree_of_life_growing
+			remove_deposit = d_pd_aw_tree_of_life_colony
+			switch = {
+				trigger = is_planet_class
+				pc_habitat = {
+					remove_deposit = d_pd_tree_of_life_habitat
+					set_planet_entity = {
+						picture = pc_habitat
+					}
+				}
+				pc_ringworld_habitable = {
+					remove_deposit = d_pd_tree_of_life_ringarc
+					set_planet_entity = {
+						picture = pc_ringworld_habitable
+						entity = "ringworld_habitable_entity_01_entity"
+						graphical_culture = owner
+					}
+				}
+				default = {
+					remove_deposit = d_pd_aw_tree_of_life_home
+					remove_deposit = d_pd_aw_tree_of_life_bloomed
+					remove_modifier = pd_aw_tree_of_life_home
+					remove_modifier = pd_aw_tree_of_life_bloomed
+					change_pc = pc_continental
+				}
+			}
+			add_modifier = {
+				modifier = pd_aw_no_lifetree
+				days = -1
+			}
+		}
+	}
+}
+
+#modify the modifier for lacking Tree
+planet_event = {
+	id = pdtreeoflifeaw.45
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { days_passed < 1 }
+		OR = {
+			AND = {
+				FROM = { has_origin = origin_pd_aw_tree_of_life }
+				NOR = {
+					has_deposit = d_pd_aw_tree_of_life_home
+					has_deposit = d_pd_aw_tree_of_life_bloomed
+					has_deposit = d_pd_aw_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+				OR = {
+					is_planet_class = pc_habitat
+					is_planet_class = pc_ringworld_habitable
+					is_planet_class = pc_city
+					is_planet_class = pc_relic
+					is_planet_class = pc_nuked
+					habitable_planet_not_urban = yes
+				}
+			}
+			AND = {
+				FROM = {
+					NOT = { has_origin = origin_pd_aw_tree_of_life }
+				}
+				has_modifier = pd_aw_no_lifetree
+			}
+		}
+
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				FROM = { has_origin = origin_pd_aw_tree_of_life }
+				NOR = {
+					has_deposit = d_pd_aw_tree_of_life_home
+					has_deposit = d_pd_aw_tree_of_life_bloomed
+					has_deposit = d_pd_aw_tree_of_life_colony
+					has_deposit = d_pd_tree_of_life_habitat
+					has_deposit = d_pd_tree_of_life_ringarc
+				}
+			}
+			add_modifier = { modifier = pd_aw_no_lifetree }
+		}
+		if = {
+			limit = {
+				FROM = {
+					NOT = { has_origin = origin_pd_aw_tree_of_life }
+				}
+			}
+			remove_modifier = pd_aw_no_lifetree
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_city
+			}
+			add_modifier = {
+				modifier = pd_no_lifetree_arcology
+				days = -1
+			}
+			set_planet_entity = {
+				picture = pc_pd_megaflora_city
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_relic
+			}
+			add_modifier = {
+				modifier = pd_no_lifetree_arcology
+				days = -1
+			}
+			remove_deposit = d_pd_aw_tree_of_life_colony
+		}
+	}
+}

@@ -1,0 +1,34 @@
+@ringworld_segment_size = 50
+
+entity = {
+	name = "ringworld_habitable_entity_01_medium_clouds_entity"
+	cull_radius = 500.0
+	pdxmesh = "ringworld_habitable_01_clouds_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 100 time_offset = { 0 100 } }
+	state = { name = "construction" }
+
+	meshsettings = {
+		name = "polySurface34Shape"
+		index = 0
+		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshClouds"
+	}
+
+	meshsettings = {
+		name = "polySurface35Shape"
+		index = 0
+		texture_diffuse = "clouds_medium_diffuse.dds"
+		texture_normal = "clouds_medium_normal.dds"
+		texture_specular = "clouds_medium_specular.dds"
+		shader = "PdxMeshClouds"
+	}
+
+	game_data = {
+		size = @ringworld_segment_size
+		uv_animation_speed 		= 0.004
+		uv_animation_direction 	= { 1.0 0.0 }
+	}
+}

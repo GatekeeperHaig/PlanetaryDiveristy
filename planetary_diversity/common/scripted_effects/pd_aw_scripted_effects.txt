@@ -1,0 +1,1581 @@
+#This changes the planet view back to the default view
+pd_aw_back_to_normal_view_effect = {
+	switch = {
+		trigger = is_planet_class
+		pc_ocean = {
+			set_planet_entity = {
+				picture = pc_ocean
+				entity = "ocean_planet"
+			}
+		}
+		pc_continental = {
+			set_planet_entity = {
+				picture = pc_continental
+				entity = "continental_planet"
+			}
+		}
+		pc_tropical = {
+			set_planet_entity = {
+				picture = pc_tropical
+				entity = "tropical_planet"
+			}
+		}
+		pc_arid = {
+			set_planet_entity = {
+				picture = pc_arid
+				entity = "arid_planet"
+			}
+		}
+		pc_desert = {
+			set_planet_entity = {
+				picture = pc_desert
+				entity = "desert_planet"
+			}
+		}
+		pc_savannah = {
+			set_planet_entity = {
+				picture = pc_savannah
+				entity = "savannah_planet"
+			}
+		}
+		pc_arctic = {
+			set_planet_entity = {
+				picture = pc_arctic
+				entity = "arctic_planet"
+			}
+		}
+		pc_tundra = {
+			set_planet_entity = {
+				picture = pc_tundra
+				entity = "tundra_planet"
+			}
+		}
+		pc_alpine = {
+			set_planet_entity = {
+				picture = pc_alpine
+				entity = "alpine_planet"
+			}
+		}
+		pc_city = {
+			set_planet_entity = {
+				picture = pc_city
+				entity = "city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		pc_relic = {
+			set_planet_entity = {
+				picture = pc_relic
+				entity = "relic_world"
+			}
+		}
+		pc_gaia = {
+			set_planet_entity = {
+				picture = pc_gaia
+				entity = "gaia_planet"
+			}
+		}
+		pc_ringworld_habitable = {
+			set_planet_entity = {
+				picture = pc_gaia
+				entity = "ringworld_habitable_entity"
+				graphical_culture = owner
+			}
+		}
+		pc_habitat = {
+			set_planet_entity = {
+				picture = pc_habitat
+				entity = "habitat_phase_03_entity"
+				graphical_culture = owner
+			}
+		}
+		pc_nuked = {
+			set_planet_entity = {
+				picture = pc_nuked
+				entity = "nuked_planet"
+			}
+		}
+	}
+}
+
+#This changes the planet to the Necro World view
+pd_aw_create_necro_world_effect = {
+	IF = {
+		limit = {
+			OR = {
+				habitable_planet_not_urban = yes
+				is_planet_class = pc_nuked
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro
+			entity = pd_necro_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro
+			entity = pd_necro_ringworld_habitable_entity_01_entity
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_city
+			entity = pd_necro_city_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_relic
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_relic
+			entity = pd_necro_relic_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_hive
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro
+			entity = pd_necro_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_machine
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_machine
+			entity = pd_necro_machine_planet_01_entity
+		}
+	}
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
+}
+
+#This changes the planet to the Necro+Shroud World view
+pd_aw_create_necro_shroud_world_effect = {
+	IF = {
+		limit = {
+			OR = {
+				habitable_planet_not_urban = yes
+				is_planet_class = pc_nuked
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_shroud
+			entity = pd_necro_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_shroud
+			entity = pd_necro_shroud_ringworld_habitable_entity_01_entity
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_shroud_city
+			entity = pd_necro_shroud_city_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_relic
+		}
+		set_planet_entity = {
+			picture = pc_pd_necro_shroud_relic
+			entity = pd_necro_shroud_relic_planet_01_entity
+		}
+	}
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
+}
+
+#This changes the planet to the Shroud World view
+pd_aw_create_shroud_world_effect = {
+	IF = {
+		limit = {
+			OR = {
+				habitable_planet_not_urban = yes
+				is_planet_class = pc_nuked
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud
+			entity = pdshroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud_ring
+			entity = pd_shroud_ringworld_habitable_entity_01_entity
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_habitat
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud_habitat
+			entity = "habitat_phase_03_entity"
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud_city
+			entity = pdshroudcity_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_relic
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud_relic
+			entity = pdshroudrelic_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = planet_earth
+			NOT = { is_planet_class = pc_city }
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud
+			entity = pdshroud_planet_earth_entity
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = pdmars
+			NOT = { is_planet_class = pc_city }
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud
+			entity = pdshroud_planet_mars_entity
+		}
+	}
+	IF = {
+		limit = {
+			has_planet_flag = pdvenus
+			NOT = { is_planet_class = pc_city }
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud
+			entity = pdshroud_planet_venus_entity
+		}
+	}
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
+}
+
+#This changes the planet to the Wasteland view
+pd_aw_create_wasteland_world_effect = {
+	IF = {
+		limit = {
+			is_starting_planet_type = yes
+		}
+		set_planet_entity = {
+			picture = pc_pd_wasteland
+			entity = pd_wasteland_planet_01_entity
+		}
+	}
+	while = {
+		limit = { num_districts = { type = district_farming value > 0 } }
+		remove_district = district_farming
+	}
+	while = {
+		limit = { num_districts = { type = district_farming_uncapped value > 0 } }
+		remove_district = district_farming_uncapped
+	}
+	remove_pd_modifier = yes
+	create_message = {
+		type = MESSAGE_PD_AW_WASTELAND_TYPE
+		localization = MESSAGE_PD_AW_WASTELAND_DESC
+		days = 20
+		target = root
+		variable = {
+			type = name
+			localization = PLANET
+			scope = this
+		}
+	}
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
+}
+
+#This changes the planet to the Aquaitc view
+pd_aw_create_aquatic_world_effect = {
+	IF = {
+		limit = {
+			NOR = {
+				has_modifier = ocean_paradise
+				has_modifier = ocean_paradise_hive
+				has_modifier = ocean_paradise_2
+				has_modifier = ocean_paradise_hive_2
+			}
+		}
+		add_modifier = {
+			modifier = flooded_habitat
+			days = -1
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ocean
+		}
+		set_planet_entity = {
+			picture = pc_aquatic
+			entity = aquatic_planet_01_entity
+		}
+		pd_remove_ocean_modifiers = yes
+	}
+	IF = {
+		limit = {
+			OR = {
+				has_modifier = ocean_paradise_2
+				has_modifier = ocean_paradise_hive_2
+			}
+		}
+		set_planet_entity = {
+			picture = pc_aquatic
+			entity = ocean_paradise_planet_01_entity
+		}
+		pd_remove_ocean_modifiers = yes
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_gaia
+		}
+		set_planet_entity = {
+			picture = pc_aquatic_hot
+			entity = ocean_paradise_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_city
+			entity = aquaticcity_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_relic
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_relic
+			entity = pd_aquatic_relic_world_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_hive
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_hive
+			entity = pd_aquatic_infested_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_machine
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_machine
+			entity = pd_aquatic_machine_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		set_planet_entity = {
+			picture = pc_aquatic
+			entity = pdaquatic_ringworld_habitable_entity_01_entity
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_habitat
+		}
+		set_planet_entity = {
+			picture = pc_aquahabitat
+			entity = "habitat_phase_03_entity"
+			graphical_culture = owner
+		}
+	}
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_machine_arc_portrait_effect = yes
+	generate_pd_ascension_worlds_hive_arc_portrait_effect = yes
+}
+
+#This changes the planet to the Aquaitc view
+pd_aw_create_aquatic_shroud_world_effect = {
+	IF = {
+		limit = {
+			NOR = {
+				has_modifier = ocean_paradise
+				has_modifier = ocean_paradise_hive
+				has_modifier = ocean_paradise_2
+				has_modifier = ocean_paradise_hive_2
+			}
+		}
+		add_modifier = {
+			modifier = flooded_habitat
+			days = -1
+		}
+	}
+	IF = {
+		limit = {
+			NOT = {	has_modifier = pd_aw_shroud_planet	}
+		}
+		add_modifier = {
+			modifier = pd_aw_shroud_planet
+			days = -1
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ocean
+		}
+		set_planet_entity = {
+			picture = pc_aquatic_shroud
+			entity = aquatic_shroud_planet_01_entity
+		}
+		pd_remove_ocean_modifiers = yes
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_gaia
+		}
+		set_planet_entity = {
+			picture = pc_aquatic_shroud_hot
+			entity = ocean_paradise_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_shroud_city
+			entity = aquatic_shroudcity_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_relic
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_shroud_relic
+			entity = pdaquatic_shroudrelic_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_ringworld_habitable
+		}
+		set_planet_entity = {
+			picture = pc_aquatic_shroud
+			entity = pdaquatic_shroud_ringworld_habitable_entity_01_entity
+			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_habitat
+		}
+		set_planet_entity = {
+			picture = pc_pd_aqua_shroud_habitat
+			entity = "habitat_phase_03_entity"
+			graphical_culture = owner
+		}
+	}
+	generate_pd_ascension_worlds_arc_portrait_effect = yes
+}
+
+#This changes the planet to the Lithoid World view
+pd_aw_create_lithoid_world_effect = {
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = no
+			pd_aw_is_necro_planet = no
+		}
+		IF = {
+			limit = {
+				has_modifier = pd_aw_lithoid_planet_cyan
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_hive
+					is_planet_class = pc_nuked
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_lithoid_cyan
+				entity = pc_pd_lithoid_cyan_planet_01_entity
+			}
+		}
+		IF = {
+			limit = {
+				has_modifier = pd_aw_lithoid_planet_red
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_hive
+					is_planet_class = pc_nuked
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_lithoid_red
+				entity = pc_pd_lithoid_red_planet_01_entity
+			}
+		}
+		IF = {
+			limit = {
+				has_modifier = pd_aw_lithoid_planet_yellow
+				OR = {
+					habitable_planet_not_urban = yes
+					is_planet_class = pc_hive
+					is_planet_class = pc_nuked
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_lithoid_yellow
+				entity = pc_pd_lithoid_yellow_planet_01_entity
+			}
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = no
+			pd_aw_is_necro_planet = no
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_aquatic
+			entity = pc_pd_lithoid_aquatic_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_necro_planet = no
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_aquatic_shroud
+			entity = pc_pd_lithoid_aquatic_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_necro_planet = no
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_shroud
+			entity = pc_pd_lithoid_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = yes
+			pd_aw_is_necro_planet = yes
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_necro_shroud
+			entity = pc_pd_lithoid_necro_shroud_planet_01_entity
+		}
+	}
+	IF = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_shroud_planet = no
+			pd_aw_is_necro_planet = yes
+		}
+		set_planet_entity = {
+			picture = pc_pd_lithoid_necro
+			entity = pc_pd_lithoid_necro_planet_01_entity
+		}
+	}
+}
+
+#Megaflora Capitals Worlds
+generate_pd_florahive_arc_portrait_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_megaflora_capital_building
+		}
+		if = {
+			limit = {
+				NOT = { is_planet_class = pc_pd_flora_hive }
+			}
+			set_planet_entity = {
+				picture = pc_pd_megaflora_hive_bloomed_capital
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_flora_hive
+			}
+			set_planet_entity = {
+				picture = pc_pd_flora_hive_capital
+			}
+		}
+	}
+}
+
+#This adds the Ascenion World Views to the More Arcologies Classes
+generate_pd_ascension_worlds_arc_portrait_effect = {
+	#Shroud
+	if = {
+		limit = {
+			pd_aw_is_shroud_planet = yes
+			pd_is_flooded_planet = no
+			pd_aw_is_necro_planet = no
+		}
+		#Garden Shroud Arc
+		if = {
+			limit = {
+				is_pd_garden_arcology = yes
+			}
+			if = {
+				limit = {
+					NOR = {
+						has_planet_flag = planet_earth
+						has_planet_flag = planet_mars
+						has_planet_flag = pdvenus
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city_shroud
+					entity = pd_garden_city_shroud_planet_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city_shroud
+					entity = pd_garden_city_earth_shroud_planet_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = planet_mars
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city_shroud
+					entity = pd_garden_city_mars_shroud_planet_01_entity
+				}
+			}
+			if = {
+				limit = {
+					has_planet_flag = pdvenus
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city_shroud
+					entity = pd_garden_city_venus_shroud_planet_01_entity
+				}
+			}
+		}
+		#Fort Arc
+		if = {
+			limit = {
+				is_pd_fortress_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_shroud_city
+				entity = pd_fortress_city_shroud_planet_01_entity
+			}
+		}
+		#Commercial Arc
+		if = {
+			limit = {
+				is_pd_commercial_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_city_shroud
+				entity = pd_commercial_city_shroud_planet_01_entity
+			}
+		}
+		#Senate
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_shroud
+				entity = pd_capital_city_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_shroud
+			}
+		}
+		#Palace
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_shroud
+				entity = pd_capital_city_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_shroud
+			}
+		}
+		#Headquarters
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_shroud
+				entity = pd_capital_city_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_shroud
+			}
+		}
+	}
+	#Aquatic
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = no
+		}
+		#Garden Arc
+		if = {
+			limit = {
+				is_pd_garden_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city_aquatic
+				entity = pd_garden_city_aquatic_planet_01_entity
+			}
+		}
+		#Fort Arc
+		if = {
+			limit = {
+				is_pd_fortress_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_aquatic_city
+				entity = pd_fortress_city_aquatic_planet_01_entity
+			}
+		}
+		#Commercial Arc
+		if = {
+			limit = {
+				is_pd_commercial_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_city_aquatic
+				entity = pd_commercial_city_aquatic_planet_01_entity
+			}
+		}
+		#Senate
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_aquatic
+				entity = pd_capital_city_aquatic_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_aquatic
+			}
+		}
+		#Palace
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_aquatic
+				entity = pd_capital_city_aquatic_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_aquatic
+			}
+		}
+		#Headquarters
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_aquatic
+				entity = pd_capital_city_aquatic_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_aquatic
+			}
+		}
+	}
+	#Necro
+	if = {
+		limit = {
+			pd_aw_is_necro_planet = yes
+			pd_aw_is_shroud_planet = no
+		}
+		#Garden Necro Arc
+		if = {
+			limit = {
+				is_pd_garden_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city_necro
+				entity = pd_garden_city_necro_planet_01_entity
+			}
+		}
+		#Fort Arc
+		if = {
+			limit = {
+				is_pd_fortress_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_necro_city
+				entity = pd_fortress_city_necro_planet_01_entity
+			}
+		}
+		#Commercial Arc
+		if = {
+			limit = {
+				is_pd_commercial_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_city_necro
+				entity = pd_commercial_city_necro_planet_01_entity
+			}
+		}
+		#Senate
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_necro
+				entity = pd_capital_city_necro_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_necro
+			}
+		}
+		#Palace
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_necro
+				entity = pd_capital_city_necro_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_necro
+			}
+		}
+		#Headquarters
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_necro
+				entity = pd_capital_city_necro_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_necro
+			}
+		}
+	}
+	#Aquatic Shroud
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_shroud_planet = yes
+		}
+		#Garden Arc
+		if = {
+			limit = {
+				is_pd_garden_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city_aquatic_shroud
+				entity = pd_garden_city_aquatic_shroud_planet_01_entity
+			}
+		}
+		#Fort Arc
+		if = {
+			limit = {
+				is_pd_fortress_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_aquatic_shroud_city
+				entity = pd_fortress_city_aquatic_shroud_planet_01_entity
+			}
+		}
+		#Commercial Arc
+		if = {
+			limit = {
+				is_pd_commercial_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_city_aquatic_shroud
+				entity = pd_commercial_city_aquatic_shroud_planet_01_entity
+			}
+		}
+		#Senate
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_aquatic_shroud
+				entity = pd_capital_city_aquatic_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_aquatic_shroud
+			}
+		}
+		#Palace
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_aquatic_shroud
+				entity = pd_capital_city_aquatic_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_aquatic_shroud
+			}
+		}
+		#Headquarters
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_aquatic_shroud
+				entity = pd_capital_city_aquatic_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_aquatic_shroud
+			}
+		}
+	}
+	#Necro Shroud
+	if = {
+		limit = {
+			pd_aw_is_necro_planet = yes
+			pd_aw_is_shroud_planet = yes
+		}
+		#Garden Arc
+		if = {
+			limit = {
+				is_pd_garden_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city_necro_shroud
+				entity = pd_garden_city_necro_shroud_planet_01_entity
+			}
+		}
+		#Fort Arc
+		if = {
+			limit = {
+				is_pd_fortress_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_necro_shroud_city
+				entity = pd_fortress_city_necro_shroud_planet_01_entity
+			}
+		}
+		#Commercial Arc
+		if = {
+			limit = {
+				is_pd_commercial_arcology = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_city_necro_shroud
+				entity = pd_commercial_city_necro_shroud_planet_01_entity
+			}
+		}
+		#Senate
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_necro_shroud
+				entity = pd_capital_city_necro_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_senate_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_senate_necro_shroud
+			}
+		}
+		#Palace
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_necro_shroud
+				entity = pd_capital_city_necro_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_palace_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_palace_necro_shroud
+			}
+		}
+		#Headquarters
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				NOR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_necro_shroud
+				entity = pd_capital_city_necro_shroud_planet_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_pd_headquarters_arcology = yes
+				OR = {
+					is_pd_commercial_arcology = yes
+					is_pd_fortress_arcology = yes
+					is_pd_garden_arcology = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_city_headquarters_necro_shroud
+			}
+		}
+	}
+}
+
+#Compat Check to make sure planet stay flooded
+pd_gaia_flooded_check = {
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+		}
+		switch = {
+			trigger = is_planet_class
+			pc_pd_wet_gaia = {
+				set_planet_entity = {
+					picture = pc_aquatic_hot
+					entity = ocean_paradise_planet_01_entity
+				}
+			}
+			pc_pd_dry_gaia = {
+				remove_modifier = flooded_habitat
+			}
+			pc_pd_cold_gaia = {
+				remove_modifier = flooded_habitat
+			}
+		}
+	}
+}
+
+#This adds the Ascenion World Views to the More Arcologies Classes
+generate_pd_ascension_worlds_hive_arc_portrait_effect = {
+	#Aquatic
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_hive
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_confluence_spire_building }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive
+					entity = pd_aquatic_infested_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_confluence_spire_building
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive_capital
+					entity = pd_aquatic_infested_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_hive_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_confluence_spire_building }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive
+					entity = pd_infested_aquatic_arcology_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_confluence_spire_building
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive_capital
+					entity = pd_infested_aquatic_arcology_planet_01_entity
+				}
+			}
+		}
+	}
+	#Necro
+	if = {
+		limit = {
+			pd_aw_is_necro_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_hive
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_confluence_spire_building }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro
+					entity = pd_necro_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_confluence_spire_building
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_hive_capital
+					entity = pd_necro_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_hive_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { has_deposit = d_pd_confluence_spire_building }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro
+					entity = pd_necro_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					has_deposit = d_pd_confluence_spire_building
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_hive_capital
+					entity = pd_necro_planet_01_entity
+				}
+			}
+		}
+	}
+}
+
+#This adds the Ascenion World Views to the More Arcologies Classes
+generate_pd_ascension_worlds_machine_arc_portrait_effect = {
+	#Aquatic
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine_capital
+					entity = pd_aquatic_machine_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine
+					entity = pd_aquatic_machine_nexus_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_machine_capital
+					entity = pd_aquatic_machine_nexus_planet_01_entity
+				}
+			}
+		}
+		#Machine Capital for Rogue Servitors on Arcs
+		if = {
+			limit = {
+				is_planet_class = pc_city
+			}
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+					NOT = {	is_pd_garden_arcology = yes	}
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_machine_capital_aquatic
+					entity = pd_capital_city_aquatic_planet_01_entity
+				}
+			}
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+					is_pd_garden_arcology = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city_machine_capital_aquatic
+				}
+			}
+		}
+	}
+	#Necro
+	if = {
+		limit = {
+			pd_aw_is_necro_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine_capital
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_machine_capital
+					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,556 @@
+#This effect add deposits at game start to planet classes added by PD
+
+generate_pd_arcology_portrait_effect = {
+	#Garden Arc
+	if = {
+		limit = {
+			has_modifier = pd_garden_arcology
+		}
+		if = {
+			limit = {
+				NOR = {
+					has_planet_flag = planet_earth
+					has_planet_flag = planet_mars
+					has_planet_flag = pdvenus
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						pd_has_vanilla_graphical_culture = yes
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = "pd_garden_city_planet_entity"
+					graphical_culture = owner
+				}
+			}
+			else = {
+				set_planet_entity = {
+					picture = pc_pd_garden_city
+					entity = "pd_garden_city_planet_01_entity"
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = pd_garden_city_planet_earth_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_mars
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = pd_garden_city_planet_mars_01_entity
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = pdvenus
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_city
+				entity = pd_garden_city_planet_venus_01_entity
+			}
+		}
+	}
+	#Fort Arc
+	if = {
+		limit = {
+			has_modifier = pd_fortress_arcology
+		}
+		if = {
+			limit = {
+				owner = {
+					pd_has_vanilla_graphical_culture = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_fortress_city
+				entity = "pd_fortress_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		else = {
+			set_planet_entity = {
+				picture = pc_pd_fortress_city
+				entity = "pd_fortress_city_planet_01_entity"
+			}
+		}
+	}
+	#Commercial Arc
+	if = {
+		limit = {
+			has_modifier = pd_commercial_arcology
+		}
+		if = {
+			limit = {
+				owner = {
+					pd_has_vanilla_graphical_culture = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_city
+				entity = "pd_commercial_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		else = {
+			set_planet_entity = {
+				picture = pc_pd_commercial_city
+				entity = "pd_commercial_city_planet_01_entity"
+			}
+		}
+	}
+	#Senate Capital + Arcs, no Ascension
+	if = {
+		limit = {
+			has_deposit = d_pd_senate_building
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				NOR = {
+					has_modifier = pd_garden_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_commercial_arcology
+				}
+			}
+			if = {
+				limit = {
+					NOT = {	has_planet_flag = planet_earth }
+					owner = { pd_has_vanilla_graphical_culture = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_senate
+					entity = "pd_capital_city_planet_entity"
+					graphical_culture = owner
+				}
+			}
+			else_if = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_senate
+					entity = "pd_capital_city_planet_earth_01_entity"
+				}
+			}
+			else = {
+				set_planet_entity = {
+					picture = pc_pd_city_senate
+					entity = "pd_capital_city_planet_01_entity"
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {	has_planet_flag = planet_earth }
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_senate
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_senate
+				entity = pd_garden_city_planet_earth_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_fortress_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_fortress_senate
+				entity = "pd_fortress_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_commercial_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_senate
+				entity = "pd_commercial_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+	}
+	#Palace Capital + Arcs, no Ascension
+	if = {
+		limit = {
+			has_deposit = d_pd_palace_building
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				NOR = {
+					has_modifier = pd_garden_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_commercial_arcology
+				}
+			}
+			if = {
+				limit = {
+					NOT = {	has_planet_flag = planet_earth }
+					owner = { pd_has_vanilla_graphical_culture = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_palace
+					entity = "pd_capital_city_planet_entity"
+					graphical_culture = owner
+				}
+			}
+			else_if = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_palace
+					entity = "pd_capital_city_planet_earth_01_entity"
+				}
+			}
+			else = {
+				set_planet_entity = {
+					picture = pc_pd_city_palace
+					entity = "pd_capital_city_planet_01_entity"
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {	has_planet_flag = planet_earth }
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_palace
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_palace
+				entity = pd_garden_city_planet_earth_01_entity
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_fortress_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_fortress_palace
+				entity = "pd_fortress_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_commercial_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_palace
+				entity = "pd_commercial_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+	}
+	#Corperate Capital + Arcs, no Ascension
+	if = {
+		limit = {
+			has_deposit = d_pd_headquarters_building
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				NOR = {
+					has_modifier = pd_garden_arcology
+					has_modifier = pd_fortress_arcology
+					has_modifier = pd_commercial_arcology
+				}
+			}
+			if = {
+				limit = {
+					NOT = {	has_planet_flag = planet_earth }
+					owner = { pd_has_vanilla_graphical_culture = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_headquarters
+					entity = "pd_capital_city_planet_entity"
+					graphical_culture = owner
+				}
+			}
+			else_if = {
+				limit = {
+					has_planet_flag = planet_earth
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_headquarters
+					entity = "pd_capital_city_planet_earth_01_entity"
+				}
+			}
+			else = {
+				set_planet_entity = {
+					picture = pc_pd_city_headquarters
+					entity = "pd_capital_city_planet_01_entity"
+				}
+			}
+		}
+		#Garden Arc + HQ - Not Earth
+		if = {
+			limit = {
+				NOT = {	has_planet_flag = planet_earth }
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_headquarters
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		#Garden Arc + HQ - Is Earth
+		if = {
+			limit = {
+				has_planet_flag = planet_earth
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_headquarters
+				entity = "pd_capital_city_planet_earth_01_entity"
+				graphical_culture = owner
+			}
+		}
+		#Fort Arc + HQ
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_fortress_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_fortress_headquarters
+				entity = "pd_fortress_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		#commercial Arc + HQ
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_commercial_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_commercial_headquarters
+				entity = "pd_commercial_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_global_flag = planetarydiversityascensionworlds
+		}
+		generate_pd_ascension_worlds_arc_portrait_effect = yes
+	}
+}
+
+#Hive Capitals
+generate_pd_hive_arc_portrait_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_confluence_spire_building
+			OR = {
+				is_planet_class = pc_hive
+				is_planet_class = pc_pd_hive
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_hive_capital
+		}
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_confluence_spire_building
+			OR = {
+				is_pd_uncommon_hive = yes
+				is_pd_uncommon_hive_arc = yes
+			}
+		}
+		generate_pd_uncommon_hive_capital_portrait_effect = yes
+	}
+	if = {
+		limit = {
+			NOT = { has_deposit = d_pd_confluence_spire_building }
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_hive
+					is_planet_class = pc_pd_hive
+					is_pd_uncommon_hive = yes
+					is_pd_uncommon_hive_arc = yes
+				}
+			}
+			set_planet_entity = {
+				picture = pc_infested
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_global_flag = planetarydiversityascensionworlds
+		}
+		generate_pd_ascension_worlds_hive_arc_portrait_effect = yes
+	}
+}
+
+#Machine Capitals
+generate_pd_machine_arc_portrait_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_machine_centralized_processing
+		}
+		if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_machine
+					is_planet_class = pc_pd_machine
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_machine_capital
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					is_pd_uncommon_machine = yes
+					is_pd_uncommon_machine_arc = yes
+				}
+			}
+			generate_pd_uncommon_machine_capital_portrait_effect = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				NOR = {
+					has_modifier = pd_garden_arcology
+					has_modifier = pd_fortress_arcology
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						pd_has_vanilla_graphical_culture = yes
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_city_machine_capital
+					entity = "pd_capital_city_planet_01_entity"
+					graphical_culture = owner
+				}
+			}
+			else = {
+				set_planet_entity = {
+					picture = pc_pd_city_machine_capital
+					entity = "pd_capital_city_planet_01_entity"
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_garden_machine_capital
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_fortress_arcology
+			}
+			set_planet_entity = {
+				picture = pc_pd_fortress_machine_capital
+				entity = "pd_fortress_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_global_flag = planetarydiversityascensionworlds
+		}
+		generate_pd_ascension_worlds_machine_arc_portrait_effect = yes
+	}
+}
+
+remove_pd_capital_deposit_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_senate_building
+		}
+		remove_deposit = d_pd_senate_building
+		generate_pd_arcology_portrait_effect = yes
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_palace_building
+		}
+		remove_deposit = d_pd_palace_building
+		generate_pd_arcology_portrait_effect = yes
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_headquarters_building
+		}
+		remove_deposit = d_pd_headquarters_building
+		generate_pd_arcology_portrait_effect = yes
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_confluence_spire_building
+		}
+		remove_deposit = d_pd_confluence_spire_building
+		generate_pd_hive_arc_portrait_effect = yes
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_machine_centralized_processing
+		}
+		remove_deposit = d_pd_machine_centralized_processing
+		generate_pd_machine_arc_portrait_effect = yes
+	}
+}
