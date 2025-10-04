@@ -248,6 +248,10 @@ remove_pd_arid_modifier = {
 		remove_modifier = pd_amethyst
 	}
 	if = {
+		limit = { has_modifier = pd_opal }
+		remove_modifier = pd_opal
+	}
+	if = {
 		limit = { has_modifier = pd_coral }
 		remove_modifier = pd_coral
 	}
@@ -1263,6 +1267,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_amethyst_preference
+			add_trait = trait_pc_arid_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_opal_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_opal_preference
 			add_trait = trait_pc_arid_preference
 		}
 	}
