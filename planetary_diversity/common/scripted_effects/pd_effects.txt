@@ -440,6 +440,10 @@ remove_pd_tundra_modifier = {
 		remove_modifier = pd_treeline
 	}
 	if = {
+		limit = { has_modifier = pd_peatland }
+		remove_modifier = pd_peatland
+	}
+	if = {
 		limit = { has_modifier = pd_cryoflora }
 		remove_modifier = pd_cryoflora
 	}
@@ -1791,6 +1795,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_treeline_preference
+			add_trait = trait_pc_tundra_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_peatland_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_peatland_preference
 			add_trait = trait_pc_tundra_preference
 		}
 	}
