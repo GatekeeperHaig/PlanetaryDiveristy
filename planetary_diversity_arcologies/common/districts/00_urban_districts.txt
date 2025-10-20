@@ -3,7 +3,7 @@
 
 district_city = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	default_starting_district = yes
 	overlay_icon = GFX_district_government
@@ -188,7 +188,7 @@ district_city = {
 }
 
 district_crashed_slaver_ship = {
-	is_capped_by_modifier = yes
+	is_uncapped = {	always = no }
 	can_demolish = no
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_government
@@ -344,7 +344,7 @@ district_crashed_slaver_ship = {
 
 district_resort = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_trade
 
@@ -508,7 +508,7 @@ district_resort = {
 district_resort_1 = {
 	icon = district_resort_secondary
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_amenities
 
@@ -587,7 +587,7 @@ district_resort_1 = {
 district_resort_2 = {
 	icon = district_resort_secondary
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_amenities
 
@@ -666,7 +666,7 @@ district_resort_2 = {
 district_resort_3 = {
 	icon = district_resort_secondary
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_amenities
 
@@ -744,7 +744,7 @@ district_resort_3 = {
 
 district_prison = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	icon = district_city
 	overlay_icon = GFX_district_government
@@ -867,7 +867,7 @@ district_prison = {
 
 district_slave = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	icon = district_city
 	overlay_icon = GFX_district_government
@@ -990,7 +990,7 @@ district_slave = {
 
 district_hive = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_government
 
@@ -1126,7 +1126,7 @@ district_hive = {
 district_hive_1 = {
 	icon = district_hive_secondary
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_housing
 
@@ -1149,9 +1149,7 @@ district_hive_1 = {
 	convert_to = {
 		district_nexus_1
 		district_generator
-		district_generator_uncapped
 		district_photosynthesis_fields
-		district_photosynthesis_fields_uncapped
 	}
 
 	resources = {
@@ -1206,12 +1204,16 @@ district_hive_1 = {
 			planet_housing_add = 100
 		}
 	}
+
+	triggered_name = {
+		text = district_hive
+	}
 }
 
 district_hive_2 = {
 	icon = district_hive_secondary
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_housing
 
@@ -1234,9 +1236,7 @@ district_hive_2 = {
 	convert_to = {
 		district_nexus_2
 		district_mining
-		district_mining_uncapped
 		district_hollow_mountains
-		district_hollow_mountains_uncapped
 	}
 
 	resources = {
@@ -1291,12 +1291,16 @@ district_hive_2 = {
 			planet_housing_add = 100
 		}
 	}
+
+	triggered_name = {
+		text = district_hive
+	}
 }
 
 district_hive_3 = {
 	icon = district_hive_secondary
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_housing
 
@@ -1319,9 +1323,7 @@ district_hive_3 = {
 	convert_to = {
 		district_nexus_3
 		district_farming
-		district_farming_uncapped
 		district_orchard_forests
-		district_orchard_forests_uncapped
 	}
 
 	resources = {
@@ -1376,11 +1378,15 @@ district_hive_3 = {
 			planet_housing_add = 100
 		}
 	}
+
+	triggered_name = {
+		text = district_hive
+	}
 }
 
 district_nexus = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_government
 
@@ -1515,7 +1521,7 @@ district_nexus = {
 district_nexus_1 = {
 	icon = district_nexus_secondary
 	base_buildtime = 600
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_housing
 
@@ -1535,18 +1541,38 @@ district_nexus_1 = {
 	convert_to = {
 		district_hive_1
 		district_generator
-		district_generator_uncapped
 		district_photosynthesis_fields
-		district_photosynthesis_fields_uncapped
 	}
 
 	resources = {
 		category = planet_districts
 		cost = {
+			trigger = {
+				NOT = {
+					has_deposit = d_machine_prototype_pc_machine
+				}
+			}
 			minerals = 1000
 		}
+		cost = {
+			trigger = {
+				has_deposit = d_machine_prototype_pc_machine
+			}
+			minerals = @base_cost
+		}
 		upkeep = {
+			trigger = {
+				NOT = {
+					has_deposit = d_machine_prototype_pc_machine
+				}
+			}
 			energy = 5
+		}
+		upkeep = {
+			trigger = {
+				has_deposit = d_machine_prototype_pc_machine
+			}
+			energy = 2
 		}
 	}
 
@@ -1584,19 +1610,15 @@ district_nexus_1 = {
 		}
 	}
 
-	inline_script = {
-		script = districts/district_triggered_name_machine
-	}
-
-	inline_script = {
-		script = districts/district_triggered_flavor_desc_machine
+	triggered_name = {
+		text = district_nexus_name
 	}
 }
 
 district_nexus_2 = {
 	icon = district_nexus_secondary
 	base_buildtime = 600
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_housing
 
@@ -1616,18 +1638,38 @@ district_nexus_2 = {
 	convert_to = {
 		district_hive_2
 		district_mining
-		district_mining_uncapped
 		district_hollow_mountains
-		district_hollow_mountains_uncapped
 	}
 
 	resources = {
 		category = planet_districts
 		cost = {
+			trigger = {
+				NOT = {
+					has_deposit = d_machine_prototype_pc_machine
+				}
+			}
 			minerals = 1000
 		}
+		cost = {
+			trigger = {
+				has_deposit = d_machine_prototype_pc_machine
+			}
+			minerals = @base_cost
+		}
 		upkeep = {
+			trigger = {
+				NOT = {
+					has_deposit = d_machine_prototype_pc_machine
+				}
+			}
 			energy = 5
+		}
+		upkeep = {
+			trigger = {
+				has_deposit = d_machine_prototype_pc_machine
+			}
+			energy = 2
 		}
 	}
 
@@ -1665,19 +1707,15 @@ district_nexus_2 = {
 		}
 	}
 
-	inline_script = {
-		script = districts/district_triggered_name_machine
-	}
-
-	inline_script = {
-		script = districts/district_triggered_flavor_desc_machine
+	triggered_name = {
+		text = district_nexus_name
 	}
 }
 
 district_nexus_3 = {
 	icon = district_nexus_secondary
 	base_buildtime = 600
-	is_capped_by_modifier = no
+
 	exempt_from_ai_planet_specialization = yes
 	overlay_icon = GFX_district_housing
 
@@ -1697,18 +1735,38 @@ district_nexus_3 = {
 	convert_to = {
 		district_hive_3
 		district_farming
-		district_farming_uncapped
 		district_orchard_forests
-		district_orchard_forests_uncapped
 	}
 
 	resources = {
 		category = planet_districts
 		cost = {
+			trigger = {
+				NOT = {
+					has_deposit = d_machine_prototype_pc_machine
+				}
+			}
 			minerals = 1000
 		}
+		cost = {
+			trigger = {
+				has_deposit = d_machine_prototype_pc_machine
+			}
+			minerals = @base_cost
+		}
 		upkeep = {
+			trigger = {
+				NOT = {
+					has_deposit = d_machine_prototype_pc_machine
+				}
+			}
 			energy = 5
+		}
+		upkeep = {
+			trigger = {
+				has_deposit = d_machine_prototype_pc_machine
+			}
+			energy = 2
 		}
 	}
 
@@ -1746,18 +1804,14 @@ district_nexus_3 = {
 		}
 	}
 
-	inline_script = {
-		script = districts/district_triggered_name_machine
-	}
-
-	inline_script = {
-		script = districts/district_triggered_flavor_desc_machine
+	triggered_name = {
+		text = district_nexus_name
 	}
 }
 
 district_prison_industrial = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	icon = district_industrial
 	overlay_icon = GFX_district_mixed_industry
 
@@ -1822,7 +1876,7 @@ district_prison_industrial = {
 
 district_battle_thrall = {
 	base_buildtime = 480
-	is_capped_by_modifier = no
+
 	overlay_icon = GFX_district_fortress
 
 	zone_slots = {
@@ -1882,7 +1936,7 @@ district_battle_thrall = {
 
 district_srw_commercial = {
 	base_buildtime = 240
-	is_capped_by_modifier = no
+
 	overlay_icon = GFX_district_trade
 
 	min_for_deposits_on_planet = 3
@@ -1912,7 +1966,6 @@ district_srw_commercial = {
 
 	conversion_ratio = 1
 	convert_to = {
-		district_generator_uncapped
 		district_rw_commercial
 	}
 

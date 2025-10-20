@@ -1719,12 +1719,9 @@ decision_pd_aw_core_tap = {
 			limit = { owner = { is_ai = no } }
 			OR = {
 				num_districts = { type = district_generator value >= 3 }
-				num_districts = { type = district_generator_uncapped value >= 3 }
 			}
 			num_districts = { type = district_farming value < 1 }
 			num_districts = { type = district_mining value < 1 }
-			num_districts = { type = district_farming_uncapped value < 1 }
-			num_districts = { type = district_mining_uncapped value < 1 }
 			custom_tooltip = {
 				fail_text = decision_pd_megacoretap_requirements
 			}
@@ -1747,6 +1744,8 @@ decision_pd_aw_core_tap = {
 	effect = {
 		#custom_tooltip = decision_pd_aw_core_tap_tooltip
 		change_pc = pc_pd_core_tap
+		set_planet_flag = uncapped_generator_districts
+		#clear_deposits = yes
 		add_modifier = {
 			modifier = pd_aw_core_tap
 			days = -1
@@ -1800,12 +1799,9 @@ decision_pd_aw_agriworld = {
 			limit = { owner = { is_ai = no } }
 			OR = {
 				num_districts = { type = district_farming value >= 3 }
-				num_districts = { type = district_farming_uncapped value >= 3 }
 			}
 			num_districts = { type = district_generator value < 1 }
 			num_districts = { type = district_mining value < 1 }
-			num_districts = { type = district_generator_uncapped value < 1 }
-			num_districts = { type = district_mining_uncapped value < 1 }
 			custom_tooltip = {
 				fail_text = decision_pd_agriworld_requirements
 			}
@@ -1828,6 +1824,8 @@ decision_pd_aw_agriworld = {
 	effect = {
 		#custom_tooltip = decision_pd_aw_agriworld_tooltip
 		change_pc = pc_pd_agriworld
+		set_planet_flag = uncapped_farming_districts
+		#clear_deposits = yes
 		add_modifier = {
 			modifier = pd_aw_agriworld
 			days = -1
@@ -1883,12 +1881,9 @@ decision_pd_aw_stripmine = {
 				fail_text = decision_pd_stripmine_requirements
 				OR = {
 					num_districts = { type = district_mining value >= 3 }
-					num_districts = { type = district_mining_uncapped value >= 3 }
 				}
 				num_districts = { type = district_generator value < 1 }
 				num_districts = { type = district_farming value < 1 }
-				num_districts = { type = district_farming_uncapped value < 1 }
-				num_districts = { type = district_generator_uncapped value < 1 }
 			}
 		}
 		custom_tooltip = {
@@ -1909,6 +1904,8 @@ decision_pd_aw_stripmine = {
 	effect = {
 		#custom_tooltip = decision_pd_aw_agriworld_tooltip
 		change_pc = pc_pd_stripmine
+		set_planet_flag = uncapped_mining_districts
+		#clear_deposits = yes
 		add_modifier = {
 			modifier = pd_aw_stripmine
 			days = -1
