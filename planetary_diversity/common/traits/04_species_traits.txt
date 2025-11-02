@@ -4,6 +4,10 @@ trait_auto_mod_biological = {
 	auto_mod = yes
 	category = normal
 
+	opposites = {
+		"trait_wilderness"
+	}
+
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic automod positive }
 	initial = no
@@ -1235,7 +1239,7 @@ trait_latent_psionic = {
 		always = no
 	}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
-	tags = { organic positive pop_output research unity psionic }
+	tags = { organic positive pop_output research unity psionic special }
 
 	inline_script = "traits/latent_psionic_effects"
 }
@@ -1995,18 +1999,96 @@ trait_plantoid_radiotrophic = {
 	}
 	tags = { organic positive plantoid fungoid lithoid upkeep species }
 	custom_tooltip = TRAIT_PLANTOID_RADIOTROPHIC_EFFECT
-	inline_script = "traits/radiotrophic_effects"
+	resources = {
+		category = planet_pops
+		# Energy Upkeep
+		upkeep = {
+			trigger = {
+				is_being_purged = no
+				exists = planet
+				NOT = {
+					planet = { is_planet_class = pc_nuked }
+				}
+			}
+			energy = @living_standard_phototrophic_normal
+		}
+	}
+	modifier = {
+		pc_nuked_habitability = 0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_deposit = d_lithoid_crater }
+		}
+		pc_nuked_habitability = 0.05
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_planet_class = pc_nuked
+					is_planet_class = pc_pd_nuked_superhabitable
+					is_planet_class = pc_pd_nuked_tidally_locked
+					is_planet_class = pc_pd_nuked_cave
+				}
+			}
+		}
+		logistic_growth_mult = 0.1
+		mult = value:lithoid_trait_mult
+	}
+	triggered_pop_group_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = wasteland_radiation }
+		}
+		pop_happiness = 0.1
+		mult = value:lithoid_trait_mult
+	}
+	slave_cost = {
+		energy = 1500
+	}
+	assembly_score = {
+		modifier = {
+			add = 1
+			from = {
+				OR = {
+					is_planet_class = pc_nuked
+					is_planet_class = pc_pd_nuked_superhabitable
+					is_planet_class = pc_pd_nuked_tidally_locked
+					is_planet_class = pc_pd_nuked_cave
+				}
+			}
+		}
+		modifier = {
+			add = 0.05
+			from = {
+				OR = {
+					is_planet_class = pc_nuked
+					is_planet_class = pc_pd_nuked_superhabitable
+					is_planet_class = pc_pd_nuked_tidally_locked
+					is_planet_class = pc_pd_nuked_cave
+				}
+				has_deposit = d_lithoid_crater
+			}
+		}
+	}
 }
 
 trait_plantoid_budding = {
 	host_has_dlc = "Plantoids Species Pack"
 	cost = 2
 	species_possible_add = {
-		can_add_genetic_traits = yes
+		OR = {
+			can_add_genetic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
+		}
 	}
 	species_possible_remove = {
 		OR = {
 			can_remove_beneficial_genetic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
 			can_remove_pop_growth_genetic_traits = yes
 		}
 	}
@@ -2103,11 +2185,15 @@ trait_lithoid_budding = {
 	host_has_dlc = "Plantoids Species Pack"
 	cost = 2
 	species_possible_add = {
-		can_add_genetic_traits = yes
+		OR = {
+			can_add_genetic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
+		}
 	}
 	species_possible_remove = {
 		OR = {
 			can_remove_beneficial_genetic_traits = yes
+			can_add_or_remove_phenotype_traits = yes
 			can_remove_pop_growth_genetic_traits = yes
 		}
 	}
