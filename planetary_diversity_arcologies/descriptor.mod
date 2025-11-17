@@ -7,5 +7,5 @@ picture="thumbnail.png"
 dependencies={
 	"Planetary Diversity"
 }
-supported_version="v4.1.*"
+supported_version="v4.2.*"
 remote_file_id="1732447147"

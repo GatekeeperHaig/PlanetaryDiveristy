@@ -977,9 +977,9 @@ decision_pd_aw_shroud_planet = {
 	enactment_time = @pd_shroud_time
 
 	potential = {
-		pd_is_valid_for_shroud_planet = yes
 		exists = owner
 		owner = { pd_can_shroud_planets = yes }
+		pd_is_valid_for_shroud_planet = yes
 		pd_aw_is_shroud_planet = no
 		pd_aw_is_wasteland_planet = no
 		NOT = { has_planet_flag = pd_unique_world }
@@ -1079,6 +1079,15 @@ decision_pd_aw_shroud_planet = {
 						entity = pdaquatic_shroudrelic_planet_01_entity
 					}
 				}
+				IF = {
+					limit = {
+						is_planet_class = pc_machine
+					}
+					set_planet_entity = {
+						picture = pc_pd_aquatic_shroud_machine
+						entity = pd_aquatic_shroud_machine_planet_01_entity
+					}
+				}
 			}
 			IF = {
 				limit = {
@@ -1111,6 +1120,18 @@ decision_pd_aw_shroud_planet = {
 					pd_aw_is_lithoid_planet = yes
 				}
 				pd_aw_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					is_planet_class = pc_machine
+				}
+				generate_pd_ascension_worlds_machine_arc_portrait_effect = yes
+			}
+			if = {
+				limit = {
+					is_planet_class = pc_hive
+				}
+				generate_pd_ascension_worlds_hive_arc_portrait_effect = yes
 			}
 			remove_pd_modifier = yes
 			create_message = {
@@ -1343,6 +1364,12 @@ decision_pd_aw_necro_planet = {
 					is_planet_class = pc_machine
 				}
 				generate_pd_ascension_worlds_machine_arc_portrait_effect = yes
+			}
+			if = {
+				limit = {
+					is_planet_class = pc_hive
+				}
+				generate_pd_ascension_worlds_hive_arc_portrait_effect = yes
 			}
 			remove_pd_modifier = yes
 			create_message = {

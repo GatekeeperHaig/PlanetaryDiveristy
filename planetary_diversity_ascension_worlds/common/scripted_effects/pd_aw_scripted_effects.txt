@@ -288,6 +288,15 @@ pd_aw_create_shroud_world_effect = {
 			entity = pdshroud_planet_venus_entity
 		}
 	}
+	IF = {
+		limit = {
+			is_planet_class = pc_machine
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud_machine
+			entity = pdshroud_machine_entity
+		}
+	}
 	generate_pd_ascension_worlds_arc_portrait_effect = yes
 }
 
@@ -514,6 +523,15 @@ pd_aw_create_aquatic_shroud_world_effect = {
 			picture = pc_pd_aqua_shroud_habitat
 			entity = "habitat_phase_03_entity"
 			graphical_culture = owner
+		}
+	}
+	IF = {
+		limit = {
+			is_planet_class = pc_machine
+		}
+		set_planet_entity = {
+			picture = pc_pd_aquatic_shroud_machine
+			entity = pd_aquatic_shroud_machine_planet_01_entity
 		}
 	}
 	generate_pd_ascension_worlds_arc_portrait_effect = yes
@@ -1324,10 +1342,69 @@ pd_gaia_flooded_check = {
 
 #This adds the Ascenion World Views to the More Arcologies Classes
 generate_pd_ascension_worlds_hive_arc_portrait_effect = {
+	#Shroud
+	if = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_necro_planet = no
+			pd_aw_is_shroud_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_hive
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_hive
+					entity = pd_shroud_hive_world_planet_01_entity
+				}
+			}
+			if = {
+				limit = {
+					is_pd_hive_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_hive_capital
+					entity = pd_shroud_hive_world_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_hive_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_machine
+					entity = pd_shroud_hive_world_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_machine_capital
+					entity = pd_shroud_hive_world_planet_01_entity
+				}
+			}
+		}
+	}
 	#Aquatic
 	if = {
 		limit = {
 			pd_is_flooded_planet = yes
+			pd_aw_is_necro_planet = no
+			pd_aw_is_shroud_planet = no
 		}
 		if = {
 			limit = {
@@ -1336,7 +1413,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Non-Capital
 			if = {
 				limit = {
-					NOT = { has_deposit = d_pd_confluence_spire_building }
+					is_pd_hive_capital = no
 				}
 				set_planet_entity = {
 					picture = pc_pd_aquatic_hive
@@ -1346,7 +1423,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Capital
 			if = {
 				limit = {
-					has_deposit = d_pd_confluence_spire_building
+					is_pd_hive_capital = yes
 				}
 				set_planet_entity = {
 					picture = pc_pd_aquatic_hive_capital
@@ -1361,7 +1438,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Non-Capital
 			if = {
 				limit = {
-					NOT = { has_deposit = d_pd_confluence_spire_building }
+					is_pd_hive_capital = no
 				}
 				set_planet_entity = {
 					picture = pc_pd_aquatic_hive
@@ -1371,7 +1448,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Capital
 			if = {
 				limit = {
-					has_deposit = d_pd_confluence_spire_building
+					is_pd_hive_capital = yes
 				}
 				set_planet_entity = {
 					picture = pc_pd_aquatic_hive_capital
@@ -1383,7 +1460,9 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 	#Necro
 	if = {
 		limit = {
+			pd_is_flooded_planet = no
 			pd_aw_is_necro_planet = yes
+			pd_aw_is_shroud_planet = no
 		}
 		if = {
 			limit = {
@@ -1392,7 +1471,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Non-Capital
 			if = {
 				limit = {
-					NOT = { has_deposit = d_pd_confluence_spire_building }
+					is_pd_hive_capital = no
 				}
 				set_planet_entity = {
 					picture = pc_pd_necro
@@ -1402,7 +1481,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Capital
 			if = {
 				limit = {
-					has_deposit = d_pd_confluence_spire_building
+					is_pd_hive_capital = yes
 				}
 				set_planet_entity = {
 					picture = pc_pd_necro_hive_capital
@@ -1417,7 +1496,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Non-Capital
 			if = {
 				limit = {
-					NOT = { has_deposit = d_pd_confluence_spire_building }
+					is_pd_hive_capital = no
 				}
 				set_planet_entity = {
 					picture = pc_pd_necro
@@ -1427,7 +1506,7 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			#Capital
 			if = {
 				limit = {
-					has_deposit = d_pd_confluence_spire_building
+					is_pd_hive_capital = yes
 				}
 				set_planet_entity = {
 					picture = pc_pd_necro_hive_capital
@@ -1436,14 +1515,189 @@ generate_pd_ascension_worlds_hive_arc_portrait_effect = {
 			}
 		}
 	}
+	#Aquatic + Shroud
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_necro_planet = no
+			pd_aw_is_shroud_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_hive
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_hive
+					entity = pd_aquatic_shroud_infested_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_hive_capital
+					entity = pd_infested_aquatic_shroud_arcology_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_hive_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_hive
+					entity = pd_aquatic_shroud_infested_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_hive_shroud_capital
+					entity = pd_infested_aquatic_shroud_arcology_planet_01_entity
+				}
+			}
+		}
+	}
+	#Necro + Shroud
+	if = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_necro_planet = yes
+			pd_aw_is_shroud_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_hive
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud
+					entity = pd_necro_shroud_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud_hive_capital
+					entity = pd_necro_shroud_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_hive_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud
+					entity = pd_necro_shroud_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_hive_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud_hive_capital
+					entity = pd_necro_shroud_planet_01_entity
+				}
+			}
+		}
+	}
 }
 
 #This adds the Ascenion World Views to the More Arcologies Classes
 generate_pd_ascension_worlds_machine_arc_portrait_effect = {
+	#Shroud
+	if = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_necro_planet = no
+			pd_aw_is_shroud_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_machine
+					entity = pdshroud_machine_entity
+				}
+			}
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_machine_capital
+					entity = pdshroud_machine_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = no
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_machine
+					entity = pdshroud_machine_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_shroud_machine_capital
+					entity = pdshroud_machine_entity
+				}
+			}
+		}
+	}
 	#Aquatic
 	if = {
 		limit = {
 			pd_is_flooded_planet = yes
+			pd_aw_is_necro_planet = no
+			pd_aw_is_shroud_planet = no
 		}
 		if = {
 			limit = {
@@ -1524,7 +1778,9 @@ generate_pd_ascension_worlds_machine_arc_portrait_effect = {
 	#Necro
 	if = {
 		limit = {
+			pd_is_flooded_planet = no
 			pd_aw_is_necro_planet = yes
+			pd_aw_is_shroud_planet = no
 		}
 		if = {
 			limit = {
@@ -1533,7 +1789,7 @@ generate_pd_ascension_worlds_machine_arc_portrait_effect = {
 			#Non-Capital
 			if = {
 				limit = {
-					NOT = { is_pd_machine_capital = yes }
+					is_pd_machine_capital = yes
 				}
 				set_planet_entity = {
 					picture = pc_pd_necro_machine
@@ -1573,6 +1829,122 @@ generate_pd_ascension_worlds_machine_arc_portrait_effect = {
 				set_planet_entity = {
 					picture = pc_pd_necro_machine_capital
 					entity = pd_necro_machine_planet_01_entity
+				}
+			}
+		}
+	}
+	#Shroud+Aquatic
+	if = {
+		limit = {
+			pd_is_flooded_planet = yes
+			pd_aw_is_necro_planet = no
+			pd_aw_is_shroud_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_machine
+					entity = pd_aquatic_shroud_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_machine_capital
+					entity = pd_aquatic_shroud_machine_planet_01_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_machine
+					entity = pd_aquatic_shroud_machine_planet_01_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_aquatic_shroud_machine_capital
+					entity = pd_aquatic_shroud_machine_planet_01_entity
+				}
+			}
+		}
+	}
+	#Shroud+Necro
+	if = {
+		limit = {
+			pd_is_flooded_planet = no
+			pd_aw_is_necro_planet = yes
+			pd_aw_is_shroud_planet = yes
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud_machine
+					entity = pdshroud_machine_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud_machine_capital
+					entity = pdshroud_machine_entity
+				}
+			}
+		}
+		if = {
+			limit = {
+				pd_is_pd_machine_arc = yes
+			}
+			#Non-Capital
+			if = {
+				limit = {
+					NOT = { is_pd_machine_capital = yes }
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud_machine
+					entity = pdshroud_machine_entity
+				}
+			}
+			#Capital
+			if = {
+				limit = {
+					is_pd_machine_capital = yes
+				}
+				set_planet_entity = {
+					picture = pc_pd_necro_shroud_machine_capital
+					entity = pdshroud_machine_entity
 				}
 			}
 		}

@@ -209,6 +209,9 @@ country_event = {
 				25 = {
 					pd_cactus_world_effect = yes
 				}
+				25 = {
+					pd_dust_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -948,6 +951,16 @@ country_event = {
 			}
 			change_pc = pc_desert
 			pd_cactus_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_dust
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_desert
+			pd_dust_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -2139,6 +2152,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_desert }
+		}
+		name = pdengine.21.dust
+		hidden_effect = {
+			from = {
+				pd_dust_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_desert }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3139,6 +3163,9 @@ planet_event = {
 				}
 				25 = {
 					pd_cactus_world_effect = yes
+				}
+				25 = {
+					pd_dust_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -5033,7 +5060,7 @@ country_event = {
 			random_list = {
 				15 = {
 					set_planet_entity = {
-						picture = pc_volcanic
+						picture = pc_volcanic_pd
 						entity = "volcanic_planet_01_entity"
 					}
 					add_modifier = {
@@ -5435,7 +5462,7 @@ country_event = {
 			}
 			set_planet_flag = pdio
 			set_planet_entity = {
-				picture = pc_volcanic
+				picture = pc_volcanic_pd
 				entity = "volcanic_planet_01_entity"
 			}
 		}
@@ -5972,6 +5999,16 @@ country_event = {
 				}
             }
 		}
+		every_galaxy_planet = {
+            if = {
+                limit = {
+                   has_modifier = metal_planet
+				}
+				set_planet_entity = {
+					picture = pc_pd_metal_planet
+				}
+            }
+		}
 	}
 }
 
@@ -6025,6 +6062,7 @@ country_event = {
 				has_trait = trait_pc_pd_fungi_preference
 				has_trait = trait_pc_pd_ironsand_preference
 				has_trait = trait_pc_pd_cactus_preference
+				has_trait = trait_pc_pd_dust_preference
 				has_trait = trait_pc_pd_salt_preference
 				has_trait = trait_pc_pd_aquifer_preference
 				has_trait = trait_pc_pd_mesa_preference
@@ -6676,6 +6714,9 @@ country_event = {
 					25 = {
 						pd_cactus_world_effect = yes
 					}
+					25 = {
+						pd_dust_world_effect = yes
+					}
 				}
 			}
 			if = {
@@ -7123,6 +7164,7 @@ planet_event = {
 			has_modifier = pd_fungi
 			has_modifier = pd_ironsand
 			has_modifier = pd_cactus
+			has_modifier = pd_dust
 			has_modifier = pd_salt
 			has_modifier = pd_aquifer
 			has_modifier = pd_mesa
@@ -7551,6 +7593,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_cactus
 				entity = "cactus_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_desert
+				has_modifier = pd_dust
+			}
+			set_planet_entity = {
+				picture = pc_pd_dust
+				entity = "dust_planet_01_entity"
 			}
 		}
 		if = {
