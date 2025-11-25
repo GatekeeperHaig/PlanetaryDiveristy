@@ -736,3 +736,25 @@ entity = {
 	}
     scale = 1.0
 }
+#Infernal
+entity = {
+    name = "infernal_01_pd_commercial_city_planet_entity"
+    locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+    default_state = "idle"
+    playback_rate = 1.0 # Animation speed 0
+    state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+    attach = { "planetloc" = "infernal_01_city_planet_mesh" }
+	attach = { "planetloc" = "pd_commercial_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_commercial_planet_billboard_mesh" }
+	attach = { "planetloc" = "pd_commercial_planet_billboard_2_mesh" }
+	attach = { "planetloc" = "pd_commercial_planet_billboard_3_mesh" }
+	attach = { "planetloc" = "pd_commercial_planet_billboard_4_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+    scale = 1.0
+}

@@ -18,10 +18,25 @@ generate_pd_arcology_portrait_effect = {
 				limit = {
 					owner = {
 						pd_has_vanilla_graphical_culture = yes
+						NOT = {
+							graphical_culture = infernal_01
+						}
 					}
 				}
 				set_planet_entity = {
 					picture = pc_pd_garden_city
+					entity = "pd_garden_city_planet_entity"
+					graphical_culture = owner
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						graphical_culture = infernal_01
+					}
+				}
+				set_planet_entity = {
+					picture = pc_pd_volcanic_garden_city
 					entity = "pd_garden_city_planet_entity"
 					graphical_culture = owner
 				}
@@ -126,7 +141,9 @@ generate_pd_arcology_portrait_effect = {
 			if = {
 				limit = {
 					NOT = {	has_planet_flag = planet_earth }
-					owner = { pd_has_vanilla_graphical_culture = yes }
+					owner = {
+						pd_has_vanilla_graphical_culture = yes
+					}
 				}
 				set_planet_entity = {
 					picture = pc_pd_city_senate
@@ -150,14 +167,36 @@ generate_pd_arcology_portrait_effect = {
 				}
 			}
 		}
+		#Garden+Senate+Not Infernal
 		if = {
 			limit = {
 				NOT = {	has_planet_flag = planet_earth }
 				is_planet_class = pc_city
 				has_modifier = pd_garden_arcology
+				owner = {
+					NOT = {
+						graphical_culture = infernal_01
+					}
+				}
 			}
 			set_planet_entity = {
 				picture = pc_pd_garden_senate
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		#Garden+Senate+Infernal
+		if = {
+			limit = {
+				NOT = {	has_planet_flag = planet_earth }
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+				owner = {
+					graphical_culture = infernal_01
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_volcanic_garden_senate
 				entity = "pd_garden_city_planet_entity"
 				graphical_culture = owner
 			}
@@ -237,14 +276,36 @@ generate_pd_arcology_portrait_effect = {
 				}
 			}
 		}
+		#Garden+Palace+Not Infernal
 		if = {
 			limit = {
 				NOT = {	has_planet_flag = planet_earth }
 				is_planet_class = pc_city
 				has_modifier = pd_garden_arcology
+				owner = {
+					NOT = {
+						graphical_culture = infernal_01
+					}
+				}
 			}
 			set_planet_entity = {
 				picture = pc_pd_garden_palace
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		#Garden+Palace+Infernal
+		if = {
+			limit = {
+				NOT = {	has_planet_flag = planet_earth }
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+				owner = {
+					graphical_culture = infernal_01
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_volcanic_garden_palace
 				entity = "pd_garden_city_planet_entity"
 				graphical_culture = owner
 			}
@@ -324,15 +385,36 @@ generate_pd_arcology_portrait_effect = {
 				}
 			}
 		}
-		#Garden Arc + HQ - Not Earth
+		#Garden Arc + HQ - Not Earth, No Infernal
 		if = {
 			limit = {
 				NOT = {	has_planet_flag = planet_earth }
 				is_planet_class = pc_city
 				has_modifier = pd_garden_arcology
+				owner = {
+					NOT = {
+						graphical_culture = infernal_01
+					}
+				}
 			}
 			set_planet_entity = {
 				picture = pc_pd_garden_headquarters
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		#Garden Arc + HQ - Not Earth, Is Infernal
+		if = {
+			limit = {
+				NOT = {	has_planet_flag = planet_earth }
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+				owner = {
+					graphical_culture = infernal_01
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_volcanic_garden_headquarters
 				entity = "pd_garden_city_planet_entity"
 				graphical_culture = owner
 			}
@@ -486,13 +568,34 @@ generate_pd_machine_arc_portrait_effect = {
 				}
 			}
 		}
+		#Garden+Machine Capital+Not Infernal
 		if = {
 			limit = {
 				is_planet_class = pc_city
 				has_modifier = pd_garden_arcology
+				owner = {
+					NOT = {
+						graphical_culture = infernal_01
+					}
+				}
 			}
 			set_planet_entity = {
 				picture = pc_pd_garden_machine_capital
+				entity = "pd_garden_city_planet_entity"
+				graphical_culture = owner
+			}
+		}
+		#Garden+Machine Capital+Infernal
+		if = {
+			limit = {
+				is_planet_class = pc_city
+				has_modifier = pd_garden_arcology
+				owner = {
+					graphical_culture = infernal_01
+				}
+			}
+			set_planet_entity = {
+				picture = pc_pd_volcanic_garden_machine_capital
 				entity = "pd_garden_city_planet_entity"
 				graphical_culture = owner
 			}

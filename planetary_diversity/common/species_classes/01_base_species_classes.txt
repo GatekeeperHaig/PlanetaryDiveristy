@@ -1,0 +1,417 @@
+# The Species Classes defined here are the ones you can choose from in the character creator. The portraits for prescripted races are grabbed straight from the .gfx file.
+# There is also portrait_sets database that contains sets of portraits associated with species classes.
+# 'graphical_culture' is connected to the looks used for ships and cities; see "common/graphical_culture/".
+# playable = yes/no/trigger (default: yes)		if this species class can is playable
+# randomized = yes/no/trigger (default: yes)	if this species class is randomized
+# species_trait_points							base number of species trait points available for this species class
+# species_max_traits							maximum number of traits that species of this class can have (doesn't count those with cost == 0)
+# possible										ethics/government requirements; see common/governments/readme_requirements.txt
+# gender = yes/no (default: yes)				whether the species has a gender
+# portrait_modding yes/no (default: yes)		whether the portrait can be modified with e.g. genemodding or robomodding
+# random_weight									increases/reduces the chance of spawning this species class
+# ethics_to_prefer								list of ethics certain species class will preffer over others
+# preferred_ethics_weight						increases/reduces the chance of this species class choosing one of the preferred ethics
+
+MAM = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	trait = "trait_organic"
+	graphical_culture = mammalian_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+	resources = {}
+}
+
+REP = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	trait = "trait_organic"
+	graphical_culture = reptilian_01
+	move_pop_sound_effect = "reptilian_pops_move"
+
+	resources = {}
+}
+
+AVI = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	trait = "trait_organic"
+	graphical_culture = avian_01
+	move_pop_sound_effect = "avian_pops_move"
+
+	resources = {}
+}
+
+ART = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	trait = "trait_organic"
+	graphical_culture = arthropoid_01
+	move_pop_sound_effect = "arthopoid_pops_move"
+
+	resources = {}
+}
+
+MOL = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	trait = "trait_organic"
+	graphical_culture = molluscoid_01
+	move_pop_sound_effect = "molluscoid_pops_move"
+}
+
+FUN = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	trait = "trait_organic"
+	graphical_culture = fungoid_01
+	move_pop_sound_effect = "fungoid_pops_move"
+
+	resources = {}
+}
+
+PLANT = {
+	archetype = BIOLOGICAL
+
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	playable = {
+		OR = {
+			host_has_dlc = "Plantoids Species Pack"
+			local_has_dlc = "Ancient Relics Story Pack"
+		}
+	}
+	trait = "trait_organic"
+	gender = yes
+	graphical_culture = plantoid_01
+	resources = {}
+}
+
+LITHOID = {
+	archetype = LITHOID
+
+	playable = {
+		has_lithoids = yes
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		has_lithoids = yes
+	}
+
+	graphical_culture = lithoid_01
+	move_pop_sound_effect = "reptilian_pops_move"
+	resources = {}
+	trait = "trait_lithoid"
+}
+
+NECROID = {
+	archetype = BIOLOGICAL
+
+	playable = {
+		has_necroids = yes
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		has_necroids = yes
+	}
+	trait = "trait_organic"
+	gender = yes
+	graphical_culture = necroid_01
+	move_pop_sound_effect = "molluscoid_pops_move"
+	resources = {}
+}
+
+# This species class should only be used for its ship set
+IMPERIAL = {
+	playable = {
+		has_nemesis = yes
+	}
+	randomized = {
+		always = no
+	}
+	graphical_culture = nemesis_01
+}
+
+AQUATIC = {
+	archetype = BIOLOGICAL
+
+	playable = {
+		OR = {
+			has_aquatics = yes
+			has_shroud_dlc = yes
+		}
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		OR = {
+			has_aquatics = yes
+			has_shroud_dlc = yes
+		}
+	}
+	trait = "trait_organic"
+	gender = yes
+	graphical_culture = aquatic_01
+	move_pop_sound_effect = "molluscoid_pops_move"
+	resources = {}
+}
+
+TOX = {
+	archetype = BIOLOGICAL
+
+	playable = {
+		has_toxoids = yes
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		has_toxoids = yes
+	}
+	trait = "trait_organic"
+	gender = yes
+	graphical_culture = toxoid_01
+	move_pop_sound_effect = "molluscoid_pops_move"
+	resources = {}
+}
+
+CYBERNETIC = {
+	randomized = {
+		always = no
+	}
+	graphical_culture = cybernetics_01
+}
+
+# Deliberately before BIOGENESIS_01 so that the "friendlier" biological ships are shown first.
+BIOGENESIS_02 = {
+	# This species class should only be used for its ship set
+	playable = {
+		has_biogenesis_dlc = yes
+	}
+	randomized = {
+		always = no
+	}
+	graphical_culture = biogenesis_02
+}
+
+BIOGENESIS_01 = {
+	archetype = BIOLOGICAL
+
+	playable = {
+		has_biogenesis_dlc = yes
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		has_biogenesis_dlc = yes
+	}
+	trait = "trait_organic"
+	gender = yes
+	graphical_culture = biogenesis_01
+	move_pop_sound_effect = "molluscoid_pops_move"
+	resources = {}
+}
+
+WILDERNESS = {
+	# This species class should only be used for its city set
+	playable = {
+		has_biogenesis_dlc = yes
+	}
+	randomized = {
+		always = no
+	}
+	graphical_culture = wilderness_01
+	generate_shipset = no
+}
+
+
+PSIONIC = {
+	# This species class should only be used for its ship set
+	playable = {
+		has_shroud_dlc = yes
+	}
+	randomized = {
+		always = no
+	}
+	graphical_culture = psionic_01
+}
+
+MINDWARDEN = {
+	archetype = BIOLOGICAL
+
+	playable = {
+		has_shroud_dlc = yes
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		always = no
+	}
+	trait = "trait_organic"
+	gender = yes
+	graphical_culture = mindwarden_01
+	move_pop_sound_effect = "moving_pop_confirmation"
+	resources = {}
+}
+
+
+INF = {
+	archetype = BIOLOGICAL
+
+	playable = {
+		has_infernals = yes
+	}
+	possible = {
+		authority = {
+			NOT = {
+				value = auth_machine_intelligence
+				text = SPECIES_CLASS_MUST_NOT_USE_MACHINE_INTELLIGENCE
+			}
+		}
+	}
+	randomized = {
+		has_infernals = yes
+	}
+
+	gender = yes
+	graphical_culture = infernal_01
+	move_pop_sound_effect = "molluscoid_pops_move"
+	resources = {}
+	trait = "trait_infernal"
+	removed_climate_labels = {
+		TYPE_HEADER_08
+		TYPE_HEADER_09
+		TYPE_HEADER_10
+	}
+	added_climate_labels = {
+		TYPE_HEADER_04
+	}
+	removed_planet_types = {
+		pc_arctic
+		pc_alpine
+		pc_tundra
+		pc_pd_cold_desert
+		pc_pd_glacial
+		pc_pd_antarctic
+		pc_pd_aeolian
+		pc_pd_ice_spike
+		pc_pd_crevasse
+		pc_pd_ice_dunes
+		pc_pd_ferrospring
+		pc_pd_storm
+		pc_pd_iceberg
+		pc_pd_boreal
+		pc_pd_snow
+		pc_pd_highland
+		pc_pd_dune_forest
+		pc_pd_fjord
+		pc_pd_blossom
+		pc_pd_taiga
+		pc_pd_craton
+		pc_pd_glaciovolcanic
+		pc_pd_lanthanide
+		pc_pd_bog
+		pc_pd_mycelium
+		pc_pd_mud
+		pc_pd_basalt
+		pc_pd_tuya
+		pc_pd_cryovolcano
+		pc_pd_treeline
+		pc_pd_peatland
+		pc_pd_cryoflora
+		pc_pd_lichen
+	}
+	added_planet_types = {
+		pc_volcanic
+	}
+}

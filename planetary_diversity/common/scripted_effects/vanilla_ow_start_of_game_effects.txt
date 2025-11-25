@@ -105,6 +105,7 @@ generate_start_deposits_and_blockers = {
 				NOR = {
 					has_origin = origin_machine
 					has_origin = origin_synthetic_fertility
+					has_origin = origin_cosmic_dawn
 					is_gestalt = yes
 				}
 			}
@@ -118,6 +119,7 @@ generate_start_deposits_and_blockers = {
 		limit = {
 			owner = {
 				is_hive_empire = yes
+				NOT = { has_origin = origin_cosmic_dawn }
 			}
 		}
 
@@ -229,7 +231,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_rugged_woods
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -270,7 +276,11 @@ generate_start_deposits_and_blockers = {
 		if = {
 			limit = { owner = { is_machine_empire = no } }
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_submerged_ore_veins
 			}
 			else = {
@@ -314,7 +324,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_green_hills
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_submerged_ore_veins
 			}
 			else = {
@@ -357,7 +371,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_lichen_fields
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -400,7 +418,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_forgiving_tundra
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -443,7 +465,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_forgiving_tundra
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -486,7 +512,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_nutritious_mudland
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -530,7 +560,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_bountiful_plains
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -573,7 +607,11 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_bountiful_plains
 
 			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
 				add_deposit = d_rich_mountain
 			}
 			else = {
@@ -628,6 +666,41 @@ generate_start_deposits_and_blockers = {
 			limit = { owner = { is_machine_empire = no } }
 			add_deposit = d_bountiful_plains
 			add_deposit = d_black_soil
+		}
+	}
+
+	if = {
+		limit = {
+			is_planet_class = pc_volcanic
+		}
+
+		# Mining - 9 total
+		# +2 each, RL so not all homeworlds are the same
+		while = {
+			count = 2
+			random_list = {
+				1 = { add_deposit = d_volcanic_rich_mountain }
+				1 = { add_deposit = d_volcanic_mineral_fields }
+				1 = { add_deposit = d_volcanic_mineral_layers }
+				1 = { add_deposit = d_volcanic_weak_crust }
+			}
+		}
+		# +1 each
+		add_deposit = d_volcanic_ore_veins
+		add_deposit = d_volcanic_mineral_hills
+		# +3
+		add_deposit = d_volcanic_lava_river
+
+		# Polytechnic - 6 total
+		# +2 each, RL so not all homeworlds are the same
+		while = {
+			count = 3
+			random_list = {
+				1 = { add_deposit = d_volcanic_stable_plateaus }
+				1 = { add_deposit = d_volcanic_tranquil_flatlands }
+				1 = { add_deposit = d_volcanic_intraplate }
+				1 = { add_deposit = d_volcanic_basalt_plains }
+			}
 		}
 	}
 

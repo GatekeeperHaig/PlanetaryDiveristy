@@ -18,17 +18,8 @@ species_can_live_on_planet = {
 			NOR = {
 				has_trait = trait_machine_unit
 				has_trait = trait_mechanical
-				AND = {
-					has_trait = trait_cybernetic
-					exists = root.owner
-					root.owner = {
-						has_authority = auth_machine_intelligence
-						OR = {
-							has_civic = civic_machine_assimilator # Assimilator empire
-							has_ascension_perk = ap_mechromancy
-						}
-					}
-				}
+				has_trait = trait_cybernetic
+				has_unplugged_positive_trait = yes
 			}
 		}
 		if = {
@@ -69,6 +60,26 @@ species_can_live_on_planet = {
 			root = {
 				check_variable = { which = clone_pops_missing value >= 0 }
 			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = WILDERNESS_NATURAL_WORLDS_DECLINE
+		if = {
+			limit = {
+				has_trait = trait_wilderness
+			}
+			root = { is_habitable_for_wilderness = yes }
+		}
+	}
+
+	custom_tooltip = {
+		fail_text = WILDERNESS_DEAD_WORLD
+		if = {
+			limit = {
+				has_trait = trait_wilderness
+				exists = root.owner
+			}
+			root.owner = { is_wilderness_empire = yes }
 		}
 	}
 }
