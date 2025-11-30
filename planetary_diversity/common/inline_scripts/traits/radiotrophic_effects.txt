@@ -1,3 +1,18 @@
+resources = {
+	category = planet_pops
+	# Energy Upkeep
+	upkeep = {
+		trigger = {
+			is_being_purged = no
+			exists = planet
+			NOT = {
+				planet = { is_planet_class = pc_nuked }
+			}
+			is_sapient = yes
+		}
+		energy = @living_standard_phototrophic_normal
+	}
+}
 modifier = {
 	pc_nuked_habitability = 0.1
 }

@@ -671,19 +671,17 @@ entity = {
 		texture_normal = "poles_1_normal.dds"
 		texture_specular = "poles_1_specular.dds"
 	}
-
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
-		texture_diffuse = "clouds_medium_diffuse.dds"
-		texture_normal = "clouds_medium_normal.dds"
-		texture_specular = "clouds_medium_specular.dds"
+		texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+		texture_normal = "toxic_clouds_normal.dds"
+		texture_specular = "toxic_clouds_specular.dds"
 	}
-
 	##cloud shadow texture override
 	meshsettings = {
 		name = "clouds_shadow_geosphereShape"
-		texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
 		texture_normal = "nonormal.dds"
 		texture_specular = "nospec.dds"
 	}
@@ -693,5 +691,47 @@ entity = {
 		name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_world_hive" } }
 		# start_event = { node = "planet" particle = "hive_planet_effect" keep_particle = yes trigger_once = yes }
+	}
+}
+
+entity = {
+	name = "pd_volcanic_shroud_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+		name = "planet_geosphereShape"
+		shader = "PdxMeshPlanetEmissive"
+		texture_diffuse = "volcanic_01_diffuse.dds"
+		texture_normal = "volcanic_01_normal.dds"
+		texture_specular = "volcanic_01_specular.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_1_diffuse.dds"
+		texture_normal = "poles_1_normal.dds"
+		texture_specular = "poles_1_specular.dds"
+	}
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "toxic_clouds_purple_diffuse.dds"
+		texture_normal = "toxic_clouds_normal.dds"
+		texture_specular = "toxic_clouds_specular.dds"
+	}
+	##cloud shadow texture override
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "toxic_cloud_shadow_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+	}
+
+	default_state = "idle"
+	playback_rate = -1.0 # Rotation is reversed
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_molten_world_a" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_molten_world_b" } }
 	}
 }

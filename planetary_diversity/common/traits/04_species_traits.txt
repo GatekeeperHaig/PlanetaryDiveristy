@@ -404,7 +404,7 @@ trait_rapid_breeders = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_slow_breeders" "trait_fertile" "trait_rapid_breeders_lithoid" "trait_plantoid_budding" "trait_lithoid_budding" "trait_vat_grown" "trait_tiyanki" "trait_humanoid_existential_iteroparity" "trait_egg_laying" }
+	opposites = { "trait_pyroclastic" "trait_slow_breeders" "trait_fertile" "trait_rapid_breeders_lithoid" "trait_plantoid_budding" "trait_lithoid_budding" "trait_vat_grown" "trait_tiyanki" "trait_humanoid_existential_iteroparity" "trait_egg_laying" }
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic positive pop_growth }
 	modifier = {
@@ -421,7 +421,7 @@ trait_slow_breeders = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	opposites = { "trait_rapid_breeders" "trait_fertile" "trait_rapid_breeders_lithoid" "trait_plantoid_budding" "trait_lithoid_budding" "trait_vat_grown" "trait_tiyanki" "trait_humanoid_psychological_infertility" "trait_humanoid_existential_iteroparity" "trait_egg_laying" "trait_nascent_stage" }
+	opposites = { "trait_pyroclastic" "trait_rapid_breeders" "trait_fertile" "trait_rapid_breeders_lithoid" "trait_plantoid_budding" "trait_lithoid_budding" "trait_vat_grown" "trait_tiyanki" "trait_humanoid_psychological_infertility" "trait_humanoid_existential_iteroparity" "trait_egg_laying" "trait_nascent_stage" }
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic negative pop_growth }
 	modifier = {
@@ -1952,7 +1952,10 @@ trait_plantoid_phototrophic = {
 		category = planet_pops
 		# Energy Upkeep
 		upkeep = {
-			trigger = { is_being_purged = no }
+			trigger = {
+				is_being_purged = no
+				is_sapient = yes
+			}
 			energy = @living_standard_phototrophic_normal
 		}
 	}
@@ -1982,11 +1985,12 @@ trait_plantoid_radiotrophic = {
 	}
 	opposites = { "trait_plantoid_phototrophic" "trait_voidling" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
-	species_class = { PLANT FUN LITHOID }
+	species_class = { PLANT FUN LITHOID INF }
 	localized_tags = {
 		SPECIES_TRAIT_FUNGOID
 		SPECIES_TRAIT_PLANTOID
 		SPECIES_TRAIT_LITHOID
+		SPECIES_TRAIT_INFERNAL
 	}
 	species_class_override = {
 		hidden_trigger = {
@@ -1997,7 +2001,7 @@ trait_plantoid_radiotrophic = {
 			}
 		}
 	}
-	tags = { organic positive plantoid fungoid lithoid upkeep species }
+	tags = { organic positive plantoid fungoid lithoid infernal upkeep species }
 	custom_tooltip = TRAIT_PLANTOID_RADIOTROPHIC_EFFECT
 	resources = {
 		category = planet_pops
@@ -2009,6 +2013,7 @@ trait_plantoid_radiotrophic = {
 				NOT = {
 					planet = { is_planet_class = pc_nuked }
 				}
+				is_sapient = yes
 			}
 			energy = @living_standard_phototrophic_normal
 		}
@@ -2095,7 +2100,7 @@ trait_plantoid_budding = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_slow_breeders" "trait_rapid_breeders" "trait_rapid_breeders_lithoid" "trait_necrophage" "trait_clone_soldier_infertile" "trait_clone_soldier_infertile_full_potential" "trait_lithoid_budding" "trait_tiyanki" "trait_egg_laying" }
+	opposites = { "trait_pyroclastic" "trait_slow_breeders" "trait_rapid_breeders" "trait_rapid_breeders_lithoid" "trait_necrophage" "trait_clone_soldier_infertile" "trait_clone_soldier_infertile_full_potential" "trait_lithoid_budding" "trait_tiyanki" "trait_egg_laying" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { PLANT FUN }
 	localized_tags = {
@@ -2132,7 +2137,7 @@ trait_invasive = {
 	cost = 2
 	opposites = { "trait_agrarian" "trait_ingenious" "trait_industrious" "trait_intelligent" "trait_thrifty" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" "trait_extremely_adaptive" "trait_adaptive" "trait_rapid_breeders" "trait_talented" "trait_quick_learners" "trait_traditional" "trait_docile" "trait_very_strong" "trait_strong" "trait_nomadic" "trait_communal" "trait_charismatic" "trait_conformists" "trait_venerable" "trait_enduring"
 	"trait_resilient" "trait_conservational" "trait_noxious" "trait_inorganic_breath" "trait_humanoid_existential_iteroparity" "trait_incubator" "trait_delicious" "trait_nerve_stapled" "trait_fertile" "trait_robust" "trait_erudite" "trait_vat_grown" "trait_felsic" "trait_natural_machinist" "trait_drake_scaled" "trait_voidling" "trait_tiyanki" "trait_exotic_metabolism" "trait_egg_laying" "trait_chromalogs" "trait_camouflage" "trait_shelled" "trait_uncanny_intuition"
-	"trait_cranial_hypertrophy" "trait_cranial_megatrophy" }
+	"trait_cranial_hypertrophy" "trait_cranial_megatrophy" "trait_shell_slag"}
 	host_has_dlc = "Plantoids Species Pack"
 	sorting_priority = 30
 
@@ -2200,7 +2205,7 @@ trait_lithoid_budding = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_slow_breeders" "trait_rapid_breeders" "trait_rapid_breeders_lithoid" "trait_necrophage" "trait_clone_soldier_infertile" "trait_clone_soldier_infertile_full_potential" "trait_incubator" "trait_plantoid_budding" "trait_tiyanki" "trait_egg_laying" }
+	opposites = { "trait_pyroclastic" "trait_slow_breeders" "trait_rapid_breeders" "trait_rapid_breeders_lithoid" "trait_necrophage" "trait_clone_soldier_infertile" "trait_clone_soldier_infertile_full_potential" "trait_incubator" "trait_plantoid_budding" "trait_tiyanki" "trait_egg_laying" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	species_class = { LITHOID }
 	localized_tags = {
@@ -2295,7 +2300,7 @@ trait_humanoid_existential_iteroparity = {
 			can_remove_pop_growth_genetic_traits = yes
 		}
 	}
-	opposites = { "trait_humanoid_psychological_infertility" "trait_rapid_breeders" "trait_fertile" "trait_rapid_breeders_lithoid" "trait_plantoid_budding" "trait_lithoid_budding" "trait_vat_grown" "trait_tiyanki" "trait_egg_laying" }
+	opposites = { "trait_pyroclastic" "trait_humanoid_psychological_infertility" "trait_rapid_breeders" "trait_fertile" "trait_rapid_breeders_lithoid" "trait_plantoid_budding" "trait_lithoid_budding" "trait_vat_grown" "trait_tiyanki" "trait_egg_laying" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive pop_growth }
 	icon = "gfx/interface/icons/traits/trait_existential_iteroparity.dds"
