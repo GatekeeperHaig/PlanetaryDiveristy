@@ -4082,6 +4082,7 @@ country_event = {
 				planet_size > 9
 				planet_size < 31
 				solar_system = { is_star_class = sc_k }
+				pd_ignore = no
 			}
 			change_pc = pc_pd_barren_superhabitable
 			random_list = {
@@ -4104,6 +4105,7 @@ country_event = {
 				planet_size > 9
 				planet_size < 31
 				solar_system = { is_star_class = sc_m }
+				pd_ignore = no
 			}
 			change_pc = pc_pd_barren_tidally_locked
 		}
@@ -4118,6 +4120,7 @@ country_event = {
 				planet_size > 9
 				planet_size < 31
 				solar_system = { is_star_class = sc_f }
+				pd_ignore = no
 			}
 			change_pc = pc_pd_barren_cave
 		}
@@ -4870,6 +4873,7 @@ country_event = {
 				NOR = {
 					has_modifier = terraforming_candidate
 					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
 				}
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
 			}
@@ -4902,6 +4906,7 @@ country_event = {
 				NOR = {
 					has_modifier = terraforming_candidate
 					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
 				}
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster } }
 			}
@@ -4944,6 +4949,7 @@ country_event = {
 						has_modifier = terraforming_candidate
 						is_moon = yes
 						has_planet_flag = pd_special_uninhabitable
+						pd_ignore = yes
 					}
 				}
 				solar_system = { NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -4996,6 +5002,7 @@ country_event = {
 					has_modifier = terraforming_candidate
 					is_moon = yes
 					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
 				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -5047,6 +5054,7 @@ country_event = {
 					has_planet_flag = hoard_planet
 					has_modifier = terraforming_candidate
 					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
 				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -5097,6 +5105,7 @@ country_event = {
 				NOR = {
 					has_modifier = terraforming_candidate
 					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
 				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
@@ -5143,7 +5152,10 @@ country_event = {
 		every_galaxy_planet = {
 			limit = {
 				is_planet_class = pc_frozen
-				NOT = { has_planet_flag = pd_special_uninhabitable }
+				NOR = {
+					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
+				}
 				is_moon = yes
 				not = { has_modifier = terraforming_candidate }
 				solar_system = {
@@ -5193,8 +5205,11 @@ country_event = {
 				is_planet_class = pc_molten
 				NOT = { has_moon = yes }
 				NOT = { is_moon = yes }
-				NOT = { has_planet_flag = hoard_planet }
-				NOT = { has_planet_flag = pd_special_uninhabitable }
+				NOR = {
+					has_planet_flag = hoard_planet
+					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
+				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 					star = {
@@ -5236,8 +5251,11 @@ country_event = {
 				is_planet_class = pc_molten
 				NOT = { has_moon = yes }
 				NOT = { is_moon = yes }
-				NOT = {	has_planet_flag = hoard_planet }
-				NOT = { has_planet_flag = pd_special_uninhabitable }
+				NOR = {
+					has_planet_flag = hoard_planet
+					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
+				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 					star = {
@@ -5283,7 +5301,10 @@ country_event = {
 		every_galaxy_planet = {
 			limit = {
 				is_planet_class = pc_gas_giant
-				NOT = { has_planet_flag = pd_special_uninhabitable }
+				NOR = {
+					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
+				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 					star = {
@@ -5329,7 +5350,10 @@ country_event = {
 		every_galaxy_planet = {
 			limit = {
 				is_planet_class = pc_gas_giant
-				not = { has_modifier = terraforming_candidate }
+				NOR = {
+					has_modifier = terraforming_candidate
+					pd_ignore = yes
+				}
 				solar_system = { NOT = { has_star_flag = empire_home_system } }
 			}
 			random_list = {
@@ -5371,7 +5395,10 @@ country_event = {
 		every_galaxy_planet = {
 			limit = {
 				is_planet_class = pc_toxic
-				NOT = { has_planet_flag = pd_special_uninhabitable }
+				NOR = {
+					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
+				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 				}
@@ -5402,7 +5429,10 @@ country_event = {
 		every_galaxy_planet = {
 			limit = {
 				is_planet_class = pc_toxic
-				NOT = { has_planet_flag = pd_special_uninhabitable }
+				NOR = {
+					has_planet_flag = pd_special_uninhabitable
+					pd_ignore = yes
+				}
 				solar_system = {
 					NOR = { has_star_flag = empire_home_system has_star_flag = empire_cluster }
 				}
