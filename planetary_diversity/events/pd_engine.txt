@@ -431,6 +431,9 @@ country_event = {
 				25 = {
 					pd_craton_world_effect = yes
 				}
+				25 = {
+					pd_ravine_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -1428,6 +1431,16 @@ country_event = {
 			}
 			change_pc = pc_alpine
 			pd_craton_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ravine
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_alpine
+			pd_ravine_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -2682,6 +2695,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_alpine }
+		}
+		name = pdengine.21.ravine
+		hidden_effect = {
+			from = {
+				pd_ravine_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_alpine }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3381,6 +3405,9 @@ planet_event = {
 				}
 				25 = {
 					pd_craton_world_effect = yes
+				}
+				25 = {
+					pd_ravine_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -6231,6 +6258,7 @@ country_event = {
 				has_trait = trait_pc_pd_blossom_preference
 				has_trait = trait_pc_pd_taiga_preference
 				has_trait = trait_pc_pd_craton_preference
+				has_trait = trait_pc_pd_ravine_preference
 				has_trait = trait_pc_pd_glaciovolcanic_preference
 				has_trait = trait_pc_pd_lanthanide_preference
 				has_trait = trait_pc_pd_bog_preference
@@ -6926,6 +6954,9 @@ country_event = {
 					25 = {
 						pd_craton_world_effect = yes
 					}
+					25 = {
+						pd_ravine_world_effect = yes
+					}
 				}
 			}
 			if = {
@@ -7246,6 +7277,7 @@ planet_event = {
 			has_modifier = pd_blossom
 			has_modifier = pd_taiga
 			has_modifier = pd_craton
+			has_modifier = pd_ravine
 			has_modifier = pd_glaciovolcanic
 			has_modifier = pd_lanthanide
 			has_modifier = pd_bog
@@ -8048,6 +8080,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_craton
 				entity = "craton_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_alpine
+				has_modifier = pd_ravine
+			}
+			set_planet_entity = {
+				picture = pc_pd_ravine
+				entity = "ravine_planet_01_entity"
 			}
 		}
 		if = {

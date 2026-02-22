@@ -404,6 +404,10 @@ remove_pd_alpine_modifier = {
 		remove_modifier = pd_craton
 	}
 	if = {
+		limit = { has_modifier = pd_ravine }
+		remove_modifier = pd_ravine
+	}
+	if = {
 		limit = { has_modifier = pd_glaciovolcanic }
 		remove_modifier = pd_glaciovolcanic
 	}
@@ -1698,6 +1702,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_craton_preference
+			add_trait = trait_pc_alpine_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_ravine_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_ravine_preference
 			add_trait = trait_pc_alpine_preference
 		}
 	}

@@ -872,6 +872,17 @@ pd_craton_world_effect = {
 		entity = "craton_planet_01_entity"
 	}
 }
+pd_ravine_world_effect = {
+	change_pc = pc_alpine
+	add_modifier = {
+		modifier = pd_ravine
+		days = -1
+	}
+	set_planet_entity = {
+		picture = pc_pd_ravine
+		entity = "ravine_planet_01_entity"
+	}
+}
 pd_glaciovolcanic_world_effect = {
 	change_pc = pc_alpine
 	add_modifier = {
@@ -1013,6 +1024,14 @@ pd_wet_gaia_world_effect = {
 	add_modifier = {
 		modifier = pd_gaia_world
 		days = -1
+	}
+	if = {
+		limit = {
+			has_planet_flag = planet_earth
+		}
+		set_planet_entity = {
+			entity = "gaia_planet_earth_entity"
+		}
 	}
 }
 pd_dry_gaia_world_effect = {

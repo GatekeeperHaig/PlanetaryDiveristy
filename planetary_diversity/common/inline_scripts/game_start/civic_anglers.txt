@@ -18,13 +18,23 @@ if = {
 
 	add_district_and_planet_size_if_needed_effect_amount = {
 		amount = 1
-		district = district_farming_uncapped
+		district = district_farming
 	}
-	add_zone = {
-		district = district_farming_uncapped
-		zone = zone_anglers
+	if = {
+		limit = {
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		add_zone = {
+			district = district_farming
+			zone = zone_agrarian_anglers
+		}
 	}
-
+	else = {
+		add_zone = {
+			district = district_farming
+			zone = zone_anglers
+		}
+	}
 	# We`ve created a farming district, so reduce the count by 1
 	change_variable = {
 		which = farming_districts
