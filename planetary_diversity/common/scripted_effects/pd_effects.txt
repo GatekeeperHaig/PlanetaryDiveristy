@@ -164,6 +164,10 @@ remove_pd_tropical_modifier = {
 		remove_modifier = pd_obsidian
 	}
 	if = {
+		limit = { has_modifier = pd_thunder }
+		remove_modifier = pd_thunder
+	}
+	if = {
 		limit = { has_modifier = pd_geothermal }
 		remove_modifier = pd_geothermal
 	}
@@ -1034,6 +1038,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_obsidian_preference
+			add_trait = trait_pc_tropical_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_thunder_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_thunder_preference
 			add_trait = trait_pc_tropical_preference
 		}
 	}
