@@ -62,11 +62,14 @@ district_city = {
 				has_menace_perk = menp_behemoth_mind_meld
 			}
 		}
-
 	}
 
 	allow = {
-		is_special_colony_type = no
+		hidden_trigger = { is_special_colony_type = no }
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -225,8 +228,16 @@ district_crashed_slaver_ship = {
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
-		NOT = { has_modifier = slave_colony }
+		hidden_trigger = {
+			NAND = {
+				has_modifier = resort_colony
+				has_modifier = slave_colony
+			}
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -371,7 +382,13 @@ district_resort = {
 	}
 
 	allow = {
-		NOT = { has_modifier = slave_colony }
+		hidden_trigger = {
+			NOT = { has_modifier = slave_colony }
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -533,6 +550,10 @@ district_resort_1 = {
 	}
 
 	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	resources = {
@@ -612,6 +633,10 @@ district_resort_2 = {
 	}
 
 	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	resources = {
@@ -691,6 +716,10 @@ district_resort_3 = {
 	}
 
 	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	resources = {
@@ -772,7 +801,13 @@ district_prison = {
 	}
 
 	allow = {
-		has_modifier = penal_colony
+		hidden_trigger = {
+			has_modifier = penal_colony
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -845,17 +880,9 @@ district_prison = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				is_gestalt = no
-				is_fallen_empire_spiritualist = no
-			}
-		}
-		modifier = {
-			job_enforcer_add = @base_district_jobs
-		}
+	inline_script = {
+		script = jobs/enforcers_add
+		AMOUNT = @base_district_jobs
 	}
 
 	triggered_planet_modifier = {
@@ -895,7 +922,13 @@ district_slave = {
 	}
 
 	allow = {
-		has_modifier = slave_colony
+		hidden_trigger = {
+			has_modifier = slave_colony
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1040,7 +1073,13 @@ district_hive = {
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		hidden_trigger = {
+			NOT = { has_modifier = resort_colony }
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1149,6 +1188,10 @@ district_hive_1 = {
 	}
 
 	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1236,6 +1279,10 @@ district_hive_2 = {
 	}
 
 	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1323,6 +1370,10 @@ district_hive_3 = {
 	}
 
 	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1437,7 +1488,13 @@ district_nexus = {
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		hidden_trigger = {
+			NOT = { has_modifier = resort_colony }
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1471,15 +1528,6 @@ district_nexus = {
 		}
 		modifier = {
 			planet_housing_add = 100
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_modifier = gestation_colony
-		}
-		modifier = {
-			job_gestation_drone_add = 100
 		}
 	}
 
@@ -1907,7 +1955,13 @@ district_battle_thrall = {
 	}
 
 	allow = {
-		has_modifier = slave_colony
+		hidden_trigger = {
+			has_modifier = slave_colony
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1
@@ -1969,7 +2023,13 @@ district_srw_commercial = {
 	}
 
 	allow = {
-		NOT = { has_modifier = resort_colony }
+		hidden_trigger = {
+			NOT = { has_modifier = resort_colony }
+		}
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
 	}
 
 	conversion_ratio = 1

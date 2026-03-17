@@ -624,6 +624,7 @@ trait_very_strong = {
 	modifier = {
 		army_damage_mult = 0.40
 		worker_and_simple_drone_cat_bonus_workforce_mult = 0.05
+		soldier_jobs_bonus_workforce_mult = 0.15
 	}
 
 	slave_cost = {
@@ -668,6 +669,7 @@ trait_strong = {
 	modifier = {
 		army_damage_mult = 0.20
 		worker_and_simple_drone_cat_bonus_workforce_mult = 0.025
+		soldier_jobs_bonus_workforce_mult = 0.10
 	}
 	slave_cost = {
 		energy = 1000
@@ -705,6 +707,7 @@ trait_weak = {
 	modifier = {
 		army_damage_mult = -0.20
 		worker_and_simple_drone_cat_bonus_workforce_mult = -0.025
+		soldier_jobs_bonus_workforce_mult = -0.10
 	}
 
 	slave_cost = {
@@ -1115,7 +1118,18 @@ trait_cybernetic = {
 	}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive habitability army leader cybernetic }
-
+	resources = {
+		category = planet_pops
+		# Energy Upkeep
+		upkeep = {
+			trigger = {
+				is_being_purged = no
+				is_sapient = yes
+			}
+			energy = @cyborg_energy_upkeep
+		}
+	}
+	custom_tooltip_with_modifiers = TRAIT_CYBORG_EFFECT
 	modifier = {
 		pop_environment_tolerance = 0.20
 		army_damage_mult = 0.1
@@ -1305,6 +1319,8 @@ trait_survivor = {
 	modifier = {
 		pc_nuked_habitability = 0.7
 		leader_lifespan_add = 10
+		pop_housing_usage_mult = -0.10
+		pop_amenities_usage_mult = -0.15
 	}
 	slave_cost = {
 		energy = 500
@@ -1494,8 +1510,8 @@ trait_social_pheromones = { #red
 	tags = { organic positive housing amenities pop_growth interesting special }
 
 	modifier = {
-		pop_housing_usage_mult = -0.15
-		pop_amenities_usage_mult = -0.10
+		pop_housing_usage_mult = -0.05
+		pop_amenities_usage_mult = -0.05
 		logistic_growth_mult = 0.05
 	}
 	slave_cost = {
@@ -2137,7 +2153,7 @@ trait_invasive = {
 	cost = 2
 	opposites = { "trait_agrarian" "trait_ingenious" "trait_industrious" "trait_intelligent" "trait_thrifty" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" "trait_extremely_adaptive" "trait_adaptive" "trait_rapid_breeders" "trait_talented" "trait_quick_learners" "trait_traditional" "trait_docile" "trait_very_strong" "trait_strong" "trait_nomadic" "trait_communal" "trait_charismatic" "trait_conformists" "trait_venerable" "trait_enduring"
 	"trait_resilient" "trait_conservational" "trait_noxious" "trait_inorganic_breath" "trait_humanoid_existential_iteroparity" "trait_incubator" "trait_delicious" "trait_nerve_stapled" "trait_fertile" "trait_robust" "trait_erudite" "trait_vat_grown" "trait_felsic" "trait_natural_machinist" "trait_drake_scaled" "trait_voidling" "trait_tiyanki" "trait_exotic_metabolism" "trait_egg_laying" "trait_chromalogs" "trait_camouflage" "trait_shelled" "trait_uncanny_intuition"
-	"trait_cranial_hypertrophy" "trait_cranial_megatrophy" "trait_shell_slag"}
+	"trait_cranial_hypertrophy" "trait_cranial_megatrophy" "trait_shell_slag" "trait_unbreakable_resolve" }
 	host_has_dlc = "Plantoids Species Pack"
 	sorting_priority = 30
 
@@ -2271,16 +2287,6 @@ trait_zombie = {
 		planet_pops_upkeep_mult = -1
 	}
 
-	triggered_pop_group_modifier = {
-		potential = {
-			OR = {
-				is_pop_category = ruler
-				is_specialist_category = yes
-			}
-		}
-		pop_demotion_time_mult = -10.0
-	}
-
 	icon = "gfx/interface/icons/traits/trait_zombie.dds"
 	custom_tooltip = TRAIT_ZOMBIE_EFFECT
 	slave_cost = {
@@ -2315,7 +2321,7 @@ trait_humanoid_existential_iteroparity = {
 				}
 			}
 		}
-		logistic_growth_mult = 0.3
+		logistic_growth_mult = 0.2
 	}
 	slave_cost = {
 		energy = 1000
@@ -2328,7 +2334,7 @@ trait_humanoid_psychological_infertility = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	opposites = { "trait_humanoid_existential_iteroparity" "trait_slow_breeders" "trait_vat_grown" "trait_necrophage" "trait_lithoid" "trait_nascent_stage" }
+	opposites = { "trait_humanoid_existential_iteroparity" "trait_slow_breeders" "trait_vat_grown" "trait_necrophage" "trait_nascent_stage" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative pop_growth }
 	icon = "gfx/interface/icons/traits/trait_psychological_infertility.dds"

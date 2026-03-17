@@ -69,7 +69,10 @@ trait_machine_unit = {
 		category = planet_pops
 		# Energy Upkeep
 		upkeep = {
-			trigger = { is_being_purged = no }
+			trigger = {
+				is_being_purged = no
+				is_sapient = yes
+			}
 			energy = @living_standard_energy_normal
 		}
 	}
@@ -82,6 +85,16 @@ trait_machine_unit = {
 			}
 		}
 		pc_nanotech_habitability = 1
+	}
+
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				is_planet_class = pc_volcanic
+			}
+		}
+		habitability_floor_add = -0.25
 	}
 
 	triggered_planet_growth_habitability_modifier = {
@@ -138,9 +151,22 @@ trait_mechanical = {
 		category = planet_pops
 		# Energy Upkeep
 		upkeep = {
-			trigger = { is_being_purged = no }
+			trigger = {
+				is_being_purged = no
+				is_sapient = yes
+			}
 			energy = @living_standard_energy_normal
 		}
+	}
+
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				is_planet_class = pc_volcanic
+			}
+		}
+		habitability_floor_add = -0.25
 	}
 
 	triggered_planet_growth_habitability_modifier = {
@@ -188,7 +214,7 @@ trait_syncretic_proles = {
 
 trait_organic = {
 	cost = 0
-
+	opposites = { "trait_infernal" }
 	sorting_priority = 20
 
 	initial = yes
@@ -218,6 +244,7 @@ trait_organic = {
 				is_phototrophic = no
 				NOT = { has_trait = trait_voidling }
 				is_being_purged = no
+				is_sapient = yes
 			}
 			food = @living_standard_food_normal
 		}
@@ -226,8 +253,20 @@ trait_organic = {
 				is_phototrophic = yes
 				NOT = { has_trait = trait_voidling }
 				is_being_purged = no
+				is_sapient = yes
 			}
 			food = @living_standard_phototrophic_normal
+		}
+		upkeep = {
+			trigger = {
+				OR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_limited_cybernetic
+				}
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_food_cyborg_reduction
 		}
 	}
 
@@ -273,6 +312,7 @@ trait_lithoid = {
 				is_phototrophic = no
 				NOT = { has_trait = trait_voidling }
 				is_being_purged = no
+				is_sapient = yes
 			}
 			minerals = @living_standard_food_normal
 		}
@@ -282,8 +322,20 @@ trait_lithoid = {
 				is_phototrophic = yes
 				NOT = { has_trait = trait_voidling }
 				is_being_purged = no
+				is_sapient = yes
 			}
 			minerals = @living_standard_phototrophic_normal
+		}
+		upkeep = {
+			trigger = {
+				OR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_limited_cybernetic
+				}
+				is_being_purged = no
+				is_sapient = yes
+			}
+			minerals = @living_standard_food_cyborg_reduction
 		}
 	}
 
@@ -312,7 +364,6 @@ trait_lithoid = {
 trait_aquatic = {
 	cost = 2
 	host_has_dlc = "Aquatics Species Pack"
-
 	sorting_priority = 20
 
 	random_weight = {
@@ -687,6 +738,7 @@ trait_necrophage = {
 		planet_pops_organics_food_upkeep_mult = -0.5
 		planet_pops_organics_minerals_upkeep_mult = -0.5
 		planet_pops_organics_energy_upkeep_mult = -0.5
+		planet_pops_organics_alloys_upkeep_mult = -0.5
 		pop_cat_ruler_bonus_workforce_mult = 0.05
 		pop_cat_specialist_bonus_workforce_mult = 0.05
 		pop_cat_worker_bonus_workforce_mult = -0.1
@@ -745,6 +797,9 @@ trait_clone_soldier_infertile = {
 		# Leader modifiers
 		leader_lifespan_add = -40
 		army_damage_mult = 0.5
+		planet_pops_organics_food_upkeep_mult = 0.25
+		planet_pops_organics_minerals_upkeep_mult = 0.25
+		planet_pops_organics_alloys_upkeep_mult = 0.25
 	}
 }
 
@@ -785,6 +840,9 @@ trait_clone_soldier_infertile_full_potential = {
 		pop_environment_tolerance = 0.20
 		pop_cat_ruler_bonus_workforce_mult = 0.4
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.25
+		planet_pops_organics_food_upkeep_mult = 0.30
+		planet_pops_organics_minerals_upkeep_mult = 0.30
+		planet_pops_organics_alloys_upkeep_mult = 0.30
 
 		# Leader modifiers
 		army_damage_mult = 0.75
@@ -829,6 +887,9 @@ trait_clone_soldier_fertile = {
 
 		# Leader modifiers
 		army_damage_mult = 0.2
+		planet_pops_organics_food_upkeep_mult = 0.1
+		planet_pops_organics_minerals_upkeep_mult = 0.1
+		planet_pops_organics_alloys_upkeep_mult = 0.1
 	}
 	slave_cost = {
 		energy = 1000
@@ -874,7 +935,7 @@ trait_cave_dweller = {
 				is_archetype = BIOLOGICAL
 			}
 		}
-		logistic_growth_mult = -0.2
+		logistic_growth_mult = -0.1
 	}
 	slave_cost = {
 		energy = 500
@@ -922,7 +983,7 @@ trait_robot_cave_dweller = {
 		species_empire_size_mult = 0.10
 	}
 	triggered_planet_growth_habitability_modifier = {
-		planet_pop_assembly_mult = -0.20
+		planet_pop_assembly_mult = -0.1
 	}
 	slave_cost = {
 		energy = 500
@@ -962,6 +1023,7 @@ trait_shroud_forged = {
 	modifier = {
 		specialist_and_complex_drone_cat_bonus_workforce_mult = 0.25
 		worker_and_simple_drone_cat_bonus_workforce_mult = -0.25
+		shroud_forged_consumer_goods_upkeep = @living_standard_luxuries_high # Does nothing: fixes missing tooltips
 	}
 
 	triggered_planet_growth_habitability_modifier = {
@@ -969,6 +1031,19 @@ trait_shroud_forged = {
 			exists = planet
 		}
 		planet_crime_no_happiness_add = 1
+	}
+
+	assembly_score = {
+		modifier = {
+			add = 2
+			from = {
+				exists = owner
+				owner = {
+					has_origin = origin_shroud_forged
+					has_country_flag = finish_shroud_forged_liberation_flag
+				}
+			}
+		}
 	}
 }
 

@@ -1,50 +1,50 @@
-demand = { # "TRADITIONALIST_NO_ROBOT_RIGHTS"
-	title = "TRADITIONALIST_NO_ROBOT_RIGHTS"
-	unfulfilled_title = "TRADITIONALIST_ROBOT_RIGHTS"
-	desc = "TRADITIONALIST_NO_ROBOT_RIGHTS_DESC"
+# demand = { # "TRADITIONALIST_NO_ROBOT_RIGHTS"
+# 	title = "TRADITIONALIST_NO_ROBOT_RIGHTS"
+# 	unfulfilled_title = "TRADITIONALIST_ROBOT_RIGHTS"
+# 	desc = "TRADITIONALIST_NO_ROBOT_RIGHTS_DESC"
 
-	unfulfilled_effect = -10
-	fulfilled_effect = 0.001
+# 	unfulfilled_effect = -10
+# 	fulfilled_effect = 0.001
 
-	potential = {
-		exists = owner
-		owner = {
-			can_set_ai_policy = yes
-			NOT = { has_policy_flag = ai_full_rights }
-			is_individual_machine = no
-		}
-	}
+# 	potential = {
+# 		exists = owner
+# 		owner = {
+# 			can_set_ai_policy = yes
+# 			NOT = { has_policy_flag = ai_full_rights }
+# 			is_individual_machine = no
+# 		}
+# 	}
 
-	trigger = {
-		owner = {
-			NOT = { has_policy_flag = ai_servitude }
-		}
-	}
-}
+# 	trigger = {
+# 		owner = {
+# 			NOT = { has_policy_flag = ai_servitude }
+# 		}
+# 	}
+# }
 
-demand = { # "TRADITIONALIST_NO_FULL_ROBOT_RIGHTS"
-	title = "TRADITIONALIST_NO_FULL_ROBOT_RIGHTS"
-	unfulfilled_title = "TRADITIONALIST_FULL_ROBOT_RIGHTS"
-	desc = "TRADITIONALIST_NO_FULL_ROBOT_RIGHTS_DESC"
+# demand = { # "TRADITIONALIST_NO_FULL_ROBOT_RIGHTS"
+# 	title = "TRADITIONALIST_NO_FULL_ROBOT_RIGHTS"
+# 	unfulfilled_title = "TRADITIONALIST_FULL_ROBOT_RIGHTS"
+# 	desc = "TRADITIONALIST_NO_FULL_ROBOT_RIGHTS_DESC"
 
-	unfulfilled_effect = -20
-	fulfilled_effect = 0.001
+# 	unfulfilled_effect = -20
+# 	fulfilled_effect = 0.001
 
-	potential = {
-		exists = owner
-		owner = {
-			is_individual_machine = no
-			can_set_ai_policy = yes
-			has_policy_flag = ai_full_rights
-		}
-	}
+# 	potential = {
+# 		exists = owner
+# 		owner = {
+# 			is_individual_machine = no
+# 			can_set_ai_policy = yes
+# 			has_policy_flag = ai_full_rights
+# 		}
+# 	}
 
-	trigger = {
-		owner = {
-			NOT = { has_policy_flag = ai_full_rights }
-		}
-	}
-}
+# 	trigger = {
+# 		owner = {
+# 			NOT = { has_policy_flag = ai_full_rights }
+# 		}
+# 	}
+# }
 
 demand = { # "TRADITIONALIST_SPIRITUALIST_GOVERNMENT"
 	title = "TRADITIONALIST_SPIRITUALIST_GOVERNMENT"
@@ -60,10 +60,7 @@ demand = { # "TRADITIONALIST_SPIRITUALIST_GOVERNMENT"
 
 	trigger = {
 		owner = {
-			OR = {
-				has_ethic = ethic_fanatic_spiritualist
-				has_ethic = ethic_spiritualist
-			}
+			is_spiritualist = yes
 		}
 	}
 }
@@ -157,6 +154,39 @@ demand = { # "Cybernetic Creed" Traditionalist variant: embrace cyberization
 	trigger = {
 		owner = {
 			is_cyborg_empire = yes
+		}
+	}
+}
+
+demand = { # "Cybernetic Creed" Traditionalist variant: Embraced a Creed
+	title = "TRADITIONALIST_ELEVATED_CREED"
+	unfulfilled_title = "TRADITIONALIST_NO_CREED"
+	desc = "TRADITIONALIST_ELEVATED_CREED_DESC"
+
+	unfulfilled_effect = -0.01
+	fulfilled_effect = 10
+
+	potential = {
+		owner = {
+			has_country_flag = cybercreed_final_form
+			OR = {
+				has_country_flag = cybernetic_creed_construction
+				has_country_flag = cybernetic_creed_war
+				has_country_flag = cybernetic_creed_research
+				has_country_flag = cybernetic_creed_labor
+			}
+		}
+	}
+
+	trigger = {
+		owner = {
+			has_country_flag = cybercreed_final_form
+			OR = {
+				has_country_flag = cybernetic_creed_construction
+				has_country_flag = cybernetic_creed_war
+				has_country_flag = cybernetic_creed_research
+				has_country_flag = cybernetic_creed_labor
+			}
 		}
 	}
 }

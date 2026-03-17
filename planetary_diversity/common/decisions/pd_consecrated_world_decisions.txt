@@ -19,6 +19,7 @@ decision_consecrated_worlds = {
 		exists = space_owner
 		space_owner = { is_same_value = from }
 		is_star = no
+		is_astral_scar = no
 		is_artificial = no
 		is_ringworld = no
 		NOR = {
@@ -28,6 +29,7 @@ decision_consecrated_worlds = {
 			has_modifier = consecrated_quality_3
 			has_modifier = consecrated_quality_4
 		}
+		NOT = { has_designation = col_nanotech_world }
 	}
 
 	allow = {
@@ -234,12 +236,9 @@ decision_consecrated_worlds = {
 					}
 					20 = {
 						modifier = {
-						add = 20
-							AND = {
-								root.space_owner = {
-									has_origin = origin_toxic_knights
-								}
-								is_planet_class = pc_toxic
+							add = 20
+							root.space_owner = {
+								has_origin = origin_toxic_knights
 							}
 							is_planet_class = pc_toxic
 						}
@@ -265,12 +264,10 @@ decision_consecrated_worlds = {
 					0 = {
 						modifier = {
 							add = 20
-							AND = {
-								root.space_owner = {
-									has_origin = origin_toxic_knights
-								}
-								is_planet_class = pc_toxic
+							root.space_owner = {
+								has_origin = origin_toxic_knights
 							}
+							is_planet_class = pc_toxic
 						}
 						add_modifier = {
 							modifier = consecrated_quality_4
@@ -471,6 +468,7 @@ decision_consecrated_worlds = {
 			# recalculate modifier
 			from = {
 				recalculate_consecrated_world_modifier = yes
+				country_event = { id = shroud.10850 } # Patron Objective Counter: po_consecrate_planet
 			}
 		}
 	}
