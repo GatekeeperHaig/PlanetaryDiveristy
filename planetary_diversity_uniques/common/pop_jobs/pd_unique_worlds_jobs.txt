@@ -125,6 +125,50 @@ pd_biosynth_engineer_drone = {
 		planet_pop_assembly_add = 0.5
 	}
 
+	resources = {
+		category = planet_researchers
+		produces = {
+			engineering_research = 5
+			society_research = 5
+			sr_living_metal = 0.5
+		}
+		produces = {
+			trigger = {
+				planet = {
+					has_modifier = pd_biosynth
+				}
+			}
+			engineering_research = -2
+			society_research = -2
+			sr_living_metal = 1
+		}
+		produces = {
+			trigger = {
+				planet = { has_building = building_robot_assembly_plant }
+			}
+			engineering_research = -2
+			society_research = -2
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			energy = 4
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			minerals = 6
+		}
+	}
+
 	weight = {
 		weight = @specialist_job_weight
 		mult = value:job_weights_modifier|JOB|engineer|RESOURCE|engineering_research|

@@ -275,6 +275,9 @@ country_event = {
 				25 = {
 					pd_opal_world_effect = yes
 				}
+				25 = {
+					pd_superbloom_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -1099,6 +1102,16 @@ country_event = {
 			}
 			change_pc = pc_arid
 			pd_opal_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_superbloom
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_arid
+			pd_superbloom_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -2335,6 +2348,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_arid }
+		}
+		name = pdengine.21.superbloom
+		hidden_effect = {
+			from = {
+				pd_superbloom_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arid }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3276,6 +3300,9 @@ planet_event = {
 				}
 				25 = {
 					pd_opal_world_effect = yes
+				}
+				25 = {
+					pd_superbloom_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -6167,6 +6194,7 @@ country_event = {
 				has_trait = trait_pc_pd_striped_preference
 				has_trait = trait_pc_pd_amethyst_preference
 				has_trait = trait_pc_pd_opal_preference
+				has_trait = trait_pc_pd_superbloom_preference
 				has_trait = trait_pc_pd_coral_preference
 				has_trait = trait_pc_pd_primal_preference
 				has_trait = trait_pc_pd_steppe_preference
@@ -6865,6 +6893,9 @@ country_event = {
 					25 = {
 						pd_opal_world_effect = yes
 					}
+					25 = {
+						pd_superbloom_world_effect = yes
+					}
 				}
 			}
 			if = {
@@ -7279,6 +7310,7 @@ planet_event = {
 			has_modifier = pd_striped
 			has_modifier = pd_amethyst
 			has_modifier = pd_opal
+			has_modifier = pd_superbloom
 			has_modifier = pd_coral
 			has_modifier = pd_primal
 			has_modifier = pd_steppe
@@ -7615,7 +7647,7 @@ planet_event = {
 				has_modifier = pd_thunder
 			}
 			set_planet_entity = {
-				picture = pc_pd_thudner
+				picture = pc_pd_thunder
 				entity = "thunder_planet_01_entity"
 			}
 		}
@@ -7819,6 +7851,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_opal
 				entity = "opal_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_arid
+				has_modifier = pd_superbloom
+			}
+			set_planet_entity = {
+				picture = pc_pd_superbloom
+				entity = "superbloom_planet_01_entity"
 			}
 		}
 		if = {
