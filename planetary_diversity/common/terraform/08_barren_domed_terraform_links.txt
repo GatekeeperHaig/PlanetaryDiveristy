@@ -8,13 +8,25 @@
 @terraforming_duration_level_3 = 5400 #<-- opposite category terraforming and uninhabitable to inhabitable terraforming
 @terraforming_duration_level_4 = 7200 #<-- special terraforming, e.g. to gaia, machine world etc.
 @terraforming_duration_gaia = 3600
+@biomassCostLevel3 = 5000
+@biomassCostLevel4 = 7500
 
 #Bareen
 #Regular
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_continental
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -24,7 +36,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_ocean
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -34,7 +56,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_tropical
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -44,7 +76,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_desert
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -54,7 +96,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_arid
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -64,7 +116,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_savannah
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -74,7 +136,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_arctic
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -84,7 +156,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_alpine
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -94,7 +176,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_tundra
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_3 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_3
+			BIOMASS_COST = @biomassCostLevel3
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_3
 	potential = { from = { has_modifier = hab_terraforming_candidate } }
 	condition = { has_technology = "tech_climate_restoration" }
@@ -105,7 +197,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_pd_wet_gaia
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_4
+			BIOMASS_COST = @biomassCostLevel4
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_4
 	potential = {
 		OR = {
@@ -124,7 +226,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_pd_dry_gaia
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_4
+			BIOMASS_COST = @biomassCostLevel4
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_4
 	potential = {
 		OR = {
@@ -143,7 +255,17 @@ terraform_link = {
 terraform_link = {
 	from = pc_pd_domed_colony_barren
 	to = pc_pd_cold_gaia
-    resources = { category = terraforming cost = { energy = @terraforming_cost_level_4 } }
+	resources = {
+		category = terraforming
+		inline_script = {
+			script = terraform/triggered_costs
+			ENERGY_COST = @terraforming_cost_level_4
+			BIOMASS_COST = @biomassCostLevel4
+		}
+	}
+	inline_script = {
+		script = terraform/wilderness_biomass
+	}
 	duration = @terraforming_duration_level_4
 	potential = {
 		OR = {

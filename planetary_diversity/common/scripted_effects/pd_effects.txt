@@ -364,6 +364,10 @@ remove_pd_arctic_modifier = {
 		remove_modifier = pd_ferrospring
 	}
 	if = {
+		limit = { has_modifier = pd_supraglacial_lakes }
+		remove_modifier = pd_supraglacial_lakes
+	}
+	if = {
 		limit = { has_modifier = pd_storm }
 		remove_modifier = pd_storm
 	}
@@ -1592,6 +1596,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_ice_dunes_preference
+			add_trait = trait_pc_arctic_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_supraglacial_lakes_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_supraglacial_lakes_preference
 			add_trait = trait_pc_arctic_preference
 		}
 	}

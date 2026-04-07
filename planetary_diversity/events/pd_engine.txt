@@ -1336,6 +1336,16 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = {
+				is_planet_class = pc_pd_supraglacial_lakes
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_arctic
+			pd_supraglacial_lakes_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
 				is_planet_class = pc_pd_ferrospring
 				has_pd_modifier = no
 				is_capital = yes
@@ -6303,6 +6313,7 @@ country_event = {
 				has_trait = trait_pc_pd_ice_spike_preference
 				has_trait = trait_pc_pd_crevasse_preference
 				has_trait = trait_pc_pd_ice_dunes_preference
+				has_trait = trait_pc_pd_supraglacial_lakes_preference
 				has_trait = trait_pc_pd_ferrospring_preference
 				has_trait = trait_pc_pd_storm_preference
 				has_trait = trait_pc_pd_iceberg_preference
@@ -8053,6 +8064,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_ice_dunes
 				entity = "ice_dunes_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_arctic
+				has_modifier = pd_supraglacial_lakes
+			}
+			set_planet_entity = {
+				picture = pc_pd_supraglacial_lakes
+				entity = "supraglacial_lakes_planet_01_entity"
 			}
 		}
 		if = {
