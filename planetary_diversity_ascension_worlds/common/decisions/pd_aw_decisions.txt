@@ -1739,6 +1739,7 @@ decision_pd_aw_core_tap = {
 			habitable_planet_not_urban = yes
 			pd_is_planet_class_pd_gaia = yes
 		}
+		NOT = { is_planet_class = pc_volcanic }
 		exists = owner
 		owner = { has_technology = tech_pd_planetary_core_tap }
 		pd_is_flooded_planet = no
@@ -1753,13 +1754,13 @@ decision_pd_aw_core_tap = {
 	allow = {
 		if = {
 			limit = { owner = { is_ai = no } }
-			OR = {
-				num_districts = { type = district_generator value >= 3 }
-			}
-			num_districts = { type = district_farming value < 1 }
-			num_districts = { type = district_mining value < 1 }
 			custom_tooltip = {
 				fail_text = decision_pd_megacoretap_requirements
+				OR = {
+					num_districts = { type = district_generator value >= 3 }
+				}
+				num_districts = { type = district_farming value < 1 }
+				num_districts = { type = district_mining value < 1 }
 			}
 		}
 		custom_tooltip = {
@@ -1819,6 +1820,7 @@ decision_pd_aw_agriworld = {
 			habitable_planet_not_urban = yes
 			pd_is_planet_class_pd_gaia = yes
 		}
+		NOT = { is_planet_class = pc_volcanic }
 		exists = owner
 		owner = { has_technology = tech_pd_planetary_agriworld }
 		pd_is_flooded_planet = no
@@ -1833,13 +1835,13 @@ decision_pd_aw_agriworld = {
 	allow = {
 		if = {
 			limit = { owner = { is_ai = no } }
-			OR = {
-				num_districts = { type = district_farming value >= 3 }
-			}
-			num_districts = { type = district_generator value < 1 }
-			num_districts = { type = district_mining value < 1 }
 			custom_tooltip = {
 				fail_text = decision_pd_agriworld_requirements
+				OR = {
+					num_districts = { type = district_farming value >= 3 }
+				}
+				num_districts = { type = district_generator value < 1 }
+				num_districts = { type = district_mining value < 1 }
 			}
 		}
 		custom_tooltip = {
@@ -1899,6 +1901,7 @@ decision_pd_aw_stripmine = {
 			habitable_planet_not_urban = yes
 			pd_is_planet_class_pd_gaia = yes
 		}
+		NOT = { is_planet_class = pc_volcanic }
 		exists = owner
 		owner = { has_technology = tech_pd_planetary_stripmine }
 		pd_is_flooded_planet = no

@@ -1,0 +1,146 @@
+@cyborg_hab_preference = 0.70
+
+# Override vanilla cybernetic climate adjustment traits to include PD planet types
+# PD adds Superhabitable, Tidally Locked, and Cavern worlds that belong to wet/dry/cold
+# climates but aren't covered by the vanilla modifier block
+
+trait_cyborg_climate_adjustment_dry = {
+	icon = "gfx/interface/icons/traits/trait_dry_planet_preference.dds"
+	host_has_dlc = "The Machine Age"
+	cost = 1
+	custom_tooltip = trait_cyborg_climate_adjustment_dry_tt
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	localized_tags = {
+		SPECIES_TRAIT_CYBORG
+	}
+	tags = { organic positive habitability cybernetic }
+	initial = no
+	opposites = {
+		"trait_cyborg_climate_adjustment_wet"
+		"trait_cyborg_climate_adjustment_cold"
+	}
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	randomized = no
+	category = cyborg
+	sorting_priority = 30
+	bound_to_planet_classes = {
+		pc_desert
+		pc_arid
+		pc_savannah
+		pc_pd_dry_superhabitable
+		pc_pd_dry_tidally_locked
+		pc_pd_dry_cave
+	}
+	modifier = {
+		# Dry - vanilla
+		pc_arid_habitability 					= @cyborg_hab_preference
+		pc_savannah_habitability 				= @cyborg_hab_preference
+		pc_desert_habitability 					= @cyborg_hab_preference
+		# Dry - PD
+		pc_pd_dry_superhabitable_habitability	= @cyborg_hab_preference
+		pc_pd_dry_tidally_locked_habitability	= @cyborg_hab_preference
+		pc_pd_dry_cave_habitability				= @cyborg_hab_preference
+	}
+	slave_cost = {
+		energy = 500
+	}
+}
+
+trait_cyborg_climate_adjustment_wet = {
+	icon = "gfx/interface/icons/traits/trait_wet_planet_preference.dds"
+	host_has_dlc = "The Machine Age"
+	cost = 1
+	custom_tooltip = trait_cyborg_climate_adjustment_wet_tt
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	localized_tags = {
+		SPECIES_TRAIT_CYBORG
+	}
+	tags = { organic positive habitability cybernetic }
+	initial = no
+	opposites = {
+		"trait_cyborg_climate_adjustment_cold"
+		"trait_cyborg_climate_adjustment_dry"
+	}
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	randomized = no
+	category = cyborg
+	sorting_priority = 30
+	bound_to_planet_classes = {
+		pc_ocean
+		pc_tropical
+		pc_continental
+		pc_pd_wet_superhabitable
+		pc_pd_wet_tidally_locked
+		pc_pd_wet_cave
+	}
+	modifier = {
+		# Wet - vanilla
+		pc_tropical_habitability 				= @cyborg_hab_preference
+		pc_continental_habitability 			= @cyborg_hab_preference
+		pc_ocean_habitability 					= @cyborg_hab_preference
+		# Wet - PD
+		pc_pd_wet_superhabitable_habitability	= @cyborg_hab_preference
+		pc_pd_wet_tidally_locked_habitability	= @cyborg_hab_preference
+		pc_pd_wet_cave_habitability				= @cyborg_hab_preference
+	}
+	slave_cost = {
+		energy = 500
+	}
+}
+
+trait_cyborg_climate_adjustment_cold = {
+	icon = "gfx/interface/icons/traits/trait_cold_planet_preference.dds"
+	host_has_dlc = "The Machine Age"
+	cost = 1
+	custom_tooltip = trait_cyborg_climate_adjustment_cold_tt
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	localized_tags = {
+		SPECIES_TRAIT_CYBORG
+	}
+	tags = { organic positive habitability cybernetic }
+	initial = no
+	opposites = {
+		"trait_cyborg_climate_adjustment_wet"
+		"trait_cyborg_climate_adjustment_dry"
+	}
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	randomized = no
+	category = cyborg
+	sorting_priority = 30
+	bound_to_planet_classes = {
+		pc_tundra
+		pc_arctic
+		pc_alpine
+		pc_pd_cold_superhabitable
+		pc_pd_cold_tidally_locked
+		pc_pd_cold_cave
+	}
+	modifier = {
+		# Cold - vanilla
+		pc_tundra_habitability 					= @cyborg_hab_preference
+		pc_arctic_habitability 					= @cyborg_hab_preference
+		pc_alpine_habitability 					= @cyborg_hab_preference
+		# Cold - PD
+		pc_pd_cold_superhabitable_habitability	= @cyborg_hab_preference
+		pc_pd_cold_tidally_locked_habitability	= @cyborg_hab_preference
+		pc_pd_cold_cave_habitability			= @cyborg_hab_preference
+	}
+	slave_cost = {
+		energy = 500
+	}
+}
