@@ -113,6 +113,9 @@ country_event = {
 				25 = {
 					pd_tidepool_world_effect = yes
 				}
+				25 = {
+					pd_barnacle_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -753,6 +756,16 @@ country_event = {
 			}
 			change_pc = pc_ocean
 			pd_tidepool_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_barnacle
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_ocean
+			pd_barnacle_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -1979,6 +1992,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_ocean }
+		}
+		name = pdengine.21.barnacle
+		hidden_effect = {
+			from = {
+				pd_barnacle_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_ocean }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -3178,6 +3202,9 @@ planet_event = {
 				}
 				25 = {
 					pd_tidepool_world_effect = yes
+				}
+				25 = {
+					pd_barnacle_world_effect = yes
 				}
 				0 = {
 					modifier = {
@@ -6295,6 +6322,7 @@ country_event = {
 				has_trait = trait_pc_pd_algae_preference
 				has_trait = trait_pc_pd_columnar_preference
 				has_trait = trait_pc_pd_tidepool_preference
+				has_trait = trait_pc_pd_barnacle_preference
 				has_trait = trait_pc_pd_reef_preference
 				has_trait = trait_pc_pd_archipelago_preference
 				has_trait = trait_pc_pd_atoll_preference
@@ -6802,6 +6830,9 @@ country_event = {
 					}
 					25 = {
 						pd_tidepool_world_effect = yes
+					}
+					25 = {
+						pd_barnacle_world_effect = yes
 					}
 				}
 			}
@@ -7324,6 +7355,7 @@ planet_event = {
 			has_modifier = pd_algae
 			has_modifier = pd_columnar
 			has_modifier = pd_tidepool
+			has_modifier = pd_barnacle
 			has_modifier = pd_reef
 			has_modifier = pd_archipelago
 			has_modifier = pd_atoll
@@ -7584,6 +7616,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_tidepool
 				entity = "tidepool_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_ocean
+				has_modifier = pd_barnacle
+			}
+			set_planet_entity = {
+				picture = pc_pd_barnacle
+				entity = "barnacle_planet_01_entity"
 			}
 		}
 		if = {
