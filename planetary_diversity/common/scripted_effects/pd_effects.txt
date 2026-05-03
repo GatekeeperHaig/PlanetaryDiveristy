@@ -18,6 +18,8 @@ remove_pd_modifier = {
 	remove_pd_alpine_modifier = yes
 	#Tundra
 	remove_pd_tundra_modifier = yes
+	#Volcanic
+	remove_pd_volcanic_modifier = yes
 	#Gaia
 	#remove_modifier = pd_gaia_world
 	#Special
@@ -62,6 +64,10 @@ remove_pd_continental_modifier = {
 	if = {
 		limit = { has_modifier = pd_marsh }
 		remove_modifier = pd_marsh
+	}
+	if = {
+		limit = { has_modifier = pd_carotene }
+		remove_modifier = pd_carotene
 	}
 	if = {
 		limit = { has_modifier = pd_megaflora }
@@ -324,6 +330,10 @@ remove_pd_savannah_modifier = {
 		remove_modifier = pd_monsoon
 	}
 	if = {
+		limit = { has_modifier = pd_silvergrass }
+		remove_modifier = pd_silvergrass
+	}
+	if = {
 		limit = { has_modifier = pd_supercontinent }
 		remove_modifier = pd_supercontinent
 	}
@@ -488,6 +498,17 @@ remove_pd_tundra_modifier = {
 		remove_modifier = pd_lichen
 	}
 }
+remove_pd_volcanic_modifier = {
+	if = {
+		limit = { has_modifier = pd_volcanic }
+		remove_modifier = pd_volcanic
+	}
+	if = {
+		limit = { has_modifier = pd_ash }
+		remove_modifier = pd_ash
+	}
+}
+
 
 #Make Gaia
 pd_make_all_gaia_worlds_effect = {
@@ -682,7 +703,7 @@ pd_remove_uninhabitable_modifiers = {
 	remove_modifier = pd_carbon
 	remove_modifier = pd_chthonian
 	remove_modifier = pd_iron
-	remove_modifier = pd_volcanic
+	remove_modifier = pd_volcano
 	remove_modifier = pd_hydrocarbon
 	remove_modifier = pd_hot_gas_giant
 	remove_modifier = pd_cloudless_gas_giant
@@ -784,6 +805,32 @@ pd_remove_dummy_traits = {
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_marsh_preference
 			add_trait = trait_pc_continental_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_carotene_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_carotene_preference
+			add_trait = trait_pc_continental_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_ash_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_ash_preference
+			add_trait = trait_pc_volcanic_preference
 		}
 	}
 	every_galaxy_species = {
@@ -1516,6 +1563,19 @@ pd_remove_dummy_traits = {
 		}
 		change_species_characteristics = {
 			remove_trait = trait_pc_pd_monsoon_preference
+			add_trait = trait_pc_savannah_preference
+		}
+	}
+	every_galaxy_species = {
+		limit = {
+			has_trait = trait_pc_pd_silvergrass_preference
+			NOR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+			}
+		}
+		change_species_characteristics = {
+			remove_trait = trait_pc_pd_silvergrass_preference
 			add_trait = trait_pc_savannah_preference
 		}
 	}

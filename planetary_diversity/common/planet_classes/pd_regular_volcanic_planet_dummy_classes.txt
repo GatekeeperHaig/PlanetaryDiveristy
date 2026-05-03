@@ -1,0 +1,35 @@
+###PD Volcanic Classes
+# These are dummy classes and are not to be used, they are just for reference for the engine to turn them into the correct class.
+# Used in terraforming, and on game start.
+
+@habitable_planet_min_size = 15
+@habitable_planet_max_size = 25
+@habitable_moon_min_size = 6
+@habitable_moon_max_size = 10
+@planet_standard_scale = 11
+@carry_cap_normal = 3
+
+###Volcanic
+#Ash
+pc_pd_ash = {
+	entity = "ash_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_volcanic
+	icon_large = GFX_planet_type_volcanic_big
+	#appearance
+	atmosphere_color 		= hsv { 0.08 0.15 0.6 }
+	atmosphere_intensity 	= 0.1
+	atmosphere_width 		= 0.8
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
+	#planet defines
+	climate = "dry"
+	colonizable = yes
+	initial = yes
+	potential = { host_has_dlc = "Infernals Species Pack" }
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	spawn_odds = 0
+	uses_alternative_skies_for_moons = yes
+	district_set = volcanic_world
+	carry_cap_per_free_district = @carry_cap_normal
+}

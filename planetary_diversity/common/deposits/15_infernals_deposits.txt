@@ -1,0 +1,923 @@
+@high = 16
+@med = 8
+@low = 4
+@very_low = 1
+@rare = 0.5
+
+###################
+#### SPECIAL #####
+###################
+
+d_red_giant_unstable = {
+	icon = d_binary_stars
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			energy = 5
+		}
+	}
+
+	habitat_modifier = {
+		district_hab_science_max_add = 2
+		district_hab_energy_max_add = 3
+	}
+
+	station = shipclass_mining_station
+	is_for_colonizable = no
+	potential = { always = no }
+}
+
+d_red_giant_dm = {
+	icon = d_binary_stars
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			sr_dark_matter = 5
+			energy = 10
+		}
+	}
+
+	habitat_modifier = {
+		district_hab_science_max_add = 8
+		district_hab_energy_max_add = 4
+	}
+
+	station = shipclass_mining_station
+	is_for_colonizable = no
+	potential = { always = no }
+}
+
+# For organic species starting on Volcanic Worlds
+d_andisol_soil = {
+	icon = d_black_soil
+	time = 360
+	is_for_colonizable = yes
+	category = deposit_cat_food
+	potential = { always = no }
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		job_farmer_add = @building_static_jobs_high
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+			}
+		}
+		job_agri_drone_add = @building_static_jobs_high
+	}
+}
+
+# Cosmic Dawn - Stasis Pod
+d_stasis_pods = {
+	icon = d_ancient_vault
+	time = 360
+	is_for_colonizable = yes
+	category = deposit_cat_rare_blocker
+	potential = { always = no }
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 750
+		}
+		produces = {
+			society_research = 3 #if changed, adjust concept_inf_cd_deposit_desc
+		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = { owner = { has_origin = origin_cosmic_dawn } }
+				create_pop_group = { species = owner }
+			}
+			else = {
+				owner = { add_resource = { society_research = 350 } }
+			}
+			if = {
+				limit = { NOT = { has_deposit = d_cd_ancient_tunnels } }
+				add_deposit = d_cd_ancient_tunnels
+			}
+			change_variable = { which = cd_pods_var value = 1 }
+		}
+		custom_tooltip = d_stasis_pods_tt
+	}
+
+	inline_script = deposits/ai_weight_pop_creating_blocker
+}
+
+# Cosmic Dawn - Stasis Pod Tunnels
+d_cd_ancient_tunnels = {
+	icon = d_mining_tunnels
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	potential = { always = no }
+	triggered_planet_modifier = {
+		planet_max_districts_add = 1
+		mult = cd_pods_var
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = cosmic_dawn_tunnel_foundry_flag
+		}
+		foundry_jobs_bonus_workforce_mult = 0.01
+		mult = cd_pods_var
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = cosmic_dawn_tunnel_bureaucrat_flag
+		}
+		bureaucrat_jobs_bonus_workforce_mult = 0.01
+		mult = cd_pods_var
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = cosmic_dawn_tunnel_researcher_flag
+		}
+		researcher_jobs_bonus_workforce_mult = 0.01
+		mult = cd_pods_var
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = cosmic_dawn_tunnel_worker_flag
+		}
+		pop_cat_worker_bonus_workforce_mult = 0.01
+		mult = cd_pods_var
+	}
+}
+
+d_seismic_bombing_crater = {
+    icon = d_seismic_bombing
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+    potential = { always = no }
+
+	resources = {
+		category = deposit_blockers
+		produces = {
+			trigger = { owner = { is_infernal_empire = yes } }
+			unity = 5
+		}
+		cost = {
+			trigger = { owner = { is_infernal_empire = yes } }
+			energy = 100
+		}
+		cost = {
+			trigger = { owner = { is_infernal_empire = no } }
+			energy = 2000
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_genocidal_infernal = no }
+		}
+		# Blocker should not appear more than 5 times
+        army_defense_morale_mult = -0.05
+        army_defense_damage_mult = -0.1
+        army_defense_health_mult = -0.1
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			change_variable = { which = seismic_bombing_var value = -1 }
+			if = {
+				limit = { check_variable = { which = seismic_bombing_var value = 0 } }
+				clear_variable = seismic_bombing_var
+			}
+		}
+	}
+
+	inline_script = deposits/ai_weight_natural_blocker
+	drop_weight = { weight = 0 }
+	prerequisites = { "tech_volcano" }
+}
+
+# Large Volcano - Fire Cult
+d_large_volcano = {
+	icon = d_active_volcano
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		produces = { unity = 5 }
+	}
+	planet_modifier = {
+		habitability_ceil_add = -0.20
+		pop_environment_tolerance = -0.20
+		habitability_floor_add = -0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pyrolatry }
+		}
+		planet_amenities_add = 500
+	}
+	on_cleared = {
+		hidden_effect = {
+			change_variable = { which = pyrolatry_var value = -1 }
+			if = {
+				limit = { check_variable = { which = pyrolatry_var value = 0 } }
+				clear_variable = pyrolatry_var
+			}
+		}
+	}
+	drop_weight = { weight = 0 }
+}
+
+# Ash Storms - Fire Cult
+d_ash_storms = {
+	icon = d_ash_storms
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	potential = { always = no }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_volatile_motes }
+		}
+		planet_technician_volatile_motes_produces_add = @SR_SMALL
+	}
+	planet_modifier = {
+		habitability_ceil_add = -0.20
+		pop_environment_tolerance = -0.20
+		habitability_floor_add = -0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pyrolatry }
+		}
+		planet_amenities_add = 500
+	}
+	on_cleared = {
+		hidden_effect = {
+			change_variable = { which = pyrolatry_var value = -1 }
+			if = {
+				limit = { check_variable = { which = pyrolatry_var value = 0 } }
+				clear_variable = pyrolatry_var
+			}
+		}
+	}
+	drop_weight = { weight = 0 }
+}
+
+# Charged Atmosphere - Fire Cult
+d_charged_atmosphere = {
+	icon = d_tempestous_mountain
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		produces = { energy = 5 }
+	}
+	planet_modifier = {
+		habitability_ceil_add = -0.20
+		pop_environment_tolerance = -0.20
+		habitability_floor_add = -0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pyrolatry }
+		}
+		planet_amenities_add = 500
+	}
+	on_cleared = {
+		hidden_effect = {
+			change_variable = { which = pyrolatry_var value = -1 }
+			if = {
+				limit = { check_variable = { which = pyrolatry_var value = 0 } }
+				clear_variable = pyrolatry_var
+			}
+		}
+	}
+	drop_weight = { weight = 0 }
+}
+
+# Seasonal Lava flooding - Fire Cult
+d_lava_flooding = {
+	icon = d_lava_flooding
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	potential = { always = no }
+	resources = {
+		category = deposit_blockers
+		produces = { minerals = 5 }
+	}
+	planet_modifier = {
+		habitability_ceil_add = -0.20
+		pop_environment_tolerance = -0.20
+		habitability_floor_add = -0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pyrolatry }
+		}
+		planet_amenities_add = 500
+	}
+	on_cleared = {
+		hidden_effect = {
+			change_variable = { which = pyrolatry_var value = -1 }
+			if = {
+				limit = { check_variable = { which = pyrolatry_var value = 0 } }
+				clear_variable = pyrolatry_var
+			}
+		}
+	}
+	drop_weight = { weight = 0 }
+}
+
+# Toxic Atmosphere - Fire Cult
+d_toxic_atmosphere = {
+	icon = d_unpleasant_atmosphere_blocker
+	potential = { always = no }
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_miners_exotic_gases_produces_add = @SR_SMALL
+	}
+	planet_modifier = {
+		habitability_ceil_add = -0.20
+		pop_environment_tolerance = -0.20
+		habitability_floor_add = -0.20
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_pyrolatry }
+		}
+		planet_amenities_add = 500
+	}
+	on_cleared = {
+		hidden_effect = {
+			change_variable = { which = pyrolatry_var value = -1 }
+			if = {
+				limit = { check_variable = { which = pyrolatry_var value = 0 } }
+				clear_variable = pyrolatry_var
+			}
+		}
+	}
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	drop_weight = { weight = 0 }
+}
+
+# For 1 Living Metal on a Galvanic Empire Homeworld
+d_galvanic_living_metal = {
+	icon = d_station_reactor
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	resources = {
+		produces = {
+			trigger = {
+				owner = {
+					has_technology = tech_mine_living_metal
+				}
+			}
+			sr_living_metal = 1
+		}
+	}
+
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}
+
+###################
+#### MINERALS #####
+###################
+
+# Note: Volcanic Worlds have own deposits due to their custom district set.
+# If district amounts here change, adjust generate_start_deposits_and_blockers
+
+d_volcanic_ore_veins = {
+	icon = d_veiny_cliffs
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_mineral_fields
+		d_mineral_striations # gaia
+		d_veiny_cliffs
+		d_nutritious_mudland
+	}
+
+	planet_modifier = { district_mining_max_add = 1 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @high }
+}
+
+d_volcanic_rich_mountain = {
+	icon = d_volcanic_rich_mountain
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_submerged_ore_veins
+		d_rich_mountain
+		d_arid_highlands
+	}
+
+	planet_modifier = { district_mining_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @high }
+}
+
+d_volcanic_ore_caverns = {
+	icon = d_ore_rich_caverns
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+		d_fungal_caves
+	}
+
+	planet_modifier = { district_mining_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @high }
+}
+
+d_volcanic_mineral_fields = {
+	icon = d_mineral_fields
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fungal_caves
+		d_fertile_lands
+		d_great_river
+		d_lush_jungle
+	}
+
+	planet_modifier = { district_mining_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @med }
+}
+
+d_volcanic_mineral_hills = {
+	icon = d_mineral_fields
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_searing_desert
+		d_frozen_gas_lake
+		d_rushing_waterfalls
+	}
+
+	planet_modifier = { district_mining_max_add = 1 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @med }
+}
+
+d_volcanic_mineral_layers = {
+	icon = d_mineral_striations
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_tempestous_mountain
+		d_underwater_vent
+		d_geothermal_vent
+	}
+
+	planet_modifier = { district_mining_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @low }
+}
+
+d_volcanic_weak_crust = {
+	icon = d_deep_sinkhole
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_frozen_gas_lake
+		d_rushing_waterfalls
+		d_searing_desert
+	}
+
+	planet_modifier = { district_mining_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @low }
+}
+
+d_volcanic_lava_river = {
+	icon = d_volcanic_world
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_hot_springs
+		d_arid_highlands
+		d_buzzing_plains # gaia
+		d_black_soil
+	}
+
+	planet_modifier = { district_mining_max_add = 3 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @low }
+}
+
+###################
+#### POLYTECH #####
+###################
+
+# Note: If district amounts here change, adjust generate_start_deposits_and_blockers
+
+d_volcanic_stable_plateaus = {
+	icon = d_volcanic_basalt_plains
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_prosperous_mesa
+	}
+
+	planet_modifier = { district_polytechnic_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = {
+		weight = @high
+	}
+}
+
+d_volcanic_tranquil_flatlands = {
+	icon = d_forgiving_tundra
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_bountiful_plains
+		d_rugged_woods
+		d_green_hills
+		d_forgiving_tundra
+		d_boggy_fens
+		d_nutritious_mudland
+		d_natural_farmland # gaia
+		d_lichen_fields
+	}
+
+	planet_modifier = { district_polytechnic_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @high }
+}
+
+d_volcanic_intraplate = {
+	icon = d_geothermal_vent
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_natural_farmland # gaia
+		d_lichen_fields
+		d_bountiful_plains
+		d_green_hills
+		d_forgiving_tundra
+		d_boggy_fens
+		d_nutritious_mudland
+		d_rugged_woods
+	}
+
+	planet_modifier = { district_polytechnic_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @high }
+}
+
+d_volcanic_basalt_plains = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_lichen_fields
+		d_bountiful_plains
+		d_rugged_woods
+		d_green_hills
+		d_boggy_fens
+		d_nutritious_mudland
+		d_natural_farmland # gaia
+		d_forgiving_tundra
+	}
+
+	planet_modifier = { district_polytechnic_max_add = 2 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @med }
+}
+
+d_volcanic_sulfur_lava = {
+	icon = d_blue_lava
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fertile_lands
+	}
+
+	planet_modifier = {
+		district_polytechnic_max_add = 2
+		district_mining_max_add = 2
+	}
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @very_low }
+}
+
+d_volcanic_dried_lavariver = {
+	icon = d_massive_crevice
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_misc
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_lichen_fields
+		d_bountiful_plains
+		d_rugged_woods
+		d_forgiving_tundra
+		d_boggy_fens
+		d_nutritious_mudland
+		d_natural_farmland # gaia
+		d_green_hills
+	}
+
+	planet_modifier = { district_polytechnic_max_add = 1 }
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @med }
+}
+
+d_volcanic_tunnels = {
+	icon = d_ancient_vault
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_polytechnic_max_add = 2
+		pop_environment_tolerance = 0.15
+	}
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = { weight = @med }
+}
+
+###################
+#### RARE RES #####
+###################
+
+# Gases
+d_volcanic_fumarole = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_gaseous_eruption
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fuming_bog
+	}
+
+	planet_modifier = {
+		district_mining_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_miners_exotic_gases_produces_add = @SR_SMALL
+	}
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = {
+		weight = @rare
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+# Volatile Motes
+d_volcanic_stifling_atmosphere = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+	icon = d_tempestous_mountain
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_volatile_motes }
+		}
+		planet_miners_volatile_motes_produces_add = @SR_SMALL
+	}
+	planet_modifier = {
+		district_mining_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_dust_desert
+	}
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+	drop_weight = {
+		weight = @rare
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+					has_star_flag = deneb_system
+				}
+			}
+		}
+	}
+}
+
+###################
+#### BLOCKERS #####
+###################
+
+d_raging_lavafalls = {
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	icon = d_volcanic_world
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = { energy = 1000 }
+	}
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_energy_produces_add = @ranger_large_production
+	}
+
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = 7
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_volcano" }
+}
+
+d_rugged_landscape = {
+	time = 270
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+	icon = d_explosive_atmosphere
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = { energy = 1000 }
+	}
+
+	potential = { OR = { is_planet_class = pc_volcanic is_planet_class = pc_pd_ash } }
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_minerals_produces_add = @ranger_large_production
+	}
+
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = 7
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_volcano" }
+}

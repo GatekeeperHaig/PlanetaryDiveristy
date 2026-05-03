@@ -48,6 +48,9 @@ country_event = {
 					pd_marsh_world_effect = yes
 				}
 				25 = {
+					pd_carotene_world_effect = yes
+				}
+				25 = {
 					pd_tepid_world_effect = yes
 				}
 				25 = {
@@ -337,6 +340,9 @@ country_event = {
 				25 = {
 					pd_monsoon_world_effect = yes
 				}
+				25 = {
+					pd_silvergrass_world_effect = yes
+				}
 				15 = {
 					modifier = {
 						factor = 0
@@ -350,6 +356,24 @@ country_event = {
 						has_planet_flag = prescripted_ideal
 					}
 					pd_sinkhole_world_effect = yes
+				}
+			}
+		}
+		#Volcanic Planets
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_volcanic
+				has_pd_modifier = no
+				is_capital = no
+				pd_ignore = no
+			}
+			change_pc = pc_volcanic
+			random_list = {
+				50 = {
+					pd_volcanic_world_effect = yes
+				}
+				50 = {
+					pd_ash_world_effect = yes
 				}
 			}
 		}
@@ -630,6 +654,16 @@ country_event = {
 			}
 			change_pc = pc_continental
 			pd_marsh_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_carotene
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_continental
+			pd_carotene_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		every_galaxy_planet = {
@@ -1263,6 +1297,16 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = {
+				is_planet_class = pc_pd_silvergrass
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_savannah
+			pd_silvergrass_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
 				is_planet_class = pc_pd_supercontinent
 				has_pd_modifier = no
 				is_capital = yes
@@ -1279,6 +1323,31 @@ country_event = {
 			}
 			change_pc = pc_savannah
 			pd_sinkhole_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		#Volcanic
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_volcanic
+				has_pd_modifier = no
+				is_capital = yes
+				NOT = { has_planet_flag = prescripted_ideal }
+			}
+			IF = {
+				limit = {
+					NOT = { has_modifier = pd_volcanic }
+				}
+				add_modifier = { modifier = pd_volcanic }
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ash
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_volcanic
+			pd_ash_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		#Arctic
@@ -1745,6 +1814,7 @@ planet_event = {
 			is_planet_class = pc_arctic
 			is_planet_class = pc_alpine
 			is_planet_class = pc_tundra
+			is_planet_class = pc_volcanic
 		}
 		NOR = {
 			pd_aw_is_shroud_planet = yes
@@ -1871,6 +1941,17 @@ country_event = {
 		hidden_effect = {
 			from = {
 				pd_marsh_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_continental }
+		}
+		name = pdengine.21.carotene
+		hidden_effect = {
+			from = {
+				pd_carotene_world_effect = yes
 			}
 		}
 	}
@@ -2561,6 +2642,17 @@ country_event = {
 	option = {
 		trigger = {
 			from = { is_planet_class = pc_savannah }
+		}
+		name = pdengine.21.silvergrass
+		hidden_effect = {
+			from = {
+				pd_silvergrass_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_savannah }
 			space_owner = {
 				has_ascension_perk = ap_world_shaper
 			}
@@ -2672,6 +2764,17 @@ country_event = {
 		hidden_effect = {
 			from = {
 				pd_ice_dunes_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_arctic }
+		}
+		name = pdengine.21.supraglacial_lakes
+		hidden_effect = {
+			from = {
+				pd_supraglacial_lakes_world_effect = yes
 			}
 		}
 	}
@@ -2992,6 +3095,28 @@ country_event = {
 			}
 		}
 	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_volcanic }
+		}
+		name = pdengine.21.volcanic
+		hidden_effect = {
+			from = {
+				pd_volcanic_world_effect = yes
+			}
+		}
+	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_volcanic }
+		}
+		name = pdengine.21.ash
+		hidden_effect = {
+			from = {
+				pd_ash_world_effect = yes
+			}
+		}
+	}
 
 	after = {
 		if = {
@@ -3138,6 +3263,7 @@ planet_event = {
 			is_planet_class = pc_arctic
 			is_planet_class = pc_alpine
 			is_planet_class = pc_tundra
+			is_planet_class = pc_volcanic
 		}
 	}
 
@@ -3168,6 +3294,9 @@ planet_event = {
 				}
 				25 = {
 					pd_marsh_world_effect = yes
+				}
+				25 = {
+					pd_carotene_world_effect = yes
 				}
 				25 = {
 					pd_tepid_world_effect = yes
@@ -3447,6 +3576,9 @@ planet_event = {
 				25 = {
 					pd_monsoon_world_effect = yes
 				}
+				25 = {
+					pd_silvergrass_world_effect = yes
+				}
 				0 = {
 					modifier = {
 						add = 25
@@ -3495,6 +3627,9 @@ planet_event = {
 				}
 				25 = {
 					pd_ice_dunes_world_effect = yes
+				}
+				25 = {
+					pd_supraglacial_lakes_world_effect = yes
 				}
 				25 = {
 					pd_ferrospring_world_effect = yes
@@ -3626,6 +3761,19 @@ planet_event = {
 						}
 					}
 					pd_lichen_world_effect = yes
+				}
+			}
+		}
+		IF = {
+			limit = {
+				is_planet_class = pc_volcanic
+			}
+			random_list = {
+				50 = {
+					pd_volcanic_world_effect = yes
+				}
+				50 = {
+					pd_ash_world_effect = yes
 				}
 			}
 		}
@@ -4694,7 +4842,7 @@ planet_event = {
 			}
 			remove_modifier = pd_chthonian
 			remove_modifier = pd_iron
-			remove_modifier = pd_volcanic
+			remove_modifier = pd_volcano
 		}
 		if = {
 			limit = {
@@ -5257,7 +5405,7 @@ country_event = {
 						entity = "pd_volcanic_planet_01_entity"
 					}
 					add_modifier = {
-						modifier = pd_volcanic
+						modifier = pd_volcano
 						days = -1
 					}
 					set_planet_flag = pd_special_uninhabitable
@@ -5742,6 +5890,7 @@ country_event = {
 			set_planet_entity = {
 				entity = "gas_giant_saturn_entity"
 			}
+			clear_deposits = yes
 			add_deposit = d_physics_2
 			add_modifier = {
 				modifier = pd_domed_research_site_1
@@ -6300,6 +6449,7 @@ country_event = {
 				has_trait = trait_pc_pd_turquoise_preference
 				has_trait = trait_pc_pd_calcite_preference
 				has_trait = trait_pc_pd_monsoon_preference
+				has_trait = trait_pc_pd_silvergrass_preference
 				has_trait = trait_pc_pd_supercontinent_preference
 				has_trait = trait_pc_pd_sinkhole_preference
 			}
@@ -6338,6 +6488,7 @@ country_event = {
 				has_trait = trait_pc_pd_sakura_preference
 				has_trait = trait_pc_pd_moss_preference
 				has_trait = trait_pc_pd_marsh_preference
+				has_trait = trait_pc_pd_carotene_preference
 				has_trait = trait_pc_pd_mushroom_preference
 				has_trait = trait_pc_pd_petrified_preference
 				has_trait = trait_pc_pd_megaflora_preference
@@ -6425,6 +6576,7 @@ country_event = {
 				has_trait = trait_pc_pd_travertine_preference
 				has_trait = trait_pc_pd_cryoflora_preference
 				has_trait = trait_pc_pd_lichen_preference
+				has_trait = trait_pc_pd_ash_preference
 			}
 		}
 	}
@@ -6805,6 +6957,9 @@ country_event = {
 						pd_marsh_world_effect = yes
 					}
 					25 = {
+						pd_carotene_world_effect = yes
+					}
+					25 = {
 						pd_tepid_world_effect = yes
 					}
 					25 = {
@@ -7040,6 +7195,9 @@ country_event = {
 					25 = {
 						pd_monsoon_world_effect = yes
 					}
+					25 = {
+						pd_silvergrass_world_effect = yes
+					}
 				}
 			}
 			if = {
@@ -7076,6 +7234,9 @@ country_event = {
 					}
 					25 = {
 						pd_ice_dunes_world_effect = yes
+					}
+					25 = {
+						pd_supraglacial_lakes_world_effect = yes
 					}
 					25 = {
 						pd_ferrospring_world_effect = yes
@@ -7376,6 +7537,7 @@ planet_event = {
 			has_modifier = pd_sakura
 			has_modifier = pd_moss
 			has_modifier = pd_marsh
+			has_modifier = pd_carotene
 			has_modifier = pd_megaflora
 			has_modifier = pd_petrified
 			has_modifier = pd_cascadian
@@ -7430,6 +7592,7 @@ planet_event = {
 			has_modifier = pd_turquoise
 			has_modifier = pd_calcite
 			has_modifier = pd_monsoon
+			has_modifier = pd_silvergrass
 			has_modifier = pd_supercontinent
 			has_modifier = pd_sinkhole
 			has_modifier = pd_cold_desert
@@ -7439,6 +7602,7 @@ planet_event = {
 			has_modifier = pd_ice_spike
 			has_modifier = pd_crevasse
 			has_modifier = pd_ice_dunes
+			has_modifier = pd_supraglacial_lakes
 			has_modifier = pd_ferrospring
 			has_modifier = pd_storm
 			has_modifier = pd_iceberg
@@ -7464,6 +7628,8 @@ planet_event = {
 			has_modifier = pd_travertine
 			has_modifier = pd_cryoflora
 			has_modifier = pd_lichen
+			has_modifier = pd_volcanic
+			has_modifier = pd_ash
  		}
 	}
 
@@ -7537,6 +7703,16 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_marsh
 				entity = "marsh_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_continental
+				has_modifier = pd_carotene
+			}
+			set_planet_entity = {
+				picture = pc_pd_carotene
+				entity = "carotene_planet_01_entity"
 			}
 		}
 		if = {
@@ -8097,6 +8273,16 @@ planet_event = {
 		if = {
 			limit = {
 				is_planet_class = pc_savannah
+				has_modifier = pd_silvergrass
+			}
+			set_planet_entity = {
+				picture = pc_pd_silvergrass
+				entity = "silvergrass_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_savannah
 				has_modifier = pd_supercontinent
 			}
 			set_planet_entity = {
@@ -8445,6 +8631,26 @@ planet_event = {
 			set_planet_entity = {
 				picture = pc_pd_lichen
 				entity = "lichen_planet_01_entity"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_volcanic
+				has_modifier = pd_volcanic
+			}
+			set_planet_entity = {
+				picture = pc_volcanic
+				entity = "volcanic_planet"
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_volcanic
+				has_modifier = pd_ash
+			}
+			set_planet_entity = {
+				picture = pc_pd_ash
+				entity = "ash_planet_01_entity"
 			}
 		}
 	}
