@@ -1,0 +1,103 @@
+# Machine Intelligence Initial Setup
+# Vanilla overridden to use Cryogenic Processing Nexuses on pdexotic_cryo worlds.
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+		}
+	}
+	add_building = building_machine_capital
+	add_building = building_machine_assembly_plant
+	add_building = building_drone_storage
+
+	if = {
+		limit = { uses_district_set = pdexotic_cryo }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 2
+			district = district_pdexotic_cryo_nexus
+		}
+		add_zone = {
+			district = district_pdexotic_cryo_nexus
+			zone = zone_research_unity
+			zone_slot = 1
+		}
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_valid_civic = civic_machine_servitor
+						has_valid_civic = civic_machine_obsessional_directive
+					}
+				}
+			}
+			add_zone = {
+				district = district_pdexotic_cryo_nexus
+				zone = zone_industrial
+				zone_slot = 2
+			}
+			add_building = {
+				building = building_factory_1
+				zone = zone_industrial
+			}
+		}
+		else = {
+			add_zone = {
+				district = district_pdexotic_cryo_nexus
+				zone = zone_foundry
+				zone_slot = 2
+			}
+		}
+	}
+	else = {
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 2
+			district = district_nexus
+		}
+		add_zone = {
+			district = district_nexus
+			zone = zone_research_unity
+			zone_slot = 1
+		}
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_valid_civic = civic_machine_servitor
+						has_valid_civic = civic_machine_obsessional_directive
+					}
+				}
+			}
+			add_zone = {
+				district = district_nexus
+				zone = zone_industrial
+				zone_slot = 2
+			}
+			add_building = {
+				building = building_factory_1
+				zone = zone_industrial
+			}
+		}
+		else = {
+			add_zone = {
+				district = district_nexus
+				zone = zone_foundry
+				zone_slot = 2
+			}
+		}
+	}
+
+	set_variable = {
+		which = energy_districts
+		value = 3
+	}
+	set_variable = {
+		which = mining_districts
+		value = 4
+	}
+	set_variable = {
+		which = farming_districts
+		value = 0
+	}
+}

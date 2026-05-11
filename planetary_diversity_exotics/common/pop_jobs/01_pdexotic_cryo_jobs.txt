@@ -1,0 +1,149 @@
+# Planetary Diversity Exotics: Cryo chemist jobs
+# Specialist farmer-class job tied to Chemovat Garden districts on cryogenic worlds.
+# Produces food + exotic gases via cultivated chemosynthetic life.
+
+pdexotic_cryo_chemist = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_chemical_plant
+		}
+	}
+
+	tags = { food strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = { complex_specialist_job_check_trigger = yes }
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			food = 4
+			exotic_gases = 0.5
+		}
+		upkeep = {
+			consumer_goods = 0.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist|RESOURCE|food|
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+	}
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = specialist
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}
+
+pdexotic_cryo_chemist_drone = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_chemical_plant
+		}
+	}
+
+	tags = { food strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+		owner = { is_hive_empire = yes }
+	}
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			food = 4
+			exotic_gases = 0.5
+		}
+		upkeep = {
+			minerals = 1
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist_drone|RESOURCE|food|
+	}
+}
+
+pdexotic_cryo_chemist_machine = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_chemical_plant
+		}
+	}
+
+	tags = { strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+		owner = { is_machine_empire = yes }
+	}
+
+	resources = {
+		category = planet_farmers
+		produces = {
+			exotic_gases = 1.5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { country_uses_food = yes }
+			}
+			food = 2
+		}
+		upkeep = {
+			minerals = 1
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist_machine|RESOURCE|exotic_gases|
+	}
+}

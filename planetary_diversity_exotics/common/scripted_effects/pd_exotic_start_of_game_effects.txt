@@ -1,0 +1,53 @@
+# Adds starting deposits to homeworlds spawned on PD exotic planet classes.
+# Called from pd_exotic.1 (country event fired on on_game_start_country),
+# scoped to the empire's capital planet.
+
+generate_pd_exotic_start_deposits = {
+	optimize_memory
+
+	if = {
+		limit = {
+			is_planet_class = pc_pd_ammonia
+		}
+
+		# Mirror of vanilla pc_arctic homeworld setup in 01_start_of_game_effects.txt
+		# Each category gets one +1, one +2, one +3 deposit (vanilla pattern).
+
+		# 3 + 3 energy
+		add_deposit = d_pd_ammonia_thermocline
+		add_deposit = d_pd_ammonia_lightning_storms
+		add_deposit = d_pd_ammonia_polar_ion_columns
+		if = {
+			limit = { owner = { is_machine_empire = yes } }
+			add_deposit = d_pd_ammonia_lightning_storms
+		}
+		if = {
+			limit = { owner = { has_valid_civic = civic_machine_servitor } }
+			add_deposit = d_pd_ammonia_thermocline
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_pd_ammonia_brine_caverns
+		add_deposit = d_pd_ammonia_salt_dunes
+		add_deposit = d_pd_ammonia_cryolite_reefs
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_pd_ammonia_organic_haze
+		add_deposit = d_pd_ammonia_chemosynthetic_pools
+		if = {
+			limit = { owner = { is_machine_empire = no } }
+			add_deposit = d_pd_ammonia_organic_haze
+			if = {
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
+				add_deposit = d_pd_ammonia_cryolite_reefs
+			}
+			else = {
+				add_deposit = d_pd_ammonia_ammoniated_kelp_forests
+			}
+		}
+	}
+}

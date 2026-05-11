@@ -1,0 +1,26 @@
+namespace = pd_exotic
+
+# Fires from on_game_start_country (after PD's prescripted deposit setup)
+# to populate exotic homeworlds with their class-specific deposits.
+country_event = {
+	id = pd_exotic.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				exists = capital_scope
+				capital_scope = {
+					OR = {
+						is_planet_class = pc_pd_methane
+						is_planet_class = pc_pd_ammonia
+					}
+				}
+			}
+			capital_scope = {
+				generate_pd_exotic_start_deposits = yes
+			}
+		}
+	}
+}

@@ -1,0 +1,102 @@
+namespace = bio
+
+country_event = {
+	id = bio.1105
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				capital_scope = {
+					NOR = {
+						pd_is_planet_class_hive_all = yes
+						is_planet_class = pc_hive
+						has_planet_flag = no_evopred_hive_world
+					}
+					colonizable_planet = yes
+					habitable_structure = no
+					is_terraforming = no
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						OR = {
+							is_planet_class = pc_pd_wet_superhabitable
+							is_planet_class = pc_pd_cold_superhabitable
+							is_planet_class = pc_pd_dry_superhabitable
+							is_planet_class = pc_pd_barren_superhabitable
+							is_planet_class = pc_pd_gaia_superhabitable
+							is_planet_class = pc_pd_nuked_superhabitable
+						}
+					}
+				}
+				capital_scope = { start_terraform_process = pc_pd_hive_superhabitable }
+			}
+			else = {
+				capital_scope = { start_terraform_process = pc_hive }
+			}
+			create_message = {
+				type = EVOPRED_TERRAFORM_STARTED
+				localization = MESSAGE_EVOPRED_TERRAFORM_STARTED
+				target = capital_scope
+				days = 30
+				variable = {
+					type = name
+					localization = PLANET
+					scope = capital_scope
+				}
+			}
+		}
+		else = {
+			ordered_owned_planet = {
+				limit = {
+					NOR = {
+						pd_is_planet_class_hive_all = yes
+						is_planet_class = pc_hive
+						has_planet_flag = no_evopred_hive_world
+					}
+					colonizable_planet = yes
+					habitable_structure = no
+					is_terraforming = no
+				}
+				position = 0
+				order_by = trigger:pop_amount
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_pd_wet_superhabitable
+							is_planet_class = pc_pd_cold_superhabitable
+							is_planet_class = pc_pd_dry_superhabitable
+							is_planet_class = pc_pd_barren_superhabitable
+							is_planet_class = pc_pd_gaia_superhabitable
+							is_planet_class = pc_pd_nuked_superhabitable
+						}
+					}
+					start_terraform_process = pc_pd_hive_superhabitable
+				}
+				else = {
+					start_terraform_process = pc_hive
+				}
+				root = {
+					create_message = {
+						type = EVOPRED_TERRAFORM_STARTED
+						localization = MESSAGE_EVOPRED_TERRAFORM_STARTED
+						target = prev
+						days = 30
+						variable = {
+							type = name
+							localization = PLANET
+							scope = prev
+						}
+					}
+				}
+			}
+		}
+		country_event = {
+			id = bio.1105
+			years = 5
+		}
+	}
+}

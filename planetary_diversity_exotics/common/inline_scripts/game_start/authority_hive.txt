@@ -1,0 +1,61 @@
+# Hive Mind Initial Setup
+# Vanilla overridden to use Cryogenic Hive Districts on pdexotic_cryo worlds.
+
+if = {
+	limit = {
+		exists = owner
+		owner = {
+			is_hive_empire = yes
+			is_wilderness_empire = no
+		}
+	}
+	add_building = building_hive_capital
+	if = {
+		limit = {
+			owner = {
+				NOT = {
+					has_origin = origin_progenitor_hive
+				}
+			}
+		}
+		add_building = building_spawning_pool
+	}
+	else = {
+		add_building = building_offspring_nest
+	}
+	add_building = building_hive_warren
+
+	if = {
+		limit = { uses_district_set = pdexotic_cryo }
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 2
+			district = district_pdexotic_cryo_hive
+		}
+		add_zone = {
+			district = district_pdexotic_cryo_hive
+			zone = zone_research_unity
+			zone_slot = 1
+		}
+		add_zone = {
+			district = district_pdexotic_cryo_hive
+			zone = zone_foundry
+			zone_slot = 2
+		}
+	}
+	else = {
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = 2
+			district = district_hive
+		}
+		add_zone = {
+			district = district_hive
+			zone = zone_research_unity
+			zone_slot = 1
+		}
+		add_zone = {
+			district = district_hive
+			zone = zone_foundry
+			zone_slot = 2
+		}
+	}
+}

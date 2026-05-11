@@ -1,0 +1,262 @@
+@high = 16
+@med = 8
+@low = 4
+@rare = 0.5
+
+###################
+#### ENERGY ######
+###################
+
+# Massive cell fronts in the upper atmosphere conduct continuous storm
+# discharge that can be tapped through tethered collector arrays.
+d_pd_ammonia_lightning_storms = {
+	icon = d_pd_ammonia_lightning_storms
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_frozen_gas_lake
+		d_hot_springs
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = 2
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @high }
+}
+
+# Where the planetary magnetic field bends through ammonia-rich polar
+# atmosphere, columns of cascading ionisation rise hundreds of kilometres
+# skyward. Suspended capacitor lattices harvest a continuous discharge.
+d_pd_ammonia_polar_ion_columns = {
+	icon = d_pd_ammonia_lightning_storms
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_tempestous_mountain
+		d_geothermal_vent
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = 3
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @rare }
+}
+
+# Steep temperature differentials between cloud strata can be exploited
+# by suspended thermocouple grids to produce electrical current.
+d_pd_ammonia_thermocline = {
+	icon = d_pd_ammonia_thermocline
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_frozen_gas_lake
+		d_arid_highlands
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = 1
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @med }
+}
+
+###################
+#### MINING ######
+###################
+
+# Massive seafloor banks of crystallised cryolite — sodium-aluminium-fluoride
+# co-precipitated with ammonia ices over geological time, where liquid ammonia
+# and dissolved silicates have cycled in concert. Concentrated rare-earth and
+# lithium complexes throughout.
+d_pd_ammonia_cryolite_reefs = {
+	icon = d_pd_ammonia_salt_dunes
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 3
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @rare }
+}
+
+# Wind-sculpted dunes of crystallised ammonium salts, pure enough to be
+# extracted directly without fractional distillation.
+d_pd_ammonia_salt_dunes = {
+	icon = d_pd_ammonia_salt_dunes
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_mineral_fields
+		d_volcanic_mineral_fields
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 2
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @high }
+}
+
+# Subsurface caverns where ammonia-rich brine has slowly deposited rich
+# ore concentrations along the rock face.
+d_pd_ammonia_brine_caverns = {
+	icon = d_pd_ammonia_brine_caverns
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_volcanic_ore_caverns
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 1
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @low }
+}
+
+###################
+#### FARMING #####
+###################
+
+# Submerged forests of ammonia-tolerant biomass — towering structural growths
+# that cycle nitrogen, phosphorus, and dissolved organics directly out of the
+# surrounding liquid ammonia. The richest harvest niche on any cryogenic world.
+d_pd_ammonia_ammoniated_kelp_forests = {
+	icon = d_pd_ammonia_chemosynthetic_pools
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_teeming_reef
+		d_black_soil
+		d_tropical_island
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = 3
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @rare }
+}
+
+# Stable pools of liquid ammonia where chemosynthetic microbe colonies
+# bloom in dense mats. Foundational biomass for cryophile agriculture.
+d_pd_ammonia_chemosynthetic_pools = {
+	icon = d_pd_ammonia_chemosynthetic_pools
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_nutritious_mudland
+		d_lichen_fields
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = 2
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @high }
+}
+
+# Persistent low-altitude haze seeded with extremophile organic particulates,
+# harvestable through vast condenser fields.
+d_pd_ammonia_organic_haze = {
+	icon = d_pd_ammonia_organic_haze
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_lichen_fields
+		d_forgiving_tundra
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = 1
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @med }
+}
+
+####################
+#### RARE GAS #####
+####################
+
+# Pure ammonia-nitrogen vents discharging unprocessed exotic gases at
+# industrial concentrations. Drives a small but steady gas economy.
+d_pd_ammonia_pure_gas_vents = {
+	icon = d_pd_ammonia_pure_gas_vents
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_volcanic_fumarole
+		d_fuming_bog
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_miners_exotic_gases_produces_add = 0.5
+	}
+
+	potential = { is_planet_class = pc_pd_ammonia }
+	drop_weight = { weight = @rare }
+}

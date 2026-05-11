@@ -1,0 +1,235 @@
+@base_cost = 300
+
+district_pdexotic_cryo_riftvent = {
+	expansion_planner = yes
+	base_buildtime = 240
+	icon = district_generator
+	overlay_icon = GFX_district_energy
+	is_uncapped = {
+		is_generator_district_uncapped = yes
+	}
+
+	min_for_deposits_on_planet = 3
+	max_for_deposits_on_planet = 15
+
+	zone_slots = {
+		slot_energy
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = pdexotic_cryo
+	}
+
+	potential = {
+		uses_district_set = pdexotic_cryo
+		NOT = { has_modifier = resort_colony }
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_generator
+		district_generator_uncapped
+	}
+
+	resources = {
+		category = planet_districts_generator
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	inline_script = {
+		script = jobs/technicians_add
+		AMOUNT = @base_rural_district_jobs
+	}
+
+	planet_modifier = {
+		planet_housing_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+}
+
+district_pdexotic_cryo_sublimation = {
+	expansion_planner = yes
+	base_buildtime = 240
+	icon = district_mining
+	overlay_icon = GFX_district_minerals
+	is_uncapped = {
+		is_mining_district_uncapped = yes
+	}
+
+	min_for_deposits_on_planet = 2
+	max_for_deposits_on_planet = 12
+
+	zone_slots = {
+		slot_minerals
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = pdexotic_cryo
+	}
+
+	potential = {
+		uses_district_set = pdexotic_cryo
+		NOT = { has_modifier = resort_colony }
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_mining
+		district_mining_uncapped
+	}
+
+	resources = {
+		category = planet_districts_mining
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	inline_script = {
+		script = jobs/miners_add
+		AMOUNT = @base_rural_district_jobs
+	}
+
+	planet_modifier = {
+		planet_housing_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+}
+
+district_pdexotic_cryo_chemovat = {
+	expansion_planner = yes
+	base_buildtime = 240
+	icon = district_farming
+	overlay_icon = GFX_district_food
+	is_uncapped = {
+		is_farming_district_uncapped = yes
+	}
+
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 8
+
+	zone_slots = {
+		slot_food
+	}
+
+	show_on_uncolonized = {
+		uses_district_set = pdexotic_cryo
+	}
+
+	potential = {
+		uses_district_set = pdexotic_cryo
+		NOT = { has_modifier = resort_colony }
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = arcology_project_construction_fail_tt
+			NOT = { has_planet_flag = arcology_project_construction }
+		}
+	}
+
+	conversion_ratio = 1
+	convert_to = {
+		district_farming
+		district_farming_uncapped
+	}
+
+	resources = {
+		category = planet_districts_farming
+		cost = {
+			minerals = @base_cost
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	inline_script = {
+		script = jobs/pdexotic_cryo_chemist_add
+		AMOUNT = @base_rural_district_jobs
+	}
+
+	planet_modifier = {
+		planet_housing_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		modifier = {
+			planet_housing_add = 300
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			planet_housing_add = 100
+		}
+	}
+}

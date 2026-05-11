@@ -1,0 +1,114 @@
+@pdbadhab = -5.0
+
+# Core identity trait assigned to all Cryophile species. Slow cryogenic biochemistry: small exotic gas upkeep, long lifespans, slow pop growth, and reduced leader experience gain.
+trait_cryophile = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_cryophile.dds"
+	species_potential_add = { always = no }
+	species_possible_remove = { always = no }
+	species_possible_merge_add = { always = no }
+	initial = yes
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL }
+	sorting_priority = 200
+	ai_weight = { weight = 0 }
+
+	resources = {
+		category = planet_pops
+		# Mirrors trait_organic. Base food upkeep at the standard organic rate.
+		upkeep = {
+			trigger = {
+				is_phototrophic = no
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_food_normal
+		}
+		upkeep = {
+			trigger = {
+				is_phototrophic = yes
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_phototrophic_normal
+		}
+		upkeep = {
+			trigger = {
+				OR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_limited_cybernetic
+				}
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_food_cyborg_reduction
+		}
+		upkeep = {
+			trigger = {
+				is_being_purged = no
+				is_sapient = yes
+			}
+			exotic_gases = 0.05
+		}
+	}
+
+	custom_tooltip_with_modifiers = TRAIT_CRYOPHILE_EFFECT
+
+	modifier = {
+		leader_lifespan_add = 80
+		species_leader_exp_gain = -0.20
+		logistic_growth_mult = -0.25
+	}
+}
+
+trait_pc_pd_methane_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_pd_methane_preference.dds"
+	species_potential_add = { always = yes }
+	species_possible_merge_add = { always = yes }
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	modifier = {
+		pc_pd_methane_habitability = 0.8
+		pc_pd_ammonia_habitability = 0.2
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			planet = {
+				NOR = {
+					is_planet_class = pc_pd_methane
+					has_climate = cold
+				}
+			}
+		}
+		pop_environment_tolerance = @pdbadhab
+	}
+}
+
+trait_pc_pd_ammonia_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_pd_ammonia_preference.dds"
+	species_potential_add = { always = yes }
+	species_possible_merge_add = { always = yes }
+	advanced_trait = yes
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	sorting_priority = 30
+	ai_weight = { weight = 0 }
+	modifier = {
+		pc_pd_ammonia_habitability = 0.8
+		pc_pd_methane_habitability = 0.2
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			planet = {
+				NOR = {
+					is_planet_class = pc_pd_ammonia
+					has_climate = cold
+				}
+			}
+		}
+		pop_environment_tolerance = @pdbadhab
+	}
+}

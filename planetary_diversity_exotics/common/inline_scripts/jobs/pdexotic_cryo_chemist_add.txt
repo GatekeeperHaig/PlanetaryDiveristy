@@ -1,0 +1,35 @@
+# Adds the appropriate cryo chemist job variant based on country type.
+# Mirrors the vanilla farmers_add pattern but splits gestalt into hive/machine.
+
+# Regular biological empires
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+	}
+	modifier = {
+		job_pdexotic_cryo_chemist_add = $AMOUNT$
+	}
+}
+
+# Hive empires
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	modifier = {
+		job_pdexotic_cryo_chemist_drone_add = $AMOUNT$
+	}
+}
+
+# Machine empires
+triggered_planet_modifier = {
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	modifier = {
+		job_pdexotic_cryo_chemist_machine_add = $AMOUNT$
+	}
+}
