@@ -3,8 +3,16 @@
 district_pdexotic_cryo_riftvent = {
 	expansion_planner = yes
 	base_buildtime = 240
-	icon = district_generator
+	icon = district_pdexotic_cryo_riftvent
 	overlay_icon = GFX_district_energy
+
+	inline_script = {
+		script = districts/district_triggered_name_generator
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_generator
+	}
 	is_uncapped = {
 		is_generator_district_uncapped = yes
 	}
@@ -18,6 +26,9 @@ district_pdexotic_cryo_riftvent = {
 
 	show_on_uncolonized = {
 		uses_district_set = pdexotic_cryo
+		exists = from
+		from = { is_wilderness_empire = no }
+		NOT = { has_modifier = resort_colony }
 	}
 
 	potential = {
@@ -81,8 +92,16 @@ district_pdexotic_cryo_riftvent = {
 district_pdexotic_cryo_sublimation = {
 	expansion_planner = yes
 	base_buildtime = 240
-	icon = district_mining
+	icon = district_pdexotic_cryo_sublimation
 	overlay_icon = GFX_district_minerals
+
+	inline_script = {
+		script = districts/district_triggered_name_mining
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_mining
+	}
 	is_uncapped = {
 		is_mining_district_uncapped = yes
 	}
@@ -96,6 +115,9 @@ district_pdexotic_cryo_sublimation = {
 
 	show_on_uncolonized = {
 		uses_district_set = pdexotic_cryo
+		exists = from
+		from = { is_wilderness_empire = no }
+		NOT = { has_modifier = resort_colony }
 	}
 
 	potential = {
@@ -159,8 +181,16 @@ district_pdexotic_cryo_sublimation = {
 district_pdexotic_cryo_chemovat = {
 	expansion_planner = yes
 	base_buildtime = 240
-	icon = district_farming
+	icon = district_pdexotic_cryo_chemovat
 	overlay_icon = GFX_district_food
+
+	inline_script = {
+		script = districts/district_triggered_name_pdexotic_cryo_chemovat
+	}
+
+	inline_script = {
+		script = districts/district_triggered_flavor_desc_pdexotic_cryo_chemovat
+	}
 	is_uncapped = {
 		is_farming_district_uncapped = yes
 	}
@@ -169,11 +199,14 @@ district_pdexotic_cryo_chemovat = {
 	max_for_deposits_on_planet = 8
 
 	zone_slots = {
-		slot_food
+		slot_pdexotic_cryo_chemovat
 	}
 
 	show_on_uncolonized = {
 		uses_district_set = pdexotic_cryo
+		exists = from
+		from = { is_wilderness_empire = no }
+		NOT = { has_modifier = resort_colony }
 	}
 
 	potential = {

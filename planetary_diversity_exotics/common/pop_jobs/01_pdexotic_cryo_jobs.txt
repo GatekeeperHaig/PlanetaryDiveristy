@@ -1,13 +1,12 @@
 # Planetary Diversity Exotics: Cryo chemist jobs
-# Specialist farmer-class job tied to Chemovat Garden districts on cryogenic worlds.
-# Produces food + exotic gases via cultivated chemosynthetic life.
+# Worker-tier farmer-class job tied to Chemovat Garden districts on cryogenic worlds. Produces food + exotic gases via cultivated chemosynthetic life.
 
 pdexotic_cryo_chemist = {
-	category = specialist
+	category = worker
 
 	swappable_data = {
 		default = {
-			condition_string = SPECIALIST_JOB_TRIGGER
+			condition_string = WORKER_JOB_TRIGGER
 			building_icon = building_chemical_plant
 		}
 	}
@@ -21,22 +20,22 @@ pdexotic_cryo_chemist = {
 		is_sapient = yes
 	}
 
-	possible_precalc = can_fill_specialist_job
-	possible = { complex_specialist_job_check_trigger = yes }
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+	}
 
 	resources = {
 		category = planet_farmers
 		produces = {
 			food = 4
-			exotic_gases = 0.5
-		}
-		upkeep = {
-			consumer_goods = 0.5
+			exotic_gases = 0.3
 		}
 	}
 
 	weight = {
-		weight = @specialist_job_weight
+		weight = @worker_job_weight
 		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist|RESOURCE|food|
 		modifier = {
 			factor = 0.2
@@ -44,20 +43,10 @@ pdexotic_cryo_chemist = {
 			NOT = { has_trait = trait_mechanical }
 		}
 	}
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = specialist
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 }
 
 pdexotic_cryo_chemist_drone = {
-	category = complex_drone
+	category = simple_drone
 
 	swappable_data = {
 		default = {
@@ -78,7 +67,7 @@ pdexotic_cryo_chemist_drone = {
 
 	possible_precalc = can_fill_drone_job
 	possible = {
-		can_think = yes
+		simple_drone_trigger = yes
 		owner = { is_hive_empire = yes }
 	}
 
@@ -86,21 +75,18 @@ pdexotic_cryo_chemist_drone = {
 		category = planet_farmers
 		produces = {
 			food = 4
-			exotic_gases = 0.5
-		}
-		upkeep = {
-			minerals = 1
+			exotic_gases = 0.3
 		}
 	}
 
 	weight = {
-		weight = @complex_drone_job_weight
+		weight = @simple_drone_job_weight
 		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist_drone|RESOURCE|food|
 	}
 }
 
 pdexotic_cryo_chemist_machine = {
-	category = complex_drone
+	category = simple_drone
 
 	swappable_data = {
 		default = {
@@ -121,14 +107,14 @@ pdexotic_cryo_chemist_machine = {
 
 	possible_precalc = can_fill_drone_job
 	possible = {
-		can_think = yes
+		simple_drone_trigger = yes
 		owner = { is_machine_empire = yes }
 	}
 
 	resources = {
 		category = planet_farmers
 		produces = {
-			exotic_gases = 1.5
+			exotic_gases = 1
 		}
 		produces = {
 			trigger = {
@@ -137,13 +123,67 @@ pdexotic_cryo_chemist_machine = {
 			}
 			food = 2
 		}
-		upkeep = {
-			minerals = 1
-		}
 	}
 
 	weight = {
-		weight = @complex_drone_job_weight
+		weight = @simple_drone_job_weight
 		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist_machine|RESOURCE|exotic_gases|
+	}
+}
+
+# Cryophile livestock variant. Mirrors livestock_lithoid / livestock_infernal: phenotype-gated job that returns the species' upkeep resource at a multiplier, plus the usual food yield. Covers the 0.05 gas/pop drain from trait_cryophile with a small margin so cryo-livestock is gas-positive for the captor.
+livestock_cryophile = {
+	category = worker
+	first_come_first_served = no
+	is_capped_by_modifier = no
+
+	swappable_data = {
+		default = {
+			icon = livestock
+			building_icon = building_food_processing_facility
+		}
+	}
+
+	tags = { food strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		is_enslaved = yes
+		is_sapient = yes
+		is_robotic = no
+	}
+
+	possible = {
+		OR = {
+			has_citizenship_type = {
+				type = citizenship_slavery
+				country = owner
+			}
+			has_citizenship_type = {
+				type = citizenship_exploited_drone
+				country = owner
+			}
+		}
+		has_slavery_type = { type = slavery_livestock }
+		has_trait = trait_cryophile
+	}
+
+	resources = {
+		category = planet_livestock_farmers
+		produces = {
+			food = 4
+			exotic_gases = 0.15
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_evolutionary_predators }
+		}
+		custom_tooltip = evolutionary_predators_pops_tt
+	}
+
+	weight = {
+		weight = @special_job_weight
 	}
 }

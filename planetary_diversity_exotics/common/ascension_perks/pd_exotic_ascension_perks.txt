@@ -1,0 +1,71 @@
+# Cryothermal Engineering. Cryophile-only AP; +20% Vatkeeper workforce, +2 districts on all owned cryo planets, unlocks tech_pd_pressure_suits.
+# Workforce bonus and planet modifier are applied via hidden_effect with civ-conditional tooltips to keep the AP card readable.
+
+ap_pd_cryothermal_engineering = {
+	potential = {
+		NOT = { has_ascension_perk = ap_pd_cryothermal_engineering }
+		has_trait = trait_cryophile
+	}
+
+	possible = {
+		has_technology = tech_terrestrial_sculpting
+	}
+
+	on_enabled = {
+		# Workforce tooltip line varies by civ type so only the relevant Vatkeeper variant is shown.
+		if = {
+			limit = { is_machine_empire = yes }
+			custom_tooltip = ap_pd_cryothermal_workforce_machine_effect
+		}
+		else_if = {
+			limit = { is_hive_empire = yes }
+			custom_tooltip = ap_pd_cryothermal_workforce_drone_effect
+		}
+		else = {
+			custom_tooltip = ap_pd_cryothermal_workforce_effect
+		}
+
+		# Summary line replaces per-planet add_modifier spam in the tooltip.
+		custom_tooltip = ap_pd_cryothermal_engineered_planets_effect
+
+		# add_research_option auto-renders the engine's standard "Research option gained:" line.
+		add_research_option = tech_pd_pressure_suits
+
+		hidden_effect = {
+			if = {
+				limit = { is_machine_empire = yes }
+				add_modifier = { modifier = pd_cryothermal_workforce_machine days = -1 }
+			}
+			else_if = {
+				limit = { is_hive_empire = yes }
+				add_modifier = { modifier = pd_cryothermal_workforce_drone days = -1 }
+			}
+			else = {
+				add_modifier = { modifier = pd_cryothermal_workforce days = -1 }
+			}
+			every_owned_planet = {
+				limit = {
+					OR = {
+						is_planet_class = pc_pd_ammonia
+						is_planet_class = pc_pd_methane
+					}
+					NOT = { has_modifier = pd_cryothermal_engineered_planet }
+				}
+				add_modifier = { modifier = pd_cryothermal_engineered_planet days = -1 }
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 50
+		modifier = {
+			factor = 2
+			any_owned_planet = {
+				OR = {
+					is_planet_class = pc_pd_ammonia
+					is_planet_class = pc_pd_methane
+				}
+			}
+		}
+	}
+}

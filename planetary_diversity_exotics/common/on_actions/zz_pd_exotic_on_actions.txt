@@ -1,8 +1,41 @@
-# Hooks pd_exotic.1 into game start so exotic homeworlds get their starting deposits
-# after PD's prescripted setup runs.
+# zz_ prefix runs this after PD's prescripted setup so pd_exotic.1 sees the finished homeworld.
 
 on_game_start_country = {
 	events = {
 		pd_exotic.1
+		pd_exotic.2
 	}
 }
+
+# ap_pd_cryothermal_engineering: apply the +2 districts planet modifier when an AP-empire colonizes a cryo world. pd_exotic.21 and .23 are backstops that re-stamp pd_ammonia_atmosphere / pd_methane_atmosphere on habitats the build-time event missed.
+on_colonized = {
+	events = {
+		pd_exotic.10
+		pd_exotic.21
+		pd_exotic.23
+	}
+}
+
+# Auto-stamp pd_ammonia_atmosphere / pd_methane_atmosphere on habitats built by cryo-preference empires so non-cryo immigration is gated and the habitat renders with the matching atmosphere tint from the moment it exists.
+on_megastructure_built = {
+	events = {
+		pd_exotic.20
+		pd_exotic.22
+	}
+}
+
+# ap_pd_cryothermal_engineering: re-evaluate the modifier when a planet's class changes (terraforming into or out of cryo). pd_exotic.3 keeps the visible pd_ammonia label in sync with the planet class.
+on_planet_class_changed = {
+	events = {
+		pd_exotic.3
+		pd_exotic.11
+	}
+}
+
+# ap_pd_cryothermal_engineering: stamp the modifier on a cryo planet that was just transferred (conquest, trade, etc.) to an AP-empire.
+on_planet_transfer = {
+	events = {
+		pd_exotic.12
+	}
+}
+

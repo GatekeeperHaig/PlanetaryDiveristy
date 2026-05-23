@@ -1,0 +1,99 @@
+# Chemovat district specializations; both zones tag into pdexotic_cryo_chemovat so they only slot into slot_pdexotic_cryo_chemovat.
+# Vatkeeper jobs all share category = planet_farmers, so output tuning here uses planet_farmers_* modifiers (Stellaris does not auto-generate per-job modifier names for custom jobs).
+
+# Zone 1: Chemovat Refinement. Adds a scaling Vatkeeper job per chemovat district; no per-job output changes.
+zone_pdexotic_cryo_chemovat_refinement = {
+	icon = GFX_district_specialization_food
+	base_buildtime = @zone_buildtime
+
+	potential = {
+		uses_district_set = pdexotic_cryo
+	}
+
+	unlock = {
+		hidden_trigger = { uses_district_set = pdexotic_cryo }
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	included_building_sets = {
+		farming
+		hydroponics
+		farming_automation
+		fallen_empire_farming
+	}
+
+	inline_script = {
+		script = jobs/pdexotic_cryo_chemist_add
+		AMOUNT = @scaling_district_1_job
+	}
+
+	zone_sets = {
+		pdexotic_cryo_chemovat
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+	}
+
+	ai_priority = 5
+}
+
+# Zone 2: Hydride Synthesis. Same scaling Vatkeeper job per district as Refinement, but reshapes every Vatkeeper on the planet to produce -2 food / +0.5 exotic gases. Tech-gated on tech_mine_exotic_gases.
+zone_pdexotic_cryo_chemovat_hydride_synthesis = {
+	icon = GFX_district_specialization_exotic_gases
+	base_buildtime = @zone_buildtime
+
+	potential = {
+		uses_district_set = pdexotic_cryo
+	}
+
+	unlock = {
+		hidden_trigger = { uses_district_set = pdexotic_cryo }
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_mine_exotic_gases
+			exists = owner
+			owner = {
+				has_tech_or_functional_civic = {
+					TECH = tech_mine_exotic_gases
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	included_building_sets = {
+		farming
+		hydroponics
+		farming_automation
+		fallen_empire_farming
+	}
+
+	inline_script = {
+		script = jobs/pdexotic_cryo_chemist_add
+		AMOUNT = @scaling_district_1_job
+	}
+
+	zone_sets = {
+		pdexotic_cryo_chemovat
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+		planet_farmers_food_produces_add = -2
+		planet_farmers_exotic_gases_produces_add = 0.5
+	}
+
+	ai_priority = 5
+}

@@ -1,0 +1,4 @@
+# Compat shim for the cross-mod effect that the cryo-arcology decisions call. PD Exotics provides the real implementation in its own scripted_effects file; LIOS sorting (this file's ! prefix sorts before exotics' pd_exotic_compat_effects.txt) means the real impl wins when exotics is loaded. Without exotics this empty stub keeps decision parses clean; cryo decisions are gated by pd_has_ammonia_atmosphere indirection upstream so the effect never actually fires.
+
+pd_add_ammonia_atmosphere_effect = {}
+pd_add_methane_atmosphere_effect = {}

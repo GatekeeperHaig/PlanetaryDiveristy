@@ -1,0 +1,513 @@
+# Replaces vanilla and PD arcology decisions so ammonia and methane worlds become cryo-atmosphere arcologies (zzz_ prefix wins LIOS). Garden / fortress / commercial decisions only appear when PD More Arcologies is loaded; relic-world decisions are untouched (cryo worlds never become relic worlds).
+# Cryo check in the vanilla decision uses pd_has_<class>_atmosphere (modifier indirection); the PD MA decisions check pd_is_<class>_planet (class indirection) since they fire before the change_pc swap. All four triggers are stubbed always = no in this submod and overridden by exotics; cryo decisions therefore never appear unless exotics is loaded.
+
+
+##########################################################################
+# Vanilla: Arcology Project
+##########################################################################
+decision_arcology_project = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			alloys = 10000
+		}
+	}
+
+	potential = {
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		is_artificial = no
+		exists = owner
+		owner = { has_ascension_perk = ap_arcology_project }
+		NOT = { has_designation = col_nanotech_world }
+	}
+
+	allow = {
+		if = {
+			limit = { owner = { is_ai = no } }
+			custom_tooltip = {
+				fail_text = decision_arcology_project_requirements
+				free_district_slots < 1
+				num_districts = { type = district_farming value < 1 }
+				num_districts = { type = district_mining value < 1 }
+				num_districts = { type = district_generator value < 1 }
+				num_districts = { type = district_geothermal value < 1 }
+				num_districts = { type = district_melting value < 1 }
+				num_districts = { type = district_polytechnic value < 1 }
+			}
+			custom_tooltip = {
+				fail_text = legendary_leader_decision_arcology_project
+				NOT = { has_planet_flag = legendary_leader_planet }
+			}
+		}
+		num_uncleared_blockers < 1
+	}
+
+	on_queued = {
+		set_planet_flag = arcology_project_construction
+	}
+
+	on_unqueued = {
+		remove_planet_flag = arcology_project_construction
+	}
+
+	effect = {
+		remove_planet_flag = arcology_project_construction
+		custom_tooltip = decision_arcology_project_effects
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						pd_has_ammonia_atmosphere = yes
+						pd_has_methane_atmosphere = yes
+					}
+				}
+				pd_exotic_cryo_arcology_convert_effect = yes
+			}
+			else = {
+				save_deposits = yes
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				relic_world_conversion_effect = {
+					DISTRICT = district_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				set_planet_entity = {
+					entity = "city_planet_entity"
+					graphical_culture = owner
+				}
+				planet_event = { id = action.68 }
+				owner = {
+					country_event = { id = distar.201 }
+				}
+				planet_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = {
+							flag = resolution_breached_terraformed
+							days = 3600
+						}
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			OR = {
+				pop_amount >= 7000
+				is_capital = yes
+			}
+		}
+	}
+}
+
+##########################################################################
+# PD MA: Garden Arcology
+##########################################################################
+decision_pd_garden_arcology_project = {
+	owned_planets_only = yes
+	icon = decision_pd_garden_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			alloys = 10000
+		}
+	}
+
+	potential = {
+		has_global_flag = planetarydiversitymorearcologies
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		is_artificial = no
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_arcology_project
+			OR = {
+				has_tradition = tr_adaptability_adopt
+				has_tradition = tr_discovery_adopt
+				has_tradition = tr_versatility_adopt
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+		}
+		custom_tooltip = {
+			fail_text = legendary_leader_decision_arcology_project
+			NOT = { has_planet_flag = legendary_leader_planet }
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		custom_tooltip = decision_garden_arcology_project_effects
+		add_modifier = {
+			modifier = pd_garden_arcology
+			days = -1
+		}
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						pd_is_ammonia_planet = yes
+						pd_is_methane_planet = yes
+					}
+				}
+				pd_exotic_cryo_arcology_convert_effect = yes
+			}
+			else = {
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				validate_planet_buildings_and_districts = yes
+				relic_world_conversion_effect = {
+					DISTRICT = district_pd_garden_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				generate_pd_arcology_portrait_effect = yes
+				planet_event = { id = action.68 }
+				owner = {
+					country_event = { id = distar.201 }
+				}
+				planet_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = {
+							flag = resolution_breached_terraformed
+							days = 3600
+						}
+					}
+				}
+				validate_planet_buildings_and_districts = yes
+			}
+		}
+		while = {
+			count = 1
+			add_district = district_pd_garden_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_garden_arcology_urban_1
+			zone = zone_pd_preserve
+			zone_slot = 0
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 100
+			exists = owner
+			OR = {
+				pop_amount >= 70
+				is_capital = yes
+			}
+		}
+	}
+}
+
+##########################################################################
+# PD MA: Fortress Arcology
+##########################################################################
+decision_pd_fortress_arcology_project = {
+	owned_planets_only = yes
+	icon = decision_pd_fortress_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			alloys = 10000
+		}
+	}
+
+	potential = {
+		has_global_flag = planetarydiversitymorearcologies
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		is_artificial = no
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_arcology_project
+			OR = {
+				has_tradition = tr_supremacy_adopt
+				has_tradition = tr_unyielding_adopt
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+		}
+		custom_tooltip = {
+			fail_text = legendary_leader_decision_arcology_project
+			NOT = { has_planet_flag = legendary_leader_planet }
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		custom_tooltip = decision_miltary_arcology_project_effects
+		add_modifier = {
+			modifier = pd_fortress_arcology
+			days = -1
+		}
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						pd_is_ammonia_planet = yes
+						pd_is_methane_planet = yes
+					}
+				}
+				pd_exotic_cryo_arcology_convert_effect = yes
+			}
+			else = {
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				validate_planet_buildings_and_districts = yes
+				relic_world_conversion_effect = {
+					DISTRICT = district_pd_fortress_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				generate_pd_arcology_portrait_effect = yes
+				planet_event = { id = action.68 }
+				owner = {
+					country_event = { id = distar.201 }
+				}
+				planet_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = {
+							flag = resolution_breached_terraformed
+							days = 3600
+						}
+					}
+				}
+			}
+		}
+		while = {
+			count = 1
+			add_district = district_pd_fortress_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_fortress_arcology_urban_1
+			zone = zone_pd_command_nexus
+			zone_slot = 0
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+##########################################################################
+# PD MA: Commercial Arcology
+##########################################################################
+decision_pd_commercial_arcology_project = {
+	owned_planets_only = yes
+	icon = decision_pd_commercial_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			influence = 200
+			alloys = 10000
+		}
+	}
+
+	potential = {
+		has_global_flag = planetarydiversitymorearcologies
+		NOR = {
+			is_planet_class = pc_city
+			is_planet_class = pc_relic
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		is_artificial = no
+		exists = owner
+		owner = {
+			has_ascension_perk = ap_arcology_project
+			OR = {
+				has_tradition = tr_prosperity_adopt
+				has_tradition = tr_mercantile_adopt
+			}
+			NOT = { is_machine_empire = yes }
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_arcology_project_requirements
+			free_district_slots < 1
+			num_districts = { type = district_farming value < 1 }
+			num_districts = { type = district_mining value < 1 }
+			num_districts = { type = district_generator value < 1 }
+		}
+		custom_tooltip = {
+			fail_text = legendary_leader_decision_arcology_project
+			NOT = { has_planet_flag = legendary_leader_planet }
+		}
+		num_uncleared_blockers < 1
+	}
+
+	effect = {
+		custom_tooltip = decision_commercial_arcology_project_effects
+		add_modifier = {
+			modifier = pd_commercial_arcology
+			days = -1
+		}
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						pd_is_ammonia_planet = yes
+						pd_is_methane_planet = yes
+					}
+				}
+				pd_exotic_cryo_arcology_convert_effect = yes
+			}
+			else = {
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				validate_planet_buildings_and_districts = yes
+				relic_world_conversion_effect = {
+					DISTRICT = district_pd_commercial_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				generate_pd_arcology_portrait_effect = yes
+				planet_event = { id = action.68 }
+				owner = {
+					country_event = { id = distar.201 }
+				}
+				planet_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = {
+							flag = resolution_breached_terraformed
+							days = 3600
+						}
+					}
+				}
+			}
+		}
+		while = {
+			count = 1
+			add_district = district_pd_commercial_arcology_urban_1
+		}
+		add_zone = {
+			district = district_pd_commercial_arcology_urban_1
+			zone = zone_pd_trade_market
+			zone_slot = 0
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}

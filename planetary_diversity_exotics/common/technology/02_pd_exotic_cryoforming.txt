@@ -1,0 +1,67 @@
+# Cryoforming. Rare society tech that unlocks ingress terraforming into ammonia and methane worlds.
+# Cryophile-founder only; normal research pool, weight-favored when cryo worlds are in border range.
+
+tech_pd_cryoforming = {
+	cost = @tier4cost1
+	area = society
+	tier = 4
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = {
+		"tech_terrestrial_sculpting"
+	}
+	weight = @tier4weight1
+
+	potential = {
+		has_trait = trait_cryophile
+	}
+
+	prereqfor_desc = {
+		custom = {
+			title = "tech_pd_cryoforming_effect_title"
+			desc = "tech_pd_cryoforming_effect_desc"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			always = yes
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+	}
+	weight_modifier = {
+		modifier = {
+			factor = 3
+			any_system_within_border = {
+				any_system_planet = {
+					OR = {
+						is_planet_class = pc_pd_ammonia
+						is_planet_class = pc_pd_methane
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		factor = 2
+		modifier = {
+			factor = 5
+			any_system_within_border = {
+				any_system_planet = {
+					OR = {
+						is_planet_class = pc_pd_ammonia
+						is_planet_class = pc_pd_methane
+					}
+				}
+			}
+		}
+	}
+}

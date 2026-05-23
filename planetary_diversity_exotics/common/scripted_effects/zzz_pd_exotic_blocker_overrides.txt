@@ -1,0 +1,502 @@
+# Overrides vanilla blocker-seeding effects so cryogenic worlds (pc_pd_ammonia / pc_pd_methane) take the cold branch.
+# Vanilla only checks is_dry/is_wet/is_cold, so Planetscapers and other homeworld blocker seeding silently no-op on cryogenic without this fix.
+
+add_random_natural_blocker_and_give_tech = {
+	if = {
+		limit = {
+			is_dry = yes
+		}
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_deep_sinkhole
+					}
+				}
+				add_blocker = {
+					type = d_deep_sinkhole
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_deep_sinkhole
+							}
+						}
+						give_technology = {
+							tech = tech_deep_sinkhole
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_quicksand_basin
+					}
+				}
+				add_blocker = {
+					type = d_quicksand_basin
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_quicksand_basin
+							}
+						}
+						give_technology = {
+							tech = tech_quicksand_basin
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_volcano
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_active_volcano
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_volcano
+							}
+						}
+						give_technology = {
+							tech = tech_volcano
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_mountain_range
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_mountain_range
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_mountain_range
+							}
+						}
+						give_technology = {
+							tech = tech_mountain_range
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_dangerous_wildlife
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_dangerous_wildlife_blocker
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_dangerous_wildlife
+							}
+						}
+						give_technology = {
+							tech = tech_dangerous_wildlife
+							message = no
+						}
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			is_wet = yes
+		}
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_dense_jungle
+					}
+				}
+				add_blocker = {
+					type = d_dense_jungle
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_dense_jungle
+							}
+						}
+						give_technology = {
+							tech = tech_dense_jungle
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_toxic_kelp
+					}
+				}
+				add_blocker = {
+					type = d_toxic_kelp
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_toxic_kelp
+							}
+						}
+						give_technology = {
+							tech = tech_toxic_kelp
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_volcano
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_active_volcano
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_volcano
+							}
+						}
+						give_technology = {
+							tech = tech_volcano
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_mountain_range
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_mountain_range
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_mountain_range
+							}
+						}
+						give_technology = {
+							tech = tech_mountain_range
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_dangerous_wildlife
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_dangerous_wildlife_blocker
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_dangerous_wildlife
+							}
+						}
+						give_technology = {
+							tech = tech_dangerous_wildlife
+							message = no
+						}
+					}
+				}
+			}
+		}
+	}
+	# PD Exotics: cryogenic worlds folded into the cold branch (massive glacier, active volcano, etc. read fine on ammonia/methane homeworlds).
+	else_if = {
+		limit = {
+			OR = {
+				is_cold = yes
+				has_climate = cryogenic
+			}
+		}
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_noxious_swamp
+					}
+				}
+				add_blocker = {
+					type = d_noxious_swamp
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_noxious_swamp
+							}
+						}
+						give_technology = {
+							tech = tech_noxious_swamp
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_massive_glacier
+					}
+				}
+				add_blocker = {
+					type = d_massive_glacier
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_massive_glacier
+							}
+						}
+						give_technology = {
+							tech = tech_massive_glacier
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_volcano
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_active_volcano
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_volcano
+							}
+						}
+						give_technology = {
+							tech = tech_volcano
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_mountain_range
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_mountain_range
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_mountain_range
+							}
+						}
+						give_technology = {
+							tech = tech_mountain_range
+							message = no
+						}
+					}
+				}
+			}
+			10 = {
+				modifier = {
+					factor = 0.1
+					owner = {
+						has_technology = tech_dangerous_wildlife
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_origin = origin_arc_welders
+					}
+				}
+				add_blocker = {
+					type = d_dangerous_wildlife_blocker
+					blocked_deposit = none
+				}
+				owner = {
+					if = {
+						limit = {
+							NOT = {
+								has_technology = tech_dangerous_wildlife
+							}
+						}
+						give_technology = {
+							tech = tech_dangerous_wildlife
+							message = no
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Wilderness/initial-setup blocker seeding without tech grant. Same cryogenic fold-in.
+add_random_natural_blocker = {
+	if = {
+		limit = {
+			is_dry = yes
+		}
+		random_list = {
+			1 = { add_deposit = d_deep_sinkhole }
+			1 = { add_deposit = d_quicksand_basin }
+			1 = { add_deposit = d_active_volcano }
+			1 = { add_deposit = d_mountain_range }
+			1 = { add_deposit = d_dangerous_wildlife_blocker }
+		}
+	}
+	else_if = {
+		limit = {
+			is_wet = yes
+		}
+		random_list = {
+			1 = { add_deposit = d_dense_jungle }
+			1 = { add_deposit = d_toxic_kelp }
+			1 = { add_deposit = d_active_volcano }
+			1 = { add_deposit = d_mountain_range }
+			1 = { add_deposit = d_dangerous_wildlife_blocker }
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				is_cold = yes
+				has_climate = cryogenic
+			}
+		}
+		random_list = {
+			1 = { add_deposit = d_noxious_swamp }
+			1 = { add_deposit = d_massive_glacier }
+			1 = { add_deposit = d_active_volcano }
+			1 = { add_deposit = d_mountain_range }
+			1 = { add_deposit = d_dangerous_wildlife_blocker }
+		}
+	}
+}

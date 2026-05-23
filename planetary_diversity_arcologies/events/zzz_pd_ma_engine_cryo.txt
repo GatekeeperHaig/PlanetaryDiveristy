@@ -1,0 +1,129 @@
+### Overrides PD MA's pdmaengine.40 (capital authority swap) so the new capital deposit's portrait effect routes through our cryo effect when the planet has pd_ammonia_atmosphere or pd_methane_atmosphere. Non-cryo planets fall through to the original PD MA portrait effects.
+
+namespace = pdmaengine
+
+# THIS = country
+country_event = {
+	id = pdmaengine.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_owned_planet = {
+			is_capital = yes
+			has_pd_capital_deposit = yes
+		}
+	}
+
+	immediate = {
+		capital_scope = {
+			remove_pd_capital_deposit_effect = yes
+			if = {
+				limit = {
+					from = {
+						OR = {
+							is_democratic_authority = yes
+							is_oligarchic_authority = yes
+						}
+					}
+				}
+				add_deposit = d_pd_senate_building
+				if = {
+					limit = {
+						OR = {
+							pd_has_ammonia_atmosphere = yes
+							pd_has_methane_atmosphere = yes
+						}
+					}
+					generate_pd_cryo_arcology_portrait_effect = yes
+				}
+				else = {
+					generate_pd_arcology_portrait_effect = yes
+				}
+			}
+			if = {
+				limit = {
+					from = {
+						OR = {
+							is_imperial_authority = yes
+							is_dictatorial_authority = yes
+						}
+					}
+				}
+				add_deposit = d_pd_palace_building
+				if = {
+					limit = {
+						OR = {
+							pd_has_ammonia_atmosphere = yes
+							pd_has_methane_atmosphere = yes
+						}
+					}
+					generate_pd_cryo_arcology_portrait_effect = yes
+				}
+				else = {
+					generate_pd_arcology_portrait_effect = yes
+				}
+			}
+			if = {
+				limit = {
+					from = {
+						is_megacorp = yes
+					}
+				}
+				add_deposit = d_pd_headquarters_building
+				if = {
+					limit = {
+						OR = {
+							pd_has_ammonia_atmosphere = yes
+							pd_has_methane_atmosphere = yes
+						}
+					}
+					generate_pd_cryo_arcology_portrait_effect = yes
+				}
+				else = {
+					generate_pd_arcology_portrait_effect = yes
+				}
+			}
+			if = {
+				limit = {
+					from = {
+						is_hive_empire = yes
+					}
+				}
+				add_deposit = d_pd_confluence_spire_building
+				if = {
+					limit = {
+						OR = {
+							pd_has_ammonia_atmosphere = yes
+							pd_has_methane_atmosphere = yes
+						}
+					}
+					generate_pd_cryo_arcology_portrait_effect = yes
+				}
+				else = {
+					generate_pd_arcology_portrait_effect = yes
+				}
+			}
+			if = {
+				limit = {
+					from = {
+						is_machine_empire = yes
+					}
+				}
+				add_deposit = d_pd_machine_centralized_processing
+				if = {
+					limit = {
+						OR = {
+							pd_has_ammonia_atmosphere = yes
+							pd_has_methane_atmosphere = yes
+						}
+					}
+					generate_pd_cryo_arcology_portrait_effect = yes
+				}
+				else = {
+					generate_pd_machine_arc_portrait_effect = yes
+				}
+			}
+		}
+	}
+}

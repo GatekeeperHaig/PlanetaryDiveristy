@@ -1,0 +1,6 @@
+# Compat shims for cross-mod triggers that the cryo-arcology decisions/effects call. PD Exotics provides the real implementations in its own scripted_triggers file; LIOS sorting (this file's ! prefix sorts before exotics' pd_exotic_compat_triggers.txt) means the real impls win when exotics is loaded. When exotics is absent these always-no stubs let arcology decisions parse cleanly; the cryo-arc decisions also gate on has_global_flag = planetarydiversityexotics so they never fire.
+
+pd_is_ammonia_planet      = { always = no }
+pd_has_ammonia_atmosphere = { always = no }
+pd_is_methane_planet      = { always = no }
+pd_has_methane_atmosphere = { always = no }

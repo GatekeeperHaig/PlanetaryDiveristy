@@ -1,0 +1,447 @@
+# Converts an ammonia world to a pc_city arcology with the same mechanical outcome as the equivalent non-ammonia arcology decision: cryo urban districts roll over to district_arcology_housing on the planet-class swap, then get re-swapped to the garden / fortress / commercial housing district when that PD MA flavor modifier is present, then halved.
+# Each flavor still uses its full PD MA modifier set and starter district / zone; the only cryo-specific touches are the ammonia-themed sky + planet entity selected by the portrait effect and the pd_ammonia_atmosphere modifier in the tooltip.
+pd_exotic_cryo_arcology_convert_effect = {
+	save_deposits = yes
+	clear_deposits = yes
+	restore_saved_deposits = yes
+	change_pc = pc_city
+	validate_planet_buildings_and_districts = yes
+	if = {
+		limit = { has_modifier = pd_garden_arcology }
+		swap_districts_effect = {
+			DISTRICT1 = district_arcology_housing
+			DISTRICT2 = district_pd_garden_arcology_housing
+		}
+		relic_world_conversion_effect = {
+			DISTRICT = district_pd_garden_arcology_housing
+			VARIABLE = num_housing_districts
+		}
+	}
+	else_if = {
+		limit = { has_modifier = pd_fortress_arcology }
+		swap_districts_effect = {
+			DISTRICT1 = district_arcology_housing
+			DISTRICT2 = district_pd_fortress_arcology_housing
+		}
+		relic_world_conversion_effect = {
+			DISTRICT = district_pd_fortress_arcology_housing
+			VARIABLE = num_housing_districts
+		}
+	}
+	else_if = {
+		limit = { has_modifier = pd_commercial_arcology }
+		swap_districts_effect = {
+			DISTRICT1 = district_arcology_housing
+			DISTRICT2 = district_pd_commercial_arcology_housing
+		}
+		relic_world_conversion_effect = {
+			DISTRICT = district_pd_commercial_arcology_housing
+			VARIABLE = num_housing_districts
+		}
+	}
+	else = {
+		relic_world_conversion_effect = {
+			DISTRICT = district_arcology_housing
+			VARIABLE = num_housing_districts
+		}
+	}
+	generate_pd_cryo_arcology_portrait_effect = yes
+	if = {
+		limit = {
+			OR = {
+				is_active_resolution = "resolution_ecology_environmental_control_board"
+				is_active_resolution = "resolution_ecology_paradise_initiative"
+			}
+		}
+		owner = {
+			set_timed_country_flag = {
+				flag = resolution_breached_terraformed
+				days = 3600
+			}
+		}
+	}
+	validate_planet_buildings_and_districts = yes
+}
+
+# Overrides PD MA's remove_pd_capital_deposit_effect so demolishing a capital on an ammonia arcology returns to our cryo entity / sky instead of the standard PD MA city portrait. Non-ammonia planets fall through to the original PD MA portrait effects.
+remove_pd_capital_deposit_effect = {
+	if = {
+		limit = {
+			has_deposit = d_pd_senate_building
+		}
+		remove_deposit = d_pd_senate_building
+		if = {
+			limit = {
+				OR = {
+					pd_has_ammonia_atmosphere = yes
+					pd_has_methane_atmosphere = yes
+				}
+			}
+			generate_pd_cryo_arcology_portrait_effect = yes
+		}
+		else = {
+			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_palace_building
+		}
+		remove_deposit = d_pd_palace_building
+		if = {
+			limit = {
+				OR = {
+					pd_has_ammonia_atmosphere = yes
+					pd_has_methane_atmosphere = yes
+				}
+			}
+			generate_pd_cryo_arcology_portrait_effect = yes
+		}
+		else = {
+			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_headquarters_building
+		}
+		remove_deposit = d_pd_headquarters_building
+		if = {
+			limit = {
+				OR = {
+					pd_has_ammonia_atmosphere = yes
+					pd_has_methane_atmosphere = yes
+				}
+			}
+			generate_pd_cryo_arcology_portrait_effect = yes
+		}
+		else = {
+			generate_pd_arcology_portrait_effect = yes
+		}
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_confluence_spire_building
+		}
+		remove_deposit = d_pd_confluence_spire_building
+		if = {
+			limit = {
+				OR = {
+					pd_has_ammonia_atmosphere = yes
+					pd_has_methane_atmosphere = yes
+				}
+			}
+			generate_pd_cryo_arcology_portrait_effect = yes
+		}
+		else = {
+			generate_pd_hive_arc_portrait_effect = yes
+		}
+	}
+	if = {
+		limit = {
+			has_deposit = d_pd_machine_centralized_processing
+		}
+		remove_deposit = d_pd_machine_centralized_processing
+		if = {
+			limit = {
+				OR = {
+					pd_has_ammonia_atmosphere = yes
+					pd_has_methane_atmosphere = yes
+				}
+			}
+			generate_pd_cryo_arcology_portrait_effect = yes
+		}
+		else = {
+			generate_pd_machine_arc_portrait_effect = yes
+		}
+	}
+}
+
+# Sets the post-conversion planet visuals for a cryo arcology (ammonia or methane). Each PD MA flavor (none / garden / fortress / commercial) gets its own planet entity and base sky per atmosphere, with a further sky override per ruler / corporate / hive / machine capital deposit so every atmosphere x flavor x capital combination looks distinct from orbit.
+# A planet with no PD MA flavor modifier gets the plain cryo arcology visuals for its atmosphere; the latest set_planet_entity wins, so a capital-deposit sky override beats the plain flavor sky.
+generate_pd_cryo_arcology_portrait_effect = {
+	if = {
+		limit = {
+			pd_has_ammonia_atmosphere = yes
+			NOR = {
+				has_modifier = pd_garden_arcology
+				has_modifier = pd_fortress_arcology
+				has_modifier = pd_commercial_arcology
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_ammonia_city
+			entity = "pd_ammonia_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_senate
+				entity = "pd_ammonia_palace_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_palace
+				entity = "pd_ammonia_palace_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_headquarters
+				entity = "pd_ammonia_palace_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_ammonia_atmosphere = yes
+			has_modifier = pd_garden_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_ammonia_garden_city
+			entity = "pd_ammonia_garden_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_garden_senate
+				entity = "pd_ammonia_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_garden_palace
+				entity = "pd_ammonia_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_garden_headquarters
+				entity = "pd_ammonia_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_machine_centralized_processing }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_garden_machine_capital
+				entity = "pd_ammonia_garden_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_ammonia_atmosphere = yes
+			has_modifier = pd_fortress_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_ammonia_fortress_city
+			entity = "pd_ammonia_fortress_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_fortress_senate
+				entity = "pd_ammonia_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_fortress_palace
+				entity = "pd_ammonia_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_fortress_headquarters
+				entity = "pd_ammonia_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_machine_centralized_processing }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_fortress_machine_capital
+				entity = "pd_ammonia_fortress_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_ammonia_atmosphere = yes
+			has_modifier = pd_commercial_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_ammonia_commercial_city
+			entity = "pd_ammonia_commercial_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_commercial_senate
+				entity = "pd_ammonia_commercial_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_commercial_palace
+				entity = "pd_ammonia_commercial_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_ammonia_commercial_headquarters
+				entity = "pd_ammonia_commercial_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_methane_atmosphere = yes
+			NOR = {
+				has_modifier = pd_garden_arcology
+				has_modifier = pd_fortress_arcology
+				has_modifier = pd_commercial_arcology
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_methane_city
+			entity = "pd_methane_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_senate
+				entity = "pd_methane_palace_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_palace
+				entity = "pd_methane_palace_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_headquarters
+				entity = "pd_methane_palace_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_methane_atmosphere = yes
+			has_modifier = pd_garden_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_methane_garden_city
+			entity = "pd_methane_garden_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_garden_senate
+				entity = "pd_methane_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_garden_palace
+				entity = "pd_methane_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_garden_headquarters
+				entity = "pd_methane_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_machine_centralized_processing }
+			set_planet_entity = {
+				picture = pc_pd_methane_garden_machine_capital
+				entity = "pd_methane_garden_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_methane_atmosphere = yes
+			has_modifier = pd_fortress_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_methane_fortress_city
+			entity = "pd_methane_fortress_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_fortress_senate
+				entity = "pd_methane_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_fortress_palace
+				entity = "pd_methane_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_fortress_headquarters
+				entity = "pd_methane_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_machine_centralized_processing }
+			set_planet_entity = {
+				picture = pc_pd_methane_fortress_machine_capital
+				entity = "pd_methane_fortress_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_methane_atmosphere = yes
+			has_modifier = pd_commercial_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_methane_commercial_city
+			entity = "pd_methane_commercial_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_commercial_senate
+				entity = "pd_methane_commercial_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_commercial_palace
+				entity = "pd_methane_commercial_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_methane_commercial_headquarters
+				entity = "pd_methane_commercial_city_planet_01_entity"
+			}
+		}
+	}
+}

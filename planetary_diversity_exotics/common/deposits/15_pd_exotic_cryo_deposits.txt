@@ -3,12 +3,19 @@
 @low = 4
 @rare = 0.5
 
+# SR drop weights (parity with vanilla @deposit_chance_high_rare / _med_rare).
+@sr_small = 2
+@sr_large = 0.5
+@special = 1
+
+# Blocker drop weights (parity with vanilla @blocker_high / @blocker_low).
+@blocker_high = 10
+@blocker_low = 5
+
 ###################
 #### ENERGY ######
 ###################
 
-# Massive cell fronts in the upper atmosphere conduct continuous storm
-# discharge that can be tapped through tethered collector arrays.
 d_pd_ammonia_lightning_storms = {
 	icon = d_pd_ammonia_lightning_storms
 	is_for_colonizable = yes
@@ -27,12 +34,9 @@ d_pd_ammonia_lightning_storms = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @high }
+	drop_weight = { weight = @med }
 }
 
-# Where the planetary magnetic field bends through ammonia-rich polar
-# atmosphere, columns of cascading ionisation rise hundreds of kilometres
-# skyward. Suspended capacitor lattices harvest a continuous discharge.
 d_pd_ammonia_polar_ion_columns = {
 	icon = d_pd_ammonia_lightning_storms
 	is_for_colonizable = yes
@@ -51,11 +55,9 @@ d_pd_ammonia_polar_ion_columns = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @rare }
+	drop_weight = { weight = @low }
 }
 
-# Steep temperature differentials between cloud strata can be exploited
-# by suspended thermocouple grids to produce electrical current.
 d_pd_ammonia_thermocline = {
 	icon = d_pd_ammonia_thermocline
 	is_for_colonizable = yes
@@ -74,19 +76,15 @@ d_pd_ammonia_thermocline = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @med }
+	drop_weight = { weight = @high }
 }
 
 ###################
 #### MINING ######
 ###################
 
-# Massive seafloor banks of crystallised cryolite — sodium-aluminium-fluoride
-# co-precipitated with ammonia ices over geological time, where liquid ammonia
-# and dissolved silicates have cycled in concert. Concentrated rare-earth and
-# lithium complexes throughout.
 d_pd_ammonia_cryolite_reefs = {
-	icon = d_pd_ammonia_salt_dunes
+	icon = d_pd_ammonia_cryolite_reefs
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_minerals
@@ -103,11 +101,9 @@ d_pd_ammonia_cryolite_reefs = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @rare }
+	drop_weight = { weight = @low }
 }
 
-# Wind-sculpted dunes of crystallised ammonium salts, pure enough to be
-# extracted directly without fractional distillation.
 d_pd_ammonia_salt_dunes = {
 	icon = d_pd_ammonia_salt_dunes
 	is_for_colonizable = yes
@@ -126,11 +122,9 @@ d_pd_ammonia_salt_dunes = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @high }
+	drop_weight = { weight = @med }
 }
 
-# Subsurface caverns where ammonia-rich brine has slowly deposited rich
-# ore concentrations along the rock face.
 d_pd_ammonia_brine_caverns = {
 	icon = d_pd_ammonia_brine_caverns
 	is_for_colonizable = yes
@@ -149,18 +143,15 @@ d_pd_ammonia_brine_caverns = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @low }
+	drop_weight = { weight = @high }
 }
 
 ###################
 #### FARMING #####
 ###################
 
-# Submerged forests of ammonia-tolerant biomass — towering structural growths
-# that cycle nitrogen, phosphorus, and dissolved organics directly out of the
-# surrounding liquid ammonia. The richest harvest niche on any cryogenic world.
 d_pd_ammonia_ammoniated_kelp_forests = {
-	icon = d_pd_ammonia_chemosynthetic_pools
+	icon = d_pd_ammonia_ammoniated_kelp_forests
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_food
@@ -178,11 +169,9 @@ d_pd_ammonia_ammoniated_kelp_forests = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @rare }
+	drop_weight = { weight = @low }
 }
 
-# Stable pools of liquid ammonia where chemosynthetic microbe colonies
-# bloom in dense mats. Foundational biomass for cryophile agriculture.
 d_pd_ammonia_chemosynthetic_pools = {
 	icon = d_pd_ammonia_chemosynthetic_pools
 	is_for_colonizable = yes
@@ -201,11 +190,9 @@ d_pd_ammonia_chemosynthetic_pools = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @high }
+	drop_weight = { weight = @med }
 }
 
-# Persistent low-altitude haze seeded with extremophile organic particulates,
-# harvestable through vast condenser fields.
 d_pd_ammonia_organic_haze = {
 	icon = d_pd_ammonia_organic_haze
 	is_for_colonizable = yes
@@ -224,15 +211,13 @@ d_pd_ammonia_organic_haze = {
 	}
 
 	potential = { is_planet_class = pc_pd_ammonia }
-	drop_weight = { weight = @med }
+	drop_weight = { weight = @high }
 }
 
 ####################
 #### RARE GAS #####
 ####################
 
-# Pure ammonia-nitrogen vents discharging unprocessed exotic gases at
-# industrial concentrations. Drives a small but steady gas economy.
 d_pd_ammonia_pure_gas_vents = {
 	icon = d_pd_ammonia_pure_gas_vents
 	is_for_colonizable = yes
@@ -259,4 +244,592 @@ d_pd_ammonia_pure_gas_vents = {
 
 	potential = { is_planet_class = pc_pd_ammonia }
 	drop_weight = { weight = @rare }
+}
+
+##############################################################
+##### METHANE WORLD DEPOSITS (pc_pd_methane only) ###########
+##############################################################
+# Hydrocarbon-coded analogs of the ammonia 9+1 set. Mirrors ammonia drop-weight tiers (+1 = @high, +2 = @med, +3 = @low). Supercooled Geysers reuses the Cryovolcanic Vents icon (parity with ammonia's Polar Ion Columns reusing Lightning Storms).
+
+###################
+#### ENERGY ######
+###################
+
+d_pd_methane_tholin_storm_belts = {
+	icon = d_pd_methane_tholin_storm_belts
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_frozen_gas_lake
+		d_arid_highlands
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = 1
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @high }
+}
+
+d_pd_methane_cryovolcanic_vents = {
+	icon = d_pd_methane_cryovolcanic_vents
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_frozen_gas_lake
+		d_hot_springs
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = 2
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @med }
+}
+
+d_pd_methane_supercooled_geysers = {
+	icon = d_pd_methane_cryovolcanic_vents
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_energy
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_tempestous_mountain
+		d_geothermal_vent
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = 3
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @low }
+}
+
+###################
+#### MINING ######
+###################
+
+d_pd_methane_carbonate_caverns = {
+	icon = d_pd_methane_carbonate_caverns
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_ore_rich_caverns
+		d_volcanic_ore_caverns
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 1
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @high }
+}
+
+d_pd_methane_clathrate_shelves = {
+	icon = d_pd_methane_clathrate_shelves
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_mineral_fields
+		d_volcanic_mineral_fields
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 2
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @med }
+}
+
+d_pd_methane_ice_diamonds = {
+	icon = d_pd_methane_ice_diamonds
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_minerals
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_rich_mountain
+		d_submerged_ore_veins
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 3
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @low }
+}
+
+###################
+#### FARMING #####
+###################
+
+d_pd_methane_tholin_haze = {
+	icon = d_pd_methane_tholin_haze
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_lichen_fields
+		d_forgiving_tundra
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = 1
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @high }
+}
+
+d_pd_methane_liquid_methane_seas = {
+	icon = d_pd_methane_liquid_methane_seas
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_nutritious_mudland
+		d_lichen_fields
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = 2
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @med }
+}
+
+d_pd_methane_hydrocarbon_marshes = {
+	icon = d_pd_methane_hydrocarbon_marshes
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_food
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_teeming_reef
+		d_black_soil
+		d_tropical_island
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = 3
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @low }
+}
+
+####################
+#### RARE GAS #####
+####################
+
+d_pd_methane_pure_gas_vents = {
+	icon = d_pd_methane_pure_gas_vents
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+	category = deposit_cat_rare
+
+	use_weights_for_terraforming_swap_types = yes
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_volcanic_fumarole
+		d_fuming_bog
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_miners_exotic_gases_produces_add = 0.5
+	}
+
+	potential = { is_planet_class = pc_pd_methane }
+	drop_weight = { weight = @rare }
+}
+
+####################################################################
+##### CRYOGENIC SR DEPOSITS (whole cryogenic climate group) ########
+####################################################################
+# Cryo analogs of vanilla d_dust_caverns / d_crystalline_caverns / d_bubbling_swamp family.
+# Gate on is_pd_cryo_world so they spawn on both ammonia and methane worlds.
+# Each boosts the matching cryo rural district (riftvent / sublimation / chemovat).
+
+### Volatile Motes (riftvent / energy)
+
+d_pd_cryo_clathrate_pockets = {
+	icon = d_dust_caverns
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_dust_caverns
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_volatile_motes }
+		}
+		planet_technician_volatile_motes_produces_add = @SR_SMALL
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @sr_small }
+}
+
+d_pd_cryo_volatile_geyser_fields = {
+	icon = d_dust_desert
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_dust_desert
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_volatile_motes }
+		}
+		planet_technician_volatile_motes_produces_add = @SR_LARGE
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_riftvent_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @sr_large }
+}
+
+### Rare Crystals (sublimation / mining)
+
+d_pd_cryo_cryocrystal_caverns = {
+	icon = d_crystalline_caverns
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_crystalline_caverns
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_rare_crystals }
+		}
+		planet_miners_rare_crystals_produces_add = @SR_SMALL
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @sr_small }
+}
+
+d_pd_cryo_cryocrystal_spires = {
+	icon = d_crystal_forest
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_crystal_forest
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_rare_crystals }
+		}
+		planet_miners_rare_crystals_produces_add = @SR_LARGE
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @sr_large }
+}
+
+### Exotic Gases (chemovat / cryo-unique farming)
+# Cryo equivalent of d_bubbling_swamp / d_fuming_bog. Boosts chemovat instead of farming
+# because cryo's gas-bearing crop is the vatkeeper Vatkeeper job, category = planet_farmers.
+
+d_pd_cryo_gas_seeps = {
+	icon = d_bubbling_swamp
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_bubbling_swamp
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_farmers_exotic_gases_produces_add = @SR_SMALL
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @sr_small }
+}
+
+d_pd_cryo_gas_columns = {
+	icon = d_fuming_bog
+	is_for_colonizable = yes
+	category = deposit_cat_rare_resource
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_fuming_bog
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_mine_exotic_gases }
+		}
+		planet_farmers_exotic_gases_produces_add = @SR_LARGE
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_chemovat_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @sr_large }
+}
+
+### Special SR analogs
+
+# Cryo Betharian. +4 sublimation district instead of +4 mining; betharian zone unlock dropped
+# because cryo's district set uses its own zone slots and zone_betharian doesn't fit chemovat/riftvent/sublimation yet.
+d_pd_cryo_betharian_deposit = {
+	icon = d_betharian_deposit
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_betharian_deposit
+	}
+
+	planet_modifier = {
+		district_pdexotic_cryo_sublimation_max_add = 4
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @special }
+}
+
+# Cryo Alien Pets. Unity/amenities boost for guided-sapience empires, no district boost (parity with vanilla).
+d_pd_cryo_alien_pets_deposit = {
+	icon = d_alien_pets_deposit
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+
+	should_swap_deposit_on_terraforming = yes
+	terraforming_swap_types = {
+		d_alien_pets_deposit
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_guided_sapience_empire = yes }
+		}
+		modifier = {
+			planet_jobs_unity_produces_mult = 0.10
+			planet_amenities_add = 1000
+		}
+	}
+
+	potential = { is_pd_cryo_world = yes }
+	drop_weight = { weight = @special }
+}
+
+####################################################################
+##### CRYOGENIC NATURAL BLOCKERS ###################################
+####################################################################
+# Cryo analogs of d_noxious_swamp / d_massive_glacier. Without these, MIN_BLOCKED_DEPOSITS
+# silently fails on cryo (no vanilla blocker passes potential on pc_pd_ammonia/pc_pd_methane).
+# Universal blockers (mountain_range, active_volcano, dangerous_wildlife_blocker) already pass
+# their planet_size potential on cryo and drop at base @blocker_low, so they need no clones.
+
+d_pd_cryo_toxic_mire = {
+	time = 180
+	icon = d_pd_cryo_toxic_mire
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = { is_pd_cryo_world = yes }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_food_produces_add = @ranger_small_production
+	}
+
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+
+	on_cleared = {
+		hidden_effect = {
+			give_bio_repurposing_reward_on_organic_deposit_cleared = yes
+		}
+		planetscaper_pop_effect = yes
+		give_evolutionary_predator_situation_progress = { PROGRESS = @evopred_small_blocker_progress }
+	}
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_pd_cryo_toxic_mire" }
+}
+
+d_pd_cryo_glacier_wall = {
+	time = 180
+	icon = d_pd_cryo_glacier_wall
+
+	is_for_colonizable = yes
+	category = deposit_cat_blockers_natural
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = has_ranger_lodge
+			planet = {
+				NOT = { has_building = building_ranger_lodge }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = { is_pd_cryo_world = yes }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			biologist_is_ranger_trigger = yes
+		}
+		planet_biologists_minerals_produces_add = @ranger_small_production
+	}
+
+	inline_script = deposits/environmental_architects_natural_blocker_modifier
+
+	inline_script = deposits/environmental_architects_natural_blocker_pops
+
+	all_blocker_swap_types = yes
+
+	inline_script = deposits/ai_weight_natural_blocker
+
+	drop_weight = {
+		weight = @blocker_high
+		modifier = {
+			factor = 0
+			num_free_districts = {
+				type = district_city
+				value < 2
+			}
+		}
+	}
+
+	prerequisites = { "tech_pd_cryo_glacier_wall" }
 }

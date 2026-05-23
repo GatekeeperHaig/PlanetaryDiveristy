@@ -1,0 +1,57 @@
+# zz_ prefix loads after vanilla 00_other_jobs.txt so the redefined keys win. Each block is a verbatim copy of vanilla with one added exclusion in possible, because pop_jobs are full-replace at the key level (no partial-merge).
+# Exclusion: NOT = { has_trait = trait_cryophile }, routing cryos to livestock_cryophile (gas-positive variant) instead of the food-only default; otherwise both jobs would be valid for the same pop and split allocation.
+livestock = {
+	category = worker
+	first_come_first_served = no
+	is_capped_by_modifier = no
+
+	swappable_data = {
+		default = {
+			building_icon = building_food_processing_facility
+		}
+	}
+
+	tags = { food }
+
+	possible_pre_triggers = {
+		is_enslaved = yes
+		is_sapient = yes
+		is_robotic = no
+	}
+
+	possible = {
+		OR = {
+			has_citizenship_type = {
+				type = citizenship_slavery
+				country = owner
+			}
+			has_citizenship_type = {
+				type = citizenship_exploited_drone
+				country = owner
+			}
+		}
+		has_slavery_type = { type = slavery_livestock }
+		is_lithoid = no
+		is_infernal = no
+		NOT = { has_trait = trait_cryophile }
+	}
+
+	resources = {
+		category = planet_livestock_farmers
+		produces = {
+			food = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_evolutionary_predators }
+		}
+		custom_tooltip = evolutionary_predators_pops_tt
+	}
+
+	weight = {
+		weight = @special_job_weight
+	}
+}

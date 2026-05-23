@@ -1,0 +1,871 @@
+# Cryogenic Exotic Arcology Planet Entities
+# Layered pattern mirroring planetary_diversity_arcologies: each city planet entity is a locator that attaches a per-flavor planet surface mesh plus the flavor's cloud overlay and any special overlays (fortress shield, commercial billboards).
+# Overlay entities (clouds / shield / billboards) use a generic pd_exotic_* prefix so methane and future exotic arcology classes can reuse them without duplicating the chain; the DDS filenames they reference live in PD MA and are loaded whenever the garden / fortress / commercial flavors fire (those decisions gate on has_global_flag = planetarydiversitymorearcologies).
+
+####### Cloud overlays #######
+
+# Plain ammonia clouds; PD-exotics native ammonia cloud texture.
+entity = {
+	name = "pd_exotic_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_ammonia_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_ammonia_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Garden ammonia clouds; PD-exotics native ammonia cloud texture.
+entity = {
+	name = "pd_exotic_garden_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_ammonia_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_ammonia_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Fortress ammonia clouds; PD-exotics native fortress-flavored ammonia cloud texture.
+entity = {
+	name = "pd_exotic_fortress_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_ammonia_fortress_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_ammonia_fortress_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Commercial ammonia clouds; PD-exotics native ammonia cloud texture. Billboards read on top of these.
+entity = {
+	name = "pd_exotic_commercial_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_ammonia_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_ammonia_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+####### Fortress orbital shield overlay #######
+
+entity = {
+	name = "pd_exotic_planet_shield_effect_entity"
+	pdxmesh = "planet_shield_effect_mesh"
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		start_event = { node = root particle = "planet_shield_effect" keep_particle = yes trigger_once = yes }
+	}
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+		bloom_factor = 1.2
+		uv_animation_speed = 2
+		uv_animation_direction = { 0.0 -0.02 }
+	}
+	locator = { name = "root" position = { 0 0 0 } }
+	scale = 1.03
+}
+
+####### Commercial billboard overlays #######
+# Four animated ad-band layers, each composed of a locator that attaches a highlight + lowlight cloud sphere.
+# Texture and animation settings mirror PD MA's pd_commercial_planet_billboard_*_mesh chain.
+
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_mesh"
+	pdxmesh = "locator_mesh"
+	attach = { root = pd_exotic_commercial_planet_billboard_mesh_highlight }
+	attach = { root = pd_exotic_commercial_planet_billboard_mesh_lowlight }
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_mesh_highlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_highlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = 0.50
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.01
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_lowlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = 0.50
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.01
+		bloom_factor = 1.25
+	}
+}
+
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_2_mesh"
+	pdxmesh = "locator_mesh"
+	attach = { root = pd_exotic_commercial_planet_billboard_2_mesh_highlight }
+	attach = { root = pd_exotic_commercial_planet_billboard_2_mesh_lowlight }
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_2_mesh_highlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_2_highlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = -0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.015
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_2_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_2_lowlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = -0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.015
+		bloom_factor = 1.25
+	}
+}
+
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_3_mesh"
+	pdxmesh = "locator_mesh"
+	attach = { root = pd_exotic_commercial_planet_billboard_3_mesh_highlight }
+	attach = { root = pd_exotic_commercial_planet_billboard_3_mesh_lowlight }
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_3_mesh_highlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_3_highlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = -1
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.02
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_3_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_3_lowlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = -1
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = -0.02
+		bloom_factor = 1.25
+	}
+}
+
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_4_mesh"
+	pdxmesh = "locator_mesh"
+	attach = { root = pd_exotic_commercial_planet_billboard_4_mesh_highlight }
+	attach = { root = pd_exotic_commercial_planet_billboard_4_mesh_lowlight }
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_4_mesh_highlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_4_highlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = 0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.015
+		bloom_factor = 0.75
+	}
+}
+entity = {
+	name = "pd_exotic_commercial_planet_billboard_4_mesh_lowlight"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.995
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "cloud_commercial_billboards_4_lowlight_diffuse.dds"
+		texture_normal = "cloud_commercial_billboards_normal.dds"
+		texture_specular = "cloud_commercial_billboards_spec.dds"
+		shader = "PdxMeshAlphaAdditiveAnimateUV"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "noalpha.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "PdxMeshAlphaAdditive"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle"
+		animation_speed = 0.75
+	}
+	game_data = {
+		uv_animation_direction = { 1 0 }
+		uv_animation_speed = 0.015
+		bloom_factor = 1.25
+	}
+}
+
+####### Plain Ammonia Arcology #######
+
+entity = {
+	name = "pd_ammonia_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_ammonia_city_planet_mesh" }
+	attach = { "planetloc" = "pd_exotic_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_ammonia_city_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "city_planet_ammonia_01_diffuse.dds"
+		texture_normal = "city_planet_arthropoid_01_normal.dds"
+		texture_specular = "city_planet_arthropoid_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Plain Ammonia + Palace Capital #######
+
+entity = {
+	name = "pd_ammonia_palace_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_ammonia_palace_planet_mesh" }
+	attach = { "planetloc" = "pd_exotic_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_ammonia_palace_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "palaceammonia_arc_01_diffuse.dds"
+		texture_normal = "palaceammonia_arc_01_normal.dds"
+		texture_specular = "palaceammonia_arc_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Garden Ammonia Arcology #######
+
+entity = {
+	name = "pd_ammonia_garden_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_ammonia_garden_city_planet_mesh" }
+	attach = { "planetloc" = "pd_exotic_garden_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_ammonia_garden_city_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "ecocity_ammonia_01_diffuse.dds"
+		texture_normal = "ecocity_ammonia_01_normal.dds"
+		texture_specular = "ecocity_ammonia_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Fortress Ammonia Arcology #######
+# Reuses the plain pd_ammonia_city_planet_mesh; visual difference comes from the fortress cloud overlay + orbital shield. Swap to a dedicated fortress mesh + texture set if fortress-flavored ammonia DDS land.
+
+entity = {
+	name = "pd_ammonia_fortress_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_ammonia_city_planet_mesh" }
+	attach = { "planetloc" = "pd_exotic_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_exotic_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+####### Commercial Ammonia Arcology #######
+# Reuses the plain pd_ammonia_city_planet_mesh; visual difference comes from the four commercial billboard meshes + commercial cloud overlay. Swap to a dedicated commercial mesh + texture set if commercial-flavored ammonia DDS land.
+
+entity = {
+	name = "pd_ammonia_commercial_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_ammonia_city_planet_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_2_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_3_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_4_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+####### Methane cloud overlays #######
+
+# Plain methane clouds; PD-exotics native methane cloud texture.
+entity = {
+	name = "pd_methane_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_methane_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_methane_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Garden methane clouds; PD-exotics native methane cloud texture.
+entity = {
+	name = "pd_methane_garden_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_methane_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_methane_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Fortress methane clouds; PD-exotics native fortress-flavored methane cloud texture.
+entity = {
+	name = "pd_methane_fortress_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_methane_fortress_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_methane_fortress_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Commercial methane clouds; PD-exotics native methane cloud texture. Billboards read on top of these.
+entity = {
+	name = "pd_methane_commercial_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_methane_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_methane_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+####### Plain Methane Arcology #######
+
+entity = {
+	name = "pd_methane_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_methane_city_planet_mesh" }
+	attach = { "planetloc" = "pd_methane_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_methane_city_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "city_planet_methane_01_diffuse.dds"
+		texture_normal = "city_planet_arthropoid_01_normal.dds"
+		texture_specular = "city_planet_arthropoid_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Plain Methane + Palace Capital #######
+
+entity = {
+	name = "pd_methane_palace_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_methane_palace_planet_mesh" }
+	attach = { "planetloc" = "pd_methane_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_methane_palace_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "palacemethane_arc_01_diffuse.dds"
+		texture_normal = "palacemethane_arc_01_normal.dds"
+		texture_specular = "palacemethane_arc_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Garden Methane Arcology #######
+
+entity = {
+	name = "pd_methane_garden_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_methane_garden_city_planet_mesh" }
+	attach = { "planetloc" = "pd_methane_garden_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_methane_garden_city_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "ecocity_methane_01_diffuse.dds"
+		texture_normal = "ecocity_methane_01_normal.dds"
+		texture_specular = "ecocity_methane_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Fortress Methane Arcology #######
+# Reuses pd_methane_city_planet_mesh; visual difference comes from the fortress cloud overlay + orbital shield. Swap to a dedicated fortress methane mesh + texture set if fortress-flavored methane DDS land.
+
+entity = {
+	name = "pd_methane_fortress_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_methane_city_planet_mesh" }
+	attach = { "planetloc" = "pd_methane_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_exotic_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+####### Commercial Methane Arcology #######
+# Reuses pd_methane_city_planet_mesh; visual difference comes from the four commercial billboard meshes + commercial cloud overlay. Swap to a dedicated commercial methane mesh + texture set if commercial-flavored methane DDS land.
+
+entity = {
+	name = "pd_methane_commercial_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_methane_city_planet_mesh" }
+	attach = { "planetloc" = "pd_methane_commercial_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_2_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_3_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_4_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}

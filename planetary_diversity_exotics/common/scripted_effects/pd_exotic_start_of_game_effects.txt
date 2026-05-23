@@ -1,6 +1,4 @@
-# Adds starting deposits to homeworlds spawned on PD exotic planet classes.
-# Called from pd_exotic.1 (country event fired on on_game_start_country),
-# scoped to the empire's capital planet.
+# Adds starting deposits to a PD exotic homeworld. Invoked by pd_exotic.1 with the capital planet in scope.
 
 generate_pd_exotic_start_deposits = {
 	optimize_memory
@@ -10,8 +8,7 @@ generate_pd_exotic_start_deposits = {
 			is_planet_class = pc_pd_ammonia
 		}
 
-		# Mirror of vanilla pc_arctic homeworld setup in 01_start_of_game_effects.txt
-		# Each category gets one +1, one +2, one +3 deposit (vanilla pattern).
+		# Mirrors vanilla pc_arctic homeworld setup: one +1, one +2, one +3 deposit per category.
 
 		# 3 + 3 energy
 		add_deposit = d_pd_ammonia_thermocline
@@ -47,6 +44,51 @@ generate_pd_exotic_start_deposits = {
 			}
 			else = {
 				add_deposit = d_pd_ammonia_ammoniated_kelp_forests
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			is_planet_class = pc_pd_methane
+		}
+
+		# Mirrors the ammonia branch: one +1, one +2, one +3 deposit per category, with machine/servitor energy boosts and a lithoid/infernal farming swap to mining.
+
+		# 3 + 3 energy
+		add_deposit = d_pd_methane_tholin_storm_belts
+		add_deposit = d_pd_methane_cryovolcanic_vents
+		add_deposit = d_pd_methane_supercooled_geysers
+		if = {
+			limit = { owner = { is_machine_empire = yes } }
+			add_deposit = d_pd_methane_cryovolcanic_vents
+		}
+		if = {
+			limit = { owner = { has_valid_civic = civic_machine_servitor } }
+			add_deposit = d_pd_methane_tholin_storm_belts
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_pd_methane_carbonate_caverns
+		add_deposit = d_pd_methane_clathrate_shelves
+		add_deposit = d_pd_methane_ice_diamonds
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_pd_methane_tholin_haze
+		add_deposit = d_pd_methane_liquid_methane_seas
+		if = {
+			limit = { owner = { is_machine_empire = no } }
+			add_deposit = d_pd_methane_tholin_haze
+			if = {
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
+				add_deposit = d_pd_methane_ice_diamonds
+			}
+			else = {
+				add_deposit = d_pd_methane_hydrocarbon_marshes
 			}
 		}
 	}

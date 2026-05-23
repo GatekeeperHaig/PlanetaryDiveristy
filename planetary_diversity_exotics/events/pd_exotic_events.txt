@@ -1,13 +1,13 @@
 namespace = pd_exotic
 
-# Fires from on_game_start_country (after PD's prescripted deposit setup)
-# to populate exotic homeworlds with their class-specific deposits.
+# Populates each exotic homeworld with its class-specific deposits and stamps the matching planet-class label modifier so the player can identify the world at a glance.
 country_event = {
 	id = pd_exotic.1
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
+		set_global_flag = planetarydiversityexotics
 		if = {
 			limit = {
 				exists = capital_scope
@@ -20,7 +20,277 @@ country_event = {
 			}
 			capital_scope = {
 				generate_pd_exotic_start_deposits = yes
+				if = {
+					limit = { is_planet_class = pc_pd_ammonia }
+					add_modifier = {
+						modifier = pd_ammonia
+						days = -1
+					}
+				}
+				if = {
+					limit = { is_planet_class = pc_pd_methane }
+					add_modifier = {
+						modifier = pd_methane
+						days = -1
+					}
+				}
 			}
+		}
+	}
+}
+
+# Mirrors PD-main's pdengine.11 every_galaxy_planet pass. Stamps the visible "Ammonia World" / "Methane World" label on every naturally-spawning pc_pd_ammonia or pc_pd_methane planet at game start; homeworlds are handled by pd_exotic.1, so we skip capitals here.
+country_event = {
+	id = pd_exotic.2
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_ammonia
+				is_capital = no
+				NOT = { has_modifier = pd_ammonia }
+			}
+			add_modifier = { modifier = pd_ammonia days = -1 }
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_methane
+				is_capital = no
+				NOT = { has_modifier = pd_methane }
+			}
+			add_modifier = { modifier = pd_methane days = -1 }
+		}
+	}
+}
+
+# on_planet_class_changed hook for the visible "Ammonia World" / "Methane World" label. Stamps the matching label modifier on a planet that just became pc_pd_ammonia or pc_pd_methane (terraforming, story events), and strips it from a planet that just left that class.
+planet_event = {
+	id = pd_exotic.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_planet_class = pc_pd_ammonia
+				NOT = { has_modifier = pd_ammonia }
+			}
+			add_modifier = { modifier = pd_ammonia days = -1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { is_planet_class = pc_pd_ammonia }
+				has_modifier = pd_ammonia
+			}
+			remove_modifier = pd_ammonia
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_methane
+				NOT = { has_modifier = pd_methane }
+			}
+			add_modifier = { modifier = pd_methane days = -1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { is_planet_class = pc_pd_methane }
+				has_modifier = pd_methane
+			}
+			remove_modifier = pd_methane
+		}
+	}
+}
+
+# on_colonized hook for ap_pd_cryothermal_engineering: if the new colony is cryo and its owner has the AP, stamp the engineered-planet modifier.
+planet_event = {
+	id = pd_exotic.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		owner = { has_ascension_perk = ap_pd_cryothermal_engineering }
+		OR = {
+			is_planet_class = pc_pd_ammonia
+			is_planet_class = pc_pd_methane
+		}
+		NOT = { has_modifier = pd_cryothermal_engineered_planet }
+	}
+
+	immediate = {
+		add_modifier = { modifier = pd_cryothermal_engineered_planet days = -1 }
+	}
+}
+
+# on_planet_class_changed hook for ap_pd_cryothermal_engineering: add the modifier when a planet is terraformed into cryo by an AP-empire, remove it when terraformed away.
+planet_event = {
+	id = pd_exotic.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				exists = owner
+				owner = { has_ascension_perk = ap_pd_cryothermal_engineering }
+				OR = {
+					is_planet_class = pc_pd_ammonia
+					is_planet_class = pc_pd_methane
+				}
+				NOT = { has_modifier = pd_cryothermal_engineered_planet }
+			}
+			add_modifier = { modifier = pd_cryothermal_engineered_planet days = -1 }
+		}
+		else_if = {
+			limit = {
+				has_modifier = pd_cryothermal_engineered_planet
+				NOR = {
+					is_planet_class = pc_pd_ammonia
+					is_planet_class = pc_pd_methane
+				}
+			}
+			remove_modifier = pd_cryothermal_engineered_planet
+		}
+	}
+}
+
+# on_planet_transfer hook for ap_pd_cryothermal_engineering: stamp the modifier if a cryo planet was just transferred to an AP-empire. From scope is the new owner.
+planet_event = {
+	id = pd_exotic.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_ascension_perk = ap_pd_cryothermal_engineering }
+		OR = {
+			is_planet_class = pc_pd_ammonia
+			is_planet_class = pc_pd_methane
+		}
+		NOT = { has_modifier = pd_cryothermal_engineered_planet }
+	}
+
+	immediate = {
+		add_modifier = { modifier = pd_cryothermal_engineered_planet days = -1 }
+	}
+}
+
+# on_megastructure_built hook. Stamps pd_ammonia_atmosphere on a newly built habitat if the builder's main species has trait_pc_pd_ammonia_preference. The marker has to land BEFORE colonization, otherwise the ammonia-preference species' habitability is 0 by the time the player tries to settle pops. We cannot trigger on FROM = { is_megastructure_type = habitat_central_complex } because habitat_central_complex.on_build_complete calls remove_megastructure = fromfrom before this on_action fires, invalidating FROM. Instead we filter via FROMFROM (system, still valid) for uncolonized habitat planets without the marker. Methane mirror is pd_exotic.22.
+country_event = {
+	id = pd_exotic.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		species = { has_trait = trait_pc_pd_ammonia_preference }
+		FROMFROM = {
+			any_system_planet = {
+				is_planet_class = pc_habitat
+				is_colony = no
+				NOT = { has_modifier = pd_ammonia_atmosphere }
+			}
+		}
+	}
+
+	immediate = {
+		FROMFROM = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_habitat
+					is_colony = no
+					NOT = { has_modifier = pd_ammonia_atmosphere }
+				}
+				add_modifier = { modifier = pd_ammonia_atmosphere days = -1 }
+				set_planet_entity = {
+					picture = pc_pd_ammonia_habitat
+					graphical_culture = root
+				}
+			}
+		}
+	}
+}
+
+# on_colonized backstop. Catches habitats that slipped past pd_exotic.20 (restored ruined habitats, mid-build edge cases) by stamping the marker the first time an ammonia-preference empire actually settles pops on a pc_habitat. Conquest case is intentionally NOT covered here: a conquered habitat keeps its prior atmosphere until the new owner re-colonizes.
+planet_event = {
+	id = pd_exotic.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+		exists = owner
+		owner = {
+			species = { has_trait = trait_pc_pd_ammonia_preference }
+		}
+		NOT = { has_modifier = pd_ammonia_atmosphere }
+	}
+
+	immediate = {
+		add_modifier = { modifier = pd_ammonia_atmosphere days = -1 }
+		set_planet_entity = {
+			picture = pc_pd_ammonia_habitat
+			graphical_culture = owner
+		}
+	}
+}
+
+# on_megastructure_built hook for methane (parallel to pd_exotic.20).
+country_event = {
+	id = pd_exotic.22
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		species = { has_trait = trait_pc_pd_methane_preference }
+		FROMFROM = {
+			any_system_planet = {
+				is_planet_class = pc_habitat
+				is_colony = no
+				NOT = { has_modifier = pd_methane_atmosphere }
+			}
+		}
+	}
+
+	immediate = {
+		FROMFROM = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_habitat
+					is_colony = no
+					NOT = { has_modifier = pd_methane_atmosphere }
+				}
+				add_modifier = { modifier = pd_methane_atmosphere days = -1 }
+				set_planet_entity = {
+					picture = pc_pd_methane_habitat
+					graphical_culture = root
+				}
+			}
+		}
+	}
+}
+
+# on_colonized backstop for methane (parallel to pd_exotic.21). Conquest case intentionally not covered.
+planet_event = {
+	id = pd_exotic.23
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+		exists = owner
+		owner = {
+			species = { has_trait = trait_pc_pd_methane_preference }
+		}
+		NOT = { has_modifier = pd_methane_atmosphere }
+	}
+
+	immediate = {
+		add_modifier = { modifier = pd_methane_atmosphere days = -1 }
+		set_planet_entity = {
+			picture = pc_pd_methane_habitat
+			graphical_culture = owner
 		}
 	}
 }

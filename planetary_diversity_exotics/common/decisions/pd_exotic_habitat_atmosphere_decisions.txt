@@ -1,0 +1,125 @@
+# Manual toggles for the ammonia atmosphere modifier on habitats. The on_megastructure_built hook auto-stamps for ammonia-preference builders; these let players add it to inherited habitats or remove it after conquest.
+
+decision_pd_exotic_habitat_add_ammonia_atmosphere = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_habitat
+		exists = owner
+		owner = {
+			owner_species = { has_trait = trait_pc_pd_ammonia_preference }
+		}
+		NOT = { has_modifier = pd_ammonia_atmosphere }
+	}
+
+	effect = {
+		add_modifier = { modifier = pd_ammonia_atmosphere days = -1 }
+		set_planet_entity = {
+			picture = pc_pd_ammonia_habitat
+			graphical_culture = root
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+decision_pd_exotic_habitat_remove_ammonia_atmosphere = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_habitat
+		has_modifier = pd_ammonia_atmosphere
+	}
+
+	effect = {
+		remove_modifier = pd_ammonia_atmosphere
+		set_planet_entity = {
+			picture = pc_habitat
+			graphical_culture = root
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+decision_pd_exotic_habitat_add_methane_atmosphere = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_habitat
+		exists = owner
+		owner = {
+			owner_species = { has_trait = trait_pc_pd_methane_preference }
+		}
+		NOT = { has_modifier = pd_methane_atmosphere }
+	}
+
+	effect = {
+		add_modifier = { modifier = pd_methane_atmosphere days = -1 }
+		set_planet_entity = {
+			picture = pc_pd_methane_habitat
+			graphical_culture = root
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+decision_pd_exotic_habitat_remove_methane_atmosphere = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		is_planet_class = pc_habitat
+		has_modifier = pd_methane_atmosphere
+	}
+
+	effect = {
+		remove_modifier = pd_methane_atmosphere
+		set_planet_entity = {
+			picture = pc_habitat
+			graphical_culture = root
+		}
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}

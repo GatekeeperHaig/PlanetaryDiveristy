@@ -1,0 +1,129 @@
+{
+    "name": "stellaris-hover",
+    "displayName": "Stellaris Hover",
+    "description": "Hover tooltips and YAML-loc syntax highlighting for Stellaris script and localisation: loc keys, common/ entities, concept/trait/building/etc. inline refs, and GFX sprite resolution. Indexes vanilla + every mod folder in the workspace.",
+    "version": "0.2.0",
+    "publisher": "stellaris-community",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./src/extension.js",
+    "activationEvents": [
+        "onLanguage:stellaris",
+        "onLanguage:paradox",
+        "onLanguage:paradox-yaml",
+        "onLanguage:yaml",
+        "onLanguage:plaintext",
+        "workspaceContains:**/descriptor.mod",
+        "workspaceContains:**/common/00_defines.txt"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "stellarisHover.openFileAt",
+                "title": "Stellaris Hover: Open file at line"
+            },
+            {
+                "command": "stellarisHover.reload",
+                "title": "Stellaris Hover: Reload index"
+            }
+        ],
+        "grammars": [
+            {
+                "scopeName": "stellaris-loc.injection",
+                "path": "./syntaxes/stellaris-loc.tmLanguage.json",
+                "injectTo": ["source.yaml"]
+            }
+        ],
+        "configurationDefaults": {
+            "editor.tokenColorCustomizations": {
+                "textMateRules": [
+                    { "scope": "entity.name.tag.loc-key.stellaris-loc", "settings": { "foreground": "#9CDCFE" } },
+                    { "scope": "constant.numeric.version.stellaris-loc", "settings": { "foreground": "#B5CEA8", "fontStyle": "italic" } },
+                    { "scope": "constant.character.escape.color.reset.stellaris-loc", "settings": { "foreground": "#808080", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.red.stellaris-loc", "settings": { "foreground": "#E74C3C", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.green.stellaris-loc", "settings": { "foreground": "#2ECC71", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.yellow.stellaris-loc", "settings": { "foreground": "#F1C40F", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.blue.stellaris-loc", "settings": { "foreground": "#3498DB", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.magenta.stellaris-loc", "settings": { "foreground": "#E91E63", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.purple.stellaris-loc", "settings": { "foreground": "#9B59B6", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.orange.stellaris-loc", "settings": { "foreground": "#E67E22", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.head.stellaris-loc", "settings": { "foreground": "#FFD86B", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.gray.stellaris-loc", "settings": { "foreground": "#A0A0A0", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.white.stellaris-loc", "settings": { "foreground": "#EAECEE", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.teal.stellaris-loc", "settings": { "foreground": "#1ABC9C", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.shadow.stellaris-loc", "settings": { "foreground": "#566573", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.energy.stellaris-loc", "settings": { "foreground": "#48D1CC", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.color.other.stellaris-loc", "settings": { "foreground": "#C586C0", "fontStyle": "bold" } },
+                    { "scope": "constant.character.escape.newline.stellaris-loc", "settings": { "foreground": "#808080", "fontStyle": "italic" } },
+                    { "scope": "support.constant.icon.stellaris-loc", "settings": { "foreground": "#FFCB6B" } },
+                    { "scope": "punctuation.definition.icon.begin.stellaris-loc", "settings": { "foreground": "#FFCB6B" } },
+                    { "scope": "punctuation.definition.icon.end.stellaris-loc", "settings": { "foreground": "#FFCB6B" } },
+                    { "scope": "constant.numeric.icon-frame.stellaris-loc", "settings": { "foreground": "#B5CEA8" } },
+                    { "scope": "support.class.scope-root.stellaris-loc", "settings": { "foreground": "#4FC1FF", "fontStyle": "bold" } },
+                    { "scope": "entity.name.function.scope-call.stellaris-loc", "settings": { "foreground": "#DCDCAA" } },
+                    { "scope": "entity.name.namespace.stellaris-loc", "settings": { "foreground": "#4EC9B0" } },
+                    { "scope": "variable.other.member.stellaris-loc", "settings": { "foreground": "#9CDCFE" } },
+                    { "scope": "punctuation.section.scope.begin.stellaris-loc", "settings": { "foreground": "#D4D4D4" } },
+                    { "scope": "punctuation.section.scope.end.stellaris-loc", "settings": { "foreground": "#D4D4D4" } },
+                    { "scope": "support.variable.engine.stellaris-loc", "settings": { "foreground": "#C586C0" } },
+                    { "scope": "variable.other.loc-ref.stellaris-loc", "settings": { "foreground": "#9CDCFE", "fontStyle": "italic" } },
+                    { "scope": "punctuation.definition.variable.begin.stellaris-loc", "settings": { "foreground": "#808080" } },
+                    { "scope": "punctuation.definition.variable.end.stellaris-loc", "settings": { "foreground": "#808080" } },
+                    { "scope": "constant.other.format-flag.stellaris-loc", "settings": { "foreground": "#B5CEA8" } }
+                ]
+            }
+        },
+        "configuration": {
+            "title": "Stellaris Hover",
+            "properties": {
+                "stellarisHover.vanillaPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Absolute path to the vanilla Stellaris install (folder containing common/, localisation/, interface/, events/). If empty, the extension probes the default Steam install location for each OS."
+                },
+                "stellarisHover.includeVanilla": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Index vanilla Stellaris files in addition to workspace mod folders. Mod entries override vanilla on key collision."
+                },
+                "stellarisHover.modRoots": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "default": [],
+                    "description": "Extra mod folders to index, in addition to the open workspace folders. Each entry is an absolute path to a folder containing common/, localisation/, etc."
+                },
+                "stellarisHover.preferredLanguage": {
+                    "type": "string",
+                    "default": "english",
+                    "description": "Which localisation language to surface in hover tooltips (english, french, german, polish, spanish, brazilian_portuguese, russian, simp_chinese, japanese, korean)."
+                },
+                "stellarisHover.scanScriptReverse": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Build a reverse-loc index so hovering a key inside a .yml file shows which script files reference it. Disable for faster startup on very large workspaces."
+                },
+                "stellarisHover.maxReverseRefs": {
+                    "type": "number",
+                    "default": 25,
+                    "description": "Maximum number of reverse-loc references to show in a single tooltip before collapsing the remainder into a count."
+                },
+                "stellarisHover.underlineHoverable": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Underline every token in a .txt/.gfx/.gui file that has a hover tooltip available."
+                },
+                "stellarisHover.underlineStyle": {
+                    "type": "string",
+                    "enum": ["underline", "underline-dotted", "underline-dashed"],
+                    "default": "underline",
+                    "description": "Visual style for the hoverable-token underline."
+                }
+            }
+        }
+    }
+}
