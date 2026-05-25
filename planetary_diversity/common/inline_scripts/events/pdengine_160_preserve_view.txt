@@ -1,0 +1,12 @@
+#One row of pdengine.160's "preserve view after terraform" cascade.
+#Called once per (planet class, PD flavor modifier) pair. If the planet matches both, force its visual to the flavored picture and entity so the view survives a class change.
+if = {
+	limit = {
+		is_planet_class = $CLASS$
+		has_modifier = $MODIFIER$
+	}
+	set_planet_entity = {
+		picture = $PICTURE$
+		entity = "$ENTITY$"
+	}
+}

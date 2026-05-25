@@ -1,0 +1,217 @@
+# Overrides vanilla calculator_biologist (pop_jobs/04_gestalt_jobs.txt) so that the archaeo_drone (hive) and archaeo_unit (machine) swap_types also fire when the Archeotech Preserve zone is on the planet.
+# Per Stellaris convention, pop_jobs are full-replace at the key level; this file redefines the entire job verbatim from vanilla, with only the two has_building triggers expanded into an OR with num_zones.
+calculator_biologist = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+			icon = biologist
+		}
+		#Brain Drone Biologist - auth_hive
+		swap_type = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = yes
+					is_wilderness_empire = no
+				}
+			}
+			name = brain_drone_biologist
+			desc = brain_drone_biologist
+			icon = brain_drone_biologist
+			building_icon = building_research_lab_1
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 2
+		}
+		#Archeo Drone - auth_hive
+		swap_type = {
+			trigger = {
+				exists = owner
+				OR = {
+					has_building = building_archaeostudies_faculty
+					num_zones = { type = zone_pd_archeotech_preserve value > 0 }
+				}
+				owner = {
+					is_hive_empire = yes
+					is_wilderness_empire = no
+				}
+			}
+			name = archaeo_drone
+			desc = archaeo_drone
+			icon = archaeo_drone
+			building_icon = building_archaeostudies_faculty
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 3
+		}
+		#Archeo Drone - auth_machine
+		swap_type = {
+			trigger = {
+				exists = owner
+				OR = {
+					has_building = building_archaeostudies_faculty
+					num_zones = { type = zone_pd_archeotech_preserve value > 0 }
+				}
+				owner = {
+					is_machine_empire = yes
+				}
+			}
+			name = archaeo_unit
+			desc = archaeo_unit
+			icon = archaeo_unit
+			building_icon = building_archaeostudies_faculty
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 3
+		}
+		swap_type = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_wilderness_empire = yes
+				}
+			}
+			name = evosymbiont_biologist
+			desc = evosymbiont
+			icon = brain_drone_biologist
+			building_icon = brain_node_3
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 10
+		}
+		swap_type = {
+			trigger = {
+				biologist_is_observator_trigger = yes
+			}
+			name = observator_drone
+			desc = job_observator_drone_desc
+			icon = observator_drone
+			building_icon = building_shroud_observatory_1
+			condition_string = DRONE_JOB_TRIGGER
+			weight = 10
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_biologists
+		produces = {
+			society_research = 3
+		}
+		produces = {
+			trigger = {
+				exists = planet
+				planet = {
+					biologist_is_observator_trigger = yes
+				}
+			}
+			physics_research = 4.5
+			society_research = 1.5
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = no
+				}
+				exists = planet
+				planet = {
+					biologist_is_observator_trigger = no
+				}
+			}
+			energy = 3
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = no
+				}
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			energy = 1
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = yes
+				}
+			}
+			minerals = 4
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_hive_empire = yes
+				}
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			minerals = 1.5
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					biologist_is_observator_trigger = yes
+				}
+			}
+			sr_zro = 1
+		}
+	}
+
+	overlord_resources = {
+		category = planet_requisitioned_research
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_science_ministry
+				}
+			}
+			society_research = 0.5
+		}
+	}
+
+	inline_script = "jobs/academia_recruiter_naval_cap_add"
+
+	inline_script = "jobs/inf_navalcap_jobs"
+
+	weight = {
+		weight = @complex_drone_job_weight
+		mult = value:job_weights_modifier|JOB|calculator_biologist|RESOURCE|society_research|
+		mult = value:scripted_job_weight_shroud_forged_mult
+		modifier = {
+			factor = 0.9
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+
+	promotion = {
+		time = @standard_promotion_time
+		effect = {
+			pop_amount_change_category = {
+				CATEGORY = complex_drone
+				AMOUNT = local_pop_amount
+			}
+		}
+	}
+}

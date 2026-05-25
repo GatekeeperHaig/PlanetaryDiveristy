@@ -1,0 +1,58 @@
+# Archeotech Preserve - vast section of an ex-relic arcology set aside for ongoing study of the planet's past.
+# Installed exclusively by the four relic-conversion decisions; potential/unlock are always no, so it cannot be manually built or rebuilt after demolish.
+zone_pd_archeotech_preserve = {
+	icon = GFX_district_specialization_research
+	base_buildtime = @zone_buildtime
+
+	potential = { # planet scope
+		always = no
+	}
+
+	unlock = { # planet scope
+		always = no
+	}
+
+	resources = {
+		category = planet_zones
+		cost = {
+			minerals = @zone_cost
+		}
+	}
+
+	zone_sets = {
+		urban
+	}
+
+	included_building_sets = {
+		research
+	}
+
+	planet_modifier = {
+		zone_building_slots_add = 3
+		planet_max_districts_add = -3
+	}
+
+	# District-scaling research staff. Uses the same script as zone_research_society:
+	# job_biologist for regulars (swapped to Archaeo-Engineers via our scripted_trigger override),
+	# job_calculator_biologist for gestalt (swapped to Archaeo-Drone / Archaeo-Unit via our pop_jobs override).
+	# AMOUNT=100 scales ×3 on ecu-equivalent worlds, giving the expected 300/district readout.
+	inline_script = {
+		script = jobs/zone_biologists_add
+		LARGE_AMOUNT = @scaling_district_1_job
+	}
+
+	# Housing penalty scaled by district level (gives the familiar -200 housing on ecu-tier worlds).
+	inline_script = {
+		script = zones/shared_city_non_urban_zone_modifiers
+	}
+
+	triggered_desc = {
+		text = NEW_LINE
+	}
+
+	triggered_desc = {
+		text = zone_cannot_be_rebuilt
+	}
+
+	ai_priority = 4
+}

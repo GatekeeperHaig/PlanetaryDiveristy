@@ -7520,1138 +7520,735 @@ country_event = {
 	}
 }
 
-#This event makes sure that normal PD planets keep their view after terraforming if they still have the planet modifier.
-#This is mostly used for the way the Wilderless Origin colonizes planets through terraforming.
+#Re-applies the flavored planet entity after a class change so PD-flavored views survive terraforming. Mostly hit by the Wilderless Origin, which colonizes via terraform.
+#Each row is one inline_script call: (class, modifier) -> (picture, entity). To add a new flavor, add one row here and one row to the matching pdengine.11/12/110 random_list.
 planet_event = {
 	id = pdengine.160
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		OR = {
-			has_modifier = pd_retinal
-			has_modifier = pd_lake
-			has_modifier = pd_tepid
-			has_modifier = pd_mushroom
-			has_modifier = pd_forest
-			has_modifier = pd_sakura
-			has_modifier = pd_moss
-			has_modifier = pd_marsh
-			has_modifier = pd_carotene
-			has_modifier = pd_megaflora
-			has_modifier = pd_petrified
-			has_modifier = pd_cascadian
-			has_modifier = pd_swamp
-			has_modifier = pd_crag
-			has_modifier = pd_fog
-			has_modifier = pd_kelp
-			has_modifier = pd_algae
-			has_modifier = pd_columnar
-			has_modifier = pd_tidepool
-			has_modifier = pd_barnacle
-			has_modifier = pd_reef
-			has_modifier = pd_archipelago
-			has_modifier = pd_atoll
-			has_modifier = pd_tepui
-			has_modifier = pd_mangrove
-			has_modifier = pd_cenote
-			has_modifier = pd_fungal
-			has_modifier = pd_aerial
-			has_modifier = pd_lilypad
-			has_modifier = pd_obsidian
-			has_modifier = pd_thunder
-			has_modifier = pd_geothermal
-			has_modifier = pd_biolumen
-			has_modifier = pd_dune
-			has_modifier = pd_oasis
-			has_modifier = pd_outback
-			has_modifier = pd_coastal
-			has_modifier = pd_fungi
-			has_modifier = pd_ironsand
-			has_modifier = pd_cactus
-			has_modifier = pd_dust
-			has_modifier = pd_sodalite
-			has_modifier = pd_salt
-			has_modifier = pd_aquifer
-			has_modifier = pd_mesa
-			has_modifier = pd_fog_desert
-			has_modifier = pd_mediterranean
-			has_modifier = pd_badlands
-			has_modifier = pd_succulent
-			has_modifier = pd_striped
-			has_modifier = pd_amethyst
-			has_modifier = pd_opal
-			has_modifier = pd_superbloom
-			has_modifier = pd_coral
-			has_modifier = pd_primal
-			has_modifier = pd_steppe
-			has_modifier = pd_prairie
-			has_modifier = pd_semi_arid
-			has_modifier = pd_aspen
-			has_modifier = pd_sandstone
-			has_modifier = pd_turquoise
-			has_modifier = pd_calcite
-			has_modifier = pd_monsoon
-			has_modifier = pd_silvergrass
-			has_modifier = pd_supercontinent
-			has_modifier = pd_sinkhole
-			has_modifier = pd_cold_desert
-			has_modifier = pd_glacial
-			has_modifier = pd_antarctic
-			has_modifier = pd_aeolian
-			has_modifier = pd_ice_spike
-			has_modifier = pd_crevasse
-			has_modifier = pd_ice_dunes
-			has_modifier = pd_supraglacial_lakes
-			has_modifier = pd_ferrospring
-			has_modifier = pd_storm
-			has_modifier = pd_iceberg
-			has_modifier = pd_boreal
-			has_modifier = pd_snow
-			has_modifier = pd_highland
-			has_modifier = pd_dune_forest
-			has_modifier = pd_fjord
-			has_modifier = pd_blossom
-			has_modifier = pd_taiga
-			has_modifier = pd_craton
-			has_modifier = pd_ravine
-			has_modifier = pd_glaciovolcanic
-			has_modifier = pd_lanthanide
-			has_modifier = pd_bog
-			has_modifier = pd_mycelium
-			has_modifier = pd_mud
-			has_modifier = pd_basalt
-			has_modifier = pd_tuya
-			has_modifier = pd_cryovolcano
-			has_modifier = pd_treeline
-			has_modifier = pd_peatland
-			has_modifier = pd_travertine
-			has_modifier = pd_cryoflora
-			has_modifier = pd_lichen
-			has_modifier = pd_volcanic
-			has_modifier = pd_ash
- 		}
+		has_pd_modifier = yes
 	}
 
 	immediate = {
 		#Continental
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_retinal
-			}
-			set_planet_entity = {
-				picture = pc_pd_retinal
-				entity = "retinal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_retinal
+			PICTURE = pc_pd_retinal
+			ENTITY = retinal_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_lake
-			}
-			set_planet_entity = {
-				picture = pc_pd_lake
-				entity = "lake_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_lake
+			PICTURE = pc_pd_lake
+			ENTITY = lake_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_tepid
-			}
-			set_planet_entity = {
-				picture = pc_pd_tepid
-				entity = "tepid_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_tepid
+			PICTURE = pc_pd_tepid
+			ENTITY = tepid_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_mushroom
-			}
-			set_planet_entity = {
-				picture = pc_pd_mushroom
-				entity = "mushroom_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_mushroom
+			PICTURE = pc_pd_mushroom
+			ENTITY = mushroom_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_sakura
-			}
-			set_planet_entity = {
-				picture = pc_pd_sakura
-				entity = "sakura_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_sakura
+			PICTURE = pc_pd_sakura
+			ENTITY = sakura_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_moss
-			}
-			set_planet_entity = {
-				picture = pc_pd_moss
-				entity = "moss_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_moss
+			PICTURE = pc_pd_moss
+			ENTITY = moss_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_marsh
-			}
-			set_planet_entity = {
-				picture = pc_pd_marsh
-				entity = "marsh_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_marsh
+			PICTURE = pc_pd_marsh
+			ENTITY = marsh_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_carotene
-			}
-			set_planet_entity = {
-				picture = pc_pd_carotene
-				entity = "carotene_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_carotene
+			PICTURE = pc_pd_carotene
+			ENTITY = carotene_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_forest
-			}
-			set_planet_entity = {
-				picture = pc_pd_forest
-				entity = "forest_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_forest
+			PICTURE = pc_pd_forest
+			ENTITY = forest_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_megaflora
-			}
-			set_planet_entity = {
-				picture = pc_pd_megaflora
-				entity = "megaflora_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_megaflora
+			PICTURE = pc_pd_megaflora
+			ENTITY = megaflora_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_continental
-				has_modifier = pd_petrified
-			}
-			set_planet_entity = {
-				picture = pc_pd_petrified
-				entity = "pd_petrified_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_continental
+			MODIFIER = pd_petrified
+			PICTURE = pc_pd_petrified
+			ENTITY = pd_petrified_planet_01_entity
 		}
 		#Ocean
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_cascadian
-			}
-			set_planet_entity = {
-				picture = pc_pd_cascadian
-				entity = "cascadian_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_cascadian
+			PICTURE = pc_pd_cascadian
+			ENTITY = cascadian_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_swamp
-			}
-			set_planet_entity = {
-				picture = pc_pd_swamp
-				entity = "wetswamp_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_swamp
+			PICTURE = pc_pd_swamp
+			ENTITY = wetswamp_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_crag
-			}
-			set_planet_entity = {
-				picture = pc_pd_crag
-				entity = "subarctic_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_crag
+			PICTURE = pc_pd_crag
+			ENTITY = subarctic_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_fog
-			}
-			set_planet_entity = {
-				picture = pc_pd_fog
-				entity = "fog_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_fog
+			PICTURE = pc_pd_fog
+			ENTITY = fog_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_kelp
-			}
-			set_planet_entity = {
-				picture = pc_pd_kelp
-				entity = "kelp_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_kelp
+			PICTURE = pc_pd_kelp
+			ENTITY = kelp_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_algae
-			}
-			set_planet_entity = {
-				picture = pc_pd_algae
-				entity = "algae_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_algae
+			PICTURE = pc_pd_algae
+			ENTITY = algae_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_columnar
-			}
-			set_planet_entity = {
-				picture = pc_pd_columnar
-				entity = "columnar_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_columnar
+			PICTURE = pc_pd_columnar
+			ENTITY = columnar_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_tidepool
-			}
-			set_planet_entity = {
-				picture = pc_pd_tidepool
-				entity = "tidepool_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_tidepool
+			PICTURE = pc_pd_tidepool
+			ENTITY = tidepool_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_barnacle
-			}
-			set_planet_entity = {
-				picture = pc_pd_barnacle
-				entity = "barnacle_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_barnacle
+			PICTURE = pc_pd_barnacle
+			ENTITY = barnacle_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_reef
-			}
-			set_planet_entity = {
-				picture = pc_pd_reef
-				entity = "reef_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_reef
+			PICTURE = pc_pd_reef
+			ENTITY = reef_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_modifier = pd_archipelago
-			}
-			set_planet_entity = {
-				picture = pc_pd_archipelago
-				entity = "pd_archipelago_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_ocean
+			MODIFIER = pd_archipelago
+			PICTURE = pc_pd_archipelago
+			ENTITY = pd_archipelago_planet_01_entity
 		}
 		#Tropical
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_atoll
-			}
-			set_planet_entity = {
-				picture = pc_pd_atoll
-				entity = "desertislands_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_atoll
+			PICTURE = pc_pd_atoll
+			ENTITY = desertislands_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_tepui
-			}
-			set_planet_entity = {
-				picture = pc_pd_tepui
-				entity = "hajungle_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_tepui
+			PICTURE = pc_pd_tepui
+			ENTITY = hajungle_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_mangrove
-			}
-			set_planet_entity = {
-				picture = pc_pd_mangrove
-				entity = "mangrove_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_mangrove
+			PICTURE = pc_pd_mangrove
+			ENTITY = mangrove_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_cenote
-			}
-			set_planet_entity = {
-				picture = pc_pd_cenote
-				entity = "cenote_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_cenote
+			PICTURE = pc_pd_cenote
+			ENTITY = cenote_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_fungal
-			}
-			set_planet_entity = {
-				picture = pc_pd_fungal
-				entity = "fungal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_fungal
+			PICTURE = pc_pd_fungal
+			ENTITY = fungal_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_aerial
-			}
-			set_planet_entity = {
-				picture = pc_pd_aerial
-				entity = "aerial_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_aerial
+			PICTURE = pc_pd_aerial
+			ENTITY = aerial_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_lilypad
-			}
-			set_planet_entity = {
-				picture = pc_pd_lilypad
-				entity = "lilypad_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_lilypad
+			PICTURE = pc_pd_lilypad
+			ENTITY = lilypad_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_obsidian
-			}
-			set_planet_entity = {
-				picture = pc_pd_obsidian
-				entity = "obsidian_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_obsidian
+			PICTURE = pc_pd_obsidian
+			ENTITY = obsidian_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_thunder
-			}
-			set_planet_entity = {
-				picture = pc_pd_thunder
-				entity = "thunder_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_thunder
+			PICTURE = pc_pd_thunder
+			ENTITY = thunder_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_geothermal
-			}
-			set_planet_entity = {
-				picture = pc_pd_geothermal
-				entity = "geothermal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_geothermal
+			PICTURE = pc_pd_geothermal
+			ENTITY = geothermal_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_modifier = pd_biolumen
-			}
-			set_planet_entity = {
-				picture = pc_pd_biolumen
-				entity = "biolumen_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tropical
+			MODIFIER = pd_biolumen
+			PICTURE = pc_pd_biolumen
+			ENTITY = biolumen_planet_01_entity
 		}
 		#Desert
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_dune
-			}
-			set_planet_entity = {
-				picture = pc_pd_dune
-				entity = "sandsea_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_dune
+			PICTURE = pc_pd_dune
+			ENTITY = sandsea_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_oasis
-			}
-			set_planet_entity = {
-				picture = pc_pd_oasis
-				entity = "oasis_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_oasis
+			PICTURE = pc_pd_oasis
+			ENTITY = oasis_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_outback
-			}
-			set_planet_entity = {
-				picture = pc_pd_outback
-				entity = "outback_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_outback
+			PICTURE = pc_pd_outback
+			ENTITY = outback_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_coastal
-			}
-			set_planet_entity = {
-				picture = pc_pd_coastal
-				entity = "coastal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_coastal
+			PICTURE = pc_pd_coastal
+			ENTITY = coastal_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_fungi
-			}
-			set_planet_entity = {
-				picture = pc_pd_fungi
-				entity = "fungi_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_fungi
+			PICTURE = pc_pd_fungi
+			ENTITY = fungi_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_ironsand
-			}
-			set_planet_entity = {
-				picture = pc_pd_ironsand
-				entity = "ironsand_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_ironsand
+			PICTURE = pc_pd_ironsand
+			ENTITY = ironsand_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_cactus
-			}
-			set_planet_entity = {
-				picture = pc_pd_cactus
-				entity = "cactus_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_cactus
+			PICTURE = pc_pd_cactus
+			ENTITY = cactus_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_dust
-			}
-			set_planet_entity = {
-				picture = pc_pd_dust
-				entity = "dust_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_dust
+			PICTURE = pc_pd_dust
+			ENTITY = dust_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_sodalite
-			}
-			set_planet_entity = {
-				picture = pc_pd_sodalite
-				entity = "sodalite_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_sodalite
+			PICTURE = pc_pd_sodalite
+			ENTITY = sodalite_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_salt
-			}
-			set_planet_entity = {
-				picture = pc_pd_salt
-				entity = "salt_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_salt
+			PICTURE = pc_pd_salt
+			ENTITY = salt_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_desert
-				has_modifier = pd_aquifer
-			}
-			set_planet_entity = {
-				picture = pc_pd_aquifer
-				entity = "aquifer_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_desert
+			MODIFIER = pd_aquifer
+			PICTURE = pc_pd_aquifer
+			ENTITY = aquifer_planet_01_entity
 		}
 		#Arid
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_mesa
-			}
-			set_planet_entity = {
-				picture = pc_pd_mesa
-				entity = "mesa_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_mesa
+			PICTURE = pc_pd_mesa
+			ENTITY = mesa_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_fog_desert
-			}
-			set_planet_entity = {
-				picture = pc_pd_fog_desert
-				entity = "hadesert_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_fog_desert
+			PICTURE = pc_pd_fog_desert
+			ENTITY = hadesert_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_mediterranean
-			}
-			set_planet_entity = {
-				picture = pc_pd_mediterranean
-				entity = "med_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_mediterranean
+			PICTURE = pc_pd_mediterranean
+			ENTITY = med_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_badlands
-			}
-			set_planet_entity = {
-				picture = pc_pd_badlands
-				entity = "badlands_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_badlands
+			PICTURE = pc_pd_badlands
+			ENTITY = badlands_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_succulent
-			}
-			set_planet_entity = {
-				picture = pc_pd_succulent
-				entity = "succulent_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_succulent
+			PICTURE = pc_pd_succulent
+			ENTITY = succulent_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_striped
-			}
-			set_planet_entity = {
-				picture = pc_pd_striped
-				entity = "striped_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_striped
+			PICTURE = pc_pd_striped
+			ENTITY = striped_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_amethyst
-			}
-			set_planet_entity = {
-				picture = pc_pd_amethyst
-				entity = "amethyst_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_amethyst
+			PICTURE = pc_pd_amethyst
+			ENTITY = amethyst_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_opal
-			}
-			set_planet_entity = {
-				picture = pc_pd_opal
-				entity = "opal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_opal
+			PICTURE = pc_pd_opal
+			ENTITY = opal_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_superbloom
-			}
-			set_planet_entity = {
-				picture = pc_pd_superbloom
-				entity = "superbloom_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_superbloom
+			PICTURE = pc_pd_superbloom
+			ENTITY = superbloom_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_coral
-			}
-			set_planet_entity = {
-				picture = pc_pd_coral
-				entity = "coral_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_coral
+			PICTURE = pc_pd_coral
+			ENTITY = coral_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arid
-				has_modifier = pd_primal
-			}
-			set_planet_entity = {
-				picture = pc_pd_primal
-				entity = "primal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arid
+			MODIFIER = pd_primal
+			PICTURE = pc_pd_primal
+			ENTITY = primal_planet_01_entity
 		}
 		#Savannah
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_steppe
-			}
-			set_planet_entity = {
-				picture = pc_pd_steppe
-				entity = "steppe_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_steppe
+			PICTURE = pc_pd_steppe
+			ENTITY = steppe_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_prairie
-			}
-			set_planet_entity = {
-				picture = pc_pd_prairie
-				entity = "prairie_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_prairie
+			PICTURE = pc_pd_prairie
+			ENTITY = prairie_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_semi_arid
-			}
-			set_planet_entity = {
-				picture = pc_pd_semi_arid
-				entity = "semiarid_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_semi_arid
+			PICTURE = pc_pd_semi_arid
+			ENTITY = semiarid_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_aspen
-			}
-			set_planet_entity = {
-				picture = pc_pd_aspen
-				entity = "aspen_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_aspen
+			PICTURE = pc_pd_aspen
+			ENTITY = aspen_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_sandstone
-			}
-			set_planet_entity = {
-				picture = pc_pd_sandstone
-				entity = "sandstone_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_sandstone
+			PICTURE = pc_pd_sandstone
+			ENTITY = sandstone_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_turquoise
-			}
-			set_planet_entity = {
-				picture = pc_pd_turquoise
-				entity = "turquoise_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_turquoise
+			PICTURE = pc_pd_turquoise
+			ENTITY = turquoise_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_calcite
-			}
-			set_planet_entity = {
-				picture = pc_pd_calcite
-				entity = "calcite_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_calcite
+			PICTURE = pc_pd_calcite
+			ENTITY = calcite_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_monsoon
-			}
-			set_planet_entity = {
-				picture = pc_pd_monsoon
-				entity = "monsoon_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_monsoon
+			PICTURE = pc_pd_monsoon
+			ENTITY = monsoon_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_silvergrass
-			}
-			set_planet_entity = {
-				picture = pc_pd_silvergrass
-				entity = "silvergrass_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_silvergrass
+			PICTURE = pc_pd_silvergrass
+			ENTITY = silvergrass_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_supercontinent
-			}
-			set_planet_entity = {
-				picture = pc_pd_supercontinent
-				entity = "supercon_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_supercontinent
+			PICTURE = pc_pd_supercontinent
+			ENTITY = supercon_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_modifier = pd_sinkhole
-			}
-			set_planet_entity = {
-				picture = pc_pd_sinkhole
-				entity = "pd_sinkhole_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_savannah
+			MODIFIER = pd_sinkhole
+			PICTURE = pc_pd_sinkhole
+			ENTITY = pd_sinkhole_planet_01_entity
 		}
 		#Arctic
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_cold_desert
-			}
-			set_planet_entity = {
-				picture = pc_pd_cold_desert
-				entity = "frozen_desert_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_cold_desert
+			PICTURE = pc_pd_cold_desert
+			ENTITY = frozen_desert_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_glacial
-			}
-			set_planet_entity = {
-				picture = pc_pd_glacial
-				entity = "glacial_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_glacial
+			PICTURE = pc_pd_glacial
+			ENTITY = glacial_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_antarctic
-			}
-			set_planet_entity = {
-				picture = pc_pd_antarctic
-				entity = "antarctic_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_antarctic
+			PICTURE = pc_pd_antarctic
+			ENTITY = antarctic_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_aeolian
-			}
-			set_planet_entity = {
-				picture = pc_pd_aeolian
-				entity = "aeolian_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_aeolian
+			PICTURE = pc_pd_aeolian
+			ENTITY = aeolian_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_ice_spike
-			}
-			set_planet_entity = {
-				picture = pc_pd_ice_spike
-				entity = "ice_spike_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_ice_spike
+			PICTURE = pc_pd_ice_spike
+			ENTITY = ice_spike_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_crevasse
-			}
-			set_planet_entity = {
-				picture = pc_pd_crevasse
-				entity = "crevasse_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_crevasse
+			PICTURE = pc_pd_crevasse
+			ENTITY = crevasse_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_ice_dunes
-			}
-			set_planet_entity = {
-				picture = pc_pd_ice_dunes
-				entity = "ice_dunes_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_ice_dunes
+			PICTURE = pc_pd_ice_dunes
+			ENTITY = ice_dunes_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_supraglacial_lakes
-			}
-			set_planet_entity = {
-				picture = pc_pd_supraglacial_lakes
-				entity = "supraglacial_lakes_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_supraglacial_lakes
+			PICTURE = pc_pd_supraglacial_lakes
+			ENTITY = supraglacial_lakes_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_ferrospring
-			}
-			set_planet_entity = {
-				picture = pc_pd_ferrospring
-				entity = "ferrospring_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_ferrospring
+			PICTURE = pc_pd_ferrospring
+			ENTITY = ferrospring_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_storm
-			}
-			set_planet_entity = {
-				picture = pc_pd_storm
-				entity = "storm_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_storm
+			PICTURE = pc_pd_storm
+			ENTITY = storm_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_modifier = pd_storm
-			}
-			set_planet_entity = {
-				picture = pc_pd_iceberg
-				entity = "pd_iceberg_planet_01_entity"
-			}
+		#Bug fix: row below previously checked pd_storm by copy-paste, which silently swapped storm planets to the iceberg entity and left pd_iceberg planets without view preservation.
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_arctic
+			MODIFIER = pd_iceberg
+			PICTURE = pc_pd_iceberg
+			ENTITY = pd_iceberg_planet_01_entity
 		}
 		#Alpine
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_boreal
-			}
-			set_planet_entity = {
-				picture = pc_pd_boreal
-				entity = "boreal_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_boreal
+			PICTURE = pc_pd_boreal
+			ENTITY = boreal_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_snow
-			}
-			set_planet_entity = {
-				picture = pc_pd_snow
-				entity = "snow_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_snow
+			PICTURE = pc_pd_snow
+			ENTITY = snow_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_highland
-			}
-			set_planet_entity = {
-				picture = pc_pd_highland
-				entity = "highland_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_highland
+			PICTURE = pc_pd_highland
+			ENTITY = highland_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_dune_forest
-			}
-			set_planet_entity = {
-				picture = pc_pd_dune_forest
-				entity = "duneforest_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_dune_forest
+			PICTURE = pc_pd_dune_forest
+			ENTITY = duneforest_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_fjord
-			}
-			set_planet_entity = {
-				picture = pc_pd_fjord
-				entity = "fjord_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_fjord
+			PICTURE = pc_pd_fjord
+			ENTITY = fjord_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_blossom
-			}
-			set_planet_entity = {
-				picture = pc_pd_blossom
-				entity = "blossom_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_blossom
+			PICTURE = pc_pd_blossom
+			ENTITY = blossom_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_taiga
-			}
-			set_planet_entity = {
-				picture = pc_pd_taiga
-				entity = "taiga_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_taiga
+			PICTURE = pc_pd_taiga
+			ENTITY = taiga_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_craton
-			}
-			set_planet_entity = {
-				picture = pc_pd_craton
-				entity = "craton_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_craton
+			PICTURE = pc_pd_craton
+			ENTITY = craton_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_ravine
-			}
-			set_planet_entity = {
-				picture = pc_pd_ravine
-				entity = "ravine_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_ravine
+			PICTURE = pc_pd_ravine
+			ENTITY = ravine_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_glaciovolcanic
-			}
-			set_planet_entity = {
-				picture = pc_pd_glaciovolcanic
-				entity = "glacio_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_glaciovolcanic
+			PICTURE = pc_pd_glaciovolcanic
+			ENTITY = glacio_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_modifier = pd_lanthanide
-			}
-			set_planet_entity = {
-				picture = pc_pd_lanthanide
-				entity = "lanthanide_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_alpine
+			MODIFIER = pd_lanthanide
+			PICTURE = pc_pd_lanthanide
+			ENTITY = lanthanide_planet_01_entity
 		}
 		#Tundra
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_bog
-			}
-			set_planet_entity = {
-				picture = pc_pd_bog
-				entity = "swamp_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_bog
+			PICTURE = pc_pd_bog
+			ENTITY = swamp_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_mycelium
-			}
-			set_planet_entity = {
-				picture = pc_pd_mycelium
-				entity = "mycelium_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_mycelium
+			PICTURE = pc_pd_mycelium
+			ENTITY = mycelium_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_mud
-			}
-			set_planet_entity = {
-				picture = pc_pd_mud
-				entity = "mud_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_mud
+			PICTURE = pc_pd_mud
+			ENTITY = mud_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_basalt
-			}
-			set_planet_entity = {
-				picture = pc_pd_basalt
-				entity = "basalt_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_basalt
+			PICTURE = pc_pd_basalt
+			ENTITY = basalt_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_tuya
-			}
-			set_planet_entity = {
-				picture = pc_pd_tuya
-				entity = "tuya_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_tuya
+			PICTURE = pc_pd_tuya
+			ENTITY = tuya_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_cryovolcano
-			}
-			set_planet_entity = {
-				picture = pc_pd_cryovolcano
-				entity = "cryovolcano_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_cryovolcano
+			PICTURE = pc_pd_cryovolcano
+			ENTITY = cryovolcano_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_treeline
-			}
-			set_planet_entity = {
-				picture = pc_pd_treeline
-				entity = "treeline_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_treeline
+			PICTURE = pc_pd_treeline
+			ENTITY = treeline_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_peatland
-			}
-			set_planet_entity = {
-				picture = pc_pd_peatland
-				entity = "peatland_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_peatland
+			PICTURE = pc_pd_peatland
+			ENTITY = peatland_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_travertine
-			}
-			set_planet_entity = {
-				picture = pc_pd_travertine
-				entity = "travertine_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_travertine
+			PICTURE = pc_pd_travertine
+			ENTITY = travertine_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_cryoflora
-			}
-			set_planet_entity = {
-				picture = pc_pd_cryoflora
-				entity = "cryoflora_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_cryoflora
+			PICTURE = pc_pd_cryoflora
+			ENTITY = cryoflora_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_modifier = pd_lichen
-			}
-			set_planet_entity = {
-				picture = pc_pd_lichen
-				entity = "lichen_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_tundra
+			MODIFIER = pd_lichen
+			PICTURE = pc_pd_lichen
+			ENTITY = lichen_planet_01_entity
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_volcanic
-				has_modifier = pd_volcanic
-			}
-			set_planet_entity = {
-				picture = pc_volcanic
-				entity = "volcanic_planet"
-			}
+		#Volcanic
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_volcanic
+			MODIFIER = pd_volcanic
+			PICTURE = pc_volcanic
+			ENTITY = volcanic_planet
 		}
-		if = {
-			limit = {
-				is_planet_class = pc_volcanic
-				has_modifier = pd_ash
-			}
-			set_planet_entity = {
-				picture = pc_pd_ash
-				entity = "ash_planet_01_entity"
-			}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_volcanic
+			MODIFIER = pd_ash
+			PICTURE = pc_pd_ash
+			ENTITY = ash_planet_01_entity
 		}
 	}
 }

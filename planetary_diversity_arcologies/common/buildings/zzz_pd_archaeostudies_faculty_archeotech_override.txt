@@ -1,0 +1,182 @@
+# Overrides vanilla building_archaeostudies_faculty (05_research_buildings.txt) so the two pc_relic-gated triggered modifiers (planet +0.25 minor artifacts per biologist, country +25% archaeostudies research speed) also fire when an Archeotech Preserve zone is on the planet.
+# Full-replace at the key level since Stellaris does not merge building bodies; only the two `is_planet_class = pc_relic` gates have been expanded to OR with `num_zones`.
+building_archaeostudies_faculty = {
+	base_buildtime = @b2_time
+	planet_limit = 1
+	category = research
+
+	building_sets = {
+		research
+	}
+
+	empire_limit = {
+		base = 1
+	}
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+		}
+		exists = owner
+		owner = {
+			is_wilderness_empire = no
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			has_modifier = penal_colony
+			owner = { is_wilderness_empire = yes }
+		}
+	}
+
+	allow = {
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+			minor_artifacts = @b2_rare_cost
+		}
+		upkeep = {
+			energy = @b3_upkeep
+		}
+	}
+
+	planet_modifier = {
+		planet_biologists_society_research_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		planet_biologists_consumer_goods_upkeep_add = 0.5
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		planet_biologists_energy_upkeep_add = 1
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		planet_biologists_minerals_upkeep_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				is_planet_class = pc_relic
+				num_zones = { type = zone_pd_archeotech_preserve value > 0 }
+			}
+		}
+		planet_biologists_minor_artifacts_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		planet_biologists_minor_artifacts_produces_add = 0.15
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		country_resource_max_minor_artifacts_add = 3000
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			OR = {
+				is_planet_class = pc_relic
+				num_zones = { type = zone_pd_archeotech_preserve value > 0 }
+			}
+		}
+		category_archaeostudies_research_speed_mult = 0.25
+	}
+
+	inline_script = {
+		script = jobs/biologists_add
+		AMOUNT = @building_static_jobs
+	}
+
+	country_modifier = {
+		category_archaeostudies_research_speed_mult = 0.25
+		country_resource_max_minor_artifacts_add = 2000
+	}
+
+	prerequisites = {
+		"tech_archaeostudies"
+	}
+
+	show_tech_unlock_if = {
+		is_wilderness_empire = no
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+			}
+		}
+		text = biologist_is_archaeo_engineer_tt
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		text = biology_drone_is_archaeo_engineer_tt
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		text = biology_unit_is_archaeo_engineer_tt
+	}
+
+	triggered_desc = {
+		text = building_archaeostudies_faculty_relic_effect
+	}
+
+	ai_weight_coefficient = 1.5
+
+	inline_script = {
+		script = districts/ai_research_society_extra_weighting
+		AMOUNT = 5
+	}
+}

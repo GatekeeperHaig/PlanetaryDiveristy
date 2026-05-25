@@ -1,0 +1,10 @@
+# Overrides vanilla biologist_is_archaeo_engineer_trigger (01_scripted_triggers_jobs.txt) so that an ex-relic arcology with the Archeotech Preserve zone swaps Biologists to Archaeo-Engineers even when building_archaeostudies_faculty is not built.
+biologist_is_archaeo_engineer_trigger = {
+	OR = {
+		has_active_building = building_archaeostudies_faculty
+		num_zones = {
+			type = zone_pd_archeotech_preserve
+			value > 0
+		}
+	}
+}

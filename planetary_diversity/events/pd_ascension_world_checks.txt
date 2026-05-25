@@ -188,6 +188,27 @@ planet_event = {
 				entity = pdshroud_planet_01_entity
 			}
 		}
+		#pc_ocean (and any flooded vanilla habitable) takes the aquatic shroud entity to match the existing tidally/super/pd_gaia flooded branches.
+		IF = {
+			limit = {
+				OR = {
+					is_planet_class = pc_ocean
+					is_planet_class = pc_continental
+					is_planet_class = pc_tropical
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+					is_planet_class = pc_arctic
+					is_planet_class = pc_alpine
+					is_planet_class = pc_tundra
+					is_planet_class = pc_volcanic
+				}
+			}
+			set_planet_entity = {
+				picture = pc_aquatic_shroud_hot
+				entity = ocean_paradise_shroud_planet_01_entity
+			}
+		}
 	}
 }
 
@@ -235,6 +256,35 @@ planet_event = {
 		IF = {
 			limit = {
 				pd_is_planet_class_pd_gaia = yes
+			}
+			set_planet_entity = {
+				picture = pc_pd_shroud
+				entity = pdshroud_planet_01_entity
+			}
+		}
+		#Volcanic has its own shroud entity (only class-specific vanilla shroud art that exists). pdengine.160 reasserts the PD-flavored visual on terraform; this branch overrides it back to shroud since .200 runs after .160 in pd_on_actions.
+		IF = {
+			limit = {
+				is_planet_class = pc_volcanic
+			}
+			set_planet_entity = {
+				picture = pc_pd_volcanic_shroud
+				entity = pd_volcanic_shroud_planet_01_entity
+			}
+		}
+		#Other vanilla habitable classes fall back to the generic shroud entity.
+		IF = {
+			limit = {
+				OR = {
+					is_planet_class = pc_continental
+					is_planet_class = pc_tropical
+					is_planet_class = pc_desert
+					is_planet_class = pc_arid
+					is_planet_class = pc_savannah
+					is_planet_class = pc_arctic
+					is_planet_class = pc_alpine
+					is_planet_class = pc_tundra
+				}
 			}
 			set_planet_entity = {
 				picture = pc_pd_shroud

@@ -178,6 +178,35 @@ pd_create_shroud_world_effect = {
 			entity = pdshroud_cave_planet_01_entity
 		}
 	}
+	#Volcanic has its own shroud entity (only class-specific vanilla shroud art that exists).
+	IF = {
+		limit = {
+			is_planet_class = pc_volcanic
+		}
+		set_planet_entity = {
+			picture = pc_pd_volcanic_shroud
+			entity = pd_volcanic_shroud_planet_01_entity
+		}
+	}
+	#Other vanilla habitable classes use the generic shroud entity.
+	IF = {
+		limit = {
+			OR = {
+				is_planet_class = pc_continental
+				is_planet_class = pc_tropical
+				is_planet_class = pc_desert
+				is_planet_class = pc_arid
+				is_planet_class = pc_savannah
+				is_planet_class = pc_arctic
+				is_planet_class = pc_alpine
+				is_planet_class = pc_tundra
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_shroud
+			entity = pdshroud_planet_01_entity
+		}
+	}
 }
 
 #PD Worlds - Wasteland View
@@ -302,6 +331,27 @@ pd_create_aquatic_shroud_world_effect = {
 	IF = {
 		limit = {
 			pd_is_planet_class_pd_gaia = yes
+		}
+		set_planet_entity = {
+			picture = pc_aquatic_shroud_hot
+			entity = ocean_paradise_shroud_planet_01_entity
+		}
+	}
+	#pc_ocean (and any vanilla habitable flagged as flooded) gets the aquatic shroud entity.
+	IF = {
+		limit = {
+			OR = {
+				is_planet_class = pc_ocean
+				is_planet_class = pc_continental
+				is_planet_class = pc_tropical
+				is_planet_class = pc_desert
+				is_planet_class = pc_arid
+				is_planet_class = pc_savannah
+				is_planet_class = pc_arctic
+				is_planet_class = pc_alpine
+				is_planet_class = pc_tundra
+				is_planet_class = pc_volcanic
+			}
 		}
 		set_planet_entity = {
 			picture = pc_aquatic_shroud_hot

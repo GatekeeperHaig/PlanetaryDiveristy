@@ -1264,6 +1264,110 @@ decision_pd_aw_shroud_planet_cleanup = {
 	}
 }
 
+#Sever Shroud (psionic path - we can undo our own communion, but our psions pay for it)
+decision_pd_aw_sever_shroud_planet = {
+	owned_planets_only = yes
+	icon = decision_pd_aw_shroud
+
+	enactment_time = @pd_shroud_time
+
+	potential = {
+		exists = owner
+		owner = { pd_can_shroud_planets = yes }
+		pd_aw_is_shroud_planet = yes
+		pd_is_valid_for_shroud_planet = yes
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
+		}
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+			sr_zro = 750
+		}
+	}
+
+	effect = {
+		remove_modifier = pd_aw_shroud_planet
+		add_modifier = {
+			modifier = pd_aw_shroud_severed
+			days = 3600
+		}
+		custom_tooltip = decision_pd_aw_sever_shroud_planet_tooltip
+		hidden_effect = {
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_aw_back_to_normal_view_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_aw_create_aquatic_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = no
+				}
+				pd_aw_create_necro_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = no
+					pd_aw_is_necro_planet = yes
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			if = {
+				limit = {
+					pd_is_flooded_planet = yes
+					pd_aw_is_necro_planet = no
+					pd_aw_is_lithoid_planet = yes
+				}
+				pd_aw_create_lithoid_world_effect = yes
+			}
+			create_message = {
+				type = MESSAGE_PD_AW_SHROUD_CLEANUP_TYPE
+				localization = MESSAGE_PD_AW_SHROUD_SEVER_DESC
+				days = 20
+				target = root
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
 ###Necro Worlds
 @pd_necro_time = 1800
 #Make Necro World
