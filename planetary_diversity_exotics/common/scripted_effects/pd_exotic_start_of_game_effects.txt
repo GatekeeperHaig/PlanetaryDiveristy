@@ -92,4 +92,49 @@ generate_pd_exotic_start_deposits = {
 			}
 		}
 	}
+
+	if = {
+		limit = {
+			is_planet_class = pc_pd_nitrogen
+		}
+
+		# Mirrors the ammonia branch: one +1, one +2, one +3 deposit per category, with machine/servitor energy boosts and a lithoid/infernal farming swap to mining.
+
+		# 3 + 3 energy
+		add_deposit = d_pd_nitrogen_geyser_fields
+		add_deposit = d_pd_nitrogen_aurora_curtains
+		add_deposit = d_pd_nitrogen_plasma_columns
+		if = {
+			limit = { owner = { is_machine_empire = yes } }
+			add_deposit = d_pd_nitrogen_aurora_curtains
+		}
+		if = {
+			limit = { owner = { has_valid_civic = civic_machine_servitor } }
+			add_deposit = d_pd_nitrogen_geyser_fields
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_pd_nitrogen_frost_caverns
+		add_deposit = d_pd_nitrogen_nitrate_flats
+		add_deposit = d_pd_nitrogen_diamond_rinds
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_pd_nitrogen_frost_blooms
+		add_deposit = d_pd_nitrogen_nitrogen_seas
+		if = {
+			limit = { owner = { is_machine_empire = no } }
+			add_deposit = d_pd_nitrogen_frost_blooms
+			if = {
+				limit = {
+					owner = {
+						is_lithoid_or_infernal_empire = yes
+					}
+				}
+				add_deposit = d_pd_nitrogen_diamond_rinds
+			}
+			else = {
+				add_deposit = d_pd_nitrogen_cryoplankton_drifts
+			}
+		}
+	}
 }

@@ -14,6 +14,8 @@
  pc_pd_methane_desc: "Frigid, rocky world with a thick nitrogen-methane atmosphere. Liquid methane and ethane seas cover much of the surface, with continuous hydrocarbon haze tinting the sky orange. Native life relies on hydrocarbon-based biochemistry rather than water."
  pc_pd_ammonia: "Ammonia World"
  pc_pd_ammonia_desc: "Cold, rocky world with a thick nitrogen-ammonia atmosphere. Liquid ammonia oceans cover much of the surface, with persistent ammonia-water ice at the poles. Native life relies on ammonia-based biochemistry rather than water."
+ pc_pd_nitrogen: "Nitrogen World"
+ pc_pd_nitrogen_desc: "Frozen, rocky world with a thin nitrogen atmosphere. Seas of liquid nitrogen pool across the lowlands, and nitrogen geysers vent from fissures in the ice crust. Native life relies on cryogenic nitrogen-based biochemistry rather than water."
 
  # Planet-class static modifier (applied at game start to flag ammonia worlds)
  pd_ammonia: "Ammonia World"
@@ -22,6 +24,10 @@
  # Planet-class static modifier (applied at game start to flag methane worlds)
  pd_methane: "Methane World"
  pd_methane_desc: "This frigid planet has a thick nitrogen-methane atmosphere over seas of liquid methane and ethane. Tholin haze and methane precipitation drive the surface chemistry, and native life relies on hydrocarbon-based biochemistry rather than water."
+
+ # Planet-class static modifier (applied at game start to flag nitrogen worlds)
+ pd_nitrogen: "Nitrogen World"
+ pd_nitrogen_desc: "This frozen planet has a thin nitrogen atmosphere over seas of liquid nitrogen, with cryovolcanic geysers venting from fissures in the ice crust. Native life relies on cryogenic nitrogen-based biochemistry rather than water."
 
  # Core trait
  trait_cryophile: "Cryophile"
@@ -33,10 +39,13 @@
  trait_pc_pd_methane_preference_desc: "This species evolved alongside the liquid hydrocarbon seas of methane worlds. They are thoroughly optimized for liquid-methane biochemistry and can technically survive on ammonia worlds, though they will never truly thrive there. They cannot endure the warmer, wetter biospheres of conventional life."
  trait_pc_pd_ammonia_preference: "Ammonia World Preference"
  trait_pc_pd_ammonia_preference_desc: "This species evolved in the dense ammonia-cloud atmospheres of ammonia worlds. They are thoroughly optimized for ammonia-compound biochemistry and can technically survive on methane worlds, though they will never truly thrive there. They cannot endure the warmer, wetter biospheres of conventional life."
+ trait_pc_pd_nitrogen_preference: "Nitrogen World Preference"
+ trait_pc_pd_nitrogen_preference_desc: "This species evolved beside the frozen nitrogen seas and cryovolcanic geysers of nitrogen worlds. They are thoroughly optimized for liquid-nitrogen biochemistry and can technically survive on ammonia or methane worlds, though they will never truly thrive there. They cannot endure the warmer, wetter biospheres of conventional life."
 
  # Habitability modifiers
  mod_pc_pd_methane_habitability: "Methane World Habitability"
  mod_pc_pd_ammonia_habitability: "Ammonia World Habitability"
+ mod_pc_pd_nitrogen_habitability: "Nitrogen World Habitability"
 
  # Ammonia atmosphere zone gate (planet-side modifier applied by arcology atmosphere checks)
  pd_ammonia_atmosphere:0 "Ammonia Atmosphere"
@@ -46,9 +55,14 @@
  pd_methane_atmosphere:0 "Methane Atmosphere"
  pd_methane_atmosphere_desc:0 "Dense nitrogen, methane, and ethane at very low temperatures. Suspended tholin aerosols give the air its characteristic orange tint."
 
+ # Nitrogen atmosphere zone gate (planet-side modifier applied by arcology atmosphere checks)
+ pd_nitrogen_atmosphere:0 "Nitrogen Atmosphere"
+ pd_nitrogen_atmosphere_desc:0 "Thin molecular nitrogen at extreme cryogenic temperatures. Suspended ice particulates and trace neon give the air a pale blue cast."
+
  # Start screen intro (PART_ONE per planet class)
  START_SCREEN_PART_ONE_PD_METHANE: "In the eons since the first primitive [GetSpeciesName] communities took shape on the liquid hydrocarbon shores of [GetHomeWorldName], our civilization has spread and prospered."
  START_SCREEN_PART_ONE_PD_AMMONIA: "In the eons since the first primitive [GetSpeciesName] communities took shape beneath the ammonia clouds of [GetHomeWorldName], our civilization has spread and prospered."
+ START_SCREEN_PART_ONE_PD_NITROGEN: "In the eons since the first primitive [GetSpeciesName] communities took shape beside the frozen nitrogen seas of [GetHomeWorldName], our civilization has spread and prospered."
 
  # Ammonia world planet features
  d_pd_ammonia_lightning_storms: "Nitrogen Lightning Fronts"
@@ -93,6 +107,28 @@
  d_pd_methane_hydrocarbon_marshes_desc: "Vast tidal marshes of native methane-fed flora line the coasts, converting atmospheric hydrocarbons into thick edible biomass. The richest harvest on any cryogenic world."
  d_pd_methane_pure_gas_vents: "Methane-Ethane Vents"
  d_pd_methane_pure_gas_vents_desc: "Deep fissures vent plumes of methane and heavier hydrocarbon gases, pure enough to feed refineries with no preprocessing."
+
+ # Nitrogen world planet features
+ d_pd_nitrogen_geyser_fields: "Cryogenic Geyser Fields"
+ d_pd_nitrogen_geyser_fields_desc: "Vast plains where pressurized subsurface nitrogen erupts in steady jets of supercooled vapor. Turbines installed over each vent draw power from the venting columns."
+ d_pd_nitrogen_aurora_curtains: "Aurora Curtains"
+ d_pd_nitrogen_aurora_curtains_desc: "Solar wind drives near-continuous auroras through the thin upper atmosphere. The charged sheets can be tapped for raw electricity using grounded antennae."
+ d_pd_nitrogen_plasma_columns: "Polar Plasma Columns"
+ d_pd_nitrogen_plasma_columns_desc: "At the magnetic poles, ionized nitrogen rises in towering plasma columns that climb hundreds of kilometers skyward. The discharge can be tapped for raw electricity."
+ d_pd_nitrogen_frost_caverns: "Frost Crystal Caverns"
+ d_pd_nitrogen_frost_caverns_desc: "Deep cavern networks plated with veins of metallic ore trapped within the ancient nitrogen ice. The walls yield rich extracts once warmed enough to process."
+ d_pd_nitrogen_nitrate_flats: "Frozen Nitrate Flats"
+ d_pd_nitrogen_nitrate_flats_desc: "Wide pans of crystallized nitrate salts laid down by ancient nitrogen seas. The deposits run deep and yield steady mineral output."
+ d_pd_nitrogen_diamond_rinds: "Diamond Rinds"
+ d_pd_nitrogen_diamond_rinds_desc: "Ancient nitrogen ice has compressed atmospheric carbon into thick rinds of crystalline carbon along the polar plateaus. The seams sit close enough to the surface to mine directly."
+ d_pd_nitrogen_frost_blooms: "Nitrogen Frost Blooms"
+ d_pd_nitrogen_frost_blooms_desc: "Patches of native cryoflora grow across the frozen lowlands, drawing nitrogen straight from the air. The biomass can be harvested as edible feedstock."
+ d_pd_nitrogen_nitrogen_seas: "Liquid Nitrogen Seas"
+ d_pd_nitrogen_nitrogen_seas_desc: "Wide basins of liquid nitrogen support thick mats of native microbiology along their shallows. The biomass is a primary food source for any cryophile colony."
+ d_pd_nitrogen_cryoplankton_drifts: "Cryoplankton Drifts"
+ d_pd_nitrogen_cryoplankton_drifts_desc: "Vast drifting blooms of native cryoplankton metabolize liquid nitrogen into thick edible biomass. The richest harvest on any cryogenic world."
+ d_pd_nitrogen_pure_gas_vents: "Liquid Nitrogen Vents"
+ d_pd_nitrogen_pure_gas_vents_desc: "Deep fissures vent plumes of pure nitrogen and trace exotic gases, pure enough to feed refineries with no preprocessing."
 
  # Urban districts (link to vanilla city/hive/nexus loc so submods stay compatible)
 
@@ -260,6 +296,62 @@
  pc_pd_methane_commercial_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
  pc_pd_methane_commercial_headquarters_adj:0 "DUMMY"
 
+ # Nitrogen arcology dummy planet classes
+ pc_pd_nitrogen_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_headquarters_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_headquarters_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_machine_capital_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_headquarters_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_machine_capital_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_headquarters_adj:0 "DUMMY"
+
  # Cryothermal Engineering ascension perk
  ap_pd_cryothermal_engineering: "Cryothermal Engineering"
  ap_pd_cryothermal_engineering_desc: "To prosper in cryogenic conditions demands more than warmer clothing; it requires a fundamental reinvention of materials, biology, and chemistry. We are pioneering the science of the cold."
@@ -275,7 +367,7 @@
  # Cryogenic planet concept (linked from the AP tooltip and reusable across exotic content).
  concept_pd_cryogenic_planet: "Cryogenic Planet"
  concept_pd_cryogenic_planets: "Cryogenic Planets"
- concept_pd_cryogenic_planet_desc: "$concept_pd_cryogenic_planet$ refers to worlds whose biospheres run on cryogenic chemistry rather than liquid water:$NEW_LINE$- $pc_pd_ammonia$$NEW_LINE$- $pc_pd_methane$"
+ concept_pd_cryogenic_planet_desc: "$concept_pd_cryogenic_planet$ refers to worlds whose biospheres run on cryogenic chemistry rather than liquid water:$NEW_LINE$- $pc_pd_ammonia$$NEW_LINE$- $pc_pd_methane$$NEW_LINE$- $pc_pd_nitrogen$"
 
  # Country workforce modifiers (auto-render their constituent mults via the mod_job_* keys below)
  pd_cryothermal_workforce: "Cryothermal Workforce Optimization"
@@ -299,15 +391,15 @@
  tech_pd_pressure_suits: "Pressure Suits"
  tech_pd_pressure_suits_desc: "Hardened cold-vac suits and atmosphere-sealed habitats let our colonists endure the oxygen, pressure, and warmth of worlds beyond our own. Other species can in turn survive within our atmospheres."
  tech_pd_pressure_suits_effect_title: "§HUnlocks Colonization:§! ['concept_pd_cryogenic_planet'] for non-cryogenic species"
- tech_pd_pressure_suits_effect_desc: "§HCryogenic Habitation§!\nPressurized habitats and cold-vac suits keep oxygen-breathing colonists alive within methane and ammonia atmospheres."
+ tech_pd_pressure_suits_effect_desc: "§HCryogenic Habitation§!\nPressurized habitats and cold-vac suits keep oxygen-breathing colonists alive within methane, ammonia, and nitrogen atmospheres."
 
  # Cryoforming tech (normal research, cryophile-founder empires only; gates ingress terraforming into ammonia and methane)
  tech_pd_cryoforming: "Cryoforming"
  tech_pd_cryoforming_desc: "Advances in cryogenic chemistry and atmospheric reformation give us the means to extend our biosphere onto worlds where it does not naturally form. A temperate planet can be reshaped into the cold, dense atmosphere our kind requires."
  tech_pd_cryoforming_effect_title: "§HUnlocks Feature:§! Cryogenic Terraforming"
- tech_pd_cryoforming_effect_desc: "Allows us to terraform temperate worlds into Ammonia and Methane Worlds."
+ tech_pd_cryoforming_effect_desc: "Allows us to terraform temperate worlds into Ammonia, Methane, and Nitrogen Worlds."
  tech_pd_cryogenic_terraforming_effect_title: "§HUnlocks Feature:§! Cryogenic Terraforming"
- tech_pd_cryogenic_terraforming_effect_desc: "Allows us to terraform Ammonia and Methane Worlds into temperate worlds."
+ tech_pd_cryogenic_terraforming_effect_desc: "Allows us to terraform Ammonia, Methane, and Nitrogen Worlds into temperate worlds."
 
  # Habitat atmosphere toggle decisions (auto-stamped by on_megastructure_built; these let players add it to inherited habitats or vent it after conquest)
  decision_pd_exotic_habitat_add_ammonia_atmosphere: "Pressurize Ammonia Atmosphere"
@@ -318,6 +410,10 @@
  decision_pd_exotic_habitat_add_methane_atmosphere_desc: "Flood the habitat's life support with nitrogen and methane so our kind can settle here. Only cryogenic-adapted species will be able to live aboard once the atmosphere shifts."
  decision_pd_exotic_habitat_remove_methane_atmosphere: "Vent Methane Atmosphere"
  decision_pd_exotic_habitat_remove_methane_atmosphere_desc: "Scrub the methane atmosphere out of this habitat and replace it with a conventional oxygen mix. Cryogenic species will no longer be able to settle here."
+ decision_pd_exotic_habitat_add_nitrogen_atmosphere: "Pressurize Nitrogen Atmosphere"
+ decision_pd_exotic_habitat_add_nitrogen_atmosphere_desc: "Flood the habitat's life support with pure nitrogen at cryogenic pressure so our kind can settle here. Only cryogenic-adapted species will be able to live aboard once the atmosphere shifts."
+ decision_pd_exotic_habitat_remove_nitrogen_atmosphere: "Vent Nitrogen Atmosphere"
+ decision_pd_exotic_habitat_remove_nitrogen_atmosphere_desc: "Scrub the cryogenic nitrogen atmosphere out of this habitat and replace it with a conventional oxygen mix. Cryogenic species will no longer be able to settle here."
 
  # Cryogenic SR deposits (volatile motes pair)
  d_pd_cryo_clathrate_pockets: "Clathrate Pockets"

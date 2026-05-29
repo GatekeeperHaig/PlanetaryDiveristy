@@ -869,3 +869,299 @@ entity = {
 	}
 	scale = 1.0
 }
+
+####### Nitrogen cloud overlays #######
+
+# Plain nitrogen clouds; PD-exotics native nitrogen cloud texture.
+entity = {
+	name = "pd_nitrogen_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_nitrogen_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_nitrogen_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Garden nitrogen clouds; PD-exotics native nitrogen cloud texture.
+entity = {
+	name = "pd_nitrogen_garden_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_nitrogen_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_nitrogen_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Fortress nitrogen clouds; PD-exotics native fortress-flavored nitrogen cloud texture.
+entity = {
+	name = "pd_nitrogen_fortress_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_nitrogen_fortress_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_nitrogen_fortress_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+# Commercial nitrogen clouds; PD-exotics native nitrogen cloud texture. Billboards read on top of these.
+entity = {
+	name = "pd_nitrogen_commercial_planet_cloud_mesh"
+	pdxmesh = "ma_planet_cloud_mesh"
+	scale = 0.985
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "pd_nitrogen_planet_clouds.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	meshsettings = {
+		name = "clouds_shadow_geosphereShape"
+		texture_diffuse = "pd_nitrogen_planet_clouds_shadow.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		animation_speed = 0.6
+	}
+}
+
+####### Plain Nitrogen Arcology #######
+
+entity = {
+	name = "pd_nitrogen_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_nitrogen_city_planet_mesh" }
+	attach = { "planetloc" = "pd_nitrogen_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_nitrogen_city_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "city_planet_nitrogen_01_diffuse.dds"
+		texture_normal = "city_planet_arthropoid_01_normal.dds"
+		texture_specular = "city_planet_arthropoid_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Plain Nitrogen + Palace Capital #######
+
+entity = {
+	name = "pd_nitrogen_palace_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_nitrogen_palace_planet_mesh" }
+	attach = { "planetloc" = "pd_nitrogen_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_nitrogen_palace_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "palacenitrogen_arc_01_diffuse.dds"
+		texture_normal = "palacenitrogen_arc_01_normal.dds"
+		texture_specular = "palacenitrogen_arc_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Garden Nitrogen Arcology #######
+
+entity = {
+	name = "pd_nitrogen_garden_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_nitrogen_garden_city_planet_mesh" }
+	attach = { "planetloc" = "pd_nitrogen_garden_planet_cloud_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+entity = {
+	name = "pd_nitrogen_garden_city_planet_mesh"
+	pdxmesh = "planet_non_clouded_mesh"
+	meshsettings = {
+		name = "planet_geosphereShape"
+		texture_diffuse = "ecocity_nitrogen_01_diffuse.dds"
+		texture_normal = "ecocity_nitrogen_01_normal.dds"
+		texture_specular = "ecocity_nitrogen_01_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	meshsettings = {
+		name = "polesShape"
+		texture_diffuse = "poles_tropical_1_diffuse.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "nospec.dds"
+		shader = "AlphaBlend_00"
+	}
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { planet = "city_planet_surface_ships_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+}
+
+####### Fortress Nitrogen Arcology #######
+# Reuses pd_nitrogen_city_planet_mesh; visual difference comes from the fortress cloud overlay + orbital shield. Swap to a dedicated fortress nitrogen mesh + texture set if fortress-flavored nitrogen DDS land.
+
+entity = {
+	name = "pd_nitrogen_fortress_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_nitrogen_city_planet_mesh" }
+	attach = { "planetloc" = "pd_nitrogen_fortress_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_exotic_planet_shield_effect_entity" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}
+
+####### Commercial Nitrogen Arcology #######
+# Reuses pd_nitrogen_city_planet_mesh; visual difference comes from the four commercial billboard meshes + commercial cloud overlay. Swap to a dedicated commercial nitrogen mesh + texture set if commercial-flavored nitrogen DDS land.
+
+entity = {
+	name = "pd_nitrogen_commercial_city_planet_01_entity"
+	locator = { name = "planetloc" position = { 0 0 0 } rotation = { 0 0 0 } }
+	default_state = "idle"
+	playback_rate = 1.0
+	state = { name = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_city_planet_flyby" } }
+	}
+	attach = { "planetloc" = "pd_nitrogen_city_planet_mesh" }
+	attach = { "planetloc" = "pd_nitrogen_commercial_planet_cloud_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_2_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_3_mesh" }
+	attach = { "planetloc" = "pd_exotic_commercial_planet_billboard_4_mesh" }
+	game_data = {
+		shader_type = ship
+		emissive_recolor_crunch = 5.0
+	}
+	scale = 1.0
+}

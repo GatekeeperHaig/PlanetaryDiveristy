@@ -15,6 +15,7 @@ country_event = {
 					OR = {
 						is_planet_class = pc_pd_methane
 						is_planet_class = pc_pd_ammonia
+						is_planet_class = pc_pd_nitrogen
 					}
 				}
 			}
@@ -31,6 +32,13 @@ country_event = {
 					limit = { is_planet_class = pc_pd_methane }
 					add_modifier = {
 						modifier = pd_methane
+						days = -1
+					}
+				}
+				if = {
+					limit = { is_planet_class = pc_pd_nitrogen }
+					add_modifier = {
+						modifier = pd_nitrogen
 						days = -1
 					}
 				}
@@ -62,6 +70,14 @@ country_event = {
 				NOT = { has_modifier = pd_methane }
 			}
 			add_modifier = { modifier = pd_methane days = -1 }
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_nitrogen
+				is_capital = no
+				NOT = { has_modifier = pd_nitrogen }
+			}
+			add_modifier = { modifier = pd_nitrogen days = -1 }
 		}
 	}
 }
@@ -101,6 +117,20 @@ planet_event = {
 			}
 			remove_modifier = pd_methane
 		}
+		if = {
+			limit = {
+				is_planet_class = pc_pd_nitrogen
+				NOT = { has_modifier = pd_nitrogen }
+			}
+			add_modifier = { modifier = pd_nitrogen days = -1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { is_planet_class = pc_pd_nitrogen }
+				has_modifier = pd_nitrogen
+			}
+			remove_modifier = pd_nitrogen
+		}
 	}
 }
 
@@ -116,6 +146,7 @@ planet_event = {
 		OR = {
 			is_planet_class = pc_pd_ammonia
 			is_planet_class = pc_pd_methane
+			is_planet_class = pc_pd_nitrogen
 		}
 		NOT = { has_modifier = pd_cryothermal_engineered_planet }
 	}
@@ -139,6 +170,7 @@ planet_event = {
 				OR = {
 					is_planet_class = pc_pd_ammonia
 					is_planet_class = pc_pd_methane
+					is_planet_class = pc_pd_nitrogen
 				}
 				NOT = { has_modifier = pd_cryothermal_engineered_planet }
 			}
@@ -150,6 +182,7 @@ planet_event = {
 				NOR = {
 					is_planet_class = pc_pd_ammonia
 					is_planet_class = pc_pd_methane
+					is_planet_class = pc_pd_nitrogen
 				}
 			}
 			remove_modifier = pd_cryothermal_engineered_planet
@@ -168,6 +201,7 @@ planet_event = {
 		OR = {
 			is_planet_class = pc_pd_ammonia
 			is_planet_class = pc_pd_methane
+			is_planet_class = pc_pd_nitrogen
 		}
 		NOT = { has_modifier = pd_cryothermal_engineered_planet }
 	}
@@ -290,6 +324,65 @@ planet_event = {
 		add_modifier = { modifier = pd_methane_atmosphere days = -1 }
 		set_planet_entity = {
 			picture = pc_pd_methane_habitat
+			graphical_culture = owner
+		}
+	}
+}
+
+# on_megastructure_built hook for nitrogen (parallel to pd_exotic.20).
+country_event = {
+	id = pd_exotic.24
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		species = { has_trait = trait_pc_pd_nitrogen_preference }
+		FROMFROM = {
+			any_system_planet = {
+				is_planet_class = pc_habitat
+				is_colony = no
+				NOT = { has_modifier = pd_nitrogen_atmosphere }
+			}
+		}
+	}
+
+	immediate = {
+		FROMFROM = {
+			every_system_planet = {
+				limit = {
+					is_planet_class = pc_habitat
+					is_colony = no
+					NOT = { has_modifier = pd_nitrogen_atmosphere }
+				}
+				add_modifier = { modifier = pd_nitrogen_atmosphere days = -1 }
+				set_planet_entity = {
+					picture = pc_pd_nitrogen_habitat
+					graphical_culture = root
+				}
+			}
+		}
+	}
+}
+
+# on_colonized backstop for nitrogen (parallel to pd_exotic.21). Conquest case intentionally not covered.
+planet_event = {
+	id = pd_exotic.25
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_planet_class = pc_habitat
+		exists = owner
+		owner = {
+			species = { has_trait = trait_pc_pd_nitrogen_preference }
+		}
+		NOT = { has_modifier = pd_nitrogen_atmosphere }
+	}
+
+	immediate = {
+		add_modifier = { modifier = pd_nitrogen_atmosphere days = -1 }
+		set_planet_entity = {
+			picture = pc_pd_nitrogen_habitat
 			graphical_culture = owner
 		}
 	}

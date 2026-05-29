@@ -75,6 +75,7 @@ remove_pd_capital_deposit_effect = {
 				OR = {
 					pd_has_ammonia_atmosphere = yes
 					pd_has_methane_atmosphere = yes
+					pd_has_nitrogen_atmosphere = yes
 				}
 			}
 			generate_pd_cryo_arcology_portrait_effect = yes
@@ -93,6 +94,7 @@ remove_pd_capital_deposit_effect = {
 				OR = {
 					pd_has_ammonia_atmosphere = yes
 					pd_has_methane_atmosphere = yes
+					pd_has_nitrogen_atmosphere = yes
 				}
 			}
 			generate_pd_cryo_arcology_portrait_effect = yes
@@ -111,6 +113,7 @@ remove_pd_capital_deposit_effect = {
 				OR = {
 					pd_has_ammonia_atmosphere = yes
 					pd_has_methane_atmosphere = yes
+					pd_has_nitrogen_atmosphere = yes
 				}
 			}
 			generate_pd_cryo_arcology_portrait_effect = yes
@@ -129,6 +132,7 @@ remove_pd_capital_deposit_effect = {
 				OR = {
 					pd_has_ammonia_atmosphere = yes
 					pd_has_methane_atmosphere = yes
+					pd_has_nitrogen_atmosphere = yes
 				}
 			}
 			generate_pd_cryo_arcology_portrait_effect = yes
@@ -147,6 +151,7 @@ remove_pd_capital_deposit_effect = {
 				OR = {
 					pd_has_ammonia_atmosphere = yes
 					pd_has_methane_atmosphere = yes
+					pd_has_nitrogen_atmosphere = yes
 				}
 			}
 			generate_pd_cryo_arcology_portrait_effect = yes
@@ -441,6 +446,148 @@ generate_pd_cryo_arcology_portrait_effect = {
 			set_planet_entity = {
 				picture = pc_pd_methane_commercial_headquarters
 				entity = "pd_methane_commercial_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_nitrogen_atmosphere = yes
+			NOR = {
+				has_modifier = pd_garden_arcology
+				has_modifier = pd_fortress_arcology
+				has_modifier = pd_commercial_arcology
+			}
+		}
+		set_planet_entity = {
+			picture = pc_pd_nitrogen_city
+			entity = "pd_nitrogen_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_senate
+				entity = "pd_nitrogen_palace_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_palace
+				entity = "pd_nitrogen_palace_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_headquarters
+				entity = "pd_nitrogen_palace_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_nitrogen_atmosphere = yes
+			has_modifier = pd_garden_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_nitrogen_garden_city
+			entity = "pd_nitrogen_garden_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_garden_senate
+				entity = "pd_nitrogen_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_garden_palace
+				entity = "pd_nitrogen_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_garden_headquarters
+				entity = "pd_nitrogen_garden_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_machine_centralized_processing }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_garden_machine_capital
+				entity = "pd_nitrogen_garden_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_nitrogen_atmosphere = yes
+			has_modifier = pd_fortress_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_nitrogen_fortress_city
+			entity = "pd_nitrogen_fortress_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_fortress_senate
+				entity = "pd_nitrogen_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_fortress_palace
+				entity = "pd_nitrogen_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_fortress_headquarters
+				entity = "pd_nitrogen_fortress_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_machine_centralized_processing }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_fortress_machine_capital
+				entity = "pd_nitrogen_fortress_city_planet_01_entity"
+			}
+		}
+	}
+	if = {
+		limit = {
+			pd_has_nitrogen_atmosphere = yes
+			has_modifier = pd_commercial_arcology
+		}
+		set_planet_entity = {
+			picture = pc_pd_nitrogen_commercial_city
+			entity = "pd_nitrogen_commercial_city_planet_01_entity"
+		}
+		if = {
+			limit = { has_deposit = d_pd_senate_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_commercial_senate
+				entity = "pd_nitrogen_commercial_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_palace_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_commercial_palace
+				entity = "pd_nitrogen_commercial_city_planet_01_entity"
+			}
+		}
+		if = {
+			limit = { has_deposit = d_pd_headquarters_building }
+			set_planet_entity = {
+				picture = pc_pd_nitrogen_commercial_headquarters
+				entity = "pd_nitrogen_commercial_city_planet_01_entity"
 			}
 		}
 	}

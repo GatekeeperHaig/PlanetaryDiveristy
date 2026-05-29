@@ -38,6 +38,26 @@ pc_pd_ammonia = {
 	starting_planet = no
 }
 
+pc_pd_nitrogen = {
+	entity = "nitrogen_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_nitrogen
+	icon_large = GFX_planet_type_nitrogen_big
+	picture = pc_pd_nitrogen
+	atmosphere_color 		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity 	= 1.0
+	atmosphere_width 		= 0.5
+	city_color_lut = "gfx/portraits/misc/colorcorrection_nitrogen.dds"
+	climate = "cryogenic"
+	colonizable = yes
+	initial = yes
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+	district_set = pdexotic_cryo
+	carry_cap_per_free_district = @carry_cap_normal
+	starting_planet = no
+}
+
 # Dummy planet class referenced only as the `picture =` field of a set_planet_entity call, so habitats with pd_ammonia_atmosphere render with the ammonia city_color_lut without changing their actual class. The planet's class stays pc_habitat; this dummy supplies the visual override.
 # DO NOT USE: never list this in starting_planet sets, terraforming options, or trait habitability; only the pd_ammonia_atmosphere apply/remove paths should reference it via set_planet_entity.
 pc_pd_ammonia_habitat = {
@@ -101,6 +121,49 @@ pc_pd_methane_habitat = {
 	atmosphere_width		= 0.5
 	show_city = no
 	city_color_lut = "gfx/portraits/misc/colorcorrection_methane.dds"
+	extra_orbit_size = 0
+	extra_planet_count = 0
+	chance_of_ring = 0.0
+	planet_size = 6
+	moon_size = 1
+	colonizable = yes
+	district_set = habitat
+	starting_district = district_hab_housing
+	starting_planet = no
+	orbit_lines = no
+	has_colonization_influence_cost = no
+
+	is_artificial_planet = yes
+	default_planet_selection = yes
+
+	modifier = {
+		planet_colony_development_speed_mult = 2.0
+		pop_environment_tolerance = 0.40
+	}
+
+	carry_cap_per_free_district = @carry_cap_low
+}
+
+# Dummy planet class referenced only as the `picture =` field of a set_planet_entity call, so habitats with pd_nitrogen_atmosphere render with the nitrogen city_color_lut without changing their actual class. The planet's class stays pc_habitat; this dummy supplies the visual override.
+# DO NOT USE: never list this in starting_planet sets, terraforming options, or trait habitability; only the pd_nitrogen_atmosphere apply/remove paths should reference it via set_planet_entity.
+pc_pd_nitrogen_habitat = {
+	habitat = yes
+	entity = "orbital_habitat"
+	icon = GFX_planet_type_nitrogen
+	icon_large = GFX_planet_type_nitrogen_big
+	entity_scale = 1.0
+	enable_tilt = no
+	fixed_entity_scale = yes
+	place_entity_on_planet_plane = no
+	entity_face_object = no
+	auto_trait_prio = {
+		trait_auto_pc_habitat_preference
+	}
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+	show_city = no
+	city_color_lut = "gfx/portraits/misc/colorcorrection_nitrogen.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
 	chance_of_ring = 0.0
