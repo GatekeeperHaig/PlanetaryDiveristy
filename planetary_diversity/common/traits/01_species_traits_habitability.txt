@@ -78,6 +78,7 @@ trait_pc_volcanic_preference = {
 		pc_pd_dry_cave_habitability = @secondary
 		pc_pd_dry_gaia_habitability = @secondary
 		pc_pd_ash_habitability = @secondary
+		pc_pd_magma_habitability = @secondary
 		pc_tropical_habitability = @tertiary
 		pc_continental_habitability = @tertiary
 		pc_ocean_habitability = @tertiary
@@ -136,7 +137,6 @@ trait_pc_nuked_preference = {
 		weight = 0
 	}
 }
-
 trait_pc_gaia_preference = {
 	icon = "gfx/interface/icons/traits/trait_pc_gaia_preference.dds"
 	species_potential_add = {
@@ -538,6 +538,7 @@ trait_volcanic_planet_preference = {
 	bound_to_planet_classes = {
 		pc_volcanic
 		pc_pd_ash
+		pc_pd_magma
 	}
 	initial = no
 	randomized = no
@@ -748,6 +749,7 @@ trait_machine_habitat_planet_preference = {
 	}
 	modifier = {
 		pc_habitat_habitability = @primary
+		pc_ark_habitability = @tertiary
 	}
 	ai_weight = {
 		weight = 0
@@ -989,6 +991,35 @@ trait_machine_pc_nanotech_preference = {
 		pc_pd_wet_tidally_locked_habitability = @secondary
 		pc_pd_wet_cave_habitability = @secondary
 		pc_pd_wet_gaia_habitability = @secondary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_pc_ark_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ark_preference.dds"
+	short_name = "trait_pc_ark_preference_short"
+	bound_to_planet_classes = {
+		pc_ark
+	}
+
+	ideal_planet_class = pc_ark
+	opposites = { "trait_resilient" "trait_genetic_memory" "trait_sedentary" }
+
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE ROBOT }
+	sorting_priority = 30
+	modifier = {
+		pc_ark_habitability 		= @primary
+		pc_habitat_habitability 	= @secondary
 	}
 	ai_weight = {
 		weight = 0
@@ -1291,6 +1322,7 @@ trait_auto_pc_habitat_preference = {
 		pc_nuked_habitability 			= @auto_penalty
 		pc_habitat_habitability 		= @auto_base
 		pc_volcanic_habitability 		= @auto_penalty
+		pc_ark_habitability				= @auto_ideal_bonus
 	}
 }
 
@@ -1513,5 +1545,99 @@ trait_auto_pc_volcanic_preference = {
 		# Special
 		pc_nuked_habitability 			= @auto_penalty
 		pc_volcanic_habitability 		= @auto_bonus
+	}
+}
+
+# Nomads (4.4): arkship (pc_ark) habitability preference. PD fully overrides this file, so vanilla's pc_ark traits must be re-declared here or the engine reports trait_auto_pc_ark_preference invalid.
+trait_pc_ark_preference = {
+	icon = "gfx/interface/icons/traits/trait_pc_ark_preference.dds"
+	short_name = "trait_pc_ark_preference_short"
+	bound_to_planet_classes = {
+		pc_ark
+	}
+
+	ideal_planet_class = pc_ark
+	opposites = { "trait_resilient" "trait_genetic_memory" "trait_sedentary" }
+
+	species_potential_add = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = yes
+	}
+	initial = no
+	randomized = no
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE ROBOT }
+	sorting_priority = 30
+	modifier = {
+		pc_ark_habitability 		= @primary
+		pc_habitat_habitability 	= @secondary
+	}
+	ai_weight = {
+		weight = 0
+	}
+}
+
+trait_auto_pc_ark_preference = {
+	inline_script = {
+		script = traits/auto_preference_planet_class
+		PLANET_CLASS = pc_ark
+	}
+	modifier = {
+		# Dry
+		pc_desert_habitability 			= @auto_penalty
+		pc_arid_habitability 			= @auto_penalty
+		pc_savannah_habitability 		= @auto_penalty
+		pc_pd_dry_superhabitable_habitability = @auto_penalty
+		pc_pd_dry_tidally_locked_habitability = @auto_penalty
+		pc_pd_dry_cave_habitability = @auto_penalty
+		pc_pd_dry_gaia_habitability = @auto_penalty
+		# Wet
+		pc_tropical_habitability 		= @auto_penalty
+		pc_continental_habitability 	= @auto_penalty
+		pc_ocean_habitability 			= @auto_penalty
+		pc_pd_wet_superhabitable_habitability = @auto_penalty
+		pc_pd_wet_tidally_locked_habitability = @auto_penalty
+		pc_pd_wet_cave_habitability = @auto_penalty
+		pc_pd_wet_gaia_habitability = @auto_penalty
+		# Cold
+		pc_tundra_habitability 			= @auto_penalty
+		pc_arctic_habitability 			= @auto_penalty
+		pc_alpine_habitability 			= @auto_penalty
+		pc_pd_cold_superhabitable_habitability = @auto_penalty
+		pc_pd_cold_tidally_locked_habitability = @auto_penalty
+		pc_pd_cold_cave_habitability = @auto_penalty
+		pc_pd_cold_gaia_habitability = @auto_penalty
+		# Special
+		pc_ark_habitability 			= @auto_base
+		pc_habitat_habitability 		= @auto_ideal_bonus
+		pc_nuked_habitability 			= @auto_penalty
+		pc_volcanic_habitability 		= @auto_penalty
+	}
+}
+
+trait_auto_pc_ark_preference = {
+	inline_script = {
+		script = traits/auto_preference_planet_class
+		PLANET_CLASS = pc_ark
+	}
+	modifier = {
+		# Dry
+		pc_desert_habitability 			= @auto_penalty
+		pc_arid_habitability 			= @auto_penalty
+		pc_savannah_habitability 		= @auto_penalty
+		# Wet
+		pc_tropical_habitability 		= @auto_penalty
+		pc_continental_habitability 	= @auto_penalty
+		pc_ocean_habitability 			= @auto_penalty
+		# Cold
+		pc_tundra_habitability 			= @auto_penalty
+		pc_arctic_habitability 			= @auto_penalty
+		pc_alpine_habitability 			= @auto_penalty
+		# Special
+		pc_ark_habitability 			= @auto_base
+		pc_habitat_habitability			= @auto_ideal_bonus
+		pc_nuked_habitability 			= @auto_penalty
+		pc_volcanic_habitability 		= @auto_penalty
 	}
 }

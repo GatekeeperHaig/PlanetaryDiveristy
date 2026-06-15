@@ -1,0 +1,169 @@
+##########################################################################
+# PD Unique-World Waystation Modules
+# Build-once per empire; gated by the system star flag + a Nomad-only tech.
+# Each projects its source world's edict bonus across the waystation network.
+##########################################################################
+
+# Floating World; mirrors the eludium_research edict.
+waystation_pd_eludium_relay = {
+	icon = "GFX_waystation_pd_eludium_relay"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = @waystation_build_time_180
+	category = sm_utility_cat
+
+	empire_limit = 1
+	starbase_limit = {
+		base = 1
+	}
+
+	potential = {
+		is_waystation_starbase = yes
+		owner? = {
+			has_technology = tech_eludium_research_relay
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = sm_pd_requires_floating_world
+			solar_system? = {
+				has_star_flag = pd_floating_system
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_waystations_modules
+		cost = {
+			alloys = @waystation_cost_alloys_250
+		}
+		upkeep = {
+			trade = @waystation_upkeep_trade_4
+		}
+	}
+
+	waystation_network_country_modifier = {
+		country_physics_tech_research_speed = 0.1
+		planet_researchers_produces_mult = 0.1
+	}
+
+	show_in_tech = "tech_eludium_research_relay"
+
+	show_tech_unlock_if = {
+		is_nomadic = yes
+	}
+
+	ai_weight = {
+		weight = 300
+	}
+}
+
+# Crystal World; mirrors the acean_pop_growth edict.
+waystation_pd_acean_spire = {
+	icon = "GFX_waystation_pd_acean_spire"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = @waystation_build_time_180
+	category = sm_utility_cat
+
+	empire_limit = 1
+	starbase_limit = {
+		base = 1
+	}
+
+	potential = {
+		is_waystation_starbase = yes
+		owner? = {
+			has_technology = tech_acean_resonance_spire
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = sm_pd_requires_crystal_world
+			solar_system? = {
+				has_star_flag = pdcrystal_system
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_waystations_modules
+		cost = {
+			alloys = @waystation_cost_alloys_250
+		}
+		upkeep = {
+			trade = @waystation_upkeep_trade_4
+		}
+	}
+
+	waystation_network_country_modifier = {
+		biological_pop_happiness = 0.05
+		BIOLOGICAL_logistic_growth_mult = 0.1
+		lithoid_pop_happiness = 0.10
+		LITHOID_logistic_growth_mult = 0.20
+	}
+
+	show_in_tech = "tech_acean_resonance_spire"
+
+	show_tech_unlock_if = {
+		is_nomadic = yes
+	}
+
+	ai_weight = {
+		weight = 300
+	}
+}
+
+# Biosynth World; mirrors the pd_living_metal_ship_repair edict.
+waystation_pd_biosynth_foundry = {
+	icon = "GFX_waystation_pd_biosynth_foundry"
+	section = "ANCHORAGE_STARBASE_SECTION"
+	construction_days = @waystation_build_time_180
+	category = sm_utility_cat
+
+	empire_limit = 1
+	starbase_limit = {
+		base = 1
+	}
+
+	potential = {
+		is_waystation_starbase = yes
+		owner? = {
+			has_technology = tech_biosynth_living_foundry
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = sm_pd_requires_biosynth_world
+			solar_system? = {
+				has_star_flag = biosynth_system
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_waystations_modules
+		cost = {
+			alloys = @waystation_cost_alloys_250
+		}
+		upkeep = {
+			trade = @waystation_upkeep_trade_4
+		}
+	}
+
+	waystation_network_country_modifier = {
+		ship_repair_hull_mult = 0.1
+		ship_repair_armor_mult = 0.1
+	}
+
+	show_in_tech = "tech_biosynth_living_foundry"
+
+	show_tech_unlock_if = {
+		is_nomadic = yes
+	}
+
+	ai_weight = {
+		weight = 300
+	}
+}

@@ -369,11 +369,14 @@ country_event = {
 			}
 			change_pc = pc_volcanic
 			random_list = {
-				50 = {
+				33 = {
 					add_modifier = { modifier = pd_volcanic }
 				}
-				50 = {
+				33 = {
 					pd_ash_world_effect = yes
+				}
+				33 = {
+					pd_magma_world_effect = yes
 				}
 			}
 		}
@@ -1348,6 +1351,16 @@ country_event = {
 			}
 			change_pc = pc_volcanic
 			pd_ash_world_effect = yes
+			generate_pd_regular_planet = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_pd_magma
+				has_pd_modifier = no
+				is_capital = yes
+			}
+			change_pc = pc_volcanic
+			pd_magma_world_effect = yes
 			generate_pd_regular_planet = yes
 		}
 		#Arctic
@@ -3117,6 +3130,17 @@ country_event = {
 			}
 		}
 	}
+	option = {
+		trigger = {
+			from = { is_planet_class = pc_volcanic }
+		}
+		name = pdengine.21.magma
+		hidden_effect = {
+			from = {
+				pd_magma_world_effect = yes
+			}
+		}
+	}
 
 	after = {
 		if = {
@@ -3769,11 +3793,14 @@ planet_event = {
 				is_planet_class = pc_volcanic
 			}
 			random_list = {
-				50 = {
+				33 = {
 					add_modifier = { modifier = pd_volcanic }
 				}
-				50 = {
+				33 = {
 					pd_ash_world_effect = yes
+				}
+				33 = {
+					pd_magma_world_effect = yes
 				}
 			}
 		}
@@ -6577,6 +6604,7 @@ country_event = {
 				has_trait = trait_pc_pd_cryoflora_preference
 				has_trait = trait_pc_pd_lichen_preference
 				has_trait = trait_pc_pd_ash_preference
+				has_trait = trait_pc_pd_magma_preference
 			}
 		}
 	}
@@ -8249,6 +8277,13 @@ planet_event = {
 			MODIFIER = pd_ash
 			PICTURE = pc_pd_ash
 			ENTITY = ash_planet_01_entity
+		}
+		inline_script = {
+			script = "events/pdengine_160_preserve_view"
+			CLASS = pc_volcanic
+			MODIFIER = pd_magma
+			PICTURE = pc_pd_magma
+			ENTITY = magma_planet_01_entity
 		}
 	}
 }

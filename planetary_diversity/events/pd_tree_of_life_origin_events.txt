@@ -8,13 +8,14 @@ namespace = pdtreeoflife
 @megafloraspeed_drycold = 12600 #35 years
 @megafloraspeed_nuked = 18000 #50 years
 
-planet_event = {
+carrier_event = {
 	id = pdtreeoflife.20
 	hide_window = yes
 
 	is_triggered_only = yes
 	
 	trigger = {
+		NOT = { is_planet_class = pc_ark }	# arkship/ship carriers skip this planet event (4.4 nomads)
 		owner = {
 			has_origin = origin_pd_aw_tree_of_life
 		}
@@ -491,4 +492,4 @@ planet_event = {
 			remove_modifier = pd_no_lifetree
 		}
 	}
-}
+}

@@ -1,6 +1,6 @@
 namespace = pdascensionworlds
 
-# This event fires when certain planets get terraformed and removes the modifier if needed, or changes the planet art
+# On terraform: removes the modifier if needed and updates the planet art
 planet_event = {
 	id = pdascensionworlds.100
 	hide_window = yes
@@ -140,7 +140,7 @@ planet_event = {
 	}
 }
 
-#This event fires and makes sure Flooded Shrouded Worlds stay Flooded Shroud Worlds after terraformining
+# Keeps Flooded Shroud Worlds flooded after terraforming
 planet_event = {
 	id = pdascensionworlds.150
 	hide_window = yes
@@ -188,7 +188,7 @@ planet_event = {
 				entity = pdshroud_planet_01_entity
 			}
 		}
-		#pc_ocean (and any flooded vanilla habitable) takes the aquatic shroud entity to match the existing tidally/super/pd_gaia flooded branches.
+		# pc_ocean and other flooded vanilla classes use the aquatic shroud entity, like the tidal/super/pd_gaia branches.
 		IF = {
 			limit = {
 				OR = {
@@ -212,7 +212,7 @@ planet_event = {
 	}
 }
 
-#This event fires and makes sure Shrouded Worlds stay Shrouded after terraformining
+# Keeps Shroud Worlds shrouded after terraforming
 planet_event = {
 	id = pdascensionworlds.200
 	hide_window = yes
@@ -262,7 +262,7 @@ planet_event = {
 				entity = pdshroud_planet_01_entity
 			}
 		}
-		#Volcanic has its own shroud entity (only class-specific vanilla shroud art that exists). pdengine.160 reasserts the PD-flavored visual on terraform; this branch overrides it back to shroud since .200 runs after .160 in pd_on_actions.
+		# Volcanic has the only class-specific vanilla shroud art; .200 runs after pdengine.160 in pd_on_actions, so it re-overrides .160's PD visual back to shroud.
 		IF = {
 			limit = {
 				is_planet_class = pc_volcanic

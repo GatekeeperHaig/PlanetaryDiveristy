@@ -1,6 +1,7 @@
 #This effect add deposits at game start to planet classes added by PD
 
 generate_pd_arcology_portrait_effect = {
+	planet = {
 	#Garden Arc
 	if = {
 		limit = {
@@ -463,10 +464,12 @@ generate_pd_arcology_portrait_effect = {
 		}
 		generate_pd_ascension_worlds_arc_portrait_effect = yes
 	}
+	}
 }
 
 #Hive Capitals
 generate_pd_hive_arc_portrait_effect = {
+	planet = {
 	if = {
 		limit = {
 			has_deposit = d_pd_confluence_spire_building
@@ -513,10 +516,12 @@ generate_pd_hive_arc_portrait_effect = {
 		}
 		generate_pd_ascension_worlds_hive_arc_portrait_effect = yes
 	}
+	}
 }
 
 #Machine Capitals
 generate_pd_machine_arc_portrait_effect = {
+	planet = {
 	if = {
 		limit = {
 			has_deposit = d_pd_machine_centralized_processing
@@ -618,6 +623,7 @@ generate_pd_machine_arc_portrait_effect = {
 		}
 		generate_pd_ascension_worlds_machine_arc_portrait_effect = yes
 	}
+	}
 }
 
 remove_pd_capital_deposit_effect = {
@@ -655,5 +661,30 @@ remove_pd_capital_deposit_effect = {
 		}
 		remove_deposit = d_pd_machine_centralized_processing
 		generate_pd_machine_arc_portrait_effect = yes
+	}
+}
+
+# Re-renders a capital seat's visuals for the planet's current class. Call after a class change that reset the entity (vanilla ecumenopolis conversion) so the seat art returns instead of the plain city.
+pd_resync_capital_art_effect = {
+	if = {
+		limit = {
+			OR = {
+				pd_has_ammonia_atmosphere = yes
+				pd_has_methane_atmosphere = yes
+				pd_has_nitrogen_atmosphere = yes
+			}
+		}
+		generate_pd_cryo_arcology_portrait_effect = yes
+	}
+	else_if = {
+		limit = { has_deposit = d_pd_confluence_spire_building }
+		generate_pd_hive_arc_portrait_effect = yes
+	}
+	else_if = {
+		limit = { has_deposit = d_pd_machine_centralized_processing }
+		generate_pd_machine_arc_portrait_effect = yes
+	}
+	else = {
+		generate_pd_arcology_portrait_effect = yes
 	}
 }

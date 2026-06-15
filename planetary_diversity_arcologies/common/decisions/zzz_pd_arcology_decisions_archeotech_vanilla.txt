@@ -31,15 +31,15 @@ decision_arcology_project_relic = {
 	}
 
 	on_queued = {
-		set_planet_flag = arcology_project_construction
+		set_carrier_flag = arcology_project_construction
 	}
 
 	on_unqueued = {
-		remove_planet_flag = arcology_project_construction
+		remove_carrier_flag = arcology_project_construction
 	}
 
 	effect = {
-		remove_planet_flag = arcology_project_construction
+		remove_carrier_flag = arcology_project_construction
 		# Make city-planet
 		custom_tooltip = decision_arcology_project_effects
 		hidden_effect = {
@@ -54,6 +54,10 @@ decision_arcology_project_relic = {
 			set_planet_entity = {
 				entity = "city_planet_entity"
 				graphical_culture = owner
+			}
+			if = {
+				limit = { has_pd_capital_deposit = yes }
+				pd_resync_capital_art_effect = yes
 			}
 			planet_event = { id = action.68 }
 			add_deposit = d_former_relic_world

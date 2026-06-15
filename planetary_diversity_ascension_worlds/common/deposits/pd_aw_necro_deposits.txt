@@ -1,0 +1,105 @@
+# Necropolis deposit
+# Placed on a Necropolis world (the pd_aw_necro_planet modifier), this grants a free, civic-keyed lump of necro jobs.
+# Zone-tier jobs = 300 (three free districts); building-locked jobs = 150 (1.5x one base building). Empires running multiple necro civics stack the blocks.
+d_pd_necro_deposit = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	icon = d_pd_necro_deposit
+
+	use_weights_for_terraforming_swap_types = no
+
+	potential = {
+		pd_aw_is_necro_planet = yes
+	}
+
+	# Memorialist: Death Chroniclers (bureaucrat swap)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_memorialist }
+		}
+		job_bureaucrat_add = 300
+	}
+
+	# Death Cult (and corporate): Death Priests plus the building-locked Mortal Initiates
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				OR = {
+					has_civic = civic_death_cult
+					has_civic = civic_death_cult_corporate
+				}
+			}
+		}
+		job_bureaucrat_add = 300
+		job_mortal_initiate_add = 150
+	}
+
+	# Hive Memorialist: Chronicle Drones (coordinator swap)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_hive_memorialist }
+		}
+		job_coordinator_add = 300
+	}
+
+	# Machine Memorialist: memorial coordinators
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_machine_memorialist }
+		}
+		job_coordinator_add = 300
+	}
+
+	# Permanent Employment: Reassigners, the building-locked pop-growth engine
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_permanent_employment }
+		}
+		job_reassigner_add = 150
+	}
+
+	# Reanimated Armies: Necromancers (soldier swap, produces research)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_reanimated_armies }
+		}
+		job_soldier_add = 300
+	}
+
+	# Cordyceptic Drones: defensive drone soldiers
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_hive_cordyceptic_drones }
+		}
+		job_soldier_add = 300
+	}
+
+	# Necrophage: building-locked Necro Apprentices
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_necrophage }
+		}
+		job_necro_apprentice_add = 150
+	}
+
+	# Mechromancy: reanimated machine soldiers
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_ascension_perk = ap_mechromancy }
+		}
+		job_soldier_add = 300
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

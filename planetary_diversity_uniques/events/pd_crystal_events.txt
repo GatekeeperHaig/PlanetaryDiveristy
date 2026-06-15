@@ -34,7 +34,7 @@ ship_event = {
 }
 
 #Fire Arcology Site
-planet_event = {
+carrier_event = {
 	id = pdcrystal.200
 	title = pdcrystal.200.name
 	desc = pdcrystal.200.desc
@@ -46,6 +46,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { is_planet_class = pc_ark }	# arkship/ship carriers skip this planet event (4.4 nomads)
 		has_planet_flag = pd_crystal_planet
 	}
 
@@ -256,4 +257,4 @@ country_event = {
 			add_deposit = d_pd_acean_pillars
 		}
 	}
-}
+}

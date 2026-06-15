@@ -28,7 +28,7 @@ trait_auto_mod_biological = {
 		always = yes
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 	assembly_score = {
 		base = 2
@@ -60,7 +60,7 @@ trait_agrarian = {
 		farmer_jobs_bonus_workforce_mult = 0.15
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -98,7 +98,7 @@ trait_ingenious = {
 		technician_jobs_bonus_workforce_mult = 0.15
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -136,7 +136,7 @@ trait_industrious = {
 		miner_jobs_bonus_workforce_mult = 0.15
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -175,7 +175,7 @@ trait_intelligent = {
 		researcher_jobs_bonus_workforce_mult = 0.10
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -214,7 +214,7 @@ trait_thrifty = {
 		trader_jobs_bonus_workforce_mult = 0.25
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -236,14 +236,14 @@ trait_natural_engineers = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_natural_physicists" "trait_natural_sociologists" "trait_nerve_stapled" }
+	opposites = { "trait_natural_physicists" "trait_natural_sociologists" "trait_nerve_stapled" "trait_recursive_learners" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive pop_output research }
 	modifier = {
 		engineer_jobs_bonus_workforce_mult = 0.15
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -269,14 +269,14 @@ trait_natural_physicists = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_natural_engineers" "trait_natural_sociologists" "trait_nerve_stapled" "trait_camouflage" "trait_chromalogs" }
+	opposites = { "trait_natural_engineers" "trait_natural_sociologists" "trait_nerve_stapled" "trait_camouflage" "trait_chromalogs" "trait_recursive_learners" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive pop_output research }
 	modifier = {
 		physicist_jobs_bonus_workforce_mult = 0.15
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -302,14 +302,14 @@ trait_natural_sociologists = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_natural_physicists" "trait_natural_engineers" "trait_nerve_stapled" }
+	opposites = { "trait_natural_physicists" "trait_natural_engineers" "trait_nerve_stapled" "trait_recursive_learners" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive pop_output research }
 	modifier = {
 		biologist_jobs_bonus_workforce_mult = 0.15
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -335,14 +335,14 @@ trait_extremely_adaptive = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_robust" "trait_adaptive_lithoid" "trait_shelled" }
+	opposites = { "trait_nonadaptive" "trait_adaptive" "trait_robust" "trait_adaptive_lithoid" "trait_shelled" "trait_terraphobic" }
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic positive habitability }
 	modifier = {
 		pop_environment_tolerance = 0.20
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -358,14 +358,14 @@ trait_adaptive = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	opposites = { "trait_nonadaptive" "trait_extremely_adaptive" "trait_robust" "trait_adaptive_lithoid" "trait_shelled" "trait_permeable_skin" }
+	opposites = { "trait_nonadaptive" "trait_extremely_adaptive" "trait_robust" "trait_adaptive_lithoid" "trait_shelled" "trait_permeable_skin" "trait_terraphobic" }
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic positive habitability }
 	modifier = {
 		pop_environment_tolerance = 0.10
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -382,7 +382,7 @@ trait_nonadaptive = {
 		pop_environment_tolerance = -0.10
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 	ai_weight = {
 		weight = 0
@@ -411,7 +411,7 @@ trait_rapid_breeders = {
 		logistic_growth_mult = 0.1
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -428,7 +428,7 @@ trait_slow_breeders = {
 		logistic_growth_mult = -0.1
 	}
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 	ai_weight = {
 		factor = 0
@@ -451,7 +451,7 @@ trait_talented = {
 	tags = { organic positive leader }
 	opposites = { "trait_nerve_stapled" "trait_syncretic_proles" }
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	modifier = {
 		negative_leader_traits_species = -1
@@ -478,7 +478,7 @@ trait_quick_learners = {
 		species_leader_exp_gain = 0.10
 	}
 	slave_cost = {
-		energy = 750
+		trade = 750
 	}
 }
 
@@ -498,7 +498,7 @@ trait_slow_learners = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -250
+		trade = -250
 	}
 }
 
@@ -527,7 +527,7 @@ trait_traditional = {
 		bureaucrat_jobs_bonus_workforce_mult = 0.1
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -561,7 +561,7 @@ trait_quarrelsome = {
 		}
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -584,7 +584,7 @@ trait_docile = {
 		species_empire_size_mult = -0.10
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -601,7 +601,7 @@ trait_unruly = {
 		species_empire_size_mult = 0.10
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -628,7 +628,7 @@ trait_very_strong = {
 	}
 
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 	assembly_score = {
 		modifier = {
@@ -672,7 +672,7 @@ trait_strong = {
 		soldier_jobs_bonus_workforce_mult = 0.10
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 	assembly_score = {
 		modifier = {
@@ -701,7 +701,7 @@ trait_weak = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	opposites = { "trait_strong" "trait_very_strong" "trait_tankbound" }
+	opposites = { "trait_strong" "trait_very_strong" "trait_tankbound" "trait_photoadaptive" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative pop_output army }
 	modifier = {
@@ -711,7 +711,7 @@ trait_weak = {
 	}
 
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 	ai_weight = {
 		weight = 0
@@ -740,7 +740,7 @@ trait_nomadic = {
 		pop_resettlement_cost_mult = -0.35
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -750,7 +750,7 @@ trait_sedentary = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	opposites = { "trait_nomadic" "trait_rooted" "trait_wilderness" }
+	opposites = { "trait_nomadic" "trait_rooted" "trait_wilderness" "trait_pc_ark_preference" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative migration }
 	modifier = {
@@ -760,7 +760,13 @@ trait_sedentary = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
+	}
+	forbidden_origins = {
+		origin_default_nomads
+		origin_sacred_path
+		origin_heirs_of_the_khan
+		origin_forever_cruise
 	}
 }
 
@@ -785,7 +791,7 @@ trait_communal = {
 		pop_housing_usage_mult = -0.1
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -808,7 +814,7 @@ trait_solitary = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -828,7 +834,7 @@ trait_charismatic = {
 		always = yes
 	}
 
-	opposites = { "trait_repugnant" }
+	opposites = { "trait_repugnant" "trait_reavers" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	localized_tags = {
 		SPECIES_TRAIT_VOCATIONAL
@@ -838,7 +844,7 @@ trait_charismatic = {
 		influential_jobs_bonus_workforce_mult = 0.20
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -860,7 +866,7 @@ trait_repugnant = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -909,7 +915,7 @@ trait_conformists = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -928,7 +934,7 @@ trait_deviants = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -949,7 +955,7 @@ trait_venerable = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive leader }
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -970,7 +976,7 @@ trait_enduring = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive leader }
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -988,7 +994,7 @@ trait_fleeting = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -1008,7 +1014,7 @@ trait_fleeting_lithoid = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -1025,17 +1031,18 @@ trait_decadent = {
 	tags = { organic negative happiness individual }
 	modifier = {
 		pop_cat_worker_happiness = -0.1
-		pop_cat_slave_happiness = -0.1
+		pop_slave_happiness = -0.1
 	}
 	ai_weight = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
 trait_resilient = {
+	opposites = { "trait_pc_ark_preference" }
 	cost = 1
 	category = normal
 	species_possible_add = {
@@ -1053,7 +1060,7 @@ trait_resilient = {
 		army_defense_damage_mult = 0.5
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -1076,7 +1083,7 @@ trait_conservational = {
 		planet_pops_consumer_goods_upkeep_mult = -0.10
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -1096,7 +1103,7 @@ trait_wasteful = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = -200
+		trade = -200
 	}
 }
 
@@ -1215,7 +1222,7 @@ trait_cybernetic = {
 	}
 
 	slave_cost = {
-		energy = 1500
+		trade = 1500
 	}
 	assembly_score = {
 		modifier = {
@@ -1326,7 +1333,7 @@ trait_survivor = {
 	}
 	inline_script = "traits/pd_nuked_effects"
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -1355,7 +1362,7 @@ trait_enigmatic_intelligence = {
 		species_leader_exp_gain = 0.10
 	}
 	slave_cost = {
-		energy = 1250
+		trade = 1250
 	}
 	assembly_score = {
 		modifier = {
@@ -1393,7 +1400,7 @@ trait_enigmatic_intelligence_poor = {
 		researcher_jobs_bonus_workforce_mult = 0.10
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -1431,7 +1438,7 @@ trait_enigmatic_intelligence_failed = {
 		researcher_jobs_bonus_workforce_mult = -0.6
 	}
 	slave_cost = {
-		energy = -150
+		trade = -150
 	}
 	assembly_score = {
 		modifier = {
@@ -1476,14 +1483,14 @@ trait_bioadaptability = { #green
 		logistic_growth_mult = 0.05
 	}
 	slave_cost = {
-		energy = 25
+		trade = 25
 	}
 
 	ai_weight = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -1518,7 +1525,7 @@ trait_social_pheromones = { #red
 		logistic_growth_mult = 0.05
 	}
 	slave_cost = {
-		energy = 250
+		trade = 250
 	}
 
 	ai_weight = {
@@ -1558,7 +1565,7 @@ trait_limited_regeneration = { #blue
 		logistic_growth_mult = 0.05
 	}
 	slave_cost = {
-		energy = 250
+		trade = 250
 	}
 
 	ai_weight = {
@@ -1614,7 +1621,7 @@ trait_lithoid_scintillating = {
 	}
 
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -1665,7 +1672,7 @@ trait_lithoid_gaseous_byproducts = {
 	}
 
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -1716,7 +1723,7 @@ trait_lithoid_volatile_excretions = {
 	}
 
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -1764,7 +1771,7 @@ trait_void_dweller_1 = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -1823,7 +1830,7 @@ trait_void_dweller_2 = {
 		weight = 0
 	}
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 	assembly_score = {
 		modifier = {
@@ -1926,7 +1933,7 @@ trait_plantoid_bloomed = {
 	}
 
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -1980,7 +1987,7 @@ trait_plantoid_phototrophic = {
 	}
 
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -2072,7 +2079,7 @@ trait_plantoid_budding = {
 	}
 
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -2081,7 +2088,7 @@ trait_invasive = {
 	cost = 2
 	opposites = { "trait_agrarian" "trait_ingenious" "trait_industrious" "trait_intelligent" "trait_thrifty" "trait_natural_engineers" "trait_natural_physicists" "trait_natural_sociologists" "trait_extremely_adaptive" "trait_adaptive" "trait_rapid_breeders" "trait_talented" "trait_quick_learners" "trait_traditional" "trait_docile" "trait_very_strong" "trait_strong" "trait_nomadic" "trait_communal" "trait_charismatic" "trait_conformists" "trait_venerable" "trait_enduring"
 	"trait_resilient" "trait_conservational" "trait_noxious" "trait_inorganic_breath" "trait_humanoid_existential_iteroparity" "trait_incubator" "trait_delicious" "trait_nerve_stapled" "trait_fertile" "trait_robust" "trait_erudite" "trait_vat_grown" "trait_felsic" "trait_natural_machinist" "trait_drake_scaled" "trait_voidling" "trait_tiyanki" "trait_exotic_metabolism" "trait_egg_laying" "trait_chromalogs" "trait_camouflage" "trait_shelled" "trait_uncanny_intuition"
-	"trait_cranial_hypertrophy" "trait_cranial_megatrophy" "trait_shell_slag" "trait_unbreakable_resolve" }
+	"trait_cranial_hypertrophy" "trait_cranial_megatrophy" "trait_shell_slag" "trait_unbreakable_resolve" "trait_recursive_learners" "trait_photoadaptive" "trait_reavers" }
 	host_has_dlc = "Plantoids Species Pack"
 	sorting_priority = 30
 
@@ -2186,7 +2193,7 @@ trait_lithoid_budding = {
 
 
 	slave_cost = {
-		energy = 2000
+		trade = 2000
 	}
 }
 
@@ -2218,7 +2225,7 @@ trait_zombie = {
 	icon = "gfx/interface/icons/traits/trait_zombie.dds"
 	custom_tooltip = TRAIT_ZOMBIE_EFFECT
 	slave_cost = {
-		energy = 500
+		trade = 500
 	}
 }
 
@@ -2251,7 +2258,7 @@ trait_humanoid_existential_iteroparity = {
 		logistic_growth_mult = 0.2
 	}
 	slave_cost = {
-		energy = 1000
+		trade = 1000
 	}
 }
 
@@ -2278,7 +2285,7 @@ trait_humanoid_psychological_infertility = {
 		logistic_growth_mult = -0.3
 	}
 	slave_cost = {
-		energy = -1000
+		trade = -1000
 	}
 }
 
@@ -2297,6 +2304,6 @@ trait_humanoid_jinxed = {
 		negative_leader_traits_species = 1
 	}
 	slave_cost = {
-		energy = -500
+		trade = -500
 	}
 }

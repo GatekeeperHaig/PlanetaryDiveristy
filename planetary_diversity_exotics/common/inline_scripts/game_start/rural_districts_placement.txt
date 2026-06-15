@@ -1,4 +1,6 @@
 # Vanilla overridden to use Cryogenic rural districts on pdexotic_cryo worlds.
+# Resynced to 4.4: game-start uncapped/wilderness flags are carrier flags now, and pc_ark (arkship) branches added from vanilla.
+# PD delta vs vanilla: the leading pdexotic_cryo branch in each rural type, and a cryo exclusion on the cap-export so cryo worlds keep their own caps.
 
 # Generators
 if = {
@@ -11,9 +13,10 @@ if = {
 	if = {
 		limit = {
 			NOR = {
-				has_planet_flag = uncapped_energy
+				has_carrier_flag = uncapped_energy
 				is_planet_class = pc_machine
 				is_planet_class = pc_habitat
+				is_planet_class = pc_ark
 				uses_district_set = pdexotic_cryo
 			}
 			check_modifier_value = {
@@ -37,7 +40,7 @@ if = {
 	}
 	else_if = {
 		limit = {
-			has_planet_flag = wilderness_planet
+			has_carrier_flag = wilderness_planet
 		}
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = energy_districts
@@ -46,7 +49,7 @@ if = {
 	}
 	else_if = {
 		limit = {
-			has_planet_flag = uncapped_energy
+			has_carrier_flag = uncapped_energy
 		}
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = energy_districts
@@ -75,6 +78,15 @@ if = {
 			district = district_hab_energy
 		}
 	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_ark
+		}
+		add_district_and_planet_size_if_needed_effect_amount = {
+			amount = energy_districts
+			district = district_ark_generator
+		}
+	}
 	else = {
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = energy_districts
@@ -94,9 +106,10 @@ if = {
 	if = {
 		limit = {
 			NOR = {
-				has_planet_flag = uncapped_mining
+				has_carrier_flag = uncapped_mining
 				is_planet_class = pc_machine
 				is_planet_class = pc_habitat
+				is_planet_class = pc_ark
 				uses_district_set = pdexotic_cryo
 			}
 			check_modifier_value = {
@@ -120,7 +133,7 @@ if = {
 	}
 	else_if = {
 		limit = {
-			has_planet_flag = wilderness_planet
+			has_carrier_flag = wilderness_planet
 		}
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = mining_districts
@@ -129,7 +142,7 @@ if = {
 	}
 	else_if = {
 		limit = {
-			has_planet_flag = uncapped_mining
+			has_carrier_flag = uncapped_mining
 		}
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = mining_districts
@@ -158,10 +171,45 @@ if = {
 			district = district_hab_mining
 		}
 	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_ark
+		}
+		# Do nothing
+		# Arks have no mining districts
+	}
 	else = {
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = mining_districts
 			district = district_mining
+		}
+	}
+}
+
+# Agriculture (Arks - always add 1 district, zone determined by farming_districts variable)
+if = {
+	limit = {
+		is_planet_class = pc_ark
+	}
+	add_district_and_planet_size_if_needed_effect_amount = {
+		amount = 1
+		district = district_ark_basic
+	}
+	if = {
+		limit = {
+			owner? = {
+				country_uses_food_game_start = yes
+			}
+		}
+		add_zone = {
+			district = district_ark_basic
+			zone = zone_ark_food
+		}
+	}
+	else = {
+		add_zone = {
+			district = district_ark_basic
+			zone = zone_ark_harvest
 		}
 	}
 }
@@ -176,10 +224,11 @@ if = {
 	}
 	if = {
 		limit = {
-			NOR = {
-				has_planet_flag = uncapped_farming
-				is_planet_class = pc_machine
-				is_planet_class = pc_habitat
+			NOT = {
+				has_carrier_flag = uncapped_farming
+				is_planet_class = pc_ark
+			}
+			NOT = {
 				uses_district_set = pdexotic_cryo
 			}
 			check_modifier_value = {
@@ -203,7 +252,7 @@ if = {
 	}
 	else_if = {
 		limit = {
-			has_planet_flag = wilderness_planet
+			has_carrier_flag = wilderness_planet
 		}
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = farming_districts
@@ -212,7 +261,7 @@ if = {
 	}
 	else_if = {
 		limit = {
-			has_planet_flag = uncapped_farming
+			has_carrier_flag = uncapped_farming
 		}
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = farming_districts
@@ -242,6 +291,13 @@ if = {
 			building = building_hydroponics_farm
 		}
 	}
+	else_if = {
+		limit = {
+			is_planet_class = pc_ark
+		}
+		# Do nothing
+		# Handled in the ark-specific block above
+	}
 	else = {
 		add_district_and_planet_size_if_needed_effect_amount = {
 			amount = farming_districts
@@ -254,7 +310,7 @@ if = {
 clear_variable = energy_districts
 clear_variable = mining_districts
 clear_variable = farming_districts
-remove_planet_flag = uncapped_energy
-remove_planet_flag = uncapped_mining
-remove_planet_flag = uncapped_farming
-remove_planet_flag = wilderness_planet
+remove_carrier_flag = uncapped_energy
+remove_carrier_flag = uncapped_mining
+remove_carrier_flag = uncapped_farming
+remove_carrier_flag = wilderness_planet

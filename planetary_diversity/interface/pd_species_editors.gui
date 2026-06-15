@@ -480,6 +480,31 @@ guiTypes = {
 				clicksound = "select_click"
 				pdx_tooltip = "pc_pd_lake"
 			}
+			# 4.4: gaia climate variants kept their wet/dry/cold climate, so the empire-creator picker enumerates them; these buttons supply their 3d preview icon (row 7 in each climate column).
+			buttonType = {
+				name = "pc_pd_wet_gaia"
+				position = { x = @planet_col1 y = @planet_row7 }
+				spriteType = "GFX_dummy_3d_home_world_new"
+				size = { x = @PDSIZE y = @PDSIZE }
+				clicksound = "select_click"
+				pdx_tooltip = "pc_pd_wet_gaia"
+			}
+			buttonType = {
+				name = "pc_pd_dry_gaia"
+				position = { x = @planet_col7 y = @planet_row7 }
+				spriteType = "GFX_dummy_3d_home_world_new"
+				size = { x = @PDSIZE y = @PDSIZE }
+				clicksound = "select_click"
+				pdx_tooltip = "pc_pd_dry_gaia"
+			}
+			buttonType = {
+				name = "pc_pd_cold_gaia"
+				position = { x = @planet_col13 y = @planet_row7 }
+				spriteType = "GFX_dummy_3d_home_world_new"
+				size = { x = @PDSIZE y = @PDSIZE }
+				clicksound = "select_click"
+				pdx_tooltip = "pc_pd_cold_gaia"
+			}
 			buttonType = {
 				name = "pc_pd_sakura"
 				position = { x = @planet_col1 y = @planet_row4 }
@@ -1360,6 +1385,14 @@ guiTypes = {
 				clicksound = "select_click"
 				pdx_tooltip = "pc_pd_ash"
 			}
+			buttonType = {
+				name = "pc_pd_magma"
+				position = { x = 554 y = @planet_row3 }
+				spriteType = "GFX_dummy_3d_home_world_new"
+				size = { x = @PDSIZE y = @PDSIZE }
+				clicksound = "select_click"
+				pdx_tooltip = "pc_pd_magma"
+			}
 
 			#Cryophiles
 			buttonType = {
@@ -1368,7 +1401,7 @@ guiTypes = {
 				spriteType = "GFX_dummy_3d_home_world_new"
 				size = { x = @PDSIZE y = @PDSIZE }
 				clicksound = "select_click"
-				pdx_tooltip = "pc_pd_methane"
+				pdx_tooltip = "pc_pd_methane_tooltip"
 			}
 			buttonType = {
 				name = "pc_pd_ammonia"
@@ -1376,7 +1409,7 @@ guiTypes = {
 				spriteType = "GFX_dummy_3d_home_world_new"
 				size = { x = @PDSIZE y = @PDSIZE }
 				clicksound = "select_click"
-				pdx_tooltip = "pc_pd_ammonia"
+				pdx_tooltip = "pc_pd_ammonia_tooltip"
 			}
 			buttonType = {
 				name = "pc_pd_nitrogen"
@@ -1384,7 +1417,7 @@ guiTypes = {
 				spriteType = "GFX_dummy_3d_home_world_new"
 				size = { x = @PDSIZE y = @PDSIZE }
 				clicksound = "select_click"
-				pdx_tooltip = "pc_pd_nitrogen"
+				pdx_tooltip = "pc_pd_nitrogen_tooltip"
 			}
 
 			@uncommon_row = -36
@@ -1566,6 +1599,153 @@ guiTypes = {
 
 			}
 
+		}
+
+		containerWindowType = {
+			name = "3d_icons_arkships"
+			size = { width = 100 height = 100 }
+			position = { x = 40 y = 2 }
+
+			instantTextBoxType = {
+				name = "TYPE_HEADER_01"
+				font = "malgun_goth_24"
+				text = "arkship_cap"
+				position = { x = 275 y = 10 }
+				maxWidth = 100
+				maxHeight = 20
+				Orientation = "UPPER_LEFT"
+				text_color_code = "E"
+				format = center
+			}
+
+			containerWindowType = {
+				name = "civilian_arkship_tier_1"
+				position = { x = 290 y = 47 }
+				size = { width = 356 height = 96 }
+
+				background = {
+					name = "background"
+					spriteType = "gfx_message_bg"
+				}
+
+				containerWindowType = {
+					name = "selected_overlay"
+					position = { x = 4 y = 4 }
+					size = { width = 348 height = 88 }
+					background = {
+						name = "selected_bg"
+						spriteType = "GFX_glow_tile_orange_no_padding"
+						alwaysTransparent = yes
+					}
+				}
+
+				buttonType = {
+					name = "button"
+					position = { x = 8 y = 8 }
+					size = { x = 340 y = 80 }
+					quadTextureSprite = "GFX_ship_design_entry_bg_arkships"
+					oversound = mouse_over
+					clicksound = select_click
+					alwaysTransparent = no
+				}
+
+				instantTextBoxType = {
+					name = "name"
+					font = "cg_16b"
+					format = center
+					position = { x = 0 y = 70 }
+					maxWidth = 340
+					text = "civilian_arkship_name"
+					alwaysTransparent = yes
+					#text_color_code = "E"
+				}
+			}
+
+			containerWindowType = {
+				name = "science_arkship_tier_1"
+				position = { x = 290 y = 147 }
+				size = { width = 356 height = 96 }
+
+				background = {
+					name = "background"
+					spriteType = "gfx_message_bg"
+				}
+
+				containerWindowType = {
+					name = "selected_overlay"
+					position = { x = 4 y = 4 }
+					size = { width = 348 height = 88 }
+					background = {
+						name = "selected_bg"
+						spriteType = "GFX_glow_tile_orange_no_padding"
+						alwaysTransparent = yes
+					}
+				}
+
+				buttonType = {
+					name = "button"
+					position = { x = 8 y = 8 }
+					size = { x = 340 y = 80 }
+					quadTextureSprite = "GFX_ship_design_entry_bg_arkships"
+					oversound = mouse_over
+					clicksound = select_click
+					alwaysTransparent = no
+				}
+
+				instantTextBoxType = {
+					name = "name"
+					font = "cg_16b"
+					format = center
+					position = { x = 0 y = 70 }
+					maxWidth = 340
+					text = "science_arkship_name"
+					alwaysTransparent = yes
+					#text_color_code = "E"
+				}
+			}
+
+			containerWindowType = {
+				name = "military_arkship_tier_1"
+				position = { x = 290 y = 247 }
+				size = { width = 356 height = 96 }
+
+				background = {
+					name = "background"
+					spriteType = "gfx_message_bg"
+				}
+
+				containerWindowType = {
+					name = "selected_overlay"
+					position = { x = 4 y = 4 }
+					size = { width = 348 height = 88 }
+					background = {
+						name = "selected_bg"
+						spriteType = "GFX_glow_tile_orange_no_padding"
+						alwaysTransparent = yes
+					}
+				}
+
+				buttonType = {
+					name = "button"
+					position = { x = 8 y = 8 }
+					size = { x = 340 y = 80 }
+					quadTextureSprite = "GFX_ship_design_entry_bg_arkships"
+					oversound = mouse_over
+					clicksound = select_click
+					alwaysTransparent = no
+				}
+
+				instantTextBoxType = {
+					name = "name"
+					font = "cg_16b"
+					format = center
+					position = { x = 0 y = 73 }
+					maxWidth = 340
+					text = "military_arkship_name"
+					alwaysTransparent = yes
+					#text_color_code = "E"
+				}
+			}
 		}
 
 		### details

@@ -1,7 +1,7 @@
 ﻿ l_english:
 
  # Species class
- CRYO: "Cryophiles"
+ CRYO: "Cryophile"
  CRYO_desc: "Species Class has no effect on your Empire, but Cryophile-class Species may consider other Cryophiles to be less alien than other Species Classes."
 
  # Homeworld column header
@@ -19,15 +19,15 @@
 
  # Planet-class static modifier (applied at game start to flag ammonia worlds)
  pd_ammonia: "Ammonia World"
- pd_ammonia_desc: "This cold planet has a thick atmosphere of nitrogen and ammonia, with liquid ammonia oceans and ammonia-water ice covering much of the surface. Native life relies on ammonia-based biochemistry."
+ pd_ammonia_desc: "This cold planet has a thick nitrogen-ammonia atmosphere over liquid ammonia oceans, and the abundant fixed nitrogen sustains a thriving ammonia-based biosphere. The same ammonia is corrosive to most metals, steadily wearing down exposed infrastructure."
 
  # Planet-class static modifier (applied at game start to flag methane worlds)
  pd_methane: "Methane World"
- pd_methane_desc: "This frigid planet has a thick nitrogen-methane atmosphere over seas of liquid methane and ethane. Tholin haze and methane precipitation drive the surface chemistry, and native life relies on hydrocarbon-based biochemistry."
+ pd_methane_desc: "This frigid planet has a thick nitrogen-methane atmosphere over vast seas of liquid methane and ethane, an enormous reservoir of combustible fuel. That same volatility leaves the atmosphere dangerously flammable, so every structure must be heavily blast-proofed."
 
  # Planet-class static modifier (applied at game start to flag nitrogen worlds)
  pd_nitrogen: "Nitrogen World"
- pd_nitrogen_desc: "This frozen planet has a thin nitrogen atmosphere over seas of liquid nitrogen, with cryovolcanic geysers venting from fissures in the ice crust. Native life relies on nitrogen-based biochemistry."
+ pd_nitrogen_desc: "This frozen planet has a thin nitrogen atmosphere over seas of liquid nitrogen, with thick nitrate and mineral strata locked beneath the ice. The extreme cold makes natural superconductors viable but forces every facility to be heated constantly to keep functioning."
 
  # Core trait
  trait_cryophile: "Cryophile"
@@ -354,7 +354,10 @@
 
  # Cryothermal Engineering ascension perk
  ap_pd_cryothermal_engineering: "Cryothermal Engineering"
- ap_pd_cryothermal_engineering_desc: "To prosper in cryogenic conditions demands more than warmer clothing; it requires a fundamental reinvention of materials, biology, and chemistry. We are pioneering the science of the cold."
+ ap_pd_cryothermal_engineering_desc: "Thriving in cryogenic conditions demands a reinvention of materials, biology, and chemistry. We are pioneering the science of the cold."
+
+ # Greyed-out requirement line shown before Terrestrial Sculpting is researched.
+ requires_technology_tech_terrestrial_sculpting:0 "$TRIGGER_FAIL$Requires the £society£ §Y$tech_terrestrial_sculpting$§! technology."
 
  # Civ-conditional job-efficiency effect lines shown in the AP card; only one renders per empire type.
  ap_pd_cryothermal_workforce_effect: "$mod_pop_pdexotic_cryo_chemist_bonus_workforce_mult$: §G+20%§!"
@@ -449,3 +452,32 @@
  tech_pd_cryo_toxic_mire_desc: "Chemical neutralization fluids and low-temperature scrubbers let us drain and decontaminate toxic mires on cryogenic worlds. The reclaimed land is then safe to develop."
  tech_pd_cryo_glacier_wall: "Cryogenic Glacial Boring"
  tech_pd_cryo_glacier_wall_desc: "Heated boring rigs and shaped charges break through the dense ice walls that block colonial expansion on cryogenic worlds. Clearance crews can carve passable terrain in a fraction of the natural melt time."
+
+ # Empire-creation picker tooltips (rare-world style: concept link, mechanics, then the three building choices)
+ pc_pd_ammonia_tooltip: "§Y$pc_pd_ammonia$s§! are ['concept_pd_cryogenic_planets']\n- £district£ §Y$district_pdexotic_cryo_chemovat_plural$§!: §G+3§!\n- Pop Growth Speed: §G+10%§!\n- Building and District Upkeep: §R+10%§!\n- $rare_building_warning$\n$t$- ['building:building_pd_ammonia_fixation_institute']\n$t$- ['building:building_pd_ammonia_pharma_works']\n$t$- ['building:building_pd_ammonia_biome_reserve']"
+ pc_pd_methane_tooltip: "§Y$pc_pd_methane$s§! are ['concept_pd_cryogenic_planets']\n- £district£ §Y$district_pdexotic_cryo_riftvent_plural$§!: §G+3§!\n- Building Speed: §G+15%§!\n- Building and District Cost: §R+10%§!\n- $rare_building_warning$\n$t$- ['building:building_pd_methane_tholin_lab']\n$t$- ['building:building_pd_methane_hydrocarbon_foundry']\n$t$- ['building:building_pd_methane_polymer_plant']"
+ pc_pd_nitrogen_tooltip: "§Y$pc_pd_nitrogen$s§! are ['concept_pd_cryogenic_planets']\n- £district£ §Y$district_pdexotic_cryo_sublimation_plural$§!: §G+3§!\n- £physics£ §YPhysics Research§!: §G+10%§!\n- Building and District Upkeep: §R+10%§!\n- $rare_building_warning$\n$t$- ['building:building_pd_nitrogen_supercomputer']\n$t$- ['building:building_pd_nitrogen_munitions_foundry']\n$t$- ['building:building_pd_nitrogen_cryonics_sanctuary']"
+
+ # Ammonia signature buildings (pick one)
+ building_pd_ammonia_fixation_institute: "Ammonia Synthesis Institute"
+ building_pd_ammonia_fixation_institute_desc: "The planet's nitrogen-rich chemistry gives our biologists and engineers a wealth of novel reactions to study and refine."
+ building_pd_ammonia_pharma_works: "Ammonia Pharmaceutical Works"
+ building_pd_ammonia_pharma_works_desc: "The abundant ammonia here is easily refined into pharmaceuticals and cleaning agents that supply markets across the empire."
+ building_pd_ammonia_biome_reserve: "Ammonia Biome Reserve"
+ building_pd_ammonia_biome_reserve_desc: "The strange cold-chemistry ecosystem of this world draws curious visitors from across the stars."
+
+ # Methane signature buildings (pick one)
+ building_pd_methane_tholin_lab: "Methane Chemistry Laboratory"
+ building_pd_methane_tholin_lab_desc: "The thick organic haze of this world is full of exotic low-temperature chemistry for our researchers to unlock."
+ building_pd_methane_hydrocarbon_foundry: "Methane Cracking Foundry"
+ building_pd_methane_hydrocarbon_foundry_desc: "The endless hydrocarbons here are cracked and reforged into alloys, and the cheap local fuel keeps our foundries running."
+ building_pd_methane_polymer_plant: "Methane Polymer Plant"
+ building_pd_methane_polymer_plant_desc: "The methane seas offer near-limitless feedstock for plastics and other finished goods."
+
+ # Nitrogen signature buildings (pick one)
+ building_pd_nitrogen_supercomputer: "Nitrogen Supercomputer Complex"
+ building_pd_nitrogen_supercomputer_desc: "The natural deep cold lets our superconducting computers run at speeds that would melt machines on any warmer world."
+ building_pd_nitrogen_munitions_foundry: "Nitrogen Munitions Foundry"
+ building_pd_nitrogen_munitions_foundry_desc: "The rich nitrate strata of this world are easily worked into explosives and military alloys for our armies."
+ building_pd_nitrogen_cryonics_sanctuary: "Nitrogen Cryonics Sanctuary"
+ building_pd_nitrogen_cryonics_sanctuary_desc: "The perfectly preserving cold makes this world an ideal sanctuary, drawing clients and tourists from across the stars."

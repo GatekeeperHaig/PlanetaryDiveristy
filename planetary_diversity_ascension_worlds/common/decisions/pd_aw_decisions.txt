@@ -1264,7 +1264,7 @@ decision_pd_aw_shroud_planet_cleanup = {
 	}
 }
 
-#Sever Shroud (psionic path - we can undo our own communion, but our psions pay for it)
+#Sever Shroud (psionic path; reverses communion, penalizes psions)
 decision_pd_aw_sever_shroud_planet = {
 	owned_planets_only = yes
 	icon = decision_pd_aw_shroud
@@ -1443,6 +1443,7 @@ decision_pd_aw_necro_planet = {
 				days = -1
 			}
 		}
+		add_deposit = d_pd_necro_deposit
 		hidden_effect = {
 			IF = {
 				limit = {
@@ -1553,6 +1554,7 @@ decision_pd_aw_necro_planet_cleanup = {
 				remove_modifier = pd_aw_necro_planet
 				remove_modifier = pd_aw_necro_city_planet
 				remove_modifier = pd_necro_planet
+				remove_deposit = d_pd_necro_deposit
 				IF = {
 					limit = {
 						pd_aw_is_lithoid_planet = no
@@ -1885,7 +1887,7 @@ decision_pd_aw_core_tap = {
 	effect = {
 		#custom_tooltip = decision_pd_aw_core_tap_tooltip
 		change_pc = pc_pd_core_tap
-		set_planet_flag = uncapped_generator_districts
+		set_carrier_flag = uncapped_generator_districts
 		#clear_deposits = yes
 		add_modifier = {
 			modifier = pd_aw_core_tap
@@ -1966,7 +1968,7 @@ decision_pd_aw_agriworld = {
 	effect = {
 		#custom_tooltip = decision_pd_aw_agriworld_tooltip
 		change_pc = pc_pd_agriworld
-		set_planet_flag = uncapped_farming_districts
+		set_carrier_flag = uncapped_farming_districts
 		#clear_deposits = yes
 		add_modifier = {
 			modifier = pd_aw_agriworld
@@ -2047,7 +2049,7 @@ decision_pd_aw_stripmine = {
 	effect = {
 		#custom_tooltip = decision_pd_aw_agriworld_tooltip
 		change_pc = pc_pd_stripmine
-		set_planet_flag = uncapped_mining_districts
+		set_carrier_flag = uncapped_mining_districts
 		#clear_deposits = yes
 		add_modifier = {
 			modifier = pd_aw_stripmine

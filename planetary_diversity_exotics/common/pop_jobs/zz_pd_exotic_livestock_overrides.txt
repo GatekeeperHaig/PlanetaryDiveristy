@@ -1,5 +1,5 @@
-# zz_ prefix loads after vanilla 00_other_jobs.txt so the redefined keys win. Each block is a verbatim copy of vanilla with one added exclusion in possible, because pop_jobs are full-replace at the key level (no partial-merge).
-# Exclusion: NOT = { has_trait = trait_cryophile }, routing cryos to livestock_cryophile (gas-positive variant) instead of the food-only default; otherwise both jobs would be valid for the same pop and split allocation.
+# Loads after vanilla so these keys win. pop_jobs can't partial-merge, so each block copies vanilla with one added exclusion.
+# Excludes trait_cryophile here so cryos route to livestock_cryophile instead of splitting allocation across both jobs.
 livestock = {
 	category = worker
 	first_come_first_served = no

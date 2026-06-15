@@ -1,0 +1,483 @@
+# Main PD owns the vanilla climate base classes so PD variants can carry a distinct UI type-icon via 4.4 conditional_icon.
+# A PD variant world is its vanilla base class (e.g. pc_continental) plus a pd_* modifier; conditional_icon swaps only the small type-icon to match the variant, falling back to the vanilla icon when no variant modifier is present.
+# Bodies below are VERBATIM 4.4 vanilla; only the conditional_icon blocks are added. Re-sync the bodies every patch.
+# vanilla_replacements must NOT also define these classes, or the last-loaded copy wins and clobbers this one.
+
+# Source: Stellaris 00_planet_classes.txt, pc_continental (4.4 beta lines 230-268).
+pc_continental = {
+	entity = "continental_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_continental
+	icon_large = GFX_planet_type_continental_big
+
+	climate = "wet"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
+	atmosphere_color		= hsv { 0.59 0.45 0.95 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
+
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = no
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	# Per-variant icons. First match wins; sprites authored in interface/pdplanet.gfx.
+	conditional_icon = { trigger = { has_modifier = pd_retinal }   icon = GFX_planet_type_pd_retinal   icon_large = GFX_planet_type_pd_retinal_big }
+	conditional_icon = { trigger = { has_modifier = pd_lake }      icon = GFX_planet_type_pd_lake      icon_large = GFX_planet_type_pd_lake_big }
+	conditional_icon = { trigger = { has_modifier = pd_tepid }     icon = GFX_planet_type_pd_tepid     icon_large = GFX_planet_type_pd_tepid_big }
+	conditional_icon = { trigger = { has_modifier = pd_mushroom }  icon = GFX_planet_type_pd_mushroom  icon_large = GFX_planet_type_pd_mushroom_big }
+	conditional_icon = { trigger = { has_modifier = pd_sakura }    icon = GFX_planet_type_pd_sakura    icon_large = GFX_planet_type_pd_sakura_big }
+	conditional_icon = { trigger = { has_modifier = pd_moss }      icon = GFX_planet_type_pd_moss      icon_large = GFX_planet_type_pd_moss_big }
+	conditional_icon = { trigger = { has_modifier = pd_marsh }     icon = GFX_planet_type_pd_marsh     icon_large = GFX_planet_type_pd_marsh_big }
+	conditional_icon = { trigger = { has_modifier = pd_carotene }  icon = GFX_planet_type_pd_carotene  icon_large = GFX_planet_type_pd_carotene_big }
+	conditional_icon = { trigger = { has_modifier = pd_forest }    icon = GFX_planet_type_pd_forest    icon_large = GFX_planet_type_pd_forest_big }
+	conditional_icon = { trigger = { has_modifier = pd_megaflora } icon = GFX_planet_type_pd_megaflora icon_large = GFX_planet_type_pd_megaflora_big }
+	conditional_icon = { trigger = { has_modifier = pd_petrified } icon = GFX_planet_type_pd_petrified icon_large = GFX_planet_type_pd_petrified_big }
+	# Unique Worlds submod (optional): floating world rides on pc_continental. Shows the plain continental icon if that submod is absent.
+	conditional_icon = { trigger = { has_modifier = pd_floating }  icon = GFX_planet_type_pd_floating  icon_large = GFX_planet_type_pd_floating_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_ocean (4.4 beta lines 270-307).
+pc_ocean = {
+	entity = "ocean_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_ocean
+	icon_large = GFX_planet_type_ocean_big
+
+	climate = "wet"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
+	atmosphere_color		= hsv { 0.58 0.5 0.9 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_ocean.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_cascadian }   icon = GFX_planet_type_pd_cascadian   icon_large = GFX_planet_type_pd_cascadian_big }
+	conditional_icon = { trigger = { has_modifier = pd_swamp }       icon = GFX_planet_type_pd_swamp       icon_large = GFX_planet_type_pd_swamp_big }
+	conditional_icon = { trigger = { has_modifier = pd_crag }        icon = GFX_planet_type_pd_crag        icon_large = GFX_planet_type_pd_crag_big }
+	conditional_icon = { trigger = { has_modifier = pd_fog }         icon = GFX_planet_type_pd_fog         icon_large = GFX_planet_type_pd_fog_big }
+	conditional_icon = { trigger = { has_modifier = pd_kelp }        icon = GFX_planet_type_pd_kelp        icon_large = GFX_planet_type_pd_kelp_big }
+	conditional_icon = { trigger = { has_modifier = pd_algae }       icon = GFX_planet_type_pd_algae       icon_large = GFX_planet_type_pd_algae_big }
+	conditional_icon = { trigger = { has_modifier = pd_columnar }    icon = GFX_planet_type_pd_columnar    icon_large = GFX_planet_type_pd_columnar_big }
+	conditional_icon = { trigger = { has_modifier = pd_tidepool }    icon = GFX_planet_type_pd_tidepool    icon_large = GFX_planet_type_pd_tidepool_big }
+	conditional_icon = { trigger = { has_modifier = pd_barnacle }    icon = GFX_planet_type_pd_barnacle    icon_large = GFX_planet_type_pd_barnacle_big }
+	conditional_icon = { trigger = { has_modifier = pd_reef }        icon = GFX_planet_type_pd_reef        icon_large = GFX_planet_type_pd_reef_big }
+	conditional_icon = { trigger = { has_modifier = pd_archipelago } icon = GFX_planet_type_pd_archipelago icon_large = GFX_planet_type_pd_archipelago_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_tropical (4.4 beta lines 191-228).
+pc_tropical = {
+	entity = "tropical_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_tropical
+	icon_large = GFX_planet_type_tropical_big
+
+	climate = "wet"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_wet_preference
+	}
+
+	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_atoll }     icon = GFX_planet_type_pd_atoll     icon_large = GFX_planet_type_pd_atoll_big }
+	conditional_icon = { trigger = { has_modifier = pd_tepui }     icon = GFX_planet_type_pd_tepui     icon_large = GFX_planet_type_pd_tepui_big }
+	conditional_icon = { trigger = { has_modifier = pd_mangrove }  icon = GFX_planet_type_pd_mangrove  icon_large = GFX_planet_type_pd_mangrove_big }
+	conditional_icon = { trigger = { has_modifier = pd_cenote }    icon = GFX_planet_type_pd_cenote    icon_large = GFX_planet_type_pd_cenote_big }
+	conditional_icon = { trigger = { has_modifier = pd_fungal }    icon = GFX_planet_type_pd_fungal    icon_large = GFX_planet_type_pd_fungal_big }
+	conditional_icon = { trigger = { has_modifier = pd_aerial }    icon = GFX_planet_type_pd_aerial    icon_large = GFX_planet_type_pd_aerial_big }
+	conditional_icon = { trigger = { has_modifier = pd_lilypad }   icon = GFX_planet_type_pd_lilypad   icon_large = GFX_planet_type_pd_lilypad_big }
+	conditional_icon = { trigger = { has_modifier = pd_obsidian }  icon = GFX_planet_type_pd_obsidian  icon_large = GFX_planet_type_pd_obsidian_big }
+	conditional_icon = { trigger = { has_modifier = pd_thunder }   icon = GFX_planet_type_pd_thunder   icon_large = GFX_planet_type_pd_thunder_big }
+	conditional_icon = { trigger = { has_modifier = pd_geothermal } icon = GFX_planet_type_pd_geothermal icon_large = GFX_planet_type_pd_geothermal_big }
+	conditional_icon = { trigger = { has_modifier = pd_biolumen }  icon = GFX_planet_type_pd_biolumen  icon_large = GFX_planet_type_pd_biolumen_big }
+	# Unique Worlds submod (optional): crystal world rides on pc_tropical.
+	conditional_icon = { trigger = { has_modifier = pd_crystal }   icon = GFX_planet_type_pd_crystal   icon_large = GFX_planet_type_pd_crystal_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_desert (4.4 beta lines 70-110).
+pc_desert = {
+	entity = "desert_planet"
+	icon = GFX_planet_type_desert
+	icon_large = GFX_planet_type_desert_big
+
+	climate = "dry"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	entity_scale = @planet_standard_scale
+
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	production_spawn_chance = 0.4
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_dune }     icon = GFX_planet_type_pd_dune     icon_large = GFX_planet_type_pd_dune_big }
+	conditional_icon = { trigger = { has_modifier = pd_oasis }    icon = GFX_planet_type_pd_oasis    icon_large = GFX_planet_type_pd_oasis_big }
+	conditional_icon = { trigger = { has_modifier = pd_outback }  icon = GFX_planet_type_pd_outback  icon_large = GFX_planet_type_pd_outback_big }
+	conditional_icon = { trigger = { has_modifier = pd_coastal }  icon = GFX_planet_type_pd_coastal  icon_large = GFX_planet_type_pd_coastal_big }
+	conditional_icon = { trigger = { has_modifier = pd_fungi }    icon = GFX_planet_type_pd_fungi    icon_large = GFX_planet_type_pd_fungi_big }
+	conditional_icon = { trigger = { has_modifier = pd_ironsand } icon = GFX_planet_type_pd_ironsand icon_large = GFX_planet_type_pd_ironsand_big }
+	conditional_icon = { trigger = { has_modifier = pd_cactus }   icon = GFX_planet_type_pd_cactus   icon_large = GFX_planet_type_pd_cactus_big }
+	conditional_icon = { trigger = { has_modifier = pd_dust }     icon = GFX_planet_type_pd_dust     icon_large = GFX_planet_type_pd_dust_big }
+	conditional_icon = { trigger = { has_modifier = pd_sodalite } icon = GFX_planet_type_pd_sodalite icon_large = GFX_planet_type_pd_sodalite_big }
+	conditional_icon = { trigger = { has_modifier = pd_salt }     icon = GFX_planet_type_pd_salt     icon_large = GFX_planet_type_pd_salt_big }
+	conditional_icon = { trigger = { has_modifier = pd_aquifer }  icon = GFX_planet_type_pd_aquifer  icon_large = GFX_planet_type_pd_aquifer_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_arid (4.4 beta lines 112-149).
+pc_arid = {
+	entity = "arid_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_arid
+	icon_large = GFX_planet_type_arid_big
+
+	climate = "dry"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arid.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_mesa }          icon = GFX_planet_type_pd_mesa          icon_large = GFX_planet_type_pd_mesa_big }
+	conditional_icon = { trigger = { has_modifier = pd_fog_desert }    icon = GFX_planet_type_pd_fog_desert    icon_large = GFX_planet_type_pd_fog_desert_big }
+	conditional_icon = { trigger = { has_modifier = pd_mediterranean } icon = GFX_planet_type_pd_mediterranean icon_large = GFX_planet_type_pd_mediterranean_big }
+	conditional_icon = { trigger = { has_modifier = pd_badlands }      icon = GFX_planet_type_pd_badlands      icon_large = GFX_planet_type_pd_badlands_big }
+	conditional_icon = { trigger = { has_modifier = pd_succulent }     icon = GFX_planet_type_pd_succulent     icon_large = GFX_planet_type_pd_succulent_big }
+	conditional_icon = { trigger = { has_modifier = pd_striped }       icon = GFX_planet_type_pd_striped       icon_large = GFX_planet_type_pd_striped_big }
+	conditional_icon = { trigger = { has_modifier = pd_amethyst }      icon = GFX_planet_type_pd_amethyst      icon_large = GFX_planet_type_pd_amethyst_big }
+	conditional_icon = { trigger = { has_modifier = pd_opal }          icon = GFX_planet_type_pd_opal          icon_large = GFX_planet_type_pd_opal_big }
+	conditional_icon = { trigger = { has_modifier = pd_superbloom }    icon = GFX_planet_type_pd_superbloom    icon_large = GFX_planet_type_pd_superbloom_big }
+	conditional_icon = { trigger = { has_modifier = pd_coral }         icon = GFX_planet_type_pd_coral         icon_large = GFX_planet_type_pd_coral_big }
+	conditional_icon = { trigger = { has_modifier = pd_primal }        icon = GFX_planet_type_pd_primal        icon_large = GFX_planet_type_pd_primal_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_savannah (4.4 beta lines 151-188).
+pc_savannah = {
+	entity = "savannah_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_savannah
+	icon_large = GFX_planet_type_savannah_big
+
+	climate = "dry"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_savannah.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_steppe }         icon = GFX_planet_type_pd_steppe         icon_large = GFX_planet_type_pd_steppe_big }
+	conditional_icon = { trigger = { has_modifier = pd_prairie }        icon = GFX_planet_type_pd_prairie        icon_large = GFX_planet_type_pd_prairie_big }
+	conditional_icon = { trigger = { has_modifier = pd_semi_arid }      icon = GFX_planet_type_pd_semi_arid      icon_large = GFX_planet_type_pd_semi_arid_big }
+	conditional_icon = { trigger = { has_modifier = pd_aspen }          icon = GFX_planet_type_pd_aspen          icon_large = GFX_planet_type_pd_aspen_big }
+	conditional_icon = { trigger = { has_modifier = pd_sandstone }      icon = GFX_planet_type_pd_sandstone      icon_large = GFX_planet_type_pd_sandstone_big }
+	conditional_icon = { trigger = { has_modifier = pd_turquoise }      icon = GFX_planet_type_pd_turquoise      icon_large = GFX_planet_type_pd_turquoise_big }
+	conditional_icon = { trigger = { has_modifier = pd_calcite }        icon = GFX_planet_type_pd_calcite        icon_large = GFX_planet_type_pd_calcite_big }
+	conditional_icon = { trigger = { has_modifier = pd_monsoon }        icon = GFX_planet_type_pd_monsoon        icon_large = GFX_planet_type_pd_monsoon_big }
+	conditional_icon = { trigger = { has_modifier = pd_silvergrass }    icon = GFX_planet_type_pd_silvergrass    icon_large = GFX_planet_type_pd_silvergrass_big }
+	conditional_icon = { trigger = { has_modifier = pd_supercontinent } icon = GFX_planet_type_pd_supercontinent icon_large = GFX_planet_type_pd_supercontinent_big }
+	conditional_icon = { trigger = { has_modifier = pd_sinkhole }       icon = GFX_planet_type_pd_sinkhole       icon_large = GFX_planet_type_pd_sinkhole_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_tundra (4.4 beta lines 310-347).
+pc_tundra = {
+	entity = "tundra_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_tundra
+	icon_large = GFX_planet_type_tundra_big
+
+	climate = "cold"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
+	atmosphere_color		= hsv { 0.58 0.3 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_tundra.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_bog }        icon = GFX_planet_type_pd_bog        icon_large = GFX_planet_type_pd_bog_big }
+	conditional_icon = { trigger = { has_modifier = pd_mycelium }   icon = GFX_planet_type_pd_mycelium   icon_large = GFX_planet_type_pd_mycelium_big }
+	conditional_icon = { trigger = { has_modifier = pd_mud }        icon = GFX_planet_type_pd_mud        icon_large = GFX_planet_type_pd_mud_big }
+	conditional_icon = { trigger = { has_modifier = pd_basalt }     icon = GFX_planet_type_pd_basalt     icon_large = GFX_planet_type_pd_basalt_big }
+	conditional_icon = { trigger = { has_modifier = pd_tuya }       icon = GFX_planet_type_pd_tuya       icon_large = GFX_planet_type_pd_tuya_big }
+	conditional_icon = { trigger = { has_modifier = pd_cryovolcano } icon = GFX_planet_type_pd_cryovolcano icon_large = GFX_planet_type_pd_cryovolcano_big }
+	conditional_icon = { trigger = { has_modifier = pd_treeline }   icon = GFX_planet_type_pd_treeline   icon_large = GFX_planet_type_pd_treeline_big }
+	conditional_icon = { trigger = { has_modifier = pd_peatland }   icon = GFX_planet_type_pd_peatland   icon_large = GFX_planet_type_pd_peatland_big }
+	conditional_icon = { trigger = { has_modifier = pd_travertine } icon = GFX_planet_type_pd_travertine icon_large = GFX_planet_type_pd_travertine_big }
+	conditional_icon = { trigger = { has_modifier = pd_cryoflora }  icon = GFX_planet_type_pd_cryoflora  icon_large = GFX_planet_type_pd_cryoflora_big }
+	conditional_icon = { trigger = { has_modifier = pd_lichen }     icon = GFX_planet_type_pd_lichen     icon_large = GFX_planet_type_pd_lichen_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_arctic (4.4 beta lines 349-386).
+pc_arctic = {
+	entity = "arctic_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_arctic
+	icon_large = GFX_planet_type_arctic_big
+
+	climate = "cold"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_arctic.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_cold_desert }        icon = GFX_planet_type_pd_cold_desert        icon_large = GFX_planet_type_pd_cold_desert_big }
+	conditional_icon = { trigger = { has_modifier = pd_glacial }            icon = GFX_planet_type_pd_glacial            icon_large = GFX_planet_type_pd_glacial_big }
+	conditional_icon = { trigger = { has_modifier = pd_antarctic }          icon = GFX_planet_type_pd_antarctic          icon_large = GFX_planet_type_pd_antarctic_big }
+	conditional_icon = { trigger = { has_modifier = pd_aeolian }            icon = GFX_planet_type_pd_aeolian            icon_large = GFX_planet_type_pd_aeolian_big }
+	conditional_icon = { trigger = { has_modifier = pd_ice_spike }          icon = GFX_planet_type_pd_ice_spike          icon_large = GFX_planet_type_pd_ice_spike_big }
+	conditional_icon = { trigger = { has_modifier = pd_crevasse }           icon = GFX_planet_type_pd_crevasse           icon_large = GFX_planet_type_pd_crevasse_big }
+	conditional_icon = { trigger = { has_modifier = pd_ice_dunes }          icon = GFX_planet_type_pd_ice_dunes          icon_large = GFX_planet_type_pd_ice_dunes_big }
+	conditional_icon = { trigger = { has_modifier = pd_ferrospring }        icon = GFX_planet_type_pd_ferrospring        icon_large = GFX_planet_type_pd_ferrospring_big }
+	conditional_icon = { trigger = { has_modifier = pd_supraglacial_lakes } icon = GFX_planet_type_pd_supraglacial_lakes icon_large = GFX_planet_type_pd_supraglacial_lakes_big }
+	conditional_icon = { trigger = { has_modifier = pd_storm }              icon = GFX_planet_type_pd_storm              icon_large = GFX_planet_type_pd_storm_big }
+	conditional_icon = { trigger = { has_modifier = pd_iceberg }            icon = GFX_planet_type_pd_iceberg            icon_large = GFX_planet_type_pd_iceberg_big }
+}
+
+# Source: Stellaris 00_planet_classes.txt, pc_alpine (4.4 beta lines 388-425).
+pc_alpine = {
+	entity = "alpine_planet"
+	entity_scale = @planet_standard_scale
+	icon = GFX_planet_type_alpine
+	icon_large = GFX_planet_type_alpine_big
+
+	climate = "cold"
+	initial = yes
+
+	auto_trait_prio = {
+		trait_auto_cold_preference
+	}
+
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_alpine.dds"
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0.2
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_if_has_orbital_ring = yes
+
+	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_boreal }        icon = GFX_planet_type_pd_boreal        icon_large = GFX_planet_type_pd_boreal_big }
+	conditional_icon = { trigger = { has_modifier = pd_snow }          icon = GFX_planet_type_pd_snow          icon_large = GFX_planet_type_pd_snow_big }
+	conditional_icon = { trigger = { has_modifier = pd_highland }      icon = GFX_planet_type_pd_highland      icon_large = GFX_planet_type_pd_highland_big }
+	conditional_icon = { trigger = { has_modifier = pd_dune_forest }   icon = GFX_planet_type_pd_dune_forest   icon_large = GFX_planet_type_pd_dune_forest_big }
+	conditional_icon = { trigger = { has_modifier = pd_fjord }         icon = GFX_planet_type_pd_fjord         icon_large = GFX_planet_type_pd_fjord_big }
+	conditional_icon = { trigger = { has_modifier = pd_blossom }       icon = GFX_planet_type_pd_blossom       icon_large = GFX_planet_type_pd_blossom_big }
+	conditional_icon = { trigger = { has_modifier = pd_taiga }         icon = GFX_planet_type_pd_taiga         icon_large = GFX_planet_type_pd_taiga_big }
+	conditional_icon = { trigger = { has_modifier = pd_craton }        icon = GFX_planet_type_pd_craton        icon_large = GFX_planet_type_pd_craton_big }
+	conditional_icon = { trigger = { has_modifier = pd_ravine }        icon = GFX_planet_type_pd_ravine        icon_large = GFX_planet_type_pd_ravine_big }
+	conditional_icon = { trigger = { has_modifier = pd_glaciovolcanic } icon = GFX_planet_type_pd_glaciovolcanic icon_large = GFX_planet_type_pd_glaciovolcanic_big }
+	conditional_icon = { trigger = { has_modifier = pd_lanthanide }    icon = GFX_planet_type_pd_lanthanide    icon_large = GFX_planet_type_pd_lanthanide_big }
+	# Unique Worlds submod (optional): biosynthetic world rides on pc_alpine.
+	conditional_icon = { trigger = { has_modifier = pd_biosynth }  icon = GFX_planet_type_pd_biosynth  icon_large = GFX_planet_type_pd_biosynth_big }
+}

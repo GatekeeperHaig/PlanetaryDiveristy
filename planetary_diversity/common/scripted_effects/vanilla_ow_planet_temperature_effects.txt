@@ -1,0 +1,96 @@
+# Overrides vanilla increase_planet_temperature_without_habitables so the Dyson Gun's one-tier heating also climbs PD's gaia, superhabitable, cavern, and tidally-locked families.
+# Vanilla's seven classes are kept verbatim; PD families step cold to wet to dry, with dry as the terminal stage. Resync the vanilla block if the base effect changes.
+increase_planet_temperature_without_habitables = {
+	if = {
+		limit = { is_planet_class = pc_barren }
+		change_pc = pc_molten
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_ocean }
+		change_pc = pc_desert
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_continental }
+		change_pc = pc_arid
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_tropical }
+		change_pc = pc_savannah
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_arctic }
+		change_pc = pc_ocean
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_alpine }
+		change_pc = pc_continental
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_tundra }
+		change_pc = pc_tropical
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+
+	# PD uncommon-world families below.
+	else_if = {
+		limit = { is_planet_class = pc_pd_cold_gaia }
+		change_pc = pc_pd_wet_gaia
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_wet_gaia }
+		change_pc = pc_pd_dry_gaia
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_cold_superhabitable }
+		change_pc = pc_pd_wet_superhabitable
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_wet_superhabitable }
+		change_pc = pc_pd_dry_superhabitable
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_cold_cave }
+		change_pc = pc_pd_wet_cave
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_wet_cave }
+		change_pc = pc_pd_dry_cave
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_cold_tidally_locked }
+		change_pc = pc_pd_wet_tidally_locked
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+	else_if = {
+		limit = { is_planet_class = pc_pd_wet_tidally_locked }
+		change_pc = pc_pd_dry_tidally_locked
+		reroll_planet = yes
+		clear_blockers = yes
+	}
+}

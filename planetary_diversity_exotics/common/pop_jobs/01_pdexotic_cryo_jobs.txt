@@ -1,5 +1,4 @@
 # Planetary Diversity Exotics: Cryo chemist jobs
-# Worker-tier farmer-class job tied to Chemovat Garden districts on cryogenic worlds. Produces food + exotic gases via cultivated chemosynthetic life.
 
 pdexotic_cryo_chemist = {
 	category = worker
@@ -36,7 +35,6 @@ pdexotic_cryo_chemist = {
 
 	weight = {
 		weight = @worker_job_weight
-		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist|RESOURCE|food|
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -81,7 +79,6 @@ pdexotic_cryo_chemist_drone = {
 
 	weight = {
 		weight = @simple_drone_job_weight
-		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist_drone|RESOURCE|food|
 	}
 }
 
@@ -127,11 +124,10 @@ pdexotic_cryo_chemist_machine = {
 
 	weight = {
 		weight = @simple_drone_job_weight
-		mult = value:job_weights_modifier|JOB|pdexotic_cryo_chemist_machine|RESOURCE|exotic_gases|
 	}
 }
 
-# Cryophile livestock variant. Mirrors livestock_lithoid / livestock_infernal: phenotype-gated job that returns the species' upkeep resource at a multiplier, plus the usual food yield. Covers the 0.05 gas/pop drain from trait_cryophile with a small margin so cryo-livestock is gas-positive for the captor.
+# Cryophile livestock, like livestock_lithoid/infernal: returns the upkeep resource plus food. Tuned gas-positive against the trait_cryophile gas drain.
 livestock_cryophile = {
 	category = worker
 	first_come_first_served = no

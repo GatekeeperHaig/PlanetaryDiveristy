@@ -1,0 +1,474 @@
+# Signature buildings for the cryo planet classes, one mutually-exclusive set per class on the rare-world pattern (see PD main building_cryo_lab).
+# Each building is gated on the class label modifier and self-removes if the world leaves its class. Output is value-added only; base resources stay on the districts.
+
+#Ammonia Buildings
+building_pd_ammonia_fixation_institute = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	category = research
+
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		has_modifier = pd_ammonia
+		NOT = { has_building = building_pd_ammonia_fixation_institute }
+		NOT = { has_building = building_pd_ammonia_pharma_works }
+		NOT = { has_building = building_pd_ammonia_biome_reserve }
+		NOT = { has_building_construction = building_pd_ammonia_fixation_institute }
+		NOT = { has_building_construction = building_pd_ammonia_pharma_works }
+		NOT = { has_building_construction = building_pd_ammonia_biome_reserve }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	building_sets = {
+		research
+		society
+		engineering
+	}
+
+	inline_script = "buildings/pd_rare_society_building"
+	inline_script = "buildings/pd_rare_engineering_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_biologist_add = 75
+			job_engineer_add = 75
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_calculator_biologist_add = 75
+			job_calculator_engineer_add = 75
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_biologist_add = 75
+			job_calculator_engineer_add = 75
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_ammonia } }
+	}
+}
+building_pd_ammonia_pharma_works = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	building_sets = {
+		industrial
+		factory
+	}
+
+	category = manufacturing
+
+	potential = {
+		owner = { is_gestalt = no }
+		NOT = { has_modifier = resort_colony }
+		has_modifier = pd_ammonia
+		NOT = { has_building = building_pd_ammonia_fixation_institute }
+		NOT = { has_building = building_pd_ammonia_pharma_works }
+		NOT = { has_building = building_pd_ammonia_biome_reserve }
+		NOT = { has_building_construction = building_pd_ammonia_fixation_institute }
+		NOT = { has_building_construction = building_pd_ammonia_pharma_works }
+		NOT = { has_building_construction = building_pd_ammonia_biome_reserve }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	planet_modifier = {
+		planet_artisans_consumer_goods_produces_add = 0.1
+		planet_artisans_minerals_upkeep_add = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_luxuries_1 }
+		}
+		modifier = {
+			planet_artisans_consumer_goods_produces_add = 0.1
+			planet_artisans_minerals_upkeep_add = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_luxuries_2 }
+		}
+		modifier = {
+			planet_artisans_consumer_goods_produces_add = 0.2
+			planet_artisans_minerals_upkeep_add = 0.2
+		}
+	}
+
+	# Pharmaceuticals split the workforce between consumer-goods artisans and medical staff.
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_artisan_add = 50
+			job_healthcare_add = 50
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_ammonia } }
+	}
+}
+building_pd_ammonia_biome_reserve = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	building_sets = {
+		urban
+		trade
+	}
+
+	category = trade
+
+	potential = {
+		owner = { is_gestalt = no }
+		has_modifier = pd_ammonia
+		NOT = { has_building = building_pd_ammonia_fixation_institute }
+		NOT = { has_building = building_pd_ammonia_pharma_works }
+		NOT = { has_building = building_pd_ammonia_biome_reserve }
+		NOT = { has_building_construction = building_pd_ammonia_fixation_institute }
+		NOT = { has_building_construction = building_pd_ammonia_pharma_works }
+		NOT = { has_building_construction = building_pd_ammonia_biome_reserve }
+	}
+
+	inline_script = "buildings/pd_rare_resort_building"
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_ammonia } }
+	}
+}
+
+#Methane Buildings
+building_pd_methane_tholin_lab = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	category = research
+
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		has_modifier = pd_methane
+		NOT = { has_building = building_pd_methane_tholin_lab }
+		NOT = { has_building = building_pd_methane_hydrocarbon_foundry }
+		NOT = { has_building = building_pd_methane_polymer_plant }
+		NOT = { has_building_construction = building_pd_methane_tholin_lab }
+		NOT = { has_building_construction = building_pd_methane_hydrocarbon_foundry }
+		NOT = { has_building_construction = building_pd_methane_polymer_plant }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	building_sets = {
+		research
+		physics
+		engineering
+	}
+
+	inline_script = "buildings/pd_rare_physics_building"
+	inline_script = "buildings/pd_rare_engineering_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_physicist_add = 75
+			job_engineer_add = 75
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_calculator_physicist_add = 75
+			job_calculator_engineer_add = 75
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_physicist_add = 75
+			job_calculator_engineer_add = 75
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_methane } }
+	}
+}
+building_pd_methane_hydrocarbon_foundry = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	building_sets = {
+		industrial
+		foundry
+	}
+
+	category = manufacturing
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		owner = { NOT = { is_catalytic_empire = yes } }
+		has_modifier = pd_methane
+		NOT = { has_building = building_pd_methane_tholin_lab }
+		NOT = { has_building = building_pd_methane_hydrocarbon_foundry }
+		NOT = { has_building = building_pd_methane_polymer_plant }
+		NOT = { has_building_construction = building_pd_methane_tholin_lab }
+		NOT = { has_building_construction = building_pd_methane_hydrocarbon_foundry }
+		NOT = { has_building_construction = building_pd_methane_polymer_plant }
+	}
+
+	inline_script = "buildings/pd_rare_foundry_building"
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_methane } }
+	}
+}
+building_pd_methane_polymer_plant = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	building_sets = {
+		industrial
+		factory
+	}
+
+	category = manufacturing
+
+	potential = {
+		owner = { is_gestalt = no }
+		NOT = { has_modifier = resort_colony }
+		has_modifier = pd_methane
+		NOT = { has_building = building_pd_methane_tholin_lab }
+		NOT = { has_building = building_pd_methane_hydrocarbon_foundry }
+		NOT = { has_building = building_pd_methane_polymer_plant }
+		NOT = { has_building_construction = building_pd_methane_tholin_lab }
+		NOT = { has_building_construction = building_pd_methane_hydrocarbon_foundry }
+		NOT = { has_building_construction = building_pd_methane_polymer_plant }
+	}
+
+	inline_script = "buildings/pd_rare_consumer_goods_building"
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_methane } }
+	}
+}
+
+#Nitrogen Buildings
+building_pd_nitrogen_supercomputer = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	category = research
+
+	potential = {
+		exists = owner
+		NOT = { has_modifier = resort_colony }
+		has_modifier = pd_nitrogen
+		NOT = { has_building = building_pd_nitrogen_supercomputer }
+		NOT = { has_building = building_pd_nitrogen_munitions_foundry }
+		NOT = { has_building = building_pd_nitrogen_cryonics_sanctuary }
+		NOT = { has_building_construction = building_pd_nitrogen_supercomputer }
+		NOT = { has_building_construction = building_pd_nitrogen_munitions_foundry }
+		NOT = { has_building_construction = building_pd_nitrogen_cryonics_sanctuary }
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	building_sets = {
+		research
+		physics
+		engineering
+	}
+
+	inline_script = "buildings/pd_rare_physics_building"
+	inline_script = "buildings/pd_rare_engineering_building"
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_physicist_add = 75
+			job_engineer_add = 75
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_calculator_physicist_add = 75
+			job_calculator_engineer_add = 75
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_physicist_add = 75
+			job_calculator_engineer_add = 75
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_nitrogen } }
+	}
+}
+building_pd_nitrogen_munitions_foundry = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	building_sets = {
+		industrial
+		foundry
+	}
+
+	category = manufacturing
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		owner = { NOT = { is_catalytic_empire = yes } }
+		has_modifier = pd_nitrogen
+		NOT = { has_building = building_pd_nitrogen_supercomputer }
+		NOT = { has_building = building_pd_nitrogen_munitions_foundry }
+		NOT = { has_building = building_pd_nitrogen_cryonics_sanctuary }
+		NOT = { has_building_construction = building_pd_nitrogen_supercomputer }
+		NOT = { has_building_construction = building_pd_nitrogen_munitions_foundry }
+		NOT = { has_building_construction = building_pd_nitrogen_cryonics_sanctuary }
+	}
+
+	inline_script = "buildings/pd_rare_foundry_building"
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_nitrogen } }
+	}
+}
+building_pd_nitrogen_cryonics_sanctuary = {
+	can_build = yes
+	base_cap_amount = 1
+	base_buildtime = 600
+
+	building_sets = {
+		urban
+		trade
+	}
+
+	category = trade
+
+	potential = {
+		owner = { is_gestalt = no }
+		has_modifier = pd_nitrogen
+		NOT = { has_building = building_pd_nitrogen_supercomputer }
+		NOT = { has_building = building_pd_nitrogen_munitions_foundry }
+		NOT = { has_building = building_pd_nitrogen_cryonics_sanctuary }
+		NOT = { has_building_construction = building_pd_nitrogen_supercomputer }
+		NOT = { has_building_construction = building_pd_nitrogen_munitions_foundry }
+		NOT = { has_building_construction = building_pd_nitrogen_cryonics_sanctuary }
+	}
+
+	inline_script = "buildings/pd_rare_resort_building"
+
+	destroy_trigger = {
+		planet = { NOT = { has_modifier = pd_nitrogen } }
+	}
+}

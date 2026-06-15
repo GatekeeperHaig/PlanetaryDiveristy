@@ -1,5 +1,5 @@
-# Replaces vanilla and PD arcology decisions so ammonia and methane worlds become cryo-atmosphere arcologies (zzz_ prefix wins LIOS). Garden / fortress / commercial decisions only appear when PD More Arcologies is loaded; relic-world decisions are untouched (cryo worlds never become relic worlds).
-# Cryo check in the vanilla decision uses pd_has_<class>_atmosphere (modifier indirection); the PD MA decisions check pd_is_<class>_planet (class indirection) since they fire before the change_pc swap. All four triggers are stubbed always = no in this submod and overridden by exotics; cryo decisions therefore never appear unless exotics is loaded.
+# Replaces arcology decisions so ammonia/methane/nitrogen worlds become cryo arcologies. Garden/fortress/commercial decisions need PD More Arcologies; relic decisions are untouched.
+# The gating triggers stub to always = no here and are overridden by exotics, so cryo decisions only appear when exotics is loaded.
 
 
 ##########################################################################
@@ -55,15 +55,15 @@ decision_arcology_project = {
 	}
 
 	on_queued = {
-		set_planet_flag = arcology_project_construction
+		set_carrier_flag = arcology_project_construction
 	}
 
 	on_unqueued = {
-		remove_planet_flag = arcology_project_construction
+		remove_carrier_flag = arcology_project_construction
 	}
 
 	effect = {
-		remove_planet_flag = arcology_project_construction
+		remove_carrier_flag = arcology_project_construction
 		custom_tooltip = decision_arcology_project_effects
 		if = {
 			limit = { pd_is_ammonia_planet = yes }
@@ -100,6 +100,10 @@ decision_arcology_project = {
 				set_planet_entity = {
 					entity = "city_planet_entity"
 					graphical_culture = owner
+				}
+				if = {
+					limit = { has_pd_capital_deposit = yes }
+					pd_resync_capital_art_effect = yes
 				}
 				planet_event = { id = action.68 }
 				owner = {
@@ -167,15 +171,17 @@ decision_pd_garden_arcology_project = {
 		exists = owner
 		owner = {
 			has_ascension_perk = ap_arcology_project
+		}
+	}
+
+	allow = {
+		owner = {
 			OR = {
 				has_tradition = tr_adaptability_adopt
 				has_tradition = tr_discovery_adopt
 				has_tradition = tr_versatility_adopt
 			}
 		}
-	}
-
-	allow = {
 		custom_tooltip = {
 			fail_text = decision_arcology_project_requirements
 			free_district_slots < 1
@@ -220,6 +226,7 @@ decision_pd_garden_arcology_project = {
 				pd_exotic_cryo_arcology_convert_effect = yes
 			}
 			else = {
+				save_deposits = yes
 				clear_deposits = yes
 				restore_saved_deposits = yes
 				change_pc = pc_city
@@ -305,14 +312,16 @@ decision_pd_fortress_arcology_project = {
 		exists = owner
 		owner = {
 			has_ascension_perk = ap_arcology_project
+		}
+	}
+
+	allow = {
+		owner = {
 			OR = {
 				has_tradition = tr_supremacy_adopt
 				has_tradition = tr_unyielding_adopt
 			}
 		}
-	}
-
-	allow = {
 		custom_tooltip = {
 			fail_text = decision_arcology_project_requirements
 			free_district_slots < 1
@@ -357,6 +366,7 @@ decision_pd_fortress_arcology_project = {
 				pd_exotic_cryo_arcology_convert_effect = yes
 			}
 			else = {
+				save_deposits = yes
 				clear_deposits = yes
 				restore_saved_deposits = yes
 				change_pc = pc_city
@@ -433,15 +443,17 @@ decision_pd_commercial_arcology_project = {
 		exists = owner
 		owner = {
 			has_ascension_perk = ap_arcology_project
-			OR = {
-				has_tradition = tr_prosperity_adopt
-				has_tradition = tr_mercantile_adopt
-			}
 			NOT = { is_machine_empire = yes }
 		}
 	}
 
 	allow = {
+		owner = {
+			OR = {
+				has_tradition = tr_prosperity_adopt
+				has_tradition = tr_mercantile_adopt
+			}
+		}
 		custom_tooltip = {
 			fail_text = decision_arcology_project_requirements
 			free_district_slots < 1
@@ -486,6 +498,7 @@ decision_pd_commercial_arcology_project = {
 				pd_exotic_cryo_arcology_convert_effect = yes
 			}
 			else = {
+				save_deposits = yes
 				clear_deposits = yes
 				restore_saved_deposits = yes
 				change_pc = pc_city

@@ -1,5 +1,5 @@
-# Converts an ammonia world to a pc_city arcology with the same mechanical outcome as the equivalent non-ammonia arcology decision: cryo urban districts roll over to district_arcology_housing on the planet-class swap, then get re-swapped to the garden / fortress / commercial housing district when that PD MA flavor modifier is present, then halved.
-# Each flavor still uses its full PD MA modifier set and starter district / zone; the only cryo-specific touches are the ammonia-themed sky + planet entity selected by the portrait effect and the pd_ammonia_atmosphere modifier in the tooltip.
+# Mirrors the standard arcology decision: districts swap to the flavor housing on the class change, then halve.
+# Cryo-specific parts are the ammonia sky and entity and the pd_ammonia_atmosphere tooltip; flavor modifiers and starter district are inherited.
 pd_exotic_cryo_arcology_convert_effect = {
 	save_deposits = yes
 	clear_deposits = yes
@@ -63,7 +63,7 @@ pd_exotic_cryo_arcology_convert_effect = {
 	validate_planet_buildings_and_districts = yes
 }
 
-# Overrides PD MA's remove_pd_capital_deposit_effect so demolishing a capital on an ammonia arcology returns to our cryo entity / sky instead of the standard PD MA city portrait. Non-ammonia planets fall through to the original PD MA portrait effects.
+# Overrides remove_pd_capital_deposit_effect so demolishing a capital on an ammonia arcology restores the cryo entity and sky; non-ammonia planets fall through to the default.
 remove_pd_capital_deposit_effect = {
 	if = {
 		limit = {
@@ -162,9 +162,11 @@ remove_pd_capital_deposit_effect = {
 	}
 }
 
-# Sets the post-conversion planet visuals for a cryo arcology (ammonia or methane). Each PD MA flavor (none / garden / fortress / commercial) gets its own planet entity and base sky per atmosphere, with a further sky override per ruler / corporate / hive / machine capital deposit so every atmosphere x flavor x capital combination looks distinct from orbit.
-# A planet with no PD MA flavor modifier gets the plain cryo arcology visuals for its atmosphere; the latest set_planet_entity wins, so a capital-deposit sky override beats the plain flavor sky.
+# Sets cryo arcology visuals: each flavor gets its own entity and sky per atmosphere, with a further sky override per capital-deposit type.
+# No flavor modifier means the plain cryo visuals; the last set_planet_entity wins, so a capital-deposit sky beats the flavor sky.
 generate_pd_cryo_arcology_portrait_effect = {
+	# Callers run in colony scope (4.4 portrait flows); set_planet_entity needs planet scope, so the whole body is scoped to the planet.
+	planet = {
 	if = {
 		limit = {
 			pd_has_ammonia_atmosphere = yes
@@ -590,5 +592,6 @@ generate_pd_cryo_arcology_portrait_effect = {
 				entity = "pd_nitrogen_commercial_city_planet_01_entity"
 			}
 		}
+	}
 	}
 }

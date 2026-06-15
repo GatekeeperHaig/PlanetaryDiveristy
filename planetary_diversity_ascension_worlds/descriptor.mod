@@ -1,4 +1,3 @@
-version="3.9.*"
 tags={
 	"Balance"
 	"Galaxy Generation"
@@ -6,5 +5,5 @@ tags={
 	"Graphics"
 }
 name="Planetary Diversity - Ascension Worlds"
-supported_version="v4.3.*"
+supported_version="v4.4.*"
 remote_file_id="3241119393"

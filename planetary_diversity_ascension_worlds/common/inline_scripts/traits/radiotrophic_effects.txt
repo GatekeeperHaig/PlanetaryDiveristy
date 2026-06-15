@@ -1,0 +1,63 @@
+resources = {
+	category = planet_pops
+	# Energy Upkeep
+	upkeep = {
+		trigger = {
+			is_being_purged = no
+			exists = planet
+			NOT = {
+				planet = { is_planet_class = pc_nuked }
+			}
+			is_sapient = yes
+		}
+		energy = @living_standard_phototrophic_normal
+	}
+}
+modifier = {
+	pc_nuked_habitability = 0.1
+}
+triggered_planet_growth_habitability_modifier = {
+	potential = {
+		exists = planet
+		planet = { has_deposit = d_lithoid_crater }
+	}
+	pc_nuked_habitability = 0.1
+}
+triggered_planet_growth_habitability_modifier = {
+	potential = {
+		exists = planet
+		planet = {
+			# AW copy routes the PD nuked classes through pd_is_planet_pd_class_nuked, which base PD defines and AW stubs to always-no, so this resolves without those classes when AW runs alone.
+			OR = {
+				is_planet_class = pc_nuked
+				pd_is_planet_pd_class_nuked = yes
+			}
+		}
+	}
+	logistic_growth_mult = 0.1
+	mult = value:lithoid_trait_mult
+}
+triggered_pop_group_modifier = {
+	potential = {
+		exists = planet
+		planet = { has_modifier = wasteland_radiation }
+	}
+	pop_happiness = 0.1
+	mult = value:lithoid_trait_mult
+}
+slave_cost = {
+	trade = 1500
+}
+assembly_score = {
+	modifier = {
+		add = 1
+		from = { is_planet_class = pc_nuked }
+	}
+	modifier = {
+		add = 0.05
+		from = {
+			is_planet_class = pc_nuked
+			has_deposit = d_lithoid_crater
+		}
+	}
+}

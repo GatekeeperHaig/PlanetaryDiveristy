@@ -1,4 +1,4 @@
-# Blocks vanilla origins and civics that force an incompatible homeworld class for Cryophile species (CRYO). LIOS replacement: each block is a full duplicate of vanilla with one added check in possible: species_class = { NOT = { value = CRYO } }.
+# Blocks origins and civics that would force an incompatible homeworld on Cryophile (CRYO) species. Each block duplicates vanilla with one added CRYO exclusion in possible.
 # Source: vanilla, except origin_red_giant and origin_cosmic_dawn which are sourced from PD main's override to preserve PD's planet type additions and removals.
 
 # Origin overrides.
@@ -14,6 +14,7 @@ origin_red_giant = {
 	habitability_preference = pc_volcanic
 	initializers = { red_giant_start }
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		civics = {
 			NOR = {
@@ -60,7 +61,7 @@ origin_red_giant = {
 	removed_climate_labels = { TYPE_HEADER_08 TYPE_HEADER_09 TYPE_HEADER_10 }
 	added_climate_labels = { TYPE_HEADER_04 }
 	removed_planet_types = { pc_arctic pc_alpine pc_tundra pc_pd_cold_desert pc_pd_glacial pc_pd_antarctic pc_pd_aeolian pc_pd_ice_spike pc_pd_crevasse pc_pd_supraglacial_lakes pc_pd_ice_dunes pc_pd_ferrospring pc_pd_storm pc_pd_iceberg pc_pd_boreal pc_pd_snow pc_pd_highland pc_pd_dune_forest pc_pd_fjord pc_pd_blossom pc_pd_taiga pc_pd_craton pc_pd_ravine pc_pd_glaciovolcanic pc_pd_lanthanide pc_pd_bog pc_pd_mycelium pc_pd_mud pc_pd_basalt pc_pd_tuya pc_pd_cryovolcano pc_pd_treeline pc_pd_peatland pc_pd_travertine pc_pd_cryoflora pc_pd_lichen}
-	added_planet_types = { pc_volcanic pc_pd_ash }
+	added_planet_types = { pc_volcanic pc_pd_ash pc_pd_magma }
 }
 
 origin_cosmic_dawn = {
@@ -74,6 +75,7 @@ origin_cosmic_dawn = {
 	habitability_preference = pc_volcanic
 	initializers = { cosmic_dawn_start }
 	possible = {
+		is_nomadic = no
 		authority = { NOT = { value = auth_hive_mind } }
 		species_class = { value = INF }
 		civics = {
@@ -121,7 +123,7 @@ origin_cosmic_dawn = {
 	removed_climate_labels = { TYPE_HEADER_08 TYPE_HEADER_09 TYPE_HEADER_10 }
 	added_climate_labels = { TYPE_HEADER_04 }
 	removed_planet_types = { pc_arctic pc_alpine pc_tundra pc_pd_cold_desert pc_pd_glacial pc_pd_antarctic pc_pd_aeolian pc_pd_ice_spike pc_pd_crevasse pc_pd_supraglacial_lakes pc_pd_ice_dunes pc_pd_ferrospring pc_pd_storm pc_pd_iceberg pc_pd_boreal pc_pd_snow pc_pd_highland pc_pd_dune_forest pc_pd_fjord pc_pd_blossom pc_pd_taiga pc_pd_craton pc_pd_ravine pc_pd_glaciovolcanic pc_pd_lanthanide pc_pd_bog pc_pd_mycelium pc_pd_mud pc_pd_basalt pc_pd_tuya pc_pd_cryovolcano pc_pd_treeline pc_pd_peatland pc_pd_travertine pc_pd_cryoflora pc_pd_lichen}
-	added_planet_types = { pc_volcanic pc_pd_ash }
+	added_planet_types = { pc_volcanic pc_pd_ash pc_pd_magma }
 }
 
 origin_ocean_paradise = {
@@ -145,6 +147,7 @@ origin_ocean_paradise = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		species_archetype = { NOT = { value = MACHINE } }
 		civics = {
@@ -192,6 +195,7 @@ origin_life_seeded = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		civics = {
 			NOR = {
@@ -266,6 +270,7 @@ origin_shattered_ring = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		civics = {
 			NOT = { value = civic_agrarian_idyll }
@@ -310,6 +315,7 @@ origin_remnants = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		civics = {
 			NOT = { value = civic_agrarian_idyll }
@@ -347,6 +353,7 @@ origin_post_apocalyptic = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		species_archetype = { NOT = { value = MACHINE } }
 		civics = {
@@ -392,6 +399,7 @@ origin_void_dwellers = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		species_archetype = { NOT = { value = MACHINE } }
 		civics = {
@@ -453,6 +461,7 @@ origin_wilderness = {
 	}
 
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		authority = {
 			OR = {
@@ -537,6 +546,7 @@ civic_anglers = {
 		species_archetype = { NOT = { value = MACHINE } }
 	}
 	possible = {
+		is_nomadic = no
 		species_class = { NOT = { value = CRYO } }
 		species_archetype = { NOT = { value = MACHINE } }
 		origin = {
@@ -618,55 +628,4 @@ civic_idyllic_bloom = {
 		add_attunement_the_composer_of_strands = @civic_attunement1
 	}
 	hide_modifiers = yes
-}
-
-# PD-added origin overrides: submod origins that force incompatible homeworld classes. Same CRYO hard-check as above.
-# Scope: planetary_diversity_uniques only. All These Worlds is out of scope.
-
-origin_pd_floating_world = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origins_pdfloating.dds"
-	picture = GFX_origin_pd_floating
-	starting_colony = pc_pd_floating
-	habitability_preference = pc_continental
-	preferred_planet_class_neighbor = no
-	description = "origin_tooltip_floating_world_effects"
-	negative_description = "origin_tooltip_life_seeded_negative_effects"
-	possible = {
-		species_class = { NOT = { value = CRYO } }
-		civics = {
-			NOR = {
-				value = civic_hive_pd_planetary_infesters
-				value = civic_hive_idyllic_bloom
-				value = civic_idyllic_bloom
-			}
-		}
-	}
-	#random_weight = { base = 0 }
-	initializers = { pd_origin_init_floating }
-	max_once_global = yes
-}
-
-origin_pd_crystal_world = {
-	is_origin = yes
-	icon = "gfx/interface/icons/origins/origins_pdcrystal.dds"
-	picture = GFX_origin_pd_crystal
-	starting_colony = pc_pd_crystal
-	habitability_preference = pc_tropical
-	preferred_planet_class_neighbor = no
-	description = "origin_tooltip_crystal_world_effects"
-	negative_description = "origin_tooltip_life_seeded_negative_effects"
-	possible = {
-		species_class = { NOT = { value = CRYO } }
-		civics = {
-			NOR = {
-				value = civic_hive_pd_planetary_infesters
-				value = civic_hive_idyllic_bloom
-				value = civic_idyllic_bloom
-			}
-		}
-	}
-	#random_weight = { base = 0 }
-	initializers = { pd_origin_init_crystal }
-	max_once_global = yes
 }

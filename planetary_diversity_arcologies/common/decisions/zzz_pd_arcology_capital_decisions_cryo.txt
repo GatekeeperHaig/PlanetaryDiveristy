@@ -1,4 +1,4 @@
-### Routes the PD MA capital-deposit decisions through our cryo portrait effect when the planet has pd_ammonia_atmosphere or pd_methane_atmosphere, so building a Senate / Palace / Headquarters / Confluence Spire / Centralized Processing on a cryo arcology keeps the matching atmosphere entity + sky instead of reverting to the standard PD MA city portrait. zzz_ prefix beats pd_arcology_capital_decisions.txt in LIOS load order.
+### zzz_ override of the capital-deposit decisions: routes them through the cryo portrait effect so ammonia/methane/nitrogen capitals keep their atmosphere entity instead of reverting to the city portrait.
 
 
 # Senate Capital
@@ -16,16 +16,6 @@ decision_pd_arcology_senate = {
 	}
 
 	potential = {
-		OR = {
-			is_planet_class = pc_city
-			is_planet_class = pc_ringworld_habitable
-			AND = {
-				is_planet_class = pc_habitat
-				owner = {
-					has_origin = origin_void_dwellers
-				}
-			}
-		}
 		is_capital = yes
 		exists = owner
 		owner = {
@@ -91,16 +81,6 @@ decision_pd_arcology_palace = {
 	}
 
 	potential = {
-		OR = {
-			is_planet_class = pc_city
-			is_planet_class = pc_ringworld_habitable
-			AND = {
-				is_planet_class = pc_habitat
-				owner = {
-					has_origin = origin_void_dwellers
-				}
-			}
-		}
 		is_capital = yes
 		exists = owner
 		owner = {
@@ -166,21 +146,11 @@ decision_pd_arcology_headquarters = {
 	}
 
 	potential = {
-		OR = {
-			is_planet_class = pc_city
-			is_planet_class = pc_ringworld_habitable
-			AND = {
-				is_planet_class = pc_habitat
-				owner = {
-					has_origin = origin_void_dwellers
-				}
-			}
-		}
 		is_capital = yes
 		exists = owner
 		owner = {
 			has_technology = tech_housing_2
-			has_authority = auth_corporate
+			is_megacorp = yes
 		}
 		NOT = {	has_deposit = d_pd_headquarters_building }
 	}
@@ -238,24 +208,11 @@ decision_pd_hive_confluence_spire = {
 	}
 
 	potential = {
-		OR = {
-			is_planet_class = pc_hive
-			is_planet_class = pc_pd_hive
-			is_planet_class = pc_ringworld_habitable
-			AND = {
-				is_planet_class = pc_habitat
-				owner = {
-					has_civic = civic_void_hive
-				}
-			}
-			is_pd_uncommon_hive = yes
-			is_pd_uncommon_hive_arc = yes
-		}
 		is_capital = yes
 		exists = owner
 		owner = {
 			has_technology = tech_housing_2
-			is_gestalt = yes
+			is_hive_empire = yes
 		}
 		NOT = {	has_deposit = d_pd_confluence_spire_building }
 	}
@@ -315,22 +272,9 @@ decision_pd_machine_centralized_processing = {
 	potential = {
 		is_capital = yes
 		exists = owner
-		OR = {
-			is_planet_class = pc_machine
-			is_planet_class = pc_pd_machine
-			is_planet_class = pc_ringworld_habitable
-			AND = {
-				is_planet_class = pc_city
-				owner = {
-					has_civic = civic_machine_servitor
-				}
-			}
-			is_pd_uncommon_machine = yes
-			is_pd_uncommon_machine_arc = yes
-		}
 		owner = {
 			has_technology = tech_housing_2
-			is_gestalt = yes
+			is_machine_empire = yes
 		}
 		NOT = {	has_deposit = d_pd_machine_centralized_processing }
 	}

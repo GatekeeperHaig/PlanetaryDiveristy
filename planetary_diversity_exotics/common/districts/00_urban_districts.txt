@@ -1,5 +1,5 @@
-# PD Exotics overwrite of PD Arcologies' 00_urban_districts.txt. Only differences vs the source: each base urban district (district_city / district_hive / district_nexus) has `uses_district_set = pdexotic_cryo` added to its show_on_uncolonized AND potential OR-gate so cryo planets show vanilla housing instead of a parallel cryo urban district. All PD MA-specific content (wooden_planet logic, MA convert_to entries, etc.) is preserved verbatim; when PD Arcologies isn't loaded those references are inert no-ops.
-# When PD Arcologies' 00_urban_districts.txt changes, this file needs to be refreshed.
+# Copy of PD Arcologies' 00_urban_districts.txt, adding uses_district_set = pdexotic_cryo to the base urban districts so cryo planets show vanilla housing instead.
+# Re-sync this file when the source changes.
 
 @base_cost = 300
 @city_cost = 500
@@ -45,6 +45,7 @@ district_city = {
 							is_country_type = primitive
 							is_hive_empire = no
 						}
+						is_country_type = mechanocalibrator
 					}
 				}
 			}
@@ -73,7 +74,7 @@ district_city = {
 		hidden_trigger = { is_special_colony_type = no }
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -89,6 +90,7 @@ district_city = {
 		district_mindlink
 		district_crashed_slaver_ship
 		district_resort
+		district_ark_city
 		district_slave
 		district_pd_garden_arcology_housing
 		district_pd_fortress_arcology_housing
@@ -200,6 +202,7 @@ district_city = {
 }
 
 district_crashed_slaver_ship = {
+	shared_capacity_modifier = district_crashed_slaver_ship
 	is_uncapped = {	always = no }
 	can_demolish = no
 	exempt_from_ai_planet_specialization = yes
@@ -241,7 +244,7 @@ district_crashed_slaver_ship = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -254,6 +257,7 @@ district_crashed_slaver_ship = {
 		district_hive
 		district_craglands
 		district_mindlink
+		district_ark_city
 	}
 
 	resources = {
@@ -392,7 +396,7 @@ district_resort = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -557,7 +561,7 @@ district_resort_1 = {
 	allow = {
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -640,7 +644,7 @@ district_resort_2 = {
 	allow = {
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -723,7 +727,7 @@ district_resort_3 = {
 	allow = {
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -811,7 +815,7 @@ district_prison = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -932,7 +936,7 @@ district_slave = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -1085,7 +1089,7 @@ district_hive = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -1097,6 +1101,7 @@ district_hive = {
 		district_city
 		district_craglands
 		district_mindlink
+		district_ark_city
 	}
 
 	resources = {
@@ -1197,7 +1202,7 @@ district_hive_1 = {
 	allow = {
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -1206,6 +1211,7 @@ district_hive_1 = {
 		district_nexus_1
 		district_generator
 		district_photosynthesis_fields
+		district_ark_generator
 	}
 
 	resources = {
@@ -1288,7 +1294,7 @@ district_hive_2 = {
 	allow = {
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -1297,6 +1303,7 @@ district_hive_2 = {
 		district_nexus_2
 		district_mining
 		district_hollow_mountains
+		district_ark_military
 	}
 
 	resources = {
@@ -1379,7 +1386,7 @@ district_hive_3 = {
 	allow = {
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -1388,6 +1395,7 @@ district_hive_3 = {
 		district_nexus_3
 		district_farming
 		district_orchard_forests
+		district_ark_basic
 	}
 
 	resources = {
@@ -1502,7 +1510,7 @@ district_nexus = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -1514,6 +1522,7 @@ district_nexus = {
 		district_hive
 		district_craglands
 		district_mindlink
+		district_ark_city
 	}
 
 	resources = {
@@ -1607,6 +1616,7 @@ district_nexus_1 = {
 		district_hive_1
 		district_generator
 		district_photosynthesis_fields
+		district_ark_generator
 	}
 
 	resources = {
@@ -1704,6 +1714,7 @@ district_nexus_2 = {
 		district_hive_2
 		district_mining
 		district_hollow_mountains
+		district_ark_military
 	}
 
 	resources = {
@@ -1801,6 +1812,7 @@ district_nexus_3 = {
 		district_hive_3
 		district_farming
 		district_orchard_forests
+		district_ark_basic
 	}
 
 	resources = {
@@ -1890,6 +1902,10 @@ district_prison_industrial = {
 		tech_basic_industry
 	}
 
+	show_tech_unlock_if = {
+		always = no
+	}
+
 	show_on_uncolonized = {
 		exists = owner
 		owner = { is_gestalt = no }
@@ -1954,6 +1970,10 @@ district_battle_thrall = {
 		tech_basic_industry
 	}
 
+	show_tech_unlock_if = {
+		always = no
+	}
+
 	show_on_uncolonized = {
 		exists = from
 		has_modifier = slave_colony
@@ -1969,7 +1989,7 @@ district_battle_thrall = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 
@@ -2037,7 +2057,7 @@ district_srw_commercial = {
 		}
 		custom_tooltip = {
 			fail_text = arcology_project_construction_fail_tt
-			NOT = { has_planet_flag = arcology_project_construction }
+			NOT = { has_carrier_flag = arcology_project_construction }
 		}
 	}
 

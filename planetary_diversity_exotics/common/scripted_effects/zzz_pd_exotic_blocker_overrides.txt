@@ -1,5 +1,5 @@
 # Overrides vanilla blocker-seeding effects so cryogenic worlds (pc_pd_ammonia / pc_pd_methane / pc_pd_nitrogen) take the cold branch.
-# Vanilla only checks is_dry/is_wet/is_cold, so Planetscapers and other homeworld blocker seeding silently no-op on cryogenic without this fix.
+# Vanilla only checks is_dry/is_wet/is_cold, so Planetscapers and other blocker seeding skip cryogenic worlds without this fix.
 
 add_random_natural_blocker_and_give_tech = {
 	if = {
@@ -302,7 +302,7 @@ add_random_natural_blocker_and_give_tech = {
 			}
 		}
 	}
-	# PD Exotics: cryogenic worlds folded into the cold branch (massive glacier, active volcano, etc. read fine on ammonia/methane homeworlds).
+	# PD Exotics: cryogenic worlds folded into the cold branch (massive glacier, active volcano, etc. read fine on ammonia/methane/nitrogen homeworlds).
 	else_if = {
 		limit = {
 			OR = {
