@@ -268,7 +268,9 @@ planet_event = {
 			}
 			random_system_planet = {
 				limit = { has_planet_flag = pd_habitat_start_colony }
-				set_owner = event_target:pd_interplanetary_settlers_system_owner
+				create_colony = {
+					owner = event_target:pd_interplanetary_settlers_system_owner
+				}
 				create_pop_group = {
 					size = 200
 					species = owner_main_species
@@ -276,6 +278,7 @@ planet_event = {
 				add_modifier = { modifier = pd_domed_colony days = -1 }
 				if = {
 					limit = { has_planet_flag = pdmars }
+					set_name = "NAME_Mars"
 					set_planet_entity = {
 						picture = pc_pd_domed_colony_mars
 						entity = domed_colony_barren_planet_mars_entity

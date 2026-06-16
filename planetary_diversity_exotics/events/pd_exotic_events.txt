@@ -22,6 +22,18 @@ country_event = {
 			capital_scope = {
 				generate_pd_exotic_start_deposits = yes
 
+				# Universal natural blockers (active volcano, dangerous wildlife, mountain range) pass their potential on cryo worlds; strip them from the capital so it keeps only the standard Sprawling Slums and Industrial Wasteland.
+				every_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_dangerous_wildlife_blocker
+							is_deposit_type = d_mountain_range
+						}
+					}
+					remove_deposit = yes
+				}
+
 				# Starting rural districts (3 energy / 2 mining / 4 farming, matching a default-origin biological start); the vanilla game-start placement does not deliver these on pdexotic_cryo capitals.
 				add_district_and_planet_size_if_needed_effect_amount = {
 					amount = 3
