@@ -43,15 +43,28 @@
 #
 #	is_artificial_planet = yes	# Will make sure that modifiers for non artificial planets are not added, e.g. max districts
 #	inherit_country_building_modifiers = yes/no # default = yes; Can be used to block all other additions of max building and district modifiers except the planet class specific ones.
+#
+#	conditional_icon = {
+#		trigger = {
+#			# scope: colony_carrier (planet or ship depending on carrier type)
+#			ship = { is_ship_size = science_arkship_tier_1 }
+#		}
+#		icon = GFX_planet_type_science_arkship_1
+#		icon_large = GFX_planet_type_science_arkship_1_big
+#	}
+#	# Overrides icon and icon_large based on colony-carrier conditions. Evaluated in order; first match wins.
+#	# Falls back to the top-level icon/icon_large if no conditions match, or when no carrier context is
+#	# available (e.g. when showing the class generically in a terraforming target list).
+#
+#	single_build_queue = yes	# Default: no. If yes, merges all build queues from the colony and carrier into a single one
+#								# If the carrier is also a starbase, this includes build queues in the starbase as well
+#								# Build queues for external buildings like holdings ignore this parameter and are kept separate
 #}
 ###
 
 ####################
 # Habitable Planets
 ####################
-
-# This file replaces vanilla's 00_planet_classes.txt wholesale, so every class must stay a faithful copy or it vanishes from the game; only pc_habitat is changed.
-# The 9 climate base classes below are kept as vanilla copies so this mod works on its own; when main PD is loaded, its zz_pd_vanilla_base_classes.txt overrides them with the conditional_icon variants.
 
 # Dry
 pc_desert = {
@@ -94,6 +107,18 @@ pc_desert = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_dune }     icon = GFX_planet_type_pd_dune     icon_large = GFX_planet_type_pd_dune_big }
+	conditional_icon = { trigger = { has_modifier = pd_oasis }    icon = GFX_planet_type_pd_oasis    icon_large = GFX_planet_type_pd_oasis_big }
+	conditional_icon = { trigger = { has_modifier = pd_outback }  icon = GFX_planet_type_pd_outback  icon_large = GFX_planet_type_pd_outback_big }
+	conditional_icon = { trigger = { has_modifier = pd_coastal }  icon = GFX_planet_type_pd_coastal  icon_large = GFX_planet_type_pd_coastal_big }
+	conditional_icon = { trigger = { has_modifier = pd_fungi }    icon = GFX_planet_type_pd_fungi    icon_large = GFX_planet_type_pd_fungi_big }
+	conditional_icon = { trigger = { has_modifier = pd_ironsand } icon = GFX_planet_type_pd_ironsand icon_large = GFX_planet_type_pd_ironsand_big }
+	conditional_icon = { trigger = { has_modifier = pd_cactus }   icon = GFX_planet_type_pd_cactus   icon_large = GFX_planet_type_pd_cactus_big }
+	conditional_icon = { trigger = { has_modifier = pd_dust }     icon = GFX_planet_type_pd_dust     icon_large = GFX_planet_type_pd_dust_big }
+	conditional_icon = { trigger = { has_modifier = pd_sodalite } icon = GFX_planet_type_pd_sodalite icon_large = GFX_planet_type_pd_sodalite_big }
+	conditional_icon = { trigger = { has_modifier = pd_salt }     icon = GFX_planet_type_pd_salt     icon_large = GFX_planet_type_pd_salt_big }
+	conditional_icon = { trigger = { has_modifier = pd_aquifer }  icon = GFX_planet_type_pd_aquifer  icon_large = GFX_planet_type_pd_aquifer_big }
 }
 
 pc_arid = {
@@ -133,6 +158,18 @@ pc_arid = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_mesa }          icon = GFX_planet_type_pd_mesa          icon_large = GFX_planet_type_pd_mesa_big }
+	conditional_icon = { trigger = { has_modifier = pd_fog_desert }    icon = GFX_planet_type_pd_fog_desert    icon_large = GFX_planet_type_pd_fog_desert_big }
+	conditional_icon = { trigger = { has_modifier = pd_mediterranean } icon = GFX_planet_type_pd_mediterranean icon_large = GFX_planet_type_pd_mediterranean_big }
+	conditional_icon = { trigger = { has_modifier = pd_badlands }      icon = GFX_planet_type_pd_badlands      icon_large = GFX_planet_type_pd_badlands_big }
+	conditional_icon = { trigger = { has_modifier = pd_succulent }     icon = GFX_planet_type_pd_succulent     icon_large = GFX_planet_type_pd_succulent_big }
+	conditional_icon = { trigger = { has_modifier = pd_striped }       icon = GFX_planet_type_pd_striped       icon_large = GFX_planet_type_pd_striped_big }
+	conditional_icon = { trigger = { has_modifier = pd_amethyst }      icon = GFX_planet_type_pd_amethyst      icon_large = GFX_planet_type_pd_amethyst_big }
+	conditional_icon = { trigger = { has_modifier = pd_opal }          icon = GFX_planet_type_pd_opal          icon_large = GFX_planet_type_pd_opal_big }
+	conditional_icon = { trigger = { has_modifier = pd_superbloom }    icon = GFX_planet_type_pd_superbloom    icon_large = GFX_planet_type_pd_superbloom_big }
+	conditional_icon = { trigger = { has_modifier = pd_coral }         icon = GFX_planet_type_pd_coral         icon_large = GFX_planet_type_pd_coral_big }
+	conditional_icon = { trigger = { has_modifier = pd_primal }        icon = GFX_planet_type_pd_primal        icon_large = GFX_planet_type_pd_primal_big }
 }
 
 pc_savannah = {
@@ -172,6 +209,18 @@ pc_savannah = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_steppe }         icon = GFX_planet_type_pd_steppe         icon_large = GFX_planet_type_pd_steppe_big }
+	conditional_icon = { trigger = { has_modifier = pd_prairie }        icon = GFX_planet_type_pd_prairie        icon_large = GFX_planet_type_pd_prairie_big }
+	conditional_icon = { trigger = { has_modifier = pd_semi_arid }      icon = GFX_planet_type_pd_semi_arid      icon_large = GFX_planet_type_pd_semi_arid_big }
+	conditional_icon = { trigger = { has_modifier = pd_aspen }          icon = GFX_planet_type_pd_aspen          icon_large = GFX_planet_type_pd_aspen_big }
+	conditional_icon = { trigger = { has_modifier = pd_sandstone }      icon = GFX_planet_type_pd_sandstone      icon_large = GFX_planet_type_pd_sandstone_big }
+	conditional_icon = { trigger = { has_modifier = pd_turquoise }      icon = GFX_planet_type_pd_turquoise      icon_large = GFX_planet_type_pd_turquoise_big }
+	conditional_icon = { trigger = { has_modifier = pd_calcite }        icon = GFX_planet_type_pd_calcite        icon_large = GFX_planet_type_pd_calcite_big }
+	conditional_icon = { trigger = { has_modifier = pd_monsoon }        icon = GFX_planet_type_pd_monsoon        icon_large = GFX_planet_type_pd_monsoon_big }
+	conditional_icon = { trigger = { has_modifier = pd_silvergrass }    icon = GFX_planet_type_pd_silvergrass    icon_large = GFX_planet_type_pd_silvergrass_big }
+	conditional_icon = { trigger = { has_modifier = pd_supercontinent } icon = GFX_planet_type_pd_supercontinent icon_large = GFX_planet_type_pd_supercontinent_big }
+	conditional_icon = { trigger = { has_modifier = pd_sinkhole }       icon = GFX_planet_type_pd_sinkhole       icon_large = GFX_planet_type_pd_sinkhole_big }
 }
 
 # Temperate
@@ -212,6 +261,19 @@ pc_tropical = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_atoll }     icon = GFX_planet_type_pd_atoll     icon_large = GFX_planet_type_pd_atoll_big }
+	conditional_icon = { trigger = { has_modifier = pd_tepui }     icon = GFX_planet_type_pd_tepui     icon_large = GFX_planet_type_pd_tepui_big }
+	conditional_icon = { trigger = { has_modifier = pd_mangrove }  icon = GFX_planet_type_pd_mangrove  icon_large = GFX_planet_type_pd_mangrove_big }
+	conditional_icon = { trigger = { has_modifier = pd_cenote }    icon = GFX_planet_type_pd_cenote    icon_large = GFX_planet_type_pd_cenote_big }
+	conditional_icon = { trigger = { has_modifier = pd_fungal }    icon = GFX_planet_type_pd_fungal    icon_large = GFX_planet_type_pd_fungal_big }
+	conditional_icon = { trigger = { has_modifier = pd_aerial }    icon = GFX_planet_type_pd_aerial    icon_large = GFX_planet_type_pd_aerial_big }
+	conditional_icon = { trigger = { has_modifier = pd_lilypad }   icon = GFX_planet_type_pd_lilypad   icon_large = GFX_planet_type_pd_lilypad_big }
+	conditional_icon = { trigger = { has_modifier = pd_obsidian }  icon = GFX_planet_type_pd_obsidian  icon_large = GFX_planet_type_pd_obsidian_big }
+	conditional_icon = { trigger = { has_modifier = pd_thunder }   icon = GFX_planet_type_pd_thunder   icon_large = GFX_planet_type_pd_thunder_big }
+	conditional_icon = { trigger = { has_modifier = pd_geothermal } icon = GFX_planet_type_pd_geothermal icon_large = GFX_planet_type_pd_geothermal_big }
+	conditional_icon = { trigger = { has_modifier = pd_biolumen }  icon = GFX_planet_type_pd_biolumen  icon_large = GFX_planet_type_pd_biolumen_big }
+	conditional_icon = { trigger = { has_modifier = pd_crystal }   icon = GFX_planet_type_pd_crystal   icon_large = GFX_planet_type_pd_crystal_big }
 }
 
 pc_continental = {
@@ -252,6 +314,19 @@ pc_continental = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_retinal }   icon = GFX_planet_type_pd_retinal   icon_large = GFX_planet_type_pd_retinal_big }
+	conditional_icon = { trigger = { has_modifier = pd_lake }      icon = GFX_planet_type_pd_lake      icon_large = GFX_planet_type_pd_lake_big }
+	conditional_icon = { trigger = { has_modifier = pd_tepid }     icon = GFX_planet_type_pd_tepid     icon_large = GFX_planet_type_pd_tepid_big }
+	conditional_icon = { trigger = { has_modifier = pd_mushroom }  icon = GFX_planet_type_pd_mushroom  icon_large = GFX_planet_type_pd_mushroom_big }
+	conditional_icon = { trigger = { has_modifier = pd_sakura }    icon = GFX_planet_type_pd_sakura    icon_large = GFX_planet_type_pd_sakura_big }
+	conditional_icon = { trigger = { has_modifier = pd_moss }      icon = GFX_planet_type_pd_moss      icon_large = GFX_planet_type_pd_moss_big }
+	conditional_icon = { trigger = { has_modifier = pd_marsh }     icon = GFX_planet_type_pd_marsh     icon_large = GFX_planet_type_pd_marsh_big }
+	conditional_icon = { trigger = { has_modifier = pd_carotene }  icon = GFX_planet_type_pd_carotene  icon_large = GFX_planet_type_pd_carotene_big }
+	conditional_icon = { trigger = { has_modifier = pd_forest }    icon = GFX_planet_type_pd_forest    icon_large = GFX_planet_type_pd_forest_big }
+	conditional_icon = { trigger = { has_modifier = pd_megaflora } icon = GFX_planet_type_pd_megaflora icon_large = GFX_planet_type_pd_megaflora_big }
+	conditional_icon = { trigger = { has_modifier = pd_petrified } icon = GFX_planet_type_pd_petrified icon_large = GFX_planet_type_pd_petrified_big }
+	conditional_icon = { trigger = { has_modifier = pd_floating }  icon = GFX_planet_type_pd_floating  icon_large = GFX_planet_type_pd_floating_big }
 }
 
 pc_ocean = {
@@ -291,6 +366,18 @@ pc_ocean = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_cascadian }   icon = GFX_planet_type_pd_cascadian   icon_large = GFX_planet_type_pd_cascadian_big }
+	conditional_icon = { trigger = { has_modifier = pd_swamp }       icon = GFX_planet_type_pd_swamp       icon_large = GFX_planet_type_pd_swamp_big }
+	conditional_icon = { trigger = { has_modifier = pd_crag }        icon = GFX_planet_type_pd_crag        icon_large = GFX_planet_type_pd_crag_big }
+	conditional_icon = { trigger = { has_modifier = pd_fog }         icon = GFX_planet_type_pd_fog         icon_large = GFX_planet_type_pd_fog_big }
+	conditional_icon = { trigger = { has_modifier = pd_kelp }        icon = GFX_planet_type_pd_kelp        icon_large = GFX_planet_type_pd_kelp_big }
+	conditional_icon = { trigger = { has_modifier = pd_algae }       icon = GFX_planet_type_pd_algae       icon_large = GFX_planet_type_pd_algae_big }
+	conditional_icon = { trigger = { has_modifier = pd_columnar }    icon = GFX_planet_type_pd_columnar    icon_large = GFX_planet_type_pd_columnar_big }
+	conditional_icon = { trigger = { has_modifier = pd_tidepool }    icon = GFX_planet_type_pd_tidepool    icon_large = GFX_planet_type_pd_tidepool_big }
+	conditional_icon = { trigger = { has_modifier = pd_barnacle }    icon = GFX_planet_type_pd_barnacle    icon_large = GFX_planet_type_pd_barnacle_big }
+	conditional_icon = { trigger = { has_modifier = pd_reef }        icon = GFX_planet_type_pd_reef        icon_large = GFX_planet_type_pd_reef_big }
+	conditional_icon = { trigger = { has_modifier = pd_archipelago } icon = GFX_planet_type_pd_archipelago icon_large = GFX_planet_type_pd_archipelago_big }
 }
 
 # Cold
@@ -331,6 +418,18 @@ pc_tundra = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_bog }        icon = GFX_planet_type_pd_bog        icon_large = GFX_planet_type_pd_bog_big }
+	conditional_icon = { trigger = { has_modifier = pd_mycelium }   icon = GFX_planet_type_pd_mycelium   icon_large = GFX_planet_type_pd_mycelium_big }
+	conditional_icon = { trigger = { has_modifier = pd_mud }        icon = GFX_planet_type_pd_mud        icon_large = GFX_planet_type_pd_mud_big }
+	conditional_icon = { trigger = { has_modifier = pd_basalt }     icon = GFX_planet_type_pd_basalt     icon_large = GFX_planet_type_pd_basalt_big }
+	conditional_icon = { trigger = { has_modifier = pd_tuya }       icon = GFX_planet_type_pd_tuya       icon_large = GFX_planet_type_pd_tuya_big }
+	conditional_icon = { trigger = { has_modifier = pd_cryovolcano } icon = GFX_planet_type_pd_cryovolcano icon_large = GFX_planet_type_pd_cryovolcano_big }
+	conditional_icon = { trigger = { has_modifier = pd_treeline }   icon = GFX_planet_type_pd_treeline   icon_large = GFX_planet_type_pd_treeline_big }
+	conditional_icon = { trigger = { has_modifier = pd_peatland }   icon = GFX_planet_type_pd_peatland   icon_large = GFX_planet_type_pd_peatland_big }
+	conditional_icon = { trigger = { has_modifier = pd_travertine } icon = GFX_planet_type_pd_travertine icon_large = GFX_planet_type_pd_travertine_big }
+	conditional_icon = { trigger = { has_modifier = pd_cryoflora }  icon = GFX_planet_type_pd_cryoflora  icon_large = GFX_planet_type_pd_cryoflora_big }
+	conditional_icon = { trigger = { has_modifier = pd_lichen }     icon = GFX_planet_type_pd_lichen     icon_large = GFX_planet_type_pd_lichen_big }
 }
 
 pc_arctic = {
@@ -370,6 +469,18 @@ pc_arctic = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_cold_desert }        icon = GFX_planet_type_pd_cold_desert        icon_large = GFX_planet_type_pd_cold_desert_big }
+	conditional_icon = { trigger = { has_modifier = pd_glacial }            icon = GFX_planet_type_pd_glacial            icon_large = GFX_planet_type_pd_glacial_big }
+	conditional_icon = { trigger = { has_modifier = pd_antarctic }          icon = GFX_planet_type_pd_antarctic          icon_large = GFX_planet_type_pd_antarctic_big }
+	conditional_icon = { trigger = { has_modifier = pd_aeolian }            icon = GFX_planet_type_pd_aeolian            icon_large = GFX_planet_type_pd_aeolian_big }
+	conditional_icon = { trigger = { has_modifier = pd_ice_spike }          icon = GFX_planet_type_pd_ice_spike          icon_large = GFX_planet_type_pd_ice_spike_big }
+	conditional_icon = { trigger = { has_modifier = pd_crevasse }           icon = GFX_planet_type_pd_crevasse           icon_large = GFX_planet_type_pd_crevasse_big }
+	conditional_icon = { trigger = { has_modifier = pd_ice_dunes }          icon = GFX_planet_type_pd_ice_dunes          icon_large = GFX_planet_type_pd_ice_dunes_big }
+	conditional_icon = { trigger = { has_modifier = pd_ferrospring }        icon = GFX_planet_type_pd_ferrospring        icon_large = GFX_planet_type_pd_ferrospring_big }
+	conditional_icon = { trigger = { has_modifier = pd_supraglacial_lakes } icon = GFX_planet_type_pd_supraglacial_lakes icon_large = GFX_planet_type_pd_supraglacial_lakes_big }
+	conditional_icon = { trigger = { has_modifier = pd_storm }              icon = GFX_planet_type_pd_storm              icon_large = GFX_planet_type_pd_storm_big }
+	conditional_icon = { trigger = { has_modifier = pd_iceberg }            icon = GFX_planet_type_pd_iceberg            icon_large = GFX_planet_type_pd_iceberg_big }
 }
 
 pc_alpine = {
@@ -409,6 +520,19 @@ pc_alpine = {
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
+
+	conditional_icon = { trigger = { has_modifier = pd_boreal }        icon = GFX_planet_type_pd_boreal        icon_large = GFX_planet_type_pd_boreal_big }
+	conditional_icon = { trigger = { has_modifier = pd_snow }          icon = GFX_planet_type_pd_snow          icon_large = GFX_planet_type_pd_snow_big }
+	conditional_icon = { trigger = { has_modifier = pd_highland }      icon = GFX_planet_type_pd_highland      icon_large = GFX_planet_type_pd_highland_big }
+	conditional_icon = { trigger = { has_modifier = pd_dune_forest }   icon = GFX_planet_type_pd_dune_forest   icon_large = GFX_planet_type_pd_dune_forest_big }
+	conditional_icon = { trigger = { has_modifier = pd_fjord }         icon = GFX_planet_type_pd_fjord         icon_large = GFX_planet_type_pd_fjord_big }
+	conditional_icon = { trigger = { has_modifier = pd_blossom }       icon = GFX_planet_type_pd_blossom       icon_large = GFX_planet_type_pd_blossom_big }
+	conditional_icon = { trigger = { has_modifier = pd_taiga }         icon = GFX_planet_type_pd_taiga         icon_large = GFX_planet_type_pd_taiga_big }
+	conditional_icon = { trigger = { has_modifier = pd_craton }        icon = GFX_planet_type_pd_craton        icon_large = GFX_planet_type_pd_craton_big }
+	conditional_icon = { trigger = { has_modifier = pd_ravine }        icon = GFX_planet_type_pd_ravine        icon_large = GFX_planet_type_pd_ravine_big }
+	conditional_icon = { trigger = { has_modifier = pd_glaciovolcanic } icon = GFX_planet_type_pd_glaciovolcanic icon_large = GFX_planet_type_pd_glaciovolcanic_big }
+	conditional_icon = { trigger = { has_modifier = pd_lanthanide }    icon = GFX_planet_type_pd_lanthanide    icon_large = GFX_planet_type_pd_lanthanide_big }
+	conditional_icon = { trigger = { has_modifier = pd_biosynth }  icon = GFX_planet_type_pd_biosynth  icon_large = GFX_planet_type_pd_biosynth_big }
 }
 
 pc_volcanic = {
@@ -978,6 +1102,7 @@ pc_gaia = {
 	starting_planet = no
 	uses_alternative_skies_for_moons = yes
 	uses_alternative_skies_if_has_orbital_ring = yes
+	can_have_no_pop_colony = yes
 
 	carry_cap_per_free_district = @carry_cap_high
 }
@@ -1058,6 +1183,7 @@ pc_b_star = {
 	atmosphere_intensity	= 0.8
 	atmosphere_width		= 1.4
 
+	climate = "luminosity_3"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1085,6 +1211,7 @@ pc_a_star = {
 	atmosphere_intensity	= 0.5
 	atmosphere_width		= 1.2
 
+	climate = "luminosity_3"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1112,6 +1239,7 @@ pc_f_star = {
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
+	climate = "luminosity_3"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1139,6 +1267,7 @@ pc_g_star = {
 	atmosphere_intensity	= 0.5
 	atmosphere_width		= 1.9
 
+	climate = "luminosity_2"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1166,6 +1295,7 @@ pc_k_star = {
 	atmosphere_intensity	= 0.6
 	atmosphere_width		= 1.25
 
+	climate = "luminosity_2"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1193,6 +1323,7 @@ pc_m_star = {
 	atmosphere_intensity	= 0.10
 	atmosphere_width		= 1.0
 
+	climate = "luminosity_1"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1220,6 +1351,7 @@ pc_m_giant_star = {
 	atmosphere_intensity	= 0.10
 	atmosphere_width		= 1.0
 
+	climate = "luminosity_1"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1247,6 +1379,7 @@ pc_t_star = {
 	atmosphere_intensity	= 0.7
 	atmosphere_width		= 0.7
 
+	climate = "luminosity_0"
 	star = yes
 	star_gfx = no
 
@@ -1274,6 +1407,7 @@ pc_black_hole = {
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 1.0
 
+	climate = "luminosity_0"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1297,6 +1431,7 @@ pc_neutron_star = {
 	icon = GFX_planet_type_neutron_star
 	icon_large = GFX_planet_type_neutron_star_big
 
+	climate = "luminosity_4"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1323,6 +1458,7 @@ pc_pulsar = {
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 
+	climate = "luminosity_4"
 	star = yes
 
 	min_distance_from_sun = 0
@@ -1371,6 +1507,7 @@ pc_ringworld_habitable = {
 	orbit_lines = no
 	has_colonization_influence_cost = no		# applies when within own borders
 
+	climate = "artificial"
 	is_artificial_planet = yes
 	uses_alternative_skies_for_moons = yes
 
@@ -1538,6 +1675,7 @@ pc_shattered_ring_habitable = {
 	orbit_lines = no
 	has_colonization_influence_cost = no		# applies when within own borders
 
+	climate = "artificial"
 	is_artificial_planet = yes
 
 	auto_trait_prio = {
@@ -1582,6 +1720,7 @@ pc_habitat = {
 	orbit_lines = no
 	has_colonization_influence_cost = no			# applies when within own borders
 
+	climate = "artificial"
 	is_artificial_planet = yes
 	default_planet_selection = yes
 
@@ -1622,6 +1761,7 @@ pc_cosmogenesis_world = {
 	orbit_lines = no
 	has_colonization_influence_cost = no			# applies when within own borders
 
+	climate = "artificial"
 	is_artificial_planet = yes
 	default_planet_selection = yes
 	inherit_country_building_modifiers = no
@@ -1722,6 +1862,7 @@ pc_toxoid_star = {
 	atmosphere_intensity	= 0.5
 	atmosphere_width		= 1.9
 
+	climate = "luminosity_2"
 	star = yes
 
 	min_distance_from_sun = 0
