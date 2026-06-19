@@ -1,0 +1,69 @@
+# Manual atmosphere toggles for Domed Colonies the auto-stamp missed (inherited or conquered). The add decision picks the atmosphere from the owner's cryo preference.
+
+decision_pd_exotic_domed_add_atmosphere = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		pd_is_domed_colony_class = yes
+		exists = owner
+		owner = {
+			owner_species = {
+				OR = {
+					has_trait = trait_pc_pd_ammonia_preference
+					has_trait = trait_pc_pd_methane_preference
+					has_trait = trait_pc_pd_nitrogen_preference
+				}
+			}
+		}
+		NOR = {
+			has_modifier = pd_ammonia_atmosphere
+			has_modifier = pd_methane_atmosphere
+			has_modifier = pd_nitrogen_atmosphere
+		}
+	}
+
+	effect = {
+		pd_apply_exotic_domed_atmosphere_effect = yes
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}
+
+decision_pd_exotic_domed_remove_atmosphere = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		pd_is_domed_colony_class = yes
+		OR = {
+			has_modifier = pd_ammonia_atmosphere
+			has_modifier = pd_methane_atmosphere
+			has_modifier = pd_nitrogen_atmosphere
+		}
+	}
+
+	effect = {
+		pd_remove_exotic_domed_atmosphere_effect = yes
+	}
+
+	ai_weight = {
+		factor = 0
+	}
+}

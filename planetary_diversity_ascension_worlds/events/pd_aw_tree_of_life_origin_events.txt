@@ -258,7 +258,8 @@ planet_event = {
 
 #This event fires if the planet changes hands or is damaged, killing the tree
 #silently kill tree
-planet_event = {
+#Carrier event because on_colony_transfer and on_colony_destroyed deliver a colony scope, which a planet_event rejects.
+carrier_event = {
 	id = pdtreeoflifeaw.25
 	hide_window = yes
 
@@ -382,7 +383,8 @@ planet_event = {
 }
 
 #modify the modifier for lacking Tree
-planet_event = {
+#Carrier event because on_colony_transfer delivers a colony scope, which a planet_event rejects.
+carrier_event = {
 	id = pdtreeoflifeaw.45
 	hide_window = yes
 

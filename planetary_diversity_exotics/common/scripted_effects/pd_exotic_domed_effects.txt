@@ -1,0 +1,62 @@
+# Cryophile support for PD's Domed Colonies, mirroring the habitat atmosphere path.
+# Stamping a pd_*_atmosphere modifier lifts the preference trait's -5.0 penalty so the Domed Colony's own +0.5 tolerance grants habitability; the picture swap gives the exotic look.
+# The picture swaps run inside planet = {} because callers fire in colony scope, which set_planet_entity rejects.
+
+# Planet/colony scope. Stamps the owner's atmosphere and swaps to the matching exotic picture for the current Domed Colony variant (superhabitable reuses the barren picture, like the base game).
+pd_apply_exotic_domed_atmosphere_effect = {
+	if = {
+		limit = { owner = { owner_species = { has_trait = trait_pc_pd_ammonia_preference } } }
+		pd_add_ammonia_atmosphere_effect = yes
+		planet = {
+			if =      { limit = { is_planet_class = pc_pd_domed_colony_barren }          set_planet_entity = { picture = pc_pd_domed_colony_barren_ammonia         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_barren_cold }     set_planet_entity = { picture = pc_pd_domed_colony_barren_cold_ammonia    } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_frozen }          set_planet_entity = { picture = pc_pd_domed_colony_frozen_ammonia         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_toxic }           set_planet_entity = { picture = pc_pd_domed_colony_toxic_ammonia          } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_superhabitable }  set_planet_entity = { picture = pc_pd_domed_colony_barren_ammonia         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_tidally_locked }  set_planet_entity = { picture = pc_pd_domed_colony_tidally_locked_ammonia } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_cave }            set_planet_entity = { picture = pc_pd_domed_colony_cave_ammonia           } }
+		}
+	}
+	else_if = {
+		limit = { owner = { owner_species = { has_trait = trait_pc_pd_methane_preference } } }
+		pd_add_methane_atmosphere_effect = yes
+		planet = {
+			if =      { limit = { is_planet_class = pc_pd_domed_colony_barren }          set_planet_entity = { picture = pc_pd_domed_colony_barren_methane         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_barren_cold }     set_planet_entity = { picture = pc_pd_domed_colony_barren_cold_methane    } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_frozen }          set_planet_entity = { picture = pc_pd_domed_colony_frozen_methane         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_toxic }           set_planet_entity = { picture = pc_pd_domed_colony_toxic_methane          } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_superhabitable }  set_planet_entity = { picture = pc_pd_domed_colony_barren_methane         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_tidally_locked }  set_planet_entity = { picture = pc_pd_domed_colony_tidally_locked_methane } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_cave }            set_planet_entity = { picture = pc_pd_domed_colony_cave_methane           } }
+		}
+	}
+	else_if = {
+		limit = { owner = { owner_species = { has_trait = trait_pc_pd_nitrogen_preference } } }
+		pd_add_nitrogen_atmosphere_effect = yes
+		planet = {
+			if =      { limit = { is_planet_class = pc_pd_domed_colony_barren }          set_planet_entity = { picture = pc_pd_domed_colony_barren_nitrogen         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_barren_cold }     set_planet_entity = { picture = pc_pd_domed_colony_barren_cold_nitrogen    } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_frozen }          set_planet_entity = { picture = pc_pd_domed_colony_frozen_nitrogen         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_toxic }           set_planet_entity = { picture = pc_pd_domed_colony_toxic_nitrogen          } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_superhabitable }  set_planet_entity = { picture = pc_pd_domed_colony_barren_nitrogen         } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_tidally_locked }  set_planet_entity = { picture = pc_pd_domed_colony_tidally_locked_nitrogen } }
+			else_if = { limit = { is_planet_class = pc_pd_domed_colony_cave }            set_planet_entity = { picture = pc_pd_domed_colony_cave_nitrogen           } }
+		}
+	}
+}
+
+# Planet/colony scope. Strips any stamped atmosphere and restores the Domed Colony's own picture (Mars/moon specials reset to the base barren look).
+pd_remove_exotic_domed_atmosphere_effect = {
+	if = { limit = { has_modifier = pd_ammonia_atmosphere }  remove_modifier = pd_ammonia_atmosphere }
+	if = { limit = { has_modifier = pd_methane_atmosphere }  remove_modifier = pd_methane_atmosphere }
+	if = { limit = { has_modifier = pd_nitrogen_atmosphere } remove_modifier = pd_nitrogen_atmosphere }
+	planet = {
+		if =      { limit = { is_planet_class = pc_pd_domed_colony_barren }          set_planet_entity = { picture = pc_pd_domed_colony_barren         } }
+		else_if = { limit = { is_planet_class = pc_pd_domed_colony_barren_cold }     set_planet_entity = { picture = pc_pd_domed_colony_barren_cold    } }
+		else_if = { limit = { is_planet_class = pc_pd_domed_colony_frozen }          set_planet_entity = { picture = pc_pd_domed_colony_frozen         } }
+		else_if = { limit = { is_planet_class = pc_pd_domed_colony_toxic }           set_planet_entity = { picture = pc_pd_domed_colony_toxic          } }
+		else_if = { limit = { is_planet_class = pc_pd_domed_colony_superhabitable }  set_planet_entity = { picture = pc_pd_domed_colony_superhabitable } }
+		else_if = { limit = { is_planet_class = pc_pd_domed_colony_tidally_locked }  set_planet_entity = { picture = pc_pd_domed_colony_tidally_locked } }
+		else_if = { limit = { is_planet_class = pc_pd_domed_colony_cave }            set_planet_entity = { picture = pc_pd_domed_colony_cave           } }
+	}
+}

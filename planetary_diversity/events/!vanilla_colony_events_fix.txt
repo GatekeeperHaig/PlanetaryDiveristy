@@ -1,5 +1,120 @@
 namespace = colony
 
+# Abandoned Terraforming
+# Vanilla copy of colony.100, extended to skip PD uncommon worlds whose ideal class has no vanilla terraforming target, so the project never resolves.
+carrier_event = {
+	id = colony.100
+	title = "colony.100.name"
+	desc = "colony.100.desc"
+	picture = GFX_evt_underground_civilization
+	show_sound = event_mystic_reveal
+	location = ROOT
+	trackable = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		pop_amount > 0
+		habitable_planet = yes
+		uses_district_set = standard
+		NOR = {
+			pd_is_planet_class_uncommon = yes
+			has_carrier_flag = abandoned_terraforming_planet
+			has_carrier_flag = colony_event
+			is_planet_class = pc_nuked
+			is_planet_class = pc_gaia
+			is_planet_class = pc_relic
+			owner = {
+				OR = {
+					has_country_flag = abandoned_terraforming_country
+					is_machine_empire = yes
+					is_wilderness_empire = yes
+				}
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_arid }
+				is_planet_class = pc_arid
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_desert }
+				is_planet_class = pc_desert
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_tropical }
+				is_planet_class = pc_tropical
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_continental }
+				is_planet_class = pc_continental
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_ocean }
+				is_planet_class = pc_ocean
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_tundra }
+				is_planet_class = pc_tundra
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_arctic }
+				is_planet_class = pc_arctic
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_alpine }
+				is_planet_class = pc_alpine
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_savannah }
+				is_planet_class = pc_savannah
+			}
+			AND = {
+				owner = { ideal_planet_class = pc_volcanic }
+				is_planet_class = pc_volcanic
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_carrier_flag = abandoned_terraforming_planet
+		set_carrier_flag = colony_event
+		owner = { set_country_flag = abandoned_terraforming_country }
+	}
+
+	option = {
+		name = colony.100.a
+		hidden_effect = {
+			add_modifier = {
+				modifier = "abandoned_terraforming"
+				days = -1
+			}
+		}
+		begin_event_chain = {
+			event_chain = "abandoned_terraforming_chain"
+			target = ROOT
+		}
+		enable_special_project = {
+			name = "ABANDONED_TERRAFORMING_1_PROJECT"
+			location = this
+			owner = root
+		}
+		enable_special_project = {
+			name = "ABANDONED_TERRAFORMING_2_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
 #Nemma World
 planet_event = {
 	id = colony.9000

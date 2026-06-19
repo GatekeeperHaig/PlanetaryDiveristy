@@ -217,8 +217,9 @@ planet_event = {
 	}
 }
 
-# on_planet_transfer hook for ap_pd_cryothermal_engineering: stamp the modifier if a cryo planet was just transferred to an AP-empire. From scope is the new owner.
-planet_event = {
+# on_colony_transfer hook for ap_pd_cryothermal_engineering: stamp the modifier if a cryo planet was just transferred to an AP-empire. From scope is the new owner.
+# Carrier event because on_colony_transfer delivers a colony scope, which a planet_event rejects.
+carrier_event = {
 	id = pd_exotic.12
 	hide_window = yes
 	is_triggered_only = yes
@@ -414,5 +415,96 @@ carrier_event = {
 			picture = pc_pd_nitrogen_habitat
 			graphical_culture = owner
 		}
+	}
+}
+
+# on_planet_class_changed hook: a Domed Colony is built via change_pc, so this stamps the owner's atmosphere the moment it forms, before settlement, giving cryophiles non-zero habitability.
+planet_event = {
+	id = pd_exotic.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		pd_is_domed_colony_class = yes
+		exists = owner
+		owner = {
+			species = {
+				OR = {
+					has_trait = trait_pc_pd_ammonia_preference
+					has_trait = trait_pc_pd_methane_preference
+					has_trait = trait_pc_pd_nitrogen_preference
+				}
+			}
+		}
+		NOR = {
+			has_modifier = pd_ammonia_atmosphere
+			has_modifier = pd_methane_atmosphere
+			has_modifier = pd_nitrogen_atmosphere
+		}
+	}
+
+	immediate = {
+		pd_apply_exotic_domed_atmosphere_effect = yes
+	}
+}
+
+# on_game_start_country backstop: Domed Colonies placed at game start (Interplanetary Settlers origin) never fire a class-change event, so stamp them directly on the cryo empire's owned planets.
+country_event = {
+	id = pd_exotic.31
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		species = {
+			OR = {
+				has_trait = trait_pc_pd_ammonia_preference
+				has_trait = trait_pc_pd_methane_preference
+				has_trait = trait_pc_pd_nitrogen_preference
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				pd_is_domed_colony_class = yes
+				NOR = {
+					has_modifier = pd_ammonia_atmosphere
+					has_modifier = pd_methane_atmosphere
+					has_modifier = pd_nitrogen_atmosphere
+				}
+			}
+			pd_apply_exotic_domed_atmosphere_effect = yes
+		}
+	}
+}
+
+# on_colonized backstop: stamps the atmosphere when a cryo empire colonizes a Domed Colony the build-time hook missed (pre-built, restored ruins). Conquest is intentionally not covered.
+carrier_event = {
+	id = pd_exotic.32
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		pd_is_domed_colony_class = yes
+		exists = owner
+		owner = {
+			species = {
+				OR = {
+					has_trait = trait_pc_pd_ammonia_preference
+					has_trait = trait_pc_pd_methane_preference
+					has_trait = trait_pc_pd_nitrogen_preference
+				}
+			}
+		}
+		NOR = {
+			has_modifier = pd_ammonia_atmosphere
+			has_modifier = pd_methane_atmosphere
+			has_modifier = pd_nitrogen_atmosphere
+		}
+	}
+
+	immediate = {
+		pd_apply_exotic_domed_atmosphere_effect = yes
 	}
 }
