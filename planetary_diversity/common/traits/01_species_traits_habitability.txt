@@ -997,35 +997,6 @@ trait_machine_pc_nanotech_preference = {
 	}
 }
 
-trait_pc_ark_preference = {
-	icon = "gfx/interface/icons/traits/trait_pc_ark_preference.dds"
-	short_name = "trait_pc_ark_preference_short"
-	bound_to_planet_classes = {
-		pc_ark
-	}
-
-	ideal_planet_class = pc_ark
-	opposites = { "trait_resilient" "trait_genetic_memory" "trait_sedentary" }
-
-	species_potential_add = {
-		always = no
-	}
-	species_possible_merge_add = {
-		always = yes
-	}
-	initial = no
-	randomized = no
-	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE ROBOT }
-	sorting_priority = 30
-	modifier = {
-		pc_ark_habitability 		= @primary
-		pc_habitat_habitability 	= @secondary
-	}
-	ai_weight = {
-		weight = 0
-	}
-}
-
 # BioGenesis Habitability Traits
 
 trait_auto_hab_preference = {
@@ -1611,32 +1582,6 @@ trait_auto_pc_ark_preference = {
 		# Special
 		pc_ark_habitability 			= @auto_base
 		pc_habitat_habitability 		= @auto_ideal_bonus
-		pc_nuked_habitability 			= @auto_penalty
-		pc_volcanic_habitability 		= @auto_penalty
-	}
-}
-
-trait_auto_pc_ark_preference = {
-	inline_script = {
-		script = traits/auto_preference_planet_class
-		PLANET_CLASS = pc_ark
-	}
-	modifier = {
-		# Dry
-		pc_desert_habitability 			= @auto_penalty
-		pc_arid_habitability 			= @auto_penalty
-		pc_savannah_habitability 		= @auto_penalty
-		# Wet
-		pc_tropical_habitability 		= @auto_penalty
-		pc_continental_habitability 	= @auto_penalty
-		pc_ocean_habitability 			= @auto_penalty
-		# Cold
-		pc_tundra_habitability 			= @auto_penalty
-		pc_arctic_habitability 			= @auto_penalty
-		pc_alpine_habitability 			= @auto_penalty
-		# Special
-		pc_ark_habitability 			= @auto_base
-		pc_habitat_habitability			= @auto_ideal_bonus
 		pc_nuked_habitability 			= @auto_penalty
 		pc_volcanic_habitability 		= @auto_penalty
 	}

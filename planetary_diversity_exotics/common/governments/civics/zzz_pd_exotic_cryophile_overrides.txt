@@ -522,6 +522,90 @@ origin_wilderness = {
 	}
 }
 
+origin_broken_shackles = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_broken_shackles.dds"
+	picture = GFX_origin_broken_shackles
+	max_once_global = yes
+
+	initializers = { custom_starting_init_01 custom_starting_init_02 custom_starting_init_03 custom_starting_init_04 custom_starting_init_05 custom_starting_init_06 }
+	preferred_planet_class_neighbor = no
+
+	playable = {
+		has_first_contact_dlc = yes
+	}
+
+	possible = {
+		is_nomadic = no
+		species_class = { NOT = { value = CRYO } }
+		ethics = {
+			NOT = { value = ethic_gestalt_consciousness }
+			NOR = {
+				text = civic_tooltip_not_authoritarian
+				value = ethic_authoritarian
+				value = ethic_fanatic_authoritarian
+			}
+			NOR = {
+				text = civic_tooltip_not_xenophobe
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_scorched_earth
+				value = civic_dystopian_society
+				value = civic_selective_kinship
+				# Or advanced tech
+				value = civic_private_healthcare_corporate
+			}
+			NOR = {
+				# Or low tech starts
+				text = civic_tooltip_not_eager_explorers
+				value = civic_eager_explorers
+				value = civic_privatized_exploration
+				value = civic_hive_stargazers
+				value = civic_machine_exploration_protocol
+			}
+			NOR = { # Not Secret Societies
+				text = civic_tooltip_not_secret_societies
+				value = civic_secret_societies
+				value = civic_secret_societies_corporate
+			}
+			NOR = { # Not Tankbound
+				text = civic_tooltip_not_tankbound
+				value = civic_tankbound
+				value = civic_tankbound_corporate
+			}
+		}
+		species_archetype = { NOT = { value = MACHINE } }
+		preferred_planet_class = {
+			NOT = {
+				text = does_not_have_volcanic_homeworld
+				value = pc_volcanic
+			}
+		}
+	}
+
+	description = "origin_tooltip_broken_shackles_effects"
+	negative_description = "origin_tooltip_broken_shackles_negative_effects"
+	flags = { custom_start_screen }
+
+	modifier = {
+		envoys_add = 1
+		first_contact_speed_mult = 0.20
+		spy_network_daily_value_mult = 0.20
+		refugee_attraction = 1
+	}
+
+	blocks_random_machine_empire_generation	= yes
+
+	random_weight = {
+		base = 0
+	}
+}
+
 # Civic overrides.
 
 civic_anglers = {

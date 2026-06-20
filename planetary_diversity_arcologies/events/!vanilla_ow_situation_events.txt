@@ -23,6 +23,7 @@ event = {
 				random_playable_country = {
 					limit = {
 						is_ai = no
+						is_nomadic = no
 						capital_scope = {
 							NOR = {
 								has_active_building = building_planetary_shield_generator
@@ -37,9 +38,12 @@ event = {
 				random_playable_country = {
 					limit = {
 						is_ai = no
+						is_nomadic = no
 					}
 					random_neighbor_country = {
 						limit = {
+							is_country_type = default
+							is_nomadic = no
 							capital_scope = {
 								NOT = { has_active_building = building_planetary_shield_generator }
 							}
@@ -52,6 +56,8 @@ event = {
 				random_playable_country = {
 					limit = {
 						is_ai = yes
+						is_country_type = default
+						is_nomadic = no
 						capital_scope = {
 							NOT = { has_active_building = building_planetary_shield_generator }
 						}
@@ -59,6 +65,12 @@ event = {
 					country_event = { id = situation.2002 random = 360 }
 				}
 			}
+		}
+	}
+
+	after = {
+		every_playable_country = {
+			country_event = { id = timeline.68 } # Timeline Kaleidoscope Crisis
 		}
 	}
 }

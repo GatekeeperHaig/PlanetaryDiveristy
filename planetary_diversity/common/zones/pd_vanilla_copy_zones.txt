@@ -22,14 +22,18 @@ zone_pd_hive_spawning = {
 
 	resources = {
 		category = planet_zones
-		cost = {
-			minerals = @zone_cost
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
 		}
 	}
 
 	included_building_sets = {
 		urban
-		automation
+		urban_automation
 	}
 
 	triggered_district_planet_modifier = {
@@ -37,7 +41,7 @@ zone_pd_hive_spawning = {
 			exists = owner
 			owner = { is_hive_empire = yes }
 		}
-		job_spawning_drone_add = $AMOUNT$
+		job_spawning_drone_add = 50
 	}
 
 	planet_modifier = {
@@ -79,8 +83,12 @@ zone_pd_machine_replication = {
 
 	resources = {
 		category = planet_zones
-		cost = {
-			minerals = @zone_cost
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = alloys
+			COST = @zone_cost
+			NOMADIC_COST_MULT = 0.5
 		}
 	}
 

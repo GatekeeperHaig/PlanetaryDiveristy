@@ -1,6 +1,6 @@
 building_coordinated_fulfillment_center_1 = {
 	base_buildtime = @b1_time
-	base_cap_amount = 1
+	planet_limit = 1
 
 	category = manufacturing
 
@@ -12,7 +12,9 @@ building_coordinated_fulfillment_center_1 = {
 
 	potential = {
 		exists = owner
-		owner = { is_relentless_industrialist_empire = yes }
+		owner = {
+			is_relentless_industrialist_empire = yes
+		}
 		NOR = {
 			has_modifier = resort_colony
 			has_modifier = slave_colony
@@ -56,8 +58,8 @@ building_coordinated_fulfillment_center_1 = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_produces_mult = 0.2
-		planet_artisans_produces_mult = 0.2
+		planet_metallurgists_alloys_produces_add = 0.2
+		planet_artisans_consumer_goods_produces_add = 0.2
 	}
 
 	triggered_planet_modifier = {
@@ -66,8 +68,8 @@ building_coordinated_fulfillment_center_1 = {
 			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
 		}
 		modifier = {
-			planet_metallurgists_produces_mult = 0.1
-			planet_artisans_produces_mult = 0.1
+			planet_metallurgists_alloys_produces_add = 0.1
+			planet_artisans_consumer_goods_produces_add = 0.1
 		}
 	}
 
@@ -129,8 +131,12 @@ building_coordinated_fulfillment_center_1 = {
 
 	resources = {
 		category = planet_buildings
-		cost = {
-			minerals = @b1_minerals
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = volatile_motes
+			COST = @b1_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
 		}
 		upkeep = {
 			energy = @b1_upkeep
@@ -143,25 +149,14 @@ building_coordinated_fulfillment_center_1 = {
 		}
 	}
 
-	ai_resource_production = {
-		alloys = 6
-		trigger = {
-			planet_resource_compare = {
-				resource = alloys
-				value >= 40
-				type = produces
-			}
-		}
+	inline_script = {
+		script = districts/ai_alloys_extra_weighting
+		AMOUNT = 10
 	}
-	ai_resource_production = {
-		consumer_goods = 8
-		trigger = {
-			planet_resource_compare = {
-				resource = consumer_goods
-				value >= 50
-				type = produces
-			}
-		}
+
+	inline_script = {
+		script = districts/ai_consumer_goods_extra_weighting
+		AMOUNT = 10
 	}
 }
 
@@ -205,8 +200,8 @@ building_coordinated_fulfillment_center_2 = {
 	}
 
 	planet_modifier = {
-		planet_metallurgists_produces_mult = 0.4
-		planet_artisans_produces_mult = 0.4
+		planet_metallurgists_alloys_produces_add = 0.3
+		planet_artisans_consumer_goods_produces_add = 0.3
 	}
 
 	triggered_planet_modifier = {
@@ -215,8 +210,8 @@ building_coordinated_fulfillment_center_2 = {
 			owner = { has_policy_flag = relentless_industrialists_full_steam_ahead }
 		}
 		modifier = {
-			planet_metallurgists_produces_mult = 0.2
-			planet_artisans_produces_mult = 0.2
+			planet_metallurgists_alloys_produces_add = 0.2
+			planet_artisans_consumer_goods_produces_add = 0.2
 		}
 	}
 
@@ -274,8 +269,14 @@ building_coordinated_fulfillment_center_2 = {
 
 	resources = {
 		category = planet_buildings
+		inline_script = {
+			script = buildings/nomadic_cost_switcher
+			REGULAR_RESOURCE = minerals
+			NOMADIC_RESOURCE = volatile_motes
+			COST = @b2_minerals
+			NOMADIC_COST_MULT = @nomadic_minerals_to_strategic_ratio
+		}
 		cost = {
-			minerals = @b2_minerals
 			volatile_motes = @b3_rare_cost
 		}
 		upkeep = {
@@ -298,24 +299,13 @@ building_coordinated_fulfillment_center_2 = {
 		is_relentless_industrialist_empire = yes
 	}
 
-	ai_resource_production = {
-		alloys = 6
-		trigger = {
-			planet_resource_compare = {
-				resource = alloys
-				value >= 40
-				type = produces
-			}
-		}
+	inline_script = {
+		script = districts/ai_alloys_extra_weighting
+		AMOUNT = 15
 	}
-	ai_resource_production = {
-		consumer_goods = 8
-		trigger = {
-			planet_resource_compare = {
-				resource = consumer_goods
-				value >= 50
-				type = produces
-			}
-		}
+
+	inline_script = {
+		script = districts/ai_consumer_goods_extra_weighting
+		AMOUNT = 15
 	}
 }

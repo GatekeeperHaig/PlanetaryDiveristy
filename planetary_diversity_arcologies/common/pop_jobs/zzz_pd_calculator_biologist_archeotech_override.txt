@@ -174,10 +174,24 @@ calculator_biologist = {
 		category = planet_requisitioned_research
 		produces = {
 			trigger = {
-				has_carrier_flag = has_science_ministry
+				planet = {
+					has_carrier_flag = has_science_ministry
+				}
 			}
 			society_research = 0.5
 		}
+	}
+
+	# Caregiver Paragon Effect
+	triggered_planet_modifier = {
+		potential = {
+			leader? = {
+				has_trait = leader_trait_nomadic_caregiver
+			}
+			owner? = { NOT = { has_valid_civic = civic_dystopian_society } }
+		}
+		planet_amenities_add = 150
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	inline_script = "jobs/academia_recruiter_naval_cap_add"

@@ -38,7 +38,15 @@ country_event = {
 				}
 				change_pc = pc_pd_cold_tidally_locked
 			}
-			else_if = {
+			# Fallback only for worlds that did not change class (moons, and non-wet/dry/cold): the class change IS the tidal lock
+			if = {
+				limit = {
+					NOR = {
+						AND = { is_moon = no is_wet = yes }
+						AND = { is_moon = no is_dry = yes }
+						AND = { is_moon = no is_cold = yes }
+					}
+				}
 				add_modifier = { modifier = intentionally_tidally_locked }
 			}
 		}
