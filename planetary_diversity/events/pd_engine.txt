@@ -572,1171 +572,188 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
-		#Continental Planets
 		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_continental
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = {
-					has_planet_flag = prescripted_ideal
+			limit = { has_pd_modifier = no }
+			switch = {
+				trigger = is_planet_class
+				# Continental Worlds
+				pc_continental = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_continental }
+					}
 				}
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_continental }
+				inline_script = { script = events/pd_engine_12 climate = continental class = retinal }
+				inline_script = { script = events/pd_engine_12 climate = continental class = lake }
+				inline_script = { script = events/pd_engine_12 climate = continental class = tepid }
+				inline_script = { script = events/pd_engine_12 climate = continental class = mushroom }
+				inline_script = { script = events/pd_engine_12 climate = continental class = sakura }
+				inline_script = { script = events/pd_engine_12 climate = continental class = moss }
+				inline_script = { script = events/pd_engine_12 climate = continental class = marsh }
+				inline_script = { script = events/pd_engine_12 climate = continental class = carotene }
+				inline_script = { script = events/pd_engine_12 climate = continental class = forest }
+				inline_script = { script = events/pd_engine_12 climate = continental class = megaflora }
+				inline_script = { script = events/pd_engine_12 climate = continental class = petrified }
+				# Ocean Worlds
+				pc_ocean = {
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = prescripted_ideal
+								has_modifier = ocean_paradise
+								has_modifier = ocean_paradise_hive
+							}
+						}
+						add_modifier = { modifier = pd_ocean }
+					}
 				}
-				add_modifier = { modifier = pd_continental }
-			}
-		}
-        every_galaxy_planet = {
-            limit = {
-                is_planet_class = pc_pd_retinal
-                has_pd_modifier = no
-                is_capital = yes
-            }
-            change_pc = pc_continental
-            pd_retinal_world_effect = yes
-			generate_pd_regular_planet = yes
-        }
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_lake
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_lake_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_tepid
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_tepid_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_mushroom
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_mushroom_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_sakura
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_sakura_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_moss
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_moss_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_marsh
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_marsh_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_carotene
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_carotene_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_forest
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_forest_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_megaflora
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_megaflora_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_petrified
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_continental
-			pd_petrified_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Ocean Worlds
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_ocean
-				has_pd_modifier = no
-				is_capital = yes
-				NOR = {
-					has_planet_flag = prescripted_ideal
-					has_modifier = ocean_paradise
-					has_modifier = ocean_paradise_hive
+				inline_script = { script = events/pd_engine_12 climate = ocean class = cascadian }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = swamp }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = crag }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = fog }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = kelp }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = algae }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = columnar }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = tidepool }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = barnacle }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = reef }
+				inline_script = { script = events/pd_engine_12 climate = ocean class = archipelago }
+				# Tropical Worlds
+				pc_tropical = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_tropical }
+					}
 				}
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_ocean }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = atoll }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = tepui }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = mangrove }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = cenote }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = fungal }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = aerial }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = lilypad }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = obsidian }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = thunder }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = geothermal }
+				inline_script = { script = events/pd_engine_12 climate = tropical class = biolumen }
+				# Desert Worlds
+				pc_desert = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_desert }
+					}
 				}
-				add_modifier = { modifier = pd_ocean }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_cascadian
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_cascadian_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_swamp
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_swamp_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_crag
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_crag_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_fog
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_fog_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_kelp
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_kelp_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_algae
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_algae_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_columnar
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_columnar_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_tidepool
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_tidepool_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_barnacle
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_barnacle_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_reef
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_reef_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_archipelago
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_ocean
-			pd_archipelago_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Tropical Worlds
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_tropical
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_tropical }
+				inline_script = { script = events/pd_engine_12 climate = desert class = dune }
+				inline_script = { script = events/pd_engine_12 climate = desert class = oasis }
+				inline_script = { script = events/pd_engine_12 climate = desert class = outback }
+				inline_script = { script = events/pd_engine_12 climate = desert class = coastal }
+				inline_script = { script = events/pd_engine_12 climate = desert class = fungi }
+				inline_script = { script = events/pd_engine_12 climate = desert class = ironsand }
+				inline_script = { script = events/pd_engine_12 climate = desert class = cactus }
+				inline_script = { script = events/pd_engine_12 climate = desert class = dust }
+				inline_script = { script = events/pd_engine_12 climate = desert class = sodalite }
+				inline_script = { script = events/pd_engine_12 climate = desert class = salt }
+				inline_script = { script = events/pd_engine_12 climate = desert class = aquifer }
+				# Arid Worlds
+				pc_arid = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_arid }
+					}
 				}
-				add_modifier = { modifier = pd_tropical }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_atoll
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_atoll_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_tepui
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_tepui_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_mangrove
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_mangrove_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_cenote
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_cenote_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_fungal
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_fungal_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_aerial
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_aerial_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_lilypad
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_lilypad_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_obsidian
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_obsidian_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_thunder
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_thunder_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_geothermal
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_geothermal_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_biolumen
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tropical
-			pd_biolumen_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Desert
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_desert
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_desert }
+				inline_script = { script = events/pd_engine_12 climate = arid class = mesa }
+				inline_script = { script = events/pd_engine_12 climate = arid class = fog_desert }
+				inline_script = { script = events/pd_engine_12 climate = arid class = mediterranean }
+				inline_script = { script = events/pd_engine_12 climate = arid class = badlands }
+				inline_script = { script = events/pd_engine_12 climate = arid class = succulent }
+				inline_script = { script = events/pd_engine_12 climate = arid class = striped }
+				inline_script = { script = events/pd_engine_12 climate = arid class = amethyst }
+				inline_script = { script = events/pd_engine_12 climate = arid class = opal }
+				inline_script = { script = events/pd_engine_12 climate = arid class = superbloom }
+				inline_script = { script = events/pd_engine_12 climate = arid class = coral }
+				inline_script = { script = events/pd_engine_12 climate = arid class = primal }
+				# Savannah Worlds
+				pc_savannah = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_savannah }
+					}
 				}
-				add_modifier = { modifier = pd_desert }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_dune
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_dune_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_oasis
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_oasis_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_outback
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_outback_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_coastal
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_coastal_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_fungi
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_fungi_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_ironsand
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_ironsand_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_cactus
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_cactus_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_dust
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_dust_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_sodalite
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_sodalite_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_salt
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_salt_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_aquifer
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_desert
-			pd_aquifer_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Arid
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_arid
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_arid }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = steppe }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = prairie }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = semi_arid }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = aspen }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = sandstone }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = turquoise }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = calcite }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = monsoon }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = silvergrass }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = supercontinent }
+				inline_script = { script = events/pd_engine_12 climate = savannah class = sinkhole }
+				# Volcanic Worlds
+				pc_volcanic = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_volcanic }
+					}
 				}
-				add_modifier = { modifier = pd_arid }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_mesa
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_mesa_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_fog_desert
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_fog_desert_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_mediterranean
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_mediterranean_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_badlands
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_badlands_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_succulent
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_succulent_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_striped
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_striped_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_amethyst
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_amethyst_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_opal
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_opal_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_superbloom
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_superbloom_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_coral
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_coral_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_primal
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arid
-			pd_primal_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Savannah
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_savannah
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_savannah }
+				inline_script = { script = events/pd_engine_12 climate = volcanic class = ash }
+				inline_script = { script = events/pd_engine_12 climate = volcanic class = magma }
+				# Arctic Worlds
+				pc_arctic = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_arctic }
+					}
 				}
-				add_modifier = { modifier = pd_savannah }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_steppe
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_steppe_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_prairie
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_prairie_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_semi_arid
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_semi_arid_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_aspen
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_aspen_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_sandstone
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_sandstone_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_turquoise
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_turquoise_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_calcite
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_calcite_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_monsoon
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_monsoon_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_silvergrass
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_silvergrass_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_supercontinent
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_supercontinent_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_sinkhole
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_savannah
-			pd_sinkhole_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Volcanic
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_volcanic
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_volcanic }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = cold_desert }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = glacial }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = antarctic }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = aeolian }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = ice_spike }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = crevasse }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = ice_dunes }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = supraglacial_lakes }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = ferrospring }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = storm }
+				inline_script = { script = events/pd_engine_12 climate = arctic class = iceberg }
+				# Alpine Worlds
+				pc_alpine = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_alpine }
+					}
 				}
-				add_modifier = { modifier = pd_volcanic }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_ash
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_volcanic
-			pd_ash_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_magma
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_volcanic
-			pd_magma_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Arctic
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_arctic
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_arctic }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = boreal }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = snow }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = highland }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = dune_forest }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = fjord }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = blossom }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = taiga }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = craton }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = ravine }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = glaciovolcanic }
+				inline_script = { script = events/pd_engine_12 climate = alpine class = lanthanide }
+				# Tundra Worlds
+				pc_tundra = {
+					if = {
+						limit = { NOT = { has_planet_flag = prescripted_ideal } }
+						add_modifier = { modifier = pd_tundra }
+					}
 				}
-				add_modifier = { modifier = pd_arctic }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = bog }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = mycelium }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = mud }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = basalt }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = tuya }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = cryovolcano }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = treeline }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = peatland }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = travertine }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = cryoflora }
+				inline_script = { script = events/pd_engine_12 climate = tundra class = lichen }
 			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_cold_desert
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_cold_desert_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_glacial
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_glacial_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_antarctic
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_antarctic_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_aeolian
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_aeolian_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_ice_spike
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_ice_spike_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_crevasse
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_crevasse_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_ice_dunes
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_ice_dunes_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_supraglacial_lakes
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_supraglacial_lakes_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_ferrospring
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_ferrospring_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_storm
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_storm_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_iceberg
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_arctic
-			pd_iceberg_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Alpine
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_alpine
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_alpine }
-				}
-				add_modifier = { modifier = pd_alpine }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_boreal
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_boreal_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_snow
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_snow_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_highland
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_highland_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_dune_forest
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_dune_forest_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_fjord
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_fjord_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_blossom
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_blossom_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_taiga
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_taiga_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_craton
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_craton_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_ravine
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_ravine_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_glaciovolcanic
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_glaciovolcanic_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_lanthanide
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_alpine
-			pd_lanthanide_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		#Tundra
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_tundra
-				has_pd_modifier = no
-				is_capital = yes
-				NOT = { has_planet_flag = prescripted_ideal }
-			}
-			IF = {
-				limit = {
-					NOT = { has_modifier = pd_tundra }
-				}
-				add_modifier = { modifier = pd_tundra }
-			}
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_bog
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_bog_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_mycelium
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_mycelium_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_mud
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_mud_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_basalt
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_basalt_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_tuya
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_tuya_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_cryovolcano
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_cryovolcano_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_treeline
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_treeline_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_peatland
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_peatland_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_travertine
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_travertine_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_cryoflora
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_cryoflora_world_effect = yes
-			generate_pd_regular_planet = yes
-		}
-		every_galaxy_planet = {
-			limit = {
-				is_planet_class = pc_pd_lichen
-				has_pd_modifier = no
-				is_capital = yes
-			}
-			change_pc = pc_tundra
-			pd_lichen_world_effect = yes
-			generate_pd_regular_planet = yes
 		}
 	}
 }
