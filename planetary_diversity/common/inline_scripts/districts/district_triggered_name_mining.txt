@@ -1,0 +1,54 @@
+# triggered district names will pick the first one that they hit.
+
+# Tankbound
+triggered_name = {
+	trigger = {
+		exists = owner
+		owner = { is_tankbound_empire = yes }
+	}
+	text = automated_mining
+}
+
+# PD uncommon-world zones: subtitle follows the built zone
+triggered_name = { trigger = { num_zones = { type = zone_pd_cave_mine  value > 0 } }  text = zone_pd_cave_mine }
+
+# zone_subterranean_urban
+triggered_name = {
+	trigger = {
+		num_zones = { type = zone_subterranean_urban  value > 0 }
+	}
+	text = zone_subterranean_urban
+}
+
+# zone_minerals_physics
+triggered_name = {
+	trigger = {
+		num_zones = { type = zone_minerals_physics  value > 0 }
+	}
+	text = zone_minerals_physics
+}
+
+# PD rare-world mine zones: subtitle follows the built zone
+triggered_name = { trigger = { num_zones = { type = zone_pd_megaflora_mine  value > 0 } }  text = zone_pd_megaflora_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_petrified_mine  value > 0 } }  text = zone_pd_petrified_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_reef_mine  value > 0 } }  text = zone_pd_reef_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_salt_mine  value > 0 } }  text = zone_pd_salt_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_primal_mine  value > 0 } }  text = zone_pd_primal_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_sinkhole_mine  value > 0 } }  text = zone_pd_sinkhole_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_storm_mine  value > 0 } }  text = zone_pd_storm_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_glaciovolcanic_mine  value > 0 } }  text = zone_pd_glaciovolcanic_mine }
+triggered_name = { trigger = { num_zones = { type = zone_pd_lanthanide_mine  value > 0 } }  text = zone_pd_lanthanide_mine }
+
+# zone_rare_crystals
+inline_script = {
+	script = districts/district_triggered_name_mining_rare_crystals
+}
+
+# zone_betharian
+inline_script = {
+	script = districts/district_triggered_name_mining_betharian
+}
+
+inline_script = {
+	script = districts/district_triggered_name_mining_default
+}

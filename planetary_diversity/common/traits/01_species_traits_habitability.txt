@@ -18,6 +18,7 @@
 @tertiary = 0.20
 @machine_primary = 0.75
 @machine_secondary = 0.50
+@ark_primary = 0.50
 
 trait_pc_ai_preference = {
 	icon = "gfx/interface/icons/traits/trait_pc_ai_preference.dds"
@@ -104,6 +105,9 @@ trait_pc_nuked_preference = {
 	sorting_priority = 30
 	modifier = {
 		pc_nuked_habitability = @primary
+		pc_pd_nuked_superhabitable_habitability = @primary
+		pc_pd_nuked_tidally_locked_habitability = @primary
+		pc_pd_nuked_cave_habitability = @primary
 		pc_desert_habitability = @secondary
 		pc_tropical_habitability = @secondary
 		pc_continental_habitability = @secondary
@@ -1531,7 +1535,21 @@ trait_pc_ark_preference = {
 	opposites = { "trait_resilient" "trait_genetic_memory" "trait_sedentary" }
 
 	species_potential_add = {
-		always = no
+		if = {
+			limit = {
+				OR = {
+					is_archetype = MACHINE
+					is_archetype = ROBOT
+				}
+			}
+			always = yes
+		}
+		else = {
+			can_change_habitability_preference = yes
+			from? = {
+				is_nomadic = yes
+			}
+		}
 	}
 	species_possible_merge_add = {
 		always = yes
@@ -1541,8 +1559,7 @@ trait_pc_ark_preference = {
 	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID MACHINE ROBOT }
 	sorting_priority = 30
 	modifier = {
-		pc_ark_habitability 		= @primary
-		pc_habitat_habitability 	= @secondary
+		pc_ark_habitability 		= @ark_primary
 	}
 	ai_weight = {
 		weight = 0
@@ -1581,7 +1598,6 @@ trait_auto_pc_ark_preference = {
 		pc_pd_cold_gaia_habitability = @auto_penalty
 		# Special
 		pc_ark_habitability 			= @auto_base
-		pc_habitat_habitability 		= @auto_ideal_bonus
 		pc_nuked_habitability 			= @auto_penalty
 		pc_volcanic_habitability 		= @auto_penalty
 	}

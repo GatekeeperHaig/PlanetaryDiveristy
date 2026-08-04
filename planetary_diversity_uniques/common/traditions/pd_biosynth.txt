@@ -1,64 +1,56 @@
-# pd_tr_biosynth_adopt = { # Gives acess to building
-# 	possible = {
-# 		has_ascension_perk = ap_fours_children
-# 	}
-# 	custom_tooltip = pd_tr_biosynth_adopt_tooltip
-# 	on_enabled = {
-# 		hidden_effect = {
-# 			country_event = { id = pdtechnoorganic.202 }
-# 		}
-# 	}
-# }
+pd_tr_biosynth_adopt = { # Boosts Living Metal production
+	possible = {
+		has_ascension_perk = ap_pd_biosynth_perfection
+	}
+	modifier = {
+		country_sr_living_metal_produces_mult = 0.25
+	}
+}
 
-# pd_tr_biosynth_adopt_finish = { # Better Bio-Synth trait, Leader traits
-# 	custom_tooltip = pd_tr_biosynth_adopt_finish_tooltip
-# 	on_enabled = {
-# 		hidden_effect = {
-# 			country_event = { id = pdtechnoorganic.1000 }
-# 		}
-# 	}
-# 	modifier = {
-# 		ascension_perks_add = 100
-# 	}
-# }
+pd_tr_biosynth_adopt_finish = { # Grants an ascension perk slot; the leader trait is granted by pdbiosynth.410 when the Long Watch completes
+	custom_tooltip = pd_tr_biosynth_adopt_finish_tooltip
+	modifier = {
+		ascension_perks_add = 1
+	}
+}
 
-# pd_tr_biosynth_perk_1 = { # Can Add or Remove Bio-Synth Traits from Bio-Synth Pop
-# 	custom_tooltip = pd_tr_biosynth_perk_1_tooltip
-# 	possible = {
-# 		has_tradition = pd_tr_biosynth_adopt
-# 	}
-# }
+pd_tr_biosynth_perk_1 = { # Can add or remove Biosynthetic traits from Biosynthetic pops
+	custom_tooltip = pd_tr_biosynth_perk_1_tooltip
+	possible = {
+		has_tradition = pd_tr_biosynth_adopt
+	}
+}
 
-# pd_tr_biosynth_perk_2a = { # Can remove beneficial trats
-# 	custom_tooltip = pd_tr_biosynth_perk_2a_tooltip
-# 	possible = {
-# 		has_tradition = pd_tr_biosynth_perk_1
-# 	}
-# }
+pd_tr_biosynth_perk_2a = { # Boosts Biosynthetic growth
+	custom_tooltip = pd_tr_biosynth_perk_2a_tooltip
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_1
+	}
+}
 
-# pd_tr_biosynth_perk_2b = { # Lower Biosynth upkeep
-# 	possible = {
-# 		has_tradition = pd_tr_biosynth_perk_2a
-# 	}
-# 	modifier = {
-# 		planet_pops_biosynth_upkeep_mult = -0.10 # Needs Local
-# 	}
-# }
+pd_tr_biosynth_perk_2b = { # +1 Cultivator job per Assembler and halves Cultivator Living Metal upkeep (applied on building_pd_biosynth_assembler and pd_biosynth_cultivator)
+	custom_tooltip = pd_tr_biosynth_perk_2b_tooltip
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_2a
+	}
+}
 
-# pd_tr_biosynth_perk_3a = { #F aster Species mod
-# 	possible = {
-# 		has_tradition = pd_tr_biosynth_perk_1
-# 	}
-# 	modifier = {
-# 		modify_species_cost_mult = -0.50
-# 	}
-# }
+pd_tr_biosynth_perk_3a = { # Reduces job Consumer Goods upkeep
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_1
+	}
+	modifier = {
+		planet_jobs_consumer_goods_upkeep_mult = -0.20
+	}
+}
 
-# pd_tr_biosynth_perk_3b = { # More Trait Pics
-# 	possible = {
-# 		has_tradition = pd_tr_biosynth_perk_3a
-# 	}
-# 	modifier = {
-# 		BIOLOGICAL_species_trait_points_add = 2
-# 	}
-# }
+pd_tr_biosynth_perk_3b = { # Species modification capstone: trait points, picks, and cheaper modification in one node
+	possible = {
+		has_tradition = pd_tr_biosynth_perk_3a
+	}
+	modifier = {
+		BIOLOGICAL_species_trait_points_add = 6
+		BIOLOGICAL_species_trait_picks_add = 2
+		modify_species_cost_mult = -0.50
+	}
+}

@@ -25,7 +25,7 @@ leader_trait_unit_04 = {
 				is_regular_empire = yes
 			}
 		}
-		job_pd_biosynth_engineer_add = 6
+		job_pd_biosynth_engineer_add = 300
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -33,7 +33,7 @@ leader_trait_unit_04 = {
 				is_gestalt = yes
 			}
 		}
-		job_pd_biosynth_engineer_drone_add = 6
+		job_pd_biosynth_engineer_drone_add = 300
 	}
 	sector_modifier = {
 		roboticist_jobs_bonus_workforce_mult = 0.1
@@ -75,4 +75,74 @@ leader_trait_unit_04_evil = {
 	leader_class = { official scientist commander }
 	selectable_weight = 0
 	background_icon = "GFX_leader_background_destiny_1"
+}
+
+
+# Granted to every leader of a trait_biosynth species once the Biosynthetics tree is finished, and to new leaders on spawn. Effects vary by leader class.
+leader_trait_biosynth = {
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = "GFX_leader_trait_biosynth"
+		RARITY = common
+		COUNCIL = triggered
+		TIER = none
+	}
+	triggered_fleet_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		ship_fire_rate_mult = 0.10
+		ship_disengage_chance_mult = 0.10
+	}
+	triggered_army_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = commander
+		}
+		army_damage_mult = 0.10
+		army_disengage_chance_mult = 0.10
+	}
+	triggered_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = scientist
+		}
+		species_leader_exp_gain = 0.05
+		science_ship_survey_speed = 0.25
+		ship_anomaly_generation_chance_mult = 0.05
+	}
+	triggered_planet_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_stability_add = 10
+	}
+	triggered_sector_modifier = {
+		potential = {
+			is_ruler = no
+			leader_class = official
+		}
+		planet_stability_add = 5
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			is_ruler = yes
+		}
+		country_ruler_influence_produces_add = 0.5
+		country_unity_produces_mult = 0.1
+	}
+	leader_class = { commander scientist official }
+	opposites = {
+		leader_trait_psionic
+		leader_trait_cyborg
+		leader_trait_limited_cyborg
+		leader_trait_synthetic
+		leader_trait_erudite
+	}
+	initial = no
+	randomized = no
+	notify_on_gained = no
 }

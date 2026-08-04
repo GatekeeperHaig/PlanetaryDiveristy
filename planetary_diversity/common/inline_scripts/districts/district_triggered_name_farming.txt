@@ -1,0 +1,52 @@
+# triggered district names will pick the first one that they hit.
+
+# Tankbound
+triggered_name = {
+	trigger = {
+		exists = owner
+		owner = { is_tankbound_empire = yes }
+	}
+	text = automated_farming
+}
+
+# PD uncommon-world zones: subtitle follows the built zone
+triggered_name = { trigger = { num_zones = { type = zone_pd_tidally_farm  value > 0 } }  text = zone_pd_tidally_farm }
+triggered_name = { trigger = { num_zones = { type = zone_pd_superhab_farm  value > 0 } }  text = zone_pd_superhab_farm }
+
+# zone_agrarian_urban
+triggered_name = {
+	trigger = {
+		num_zones = { type = zone_agrarian_urban  value > 0 }
+	}
+	text = zone_agrarian_urban
+}
+
+# zone_agrarian_anglers
+triggered_name = {
+	trigger = {
+		num_zones = { type = zone_agrarian_anglers  value > 0 }
+	}
+	text = zone_agrarian_anglers
+}
+
+# PD rare-world farm zones: subtitle follows the built zone
+triggered_name = { trigger = { num_zones = { type = zone_pd_archipelago_farm  value > 0 } }  text = zone_pd_archipelago_farm }
+triggered_name = { trigger = { num_zones = { type = zone_pd_biolumen_farm  value > 0 } }  text = zone_pd_biolumen_farm }
+triggered_name = { trigger = { num_zones = { type = zone_pd_aquifer_farm  value > 0 } }  text = zone_pd_aquifer_farm }
+triggered_name = { trigger = { num_zones = { type = zone_pd_supercontinent_farm  value > 0 } }  text = zone_pd_supercontinent_farm }
+triggered_name = { trigger = { num_zones = { type = zone_pd_iceberg_farm  value > 0 } }  text = zone_pd_iceberg_farm }
+triggered_name = { trigger = { num_zones = { type = zone_pd_lichen_farm  value > 0 } }  text = zone_pd_lichen_farm }
+
+# zone_exotic_gases
+inline_script = {
+	script = districts/district_triggered_name_farming_exotic_gases
+}
+
+# zone_anglers
+inline_script = {
+	script = districts/district_triggered_name_farming_anglers
+}
+
+inline_script = {
+	script = districts/district_triggered_name_farming_default
+}

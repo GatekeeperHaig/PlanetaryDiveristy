@@ -1,0 +1,19 @@
+# Shared boilerplate for a rare-world custom ARTISAN drone job. Complex-drone tier gated on consumer-goods use, so only CG-using gestalts (e.g. Rogue Servitors) fill it.
+possible_pre_triggers = {
+	has_owner = yes
+	is_enslaved = no
+	is_being_purged = no
+	is_being_assimilated = no
+	is_sapient = yes
+}
+possible_precalc = can_fill_drone_job
+possible = {
+	can_think = yes
+	owner = {
+		is_gestalt = yes
+		country_uses_consumer_goods = yes
+	}
+}
+weight = {
+	weight = @complex_drone_job_weight
+}

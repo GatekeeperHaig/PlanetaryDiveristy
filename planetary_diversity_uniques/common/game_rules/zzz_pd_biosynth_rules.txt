@@ -1,0 +1,255 @@
+# Full-replace copy of vanilla can_modify_species with one block added: trait_biosynth species are unmodifiable until pd_tr_biosynth_perk_1 is unlocked.
+can_modify_species = {
+	# Can't modify root Species during Ascension Situations
+	if = {
+		limit = {
+			is_same_species = ROOT
+		}
+		custom_tooltip = {
+			fail_text = "ASCENSION_SITUATION_ONGOING"
+
+			ROOT = {
+				NOT = {
+					any_situation = {
+						has_ascension_situation_ongoing = yes
+					}
+				}
+			}
+		}
+	}
+	# Biosynthetics tradition gates gene-modding for the origin's own species.
+	if = {
+		limit = {
+			has_trait = trait_biosynth
+		}
+		custom_tooltip = {
+			fail_text = "pd_biosynth_needs_tradition"
+			ROOT = {
+				has_tradition = pd_tr_biosynth_perk_1
+			}
+		}
+	}
+	# Organic Species
+	if = {
+		limit = {
+			OR = {
+				is_archetype = BIOLOGICAL
+				is_archetype = LITHOID
+			}
+			NOR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
+			}
+		}
+		custom_tooltip = {
+			fail_text = "NEEDS_GENE_TAILORING_OR_INTERGRATED_ANATOMY"
+			ROOT = {
+				OR = {
+					has_technology = tech_gene_tailoring
+					has_active_tradition = tr_cybernetics_integrated_anatomy
+					has_active_tradition = tr_cybernetics_assimilator_integrated_anatomy
+				}
+			}
+		}
+	}
+	# Clone Army
+	if = {
+		limit = {
+			OR = {
+				has_trait = trait_clone_soldier_infertile
+				has_trait = trait_clone_soldier_infertile_full_potential
+			}
+		}
+		custom_tooltip = {
+			fail_text = "NEEDS_GENE_TAILORING_AND_CLONE_SYNTHESIZATION"
+			ROOT = {
+				has_technology = tech_gene_tailoring
+				has_active_tradition = tr_cloning_somatic_synthesization_clone_army
+			}
+		}
+	}
+	# Robots & Machines
+	else_if = {
+		limit = {
+			OR = {
+				is_archetype = ROBOT
+				is_archetype = MACHINE
+			}
+		}
+		if = {
+			limit = {
+				ROOT = {
+					OR = {
+						AND = { ## organic trying to robomod
+							is_individual_machine = no
+							is_machine_empire = no
+						}
+						AND = { ## Machines with origins that delay them
+							OR = {
+								is_individual_machine = yes
+								is_machine_empire = yes
+							}
+							OR  = {
+								has_origin = origin_life_seeded
+								has_origin = origin_ocean_machines
+								has_origin = origin_void_machines
+								has_origin = origin_shattered_ring
+							}
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "NEEDS_ROBOT_MODDING"
+
+				ROOT = {
+					OR = {
+						has_technology = tech_robomodding
+						has_technology = tech_robomodding_m
+					}
+				}
+			}
+		}
+	}
+	# Self-Modified
+	custom_tooltip = {
+		fail_text = "CANNOT_MODIFY_SELF_MODIFIED_SPECIES"
+		AND = {
+			NOT = {
+				has_trait = trait_self_modified
+			}
+			#is_same_species = root
+		}
+	}
+	# Malleable Genes
+	custom_tooltip = {
+		fail_text = "CANNOT_MODIFY_MALLEABLE_GENES_SPECIES"
+		NOT = {
+			has_trait = trait_malleable_genes
+		}
+	}
+}
+
+can_dismiss_leader = {
+	if = {
+		limit = {
+			leader_class = commander
+			is_idle = no
+			# Rulers and heirs can't be dismissed any way and can be non-idle
+			is_ruler = no
+			is_heir = no
+			NOT = {
+				exists = planet
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_fleet_control"
+			exists = fleet
+			fleet = {
+				controller = {
+					is_same_value = prev.owner
+					is_same_value = prevprev.owner
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				is_heir = yes
+				is_ruler = yes
+			}
+		}
+		custom_tooltip = {
+			always = no
+			fail_text = "can_not_dismiss_rulers"
+		}
+	}
+
+	if = {
+		limit = {
+			leader_class = scientist
+		}
+		custom_tooltip = {
+			fail_text = "can_not_dismiss_rift_explorer"
+			NAND = {
+				exists = fleet
+				fleet = {
+					has_fleet_order = explore_astral_rift_fleet_order
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			leader_class = commander
+		}
+		custom_tooltip = {
+			fail_text = "no_dismissing_tacs"
+			NOT = { has_trait = leader_trait_tactical_algorithms }
+		}
+	}
+	if = {
+		limit = {
+			has_leader_flag = manifesti_divine_leader
+		}
+		custom_tooltip = {
+			fail_text = "manifesti_leader_tt"
+			NOT = { has_leader_flag = manifesti_divine_leader }
+		}
+	}
+	if = {
+		limit = {
+			has_leader_flag = nomadic_princess # The princess should not be dismissed before finishing her event chain
+			owner = {
+				has_country_flag = hired_nomadic_princess
+			}
+		}
+		custom_tooltip = {
+			fail_text = "nomadic_princess_tt"
+			NOT = {
+				has_leader_flag = nomadic_princess
+				owner = {
+					has_country_flag = hired_nomadic_princess
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_leader_flag = eternal_chorus_researcher
+			owner = {
+				has_event_chain = arkship_eternal_chorus_chain
+			}
+		}
+		custom_tooltip = {
+			always = no
+			fail_text = "leader_no_dismiss_tt"
+		}
+	}
+	if = {
+		limit = {
+			has_leader_flag = diplomatic_envoy_official
+			owner = {
+				has_event_chain = arkship_diplomatic_envoy_chain
+			}
+		}
+		custom_tooltip = {
+			always = no
+			fail_text = "leader_no_dismiss_tt"
+		}
+	}
+	# Unit 04 cannot be dismissed until the pd_unit_04_dismissable country flag releases it.
+	if = {
+		limit = {
+			has_leader_flag = pd_unit_04
+			owner = {
+				NOT = { has_country_flag = pd_unit_04_dismissable }
+			}
+		}
+		custom_tooltip = {
+			always = no
+			fail_text = "pd_cannot_dismiss_unit_04"
+		}
+	}
+}

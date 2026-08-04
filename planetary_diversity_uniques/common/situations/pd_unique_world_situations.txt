@@ -84,3 +84,136 @@ situation_pd_biosynth_world = {
 		}
 	}
 }
+
+# Long Watch origin quest. Progress is milestone-driven by pdbiosynth.415; each stage fires a lesson, completion fires pdbiosynth.410.
+situation_pd_biosynth_the_long_watch = {
+	picture = GFX_evt_pd_biosynth
+	category = positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_unknown
+	initial_progress = 0
+	situation_log_category = empire_concerns
+
+	on_progress_complete = {
+		custom_tooltip = situation_pd_biosynth_the_long_watch_outcome
+		set_situation_locked = yes
+		hidden_effect = {
+			situation_event = { id = pdbiosynth.410 }
+		}
+	}
+
+	abort_trigger = {
+		owner = { NOT = { has_country_flag = pd_has_unit_04 } }
+	}
+
+	on_monthly = {
+		events = {
+			pdbiosynth.415
+		}
+	}
+
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_green
+			end = 100
+			custom_tooltip = situation_pd_biosynth_the_long_watch_stage_1
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_green
+			end = 200
+			on_first_enter = {
+				situation_event = { id = pdbiosynth.420 }
+			}
+			custom_tooltip = situation_pd_biosynth_the_long_watch_stage_2
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_green
+			end = 300
+			on_first_enter = {
+				situation_event = { id = pdbiosynth.430 }
+			}
+			custom_tooltip = situation_pd_biosynth_the_long_watch_stage_3
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 400
+			on_first_enter = {
+				situation_event = { id = pdbiosynth.440 }
+			}
+			custom_tooltip = situation_pd_biosynth_the_long_watch_stage_4
+		}
+	}
+
+	approach = {
+		name = situation_pd_biosynth_the_long_watch_observe
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_green
+		potential = {
+			always = yes
+		}
+		allow = {
+			always = yes
+		}
+		on_select = {
+			custom_tooltip = situation_pd_biosynth_the_long_watch_observe_tt
+		}
+		default = yes
+	}
+
+	approach = {
+		name = situation_pd_biosynth_the_long_watch_study
+		icon = GFX_situation_approach_engineering
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			current_stage = stage_1
+		}
+		allow = {
+			always = yes
+		}
+		modifier = {
+			category_materials_research_speed_mult = 0.25
+			country_alloys_produces_mult = -0.10
+			country_energy_produces_mult = -0.10
+		}
+	}
+
+	approach = {
+		name = situation_pd_biosynth_the_long_watch_fund
+		icon = GFX_situation_approach_genetics
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			current_stage = stage_2
+		}
+		allow = {
+			always = yes
+		}
+		modifier = {
+			category_biology_research_speed_mult = 0.25
+			country_trade_produces_mult = -0.20
+		}
+	}
+
+	approach = {
+		name = situation_pd_biosynth_the_long_watch_resolve
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			current_stage = stage_3
+		}
+		allow = {
+			always = yes
+		}
+		modifier = {
+			country_unity_produces_mult = 0.25
+			country_trade_produces_mult = -0.20
+		}
+	}
+
+	monthly_progress = {
+		base = 0
+	}
+}

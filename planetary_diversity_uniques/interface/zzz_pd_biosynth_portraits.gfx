@@ -1,0 +1,169 @@
+# Registers pd_biosynth_glow onto every vanilla portrait type that supports alternate configurations.
+# Each block is copied from core.gfx with pd_biosynth_glow added next to holographic, and .gfx blocks merge by name so the last loaded wins.
+spriteTypes = {
+
+	portraitType = {
+		name = "GFX_portrait_room"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = room
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_room_masked"
+		masking_texture = "gfx/interface/subjugation/overlord_portrait_mask.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = room
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_room_masked_character_only"
+		masking_texture = "gfx/interface/subjugation/overlord_portrait_mask.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character_without_room
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_gamesetup_mask_character_without_room"
+		masking_texture = "gfx/interface/diplomacy/diplomacy_portrait_mask.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character_without_room
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_planet_character"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = planet
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character_close_up"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character
+		character = yes
+		close_up = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character_mid_close_up"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		masking_texture = "gfx/interface/leaders/portrait_mask_fade.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character
+		character = yes
+		mid_close_up = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character_faded"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		masking_texture = "gfx/interface/leaders/portrait_mask_fade.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character_large"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character_large
+		character = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character_large_event"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		masking_texture = "gfx/interface/leaders/portrait_mask_fade.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character_large
+		character = yes
+		mid_close_up = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	portraitType = {
+		name = "GFX_portrait_character_large_crisis_event"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		masking_texture = "gfx/interface/leaders/portrait_mask_fade_bottom.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget.shader"
+		type = character
+		character = yes
+		close_up = yes
+		alternate_configurations = {
+			holographic
+			pd_biosynth_glow
+		}
+	}
+
+	# Council view renders every councilor through this hologram-projection type, which vanilla gives no alternate_configurations.
+	# The holo variant keeps the projection shimmer in green for Biosynthetic councilors, and the config is trait-gated so other empires are unaffected.
+	portraitType = {
+		name = "GFX_portrait_character_hologram"
+		texturefile = "gfx/interface/main/unselected_portrait.dds"
+		masking_texture = "gfx/interface/leaders/portrait_mask_fade.dds"
+		effectFile = "gfx/FX/buttonstate_rendertarget_hologram.shader"
+		type = character
+		character = yes
+		mid_close_up = yes
+		alternate_configurations = {
+			pd_biosynth_glow_holo
+		}
+	}
+}

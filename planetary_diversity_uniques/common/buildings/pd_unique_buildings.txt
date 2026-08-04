@@ -381,12 +381,15 @@ building_pd_biosynth_cauldron = {
 	}
 
 	potential = {
+		exists = owner
 		NOR = {
 			has_modifier = slave_colony
 			has_modifier = penal_colony
-			has_modifier = pd_biosynth
 		}
-		exists = owner
+		OR = {
+			NOT = { has_modifier = pd_biosynth }
+			owner = { has_origin = origin_pd_biosynth }
+		}
 	}
 
 	destroy_trigger = {
@@ -394,7 +397,10 @@ building_pd_biosynth_cauldron = {
 		OR = {
 			has_modifier = slave_colony
 			has_modifier = penal_colony
-			has_modifier = pd_biosynth
+			AND = {
+				has_modifier = pd_biosynth
+				owner = { NOT = { has_origin = origin_pd_biosynth } }
+			}
 		}
 	}
 
@@ -520,5 +526,117 @@ building_pd_biosynth_cauldron = {
 
 	show_tech_unlock_if = {
 		is_regular_empire = yes
+	}
+}
+
+# Biosynthetic species are infertile and never grow naturally, so this assembles new pops from living metal. A living-metal deficit zeroes assembly via the guard below.
+building_pd_biosynth_assembler = {
+	base_buildtime = 360
+	category = pop_assembly
+	icon = building_pd_biosynth_cauldron
+
+	planet_limit = {
+		base = 1
+		modifier = {
+			has_upgraded_capital = yes
+			add = 1
+		}
+		modifier = {
+			has_major_upgraded_capital = yes
+			add = 1
+		}
+		modifier = {
+			has_fully_upgraded_capital = yes
+			add = 1
+		}
+	}
+
+	building_sets = {
+		government
+		urban
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_origin = origin_pd_biosynth }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { NOT = { has_origin = origin_pd_biosynth } }
+	}
+
+	allow = {
+		always = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = @b2_upkeep
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		job_pd_biosynth_cultivator_add = @building_static_jobs_low
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_pd_biosynth_cultivator_drone_add = @building_static_jobs_low
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				has_tradition = pd_tr_biosynth_perk_2b
+			}
+		}
+		job_pd_biosynth_cultivator_add = @building_static_jobs_low
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				has_tradition = pd_tr_biosynth_perk_2b
+			}
+		}
+		job_pd_biosynth_cultivator_drone_add = @building_static_jobs_low
+	}
+
+	triggered_desc = {
+		trigger = {
+			owner = {
+				NOT = { has_deficit = sr_living_metal }
+				NOT = { has_tradition = pd_tr_biosynth_perk_2a }
+			}
+		}
+		text = building_pd_biosynth_assembler_active_tt
+	}
+	triggered_desc = {
+		trigger = {
+			owner = {
+				NOT = { has_deficit = sr_living_metal }
+				has_tradition = pd_tr_biosynth_perk_2a
+			}
+		}
+		text = building_pd_biosynth_assembler_active_boosted_tt
+	}
+	triggered_desc = {
+		trigger = {
+			owner = { has_deficit = sr_living_metal }
+		}
+		text = building_pd_biosynth_assembler_halted_tt
 	}
 }

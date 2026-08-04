@@ -709,4 +709,398 @@ country_event = {
 			}
 		}
 	}
+}
+
+# origin_pd_biosynth start: Unit 04 joins the empire as an immortal leader and governs the homeworld. The origin quest later offers to install it permanently.
+country_event = {
+	id = pdbiosynth.400
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_biosynth
+	}
+
+	immediate = {
+		create_species = {
+			name = NAME_Unit_04
+			class = AI
+			portrait = unit_04
+			immortal = yes
+			gender = indeterminate
+			traits = { trait = "trait_enduring" }
+			effect = {
+				save_event_target_as = unit_04_species
+			}
+		}
+		create_leader = {
+			class = official
+			species = event_target:unit_04_species
+			name = NAME_Unit_04
+			gender = indeterminable
+			immortal = yes
+			skill = 4
+			custom_description = unit_04_desc
+			custom_catch_phrase = unit_04_catch_phrase
+			randomize_traits = no
+			traits = {
+				1 = leader_trait_environmental_engineer
+				2 = subclass_official_governor
+				3 = leader_trait_homesteader_2
+				4 = leader_trait_destructive
+			}
+			effect = {
+				add_trait = { trait = leader_trait_unit_04 }
+				set_leader_flag = pd_unit_04
+				save_global_event_target_as = pd_unit_04_leader
+			}
+		}
+		capital_scope = {
+			assign_leader = event_target:pd_unit_04_leader
+			add_building = building_pd_biosynth_assembler
+			add_deposit = d_pd_underground_cauldrons
+		}
+		set_country_flag = pd_has_unit_04
+	}
+}
+
+# Unit 04's opening event. Grants the Living Metal research option and starts the Long Watch situation.
+country_event = {
+	id = pdbiosynth.405
+	title = pdbiosynth.405.name
+	desc = pdbiosynth.405.desc
+	diplomatic = yes
+	diplomatic_title = NAME_Unit_04
+	show_sound = par_portrait_12
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:pd_unit_04_leader
+		room = solarpunk_room
+		planet_background = pc_pd_biosynth
+	}
+
+	trigger = {
+		has_origin = origin_pd_biosynth
+		has_country_flag = pd_has_unit_04
+	}
+
+	option = {
+		name = pdbiosynth.405.a
+		trigger = {
+			NOR = {
+				is_materialist = yes
+				is_spiritualist = yes
+				is_militarist = yes
+				is_pacifist = yes
+				is_egalitarian = yes
+				is_authoritarian = yes
+			}
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier1unityreward
+			min = @tier1unitymin
+			max = @tier1unitymax
+		}
+		add_monthly_resource_mult = {
+			resource = influence
+			value = 3
+			min = 40
+			max = 200
+		}
+	}
+	option = {
+		name = pdbiosynth.405.b
+		trigger = { is_materialist = yes }
+		add_modifier = { modifier = pd_biosynth_charge_materialist days = 3600 }
+	}
+	option = {
+		name = pdbiosynth.405.c
+		trigger = { is_spiritualist = yes }
+		add_modifier = { modifier = pd_biosynth_charge_spiritualist days = 3600 }
+	}
+	option = {
+		name = pdbiosynth.405.d
+		trigger = { is_militarist = yes }
+		add_modifier = { modifier = pd_biosynth_charge_militarist days = 3600 }
+	}
+	option = {
+		name = pdbiosynth.405.e
+		trigger = { is_pacifist = yes }
+		add_modifier = { modifier = pd_biosynth_charge_pacifist days = 3600 }
+	}
+	option = {
+		name = pdbiosynth.405.f
+		trigger = { is_egalitarian = yes }
+		add_modifier = { modifier = pd_biosynth_charge_egalitarian days = 3600 }
+	}
+	option = {
+		name = pdbiosynth.405.g
+		trigger = { is_authoritarian = yes }
+		add_modifier = { modifier = pd_biosynth_charge_authoritarian days = 3600 }
+	}
+
+	after = {
+		add_tech_progress = { tech = tech_mine_living_metal progress = 0.25 }
+		start_situation = {
+			type = situation_pd_biosynth_the_long_watch
+			target = root
+		}
+	}
+}
+
+# Monthly checker for the Long Watch. Adds one stage of progress per milestone reached, in order: Living Metal, Gene Tailoring, Designed Perfection, then finishing the Biosynthetics tree.
+situation_event = {
+	id = pdbiosynth.415
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_situation_flag = pd_lw_living_metal }
+				owner = { has_technology = tech_mine_living_metal }
+			}
+			set_situation_flag = pd_lw_living_metal
+			add_situation_progress = 100
+		}
+		else_if = {
+			limit = {
+				has_situation_flag = pd_lw_living_metal
+				NOT = { has_situation_flag = pd_lw_gene_tailoring }
+				owner = { has_technology = tech_gene_tailoring }
+			}
+			set_situation_flag = pd_lw_gene_tailoring
+			add_situation_progress = 100
+		}
+		else_if = {
+			limit = {
+				has_situation_flag = pd_lw_gene_tailoring
+				NOT = { has_situation_flag = pd_lw_ascension }
+				owner = { has_ascension_perk = ap_pd_biosynth_perfection }
+			}
+			set_situation_flag = pd_lw_ascension
+			add_situation_progress = 100
+		}
+		else_if = {
+			limit = {
+				has_situation_flag = pd_lw_ascension
+				NOT = { has_situation_flag = pd_lw_perfected }
+				owner = { has_tradition = pd_tr_biosynth_adopt_finish }
+			}
+			set_situation_flag = pd_lw_perfected
+			add_situation_progress = 100
+		}
+	}
+}
+
+# Long Watch stage: fires when Living Metal is researched.
+situation_event = {
+	id = pdbiosynth.420
+	title = pdbiosynth.420.name
+	desc = pdbiosynth.420.desc
+	diplomatic = yes
+	diplomatic_title = NAME_Unit_04
+	show_sound = par_portrait_12
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:pd_unit_04_leader
+		room = solarpunk_room
+		planet_background = pc_pd_biosynth
+	}
+
+	option = {
+		name = pdbiosynth.420.a
+		owner = {
+			add_research_option = tech_biosynth_canals
+			add_research_option = tech_biosynth_cauldron
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+# Long Watch stage: fires when Gene Tailoring is researched (also the Designed Perfection prerequisite).
+situation_event = {
+	id = pdbiosynth.430
+	title = pdbiosynth.430.name
+	desc = pdbiosynth.430.desc
+	diplomatic = yes
+	diplomatic_title = NAME_Unit_04
+	show_sound = par_portrait_12
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:pd_unit_04_leader
+		room = solarpunk_room
+		planet_background = pc_pd_biosynth
+	}
+
+	option = {
+		name = pdbiosynth.430.a
+		custom_tooltip = pdbiosynth.430.a.tooltip
+		owner = {
+			add_modifier = {
+				modifier = pd_biosynth_secrets_of_life
+				days = -1
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+# Long Watch stage: fires when the Designed Perfection ascension perk is taken.
+situation_event = {
+	id = pdbiosynth.440
+	title = pdbiosynth.440.name
+	desc = pdbiosynth.440.desc
+	diplomatic = yes
+	diplomatic_title = NAME_Unit_04
+	show_sound = par_portrait_12
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:pd_unit_04_leader
+		room = solarpunk_room
+		planet_background = pc_pd_biosynth
+	}
+
+	option = {
+		name = pdbiosynth.440.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+	}
+}
+
+# Long Watch payoff: keep Unit 04 as overseer, keep him as an ordinary leader, or banish him.
+situation_event = {
+	id = pdbiosynth.410
+	title = pdbiosynth.410.name
+	desc = pdbiosynth.410.desc
+	diplomatic = yes
+	diplomatic_title = NAME_Unit_04
+	show_sound = par_portrait_12
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:pd_unit_04_leader
+		room = solarpunk_room
+		planet_background = pc_pd_biosynth
+	}
+
+	immediate = {
+		owner = {
+			species = {
+				save_event_target_as = pd_biosynth_leader_species
+			}
+			every_country = {
+				limit = {
+					OR = {
+						is_country_type = default
+						is_country_type = fallen_empire
+						is_country_type = awakened_fallen_empire
+					}
+				}
+				every_owned_leader = {
+					limit = {
+						species = {
+							is_same_species = event_target:pd_biosynth_leader_species
+						}
+						can_receive_biosynth_leader_trait = yes
+					}
+					add_trait = {
+						trait = leader_trait_biosynth
+						show_message = no
+					}
+				}
+				every_pool_leader = {
+					limit = {
+						species = {
+							is_same_species = event_target:pd_biosynth_leader_species
+						}
+						can_receive_biosynth_leader_trait = yes
+					}
+					add_trait = {
+						trait = leader_trait_biosynth
+						show_message = no
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = pdbiosynth.410.b
+		custom_tooltip = pdbiosynth.410.b.tooltip
+		destroy_situation = this
+		owner = {
+			set_country_flag = pd_unit_04_dismissable
+		}
+	}
+	option = {
+		name = pdbiosynth.410.c
+		custom_tooltip = pdbiosynth.410.c.tooltip
+		destroy_situation = this
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier5unityreward
+				min = @tier5unitymin
+				max = @tier5unitymax
+			}
+			add_modifier = {
+				modifier = pd_biosynth_stood_alone
+				days = -1
+			}
+		}
+		hidden_effect = {
+			event_target:pd_unit_04_leader = {
+				kill_leader = { show_notification = no }
+			}
+		}
+	}
+}
+
+# New leaders get the Biosynthetic leader trait. From = leader.
+country_event = {
+	id = pdbiosynth.455
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_tradition = pd_tr_biosynth_adopt_finish
+		from = {
+			NOT = { leader_class = envoy }
+			species = {
+				is_biosynth_species = yes
+			}
+			can_receive_biosynth_leader_trait = yes
+		}
+	}
+
+	immediate = {
+		from = {
+			add_trait = {
+				trait = leader_trait_biosynth
+				show_message = no
+			}
+		}
+	}
 }

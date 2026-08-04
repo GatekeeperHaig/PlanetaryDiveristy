@@ -1,0 +1,23 @@
+# Shared unlock / one-per-planet cap / build cost for every rare-world specialization zone. Icon, potential, zone_sets, building sets, jobs and convert_to are set per zone.
+# The pd_rare_zone_committed planet flag enforces one-of-three even while queued: num_zones only counts built zones, so the flag blocks queueing a sibling until the queued one is canceled or finished.
+unlock = {
+	hidden_trigger = { exists = owner  owner = { is_wilderness_empire = no } }
+	custom_tooltip = {
+		fail_text = pd_rare_zone_committed_fail
+		NOT = { planet = { has_planet_flag = pd_rare_zone_committed } }
+	}
+}
+planet_limit = { base = 1 }
+resources = {
+	category = planet_zones
+	inline_script = {
+		script = buildings/nomadic_cost_switcher
+		REGULAR_RESOURCE = minerals
+		NOMADIC_RESOURCE = alloys
+		COST = @zone_cost
+		NOMADIC_COST_MULT = 0.5
+	}
+}
+on_queued = { planet = { set_planet_flag = pd_rare_zone_committed } }
+on_unqueued = { planet = { remove_planet_flag = pd_rare_zone_committed } }
+on_built = { planet = { remove_planet_flag = pd_rare_zone_committed } }

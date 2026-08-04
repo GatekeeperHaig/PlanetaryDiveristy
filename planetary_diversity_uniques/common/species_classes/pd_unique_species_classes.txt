@@ -1,12 +1,12 @@
-# Bio-synthetic species type for the origin_pd_biosynth start. Climate-neutral on purpose: no removed/added planet types, so bio-synths keep normal biological habitability and start on the alpine pc_pd_biosynth.
+# Biosynthetic species type for the origin_pd_biosynth start. Climate-neutral on purpose: no removed or added planet types, so it keeps normal biological habitability and starts on the alpine pc_pd_biosynth.
 BIOSYNTH = {
 	archetype = BIOLOGICAL
-	# Blocked to Machine Age: Unit 04 and the bio-synth portraits are Machine Age content.
+	# Blocked to Machine Age: Unit 04 and the Biosynthetic portraits are Machine Age content.
 	playable = { has_machine_age_dlc = yes }
-	# Standalone-test mode: origin gate temporarily disabled so BIOSYNTH is freely selectable. Re-enable `origin = { value = origin_pd_biosynth }` once Phase 2 adds the origin.
+	# Only selectable alongside origin_pd_biosynth, since the species is infertile and has no pop source outside that origin's assembler.
 	possible = {
 		authority = { NOT = { value = auth_machine_intelligence } }
-		# origin = { value = origin_pd_biosynth }
+		origin = { value = origin_pd_biosynth }
 	}
 	randomized = { always = no }
 	gender = yes

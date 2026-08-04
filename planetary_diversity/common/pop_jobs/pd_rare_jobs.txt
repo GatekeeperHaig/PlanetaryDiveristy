@@ -1,0 +1,1275 @@
+# Custom jobs for the rare-world specialization zones. Each is a stronger version of the vanilla job it stands in for, so the zone keeps the vanilla job count but out-produces a normal zone.
+# resources.category points at the vanilla category so the usual production/upkeep modifiers still apply. Gestalt drone variants split off only for the tier swap (worker->simple_drone, specialist->complex_drone); hive and machine share one drone since their output is identical.
+
+# Geothermal grid: Vent Tapper (energy). Vanilla technician makes energy 6.
+pd_geothermal_vent_tapper = {
+	category = worker
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_energy_grid
+			icon = technician
+		}
+	}
+
+	tags = { energy }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+	}
+
+	resources = {
+		category = planet_technician
+		produces = {
+			energy = 8
+			minerals = 1
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+	}
+}
+
+pd_geothermal_vent_tapper_drone = {
+	category = simple_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_energy_grid
+			icon = technician
+		}
+	}
+
+	tags = { energy }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+	possible = {
+		simple_drone_trigger = yes
+		owner = { is_gestalt = yes }
+	}
+
+	resources = {
+		category = planet_technician
+		produces = {
+			energy = 8
+			minerals = 1
+		}
+	}
+
+	weight = {
+		weight = @simple_drone_job_weight
+	}
+}
+
+# Geothermal foundry: Slurry Refiner (alloys). Vanilla foundry makes alloys 1.5 for minerals 3.
+pd_geothermal_slurry_refiner = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_foundry_1
+			icon = foundry
+		}
+	}
+
+	tags = { alloys }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+	}
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			alloys = 2.25
+			engineering_research = 0.25
+		}
+		upkeep = {
+			minerals = 2
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+pd_geothermal_slurry_refiner_drone = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_foundry_1
+			icon = foundry
+		}
+	}
+
+	tags = { alloys }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+		owner = { is_gestalt = yes }
+	}
+
+	resources = {
+		category = planet_metallurgists
+		produces = {
+			alloys = 2.25
+			engineering_research = 0.25
+		}
+		upkeep = {
+			minerals = 2
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+# Geothermal lab: Geothermal Geologist (engineering research). Vanilla engineer makes engineering_research 3 for consumer_goods 1.5.
+pd_geothermal_geologist = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_research_lab_1
+			icon = engineer
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+	}
+
+	resources = {
+		category = planet_engineers
+		produces = {
+			engineering_research = 3.5
+			physics_research = 1
+		}
+		upkeep = {
+			consumer_goods = 1.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+pd_geothermal_geologist_drone = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_research_lab_1
+			icon = engineer
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+	possible = {
+		can_think = yes
+		owner = { is_gestalt = yes }
+	}
+
+	resources = {
+		category = planet_engineers
+		produces = {
+			engineering_research = 3.5
+			physics_research = 1
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+### Each reskins a vanilla archetype at ~1.5x output with a signature twist, and adds a gestalt drone where the archetype supports one. Boilerplate lives in jobs/pd_rare_body_* inlines.
+
+# ===== Continental: Megaflora =====
+pd_megaflora_rootbreaker = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+pd_megaflora_rootbreaker_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+pd_megaflora_canopy_ecologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_megaflora_canopy_ecologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+	}
+}
+pd_megaflora_xylem_tapper = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  food = 2 }
+	}
+}
+pd_megaflora_xylem_tapper_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  food = 2 }
+	}
+}
+
+# ===== Continental: Petrified =====
+pd_petrified_fossil_quarrier = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  society_research = 1 }
+	}
+}
+pd_petrified_fossil_quarrier_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  society_research = 1 }
+	}
+}
+pd_petrified_amber_artisan = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_petrified_amber_artisan_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_artisan_drone"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_petrified_lithoglyph_scholar = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = engineer } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_engineers
+		produces = { engineering_research = 3.5  society_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_petrified_lithoglyph_scholar_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = engineer } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_engineers
+		produces = { engineering_research = 3.5  society_research = 1 }
+	}
+}
+
+# ===== Ocean: Reef =====
+pd_reef_ecologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_reef_ecologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+	}
+}
+pd_reef_nacre_artisan = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_reef_nacre_artisan_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_artisan_drone"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_reef_coral_harvester = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+pd_reef_coral_harvester_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+
+# ===== Ocean: Archipelago =====
+pd_archipelago_tidal_smelter = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_archipelago_tidal_smelter_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_archipelago_kelp_farmer = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  energy = 2 }
+	}
+}
+pd_archipelago_kelp_farmer_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  energy = 2 }
+	}
+}
+pd_archipelago_island_concierge = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_commercial_zone  icon = entertainer } }
+	tags = { amenities trade }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_entertainers
+		produces = { unity = 0.5  trade = 4 }
+		upkeep = { consumer_goods = 1 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 1875 }
+}
+
+# ===== Tropical: Biolumen =====
+pd_biolumen_lumen_biologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_biolumen_lumen_biologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_biolumen_glowtour_guide = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_commercial_zone  icon = entertainer } }
+	tags = { amenities unity }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_entertainers
+		produces = { unity = 1 }
+		upkeep = { consumer_goods = 1 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 1875 }
+}
+pd_biolumen_photofarm_tender = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  energy = 2 }
+	}
+}
+pd_biolumen_photofarm_tender_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  energy = 2 }
+	}
+}
+
+# ===== Desert: Salt =====
+pd_salt_halophile_engineer = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = engineer } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_engineers
+		produces = { engineering_research = 4.5  minerals = 2 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_salt_halophile_engineer_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = engineer } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_engineers
+		produces = { engineering_research = 4.5  minerals = 2 }
+	}
+}
+pd_salt_brine_smelter = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_salt_brine_smelter_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_salt_harvester = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+pd_salt_harvester_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+
+# ===== Desert: Aquifer =====
+pd_aquifer_cultivator = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  minerals = 2 }
+	}
+}
+pd_aquifer_cultivator_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  minerals = 2 }
+	}
+}
+pd_aquifer_hydrology_scholar = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5  energy = 2 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_aquifer_hydrology_scholar_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5  energy = 2 }
+	}
+}
+pd_aquifer_oasis_host = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_commercial_zone  icon = entertainer } }
+	tags = { amenities unity }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_entertainers
+		produces = { unity = 1 }
+		upkeep = { consumer_goods = 1 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 1875 }
+}
+
+# ===== Arid: Primal =====
+pd_primal_forgesmith = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_primal_forgesmith_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_primal_tar_tapper = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  minerals = 2 }
+	}
+}
+pd_primal_tar_tapper_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  minerals = 2 }
+	}
+}
+pd_primal_bonebed_quarrier = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  society_research = 1 }
+	}
+}
+pd_primal_bonebed_quarrier_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  society_research = 1 }
+	}
+}
+
+# ===== Arid: Coral =====
+pd_coral_curator = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_commercial_zone  icon = entertainer } }
+	tags = { amenities unity }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_entertainers
+		produces = { unity = 1 }
+		upkeep = { consumer_goods = 1 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 1875 }
+}
+pd_coral_ecologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_coral_ecologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+	}
+}
+pd_coral_dye_artisan = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_coral_dye_artisan_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_artisan_drone"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+
+# ===== Savannah: Supercontinent =====
+pd_supercontinent_plains_cultivator = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  society_research = 1 }
+	}
+}
+pd_supercontinent_plains_cultivator_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  society_research = 1 }
+	}
+}
+pd_supercontinent_tectonics_scholar = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = physicist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_physicists
+		produces = { physics_research = 3.5  society_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_supercontinent_tectonics_scholar_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = physicist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_physicists
+		produces = { physics_research = 3.5  society_research = 1 }
+	}
+}
+pd_supercontinent_rift_tapper = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  minerals = 2 }
+	}
+}
+pd_supercontinent_rift_tapper_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  minerals = 2 }
+	}
+}
+
+# ===== Savannah: Sinkhole =====
+pd_sinkhole_cavern_ecologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_sinkhole_cavern_ecologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+	}
+}
+pd_sinkhole_quarrier = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  energy = 2 }
+	}
+}
+pd_sinkhole_quarrier_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  energy = 2 }
+	}
+}
+pd_sinkhole_speleothem_artisan = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_sinkhole_speleothem_artisan_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_artisan_drone"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+
+# ===== Arctic: Storm =====
+pd_storm_physicist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = physicist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_physicists
+		produces = { physics_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_storm_physicist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = physicist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_physicists
+		produces = { physics_research = 3.5  engineering_research = 1 }
+	}
+}
+pd_storm_lightning_harvester = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  physics_research = 1 }
+	}
+}
+pd_storm_lightning_harvester_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  physics_research = 1 }
+	}
+}
+pd_storm_stormbed_quarrier = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  energy = 2 }
+	}
+}
+pd_storm_stormbed_quarrier_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  energy = 2 }
+	}
+}
+
+# ===== Arctic: Iceberg =====
+pd_iceberg_glaciologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_iceberg_glaciologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  engineering_research = 1 }
+	}
+}
+pd_iceberg_ice_trawler = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  society_research = 1 }
+	}
+}
+pd_iceberg_ice_trawler_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  society_research = 1 }
+	}
+}
+pd_iceberg_glacial_smelter = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_iceberg_glacial_smelter_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+
+# ===== Tundra: Cryoflora =====
+pd_cryoflora_cryobotanist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  physics_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_cryoflora_cryobotanist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  physics_research = 1 }
+	}
+}
+pd_cryoflora_frostsilk_artisan = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_cryoflora_frostsilk_artisan_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_artisan_drone"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9 }
+		upkeep = { minerals = 3 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_cryoflora_aurora_guide = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_commercial_zone  icon = entertainer } }
+	tags = { amenities unity }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_entertainers
+		produces = { unity = 1 }
+		upkeep = { consumer_goods = 1 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 1875 }
+}
+
+# ===== Tundra: Lichen =====
+pd_lichen_cultivator = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  society_research = 1 }
+	}
+}
+pd_lichen_cultivator_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  society_research = 1 }
+	}
+}
+pd_lichen_spore_tapper = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  food = 2 }
+	}
+}
+pd_lichen_spore_tapper_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  food = 2 }
+	}
+}
+pd_lichen_symbiosis_scholar = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5  minerals = 2 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_lichen_symbiosis_scholar_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5  minerals = 2 }
+	}
+}
+
+# ===== Alpine: Glaciovolcanic =====
+pd_glaciovolcanic_obsidian_smelter = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_glaciovolcanic_obsidian_smelter_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25 }
+		upkeep = { minerals = 2 }
+	}
+}
+pd_glaciovolcanic_geyser_guide = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_commercial_zone  icon = entertainer } }
+	tags = { amenities unity }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_entertainers
+		produces = { unity = 1 }
+		upkeep = { consumer_goods = 1 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 1875 }
+}
+pd_glaciovolcanic_tephra_quarrier = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  energy = 2 }
+	}
+}
+pd_glaciovolcanic_tephra_quarrier_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  energy = 2 }
+	}
+}
+
+# ===== Alpine: Lanthanide =====
+pd_lanthanide_miner = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  engineering_research = 1 }
+	}
+}
+pd_lanthanide_miner_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  engineering_research = 1 }
+	}
+}
+pd_lanthanide_phosphor_artisan = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9  physics_research = 1 }
+		upkeep = { minerals = 3 }
+	}
+}
+pd_lanthanide_phosphor_artisan_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_factory_1  icon = artisan } }
+	tags = { consumer_goods }
+	inline_script = "jobs/pd_rare_body_artisan_drone"
+	resources = {
+		category = planet_artisans
+		produces = { consumer_goods = 9  physics_research = 1 }
+		upkeep = { minerals = 3 }
+	}
+}
+pd_lanthanide_rare_earth_physicist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = physicist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_physicists
+		produces = { physics_research = 3.5  engineering_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_lanthanide_rare_earth_physicist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = physicist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_physicists
+		produces = { physics_research = 3.5  engineering_research = 1 }
+	}
+}

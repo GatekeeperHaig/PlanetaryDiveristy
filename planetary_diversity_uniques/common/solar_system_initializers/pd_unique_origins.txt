@@ -259,6 +259,85 @@ pd_origin_init_crystal = {
 	}
 }
 
+#Biosynthetic Start
+pd_origin_init_biosynth = {
+	class = "sc_g"
+	usage = origin
+	flags = { empire_home_system }
+
+	init_effect = {
+		set_star_flag = pdbiosynth_origin_system
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		count = 1
+		class = "pc_g_star"
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 25 max = 30 }
+		has_ring = no
+	}
+	planet = {
+		count = { min = 3 max = 3 }
+		class = random_non_colonizable
+		orbit_distance = 30
+		change_orbit = 5
+		moon = {
+			count = { min = 0 max = 0 }
+			orbit_distance = 5
+		}
+	}
+	planet = {
+		class = "pc_alpine"
+		orbit_distance = 25
+		orbit_angle = 85
+		size = { min = 20 max = 25 }
+		starting_planet = yes
+		modifiers = none
+
+		init_effect = {
+			set_planet_flag = pd_biosynth_planet
+			set_carrier_flag = colony_event
+			prevent_anomaly = yes
+			save_event_target_as = biosynth_origin_planet
+			add_modifier = {
+				modifier = pd_biosynth
+				days = -1
+			}
+			change_pc = pc_alpine
+			set_planet_entity = {
+				picture = pc_pd_biosynth
+				entity = pd_biosynth_planet_01_entity
+			}
+			add_deposit = d_pd_planet_wide_canal_system
+		}
+
+		moon = {
+			count = { min = 1 max = 1 }
+			class = random_non_colonizable
+			orbit_distance = 10
+		}
+	}
+	planet = {
+		count = { min = 5 max = 5 }
+		class = random_non_colonizable
+		orbit_distance = { min = 30 max = 40 }
+		change_orbit = 5
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_distance = 10
+		}
+	}
+}
+
 
 # pd_origin_init_technoorganic = {
 # 	class = "sc_g"

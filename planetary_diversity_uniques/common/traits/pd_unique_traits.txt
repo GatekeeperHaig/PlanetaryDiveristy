@@ -84,7 +84,7 @@ trait_unit_04_children = {
 	custom_tooltip_with_modifiers = trait_unit_04_children_tt
 }
 
-# Core Bio-Synth trait for the origin_pd_biosynth start. Infertile so the species never grows naturally; new pops come only from the Living Metal assembler. Leaders are deathless manufactured beings.
+# Core Biosynthetic trait for the origin_pd_biosynth start. Infertile so the species never grows naturally, with new pops coming only from the living metal assembler.
 trait_biosynth = {
 	cost = 0
 	icon = "gfx/interface/icons/traits/trait_organic_fourschildren.dds"
@@ -99,7 +99,41 @@ trait_biosynth = {
 
 	infertile = yes
 	immortal_leaders = yes
-	opposites = { "trait_fertile" "trait_slow_breeders" "trait_rapid_breeders" "trait_plantoid_budding" "trait_lithoid_budding" "trait_incubator" "trait_egg_laying" }
+	opposites = { "trait_organic" "trait_fertile" "trait_slow_breeders" "trait_rapid_breeders" "trait_plantoid_budding" "trait_lithoid_budding" "trait_incubator" "trait_egg_laying" }
+
+	# Biosynthetic species oppose trait_organic and so miss its food upkeep, mirrored here so they still consume food.
+	resources = {
+		category = planet_pops
+		upkeep = {
+			trigger = {
+				is_phototrophic = no
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_food_normal
+		}
+		upkeep = {
+			trigger = {
+				is_phototrophic = yes
+				NOT = { has_trait = trait_voidling }
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_phototrophic_normal
+		}
+		upkeep = {
+			trigger = {
+				OR = {
+					has_trait = trait_cybernetic
+					has_trait = trait_limited_cybernetic
+				}
+				is_being_purged = no
+				is_sapient = yes
+			}
+			food = @living_standard_food_cyborg_reduction
+		}
+	}
 
 	custom_tooltip_with_modifiers = TRAIT_BIOSYNTH_EFFECT
 }

@@ -55,40 +55,63 @@ decision_pd_garden_arcology_project = {
 	}
 
 	effect = {
-		# Make city-planet
 		custom_tooltip = decision_garden_arcology_project_effects
 		add_modifier = {
 			modifier = pd_garden_arcology
 			days = -1
 		}
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_nitrogen_planet = yes }
+			pd_add_nitrogen_atmosphere_effect = yes
+		}
 		hidden_effect = {
-			save_deposits = yes
-			clear_deposits = yes
-			restore_saved_deposits = yes
-			change_pc = pc_city
-			validate_planet_buildings_and_districts = yes
-			relic_world_conversion_effect = {
-				DISTRICT = district_pd_garden_arcology_housing
-				VARIABLE = num_housing_districts
-			}
-			generate_pd_arcology_portrait_effect = yes
-			carrier_event = { id = action.68 }
-			owner = {
-				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
-			}
-			carrier_event = { id = mega.200 }
 			if = {
 				limit = {
 					OR = {
-						is_active_resolution = "resolution_ecology_environmental_control_board"
-						is_active_resolution = "resolution_ecology_paradise_initiative"
+						pd_is_ammonia_planet = yes
+						pd_is_methane_planet = yes
+						pd_is_nitrogen_planet = yes
 					}
 				}
-				owner = {
-					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
-				}
+				pd_exotic_cryo_arcology_convert_effect = yes
 			}
-			validate_planet_buildings_and_districts = yes
+			else = {
+				save_deposits = yes
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				validate_planet_buildings_and_districts = yes
+				relic_world_conversion_effect = {
+					DISTRICT = district_pd_garden_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				generate_pd_arcology_portrait_effect = yes
+				carrier_event = { id = action.68 }
+				owner = {
+					country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+				}
+				carrier_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					}
+				}
+				validate_planet_buildings_and_districts = yes
+			}
 		}
 		while = {
 			count = 1
@@ -98,12 +121,6 @@ decision_pd_garden_arcology_project = {
 			district = district_pd_garden_arcology_urban_1
 			zone = zone_pd_preserve
 			zone_slot = 0
-		}
-		add_zone = {
-			district = 0
-			zone = zone_pd_archeotech_preserve
-			zone_slot = 1
-			replace = yes
 		}
 	}
 
@@ -211,6 +228,12 @@ decision_pd_garden_arcology_project_relic = {
 			zone = zone_pd_preserve
 			zone_slot = 0
 		}
+		add_zone = {
+			district = 0
+			zone = zone_pd_archeotech_preserve
+			zone_slot = 1
+			replace = yes
+		}
 	}
 
 	ai_weight = {
@@ -270,37 +293,60 @@ decision_pd_fortress_arcology_project = {
 	}
 
 	effect = {
-		# Make city-planet
 		custom_tooltip = decision_miltary_arcology_project_effects
 		add_modifier = {
 			modifier = pd_fortress_arcology
 			days = -1
 		}
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_nitrogen_planet = yes }
+			pd_add_nitrogen_atmosphere_effect = yes
+		}
 		hidden_effect = {
-			save_deposits = yes
-			clear_deposits = yes
-			restore_saved_deposits = yes
-			change_pc = pc_city
-			validate_planet_buildings_and_districts = yes
-			relic_world_conversion_effect = {
-				DISTRICT = district_pd_fortress_arcology_housing
-				VARIABLE = num_housing_districts
-			}
-			generate_pd_arcology_portrait_effect = yes
-			carrier_event = { id = action.68 }
-			owner = {
-				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
-			}
-			carrier_event = { id = mega.200 }
 			if = {
 				limit = {
 					OR = {
-						is_active_resolution = "resolution_ecology_environmental_control_board"
-						is_active_resolution = "resolution_ecology_paradise_initiative"
+						pd_is_ammonia_planet = yes
+						pd_is_methane_planet = yes
+						pd_is_nitrogen_planet = yes
 					}
 				}
+				pd_exotic_cryo_arcology_convert_effect = yes
+			}
+			else = {
+				save_deposits = yes
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				validate_planet_buildings_and_districts = yes
+				relic_world_conversion_effect = {
+					DISTRICT = district_pd_fortress_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				generate_pd_arcology_portrait_effect = yes
+				carrier_event = { id = action.68 }
 				owner = {
-					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+				}
+				carrier_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					}
 				}
 			}
 		}
@@ -312,12 +358,6 @@ decision_pd_fortress_arcology_project = {
 			district = district_pd_fortress_arcology_urban_1
 			zone = zone_pd_command_nexus
 			zone_slot = 0
-		}
-		add_zone = {
-			district = 0
-			zone = zone_pd_archeotech_preserve
-			zone_slot = 1
-			replace = yes
 		}
 	}
 
@@ -411,6 +451,12 @@ decision_pd_fortress_arcology_project_relic = {
 			zone = zone_pd_command_nexus
 			zone_slot = 0
 		}
+		add_zone = {
+			district = 0
+			zone = zone_pd_archeotech_preserve
+			zone_slot = 1
+			replace = yes
+		}
 	}
 
 	ai_weight = {
@@ -457,7 +503,7 @@ decision_pd_commercial_arcology_project = {
 			}
 		}
 		custom_tooltip = {
-			fail_text = decision_garden_arcology_project_effects
+			fail_text = decision_arcology_project_requirements
 			free_district_slots < 1
 			num_districts = { type = district_farming value < 1 }
 			num_districts = { type = district_mining value < 1 }
@@ -471,37 +517,60 @@ decision_pd_commercial_arcology_project = {
 	}
 
 	effect = {
-		# Make city-planet
 		custom_tooltip = decision_commercial_arcology_project_effects
 		add_modifier = {
 			modifier = pd_commercial_arcology
 			days = -1
 		}
+		if = {
+			limit = { pd_is_ammonia_planet = yes }
+			pd_add_ammonia_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_methane_planet = yes }
+			pd_add_methane_atmosphere_effect = yes
+		}
+		else_if = {
+			limit = { pd_is_nitrogen_planet = yes }
+			pd_add_nitrogen_atmosphere_effect = yes
+		}
 		hidden_effect = {
-			save_deposits = yes
-			clear_deposits = yes
-			restore_saved_deposits = yes
-			change_pc = pc_city
-			validate_planet_buildings_and_districts = yes
-			relic_world_conversion_effect = {
-				DISTRICT = district_pd_commercial_arcology_housing
-				VARIABLE = num_housing_districts
-			}
-			generate_pd_arcology_portrait_effect = yes
-			carrier_event = { id = action.68 }
-			owner = {
-				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
-			}
-			carrier_event = { id = mega.200 }
 			if = {
 				limit = {
 					OR = {
-						is_active_resolution = "resolution_ecology_environmental_control_board"
-						is_active_resolution = "resolution_ecology_paradise_initiative"
+						pd_is_ammonia_planet = yes
+						pd_is_methane_planet = yes
+						pd_is_nitrogen_planet = yes
 					}
 				}
+				pd_exotic_cryo_arcology_convert_effect = yes
+			}
+			else = {
+				save_deposits = yes
+				clear_deposits = yes
+				restore_saved_deposits = yes
+				change_pc = pc_city
+				validate_planet_buildings_and_districts = yes
+				relic_world_conversion_effect = {
+					DISTRICT = district_pd_commercial_arcology_housing
+					VARIABLE = num_housing_districts
+				}
+				generate_pd_arcology_portrait_effect = yes
+				carrier_event = { id = action.68 }
 				owner = {
-					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
+				}
+				carrier_event = { id = mega.200 }
+				if = {
+					limit = {
+						OR = {
+							is_active_resolution = "resolution_ecology_environmental_control_board"
+							is_active_resolution = "resolution_ecology_paradise_initiative"
+						}
+					}
+					owner = {
+						set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+					}
 				}
 			}
 		}
@@ -513,12 +582,6 @@ decision_pd_commercial_arcology_project = {
 			district = district_pd_commercial_arcology_urban_1
 			zone = zone_pd_trade_market
 			zone_slot = 0
-		}
-		add_zone = {
-			district = 0
-			zone = zone_pd_archeotech_preserve
-			zone_slot = 1
-			replace = yes
 		}
 	}
 
@@ -612,6 +675,12 @@ decision_pd_commercial_arcology_project_relic = {
 			district = district_pd_commercial_arcology_urban_1
 			zone = zone_pd_trade_market
 			zone_slot = 0
+		}
+		add_zone = {
+			district = 0
+			zone = zone_pd_archeotech_preserve
+			zone_slot = 1
+			replace = yes
 		}
 	}
 

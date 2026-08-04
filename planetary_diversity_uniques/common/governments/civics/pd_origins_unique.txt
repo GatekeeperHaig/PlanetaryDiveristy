@@ -73,3 +73,22 @@ origin_pd_crystal_world = {
 	initializers = { pd_origin_init_crystal }
 	max_once_global = yes
 }
+
+origin_pd_biosynth = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdtechno.dds"
+	picture = GFX_origin_pd_biosynth
+	flags = { custom_start_screen }
+	starting_colony = pc_pd_biosynth
+	habitability_preference = pc_alpine
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_biosynth_effects"
+	negative_description = "origin_tooltip_life_seeded_negative_effects"
+	# Machine Age content: the Unit 04 and Biosynthetic portraits. The origin is pickable first and then unlocks the BIOSYNTH species class, which requires it, so the dependency stays one-way and the empire creator cannot deadlock.
+	playable = { has_machine_age_dlc = yes }
+	possible = {
+		is_nomadic = no
+	}
+	initializers = { pd_origin_init_biosynth }
+	max_once_global = yes
+}

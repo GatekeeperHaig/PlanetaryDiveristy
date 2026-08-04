@@ -1,0 +1,39 @@
+# triggered district names will pick the first one that they hit.
+
+# Tankbound
+triggered_name = {
+	trigger = {
+		exists = owner
+		owner = { is_tankbound_empire = yes }
+	}
+	text = automated_generator
+}
+
+# PD uncommon-world zones: subtitle follows the built zone
+triggered_name = { trigger = { num_zones = { type = zone_pd_tidally_grid  value > 0 } }  text = zone_pd_tidally_grid }
+triggered_name = { trigger = { num_zones = { type = zone_pd_cave_grid  value > 0 } }  text = zone_pd_cave_grid }
+
+# zone_habitat_hydroponics
+triggered_name = {
+	trigger = {
+		num_zones = { type = zone_habitat_hydroponics  value > 0 }
+	}
+	text = zone_habitat_hydroponics
+}
+
+# PD rare-world grid zones: subtitle follows the built zone
+triggered_name = { trigger = { num_zones = { type = zone_pd_geothermal_grid  value > 0 } }  text = zone_pd_geothermal_grid }
+triggered_name = { trigger = { num_zones = { type = zone_pd_megaflora_grid  value > 0 } }  text = zone_pd_megaflora_grid }
+triggered_name = { trigger = { num_zones = { type = zone_pd_primal_grid  value > 0 } }  text = zone_pd_primal_grid }
+triggered_name = { trigger = { num_zones = { type = zone_pd_supercontinent_grid  value > 0 } }  text = zone_pd_supercontinent_grid }
+triggered_name = { trigger = { num_zones = { type = zone_pd_storm_grid  value > 0 } }  text = zone_pd_storm_grid }
+triggered_name = { trigger = { num_zones = { type = zone_pd_lichen_grid  value > 0 } }  text = zone_pd_lichen_grid }
+
+# zone_volatile_motes
+inline_script = {
+	script = districts/district_triggered_name_generator_volatile_motes
+}
+
+inline_script = {
+	script = districts/district_triggered_name_generator_default
+}

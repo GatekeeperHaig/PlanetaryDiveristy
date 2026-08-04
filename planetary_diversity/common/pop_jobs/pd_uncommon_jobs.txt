@@ -1,0 +1,190 @@
+# Uncommon-world specialization jobs. Same convention as the rare-world set: each reskins a vanilla archetype at ~1.5x output with a signature twist, and every archetype here supports a gestalt drone.
+
+# ===== Tidally Locked =====
+# Dayside Collector: the mod's purest energy job, no byproduct, all output in one resource.
+pd_tidally_dayside_collector = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 9 }
+	}
+}
+pd_tidally_dayside_collector_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 9 }
+	}
+}
+pd_tidally_duskbelt_gardener = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  energy = 2 }
+	}
+}
+pd_tidally_duskbelt_gardener_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9  energy = 2 }
+	}
+}
+pd_tidally_duskbelt_astrobiologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  physics_research = 1 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_tidally_duskbelt_astrobiologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 3.5  physics_research = 1 }
+	}
+}
+
+# ===== Cave / Karst =====
+pd_cave_deepvent_technician = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  minerals = 2 }
+	}
+}
+pd_cave_deepvent_technician_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_energy_grid  icon = technician } }
+	tags = { energy }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_technician
+		produces = { energy = 8  minerals = 2 }
+	}
+}
+pd_cave_karst_delver = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+pd_cave_karst_delver_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_mining_1  icon = miner } }
+	tags = { minerals }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_miners
+		produces = { minerals = 6  food = 2 }
+	}
+}
+pd_cave_speleo_engineer = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = engineer } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_engineers
+		produces = { engineering_research = 4.5  energy = 2 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_cave_speleo_engineer_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = engineer } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_engineers
+		produces = { engineering_research = 4.5  energy = 2 }
+	}
+}
+
+# ===== Superhabitable =====
+pd_superhab_biosphere_ecologist = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5  food = 2 }
+		upkeep = { consumer_goods = 1.5 }
+	}
+}
+pd_superhab_biosphere_ecologist_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_research_lab_1  icon = biologist } }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_biologists
+		produces = { society_research = 4.5  food = 2 }
+	}
+}
+pd_superhab_abundance_cultivator = {
+	category = worker
+	swappable_data = { default = { condition_string = WORKER_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+pd_superhab_abundance_cultivator_drone = {
+	category = simple_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_food_processing_facility  icon = farmer } }
+	tags = { food }
+	inline_script = "jobs/pd_rare_body_worker_drone"
+	resources = {
+		category = planet_farmers
+		produces = { food = 9 }
+	}
+	triggered_planet_modifier = { planet_amenities_add = 625 }
+}
+# Gravitic Forgewright: high gravity yields denser alloys, and the materials science feeds a little physics.
+pd_superhab_gravitic_forgewright = {
+	category = specialist
+	swappable_data = { default = { condition_string = SPECIALIST_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25  physics_research = 0.25 }
+		upkeep = { minerals = 3 }
+	}
+}
+pd_superhab_gravitic_forgewright_drone = {
+	category = complex_drone
+	swappable_data = { default = { condition_string = DRONE_JOB_TRIGGER  building_icon = building_foundry_1  icon = foundry } }
+	tags = { alloys }
+	inline_script = "jobs/pd_rare_body_specialist_drone"
+	resources = {
+		category = planet_metallurgists
+		produces = { alloys = 2.25  physics_research = 0.25 }
+		upkeep = { minerals = 3 }
+	}
+}

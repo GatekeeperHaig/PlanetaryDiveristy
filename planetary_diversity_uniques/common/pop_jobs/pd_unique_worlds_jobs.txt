@@ -31,8 +31,8 @@ pd_biosynth_engineer = {
 	resources = {
 		category = planet_researchers
 		produces = {
-			engineering_research = 5
-			society_research = 5
+			engineering_research = 4
+			society_research = 4
 			sr_living_metal = 0.5
 		}
 		produces = {
@@ -43,7 +43,7 @@ pd_biosynth_engineer = {
 			}
 			engineering_research = -2
 			society_research = -2
-			sr_living_metal = 1
+			sr_living_metal = 1.0
 		}
 		produces = {
 			trigger = {
@@ -53,7 +53,8 @@ pd_biosynth_engineer = {
 			society_research = -2
 		}
 		upkeep = {
-			consumer_goods = 2
+			consumer_goods = 1.5
+			food = 10
 		}
 	}
 
@@ -118,8 +119,8 @@ pd_biosynth_engineer_drone = {
 	resources = {
 		category = planet_researchers
 		produces = {
-			engineering_research = 5
-			society_research = 5
+			engineering_research = 4
+			society_research = 4
 			sr_living_metal = 0.5
 		}
 		produces = {
@@ -130,7 +131,7 @@ pd_biosynth_engineer_drone = {
 			}
 			engineering_research = -2
 			society_research = -2
-			sr_living_metal = 1
+			sr_living_metal = 1.0
 		}
 		produces = {
 			trigger = {
@@ -146,7 +147,7 @@ pd_biosynth_engineer_drone = {
 					is_machine_empire = yes
 				}
 			}
-			energy = 4
+			energy = 3
 		}
 		upkeep = {
 			trigger = {
@@ -155,7 +156,10 @@ pd_biosynth_engineer_drone = {
 					is_hive_empire = yes
 				}
 			}
-			minerals = 6
+			minerals = 4
+		}
+		upkeep = {
+			food = 10
 		}
 	}
 
@@ -186,4 +190,136 @@ pd_biosynth_engineer_drone = {
 	}
 
 	inline_script = "jobs/automodding_priority_research"
+}
+
+# Grows new Biosynthetic pops from living metal. Growth and upkeep scale per worker, and both halt on a living metal deficit.
+pd_biosynth_cultivator = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_pd_biosynth_cauldron
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	triggered_planet_pop_group_modifier_for_species = {
+		potential = {
+			has_trait = trait_biosynth
+			owner = { NOT = { has_deficit = sr_living_metal } }
+		}
+		bonus_pop_growth = 4
+	}
+	triggered_planet_pop_group_modifier_for_species = {
+		potential = {
+			has_trait = trait_biosynth
+			owner = {
+				NOT = { has_deficit = sr_living_metal }
+				has_tradition = pd_tr_biosynth_perk_2a
+			}
+		}
+		bonus_pop_growth = 2
+	}
+
+	resources = {
+		category = planet_pop_assemblers
+		upkeep = {
+			trigger = { owner = { NOT = { has_tradition = pd_tr_biosynth_perk_2b } } }
+			sr_living_metal = 2
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					has_tradition = pd_tr_biosynth_perk_2b
+					NOT = { has_tradition = pd_tr_biosynth_adopt_finish }
+				}
+			}
+			sr_living_metal = 1.5
+		}
+		upkeep = {
+			trigger = { owner = { has_tradition = pd_tr_biosynth_adopt_finish } }
+			sr_living_metal = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
+
+pd_biosynth_cultivator_drone = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_pd_biosynth_cauldron
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = { can_think = yes }
+
+	triggered_planet_pop_group_modifier_for_species = {
+		potential = {
+			has_trait = trait_biosynth
+			owner = { NOT = { has_deficit = sr_living_metal } }
+		}
+		bonus_pop_growth = 4
+	}
+	triggered_planet_pop_group_modifier_for_species = {
+		potential = {
+			has_trait = trait_biosynth
+			owner = {
+				NOT = { has_deficit = sr_living_metal }
+				has_tradition = pd_tr_biosynth_perk_2a
+			}
+		}
+		bonus_pop_growth = 2
+	}
+
+	resources = {
+		category = planet_pop_assemblers
+		upkeep = {
+			trigger = { owner = { NOT = { has_tradition = pd_tr_biosynth_perk_2b } } }
+			sr_living_metal = 2
+		}
+		upkeep = {
+			trigger = {
+				owner = {
+					has_tradition = pd_tr_biosynth_perk_2b
+					NOT = { has_tradition = pd_tr_biosynth_adopt_finish }
+				}
+			}
+			sr_living_metal = 1.5
+		}
+		upkeep = {
+			trigger = { owner = { has_tradition = pd_tr_biosynth_adopt_finish } }
+			sr_living_metal = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
 }

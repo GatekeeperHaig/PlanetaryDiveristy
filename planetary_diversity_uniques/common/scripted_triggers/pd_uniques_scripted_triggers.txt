@@ -35,24 +35,30 @@ pd_should_not_crave_acean = { has_monthly_income = { resource = sr_acean value <
 # 	}
 # }
 
-# can_add_biosynth_traits = {
-# 	hidden_trigger = { exists = from }
-# 	from = {
-# 			has_tradition = pd_tr_biosynth_perk_1
-# 	}
-# 	OR = {
-# 		has_trait = trait_organic_fourschildren
-# 		has_trait = trait_organic_fourschildren_2
-# 	}
-# }
+can_add_biosynth_traits = {
+	hidden_trigger = { exists = from }
+	from = {
+		has_tradition = pd_tr_biosynth_perk_1
+	}
+	has_trait = trait_biosynth
+}
 
-# can_remove_biosynth_traits = {
-# 	hidden_trigger = { exists = from }
-# 	from = {
-# 			has_tradition = pd_tr_biosynth_perk_1
-# 	}
-# 	OR = {
-# 		has_trait = trait_organic_fourschildren
-# 		has_trait = trait_organic_fourschildren_2
-# 	}
-# }
+can_remove_biosynth_traits = {
+	hidden_trigger = { exists = from }
+	from = {
+		has_tradition = pd_tr_biosynth_perk_1
+	}
+	has_trait = trait_biosynth
+}
+
+# Species scope.
+is_biosynth_species = {
+	has_trait = trait_biosynth
+}
+
+# Leader scope. The tier check keeps paragons, including Unit 04, out.
+can_receive_biosynth_leader_trait = {
+	NOT = { has_trait = leader_trait_biosynth }
+	is_leader_tier = leader_tier_default
+	is_gestalt_node = no
+}
