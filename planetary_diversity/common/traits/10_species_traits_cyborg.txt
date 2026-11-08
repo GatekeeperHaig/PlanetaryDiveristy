@@ -31,7 +31,7 @@ trait_auto_mod_cyborg = {
 	}
 
 	resources = {
-		category = planet_pops
+		category = planet_pops_traits
 		produces = {
 			trigger = {
 				exists = owner
@@ -529,7 +529,7 @@ trait_cyborg_power_intensive = {
 	custom_tooltip = TRAIT_POWER_INTENSIVE_EFFECT
 
 	resources = {
-		category = planet_pops
+		category = planet_pops_traits
 		# Energy Upkeep
 		upkeep = {
 			trigger = {
@@ -1109,6 +1109,7 @@ trait_cyborg_climate_adjustment_dry = {
 	opposites = {
 		"trait_cyborg_climate_adjustment_wet"
 		"trait_cyborg_climate_adjustment_cold"
+		"trait_cyborg_climate_adjustment_volcanic"
 	}
 	species_potential_add = {
 		can_add_cybernetic_traits = yes
@@ -1159,6 +1160,7 @@ trait_cyborg_climate_adjustment_wet = {
 	opposites = {
 		"trait_cyborg_climate_adjustment_cold"
 		"trait_cyborg_climate_adjustment_dry"
+		"trait_cyborg_climate_adjustment_volcanic"
 	}
 	species_potential_add = {
 		can_add_cybernetic_traits = yes
@@ -1206,6 +1208,7 @@ trait_cyborg_climate_adjustment_cold = {
 	opposites = {
 		"trait_cyborg_climate_adjustment_wet"
 		"trait_cyborg_climate_adjustment_dry"
+		"trait_cyborg_climate_adjustment_volcanic"
 	}
 	species_potential_add = {
 		can_add_cybernetic_traits = yes
@@ -1236,6 +1239,46 @@ trait_cyborg_climate_adjustment_cold = {
 		pc_pd_cold_superhabitable_habitability	= @cyborg_hab_preference
 		pc_pd_cold_tidally_locked_habitability	= @cyborg_hab_preference
 		pc_pd_cold_cave_habitability			= @cyborg_hab_preference
+	}
+	slave_cost = {
+		trade = 500
+	}
+}
+
+trait_cyborg_climate_adjustment_volcanic = {
+	icon = "gfx/interface/icons/traits/trait_pc_volcanic_preference.dds"
+	host_has_dlc = "The Machine Age"
+	cost = 1
+	custom_tooltip = trait_cyborg_climate_adjustment_volcanic_tt
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	localized_tags = {
+		SPECIES_TRAIT_CYBORG
+	}
+	tags = { organic positive habitability cybernetic }
+	initial = no
+	opposites = {
+		"trait_cyborg_climate_adjustment_wet"
+		"trait_cyborg_climate_adjustment_dry"
+		"trait_cyborg_climate_adjustment_cold"
+	}
+	species_potential_add = {
+		can_add_cybernetic_traits = yes
+	}
+	species_possible_add = {
+		can_take_non_ocean_planet_preference = yes
+	}
+	species_possible_remove = {
+		can_remove_cybernetic_traits = yes
+	}
+	randomized = no
+	category = cyborg
+	sorting_priority = 30
+	bound_to_planet_classes = {
+		pc_volcanic
+	}
+	modifier = {
+		# Volcanic
+		pc_volcanic_habitability 	= @cyborg_hab_preference_volcanic
 	}
 	slave_cost = {
 		trade = 500

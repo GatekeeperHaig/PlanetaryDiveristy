@@ -1,12 +1,497 @@
 ﻿l_spanish:
 
- pd_ammonia_buildings_tt: "$pd_unlocks_one_building$\n$t$- ['building:building_pd_ammonia_fixation_institute']\n$t$- ['building:building_pd_ammonia_pharma_works']\n$t$- ['building:building_pd_ammonia_biome_reserve']"
- pd_methane_buildings_tt: "$pd_unlocks_one_building$\n$t$- ['building:building_pd_methane_tholin_lab']\n$t$- ['building:building_pd_methane_hydrocarbon_foundry']\n$t$- ['building:building_pd_methane_polymer_plant']"
- pd_nitrogen_buildings_tt: "$pd_unlocks_one_building$\n$t$- ['building:building_pd_nitrogen_supercomputer']\n$t$- ['building:building_pd_nitrogen_munitions_foundry']\n$t$- ['building:building_pd_nitrogen_cryonics_sanctuary']"
+ # Species class
+ CRYO: "Criófilo"
+ CRYO_desc: "La clase de especie no tiene ningún efecto en tu imperio, pero las especies de clase criófila pueden considerar a otros criófilos menos alienígenas que a otras clases de especie."
+
+ # Homeworld column header
+ climate_cryogenic: "Criogénico"
+ # Planet tooltip climate label (matches `climate = "cryogenic"` on the planet class)
+ cryogenic: "§B(Clima criogénico)§!"
+
+ # Planet classes
+ pc_pd_methane: "Mundo de metano"
+ pc_pd_methane_desc: "Un mundo rocoso y gélido con una densa atmósfera de nitrógeno y metano. Mares de metano y etano líquidos cubren gran parte de la superficie, y una bruma constante de hidrocarburos tiñe el cielo de naranja. La vida nativa se basa en una bioquímica de hidrocarburos."
+ pc_pd_ammonia: "Mundo de amoníaco"
+ pc_pd_ammonia_desc: "Un mundo rocoso y frío con una densa atmósfera de nitrógeno y amoníaco. Océanos de amoníaco líquido cubren gran parte de la superficie, y en los polos persiste hielo de agua y amoníaco. La vida nativa se basa en una bioquímica de amoníaco."
+ pc_pd_nitrogen: "Mundo de nitrógeno"
+ pc_pd_nitrogen_desc: "Un mundo rocoso y helado con una tenue atmósfera de nitrógeno. Mares de nitrógeno líquido se acumulan en las tierras bajas, y géiseres de nitrógeno brotan de las fisuras de la corteza de hielo. La vida nativa se basa en una bioquímica de nitrógeno."
+
+ # Planet-class static modifier (applied at game start to flag ammonia worlds)
+ pd_ammonia: "Mundo de amoníaco"
+ pd_ammonia_desc: "Este planeta frío tiene una densa atmósfera de nitrógeno y amoníaco sobre océanos de amoníaco líquido, y el abundante nitrógeno fijado sustenta una próspera biosfera basada en el amoníaco. Ese mismo amoníaco corroe la mayoría de los metales y desgasta sin cesar la infraestructura expuesta."
+
+ # Planet-class static modifier (applied at game start to flag methane worlds)
+ pd_methane: "Mundo de metano"
+ pd_methane_desc: "Este planeta gélido tiene una densa atmósfera de nitrógeno y metano sobre vastos mares de metano y etano líquidos, una enorme reserva de combustible. Esa misma volatilidad hace que la atmósfera sea peligrosamente inflamable, por lo que cada estructura debe estar fuertemente blindada contra explosiones."
+
+ # Planet-class static modifier (applied at game start to flag nitrogen worlds)
+ pd_nitrogen: "Mundo de nitrógeno"
+ pd_nitrogen_desc: "Este planeta helado tiene una tenue atmósfera de nitrógeno sobre mares de nitrógeno líquido, con gruesos estratos de nitratos y minerales atrapados bajo el hielo. El frío extremo hace viables los superconductores naturales, pero obliga a calentar cada instalación de forma constante para que siga funcionando."
+
+ # Core trait
+ trait_cryophile: "Criófilo"
+ trait_cryophile_desc: "El metabolismo lento y de baja temperatura de esta especie requiere una mezcla de hidruros exóticos además de los nutrientes habituales. Viven generaciones más que otras especies, pero cada tarea que emprenden les lleva mucho más tiempo."
+ TRAIT_CRYOPHILE_EFFECT: "Mantenimiento de $r_exotic_gases$ por cada $pop_group_unit$ £pop£ poblaciones: §R+0.05§!"
+
+ # Preference traits
+ trait_pc_pd_methane_preference: "Preferencia por mundo de metano"
+ trait_pc_pd_methane_preference_desc: "Esta especie evolucionó junto a los mares de hidrocarburos líquidos de los mundos de metano. Prospera en el frío profundo y está plenamente adaptada a una bioquímica de metano líquido."
+ trait_pc_pd_ammonia_preference: "Preferencia por mundo de amoníaco"
+ trait_pc_pd_ammonia_preference_desc: "Esta especie evolucionó en las densas atmósferas de nubes de amoníaco de los mundos de amoníaco. Prospera en el frío profundo y está plenamente adaptada a una bioquímica de compuestos de amoníaco."
+ trait_pc_pd_nitrogen_preference: "Preferencia por mundo de nitrógeno"
+ trait_pc_pd_nitrogen_preference_desc: "Esta especie evolucionó junto a los mares de nitrógeno líquido y los géiseres criovolcánicos de los mundos de nitrógeno. Prospera en el frío profundo y está plenamente adaptada a una bioquímica de nitrógeno líquido."
+
+ # Habitability modifiers
+ mod_pc_pd_methane_habitability: "Habitabil. mundo de metano"
+ mod_pc_pd_ammonia_habitability: "Habitabil. mundo de amoníaco"
+ mod_pc_pd_nitrogen_habitability: "Habitabil. mundo de nitrógeno"
+
+ # Ammonia atmosphere zone gate (planet-side modifier applied by arcology atmosphere checks)
+ pd_ammonia_atmosphere:0 "Atmósfera de amoníaco"
+ pd_ammonia_atmosphere_desc:0 "Nitrógeno denso y amoníaco gaseoso a bajas temperaturas. Contiene trazas de metanol y partículas de hidrocarburos congelados en suspensión."
+
+ # Methane atmosphere zone gate (planet-side modifier applied by arcology atmosphere checks)
+ pd_methane_atmosphere:0 "Atmósfera de metano"
+ pd_methane_atmosphere_desc:0 "Nitrógeno, metano y etano densos a temperaturas muy bajas. Los aerosoles de tolinas en suspensión dan al aire su característico tono anaranjado."
+
+ # Nitrogen atmosphere zone gate (planet-side modifier applied by arcology atmosphere checks)
+ pd_nitrogen_atmosphere:0 "Atmósfera de nitrógeno"
+ pd_nitrogen_atmosphere_desc:0 "Nitrógeno molecular tenue a temperaturas criogénicas extremas. Las partículas de hielo en suspensión y las trazas de neón dan al aire un tono azul pálido."
+
+ # Start screen intro (PART_ONE per planet class)
+ START_SCREEN_PART_ONE_PD_METHANE: "En los eones desde que las primeras comunidades [GetSpeciesName]s cobraran forma en las orillas de hidrocarburos líquidos de [GetHomeWorldName], nuestra civilización ha prosperado y se ha extendido."
+ START_SCREEN_PART_ONE_PD_AMMONIA: "En los eones desde que las primeras comunidades [GetSpeciesName]s cobraran forma bajo las nubes de amoníaco de [GetHomeWorldName], nuestra civilización ha prosperado y se ha extendido."
+ START_SCREEN_PART_ONE_PD_NITROGEN: "En los eones desde que las primeras comunidades [GetSpeciesName]s cobraran forma junto a los mares de nitrógeno líquido de [GetHomeWorldName], nuestra civilización ha prosperado y se ha extendido."
+
+ # Ammonia world planet features
+ d_pd_ammonia_lightning_storms: "Frentes de relámpagos de nitrógeno"
+ d_pd_ammonia_lightning_storms_desc: "Donde chocan los frentes de amoníaco y nitrógeno, el cielo descarga una cascada casi constante de relámpagos. La corriente puede extraerse directamente del aire."
+ d_pd_ammonia_thermocline: "Estratificación de nubes de amoníaco"
+ d_pd_ammonia_thermocline_desc: "La atmósfera se asienta en capas de nubes bien definidas, cada una más cálida que la de arriba. Puede obtenerse energía del gradiente entre ellas."
+ d_pd_ammonia_salt_dunes: "Dunas de sal de amonio"
+ d_pd_ammonia_salt_dunes_desc: "Dunas de sal de amonio pura esculpidas por el viento se extienden por la superficie, listas para recogerlas y procesarlas por sus minerales."
+ d_pd_ammonia_brine_caverns: "Cavernas de solución amoniacal"
+ d_pd_ammonia_brine_caverns_desc: "Una profunda red de cavernas donde el amoníaco filtrado ha recubierto las paredes con ricas vetas de mineral a lo largo de las eras."
+ d_pd_ammonia_chemosynthetic_pools: "Estanques de amoníaco líquido"
+ d_pd_ammonia_chemosynthetic_pools_desc: "Amplias cuencas de amoníaco líquido en calma cubiertas de gruesas esteras microbianas. La biomasa es una fuente de alimento primaria para cualquier colonia adaptada al frío."
+ d_pd_ammonia_organic_haze: "Nevadas amoniacales"
+ d_pd_ammonia_organic_haze_desc: "Suaves copos de hielo de amoníaco descienden de las nubes altas en una nevada continua y arrastran consigo compuestos orgánicos comestibles."
+ d_pd_ammonia_pure_gas_vents: "Respiraderos de amoníaco y nitrógeno"
+ d_pd_ammonia_pure_gas_vents_desc: "Profundas fisuras expulsan columnas de gas de amoníaco y nitrógeno lo bastante puras como para abastecer refinerías sin procesamiento previo."
+ d_pd_ammonia_polar_ion_columns: "Columnas de ionización polar"
+ d_pd_ammonia_polar_ion_columns_desc: "En los polos, el aire cargado de amoníaco se ioniza en imponentes columnas de corriente que ascienden cientos de kilómetros hacia el cielo. La descarga puede aprovecharse como electricidad en bruto."
+ d_pd_ammonia_cryolite_reefs: "Arrecifes de criolita"
+ d_pd_ammonia_cryolite_reefs_desc: "Vastos bancos de criolita cristalizada en el lecho marino, depositados a lo largo del tiempo geológico y atravesados por menas de tierras raras y litio."
+ d_pd_ammonia_ammoniated_kelp_forests: "Bosques de algas amoniacales"
+ d_pd_ammonia_ammoniated_kelp_forests_desc: "Imponentes bosques sumergidos absorben el amoníaco directamente del mar y lo convierten en abundante biomasa comestible. La cosecha más rica de cualquier mundo helado."
+
+ # Methane world planet features
+ d_pd_methane_tholin_storm_belts: "Cinturones de tormentas de tolinas"
+ d_pd_methane_tholin_storm_belts_desc: "Aerosoles de tolinas cargados se agitan por la atmósfera superior en cinturones de tormentas continuos y desprenden electricidad estática sobre la capa de nubes. La descarga puede conducirse hasta el suelo mediante torres conductoras."
+ d_pd_methane_cryovolcanic_vents: "Respiraderos criovolcánicos"
+ d_pd_methane_cryovolcanic_vents_desc: "Las fisuras expulsan lodos de metano líquido y magma de agua y amoníaco al aire helado. El gradiente térmico impulsa las turbinas instaladas sobre cada respiradero."
+ d_pd_methane_supercooled_geysers: "Géiseres sobreenfriados"
+ d_pd_methane_supercooled_geysers_desc: "Depósitos subterráneos de etano presurizado brotan por las fallas en imponentes chorros de rocío sobreenfriado. Cada penacho es una columna permanente de energía aprovechable."
+ d_pd_methane_carbonate_caverns: "Cavernas de carbonatos"
+ d_pd_methane_carbonate_caverns_desc: "Redes de cuevas excavadas en el lecho rocoso de agua y amoníaco por antiguos flujos de metano, con paredes recubiertas de carbonatos cristalinos y compuestos orgánicos complejos."
+ d_pd_methane_clathrate_shelves: "Plataformas de clatratos de metano"
+ d_pd_methane_clathrate_shelves_desc: "Vastas plataformas de hielo de clatrato de metano cubren los márgenes continentales, y su red cristalina atrapa metales y sales útiles en cantidades extraíbles."
+ d_pd_methane_ice_diamonds: "Diamantes de hielo de metano"
+ d_pd_methane_ice_diamonds_desc: "La inmensa presión atmosférica comprime el carbono derivado del metano en lluvias de microdiamantes que se depositan sobre las mesetas polares."
+ d_pd_methane_tholin_haze: "Bruma de tolinas"
+ d_pd_methane_tholin_haze_desc: "Los aerosoles de hidrocarburos en suspensión caen del cielo como un precipitado comestible continuo. La fauna de la superficie se alimenta directamente de ellos."
+ d_pd_methane_liquid_methane_seas: "Mares de metano líquido"
+ d_pd_methane_liquid_methane_seas_desc: "Amplios mares de metano y etano líquidos sustentan gruesas esteras de microbiología nativa en sus aguas poco profundas. La biomasa es una fuente de alimento primaria para cualquier colonia adaptada al frío."
+ d_pd_methane_hydrocarbon_marshes: "Marismas de hidrocarburos"
+ d_pd_methane_hydrocarbon_marshes_desc: "Vastas marismas mareales de flora nativa alimentada por metano bordean las costas y convierten los hidrocarburos atmosféricos en abundante biomasa comestible. La cosecha más rica de cualquier mundo helado."
+ d_pd_methane_pure_gas_vents: "Respiraderos de metano y etano"
+ d_pd_methane_pure_gas_vents_desc: "Profundas fisuras expulsan columnas de metano y gases de hidrocarburos más pesados lo bastante puras como para abastecer refinerías sin procesamiento previo."
+
+ # Nitrogen world planet features
+ d_pd_nitrogen_geyser_fields: "Campos de géiseres de nitrógeno"
+ d_pd_nitrogen_geyser_fields_desc: "Vastas llanuras donde el nitrógeno subterráneo presurizado brota en chorros constantes de vapor sobreenfriado. Las turbinas instaladas sobre cada respiradero obtienen energía de las columnas expulsadas."
+ d_pd_nitrogen_aurora_curtains: "Cortinas de auroras"
+ d_pd_nitrogen_aurora_curtains_desc: "El viento solar genera auroras casi continuas en la tenue atmósfera superior. Las láminas cargadas pueden aprovecharse como electricidad en bruto mediante antenas con toma de tierra."
+ d_pd_nitrogen_plasma_columns: "Columnas de plasma polares"
+ d_pd_nitrogen_plasma_columns_desc: "En los polos magnéticos, el nitrógeno ionizado se eleva en imponentes columnas de plasma que ascienden cientos de kilómetros hacia el cielo. La descarga puede aprovecharse como electricidad en bruto."
+ d_pd_nitrogen_frost_caverns: "Cavernas de cristales de escarcha"
+ d_pd_nitrogen_frost_caverns_desc: "Profundas redes de cavernas recubiertas de vetas de mineral metálico atrapadas en el antiguo hielo de nitrógeno. Las paredes rinden ricos extractos una vez calentadas lo suficiente para procesarlas."
+ d_pd_nitrogen_nitrate_flats: "Llanuras de nitratos congelados"
+ d_pd_nitrogen_nitrate_flats_desc: "Amplias cuencas de sales de nitrato cristalizadas depositadas por antiguos mares de nitrógeno. Los yacimientos son profundos y ofrecen una producción constante de minerales."
+ d_pd_nitrogen_diamond_rinds: "Cortezas de diamante"
+ d_pd_nitrogen_diamond_rinds_desc: "El antiguo hielo de nitrógeno ha comprimido el carbono atmosférico en gruesas cortezas de carbono cristalino a lo largo de las mesetas polares. Las vetas están lo bastante cerca de la superficie como para extraerlas directamente."
+ d_pd_nitrogen_frost_blooms: "Floraciones de escarcha de nitrógeno"
+ d_pd_nitrogen_frost_blooms_desc: "Manchas de crioflora nativa crecen en las tierras bajas heladas y absorben el nitrógeno directamente del aire. La biomasa puede cosecharse como materia prima comestible."
+ d_pd_nitrogen_nitrogen_seas: "Mares de nitrógeno líquido"
+ d_pd_nitrogen_nitrogen_seas_desc: "Amplias cuencas de nitrógeno líquido sustentan gruesas esteras de microbiología nativa en sus aguas poco profundas. La biomasa es una fuente de alimento primaria para cualquier colonia adaptada al frío."
+ d_pd_nitrogen_cryoplankton_drifts: "Derivas de crioplancton"
+ d_pd_nitrogen_cryoplankton_drifts_desc: "Vastas floraciones a la deriva de crioplancton nativo metabolizan el nitrógeno líquido y lo convierten en abundante biomasa comestible. La cosecha más rica de cualquier mundo helado."
+ d_pd_nitrogen_pure_gas_vents: "Respiraderos de nitrógeno puro"
+ d_pd_nitrogen_pure_gas_vents_desc: "Profundas fisuras expulsan columnas de nitrógeno puro y trazas de gases exóticos lo bastante puras como para abastecer refinerías sin procesamiento previo."
+
+ # Urban districts (link to vanilla city/hive/nexus loc so submods stay compatible)
+
+ # Rural districts
+ district_pdexotic_cryo_riftvent: "Estación de respiraderos de grieta"
+ district_pdexotic_cryo_riftvent_plural: "Estaciones de respiraderos de grieta"
+ district_pdexotic_cryo_riftvent_desc: "Los respiraderos criovolcánicos liberan salmuera sobreenfriada y gas atrapado. Las baterías de turbinas instaladas sobre las grietas obtienen energía del pronunciado gradiente térmico entre el calor subterráneo y el aire de la superficie."
+ district_pdexotic_cryo_sublimation: "Pozo de sublimación"
+ district_pdexotic_cryo_sublimation_plural: "Pozos de sublimación"
+ district_pdexotic_cryo_sublimation_desc: "Excavaciones a cielo abierto donde enormes volúmenes de hielo volátil se subliman de forma instantánea para liberar los metales y sales atrapados en su interior. Cortinas de vapor a la deriva señalan cada frente de trabajo."
+ district_pdexotic_cryo_chemovat: "Jardín de quimiocubas"
+ district_pdexotic_cryo_chemovat_plural: "Jardines de quimiocubas"
+ district_pdexotic_cryo_chemovat_desc: "Campos de tanques presurizados donde se cultiva vida quimiosintética nativa. Los organismos metabolizan la atmósfera del planeta para producir biomasa comestible y expulsan gases raros como subproducto."
+ pdexotic_cryo_chemovat_basic: "Quimiocubas básicas"
+ pdexotic_cryo_chemovat_basic_desc: "Operaciones básicas de quimiocubas: cultivo de biomasa quimiosintética nativa, a la espera de especialización."
+
+ # District cap modifiers (auto-generated by engine; loc must match vanilla style)
+ mod_district_pdexotic_cryo_riftvent_max_add: "Máx. $district_pdexotic_cryo_riftvent_plural$"
+ mod_district_pdexotic_cryo_sublimation_max_add: "Máx. $district_pdexotic_cryo_sublimation_plural$"
+ mod_district_pdexotic_cryo_chemovat_max_add: "Máx. $district_pdexotic_cryo_chemovat_plural$"
+
+ # Chemovat zones
+ zone_pdexotic_cryo_chemovat_refinement: "Cultivo en cubas"
+ zone_pdexotic_cryo_chemovat_refinement_desc: "Los tanques a presión de los campos de quimiocubas cultivan cepas quimiosintéticas nativas que convierten la atmósfera atrapada en biomasa comestible a escala industrial."
+ zone_pdexotic_cryo_chemovat_hydride_synthesis: "Destilación de hidruros"
+ zone_pdexotic_cryo_chemovat_hydride_synthesis_desc: "Cada quimiocuba está equipada con columnas de destilación que condensan hidruros volátiles en contenedores. El rendimiento de biomasa disminuye en proporción a medida que aumenta la producción de gas."
+ zone_unavailable_tech_mine_exotic_gases: "$engineering_research_icon_with_space$$tech_mine_exotic_gases$"
+
+ # Cryo chemist job-add modifiers (auto-generated by engine; vanilla pattern: "[job.GetName] Jobs")
+ mod_job_pdexotic_cryo_chemist_add: "Trabajos de [pdexotic_cryo_chemist.GetName]"
+ mod_job_pdexotic_cryo_chemist_drone_add: "Trabajos de [pdexotic_cryo_chemist_drone.GetName]"
+ mod_job_pdexotic_cryo_chemist_machine_add: "Trabajos de [pdexotic_cryo_chemist_machine.GetName]"
+ mod_job_pdexotic_cryo_chemist_automated_workforce_mult: "[pdexotic_cryo_chemist.GetIcon] [pdexotic_cryo_chemist.GetNamePlural] $MOD_PLANET_AUTOMATED_WORKFORCE$"
+
+ # Cryo chemist jobs (worked at Chemovat Gardens)
+ job_pdexotic_cryo_chemist: "Cuidador de cubas"
+ job_pdexotic_cryo_chemist_plural: "Cuidadores de cubas"
+ job_pdexotic_cryo_chemist_desc: "Los cuidadores de cubas cultivan las quimiocubas presurizadas donde se cría vida quimiosintética nativa con la propia atmósfera del planeta. El trabajo es mitad agricultura, mitad química de baja temperatura: los organismos producen biomasa comestible y expulsan gases raros como subproducto."
+
+ job_pdexotic_cryo_chemist_drone: "Dron cuidador de cubas"
+ job_pdexotic_cryo_chemist_drone_plural: "Drones cuidadores de cubas"
+ job_pdexotic_cryo_chemist_drone_desc: "Los drones cuidadores de cubas atienden las quimiocubas presurizadas de la mente colmena, canalizan la biomasa quimiosintética cultivada hacia el flujo de alimento y recuperan los gases expulsados para las industrias del enjambre."
+
+ job_pdexotic_cryo_chemist_machine: "Unidad cuidadora de cubas"
+ job_pdexotic_cryo_chemist_machine_plural: "Unidades cuidadoras de cubas"
+ job_pdexotic_cryo_chemist_machine_desc: "Las unidades cuidadoras de cubas operan las quimiocubas presurizadas como infraestructura de extracción de gas y obtienen los subproductos volátiles del ciclo de biomasa criogénica. Donde el imperio aún necesita consumo orgánico, la biomasa se recupera como producción secundaria."
+
+ # Cryophile livestock variant. Aliases to vanilla livestock loc so flavor text stays consistent across phenotypes.
+ job_livestock_cryophile: "$job_livestock$"
+ job_livestock_cryophile_plural: "$job_livestock_plural$"
+ job_livestock_cryophile_desc: "$job_livestock_desc$"
+
+ # Cryogenic terraforming tech (mirrors vanilla volcanic; covers ammonia and methane)
+ tech_pd_cryogenic_terraforming: "Terraformación criogénica"
+ tech_pd_cryogenic_terraforming_desc: "Los avances en ingeniería criogénica y química de disolventes exóticos permiten aplicar la geoingeniería a temperaturas y presiones antes impensables. Podemos terraformar un mundo criogénico y convertirlo en un planeta templado."
+
+ # Ammonia arcology dummy planet classes (engine ignores these but the picker shows loc keys, so flag them as DO NOT USE)
+ pc_pd_ammonia_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_city_adj:0 "DUMMY"
+ pc_pd_ammonia_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_senate_adj:0 "DUMMY"
+ pc_pd_ammonia_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_palace_adj:0 "DUMMY"
+ pc_pd_ammonia_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_headquarters_adj:0 "DUMMY"
+ pc_pd_ammonia_garden_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_city_adj:0 "DUMMY"
+ pc_pd_ammonia_garden_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_senate_adj:0 "DUMMY"
+ pc_pd_ammonia_garden_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_palace_adj:0 "DUMMY"
+ pc_pd_ammonia_garden_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_headquarters_adj:0 "DUMMY"
+ pc_pd_ammonia_garden_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_garden_machine_capital_adj:0 "DUMMY"
+ pc_pd_ammonia_fortress_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_city_adj:0 "DUMMY"
+ pc_pd_ammonia_fortress_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_senate_adj:0 "DUMMY"
+ pc_pd_ammonia_fortress_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_palace_adj:0 "DUMMY"
+ pc_pd_ammonia_fortress_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_headquarters_adj:0 "DUMMY"
+ pc_pd_ammonia_fortress_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_fortress_machine_capital_adj:0 "DUMMY"
+ pc_pd_ammonia_commercial_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_city_adj:0 "DUMMY"
+ pc_pd_ammonia_commercial_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_senate_adj:0 "DUMMY"
+ pc_pd_ammonia_commercial_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_palace_adj:0 "DUMMY"
+ pc_pd_ammonia_commercial_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_ammonia_commercial_headquarters_adj:0 "DUMMY"
+
+ # Methane arcology dummy planet classes (engine ignores these but the picker shows loc keys, so flag them as DO NOT USE)
+ pc_pd_methane_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_city_adj:0 "DUMMY"
+ pc_pd_methane_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_senate_adj:0 "DUMMY"
+ pc_pd_methane_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_palace_adj:0 "DUMMY"
+ pc_pd_methane_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_headquarters_adj:0 "DUMMY"
+ pc_pd_methane_garden_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_city_adj:0 "DUMMY"
+ pc_pd_methane_garden_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_senate_adj:0 "DUMMY"
+ pc_pd_methane_garden_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_palace_adj:0 "DUMMY"
+ pc_pd_methane_garden_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_headquarters_adj:0 "DUMMY"
+ pc_pd_methane_garden_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_garden_machine_capital_adj:0 "DUMMY"
+ pc_pd_methane_fortress_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_city_adj:0 "DUMMY"
+ pc_pd_methane_fortress_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_senate_adj:0 "DUMMY"
+ pc_pd_methane_fortress_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_palace_adj:0 "DUMMY"
+ pc_pd_methane_fortress_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_headquarters_adj:0 "DUMMY"
+ pc_pd_methane_fortress_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_fortress_machine_capital_adj:0 "DUMMY"
+ pc_pd_methane_commercial_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_city_adj:0 "DUMMY"
+ pc_pd_methane_commercial_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_senate_adj:0 "DUMMY"
+ pc_pd_methane_commercial_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_palace_adj:0 "DUMMY"
+ pc_pd_methane_commercial_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_methane_commercial_headquarters_adj:0 "DUMMY"
+
+ # Nitrogen arcology dummy planet classes
+ pc_pd_nitrogen_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_headquarters_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_headquarters_adj:0 "DUMMY"
+ pc_pd_nitrogen_garden_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_garden_machine_capital_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_headquarters_adj:0 "DUMMY"
+ pc_pd_nitrogen_fortress_machine_capital:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_machine_capital_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_fortress_machine_capital_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_city:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_city_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_city_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_senate:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_senate_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_senate_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_palace:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_palace_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_palace_adj:0 "DUMMY"
+ pc_pd_nitrogen_commercial_headquarters:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_headquarters_desc:0 "DUMMY CLASS DO NOT USE"
+ pc_pd_nitrogen_commercial_headquarters_adj:0 "DUMMY"
+
+ # Cryothermal Engineering ascension perk
+ ap_pd_cryothermal_engineering: "Ingeniería criotérmica"
+ ap_pd_cryothermal_engineering_desc: "Prosperar en condiciones criogénicas exige reinventar los materiales, la biología y la química. Somos pioneros de la ciencia del frío."
+
+ # Grayed-out requirement line shown before Terrestrial Sculpting is researched.
+ requires_technology_tech_terrestrial_sculpting:0 "$TRIGGER_FAIL$Requiere la tecnología £society£ §Y$tech_terrestrial_sculpting$§!."
+
+ # Civ-conditional job-efficiency effect lines shown in the AP card; only one renders per empire type.
+ ap_pd_cryothermal_workforce_effect: "$mod_pop_pdexotic_cryo_chemist_bonus_workforce_mult$: §G+20%§!"
+ ap_pd_cryothermal_workforce_drone_effect: "$mod_pop_pdexotic_cryo_chemist_drone_bonus_workforce_mult$: §G+20%§!"
+ ap_pd_cryothermal_workforce_machine_effect: "$mod_pop_pdexotic_cryo_chemist_machine_bonus_workforce_mult$: §G+20%§!"
+
+ # Single planet-summary line for the AP card, instead of a per-planet modifier list.
+ ap_pd_cryothermal_engineered_planets_effect: "Los ['concept_pd_cryogenic_planets'] de tu imperio obtienen el modificador §Y$pd_cryothermal_engineered_planet$§!."
+
+ # Cryogenic planet concept (linked from the AP tooltip and reusable across exotic content).
+ concept_pd_cryogenic_planet: "Planeta criogénico"
+ concept_pd_cryogenic_planets: "Planetas criogénicos"
+ concept_pd_cryogenic_planet_desc: "$concept_pd_cryogenic_planet$ designa a los mundos cuyas biosferas funcionan con química criogénica en lugar de agua líquida:$NEW_LINE$- $pc_pd_ammonia$$NEW_LINE$- $pc_pd_methane$$NEW_LINE$- $pc_pd_nitrogen$"
+
+ # Country workforce modifiers (auto-render their constituent mults via the mod_job_* keys below)
+ pd_cryothermal_workforce: "Optimización laboral criotérmica"
+ pd_cryothermal_workforce_desc: "$pd_cryothermal_workforce_shared_desc$"
+ pd_cryothermal_workforce_drone: "$pd_cryothermal_workforce$"
+ pd_cryothermal_workforce_drone_desc: "$pd_cryothermal_workforce_shared_desc$"
+ pd_cryothermal_workforce_machine: "$pd_cryothermal_workforce$"
+ pd_cryothermal_workforce_machine_desc: "$pd_cryothermal_workforce_shared_desc$"
+ pd_cryothermal_workforce_shared_desc: "La formación para atmósferas hostiles, las herramientas reforzadas y las líneas de suministro de hidruros exóticos aumentan la productividad de toda la mano de obra de las quimiocubas."
+
+ # Per-planet modifier granted by the AP to cryo (ammonia/methane) worlds
+ pd_cryothermal_engineered_planet: "Acondicionado criotérmicamente"
+ pd_cryothermal_engineered_planet_desc: "La infraestructura preparada para la atmósfera y las líneas de procesamiento sobreenfriado permiten a este mundo albergar asentamientos más densos de lo que su entorno natural permitiría."
+
+ # Vatkeeper job-efficiency modifiers, shown in the workforce modifier's hover breakdown.
+ mod_pop_pdexotic_cryo_chemist_bonus_workforce_mult: "[pdexotic_cryo_chemist.GetName] $MOD_POP_BONUS_WORKFORCE_MULT$"
+ mod_pop_pdexotic_cryo_chemist_drone_bonus_workforce_mult: "[pdexotic_cryo_chemist_drone.GetName] $MOD_POP_BONUS_WORKFORCE_MULT$"
+ mod_pop_pdexotic_cryo_chemist_machine_bonus_workforce_mult: "[pdexotic_cryo_chemist_machine.GetName] $MOD_POP_BONUS_WORKFORCE_MULT$"
+
+ # Pressure Suits tech (AP-only, granted by ap_pd_cryothermal_engineering)
+ tech_pd_pressure_suits: "Trajes presurizados"
+ tech_pd_pressure_suits_desc: "Los trajes reforzados de vacío frío y los hábitats de atmósfera sellada permiten a nuestros colonos soportar el oxígeno, la presión y el calor de mundos distintos al nuestro. A su vez, otras especies pueden sobrevivir en nuestras atmósferas."
+ tech_pd_pressure_suits_effect_title: "§HDesbloquea la colonización:§! ['concept_pd_cryogenic_planet'] para especies no criogénicas"
+ tech_pd_pressure_suits_effect_desc: "§HHabitación criogénica§!\nLos hábitats presurizados y los trajes de vacío frío mantienen con vida a los colonos que respiran oxígeno en atmósferas de metano, amoníaco y nitrógeno."
+
+ # Cryoforming tech (normal research, cryophile-founder empires only; gates ingress terraforming into ammonia and methane)
+ tech_pd_cryoforming: "Crioformación"
+ tech_pd_cryoforming_desc: "Los avances en química criogénica y reformación atmosférica nos dan los medios para extender nuestra biosfera a mundos donde no se forma de manera natural. Un planeta templado puede transformarse en la atmósfera fría y densa que nuestra especie necesita."
+ tech_pd_cryoforming_effect_title: "§HDesbloquea la función:§! Terraformación criogénica"
+ tech_pd_cryoforming_effect_desc: "Nos permite terraformar mundos templados en mundos de amoníaco, metano y nitrógeno."
+ tech_pd_cryogenic_terraforming_effect_title: "§HDesbloquea la función:§! Terraformación criogénica"
+ tech_pd_cryogenic_terraforming_effect_desc: "Nos permite terraformar mundos de amoníaco, metano y nitrógeno en mundos templados."
+
+ # Habitat atmosphere toggle decisions (auto-stamped by on_megastructure_built; these let players add it to inherited habitats or vent it after conquest)
+ decision_pd_exotic_habitat_add_ammonia_atmosphere: "Presurizar atmósfera de amoníaco"
+ decision_pd_exotic_habitat_add_ammonia_atmosphere_desc: "Inunda el soporte vital del hábitat con amoníaco y nitrógeno para que los nuestros puedan asentarse aquí. Una vez que cambie la atmósfera, solo las especies adaptadas a condiciones criogénicas podrán vivir a bordo."
+ decision_pd_exotic_habitat_remove_ammonia_atmosphere: "Ventilar atmósfera de amoníaco"
+ decision_pd_exotic_habitat_remove_ammonia_atmosphere_desc: "Expulsa la atmósfera de amoníaco de este hábitat y la reemplaza por una mezcla de oxígeno convencional. Las especies criogénicas ya no podrán asentarse aquí."
+ decision_pd_exotic_habitat_add_methane_atmosphere: "Presurizar atmósfera de metano"
+ decision_pd_exotic_habitat_add_methane_atmosphere_desc: "Inunda el soporte vital del hábitat con nitrógeno y metano para que los nuestros puedan asentarse aquí. Una vez que cambie la atmósfera, solo las especies adaptadas a condiciones criogénicas podrán vivir a bordo."
+ decision_pd_exotic_habitat_remove_methane_atmosphere: "Ventilar atmósfera de metano"
+ decision_pd_exotic_habitat_remove_methane_atmosphere_desc: "Expulsa la atmósfera de metano de este hábitat y la reemplaza por una mezcla de oxígeno convencional. Las especies criogénicas ya no podrán asentarse aquí."
+ decision_pd_exotic_habitat_add_nitrogen_atmosphere: "Presurizar atmósfera de nitrógeno"
+ decision_pd_exotic_habitat_add_nitrogen_atmosphere_desc: "Inunda el soporte vital del hábitat con nitrógeno puro a presión criogénica para que los nuestros puedan asentarse aquí. Una vez que cambie la atmósfera, solo las especies adaptadas a condiciones criogénicas podrán vivir a bordo."
+ decision_pd_exotic_habitat_remove_nitrogen_atmosphere: "Ventilar atmósfera de nitrógeno"
+ decision_pd_exotic_habitat_remove_nitrogen_atmosphere_desc: "Expulsa la atmósfera criogénica de nitrógeno de este hábitat y la reemplaza por una mezcla de oxígeno convencional. Las especies criogénicas ya no podrán asentarse aquí."
+
  # Domed Colony atmosphere toggle decisions (auto-stamped on build and at game start; these let players add it to inherited colonies or vent it after conquest)
  decision_pd_exotic_domed_add_atmosphere: "Presurizar las cúpulas"
  decision_pd_exotic_domed_add_atmosphere_desc: "Reacondiciona las cúpulas de la colonia con nuestra atmósfera criogénica para que los nuestros puedan asentarse aquí. Una vez que cambie el aire, solo las especies adaptadas al frío extremo podrán vivir bajo las cúpulas."
  decision_pd_exotic_domed_remove_atmosphere: "Ventilar las cúpulas"
  decision_pd_exotic_domed_remove_atmosphere_desc: "Expulsa la atmósfera criogénica de las cúpulas y la reemplaza por una mezcla de oxígeno convencional. Las especies criogénicas ya no podrán asentarse aquí."
+
+ # Cryogenic SR deposits (volatile motes pair)
+ d_pd_cryo_clathrate_pockets: "Bolsas de clatratos"
+ d_pd_cryo_clathrate_pockets_desc: "Gases volátiles atrapados en jaulas de hielo de agua y amoníaco. Las redes cristalinas se descomponen con el calor de la extracción y liberan motas aprovechables."
+ d_pd_cryo_volatile_geyser_fields: "Campos de géiseres volátiles"
+ d_pd_cryo_volatile_geyser_fields_desc: "Vastas llanuras donde los volátiles presurizados brotan por las grietas de la corteza helada. Las erupciones depositan un suministro constante de motas refinables por la superficie."
+
+ # Cryogenic SR deposits (rare crystals pair)
+ d_pd_cryo_cryocrystal_caverns: "Cavernas de criocristales"
+ d_pd_cryo_cryocrystal_caverns_desc: "Cavernas subterráneas recubiertas de raras redes cristalinas que solo se forman con un frío extremo. Los yacimientos son estables mientras el hielo circundante no se altere."
+ d_pd_cryo_cryocrystal_spires: "Agujas de criocristales"
+ d_pd_cryo_cryocrystal_spires_desc: "Formaciones superficiales de cristales raros en forma de aguja, crecidas durante miles de años de lenta precipitación. Cada aguja rinde grandes cantidades de cristales raros una vez cosechada."
+
+ # Cryogenic SR deposits (exotic gases pair)
+ d_pd_cryo_gas_seeps: "Filtraciones de gas congelado"
+ d_pd_cryo_gas_seeps_desc: "Lentas fugas de gases exóticos que escapan por fisuras bajo el hielo. La producción es modesta, pero constante en todo el terreno circundante."
+ d_pd_cryo_gas_columns: "Columnas de gas congelado"
+ d_pd_cryo_gas_columns_desc: "Penachos continuos de gases exóticos que ascienden desde profundos depósitos subterráneos. La producción rivaliza con los mayores campos de gas de los mundos más cálidos."
+
+ # Cryogenic SR deposits (special)
+ d_pd_cryo_betharian_deposit: "Campo de bethario congelado"
+ d_pd_cryo_betharian_deposit_desc: "Piedras de bethario suspendidas en el profundo hielo glacial de una amplia región. Los yacimientos permanecen inertes hasta que se descongelan y se procesan."
+ d_pd_cryo_alien_pets_deposit: "Valle resguardado de criofauna"
+ d_pd_cryo_alien_pets_deposit_desc: "Una llanura protegida donde la fauna nativa de mundo frío sobrevive en una abundancia inusual. La fauna local es dócil y adecuada como compañía."
+
+ # Cryogenic natural blockers and their clear techs
+ d_pd_cryo_toxic_mire: "£blocker£ Criociénaga tóxica"
+ d_pd_cryo_toxic_mire_desc: "Una amplia extensión de aguanieve químicamente activa donde los compuestos tóxicos se concentran en el punto de congelación. No es posible construir infraestructura de asentamiento de forma segura sobre el terreno contaminado."
+ d_pd_cryo_glacier_wall: "£blocker£ Muro glacial helado"
+ d_pd_cryo_glacier_wall_desc: "Un inmenso muro de hielo antiguo y denso atraviesa el paisaje. La masa es demasiado gruesa e inestable para construir sobre ella sin trabajos de despeje específicos."
+
+ tech_pd_cryo_toxic_mire: "Recuperación de criociénagas"
+ tech_pd_cryo_toxic_mire_desc: "Los fluidos de neutralización química y los depuradores de baja temperatura nos permiten drenar y descontaminar las ciénagas tóxicas de los mundos criogénicos. El terreno recuperado queda listo para su urbanización."
+ tech_pd_cryo_glacier_wall: "Perforación glacial criogénica"
+ tech_pd_cryo_glacier_wall_desc: "Las perforadoras térmicas y las cargas huecas atraviesan los densos muros de hielo que bloquean la expansión colonial en los mundos criogénicos. Las cuadrillas de despeje pueden abrir terreno transitable en una fracción del tiempo de deshielo natural."
+
+ # Empire-creation picker tooltips (rare-world style: concept link, mechanics, then the three building choices)
+ pc_pd_ammonia_tooltip: "§YLos mundos de amoníaco§! son ['concept_pd_cryogenic_planets']\n- £district£ §Y$district_pdexotic_cryo_chemovat_plural$§!: §G+3§!\n- Velocidad de Crecimiento de Población: §G+10%§!\n- Mantenimiento de Edificios y Distritos: §R+10%§!\n- $rare_building_warning$\n$t$- ['building:building_pd_ammonia_fixation_institute']\n$t$- ['building:building_pd_ammonia_pharma_works']\n$t$- ['building:building_pd_ammonia_biome_reserve']"
+ pc_pd_methane_tooltip: "§YLos mundos de metano§! son ['concept_pd_cryogenic_planets']\n- £district£ §Y$district_pdexotic_cryo_riftvent_plural$§!: §G+3§!\n- Velocidad de Construcción: §G+15%§!\n- Coste de Edificios y Distritos: §R+10%§!\n- $rare_building_warning$\n$t$- ['building:building_pd_methane_tholin_lab']\n$t$- ['building:building_pd_methane_hydrocarbon_foundry']\n$t$- ['building:building_pd_methane_polymer_plant']"
+ pc_pd_nitrogen_tooltip: "§YLos mundos de nitrógeno§! son ['concept_pd_cryogenic_planets']\n- £district£ §Y$district_pdexotic_cryo_sublimation_plural$§!: §G+3§!\n- £physics£ §YInvestigación en física§!: §G+10%§!\n- Mantenimiento de Edificios y Distritos: §R+10%§!\n- $rare_building_warning$\n$t$- ['building:building_pd_nitrogen_supercomputer']\n$t$- ['building:building_pd_nitrogen_munitions_foundry']\n$t$- ['building:building_pd_nitrogen_cryonics_sanctuary']"
+
+ # Planet-view "can construct" building lists, shown on the cryo world modifier tooltip in-game (header key lives in main PD)
+ pd_ammonia_buildings_tt: "$pd_unlocks_one_building$\n$t$- ['building:building_pd_ammonia_fixation_institute']\n$t$- ['building:building_pd_ammonia_pharma_works']\n$t$- ['building:building_pd_ammonia_biome_reserve']"
+ pd_methane_buildings_tt: "$pd_unlocks_one_building$\n$t$- ['building:building_pd_methane_tholin_lab']\n$t$- ['building:building_pd_methane_hydrocarbon_foundry']\n$t$- ['building:building_pd_methane_polymer_plant']"
+ pd_nitrogen_buildings_tt: "$pd_unlocks_one_building$\n$t$- ['building:building_pd_nitrogen_supercomputer']\n$t$- ['building:building_pd_nitrogen_munitions_foundry']\n$t$- ['building:building_pd_nitrogen_cryonics_sanctuary']"
+
+ # Ammonia signature buildings (pick one)
+ building_pd_ammonia_fixation_institute: "Instituto de síntesis de amoníaco"
+ building_pd_ammonia_fixation_institute_desc: "La química rica en nitrógeno del planeta ofrece a nuestros biólogos e ingenieros multitud de reacciones nuevas que estudiar y perfeccionar."
+ building_pd_ammonia_pharma_works: "Planta farmacéutica de amoníaco"
+ building_pd_ammonia_pharma_works_desc: "El abundante amoníaco de este lugar se refina con facilidad en fármacos y productos de limpieza que abastecen a los mercados de todo el imperio."
+ building_pd_ammonia_biome_reserve: "Reserva del bioma de amoníaco"
+ building_pd_ammonia_biome_reserve_desc: "El extraño ecosistema de química fría de este mundo atrae a visitantes curiosos de todas las estrellas."
+
+ # Methane signature buildings (pick one)
+ building_pd_methane_tholin_lab: "Laboratorio de química del metano"
+ building_pd_methane_tholin_lab_desc: "La densa bruma orgánica de este mundo está repleta de química exótica de baja temperatura que nuestros investigadores pueden desentrañar."
+ building_pd_methane_hydrocarbon_foundry: "Fundición de craqueo de metano"
+ building_pd_methane_hydrocarbon_foundry_desc: "Los inagotables hidrocarburos de este lugar se craquean y se refunden en aleaciones, y el combustible local barato mantiene en marcha nuestras fundiciones."
+ building_pd_methane_polymer_plant: "Planta de polímeros de metano"
+ building_pd_methane_polymer_plant_desc: "Los mares de metano ofrecen materia prima casi ilimitada para plásticos y otros bienes de consumo."
+
+ # Nitrogen signature buildings (pick one)
+ building_pd_nitrogen_supercomputer: "Complejo de supercomputación de nitrógeno"
+ building_pd_nitrogen_supercomputer_desc: "El frío profundo natural permite a nuestros ordenadores superconductores funcionar a velocidades que fundirían las máquinas de cualquier mundo más cálido."
+ building_pd_nitrogen_munitions_foundry: "Fundición de municiones de nitrógeno"
+ building_pd_nitrogen_munitions_foundry_desc: "Los ricos estratos de nitratos de este mundo se transforman con facilidad en explosivos y aleaciones militares para nuestros ejércitos."
+ building_pd_nitrogen_cryonics_sanctuary: "Santuario criónico de nitrógeno"
+ building_pd_nitrogen_cryonics_sanctuary_desc: "El frío, que lo conserva todo a la perfección, convierte a este mundo en un santuario ideal que atrae a clientes y turistas de todas las estrellas."
 
  tankbound_species_class_requirement: "Posee una clase de especie con un retrato de ['trait:trait_tankbound']:\n$t$$BULLET_POINT$§Y$AQUATIC$§!\n$t$$BULLET_POINT$§Y$CRYO$§!\n$t$$BULLET_POINT$§Y$INF$§!\n$t$$BULLET_POINT$§Y$NECROID$§!\n$t$$BULLET_POINT$§Y$TOX$§!"
