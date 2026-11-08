@@ -82,7 +82,40 @@ pd_create_bonefield_tiyanki_country_effect = {
 	}
 }
 
-# Resident herds; six packs circuit the five flagged gas giants forever so the system reads as inhabited.
+# Planet scope. Fall boost on a Controlled Bonefield, refreshed by each fall; pdbonefield.110 applies it, pdbonefield.120 previews it.
+pd_bonefield_controlled_fall_payout_effect = {
+	add_modifier = {
+		modifier = pd_bonefield_fresh_carcass
+		days = 3650
+	}
+}
+
+# Planet scope.
+pd_bonefield_add_controlled_effect = {
+	if = {
+		limit = {
+			owner = { is_gestalt = yes }
+		}
+		add_modifier = {
+			modifier = pd_bonefield_controlled_gestalt
+			days = -1
+		}
+	}
+	else = {
+		add_modifier = {
+			modifier = pd_bonefield_controlled
+			days = -1
+		}
+	}
+}
+
+# Planet scope.
+pd_bonefield_remove_controlled_effect = {
+	remove_modifier = pd_bonefield_controlled
+	remove_modifier = pd_bonefield_controlled_gestalt
+}
+
+# Resident herds; six packs circuit the five flagged gas giants.
 pd_create_bonefield_tiyanki_herd_effect = {
 	event_target:pd_bonefield_tiyanki_country = {
 		create_fleet = {

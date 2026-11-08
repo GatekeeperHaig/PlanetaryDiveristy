@@ -59,10 +59,36 @@ d_pd_senate_building = {
 
 			}
 		}
-		job_enforcer_add = 400
 		job_bureaucrat_add = 400
 		pop_government_ethic_attraction = 1
 		planet_stability_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					is_democratic_authority = yes
+					has_authority = auth_oligarchic
+				}
+				NOT = { pd_arc_capital_knights = yes }
+			}
+		}
+		job_enforcer_add = 400
+	}
+
+	#Knights of the Toxic God garrison the capital in place of its enforcers.
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					is_democratic_authority = yes
+					has_authority = auth_oligarchic
+				}
+				pd_arc_capital_knights = yes
+			}
+		}
+		job_knight_add = 400
 	}
 
 	planet_modifier = {
@@ -130,10 +156,36 @@ d_pd_palace_building = {
 
 			}
 		}
-		job_enforcer_add = 400
 		job_bureaucrat_add = 400
 		pop_government_ethic_attraction = 1
 		planet_stability_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					is_dictatorial_authority = yes
+					is_imperial_authority = yes
+				}
+				NOT = { pd_arc_capital_knights = yes }
+			}
+		}
+		job_enforcer_add = 400
+	}
+
+	#Knights of the Toxic God garrison the capital in place of its enforcers.
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					is_dictatorial_authority = yes
+					is_imperial_authority = yes
+				}
+				pd_arc_capital_knights = yes
+			}
+		}
+		job_knight_add = 400
 	}
 
 	planet_modifier = {
@@ -211,10 +263,30 @@ d_pd_headquarters_building = {
 				is_megacorp = yes
 			}
 		}
-		job_enforcer_add = 400
 		job_bureaucrat_add = 400
 		pop_government_ethic_attraction = 1
 		planet_stability_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_megacorp = yes
+				NOT = { pd_arc_capital_knights = yes }
+			}
+		}
+		job_enforcer_add = 400
+	}
+
+	#Knights of the Toxic God garrison the capital in place of its enforcers.
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_megacorp = yes
+				pd_arc_capital_knights = yes
+			}
+		}
+		job_knight_add = 400
 	}
 
 	planet_modifier = {

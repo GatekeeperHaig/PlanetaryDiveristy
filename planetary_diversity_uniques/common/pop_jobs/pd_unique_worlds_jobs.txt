@@ -352,4 +352,198 @@ pd_biosynth_cultivator_drone = {
 	weight = {
 		weight = @specialist_job_weight
 	}
-}
+}
+
+#Tiyanki Bonefield Jobs
+# Granted by pd_bonefield_controlled, pd_bonefield_controlled_gestalt and d_pd_bonefield_descent_site.
+pd_tiyanki_renderer = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_bio_reprocessing_facilities
+			icon = gas_extractor
+		}
+	}
+
+	tags = { strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_refiners
+		produces = {
+			energy = 2
+			society_research = 2
+		}
+		produces = {
+			trigger = {
+				owner? = { has_technology = tech_mine_exotic_gases }
+			}
+			exotic_gases = 2
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}
+
+pd_tiyanki_renderer_drone = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_bio_reprocessing_facilities
+			icon = gas_extractor
+		}
+	}
+
+	tags = { strategic_resource exotic_gases }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_refiners
+		produces = {
+			energy = 2
+			society_research = 2
+		}
+		produces = {
+			trigger = {
+				owner? = { has_technology = tech_mine_exotic_gases }
+			}
+			exotic_gases = 2
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+}
+
+# Granted by building_pd_tiyanki_observatory.
+pd_tiyanki_migration_biologist = {
+	category = specialist
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_pd_tiyanki_observatory
+			icon = biologist
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	resources = {
+		category = planet_biologists
+		produces = {
+			society_research = 4
+			engineering_research = 1
+		}
+		upkeep = {
+			consumer_goods = 1.5
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+}
+
+pd_tiyanki_migration_biologist_drone = {
+	category = complex_drone
+
+	swappable_data = {
+		default = {
+			condition_string = DRONE_JOB_TRIGGER
+			building_icon = building_pd_tiyanki_observatory
+			icon = biologist
+		}
+	}
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	possible = { can_think = yes }
+
+	resources = {
+		category = planet_biologists
+		produces = {
+			society_research = 4
+			engineering_research = 1
+		}
+		upkeep = {
+			trigger = {
+				owner? = { is_hive_empire = no }
+			}
+			energy = 3
+		}
+		upkeep = {
+			trigger = {
+				owner? = { is_hive_empire = yes }
+			}
+			minerals = 4
+		}
+	}
+
+	weight = {
+		weight = @complex_drone_job_weight
+	}
+
+	inline_script = "jobs/automodding_priority_research"
+}

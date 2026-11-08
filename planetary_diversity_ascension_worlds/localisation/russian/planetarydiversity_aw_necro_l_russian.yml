@@ -41,28 +41,28 @@
 
 #Decision
  decision_pd_aw_necro_planet: "Построить Некрополь"
- decision_pd_aw_necro_planet_desc: "Этот мир жаждет стать просторным храмом, в котором будет звучать шепот нашего наследия, во веки веков."
- decision_pd_aw_necro_planet_effects_short: "Планета получит модификатор §Y$district_pd_aw_necro$§!.\nВместо возведения §Yсельскохозяйственных§! районов станет доступно строительство §Gрайонов Некрополя§!."
+ decision_pd_aw_necro_planet_desc: "Этот мир жаждет стать просторным храмом, в котором будет звучать шёпот нашего наследия, во веки веков."
+ decision_pd_aw_necro_planet_effects_short: "Негородские пригодные для жизни миры становятся мирами типа §Y$pc_nuked$§!.\nДобавляются модификатор §Y$pd_aw_necro_planet$§! и месторождение §Y$d_pd_necro_deposit$§!."
  decision_pd_aw_necro_planet_cleanup: "Снести Некрополь"
  decision_pd_aw_necro_planet_cleanup_desc: "Мы должны убрать храмы и гробницы, оставленные прежними хозяевами этой планеты."
  decision_pd_aw_necro_planet_cleanup_effects_short: "Модификатор §Y$pd_aw_necro_planet$§! будет удалён."
 
 #Modifiers
  pd_aw_necro_planet: "Некрополь"
- pd_aw_necro_planet_tooltip: "§GОткрывает§!: £district£ $district_pd_aw_necro_plural$\n§RБлокирует§!: £district£ $district_farming_plural$\n£unity£ $unity$ от [GetAdministratorPluralWithIcon]: §G+0.5§!\n$MOD_PLANET_ORBITAL_BOMBARDMENT_DAMAGE$: §G-25%§!\n$MOD_POP_GROWTH_SPEED_REDUCTION$ на §R10%§!"
+ pd_aw_necro_planet_tooltip: "$MOD_PLANET_ORBITAL_BOMBARDMENT_DAMAGE$: §G-25%§!\n$MOD_LOGISTIC_GROWTH_MULT$: §G+10%§!\n$MOD_POP_BONUS_WORKFORCE_MULT$: §G+10%§!\n$mod_planet_jobs_unity_produces_mult$: §G+25%§!\n$mod_planet_farmers_food_produces_mult$: §R-50%§!"
  pd_aw_necro_planet_desc: "Этот мир жаждет стать просторным храмом, в котором будет звучать шепот нашего наследия, во веки веков."
  pd_aw_necro_city_planet: "$pd_aw_necro_planet$"
  pd_aw_necro_city_planet_desc: "$pd_aw_necro_planet_desc$"
- pd_aw_necro_city_planet_tooltip: "£unity£ $unity$ от [GetAdministratorPluralWithIcon]: §G+0.5§!\n$MOD_PLANET_ORBITAL_BOMBARDMENT_DAMAGE$: §G-25%§!\n$MOD_POP_GROWTH_SPEED_REDUCTION$ на §R10%§!"
+ pd_aw_necro_city_planet_tooltip: "$MOD_PLANET_ORBITAL_BOMBARDMENT_DAMAGE$: §G-25%§!\n$MOD_LOGISTIC_GROWTH_MULT$: §G+10%§!\n$MOD_POP_BONUS_WORKFORCE_MULT$: §G+10%§!\n$mod_planet_jobs_unity_produces_mult$: §G+25%§!"
  pd_necro_planet: "Некрополь"
- pd_necro_planet_tooltip: "§GОткрывает!: £district£ $district_pd_aw_necro_plural$\n§RБлокирует§!: £district£ $district_farming_plural$\n£unity£ $unity$ от [GetAdministratorPluralWithIcon]: §G+0.5§!\n$MOD_PLANET_ORBITAL_BOMBARDMENT_DAMAGE$: §G-25%§!\n$MOD_POP_GROWTH_SPEED_REDUCTION$ на §R10%§!"
+ pd_necro_planet_tooltip: "$MOD_PLANET_ORBITAL_BOMBARDMENT_DAMAGE$: §G-25%§!\n$MOD_LOGISTIC_GROWTH_MULT$: §G+10%§!\n$MOD_POP_BONUS_WORKFORCE_MULT$: §G+10%§!\n$mod_planet_jobs_unity_produces_mult$: §G+25%§!\n$mod_planet_farmers_food_produces_mult$: §R-50%§!"
  pd_necro_planet_desc: "Этот мир - один большой храм. Здесь звучит шёпот нашего наследия, во веки веков."
 
 #Acension Perk
  ap_pd_necro_worlds: "Некро-миры"
  ap_pd_necro_worlds_desc: "Наш мир жаждет стать просторным храмом, в котором будет звучать шепот нашего наследия, во веки веков."
  allow_necro_worlds: "§HРешение:§! $decision_pd_aw_necro_planet$"
- describe_necro_worlds: "Не экуменополисы\n$t$- Открывает: £district£ ['district:district_pd_aw_necro']\n$t$- Блокирует: £district£ ['district:district_farming']\nМиры-кольца\n$t$- Открывает: £district£ ['district:district_rw_pd_aw_necro']\n$t$- Блокирует: £district£ ['district:district_rw_farming']\n\nОткрывает оружие колосса: §YНекро-луч§! §R(требуется бонус за стремление §Y$ap_colossus$§!)§!."
+ describe_necro_worlds: "Открывает оружие колосса: §YНекро-луч§! §R(требуется бонус за стремление §Y$ap_colossus$§!)§!."
 
 #Necropolis District
  district_pd_aw_necro: "Район Некрополя"
@@ -86,14 +86,17 @@
  MESSAGE_DESC_FOR_PLANET_KILLER_PD_NECRO_RAY: "подверглась некроформингу лучом"
  pd_necro_ray.02.name: "Планетарный некроформинг"
  pd_necro_ray.02.desc: "Когда колонна некроботов, испускаемая [FromFrom.GetName], рассеивается, поверхность [From.GetName] полностью преображается. Теперь это сплошной некро-мир."
- pd_necro_ray.02.tooltip: "Тип планеты изменится на §Y$pc_pd_necro$§!.\nВсе поселения роботов вымрут, а популяции органиков получат черту §Y$trait_zombie$§!."
+ pd_necro_ray.02.tooltip: "Планета становится некрополем (§Y$pd_aw_necro_planet$§!).\nВсе роботизированные, машинные поселения и поселения с коллективным разумом будут уничтожены, а все остальные получат черту §Y$trait_zombie$§!."
  is_not_necro: "§R$TRIGGER_FAIL$Цель уже является §Yнекро-миром§!§!"
- will_purge_robots_and_zombie: "§RПоселения роботов вымрут, а популяции органиков получат черту §Y$trait_zombie$§!§!"
+ will_purge_robots_and_zombie: "§RРоботизированные, машинные поселения и поселения с коллективным разумом будут уничтожены, а все остальные получат черту §Y$trait_zombie$§!§!"
  opinion_pd_necro_a_world: "Завершили некроформинг мира"
  opinion_pd_necro_my_world: "Завершили некроформинг нашего мира"
  opinion_pd_necro_a_primitive_world: "Завершили некроформинг примитивного мира"
  opinion_pd_necro_a_primitive_world_phile: "$opinion_cracked_a_primitive_world_phile$"
 
 #Necropolis Deposit
- d_pd_necro_deposit: "Eternal Spires"
- d_pd_necro_deposit_desc: "A testament to our people's legacy, these spires draw the devoted from across our worlds to serve at their heart. Their labors take the shape of the traditions we hold eternal."
+ d_pd_necro_deposit: "Вечные шпили"
+ d_pd_necro_deposit_desc: "Будучи свидетельством нашего наследия, эти шпили притягивают преданных служителей со всех уголков нашей империи. Это символ наших традиций, которые должны сохраниться во веки веков."
+ concept_pd_necro_empire: "Империя некроидов"
+ concept_pd_necro_empires: "Империи некроидов"
+ concept_pd_necro_empire_desc: "$concept_pd_necro_empire$ - это государства со следующими этиками, происхождениями и бонусами за стремления:\n- $NECROID$ $SPECIES_CLASS$$NEW_LINE$- ['civic:civic_memorialist']$NEW_LINE$- ['civic:civic_death_cult']$NEW_LINE$- ['civic:civic_death_cult_corporate']$NEW_LINE$- ['civic:civic_permanent_employment']$NEW_LINE$- ['civic:civic_reanimated_armies']$NEW_LINE$- ['civic:civic_hive_cordyceptic_drones']$NEW_LINE$- ['civic:civic_hive_memorialist']$NEW_LINE$- ['civic:civic_machine_memorialist']$NEW_LINE$- ['civic:origin_necrophage']$NEW_LINE$- ['ascension_perk:ap_mechromancy']"

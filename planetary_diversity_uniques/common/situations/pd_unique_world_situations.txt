@@ -217,7 +217,7 @@ situation_pd_biosynth_the_long_watch = {
 		base = 0
 	}
 }
-# Bonefield World. All three approaches progress at the same rate; whichever is active on completion is locked in permanently by pdbonefield.130.
+# Bonefield World. Approaches set the progress rate; pdbonefield.120 picks the outcome and pdbonefield.130 applies it.
 situation_pd_bonefield_flight = {
 	picture = GFX_evt_pd_bonefield
 	category = neutral
@@ -244,17 +244,17 @@ situation_pd_bonefield_flight = {
 		stage_1 = {
 			icon = GFX_situation_stage_1
 			icon_background = GFX_situation_stage_frame_blue
-			end = 120
-			custom_tooltip = situation_pd_bonefield_flight_stage_1
+			end = 360
+			custom_tooltip = situation_pd_bonefield_flight_stage_1_effect_tt
 		}
 		stage_2 = {
 			icon = GFX_situation_stage_2
 			icon_background = GFX_situation_stage_frame_blue
-			end = 240
+			end = 720
 			on_first_enter = {
 				situation_event = { id = pdbonefield.120 }
 			}
-			custom_tooltip = situation_pd_bonefield_flight_stage_2
+			custom_tooltip = situation_pd_bonefield_flight_stage_2_effect_tt
 		}
 	}
 
@@ -321,12 +321,12 @@ situation_pd_bonefield_flight = {
 		modifier = {
 			desc = string_current_approach
 			current_situation_approach = situation_pd_bonefield_flight_low
-			add = 1
+			add = 2
 		}
 		modifier = {
 			desc = string_current_approach
 			current_situation_approach = situation_pd_bonefield_flight_standard
-			add = 2
+			add = 3
 		}
 		modifier = {
 			desc = string_current_approach

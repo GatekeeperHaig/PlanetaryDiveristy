@@ -1,0 +1,28 @@
+# Planet scope. Number of the owner's planets with a Tiyanki Observatory; scales the observatory network bonus.
+pd_tiyanki_observatory_count = {
+	complex_trigger_modifier = {
+		trigger = count_owned_planet
+		trigger_scope = owner
+		parameters = {
+			limit = {
+				has_building = building_pd_tiyanki_observatory
+			}
+		}
+		mode = add
+	}
+}
+
+# Planet scope. Observatory network bonus in percent, for building_pd_tiyanki_observatory_tt.
+pd_tiyanki_observatory_network = {
+	complex_trigger_modifier = {
+		trigger = count_owned_planet
+		trigger_scope = owner
+		parameters = {
+			limit = {
+				has_building = building_pd_tiyanki_observatory
+			}
+		}
+		mode = add
+		mult = 2
+	}
+}

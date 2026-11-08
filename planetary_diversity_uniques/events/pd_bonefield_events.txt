@@ -104,12 +104,12 @@ carrier_event = {
 	}
 }
 
-#The first pilgrim comes down after colonization, opening the standing-policy situation
+#The first fall after colonization. Starts situation_pd_bonefield_flight.
 carrier_event = {
 	id = pdbonefield.30
 	title = pdbonefield.30.name
 	desc = pdbonefield.30.desc
-	picture = GFX_evt_pd_bonefield_fall
+	picture = GFX_evt_tiyanki_family
 	location = from
 	show_sound = event_mystic_reveal
 	fire_only_once = yes
@@ -132,7 +132,7 @@ carrier_event = {
 	}
 }
 
-#Pilgrimage spawn. A dying tiyanki enters at the system edge and is ordered to the Bonefield; pdbonefield.110 resolves the arrival.
+#Pilgrimage spawn. A dying tiyanki enters at the system edge and is ordered to the Bonefield; arriving fires pdbonefield.110.
 country_event = {
 	id = pdbonefield.100
 	hide_window = yes
@@ -143,6 +143,7 @@ country_event = {
 		any_owned_planet = {
 			planet = {
 				has_planet_flag = pd_bonefield_planet
+				NOT = { has_modifier = pd_bonefield_warded }
 			}
 		}
 	}
@@ -155,6 +156,7 @@ country_event = {
 					limit = {
 						planet = {
 							has_planet_flag = pd_bonefield_planet
+							NOT = { has_modifier = pd_bonefield_warded }
 						}
 					}
 					solar_system = {
@@ -189,18 +191,19 @@ country_event = {
 										}
 										found_planet = {
 											move_to = this
-											orbit_planet = this
+											effect = {
+												id = pd.bonefield.pilgrimage.arrival
+												solar_system = {
+													every_system_planet = {
+														limit = { has_planet_flag = pd_bonefield_planet }
+														planet_event = { id = pdbonefield.110 }
+													}
+												}
+											}
 										}
 									}
 								}
 							}
-						}
-					}
-					planet = {
-						planet_event = {
-							id = pdbonefield.110
-							days = 300
-							random = 100
 						}
 					}
 				}
@@ -210,7 +213,7 @@ country_event = {
 	}
 }
 
-#Pilgrimage resolution. Warded worlds turn the tiyanki away; the other two branches take the body and pay out.
+#Pilgrimage resolution, fired on arrival. Despawns the fleet; base and Controlled Bonefields get their timed fall modifier, Warded gets nothing.
 planet_event = {
 	id = pdbonefield.110
 	hide_window = yes
@@ -237,58 +240,17 @@ planet_event = {
 			}
 			if = {
 				limit = {
-					NOT = { is_variable_set = pd_bonefield_corpses }
+					pd_has_bonefield_controlled = yes
 				}
-				set_variable = {
-					which = pd_bonefield_corpses
-					value = 0
-				}
-			}
-			if = {
-				limit = {
-					check_variable = {
-						which = pd_bonefield_corpses
-						value < 12
-					}
-				}
-				change_variable = {
-					which = pd_bonefield_corpses
-					value = 1
-				}
-				create_ambient_object = {
-					type = "small_dead_tiyanki_object"
-					location = this
-					use_3d_location = yes
-					entity_offset_angle = { min = 0 max = 360 }
-					entity_offset = { min = 8 max = 15 }
-					entity_offset_height = { min = -4 max = 4 }
-				}
-			}
-			if = {
-				limit = {
-					has_modifier = pd_bonefield_controlled
-				}
-				owner = {
-					add_resource = {
-						exotic_gases = 150
-						energy = 500
-					}
-				}
+				pd_bonefield_controlled_fall_payout_effect = yes
 			}
 			if = {
 				limit = {
 					has_modifier = pd_bonefield
 				}
-				owner = {
-					add_monthly_resource_mult = {
-						resource = society_research
-						value = @tier2researchreward
-						min = @tier2researchmin
-						max = @tier2researchmax
-					}
-					add_resource = {
-						unity = 250
-					}
+				add_modifier = {
+					modifier = pd_bonefield_wild_fall
+					days = 3650
 				}
 			}
 			owner = {
@@ -308,7 +270,7 @@ planet_event = {
 	}
 }
 
-#End of stage 1. The tech exists; the empire picks what to build with it. Stage 2 builds it.
+#End of stage 1. Sets the outcome flag read by pdbonefield.130.
 situation_event = {
 	id = pdbonefield.120
 	title = pdbonefield.120.name
@@ -323,56 +285,122 @@ situation_event = {
 	option = {
 		name = pdbonefield.120.a
 		custom_tooltip = pdbonefield.120.a.tooltip
+		tooltip = {
+			target = {
+				pd_bonefield_add_controlled_effect = yes
+			}
+		}
+		custom_tooltip = pdbonefield.120.fall_header
+		tooltip = {
+			target = {
+				pd_bonefield_controlled_fall_payout_effect = yes
+			}
+		}
 		set_situation_flag = pd_bonefield_path_control
 	}
 
 	option = {
 		name = pdbonefield.120.b
 		custom_tooltip = pdbonefield.120.b.tooltip
+		tooltip = {
+			target = {
+				add_modifier = {
+					modifier = pd_bonefield_warded
+					days = -1
+				}
+			}
+		}
+		custom_tooltip = pdbonefield.120.fall_header
+		custom_tooltip = pdbonefield.120.b.falls_tt
 		set_situation_flag = pd_bonefield_path_stop
 	}
 }
 
-#Situation completion. Stage 2 finished, so the path chosen at stage 1 becomes the permanent modifier.
+#Situation completion. Applies the outcome modifier for the path chosen in pdbonefield.120.
 situation_event = {
 	id = pdbonefield.130
 	title = pdbonefield.130.name
-	desc = pdbonefield.130.desc
-	picture = GFX_evt_pd_bonefield_fall
 	location = from
 	show_sound = event_mystic_reveal
 	fire_only_once = yes
 
 	is_triggered_only = yes
 
-	immediate = {
-		if = {
-			limit = {
-				has_situation_flag = pd_bonefield_path_stop
-			}
-			target = {
-				remove_modifier = pd_bonefield
-				add_modifier = {
-					modifier = pd_bonefield_warded
-					days = -1
-				}
-				set_planet_flag = pd_bonefield_choice_made
-			}
+	picture = {
+		trigger = {
+			NOT = { has_situation_flag = pd_bonefield_path_stop }
 		}
-		else = {
-			target = {
-				remove_modifier = pd_bonefield
-				add_modifier = {
-					modifier = pd_bonefield_controlled
-					days = -1
-				}
-				set_planet_flag = pd_bonefield_choice_made
-			}
+		picture = GFX_evt_tiyanki_family
+	}
+
+	picture = {
+		trigger = {
+			has_situation_flag = pd_bonefield_path_stop
+		}
+		picture = GFX_evt_pd_bonefield_surface
+	}
+
+	desc = {
+		text = pdbonefield.130.desc.control
+		trigger = {
+			NOT = { has_situation_flag = pd_bonefield_path_stop }
+		}
+	}
+
+	desc = {
+		text = pdbonefield.130.desc.stop
+		trigger = {
+			has_situation_flag = pd_bonefield_path_stop
 		}
 	}
 
 	option = {
 		name = pdbonefield.130.a
+		trigger = {
+			NOT = { has_situation_flag = pd_bonefield_path_stop }
+		}
+		target = {
+			remove_modifier = pd_bonefield
+			remove_modifier = pd_bonefield_wild_fall
+			pd_bonefield_add_controlled_effect = yes
+			set_planet_flag = pd_bonefield_choice_made
+		}
 		destroy_situation = this
+	}
+
+	option = {
+		name = pdbonefield.130.b
+		trigger = {
+			has_situation_flag = pd_bonefield_path_stop
+		}
+		target = {
+			remove_modifier = pd_bonefield
+			remove_modifier = pd_bonefield_wild_fall
+			add_modifier = {
+				modifier = pd_bonefield_warded
+				days = -1
+			}
+			set_planet_flag = pd_bonefield_choice_made
+		}
+		destroy_situation = this
+	}
+}
+
+#Owner change. Swaps between the regular and gestalt Controlled modifiers to match the new owner.
+carrier_event = {
+	id = pdbonefield.140
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_planet_flag = pd_bonefield_planet
+		exists = owner
+		pd_has_bonefield_controlled = yes
+	}
+
+	immediate = {
+		pd_bonefield_remove_controlled_effect = yes
+		pd_bonefield_add_controlled_effect = yes
 	}
 }

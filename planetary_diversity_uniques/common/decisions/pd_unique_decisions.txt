@@ -283,52 +283,124 @@ decision_pd_add_biosynth_canal_system = {
 }
 
 # Bonefield Decisions
-decision_pd_add_tiyanki_relic_bed = {
-	icon = decision_pd_add_tiyanki_relic_bed
+decision_pd_bonefield_descent_site = {
+	icon = decision_pd_bonefield
+	owned_planets_only = yes
+
+	enactment_time = 720
+	prerequisites = {
+		"tech_tiyanki_descent_sites"
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			exotic_gases = 250
+			energy = 1000
+			influence = 50
+		}
+	}
+
+	allow = {
+		is_artificial = no
+		free_district_slots >= 1
+		NOR = {
+			is_planet_class = pc_city
+			has_deposit = d_pd_bonefield_descent_site
+			has_modifier = pd_bonefield
+			has_modifier = pd_bonefield_controlled
+			has_modifier = pd_bonefield_controlled_gestalt
+			has_modifier = pd_bonefield_warded
+		}
+	}
+
+	potential = {
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_city
+			has_deposit = d_pd_bonefield_descent_site
+			has_modifier = pd_bonefield
+			has_modifier = pd_bonefield_controlled
+			has_modifier = pd_bonefield_controlled_gestalt
+			has_modifier = pd_bonefield_warded
+		}
+	}
+
+	effect = {
+		add_deposit = d_pd_bonefield_descent_site
+	}
+
+	ai_weight = {
+        weight = 5
+  	}
+}
+
+decision_pd_bonefield_to_warded = {
+	icon = decision_pd_bonefield
 	owned_planets_only = yes
 
 	enactment_time = 720
 	resources = {
 		category = decisions
 		cost = {
-			exotic_gases = 2500
+			energy = 1000
 			influence = 50
 		}
 	}
 
 	allow = {
-		owner = {
-			has_technology = tech_tiyanki_relic_beds
+		pd_has_bonefield_controlled = yes
+	}
+
+	potential = {
+		pd_has_bonefield_controlled = yes
+	}
+
+	effect = {
+		pd_bonefield_remove_controlled_effect = yes
+		add_modifier = {
+			modifier = pd_bonefield_warded
+			days = -1
 		}
-		is_artificial = no
-		NOR = {
-			is_planet_class = pc_city
-			has_deposit = d_pd_bonefield_relic_bed
-			has_modifier = pd_bonefield
-			has_modifier = pd_bonefield_controlled
-			has_modifier = pd_bonefield_warded
+	}
+
+	ai_weight = {
+        weight = 0
+  	}
+}
+
+decision_pd_bonefield_to_controlled = {
+	icon = decision_pd_bonefield
+	owned_planets_only = yes
+
+	enactment_time = 720
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			influence = 50
+		}
+	}
+
+	allow = {
+		has_modifier = pd_bonefield_warded
+		free_district_slots >= 10
+		custom_tooltip = {
+			fail_text = decision_cant_be_building_anything
+			has_building_construction = no
 		}
 	}
 
 	potential = {
-		owner = {
-			has_technology = tech_tiyanki_relic_beds
-		}
-		is_artificial = no
-		NOR = {
-			is_planet_class = pc_city
-			has_deposit = d_pd_bonefield_relic_bed
-			has_modifier = pd_bonefield
-			has_modifier = pd_bonefield_controlled
-			has_modifier = pd_bonefield_warded
-		}
+		has_modifier = pd_bonefield_warded
 	}
 
 	effect = {
-		add_deposit = d_pd_bonefield_relic_bed
+		remove_modifier = pd_bonefield_warded
+		pd_bonefield_add_controlled_effect = yes
 	}
 
 	ai_weight = {
-        weight = 5
+        weight = 0
   	}
 }

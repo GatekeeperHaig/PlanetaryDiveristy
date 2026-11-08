@@ -1,7 +1,6 @@
 ##########################################################################
 # PD Unique-World Waystation Modules
 # Build-once per empire; gated by the system star flag + a Nomad-only tech.
-# Each projects its source world's edict bonus across the waystation network.
 ##########################################################################
 
 # Floating World; mirrors the eludium_research edict.
@@ -168,7 +167,7 @@ waystation_pd_biosynth_foundry = {
 	}
 }
 
-# Bonefield World; mirrors the tiyanki_migration_study edict.
+# Bonefield World.
 waystation_pd_tiyanki_beacon = {
 	icon = "GFX_waystation_pd_tiyanki_beacon"
 	section = "SCIENCE_STARBASE_SECTION"
@@ -206,9 +205,18 @@ waystation_pd_tiyanki_beacon = {
 		}
 	}
 
+	station_modifier = {
+		starbase_collected_system_energy_add = @waystation_module_resource_add_10
+		starbase_collected_system_exotic_gases_add = @waystation_module_resource_add_3
+		starbase_collected_system_society_research_add = @waystation_module_resource_add_5
+		starbase_stockpile_energy_capacity_add = @waystation_stockpile_500
+		starbase_stockpile_exotic_gases_capacity_add = @waystation_stockpile_375
+		starbase_stockpile_society_research_capacity_add = @waystation_stockpile_375
+	}
+
 	waystation_network_country_modifier = {
-		category_biology_research_speed_mult = 0.15
-		planet_researchers_produces_mult = 0.1
+		planet_jobs_energy_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
 	}
 
 	show_in_tech = "tech_tiyanki_beacon"

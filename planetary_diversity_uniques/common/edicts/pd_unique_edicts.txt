@@ -14,6 +14,10 @@ eludium_research = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_eludium = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_eludium = 0.5
 			multiplier = value:edict_size_effect
@@ -42,6 +46,10 @@ eludium_energy = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_eludium = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_eludium = 0.5
 			multiplier = value:edict_size_effect
@@ -69,6 +77,10 @@ eludium_weapons = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_eludium = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_eludium = 0.5
 			multiplier = value:edict_size_effect
@@ -99,6 +111,10 @@ acean_pop_growth = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_acean = 0.5
 			multiplier = value:edict_size_effect
@@ -134,6 +150,10 @@ acean_minerals = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_acean = 0.5
 			multiplier = value:edict_size_effect
@@ -161,6 +181,10 @@ acean_shield_resonance = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_acean = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_acean = 0.5
 			multiplier = value:edict_size_effect
@@ -191,6 +215,10 @@ pd_living_metal_robot_assembly = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_living_metal = 0.5
 			multiplier = value:edict_size_effect
@@ -221,6 +249,10 @@ pd_living_metal_engineering = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_living_metal = 0.5
 			multiplier = value:edict_size_effect
@@ -249,6 +281,10 @@ pd_living_metal_ship_repair = {
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			sr_living_metal = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			sr_living_metal = 0.5
 			multiplier = value:edict_size_effect
@@ -273,12 +309,16 @@ pd_living_metal_ship_repair = {
 	}
 }
 
-#Tiyanki Parts - Bonefield World
-tiyanki_render_energy = {
+#Bonefield World
+tiyanki_resonant_planning = {
 	length = @EdictDuration
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			exotic_gases = 0.5
 			multiplier = value:edict_size_effect
@@ -286,11 +326,19 @@ tiyanki_render_energy = {
 	}
 
 	potential = {
-		has_technology = tech_tiyanki_butchery
+		is_gestalt = no
+	}
+
+	prerequisites = {
+		"tech_tiyanki_butchery"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
 	}
 
 	modifier = {
-		planet_jobs_energy_produces_mult = 0.25
+		pop_happiness = 0.1
 	}
 
 	ai_weight = {
@@ -301,11 +349,15 @@ tiyanki_render_energy = {
 		}
 	}
 }
-tiyanki_bone_alloys = {
+tiyanki_resonant_network = {
 	length = @EdictDuration
 	icon = "GFX_edict_type_time"
 	resources = {
 		category = rare_edicts
+		cost = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
 		upkeep = {
 			exotic_gases = 0.5
 			multiplier = value:edict_size_effect
@@ -313,40 +365,130 @@ tiyanki_bone_alloys = {
 	}
 
 	potential = {
-		has_technology = tech_tiyanki_butchery
+		is_gestalt = yes
+	}
+
+	prerequisites = {
+		"tech_tiyanki_butchery"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = yes
+	}
+
+	modifier = {
+		planet_stability_add = 5
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = exotic_gases value < 500 }
+		}
+	}
+}
+tiyanki_luxury_goods = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		cost = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		is_gestalt = no
+	}
+
+	prerequisites = {
+		"tech_tiyanki_butchery"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	modifier = {
+		planet_artisans_produces_mult = 0.25
+		planet_artisans_trade_produces_add = 0.5
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = exotic_gases value < 500 }
+		}
+	}
+}
+tiyanki_luxury_fuel = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		cost = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		is_gestalt = yes
+	}
+
+	prerequisites = {
+		"tech_tiyanki_butchery"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = yes
+	}
+
+	modifier = {
+		planet_technician_produces_mult = 0.25
+	}
+
+	ai_weight = {
+		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			resource_stockpile_compare = { resource = exotic_gases value < 500 }
+		}
+	}
+}
+tiyanki_void_hide = {
+	length = @EdictDuration
+	icon = "GFX_edict_type_time"
+	resources = {
+		category = rare_edicts
+		cost = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			exotic_gases = 0.5
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	prerequisites = {
+		"tech_tiyanki_butchery"
 	}
 
 	modifier = {
 		ship_armor_mult = 0.1
-		ship_armor_regen_add_perc = 0.2
-	}
-
-	ai_weight = {
-		weight = @EdictMedPrio
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = exotic_gases value < 500 }
-		}
-	}
-}
-tiyanki_migration_study = {
-	length = @EdictDuration
-	icon = "GFX_edict_type_time"
-	resources = {
-		category = rare_edicts
-		upkeep = {
-			exotic_gases = 0.5
-			multiplier = value:edict_size_effect
-		}
-	}
-
-	potential = {
-		has_technology = tech_tiyanki_butchery
-	}
-
-	modifier = {
-		category_biology_research_speed_mult = 0.15
-		planet_researchers_produces_mult = 0.1
+		ship_armor_regen_add_perc = 0.1
 	}
 
 	ai_weight = {
