@@ -3594,8 +3594,7 @@ planet_event = {
 }
 
 #This event stamps the uncommon world flags on any matching class formed after game start.
-#pdengine.34 only sweeps the galaxy once, so directly spawned and terraformed worlds need this.
-#Add only. pdengine.35 and pdengine.36 read these flags once the world is pc_city, so they have to outlive the class.
+#Add only. pdengine.35 and pdengine.36 read these flags once the world is pc_city.
 planet_event = {
 	id = pdengine.37
 	hide_window = yes
@@ -6600,8 +6599,8 @@ country_event = {
 	}
 }
 
-#Re-applies the flavored planet entity after a class change so PD-flavored views survive terraforming. Mostly hit by the Wilderless Origin, which colonizes via terraform.
-#Each row is one inline_script call: (class, modifier) -> (picture, entity). To add a new flavor, add one row here and one row to the matching pdengine.11/12/110 random_list.
+#Re-applies the flavored planet entity after a class change.
+#Each row is one inline_script call: class and modifier, then picture and entity. To add a new flavor, add one row here and one row to the matching pdengine.11/12/110 random_list.
 planet_event = {
 	id = pdengine.160
 	hide_window = yes
@@ -7151,7 +7150,6 @@ planet_event = {
 			PICTURE = pc_pd_storm
 			ENTITY = storm_planet_01_entity
 		}
-		#Bug fix: row below previously checked pd_storm by copy-paste, which silently swapped storm planets to the iceberg entity and left pd_iceberg planets without view preservation.
 		inline_script = {
 			script = "events/pdengine_160_preserve_view"
 			CLASS = pc_arctic

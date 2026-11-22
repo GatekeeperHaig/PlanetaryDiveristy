@@ -1,10 +1,10 @@
 # Cryogenic Exotic Arcology Planet Entities
-# Layered pattern mirroring planetary_diversity_arcologies: each city planet entity is a locator that attaches a per-flavor planet surface mesh plus the flavor's cloud overlay and any special overlays (fortress shield, commercial billboards).
-# Overlay entities (clouds / shield / billboards) use a generic pd_exotic_* prefix so methane, nitrogen, and future exotic arcology classes can reuse them without duplicating the chain; the DDS filenames they reference live in PD MA and are loaded whenever the garden / fortress / commercial flavors fire (those decisions gate on has_global_flag = planetarydiversitymorearcologies).
+# Each city planet entity is a locator that attaches a per-flavor planet surface mesh plus the flavor's cloud overlay and any special overlays (fortress shield, commercial billboards).
+# Overlay entities (clouds / shield / billboards) use a generic pd_exotic_* prefix and are shared by the ammonia, methane, and nitrogen arcology classes.
 
 ####### Cloud overlays #######
 
-# Plain ammonia clouds; PD-exotics native ammonia cloud texture.
+# Plain ammonia clouds.
 entity = {
 	name = "pd_exotic_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -29,7 +29,7 @@ entity = {
 	}
 }
 
-# Garden ammonia clouds; PD-exotics native ammonia cloud texture.
+# Garden ammonia clouds.
 entity = {
 	name = "pd_exotic_garden_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -54,7 +54,7 @@ entity = {
 	}
 }
 
-# Fortress ammonia clouds; PD-exotics native fortress-flavored ammonia cloud texture.
+# Fortress ammonia clouds.
 entity = {
 	name = "pd_exotic_fortress_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -79,7 +79,7 @@ entity = {
 	}
 }
 
-# Commercial ammonia clouds; PD-exotics native ammonia cloud texture. Billboards read on top of these.
+# Commercial ammonia clouds.
 entity = {
 	name = "pd_exotic_commercial_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -125,8 +125,6 @@ entity = {
 }
 
 ####### Commercial billboard overlays #######
-# Four animated ad-band layers, each composed of a locator that attaches a highlight + lowlight cloud sphere.
-# Texture and animation settings mirror PD MA's pd_commercial_planet_billboard_*_mesh chain.
 
 entity = {
 	name = "pd_exotic_commercial_planet_billboard_mesh"
@@ -528,7 +526,6 @@ entity = {
 }
 
 ####### Fortress Ammonia Arcology #######
-# Reuses the plain pd_ammonia_city_planet_mesh; visual difference comes from the fortress cloud overlay + orbital shield. Swap to a dedicated fortress mesh + texture set if fortress-flavored ammonia DDS land.
 
 entity = {
 	name = "pd_ammonia_fortress_city_planet_01_entity"
@@ -550,7 +547,6 @@ entity = {
 }
 
 ####### Commercial Ammonia Arcology #######
-# Reuses the plain pd_ammonia_city_planet_mesh; visual difference comes from the four commercial billboard meshes + commercial cloud overlay. Swap to a dedicated commercial mesh + texture set if commercial-flavored ammonia DDS land.
 
 entity = {
 	name = "pd_ammonia_commercial_city_planet_01_entity"
@@ -576,7 +572,7 @@ entity = {
 
 ####### Methane cloud overlays #######
 
-# Plain methane clouds; PD-exotics native methane cloud texture.
+# Plain methane clouds.
 entity = {
 	name = "pd_methane_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -601,7 +597,7 @@ entity = {
 	}
 }
 
-# Garden methane clouds; PD-exotics native methane cloud texture.
+# Garden methane clouds.
 entity = {
 	name = "pd_methane_garden_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -626,7 +622,7 @@ entity = {
 	}
 }
 
-# Fortress methane clouds; PD-exotics native fortress-flavored methane cloud texture.
+# Fortress methane clouds.
 entity = {
 	name = "pd_methane_fortress_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -651,7 +647,7 @@ entity = {
 	}
 }
 
-# Commercial methane clouds; PD-exotics native methane cloud texture. Billboards read on top of these.
+# Commercial methane clouds.
 entity = {
 	name = "pd_methane_commercial_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -824,7 +820,6 @@ entity = {
 }
 
 ####### Fortress Methane Arcology #######
-# Reuses pd_methane_city_planet_mesh; visual difference comes from the fortress cloud overlay + orbital shield. Swap to a dedicated fortress methane mesh + texture set if fortress-flavored methane DDS land.
 
 entity = {
 	name = "pd_methane_fortress_city_planet_01_entity"
@@ -846,7 +841,6 @@ entity = {
 }
 
 ####### Commercial Methane Arcology #######
-# Reuses pd_methane_city_planet_mesh; visual difference comes from the four commercial billboard meshes + commercial cloud overlay. Swap to a dedicated commercial methane mesh + texture set if commercial-flavored methane DDS land.
 
 entity = {
 	name = "pd_methane_commercial_city_planet_01_entity"
@@ -872,7 +866,7 @@ entity = {
 
 ####### Nitrogen cloud overlays #######
 
-# Plain nitrogen clouds; PD-exotics native nitrogen cloud texture.
+# Plain nitrogen clouds.
 entity = {
 	name = "pd_nitrogen_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -897,7 +891,7 @@ entity = {
 	}
 }
 
-# Garden nitrogen clouds; PD-exotics native nitrogen cloud texture.
+# Garden nitrogen clouds.
 entity = {
 	name = "pd_nitrogen_garden_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -922,7 +916,7 @@ entity = {
 	}
 }
 
-# Fortress nitrogen clouds; PD-exotics native fortress-flavored nitrogen cloud texture.
+# Fortress nitrogen clouds.
 entity = {
 	name = "pd_nitrogen_fortress_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -947,7 +941,7 @@ entity = {
 	}
 }
 
-# Commercial nitrogen clouds; PD-exotics native nitrogen cloud texture. Billboards read on top of these.
+# Commercial nitrogen clouds.
 entity = {
 	name = "pd_nitrogen_commercial_planet_cloud_mesh"
 	pdxmesh = "ma_planet_cloud_mesh"
@@ -1120,7 +1114,6 @@ entity = {
 }
 
 ####### Fortress Nitrogen Arcology #######
-# Reuses pd_nitrogen_city_planet_mesh; visual difference comes from the fortress cloud overlay + orbital shield. Swap to a dedicated fortress nitrogen mesh + texture set if fortress-flavored nitrogen DDS land.
 
 entity = {
 	name = "pd_nitrogen_fortress_city_planet_01_entity"
@@ -1142,7 +1135,6 @@ entity = {
 }
 
 ####### Commercial Nitrogen Arcology #######
-# Reuses pd_nitrogen_city_planet_mesh; visual difference comes from the four commercial billboard meshes + commercial cloud overlay. Swap to a dedicated commercial nitrogen mesh + texture set if commercial-flavored nitrogen DDS land.
 
 entity = {
 	name = "pd_nitrogen_commercial_city_planet_01_entity"

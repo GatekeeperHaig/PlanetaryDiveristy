@@ -34,7 +34,7 @@ country_event = {
 					remove_deposit = yes
 				}
 
-				# Starting rural districts (3 energy / 2 mining / 4 farming, matching a default-origin biological start); the vanilla game-start placement does not deliver these on pdexotic_cryo capitals.
+				# Starting rural districts (3 energy / 2 mining / 4 farming).
 				add_district_and_planet_size_if_needed_effect_amount = {
 					amount = 3
 					district = district_pdexotic_cryo_riftvent
@@ -217,8 +217,7 @@ planet_event = {
 	}
 }
 
-# on_colony_transfer hook for ap_pd_cryothermal_engineering: stamp the modifier if a cryo planet was just transferred to an AP-empire. From scope is the new owner.
-# Carrier event because on_colony_transfer delivers a colony scope, which a planet_event rejects.
+# on_colony_transfer hook for ap_pd_cryothermal_engineering: stamp the modifier if a cryo planet was just transferred to an AP-empire.
 carrier_event = {
 	id = pd_exotic.12
 	hide_window = yes
@@ -239,8 +238,7 @@ carrier_event = {
 	}
 }
 
-# Stamps pd_ammonia_atmosphere on a new habitat when the builder's main species is ammonia-preference, before colonization (else habitability is 0 at settle time).
-# Can't filter on FROM = habitat_central_complex: its on_build_complete removes the megastructure before this fires, so FROM is invalid. Filter on FROMFROM (system) for uncolonized, unmarked habitats.
+# Stamps pd_ammonia_atmosphere on a new habitat when the builder's main species is ammonia-preference, before colonization.
 # Methane mirror is pd_exotic.22.
 country_event = {
 	id = pd_exotic.20
@@ -276,7 +274,7 @@ country_event = {
 	}
 }
 
-# Backstop for habitats that slipped past pd_exotic.20 (restored ruins, mid-build cases): stamps the marker on first colonization by an ammonia-preference empire. Conquest is excluded; a captured habitat keeps its atmosphere until re-colonized.
+# Backstop to pd_exotic.20 for restored ruins and mid-build cases: stamps the marker on first colonization by an ammonia-preference empire. Conquest is excluded.
 carrier_event = {
 	id = pd_exotic.21
 	hide_window = yes
@@ -335,7 +333,7 @@ country_event = {
 	}
 }
 
-# on_colonized backstop for methane (parallel to pd_exotic.21). Conquest case intentionally not covered.
+# on_colonized backstop for methane (parallel to pd_exotic.21).
 carrier_event = {
 	id = pd_exotic.23
 	hide_window = yes
@@ -394,7 +392,7 @@ country_event = {
 	}
 }
 
-# on_colonized backstop for nitrogen (parallel to pd_exotic.21). Conquest case intentionally not covered.
+# on_colonized backstop for nitrogen (parallel to pd_exotic.21).
 carrier_event = {
 	id = pd_exotic.25
 	hide_window = yes
@@ -479,7 +477,7 @@ country_event = {
 	}
 }
 
-# on_colonized backstop: stamps the atmosphere when a cryo empire colonizes a Domed Colony the build-time hook missed (pre-built, restored ruins). Conquest is intentionally not covered.
+# on_colonized backstop: stamps the atmosphere when a cryo empire colonizes a pre-built or restored Domed Colony.
 carrier_event = {
 	id = pd_exotic.32
 	hide_window = yes
@@ -509,7 +507,7 @@ carrier_event = {
 	}
 }
 
-# Stamps the uncommon world flags on the exotic domed classes. Main PD covers the rest in pdengine.37, but its triggers cannot name these without exotics loaded.
+# Stamps the uncommon world flags on the exotic domed classes. Main PD covers the rest in pdengine.37.
 planet_event = {
 	id = pd_exotic.33
 	hide_window = yes

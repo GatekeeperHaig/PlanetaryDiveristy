@@ -3,12 +3,10 @@
 @low = 4
 @rare = 0.5
 
-# SR drop weights (parity with vanilla @deposit_chance_high_rare / _med_rare).
 @sr_small = 2
 @sr_large = 0.5
 @special = 1
 
-# Blocker drop weights (parity with vanilla @blocker_high / @blocker_low).
 @blocker_high = 10
 @blocker_low = 5
 
@@ -249,7 +247,7 @@ d_pd_ammonia_pure_gas_vents = {
 ##############################################################
 ##### METHANE WORLD DEPOSITS (pc_pd_methane only) ###########
 ##############################################################
-# Methane set mirrors the ammonia tiers (+1 @high, +2 @med, +3 @low); Supercooled Geysers reuses the Cryovolcanic Vents icon.
+# Methane set mirrors the ammonia tiers (+1 @high, +2 @med, +3 @low).
 
 ###################
 #### ENERGY ######
@@ -488,7 +486,7 @@ d_pd_methane_pure_gas_vents = {
 ##############################################################
 ##### NITROGEN WORLD DEPOSITS (pc_pd_nitrogen only) #########
 ##############################################################
-# Nitrogen set mirrors the ammonia tiers (+1 @high, +2 @med, +3 @low); Plasma Columns reuses the Aurora Curtains icon.
+# Nitrogen set mirrors the ammonia tiers (+1 @high, +2 @med, +3 @low).
 
 ###################
 #### ENERGY ######
@@ -728,7 +726,6 @@ d_pd_nitrogen_pure_gas_vents = {
 ##### CRYOGENIC SR DEPOSITS (whole cryogenic climate group) ########
 ####################################################################
 # Cryo analogs of vanilla d_dust_caverns / d_crystalline_caverns / d_bubbling_swamp family.
-# Gate on is_pd_cryo_world so they spawn on both ammonia and methane worlds.
 # Each boosts the matching cryo rural district (riftvent / sublimation / chemovat).
 
 ### Volatile Motes (riftvent / energy)
@@ -840,8 +837,6 @@ d_pd_cryo_cryocrystal_spires = {
 }
 
 ### Exotic Gases (chemovat / cryo-unique farming)
-# Cryo equivalent of d_bubbling_swamp / d_fuming_bog. Boosts chemovat instead of farming
-# because cryo's gas-bearing crop is the vatkeeper Vatkeeper job, category = planet_farmers.
 
 d_pd_cryo_gas_seeps = {
 	icon = d_bubbling_swamp
@@ -897,8 +892,6 @@ d_pd_cryo_gas_columns = {
 
 ### Special SR analogs
 
-# Cryo Betharian. +4 sublimation district instead of +4 mining; betharian zone unlock dropped
-# because cryo's district set uses its own zone slots and zone_betharian doesn't fit chemovat/riftvent/sublimation yet.
 d_pd_cryo_betharian_deposit = {
 	icon = d_betharian_deposit
 	is_for_colonizable = yes
@@ -917,7 +910,6 @@ d_pd_cryo_betharian_deposit = {
 	drop_weight = { weight = @special }
 }
 
-# Cryo Alien Pets. Unity/amenities boost for guided-sapience empires, no district boost (parity with vanilla).
 d_pd_cryo_alien_pets_deposit = {
 	icon = d_alien_pets_deposit
 	is_for_colonizable = yes
@@ -946,10 +938,7 @@ d_pd_cryo_alien_pets_deposit = {
 ####################################################################
 ##### CRYOGENIC NATURAL BLOCKERS ###################################
 ####################################################################
-# Cryo analogs of d_noxious_swamp / d_massive_glacier. Without these, MIN_BLOCKED_DEPOSITS
-# silently fails on cryo (no vanilla blocker passes potential on pc_pd_ammonia/pc_pd_methane).
-# Universal blockers (mountain_range, active_volcano, dangerous_wildlife_blocker) already pass
-# their planet_size potential on cryo and drop at base @blocker_low, so they need no clones.
+# Cryo analogs of d_noxious_swamp / d_massive_glacier.
 
 d_pd_cryo_toxic_mire = {
 	time = 180
