@@ -404,3 +404,34 @@ carrier_event = {
 		pd_bonefield_add_controlled_effect = yes
 	}
 }
+
+#Origin game start. Marks the Bonefield as found, opens communications with every existing Tiyanki country so no first contact fires, and starts the capital on Guided Descents, skipping Descent Control.
+country_event = {
+	id = pdbonefield.200
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_origin = origin_pd_bonefield_world
+	}
+
+	immediate = {
+		set_country_flag = pd_bonefield_encounter
+		set_country_flag = found_pd_bonefield_planet
+		every_country = {
+			limit = {
+				is_tiyanki_country_type = yes
+				NOT = { has_communications = root }
+			}
+			root = {
+				establish_communications_no_message = prev
+			}
+		}
+		capital_scope = {
+			remove_modifier = pd_bonefield
+			pd_bonefield_add_controlled_effect = yes
+			set_planet_flag = pd_bonefield_choice_made
+		}
+	}
+}

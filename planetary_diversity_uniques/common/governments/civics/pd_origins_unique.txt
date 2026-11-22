@@ -74,6 +74,32 @@ origin_pd_crystal_world = {
 	max_once_global = yes
 }
 
+origin_pd_bonefield_world = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_pdbonefield.dds"
+	picture = GFX_origin_pd_bonefield
+	flags = { custom_start_screen tiyanki_encountered }
+	starting_colony = pc_pd_bonefield
+	habitability_preference = pc_arid
+	preferred_planet_class_neighbor = no
+	description = "origin_tooltip_bonefield_world_effects"
+	negative_description = "origin_tooltip_life_seeded_negative_effects"
+	possible = {
+		species_class = { NOT = { value = CRYO } }
+		civics = {
+			NOR = {
+				value = civic_hive_pd_planetary_infesters
+				value = civic_hive_idyllic_bloom
+				value = civic_idyllic_bloom
+			}
+		}
+		is_nomadic = no
+	}
+	#random_weight = { base = 0 }
+	initializers = { pd_origin_init_bonefield }
+	max_once_global = yes
+}
+
 origin_pd_biosynth = {
 	is_origin = yes
 	icon = "gfx/interface/icons/origins/origins_pdtechno.dds"

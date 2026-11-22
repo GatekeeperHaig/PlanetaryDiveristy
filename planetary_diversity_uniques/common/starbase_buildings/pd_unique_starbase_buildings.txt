@@ -1,0 +1,63 @@
+# Bonefield Gene Archive. Tiyanki (space_whale_1 to 5) built at this station build faster and start with experience.
+pd_tiyanki_gene_archive = {
+	icon = "GFX_starbase_beastport"
+	construction_days = 360
+	category = sm_naval_support_cat
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_tiyanki_cloning }
+		OR = {
+			is_normal_starbase = yes
+			is_orbital_ring = yes
+		}
+	}
+
+	possible = {
+		OR = {
+			has_starbase_module = beastport
+			has_starbase_module = orbital_ring_beastport
+			starbase_buildable_is_in_queue_before = {
+				first = beastport
+				second = pd_tiyanki_gene_archive
+			}
+			starbase_buildable_is_in_queue_before = {
+				first = orbital_ring_beastport
+				second = pd_tiyanki_gene_archive
+			}
+		}
+	}
+
+	station_modifier = {
+		shipsize_space_whale_1_build_speed_mult = 0.33
+		shipsize_space_whale_2_build_speed_mult = 0.33
+		shipsize_space_whale_3_build_speed_mult = 0.33
+		shipsize_space_whale_4_build_speed_mult = 0.33
+		shipsize_space_whale_5_build_speed_mult = 0.33
+	}
+
+	ship_modifier = {
+		shipsize_space_whale_1_starting_experience_add = 200
+		shipsize_space_whale_2_starting_experience_add = 200
+		shipsize_space_whale_3_starting_experience_add = 200
+		shipsize_space_whale_4_starting_experience_add = 200
+		shipsize_space_whale_5_starting_experience_add = 200
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	show_in_tech = "tech_tiyanki_cloning"
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
