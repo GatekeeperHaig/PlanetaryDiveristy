@@ -3,5 +3,5 @@ tags={
 	"Spaceships"
 }
 name="Planetary Diversity - City Sets"
-supported_version="v4.5.*"
+supported_version="v4.6.*"
 remote_file_id="3142294658"

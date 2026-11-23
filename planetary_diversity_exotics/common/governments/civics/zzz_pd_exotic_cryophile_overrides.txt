@@ -286,6 +286,18 @@ origin_shattered_ring = {
 
 	description = "origin_tooltip_shattered_ring_effects"
 
+	swap_type = {
+		description = "origin_tooltip_shattered_ring_effects"
+		negative_description = ORIGIN_REQUIRES_ROBO_MODDING
+
+		trigger = {
+			OR = {
+				is_individual_machine = yes
+				is_machine_empire = yes
+			}
+		}
+	}
+
 	flags = { custom_start_screen }
 
 	traits = {
@@ -544,11 +556,13 @@ origin_broken_shackles = {
 				text = civic_tooltip_not_authoritarian
 				value = ethic_authoritarian
 				value = ethic_fanatic_authoritarian
+				value = ethic_absolute_authoritarian
 			}
 			NOR = {
 				text = civic_tooltip_not_xenophobe
 				value = ethic_xenophobe
 				value = ethic_fanatic_xenophobe
+				value = ethic_absolute_xenophobe
 			}
 		}
 		civics = {
@@ -767,7 +781,7 @@ civic_tankbound = {
 			}
 		}
 		remove = {
-			always = no
+			has_tradition = tr_synthetics_adopt
 		}
 	}
 
@@ -839,7 +853,7 @@ civic_tankbound_corporate = {
 			}
 		}
 		remove = {
-			always = no
+			has_tradition = tr_synthetics_adopt
 		}
 	}
 

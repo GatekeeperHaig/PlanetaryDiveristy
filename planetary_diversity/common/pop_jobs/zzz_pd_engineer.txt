@@ -84,6 +84,8 @@ engineer = {
 		}
 	}
 
+	tags = { research }
+
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -184,4 +186,25 @@ engineer = {
 
 	inline_script = "jobs/automodding_priority_research"
 
+	leader_background_class_weight = {
+		scientist = @leader_background_class_match
+		commander = {
+			base = 0
+			modifier = {
+				add = @leader_background_class_match
+				engineer_is_munitions_decommissioner_trigger = yes
+			}
+		}
+	}
+
+	leader_background_ethic_weight = {
+		ethic_materialist = @leader_background_ethic_match
+		ethic_militarist = {
+			base = 0
+			modifier = {
+				add = @leader_background_ethic_match
+				engineer_is_munitions_decommissioner_trigger = yes
+			}
+		}
+	}
 }

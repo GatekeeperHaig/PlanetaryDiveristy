@@ -134,7 +134,7 @@ entertainer = {
 		}
 	}
 
-	tags = { amenities unity }
+	tags = { amenities unity entertainer }
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -239,11 +239,43 @@ entertainer = {
 		country_naval_cap_add = 2
 	}
 
+	triggered_country_modifier = {
+		potential = {
+			owner? = {
+				is_gestalt = no
+				has_active_tenet = tenet_spectacle_of_authority
+			}
+		}
+		country_edict_fund_add = 1
+		mult = owner.modifier:tenet_spectacle_of_authority_edict_modifier
+	}
+
 	triggered_planet_modifier = {
 		potential = {
 			owner? = { has_modifier = exploitation_accord }
 		}
 		planet_jobs_produces_mult = @accord_exploitation_resources_from_jobs
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				has_modifier = celebration_of_ideals
+				has_modifier = premium_leisure_package
+			}
+		}
+		colony_ideological_reach_mult = @decision_celebration_of_ideals_reach_from_entertainer
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			OR = {
+				has_modifier = celebration_of_ideals
+				has_modifier = premium_leisure_package
+			}
+		}
+		pop_government_ethic_attraction = 1
+		mult = value:ethic_attraction_celebration_of_ideals
 	}
 
 	weight = {
@@ -281,4 +313,59 @@ entertainer = {
 
 	inline_script = "jobs/automodding_priority_charisma"
 
+	leader_background_class_weight = {
+		official = @leader_background_class_match
+		commander = {
+			base = 0
+			modifier = {
+				add = @leader_background_class_match
+				OR = {
+					AND = {
+						entertainer_is_duelist_trigger = yes
+						entertainer_is_storm_dancer_trigger = no
+					}
+					AND = {
+						entertainer_is_duelist_trigger = yes
+						entertainer_is_storm_dancer_trigger = yes
+					}
+				}
+			}
+		}
+	}
+
+	leader_background_ethic_weight = {
+		ethic_militarist = {
+			base = 0
+			modifier = {
+				add = @leader_background_ethic_match
+				OR = {
+					AND = {
+						entertainer_is_duelist_trigger = yes
+						entertainer_is_storm_dancer_trigger = no
+					}
+					AND = {
+						entertainer_is_duelist_trigger = yes
+						entertainer_is_storm_dancer_trigger = yes
+					}
+					AND = {
+						entertainer_is_duelist_trigger = yes
+						entertainer_is_curator_trigger = yes
+					}
+				}
+			}
+		}
+		ethic_pacifist = {
+			base = 0
+			modifier = {
+				add = @leader_background_ethic_match
+				OR = {
+					entertainer_is_curator_trigger = yes
+					AND = {
+						entertainer_is_duelist_trigger = no
+						entertainer_is_storm_dancer_trigger = yes
+					}
+				}
+			}
+		}
+	}
 }

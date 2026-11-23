@@ -114,6 +114,34 @@ carrier_event = { #Baol Life-Seeding complete
 	}
 	option = {
 		trigger = {
+			owner = {
+				has_country_flag = lost_maker_directive_reinstated
+			}
+		}
+		name = ancrel.2025.e
+		if = {
+			limit = { exists = event_target:nu_baol_latest }
+			event_target:nu_baol_latest = {
+				kill_pop_group = {
+					pop_group = this
+					amount = 400
+				}
+			}
+		}
+		else = {
+			ordered_owned_pop_group = {
+				limit = { is_same_species = event_target:nu_baol_species }
+				position = 0
+				order_by = trigger:pop_group_size
+				kill_pop_group = {
+					pop_group = this
+					amount = 400
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
 			owner = { is_hive_empire = no }
 		}
 		name = INCREDIBLE

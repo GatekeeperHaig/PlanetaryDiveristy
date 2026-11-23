@@ -182,14 +182,24 @@ technician_drone = {
 		ship_shield_regen_mult = 0.02
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			owner? = {
+				has_active_tenet = tenet_autonomy
+				is_nomadic = no
+			}
+		}
+		planet_amenities_no_happiness_add = 1
+		mult = owner.modifier:tenet_autonomy_amenities_modifier
+	}
+
 	weight = {
 		weight = @simple_drone_job_weight
 
 		modifier = {
 			factor = 1.1
-			exists = owner
 			years_passed < 1
-			owner = { has_valid_civic = civic_machine_assimilator }
+			owner? = { has_valid_civic = civic_machine_assimilator }
 			has_trait = trait_cybernetic
 		}
 	}

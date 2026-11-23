@@ -25,9 +25,8 @@ calculator_biologist = {
 		#Archeo Drone - auth_hive
 		swap_type = {
 			trigger = {
-				exists = owner
 				has_building = building_archaeostudies_faculty
-				owner = {
+				owner? = {
 					is_hive_empire = yes
 					is_wilderness_empire = no
 				}
@@ -42,9 +41,8 @@ calculator_biologist = {
 		#Archeo Drone - auth_machine
 		swap_type = {
 			trigger = {
-				exists = owner
 				has_building = building_archaeostudies_faculty
-				owner = {
+				owner? = {
 					is_machine_empire = yes
 				}
 			}
@@ -200,6 +198,8 @@ calculator_biologist = {
 		}
 	}
 
+	tags = { research }
+
 	possible_pre_triggers = {
 		has_owner = yes
 		is_enslaved = no
@@ -307,9 +307,8 @@ calculator_biologist = {
 		mult = value:scripted_job_weight_shroud_forged_mult
 		modifier = {
 			factor = 0.9
-			exists = owner
 			years_passed < 1
-			owner = { has_valid_civic = civic_machine_assimilator }
+			owner? = { has_valid_civic = civic_machine_assimilator }
 			has_trait = trait_cybernetic
 		}
 	}

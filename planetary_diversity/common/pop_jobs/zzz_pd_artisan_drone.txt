@@ -111,8 +111,7 @@ artisan_drone = {
 		produces = {
 			trigger = {
 				has_carrier_flag = has_produce_requisitorium
-				exists = owner.overlord
-				owner.overlord = { country_uses_consumer_goods = yes }
+				owner.overlord? = { country_uses_consumer_goods = yes }
 			}
 			consumer_goods = @requisitorium_consumer_goods_reduction
 		}
@@ -124,8 +123,7 @@ artisan_drone = {
 			trigger = {
 				colony = {
 					has_carrier_flag = has_produce_requisitorium
-					exists = owner.overlord
-					owner.overlord = { country_uses_consumer_goods = yes }
+					owner.overlord? = { country_uses_consumer_goods = yes }
 				}
 			}
 			consumer_goods = @requisitorium_consumer_goods_overlord
@@ -137,9 +135,8 @@ artisan_drone = {
 		mult = value:scripted_job_weight_shroud_forged_mult
 		modifier = {
 			factor = 0.9
-			exists = owner
 			years_passed < 1
-			owner = { has_valid_civic = civic_machine_assimilator }
+			owner? = { has_valid_civic = civic_machine_assimilator }
 			has_trait = trait_cybernetic
 		}
 	}

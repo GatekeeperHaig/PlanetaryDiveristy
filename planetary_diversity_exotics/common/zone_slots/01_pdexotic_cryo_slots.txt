@@ -4,13 +4,44 @@ slot_pdexotic_cryo_chemovat = {
 	included_zone_sets = {
 		pdexotic_cryo_chemovat
 	}
+	potential = {
+		owner? = { is_megacity_architects_empire = no }
+	}
 	unlock = {
 		custom_tooltip = {
 			fail_text = zone_unavailable_tech_food_processing_1
 			exists = owner
 			owner = {
-				has_tech_or_functional_civic = {
-					TECH = tech_food_processing_1
+				OR = {
+					has_valid_civic = civic_agrarian_idyll
+					has_tech_or_functional_civic = {
+						TECH = tech_food_processing_1
+					}
+				}
+			}
+		}
+	}
+}
+
+# Megacity Architects variant; also accepts urban zones.
+slot_pdexotic_cryo_chemovat_urban = {
+	included_zone_sets = {
+		pdexotic_cryo_chemovat
+		urban
+	}
+	potential = {
+		owner? = { is_megacity_architects_empire = yes }
+	}
+	unlock = {
+		custom_tooltip = {
+			fail_text = zone_unavailable_tech_food_processing_1
+			exists = owner
+			owner = {
+				OR = {
+					has_valid_civic = civic_agrarian_idyll
+					has_tech_or_functional_civic = {
+						TECH = tech_food_processing_1
+					}
 				}
 			}
 		}

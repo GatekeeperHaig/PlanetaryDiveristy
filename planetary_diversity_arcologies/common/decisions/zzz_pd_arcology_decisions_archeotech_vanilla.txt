@@ -4,12 +4,19 @@ decision_arcology_project_relic = {
 	owned_planets_only = yes
 	icon = decision_arcology_project
 
-	enactment_time = 3600
+	enactment_time = {
+		base = 3600
+		modifier = {
+			owner = { is_megacity_architects_empire = yes }
+			factor = 0.5
+		}
+	}
 	resources = {
 		category = decisions
 		cost = {
 			influence = 200
 			alloys = 10000
+			mult = owner.value:scripted_modifier_mult|MODIFIER|arcology_project_cost_mult|
 		}
 	}
 
@@ -28,6 +35,13 @@ decision_arcology_project_relic = {
 	allow = {
 		num_uncleared_blockers < 1
 		owner = { has_technology = tech_housing_2 }
+		if = {
+			limit = { owner = { is_megacity_architects_empire = yes } }
+			custom_tooltip = {
+				fail_text = "needs_urban_expansion_frame"
+				has_modifier = urban_expansion_frame
+			}
+		}
 	}
 
 	on_queued = {

@@ -8,12 +8,19 @@ decision_arcology_project = {
 	owned_planets_only = yes
 	icon = decision_arcology_project
 
-	enactment_time = 3600
+	enactment_time = {
+		base = 3600
+		modifier = {
+			owner = { is_megacity_architects_empire = yes }
+			factor = 0.5
+		}
+	}
 	resources = {
 		category = decisions
 		cost = {
 			influence = 200
 			alloys = 10000
+			mult = owner.value:scripted_modifier_mult|MODIFIER|arcology_project_cost_mult|
 		}
 	}
 
@@ -37,15 +44,26 @@ decision_arcology_project = {
 	allow = {
 		if = {
 			limit = { owner = { is_ai = no } }
-			custom_tooltip = {
-				fail_text = decision_arcology_project_requirements
+			if = {
+				limit = { owner = { is_megacity_architects_empire = yes } }
 				free_district_slots < 1
-				num_districts = { type = district_farming value < 1 }
-				num_districts = { type = district_mining value < 1 }
-				num_districts = { type = district_generator value < 1 }
-				num_districts = { type = district_geothermal value < 1 }
-				num_districts = { type = district_melting value < 1 }
-				num_districts = { type = district_polytechnic value < 1 }
+				custom_tooltip = {
+					fail_text = "needs_urban_expansion_frame"
+					has_modifier = urban_expansion_frame
+				}
+			}
+			else = {
+				custom_tooltip = {
+					fail_text = decision_arcology_project_requirements
+					free_district_slots < 1
+					num_districts = { type = district_farming value < 1 }
+					num_districts = { type = district_mining value < 1 }
+					num_districts = { type = district_generator value < 1 }
+					# Volcanic Worlds
+					num_districts = { type = district_geothermal value < 1 }
+					num_districts = { type = district_melting value < 1 }
+					num_districts = { type = district_polytechnic value < 1 }
+				}
 			}
 			custom_tooltip = {
 				fail_text = legendary_leader_decision_arcology_project

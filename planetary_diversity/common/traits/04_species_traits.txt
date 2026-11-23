@@ -454,6 +454,7 @@ trait_talented = {
 		trade = 500
 	}
 	modifier = {
+		leader_species_weight_mult = 0.15
 		negative_leader_traits_species = -1
 		leaders_upkeep_mult = -0.1
 	}
@@ -475,6 +476,7 @@ trait_quick_learners = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive leader }
 	modifier = {
+		leader_species_weight_mult = 0.10
 		species_leader_exp_gain = 0.10
 	}
 	slave_cost = {
@@ -492,6 +494,7 @@ trait_slow_learners = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative leader }
 	modifier = {
+		leader_species_weight_mult = -0.10
 		species_leader_exp_gain = -0.10
 	}
 	ai_weight = {
@@ -925,7 +928,9 @@ trait_deviants = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	modifier = { pop_government_ethic_attraction = -0.15 }
+	modifier = {
+		pop_government_ethic_attraction = -0.15
+	}
 
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative ethic_attraction individual }
@@ -950,7 +955,10 @@ trait_venerable = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	modifier = { leader_lifespan_add = 80 }
+	modifier = {
+		leader_species_weight_mult = 0.10
+		leader_lifespan_add = 80
+	}
 	opposites = { "trait_enduring" "trait_fleeting" "trait_fleeting_lithoid" "trait_syncretic_proles" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive leader }
@@ -971,7 +979,10 @@ trait_enduring = {
 	species_possible_merge_remove = {
 		always = yes
 	}
-	modifier = { leader_lifespan_add = 20 }
+	modifier = {
+		leader_species_weight_mult = 0.05
+		leader_lifespan_add = 20
+	}
 	opposites = { "trait_venerable" "trait_fleeting" "trait_fleeting_lithoid" "trait_syncretic_proles" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive leader }
@@ -986,7 +997,10 @@ trait_fleeting = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	modifier = { leader_lifespan_add = -10 }
+	modifier = {
+		leader_species_weight_mult = -0.05
+		leader_lifespan_add = -10
+	}
 	opposites = { "trait_venerable" "trait_enduring" "trait_fleeting_lithoid" "trait_syncretic_proles" }
 	allowed_archetypes = { BIOLOGICAL }
 	tags = { organic negative leader }
@@ -1004,7 +1018,10 @@ trait_fleeting_lithoid = {
 	species_potential_add = {
 		can_add_negative_organic_traits = yes
 	}
-	modifier = { leader_lifespan_add = -25 }
+	modifier = {
+		leader_species_weight_mult = -0.05
+		leader_lifespan_add = -25
+	}
 	icon = "gfx/interface/icons/traits/trait_fleeting.dds"
 
 	opposites = { "trait_venerable" "trait_enduring" "trait_fleeting" "trait_syncretic_proles" }
@@ -1147,6 +1164,7 @@ trait_cybernetic = {
 	}
 	custom_tooltip_with_modifiers = TRAIT_CYBORG_EFFECT
 	modifier = {
+		leader_species_weight_mult = 0.25
 		pop_environment_tolerance = 0.20
 		army_damage_mult = 0.1
 		leader_lifespan_add = 40
@@ -1372,6 +1390,7 @@ trait_survivor = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive habitability leader interesting special }
 	modifier = {
+		leader_species_weight_mult = 0.05
 		pc_nuked_habitability = 0.7
 		pc_pd_nuked_superhabitable_habitability = 0.7
 		pc_pd_nuked_tidally_locked_habitability = 0.7
@@ -1402,11 +1421,11 @@ trait_enigmatic_intelligence = {
 	species_possible_merge_add = {
 		always = no
 	}
-	improves_leaders = yes
 	opposites = { "trait_nerve_stapled" "trait_erudite" "trait_slow_learners" }
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive pop_output research leader presapient interesting special }
 	modifier = {
+		leader_species_weight_mult = 0.10
 		researcher_jobs_bonus_workforce_mult = 0.10
 		species_leader_exp_gain = 0.10
 	}
@@ -1441,7 +1460,6 @@ trait_enigmatic_intelligence_poor = {
 	species_possible_merge_add = {
 		always = no
 	}
-	improves_leaders = yes
 	opposites = { "trait_intelligent"}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic positive pop_output research presapient special }
@@ -1479,7 +1497,6 @@ trait_enigmatic_intelligence_failed = {
 	species_possible_merge_add = {
 		always = no
 	}
-	improves_leaders = yes
 	opposites = { "trait_intelligent"}
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative pop_output research presapient special }
@@ -1608,6 +1625,7 @@ trait_limited_regeneration = { #blue
 	tags = { organic positive army leader amenities pop_growth interesting special }
 
 	modifier = {
+		leader_species_weight_mult = 0.05
 		army_damage_mult = 0.15
 		leader_lifespan_mult = 0.10
 		pop_amenities_usage_mult = -0.05
@@ -2431,8 +2449,8 @@ trait_humanoid_jinxed = {
 	allowed_archetypes = { BIOLOGICAL LITHOID }
 	tags = { organic negative leader }
 	icon = "gfx/interface/icons/traits/trait_jinxed.dds"
-	custom_tooltip = TRAIT_HUMANOID_JINXED_EFFECT
 	modifier = {
+		leader_species_weight_mult = -0.15
 		negative_leader_traits_species = 1
 	}
 	slave_cost = {

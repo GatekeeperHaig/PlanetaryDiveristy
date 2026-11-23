@@ -68,6 +68,15 @@ trait_machine_unit = {
 		pc_pd_machine_tidally_locked_habitability = 1.0
 	}
 
+	triggered_species_modifier = {
+		potential = {
+			from? = {
+				has_finished_synthetic_ascension = yes
+			}
+		}
+		leader_species_weight_mult = 0.25
+	}
+
 	resources = {
 		category = planet_pops
 		# Energy Upkeep
@@ -148,6 +157,18 @@ trait_mechanical = {
 		pc_pd_machine_cave_habitability = 1.0
 		pc_pd_machine_superhabitable_habitability = 1.0
 		pc_pd_machine_tidally_locked_habitability = 1.0
+	}
+
+	triggered_species_modifier = {
+		potential = {
+			NOT = {
+				has_trait = trait_shroud_forged
+			}
+			from? = {
+				has_finished_synthetic_ascension = yes
+			}
+		}
+		leader_species_weight_mult = 0.25
 	}
 
 	resources = {
@@ -725,6 +746,7 @@ trait_necrophage = {
 	icon = "gfx/interface/icons/traits/trait_necrophage.dds"
 
 	modifier = {
+		leader_species_weight_mult = 0.10
 		leader_lifespan_add = 80
 		logistic_growth_mult = -0.5
 		bonus_pop_growth_mult = -0.5
@@ -784,6 +806,7 @@ trait_clone_soldier_infertile = {
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_clone_soldier.dds"
 
 	modifier = {
+		leader_species_weight_mult = 0.05
 		# Pop modifiers
 		pop_government_ethic_attraction = 0.50
 
@@ -828,6 +851,7 @@ trait_clone_soldier_infertile_full_potential = {
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_clone_soldier_ascendant.dds"
 
 	modifier = {
+		leader_species_weight_mult = 0.10
 		# Pop modifiers
 		pop_government_ethic_attraction = 0.50
 		pop_environment_tolerance = 0.20
@@ -875,6 +899,7 @@ trait_clone_soldier_fertile = {
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_clone_soldier_descendant.dds"
 
 	modifier = {
+		leader_species_weight_mult = 0.10
 		# Pop modifiers
 		pop_government_ethic_attraction = 0.20
 
@@ -1066,6 +1091,7 @@ trait_perfected_genes = {
 	icon = "gfx/interface/icons/traits/trait_perfected_genes.dds"
 
 	modifier = {
+		leader_species_weight_mult = -0.10
 		leader_lifespan_add = 25
 		species_leader_exp_gain = -0.20
 	}

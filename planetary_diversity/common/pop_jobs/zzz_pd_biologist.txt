@@ -173,6 +173,8 @@ biologist = {
 		}
 	}
 
+	tags = { research }
+
 	possible_pre_triggers = {
 		has_owner = yes
 		is_being_purged = no
@@ -302,4 +304,18 @@ biologist = {
 
 	inline_script = "jobs/automodding_priority_research"
 
+	leader_background_class_weight = {
+		scientist = @leader_background_class_match
+	}
+
+	leader_background_ethic_weight = {
+		ethic_xenophile = {
+			base = 0
+			modifier = {
+				add = @leader_background_ethic_match
+				biologist_is_zookeeper_trigger = yes
+			}
+		}
+		ethic_materialist = @leader_background_ethic_match
+	}
 }
